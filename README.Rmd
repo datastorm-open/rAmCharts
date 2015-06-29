@@ -53,6 +53,8 @@ if ( require(devtools) ) {
 devtools::install_github("Djaiff/rAmCharts")
 ```
 
+## For examples, please refer to <http://djaiff.github.io/rAmChart/>
+
 ---
 
 [url_amcharts]: http://www.amcharts.com
