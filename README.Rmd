@@ -1,10 +1,3 @@
----
-title: "README"
-author: "Jeffery"
-date: "29 juin 2015"
-output: html_document
----
-
 ### Introduction
 
 This package allows the charts from the library [AmCharts][url_amcharts] using
@@ -12,24 +5,9 @@ This package allows the charts from the library [AmCharts][url_amcharts] using
 
 ---
 
-# Installation
-
-If necessary install the *devtools* package
-
-```{r, eval = FALSE}
-if ( require(devtools) ) {
-  install.packages(devtools)
-} else{}
-```
-
-Once the above package loaded,
-`devtools::install_github("Djaiff/rAmCharts")`
-
----
-
 ### Dependencies
 
-The package require some other functionnal packages:
+This package requires :
 
 - Main architecture to load js dependencies
 ```{r, eval = FALSE}
@@ -59,14 +37,30 @@ install.packages("data.table")
 }else{}
 ```
 
-Use in shiny app:
+- Use in shiny app:
 ```{r, eval = FALSE}
 if (!require("shiny")){
   install.packages("shiny")  
 }else{}
 ```
 
-Those packages are indicated in the ***DESCRIPTION*** file below the *Depends* tag
+Those packages are indicated in the ***DESCRIPTION*** file below the *Depends* tag. Consequently, they are essential.
+
+---
+
+# Installation
+
+Once the above dependent packages available, you can run the following code lines:
+
+```{r, eval = FALSE}
+if ( require(devtools) ) {
+  install.packages(devtools)
+} else{}
+devtools::install_github("Djaiff/rAmCharts")
+```
+
+
+---
 
 [url_amcharts]: http://www.amcharts.com
 [url_htmlwidgets]: http://www.htmlwidgets.org
