@@ -1,0 +1,22 @@
+.responsive-container {
+    position: relative;
+    padding-bottom: 60%; /* the higher the bigger the ratio */
+  }
+.responsive-container > div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+html {
+  background-color: #282828;
+}

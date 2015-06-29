@@ -1,0 +1,44 @@
+Package: rAmChart
+Title: AmChart API tool
+Date: 2015
+Version: 1.0
+Author: DataKnowledge
+Maintainer: Jeffery Petit <jeff@datak.fr>
+Description: This packages provides an API for using AmChart Library
+License: GPL (>= 2)
+Collate:
+    'AmObject.R'
+    'AmBalloon.R'
+    'AmChart.R'
+    'sharedGenerics.R'
+    'Guide.R'
+    'AxisBase.R'
+    'ValueAxis.R'
+    'TrendLine.R'
+    'Title.R'
+    'Label.R'
+    'ChartScrollbar.R'
+    'ChartCursor.R'
+    'CategoryAxis.R'
+    'AmLegend.R'
+    'AmGraph.R'
+    'AmChart_getSet.R'
+    'AmChart_constructors.R'
+    'AmChart_plot.R'
+    'AmChart_shinyUtils.R'
+    'StockPanel.R'
+    'AmStockChart.R'
+    'StockEvent.R'
+    'DataSet.R'
+    'GaugeBand.R'
+    'GaugeAxis.R'
+    'GaugeArrow.R'
+    'PeriodSelector.R'
+    'utils.R'
+Depends:
+    htmlwidgets,
+    shiny,
+    rlist,
+    pipeR,
+    data.table,
+    methods

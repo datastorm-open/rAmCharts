@@ -1,0 +1,53 @@
+dependencies:
+  - name: amcharts
+    version: 3
+    src: htmlwidgets/lib/amcharts
+    script:
+      - amcharts.js
+
+  - name: amcharts_serial
+    version: 3
+    src: htmlwidgets/lib/amcharts
+    script:
+      - serial.js
+
+  - name: amcharts_pie
+    version: 3
+    src: htmlwidgets/lib/amcharts
+    script:
+      - pie.js
+
+  - name: amcharts_radar
+    version: 3
+    src: htmlwidgets/lib/amcharts
+    script:
+      - radar.js
+
+  - name: amcharts_themes
+    version: 3
+    src: htmlwidgets/lib/amcharts/themes
+    script:
+      - black.js
+      - chalk.js
+      - dark.js
+      - light.js
+      - patterns.js
+
+  - name: amcharts_images
+    version: 3
+    src: htmlwidgets/lib/amcharts/images
+
+  - name: amcharts_plugins_export
+    version: 3
+    src: htmlwidgets/lib/amcharts/plugins/export
+    script:
+      - export.min.js
+      - /libs/blob.js/blob.js
+      - /libs/fabric.js/fabric.min.js
+      - /libs/FileSaver.js/FileSaver.js
+      - /libs/jszip/jszip.js
+      - /libs/pdfmake/pdfmake.min.js
+      - /libs/pdfmake/vfs_fonts.js
+      - /libs/xlsx/xlsx.js
+    stylesheet:
+      - export.css
