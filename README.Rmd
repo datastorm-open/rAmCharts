@@ -1,0 +1,72 @@
+---
+title: "README"
+author: "Jeffery"
+date: "29 juin 2015"
+output: html_document
+---
+
+### Introduction
+
+This package allows the charts from the library [AmCharts][url_amcharts] using
+[Hmlwidgets][url_htmlwidgets].
+
+---
+
+# Installation
+
+If necessary install the *devtools* package
+
+```{r, eval = FALSE}
+if ( require(devtools) ) {
+  install.packages(devtools)
+} else{}
+```
+
+Once the above package loaded,
+`devtools::install_github("Djaiff/rAmCharts")`
+
+---
+
+### Dependencies
+
+The package require some other functionnal packages:
+
+- Main architecture to load js dependencies
+```{r, eval = FALSE}
+if (!require("htmlwidgets")){
+  install.packages('htmlwidgets')
+}else{}
+```
+
+- Use R functions with pipe for constructing chart
+```{r, eval = FALSE}
+if (!require("pipeR")){
+  install.packages("pipeR")
+}else{}
+```
+
+- Used in package to manage list
+```{r, eval = FALSE}
+if (!require("rlist")){
+  install.packages("rlist")
+}else{}
+```
+
+- For the moment, only used in the developpment function...
+```{r, eval = FALSE}
+if (!require("data.table")){
+install.packages("data.table")
+}else{}
+```
+
+Use in shiny app:
+```{r, eval = FALSE}
+if (!require("shiny")){
+  install.packages("shiny")  
+}else{}
+```
+
+Those packages are indicated in the ***DESCRIPTION*** file below the *Depends* tag
+
+[url_amcharts]: http://www.amcharts.com
+[url_htmlwidgets]: http://www.htmlwidgets.org
