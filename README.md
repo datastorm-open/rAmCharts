@@ -15,6 +15,9 @@ if ( require(devtools) ) {
 } else{}
 ```
 
+Once the above package loaded,
+`devtools::install_github("Djaiff/rAmCharts")`
+
 The package require some other functionnal packages:
 ```{r, eval = FALSE}
 if (!require("shiny")){
