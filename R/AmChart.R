@@ -119,7 +119,8 @@ setMethod(f = "initialize", signature = "AmChart",
                                 chartScrollbar, creditsPosition, dataProvider, graphs, graph,
                                 guides, legend, segmentsField, theme,
                                 titles, trendLines, type, valueAxes,
-                                valueAxis, ...)
+                                valueAxis,
+                                pathToImages = "http://www.amcharts.com/lib/3/images/",...)
           {
             if( !missing(allLabels) ){
               .Object <- setAllLabels( .Object, allLabels )
@@ -184,7 +185,8 @@ setMethod(f = "initialize", signature = "AmChart",
             if( !missing(valueAxis) > 0 ){
               .Object <- setValueAxis(.Object, valueAxis)
             }else{}
-            .Object@otherProperties <- list(...)
+            .Object <- setProperties(.Object, pathToImages = pathToImages, ...)
+            #, path = "http://www.amcharts.com/lib/3/images/"))
             validObject(.Object)
             return(.Object)
           }

@@ -103,7 +103,9 @@ setMethod(f = "initialize", signature = "AmStockChart",
                                  periodSelector,
                                  stockEventsSettings,
                                  theme,
-                                 valueAxesSettings, ...)
+                                 valueAxesSettings,
+                                 pathToImages = "http://www.amcharts.com/lib/3/images/",
+                                 ...)
           {
             .Object@type = "stock"
             if( !missing(categoryAxesSettings) ){
@@ -148,7 +150,7 @@ setMethod(f = "initialize", signature = "AmStockChart",
             if( !missing(valueAxesSettings) ){
               .Object <- setValueAxesSettings( .Object, valueAxesSettings )
             }else{}
-            .Object <- setProperties(.Object, ...)
+            .Object <- setProperties(.Object, pathToImages = pathToImages, ...)
             validObject(.Object)
             return(.Object)
           }
@@ -173,7 +175,8 @@ amStockChart <- function( categoryAxesSettings,
                           periodSelector,
                           stockEventsSettings,
                           theme,
-                          valueAxesSettings, ...)
+                          valueAxesSettings,
+                          ...)
 {
   .Object = new("AmStockChart")
   if( !missing(categoryAxesSettings) ){
@@ -218,7 +221,7 @@ amStockChart <- function( categoryAxesSettings,
   if( !missing(valueAxesSettings) ){
     .Object <- setValueAxesSettings( .Object, valueAxesSettings )
   }else{}
-  .Object <- setProperties(.Object, ...)
+  .Object <- setProperties(.Object,...)
   validObject(.Object)
   return(.Object)
 }

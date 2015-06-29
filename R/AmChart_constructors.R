@@ -74,6 +74,7 @@ NULL
 #' 
 #' @examples
 #' amChart(type = "pie")
+#' 
 #' @family rAmChart class constructors
 #' @family \code{\linkS4class{AmChart}} constructors
 #' @export
@@ -97,10 +98,11 @@ amChart <- function(allLabels,
                     trendLines,
                     type,
                     valueAxes,
-                    valueAxis, ...)
+                    valueAxis,
+                    pathToImages = "http://www.amcharts.com/lib/3/images/",...)
 {
   # "http://www.amcharts.com/lib/3/images/"
-  object <- new(Class="AmChart", path = "./inst/htmlwidgets/lib/amcharts/images")
+  object <- new(Class="AmChart", pathToImages = pathToImages)
   if( !missing(allLabels) ){
     object <-setAllLabels( object, allLabels )
   }else{}
@@ -164,7 +166,7 @@ amChart <- function(allLabels,
   if( !missing(valueAxis) ){
     object <- setValueAxis(object, valueAxis)
   }else{}
-  object@otherProperties <- list(...)
+  object@otherProperties <- list.append(object@otherProperties, ...)
   validObject(object)
   return(object)
 }
@@ -239,7 +241,8 @@ amSerialChart <- function(allLabels,
                           legend,
                           titles,
                           trendLines,
-                          valueAxes, ...)
+                          valueAxes,
+                          ...)
 {
   object <- amChart(allLabels = allLabels, balloon = balloon, categoryAxis = categoryAxis,
                     categoryField = categoryField, chartCursor = chartCursor,
