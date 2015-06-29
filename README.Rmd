@@ -38,7 +38,7 @@ if (!require("shiny")){
 }else{}
 ```
 
-Those packages are indicated in the ***DESCRIPTION*** file below the *Depends* tag. Consequently, they are essential.
+Those packages are indicated in the ***DESCRIPTION*** file with the *Depends* tag. Consequently, they are essential.
 
 ---
 
