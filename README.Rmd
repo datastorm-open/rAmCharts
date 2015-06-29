@@ -1,13 +1,7 @@
-### Introduction
+This package allows to draw interactive charts from the *JavaScript* library [AmCharts][url_amcharts] using [Hmlwidgets][url_htmlwidgets].
+Since it is still in developpment, some functionnalities might have an unexpected behavior. If you encounter the problem, do not hesitate to contact.
 
-This package allows the charts from the library [AmCharts][url_amcharts] using
-[Hmlwidgets][url_htmlwidgets].
-
----
-
-### Dependencies
-
-This package requires :
+It requires the followings packages:
 
 - Main architecture to load js dependencies
 ```{r, eval = FALSE}
@@ -50,7 +44,7 @@ Those packages are indicated in the ***DESCRIPTION*** file below the *Depends* t
 
 # Installation
 
-Once the above dependent packages available, you can run the following code lines:
+Once the above dependent packages available, you can run the following code lines to install ***rAmChart***:
 
 ```{r, eval = FALSE}
 if ( require(devtools) ) {
@@ -58,7 +52,6 @@ if ( require(devtools) ) {
 } else{}
 devtools::install_github("Djaiff/rAmCharts")
 ```
-
 
 ---
 
