@@ -8,7 +8,8 @@
 \S4method{initialize}{AmStockChart}(.Object, categoryAxesSettings,
   chartCursorSettings, chartScrollbarSettings, comparedDataSets, dataSets,
   dataSetSelector, legendSettings, mainDataSet, panels, panelsSettings,
-  periodSelector, stockEventsSettings, theme, valueAxesSettings, ...)
+  periodSelector, stockEventsSettings, theme, valueAxesSettings,
+  pathToImages = "http://www.amcharts.com/lib/3/images/", ...)
 }
 \description{
 Method for initializing any S4 class provided by the package.

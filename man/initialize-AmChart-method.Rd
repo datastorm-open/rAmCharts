@@ -8,7 +8,8 @@
 \S4method{initialize}{AmChart}(.Object, allLabels, arrows, axes, balloon,
   categoryAxis, categoryField, chartCursor, chartScrollbar, creditsPosition,
   dataProvider, graphs, graph, guides, legend, segmentsField, theme, titles,
-  trendLines, type, valueAxes, valueAxis, ...)
+  trendLines, type, valueAxes, valueAxis,
+  pathToImages = "http://www.amcharts.com/lib/3/images/", ...)
 }
 \description{
 Method for initializing any S4 class provided by the package.

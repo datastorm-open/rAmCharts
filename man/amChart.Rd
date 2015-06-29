@@ -14,7 +14,7 @@
 amChart(allLabels, arrows, axes, balloon, categoryAxis, categoryField,
   chartCursor, chartScrollbar, creditsPosition, dataProvider, graph, graphs,
   guides, legend, segmentsField, theme, titles, trendLines, type, valueAxes,
-  valueAxis, ...)
+  valueAxis, pathToImages = "http://www.amcharts.com/lib/3/images/", ...)
 
 amAngularGaugeChart(arrows, titles, axes, ...)
 
