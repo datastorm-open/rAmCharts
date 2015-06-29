@@ -99,7 +99,8 @@ amChart <- function(allLabels,
                     valueAxes,
                     valueAxis, ...)
 {
-  object <- new(Class="AmChart", pathToImages = "http://www.amcharts.com/lib/3/images/")
+  # "http://www.amcharts.com/lib/3/images/"
+  object <- new(Class="AmChart", path = "./inst/htmlwidgets/lib/amcharts/images")
   if( !missing(allLabels) ){
     object <-setAllLabels( object, allLabels )
   }else{}
