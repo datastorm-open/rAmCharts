@@ -39,7 +39,7 @@ setMethod(
       name = eval(jsFile),   
       width = width,
       height = height,
-      package = 'rAmChart'
+      package = 'rAmCharts'
     )
   }
 )

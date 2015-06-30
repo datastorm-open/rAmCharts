@@ -403,7 +403,6 @@ amSerialChart(categoryField = "date", creditsPosition = "top-right",
 # Test AmStockChart ----
 # ______________________
 
-library(data.table)
 ### Generate dates ----
 start <- as.POSIXct("01-01-2015", format = "%d-%m-%Y")
 end <- as.POSIXct("31-12-2015", format = "%d-%m-%Y")

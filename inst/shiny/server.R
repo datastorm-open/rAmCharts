@@ -6,11 +6,11 @@
 #
 
 library(shiny)
-library(rAmChart)
+library(rAmCharts)
 
 shinyServer(function(input, output) {
   
-  output$radar <- rAmChart::renderAmChart({
+  output$radar <- rAmCharts::renderAmChart({
     amRadarChart( 
       startDuration = 1, categoryField = "attribute", theme = "dark"
     ) %>>% setDataProvider(
@@ -23,7 +23,7 @@ shinyServer(function(input, output) {
     ) %>>% setExport() %>>% plot  
   })
   
-  output$radar2 <- rAmChart::renderAmChart({
+  output$radar2 <- rAmCharts::renderAmChart({
     amRadarChart( 
       startDuration = 1, categoryField = "attribute", theme = "chalk", creditsPosition = "bottom-right"
     ) %>>% setDataProvider(
@@ -36,13 +36,13 @@ shinyServer(function(input, output) {
     ) %>>% setExport() %>>% plot  
   })
   
-  output$pie <- rAmChart::renderAmChart({
+  output$pie <- rAmCharts::renderAmChart({
     amPieChart(valueField = "value", titleField = "key", creditsPostion = "top-right"
     ) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
     ) %>>% setExport() %>>% plot
   })
   
-  output$serial <- rAmChart::renderAmChart({
+  output$serial <- rAmCharts::renderAmChart({
     amSerialChart( categoryField = "country", creditsPosition = "top-right", theme = "light"
     ) %>>% setDataProvider(data.frame(country = c("FR", "US"), visits = 1:2)
     ) %>>% addGraph( balloonText = "[[category]]: <b>[[value]]</b>", type = "column",
@@ -50,7 +50,7 @@ shinyServer(function(input, output) {
     ) %>>% setExport() %>>% plot
   })
   
-  output$drillColumnChart1 <-rAmChart::renderAmChart({
+  output$drillColumnChart1 <-rAmCharts::renderAmChart({
     df <- data.frame(
       name = c("data", "Brand", "singleness"), start = c(8,10,6), end = c(11,13,10),
       color = c('#007FFF', "#007FFF", "#003FFF"), description = c("click to drill-down","","")
@@ -69,7 +69,7 @@ shinyServer(function(input, output) {
     ) %>>% setExport() %>>% plot
   })
   
-  output$drillColumnChart2 <-rAmChart::renderAmChart({
+  output$drillColumnChart2 <-rAmCharts::renderAmChart({
     amSerialChart(categoryField = "name", theme = "chalk"
     ) %>>%setDataProvider( data.frame( name = c("data", "Brand", "singleness"),
                                        start = c(8,10,6), end = c(11,13,10),

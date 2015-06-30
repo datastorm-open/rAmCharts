@@ -55,7 +55,7 @@ setMethod(
       data,
       width = width,
       height = height,
-      package = 'rAmChart'
+      package = 'rAmCharts'
     )
   }
 )

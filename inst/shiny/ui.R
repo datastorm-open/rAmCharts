@@ -6,7 +6,7 @@
 #
 
 library(shiny)
-library(rAmChart)
+library(rAmCharts)
 
 shinyUI(fluidPage(
   
@@ -20,12 +20,12 @@ shinyUI(fluidPage(
     
     # Show a plot of the generated distribution
     mainPanel(
-      rAmChart::amChartOutput("radar", type = "radar"),
-      rAmChart::amChartOutput("radar2", type = "radar"),
-      rAmChart::amChartOutput("pie", type = "pie"),
-      rAmChart::amChartOutput("serial", type = "serial"),
-      rAmChart::amChartOutput("drillColumnChart1", type = "drill"),
-      rAmChart::amChartOutput("drillColumnChart2", type = "drill")
+      rAmCharts::amChartOutput("radar", type = "radar"),
+      rAmCharts::amChartOutput("radar2", type = "radar"),
+      rAmCharts::amChartOutput("pie", type = "pie"),
+      rAmCharts::amChartOutput("serial", type = "serial"),
+      rAmCharts::amChartOutput("drillColumnChart1", type = "drill"),
+      rAmCharts::amChartOutput("drillColumnChart2", type = "drill")
     )
   )
 ))
