@@ -20,7 +20,9 @@ Setter for Type
 Setter
 }
 \examples{
+library(pipeR)
 amChart() \%>>\% setType("pie")
+library(pipeR)
 amGraph() \%>>\% setType("type")
 }
 

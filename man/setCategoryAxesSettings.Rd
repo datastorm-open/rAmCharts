@@ -20,7 +20,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter
 }
 \examples{
-# Setter for categoryAxesSettings
+library(pipeR)
 amStockChart() \%>>\% setCategoryAxesSettings(gridPosition = "start")
 }
 \seealso{

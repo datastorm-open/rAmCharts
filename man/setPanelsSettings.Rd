@@ -22,6 +22,7 @@ Setter for PanelsSettings
 Use this methode in case of an AmStockChart.
 }
 \examples{
+library(pipeR)
 amStockChart() \%>>\% setPanelsSettings(backgroundAlpha = 0)
 }
 \seealso{

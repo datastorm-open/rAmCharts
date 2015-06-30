@@ -11,10 +11,9 @@
 Setter for arrows
 }
 \examples{
+library(pipeR)
 # Setter for arrows
-
 amChart() \%>>\% setArrows()
-
 arrows <- list( gaugeArrow(value = 130), gaugeArrow(value = 150) )
 amChart() \%>>\% setArrows(arrows)
 amChart(arrows = arrows)

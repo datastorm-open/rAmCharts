@@ -17,7 +17,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Add a trendLine
 }
 \examples{
-# Setter for trendLine
+library(pipeR)
 amChart() \%>>\% addTrendLine( initialValue = 1, finalValue = 11 )
 }
 \seealso{

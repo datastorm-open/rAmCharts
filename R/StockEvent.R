@@ -57,6 +57,7 @@ stockEvent <- function( backgroundAlpha = 1, stockGraph,...){
 setGeneric(name = "setStockGraph", def = function(.Object, stockGraph = NULL, ...){ standardGeneric("setStockGraph") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' stockEvent() %>>% setStockGraph()
 #' @export
 setMethod(
@@ -75,12 +76,13 @@ setMethod(
 
 #' @title List properties
 #' @return Properties of the object in a list
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "StockEvent",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length( .Object@stockGraph ) > 0 ){
-               ls <- list.append(ls, stockGraph = .Object@stockGraph)
+               ls <- rlist::list.append(ls, stockGraph = .Object@stockGraph)
              }else{}
              return(ls)
            }

@@ -20,6 +20,7 @@ Setter
 }
 \examples{
 # Setter for label
+library(pipeR)
 amChart() \%>>\% addLabel(text = "balloonText")
 }
 \seealso{

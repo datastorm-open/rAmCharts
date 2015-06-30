@@ -75,6 +75,7 @@ label <- function(text, bold, x, y, ...){
 setGeneric(name = "setBold", def = function(.Object, bold){ standardGeneric("setBold") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' label() %>>% setBold(TRUE)
 #' @export
 setMethod(
@@ -92,6 +93,7 @@ setMethod(
 
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' label() %>>% setText("Bonjour")
 #' @export
 setMethod(
@@ -111,6 +113,7 @@ setMethod(
 setGeneric(name = "setX", def = function(.Object, x){ standardGeneric("setX") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' label() %>>% setX(16)
 #' @export
 setMethod(
@@ -130,6 +133,7 @@ setMethod(
 setGeneric(name = "setY", def = function(.Object, y){ standardGeneric("setY") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' label() %>>% setY(16)
 #' @export
 setMethod(
@@ -147,21 +151,22 @@ setMethod(
 #' @examples
 #' label(text = "balloonText")
 #' @return Properties of the object in a list
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "Label",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length( .Object@text ) > 0 ){
-               ls <- list.append(ls, text = .Object@text)
+               ls <- rlist::list.append(ls, text = .Object@text)
              }
              if( length( .Object@bold ) > 0 ){
-               ls <- list.append(ls, bold = .Object@bold)
+               ls <- rlist::list.append(ls, bold = .Object@bold)
              }
              if( length( .Object@x ) > 0 ){
-               ls <- list.append(ls, x = .Object@x)
+               ls <- rlist::list.append(ls, x = .Object@x)
              }
              if( length( .Object@y ) > 0 ){
-               ls <- list.append(ls, y = .Object@y)
+               ls <- rlist::list.append(ls, y = .Object@y)
              }
              return(ls)
            }

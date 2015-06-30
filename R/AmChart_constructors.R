@@ -77,6 +77,7 @@ NULL
 #' 
 #' @family rAmChart class constructors
 #' @family \code{\linkS4class{AmChart}} constructors
+#' @importFrom rlist list.append
 #' @export
 amChart <- function(allLabels,
                     arrows,
@@ -166,7 +167,7 @@ amChart <- function(allLabels,
   if( !missing(valueAxis) ){
     object <- setValueAxis(object, valueAxis)
   }else{}
-  object@otherProperties <- list.append(object@otherProperties, ...)
+  object@otherProperties <- rlist::list.append(object@otherProperties, ...)
   validObject(object)
   return(object)
 }

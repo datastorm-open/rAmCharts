@@ -19,6 +19,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter
 }
 \examples{
+library(pipeR)
 # Setter for categoryAxis
 amChart() \%>>\% setCategoryAxis(categoryAxis(gridPosition = "start"))
 amChart() \%>>\% setCategoryAxis(gridPosition = "start")

@@ -11,6 +11,7 @@
 This function is used to list attributes before addind to graphs (attribute of AmChart)
 }
 \examples{
+library(pipeR)
 amGraph(balloonText = "toto", type = "type", valueField = "valueField") \%>>\%
 listProperties
 

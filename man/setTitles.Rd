@@ -20,6 +20,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Set a list of Title's
 }
 \examples{
+library(pipeR)
 # Setter for titles
 titles <- list(title(text = "balloonText"), title(text = "column"))
 amChart() \%>>\% setTitles(titles)

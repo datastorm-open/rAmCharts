@@ -52,6 +52,7 @@ gaugeArrow <- function( fillAlpha, alpha = 1,  axis, ... ){
 setGeneric(name = "setAxis", def = function(.Object, axis = NULL, ...){ standardGeneric( "setAxis" ) } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' gaugeArrow() %>>% setAxis()
 #' @export
 setMethod(
@@ -72,12 +73,13 @@ setMethod(
 #' @return Properties of the object in a list
 #' @examples
 #' lapply(list(gaugeArrow(alpha = .4, value = 1), gaugeArrow(alpha = .5)), listProperties)
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "GaugeArrow",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length(.Object@axis) > 0 ){
-               ls <- list.append(ls, axis = .Object@axis)
+               ls <- rlist::list.append(ls, axis = .Object@axis)
              }
              return(ls)
            }

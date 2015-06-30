@@ -19,7 +19,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Add a ValueAxes
 }
 \examples{
-# Setter for valueAxes
+library(pipeR)
 amChart() \%>>\% addValueAxes( axisTitleOffset = 12, tickLength = 10 )
 }
 \seealso{

@@ -19,6 +19,7 @@ The updated object of class \code{\linkS4class{AmBalloon}}.
 Setter for fillColor
 }
 \examples{
+library(pipeR)
 amBalloon() \%>>\% setFillColor("#FFFFFF")
 }
 \seealso{

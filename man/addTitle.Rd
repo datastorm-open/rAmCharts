@@ -17,7 +17,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Add a Title
 }
 \examples{
-# Setter for title
+library(pipeR)
 amChart() \%>>\% addTitle( text = "balloonText" )
 }
 \seealso{

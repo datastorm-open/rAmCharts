@@ -12,6 +12,7 @@
 SETTER
 }
 \examples{
+library(pipeR)
 chartScrollbar() \%>>\% setUpdateOnReleaseOnly(TRUE)
 }
 

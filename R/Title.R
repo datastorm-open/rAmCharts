@@ -61,6 +61,7 @@ title <- function(text, size, ...){
 
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' title() %>>% setText("Bonjour")
 #' @export
 setMethod(
@@ -80,6 +81,7 @@ setMethod(
 setGeneric(name = "setSize", def = function(.Object, size){ standardGeneric("setSize") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' title() %>>% setSize(16)
 #' @export
 setMethod(
@@ -97,15 +99,16 @@ setMethod(
 #' @examples
 #' new("Title", text = "foo")
 #' @return Properties of the object in a list
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "Title",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length( .Object@text ) > 0 ){
-               ls <- list.append(ls, text = .Object@text)
+               ls <- rlist::list.append(ls, text = .Object@text)
              }else{}
              if( length( .Object@size ) > 0 ){
-               ls <- list.append(ls, size = .Object@size)
+               ls <- rlist::list.append(ls, size = .Object@size)
              }else{}
              return(ls)
            }

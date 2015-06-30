@@ -20,7 +20,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter for valueAxis
 }
 \examples{
-# Setter for valueAxis
+library(pipeR)
 amGanttChart() \%>>\% setValueAxis()
 }
 \seealso{

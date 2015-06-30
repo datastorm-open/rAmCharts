@@ -35,10 +35,9 @@ Collate:
     'GaugeArrow.R'
     'PeriodSelector.R'
     'utils.R'
-Depends:
+Imports:
     htmlwidgets,
-    shiny,
     rlist,
-    pipeR,
-    data.table,
-    methods
+    data.table
+Suggests:
+    pipeR

@@ -11,6 +11,7 @@
 SETTER
 }
 \examples{
+library(pipeR)
 categoryAxis() \%>>\% setGridPosition("start")
 }
 

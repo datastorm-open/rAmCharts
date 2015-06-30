@@ -11,6 +11,7 @@
 SETTER
 }
 \examples{
+library(pipeR)
 gaugeArrow() \%>>\% setAxis()
 }
 

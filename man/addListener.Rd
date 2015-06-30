@@ -21,6 +21,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter for Listener
 }
 \examples{
+library(pipeR)
 amChart() \%>>\% addListener("select", "function onSelect (properties) {
      alert('selected nodes: ' + properties.nodes);}")
 }

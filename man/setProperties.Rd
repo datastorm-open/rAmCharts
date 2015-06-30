@@ -15,6 +15,7 @@ The former properties will be overwritten.}}
 In case the property is a class attribute, it will be overwritten if the attribute is non NULL
 }
 \examples{
+library(pipeR)
 # For an AmChart
 ls <- list(categoryAxis = list(gridPosition = "start"), test = 1)
 amChart() \%>>\% setProperties(list = ls) \%>>\% setType("pie") \%>>\% setProperties(fontSize = 15)

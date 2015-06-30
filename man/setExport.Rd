@@ -19,7 +19,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter for export
 }
 \examples{
-# Setter for graph
+library(pipeR)
 amChart() \%>>\% setExport()
 }
 \seealso{

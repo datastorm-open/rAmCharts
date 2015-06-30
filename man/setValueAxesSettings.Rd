@@ -20,7 +20,7 @@ The updated object of class \code{\linkS4class{AmStockChart}}.
 Setter for valueAxesSettings
 }
 \examples{
-# Setter for valueAxesSettings
+library(pipeR)
 amStockChart() \%>>\% setValueAxesSettings(autoGridCount = "TRUE")
 }
 \seealso{

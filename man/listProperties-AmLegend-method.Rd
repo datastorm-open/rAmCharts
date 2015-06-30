@@ -15,6 +15,5 @@ List properties
 }
 \examples{
 is(listProperties(amLegend(useGraphSettings = TRUE)), "list")
-new("AmLegend", useGraphSettings = TRUE)
 }
 

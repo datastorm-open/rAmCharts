@@ -11,6 +11,7 @@
 Add fieldMapping
 }
 \examples{
+library(pipeR)
 dataSet() \%>>\% addFieldMapping(fromField ="val1", toField ="value")
 }
 

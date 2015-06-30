@@ -46,6 +46,7 @@ setGeneric(name = "setProperties", def = function(.Object, list, ...){standardGe
 #' @param \code{properties}: {(Optional) Object of class \code{list} containing properties to set.
 #' The former properties will be overwritten.}
 #' @examples
+#' library(pipeR)
 #' # For an AmChart
 #' ls <- list(categoryAxis = list(gridPosition = "start"), test = 1)
 #' amChart() %>>% setProperties(list = ls) %>>% setType("pie") %>>% setProperties(fontSize = 15)
@@ -53,12 +54,13 @@ setGeneric(name = "setProperties", def = function(.Object, list, ...){standardGe
 #' @family AmObjects methods
 #' @family AmObject setters
 #' @seealso \code{\linkS4class{AmObject}}
+#' @importFrom rlist list.append
 #' @export
 setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
           definition = function(.Object, list, ...)
           {
             if(missing(list)){
-              .Object@otherProperties <- .Object@otherProperties %>>% list.append(...)
+              .Object@otherProperties <- rlist::list.append(.Object@otherProperties, ...)
             }else if(is.list(list)){
               .Object@otherProperties <- list
             }else{}
@@ -74,7 +76,7 @@ setGeneric( name = "getOtherProperties",
             def = function(.Object) { standardGeneric("getOtherProperties") } )
 #' @title Getter
 #' @examples
-#' # Getter for otherProperties
+#' library(pipeR)
 #' ls <- list(categoryAxis = list(gridPosition = "start"), test = 1)
 #' amPieChart( otherProperties = ls) %>>% getOtherProperties
 #' @rdname getOtherProperties

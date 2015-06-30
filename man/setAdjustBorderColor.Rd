@@ -19,6 +19,7 @@ The updated object of class \code{\linkS4class{AmBalloon}}.
 Setter for adjustBorderColor
 }
 \examples{
+library(pipeR)
 amBalloon() \%>>\% setAdjustBorderColor(TRUE)
 }
 \seealso{

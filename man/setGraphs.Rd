@@ -20,7 +20,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter
 }
 \examples{
-# Setter for graphs
+library(pipeR)
 graphs <- list(amGraph(balloonText = "balloonText"), amGraph(type = "column"))
 amChart() \%>>\% setGraphs(graphs)
 }

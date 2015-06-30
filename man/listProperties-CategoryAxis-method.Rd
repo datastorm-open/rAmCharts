@@ -15,6 +15,7 @@ List properties
 }
 \examples{
 \dontshow{
+library(pipeR)
 categoryAxis(ignoreAxisWidth = TRUE) \%>>\% listProperties() \%>>\% class
 categoryAxis(ignoreAxisWidth = TRUE) \%>>\% listProperties() \%>>\% length
 categoryAxis(ignoreAxisWidth = TRUE) \%>>\% setGridPosition("start") \%>>\% listProperties()

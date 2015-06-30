@@ -82,6 +82,7 @@ setGeneric(name = "setDrawOnAxis",
            def = function( .Object, valueAxis = NULL, ... ){ standardGeneric("setDrawOnAxis") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' stockPanel() %>>% setDrawOnAxis( valueAxis() )
 #' @export
 setMethod(
@@ -105,6 +106,7 @@ setGeneric(name = "setStockGraphs",
            def = function(.Object, stockGraphs ){ standardGeneric("setStockGraphs") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' stockPanel() %>>% setStockGraphs( list( stockGraph(comparable = TRUE), stockGraph(comparable = FALSE) ) )
 #' @export
 setMethod(
@@ -131,6 +133,7 @@ setGeneric(name = "addStockGraph",
 #' Use stockGraph(*) constructor
 #' @param \code{...}: Properties of the \code{\linkS4class{amGraph}} to add.
 #' @examples
+#' library(pipeR)
 #' stockPanel() %>>% addStockGraph(comparable = FALSE)
 #' stockPanel() %>>% addStockGraph( stockGraph(comparable = FALSE) )
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
@@ -161,6 +164,7 @@ setGeneric(name = "setStockLegend",
            def = function( .Object, stockLegend = NULL, ... ){ standardGeneric("setStockLegend") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' stockPanel() %>>% setStockLegend( stockLegend() )
 #' @export
 setMethod(
@@ -179,18 +183,19 @@ setMethod(
 
 #' @title List properties
 #' @return Properties of the object in a list
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "StockPanel",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length( .Object@drawOnAxis ) > 0 ){
-               ls <- list.append(ls, drawOnAxis = .Object@drawOnAxis)
+               ls <- rlist::list.append(ls, drawOnAxis = .Object@drawOnAxis)
              }else{}
              if( length( .Object@stockGraphs ) > 0 ){
-               ls <- list.append(ls, stockGraphs = .Object@stockGraphs)
+               ls <- rlist::list.append(ls, stockGraphs = .Object@stockGraphs)
              }else{}
              if( length( .Object@stockLegend ) > 0 ){
-               ls <- list.append(ls, stockLegend = .Object@stockLegend)
+               ls <- rlist::list.append(ls, stockLegend = .Object@stockLegend)
              }else{}
              return(ls)
            }

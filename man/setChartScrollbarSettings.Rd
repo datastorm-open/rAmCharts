@@ -20,6 +20,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter
 }
 \examples{
+library(pipeR)
 amStockChart() \%>>\% setChartScrollbarSettings()
 }
 \seealso{

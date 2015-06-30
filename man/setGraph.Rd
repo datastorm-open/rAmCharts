@@ -36,9 +36,9 @@ Method to use in case of AmChart of type \code{gantt}.
 For other type see \code{\link{setGraphs}} or \code{\link{addGraph}}.
 }
 \examples{
-# Setter for graph
+library(pipeR)
 amGanttChart() \%>>\% setGraph()
-# Setter for graph
+library(pipeR)
 chartScrollbar() \%>>\% setGraph(test = 1)
 }
 \seealso{

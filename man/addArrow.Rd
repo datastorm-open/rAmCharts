@@ -19,7 +19,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter
 }
 \examples{
-# Setter for arrow
+library(pipeR)
 amChart() \%>>\% addArrow(alpha = 1)
 }
 \seealso{

@@ -31,9 +31,9 @@ Setter for dataProvider
 Setter for dataProvider
 }
 \examples{
-# Setter for dataProvider
+library(pipeR)
 amChart() \%>>\% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10)))
-# Setter for dataProvider
+library(pipeR)
 dataSet() \%>>\% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10)))
 }
 \seealso{

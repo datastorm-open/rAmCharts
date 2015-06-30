@@ -11,7 +11,7 @@
 Getter
 }
 \examples{
-# Getter for otherProperties
+library(pipeR)
 ls <- list(categoryAxis = list(gridPosition = "start"), test = 1)
 amPieChart( otherProperties = ls) \%>>\% getOtherProperties
 }

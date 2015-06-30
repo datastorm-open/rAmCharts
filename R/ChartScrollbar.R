@@ -71,7 +71,7 @@ chartScrollbar <- function(graph, updateOnReleaseOnly,
 #' @param \code{graph}: (optionnal) Object of class \code{\linkS4class{AmGraph}}.
 #' @return The updated object of class \code{\linkS4class{ChartScrollbar}}.
 #' @examples
-#' # Setter for graph
+#' library(pipeR)
 #' chartScrollbar() %>>% setGraph(test = 1)
 #' @family ChartScrollbar setters
 #' @family ChartScrollbar methods
@@ -111,6 +111,7 @@ setGeneric(name = "setUpdateOnReleaseOnly",
            def = function(.Object, updateOnReleaseOnly){ standardGeneric("setUpdateOnReleaseOnly") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' chartScrollbar() %>>% setUpdateOnReleaseOnly(TRUE)
 #' @rdname setUpdateOnReleaseOnly
 #' @export

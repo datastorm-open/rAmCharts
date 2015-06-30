@@ -80,6 +80,7 @@ setMethod(
 #' @exportMethod addBand
 setGeneric(name = "addBand", def = function(.Object, band = NULL, ...){ standardGeneric( "addBand" ) } )
 #' @title SETTER
+#' @importFrom rlist list.append
 #' @export
 setMethod(
   f = "addBand",
@@ -89,18 +90,19 @@ setMethod(
     if( is.null(band) && !missing(...) ){
       band <- gaugeBand(...)
     }else{}
-    .Object@bands <- list.append( .Object@bands, listProperties(band) )
+    .Object@bands <- rlist::list.append( .Object@bands, listProperties(band) )
     return(.Object)
   }
 )
 #' @title List properties
 #' @return Properties of the object in a list
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "GaugeAxis",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length(.Object@bands) > 0 ){
-               ls <- list.append(ls, bands = .Object@bands)
+               ls <- rlist::list.append(ls, bands = .Object@bands)
              }
              return(ls)
            }

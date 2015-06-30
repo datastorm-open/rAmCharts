@@ -28,9 +28,10 @@ Setter
 Add A Guide
 }
 \examples{
-# Setter for guide
+library(pipeR)
 amChart() \%>>\% addGuide(fillAlpha = .1)
 \dontshow{
+library(pipeR)
 valueAxis(axisTitleOffset = 12, tickLength = 10) \%>>\%
 addGuide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
 

@@ -11,6 +11,7 @@
 SETTER
 }
 \examples{
+library(pipeR)
 stockPanel() \%>>\% setStockGraphs( list( stockGraph(comparable = TRUE), stockGraph(comparable = FALSE) ) )
 }
 

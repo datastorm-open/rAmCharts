@@ -22,6 +22,7 @@ The updated object of class \code{\linkS4class{AmStockChart}}.
 Setter
 }
 \examples{
+library(pipeR)
 amStockChart() \%>>\% addDataSet(compared = FALSE) \%>>\% addDataSet(dataSet())
 }
 \seealso{

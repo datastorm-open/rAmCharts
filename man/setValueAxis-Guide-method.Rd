@@ -11,6 +11,7 @@
 SETTER
 }
 \examples{
+library(pipeR)
 guide() \%>>\% setValueAxis(list(a = 1))
 }
 

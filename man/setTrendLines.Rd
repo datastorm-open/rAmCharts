@@ -20,7 +20,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter for trendLines
 }
 \examples{
-# Setter for trendLines
+library(pipeR)
 trendLines <- list(trendLine(initialValue = 1, finalValue = 5), trendLine(initialValue = 7, finalValue = 19))
 amChart() \%>>\% setTrendLines(trendLines)
 }

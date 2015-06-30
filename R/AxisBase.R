@@ -16,12 +16,14 @@ setClass( Class = "AxisBase", contains = "AmObject",
 #' @param \code{guide}: Object of class \linkS4class{Guide}
 #' @examples
 #' \dontshow{
+#' library(pipeR)
 #' valueAxis(axisTitleOffset = 12, tickLength = 10) %>>%
 #' addGuide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
 #' 
 #' valueAxis( axisTitleOffset = 12, tickLength = 10 )
 #' }
 #' @rdname addGuide
+#' @importFrom rlist list.append
 #' @export
 setMethod(
   f = "addGuide",
@@ -31,7 +33,7 @@ setMethod(
     if( is.null(guide) && !missing(...) ){
       guide <- guide(...)
     }else{}
-    .Object@guides <- list.append(.Object@guides, listProperties(guide))
+    .Object@guides <- rlist::list.append(.Object@guides, listProperties(guide))
     validObject(.Object)
     return(.Object)
   }
@@ -39,12 +41,13 @@ setMethod(
 
 #' @title List properties
 #' @return Properties of the object in a list
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "AxisBase",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length( .Object@guides ) > 0 ){
-               ls <- list.append(ls, guides = .Object@guides)
+               ls <- rlist::list.append(ls, guides = .Object@guides)
              }
              return(ls)
            }

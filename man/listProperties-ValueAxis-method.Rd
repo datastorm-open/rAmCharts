@@ -14,6 +14,7 @@ Properties of the object in a list
 List properties
 }
 \examples{
+library(pipeR)
 \dontshow{
 valueAxis( axisTitleOffset = 12, tickLength = 10 ) \%>>\% listProperties \%>>\% class
 }

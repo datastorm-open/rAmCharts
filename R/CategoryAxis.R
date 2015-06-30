@@ -51,7 +51,7 @@ categoryAxis <- function(gridPosition, ...){
   if(!missing(gridPosition)){
     .Object@gridPosition <- gridPosition
   }
-  .Object <- .Object %>>% setProperties(...)
+  .Object <- setProperties(.Object, ...)
   return( .Object )
 }
 
@@ -60,6 +60,7 @@ setGeneric(name = "setGridPosition",
            def = function(.Object, gridPosition){ standardGeneric("setGridPosition") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' categoryAxis() %>>% setGridPosition("start")
 #' @rdname setGridPosition
 #' @export
@@ -79,16 +80,18 @@ setMethod(
 #' @return Properties of the object in a list
 #' @examples
 #' \dontshow{
+#' library(pipeR)
 #' categoryAxis(ignoreAxisWidth = TRUE) %>>% listProperties() %>>% class
 #' categoryAxis(ignoreAxisWidth = TRUE) %>>% listProperties() %>>% length
 #' categoryAxis(ignoreAxisWidth = TRUE) %>>% setGridPosition("start") %>>% listProperties()
 #' }
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "CategoryAxis",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length(.Object@gridPosition) > 0 ){
-             ls <- list.append(ls, gridPosition = .Object@gridPosition)
+             ls <- rlist::list.append(ls, gridPosition = .Object@gridPosition)
              }
              if( length( .Object@guides ) > 0 ){
                ls <- c(ls, guides)

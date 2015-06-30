@@ -59,12 +59,13 @@ valueAxis <- function(title, ...){
   if(!missing(title)){
     .Object@title <- title
   }
-  .Object <- .Object %>>% setProperties(...)
+  .Object <- setProperties(.Object, ...)
   return( .Object )
 }
 
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' valueAxis() %>>% setTitle("Hello !")
 #' @export
 setMethod( f = "setTitle", signature = c("ValueAxis", "character"),
@@ -79,18 +80,20 @@ setMethod( f = "setTitle", signature = c("ValueAxis", "character"),
 #' @title List properties
 #' @return Properties of the object in a list
 #' @examples
+#' library(pipeR)
 #' \dontshow{
 #' valueAxis( axisTitleOffset = 12, tickLength = 10 ) %>>% listProperties %>>% class
 #' }
 #' valueAxis( axisTitleOffset = 12, tickLength = 10 ) %>>%
 #' addGuide( fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1 ) %>>%
 #' setProperties( axisTitleOffset = 12 ) %>>% listProperties
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "ValueAxis",
            definition = function( .Object )
            { 
              ls <- callNextMethod()
              if( length(.Object@title) > 0 ){
-               ls <- list.append(ls, title = .Object@title)
+               ls <- rlist::list.append(ls, title = .Object@title)
              }
              return(ls)
            }

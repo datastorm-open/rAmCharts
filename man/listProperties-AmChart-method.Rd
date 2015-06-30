@@ -14,6 +14,7 @@ This method lists attributes of an AmChart to fit the API
 For certain attributes we do not verify if they are NULL, see constructor.
 }
 \examples{
+library(pipeR)
 amChart() \%>>\% setProperties(test = 1) \%>>\% listProperties
 }
 

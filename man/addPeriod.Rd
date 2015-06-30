@@ -19,7 +19,7 @@ The updated object of class \code{\linkS4class{PeriodSelector}}.
 Add a period
 }
 \examples{
-# Setter for period
+library(pipeR)
 periodSelector() \%>>\% addPeriod(  period = "MM", selected = TRUE, count = 1, label= "1 month" )
 }
 \seealso{

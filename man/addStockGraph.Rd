@@ -22,6 +22,7 @@ The updated object of class \code{\linkS4class{AmStockChart}}.
 Setter
 }
 \examples{
+library(pipeR)
 stockPanel() \%>>\% addStockGraph(comparable = FALSE)
 stockPanel() \%>>\% addStockGraph( stockGraph(comparable = FALSE) )
 }

@@ -134,6 +134,7 @@ stockGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueF
 setGeneric(name = "setBalloonText", def = function(.Object, balloonText){standardGeneric("setBalloonText")})
 #' @title Setter
 #' @examples
+#' library(pipeR)
 #' amGraph() %>>% setBalloonText("balloonText")
 #' @name setBalloonText
 #' @rdname setBalloonText
@@ -151,6 +152,7 @@ setMethod(f = "setBalloonText", signature = c("AmGraph", "character"),
 
 #' @title Setter
 #' @examples
+#' library(pipeR)
 #' amGraph() %>>% setTitle("title")
 #' @rdname setTitle
 #' @name setTitle
@@ -166,6 +168,7 @@ setMethod(f = "setTitle", signature = c("AmGraph", "character"),
 
 #' @title Setter
 #' @examples
+#' library(pipeR)
 #' amGraph() %>>% setType("type")
 #' @name setType
 #' @rdname setType
@@ -185,6 +188,7 @@ setMethod(f = "setType", signature = c("AmGraph", "character"),
 setGeneric(name = "setValueField", def = function(.Object, valueField){standardGeneric("setValueField")})
 #' @title Setter
 #' @examples
+#' library(pipeR)
 #' amGraph() %>>% setValueField("valueField")
 #' @name setValueField
 #' @rdname setValueField
@@ -204,26 +208,28 @@ setMethod(f = "setValueField", signature = c("AmGraph", "character"),
 #' @title List attributes of an AmGraph object
 #' @description This function is used to list attributes before addind to graphs (attribute of AmChart)
 #' @examples
+#' library(pipeR)
 #' amGraph(balloonText = "toto", type = "type", valueField = "valueField") %>>%
 #' listProperties
 #' 
 #' amGraph(balloonText = "toto", type = "type") %>>%
 #' listProperties
+#' @importFrom rlist list.append
 setMethod(f = "listProperties", signature = "AmGraph",
           definition = function(.Object)
           {
             ls <- callNextMethod()
             if( length(.Object@balloonText) > 0 ){
-              ls <- ls %>>% list.append(balloonText = .Object@balloonText)
+              ls <- rlist::list.append(ls, balloonText = .Object@balloonText)
             }else{}
             if( length(.Object@title) > 0 ){
-              ls <- ls %>>% list.append(title = .Object@title)
+              ls <- rlist::list.append(ls, title = .Object@title)
             }else{}
             if( length(.Object@type) > 0 ){
-              ls <- ls %>>% list.append(type = .Object@type)
+              ls <- rlist::list.append(ls, type = .Object@type)
             }else{}
             if( length(.Object@valueField) > 0 ){
-              ls <- ls %>>% list.append(valueField = .Object@valueField)
+              ls <- rlist::list.append(ls, valueField = .Object@valueField)
             }else{}
             return (ls)
           }

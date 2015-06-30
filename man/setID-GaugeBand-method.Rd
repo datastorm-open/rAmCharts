@@ -11,6 +11,7 @@
 SETTER
 }
 \examples{
+library(pipeR)
 gaugeBand() \%>>\% setID("1")
 }
 

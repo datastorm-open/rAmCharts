@@ -38,7 +38,6 @@ setMethod(f = "initialize", signature = "AmLegend",
 #' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/AmLegend}}}
 #' @return An \code{\linkS4class{AmLegend}} object
 #' @examples
-#' new("AmLegend", useGraphSettings = TRUE)
 #' amLegend(useGraphSettings = TRUE)
 #' @export
 amLegend <- function(useGraphSettings, ...){
@@ -72,6 +71,7 @@ stockLegend <- function(useGraphSettings, valueTextComparing = "[[percents.value
 setGeneric(name = "setUseGraphSettings", def = function(.Object, useGraphSettings){ standardGeneric("setUseGraphSettings") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' amLegend() %>>% setUseGraphSettings(TRUE)
 #' @rdname setUseGraphSettings
 #' @export
@@ -89,14 +89,14 @@ setMethod(
 #' @title List properties
 #' @examples
 #' is(listProperties(amLegend(useGraphSettings = TRUE)), "list")
-#' new("AmLegend", useGraphSettings = TRUE)
 #' @return Properties of the object in a list
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "AmLegend",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length( .Object@useGraphSettings ) > 0 ){
-               ls <- list.append(ls, useGraphSettings = .Object@useGraphSettings)
+               ls <- rlist::list.append(ls, useGraphSettings = .Object@useGraphSettings)
              }else{}
              return(ls)
            }

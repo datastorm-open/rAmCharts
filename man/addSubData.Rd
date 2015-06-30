@@ -20,6 +20,7 @@ after clicking on the serial / column.}
 This method allows to add subdata for a chart with drilldown.
 }
 \examples{
+library(pipeR)
 amChart( dataProvider = data.frame(a = 1:5, b = 6:10) ) \%>>\%
 addSubData( 3, data.frame(a = 1:10, b = 11:20) )
 }

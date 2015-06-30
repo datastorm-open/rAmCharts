@@ -59,7 +59,7 @@ guide <- function(fillAlpha, valueAxis, value, ...){
   if(!missing(value)){
     .Object@value <- value
   }
-  .Object <- .Object %>>% setProperties(...)
+  .Object <- setProperties(.Object, ...)
   return( .Object )
 }
 
@@ -67,6 +67,7 @@ guide <- function(fillAlpha, valueAxis, value, ...){
 setGeneric(name = "setFillAlpha", def = function(.Object, fillAlpha){ standardGeneric("setFillAlpha") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' guide() %>>% setFillAlpha(1)
 #' @rdname guide
 #' @export
@@ -83,6 +84,7 @@ setMethod(
 
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' guide() %>>% setValueAxis(list(a = 1))
 #' @export
 setMethod(
@@ -105,7 +107,7 @@ setMethod(
 #' @param \code{valueAxis}: Object of class \code{\linkS4class{ValuesAxes}}.
 #' @return The updated object of class \code{\linkS4class{Guide}}.
 #' @examples
-#' # Setter for valueAxis
+#' library(pipeR)
 #' guide() %>>% addValueAxis( axisTitleOffset = 12, tickLength = 10 )
 #' @family Guide setters
 #' @family Guide methods
@@ -113,6 +115,7 @@ setMethod(
 #' @seealso \code{\linkS4class{ValueAxis}} S4 class
 #' @name addValueAxis
 #' @rdname addValueAxis
+#' @importFrom rlist list.append
 #' @export
 setMethod( f = "addValueAxis", signature = c("Guide"),
            definition = function(.Object, valueAxis = NULL, ...)
@@ -120,7 +123,7 @@ setMethod( f = "addValueAxis", signature = c("Guide"),
              if( is.null(valueAxis) && !missing(...) ){
                valueAxis <- valueAxis(...)
              }
-             .Object@valueAxis <- list.append(.Object@valueAxis, listProperties(valueAxis))
+             .Object@valueAxis <- rlist::list.append(.Object@valueAxis, listProperties(valueAxis))
              validObject(.Object)
              return(.Object)
            }
@@ -130,18 +133,19 @@ setMethod( f = "addValueAxis", signature = c("Guide"),
 #' @return Properties of the object in a list
 #' @examples
 #' lapply(list(guide(fillAlpha = .4, value = 1), guide(fillAlpha = .5)), listProperties)
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "Guide",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length(.Object@fillAlpha) > 0 ){
-               ls <- list.append(ls, fillAlpha = .Object@fillAlpha)
+               ls <- rlist::list.append(ls, fillAlpha = .Object@fillAlpha)
              }
              if( length(.Object@valueAxis) > 0 ){
-               ls <- list.append(ls, valueAxis = .Object@valueAxis)
+               ls <- rlist::list.append(ls, valueAxis = .Object@valueAxis)
              }
              if( length(.Object@value) > 0 ){
-               ls <- list.append(ls, value = .Object@value)
+               ls <- rlist::list.append(ls, value = .Object@value)
              }
              return(ls)
            }

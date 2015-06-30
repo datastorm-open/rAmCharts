@@ -49,6 +49,7 @@ gaugeBand <- function( alpha = 1, id, ... ){
 setGeneric(name = "setID", def = function(.Object, id){ standardGeneric( "setID" ) } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' gaugeBand() %>>% setID("1")
 #' @export
 setMethod(
@@ -66,12 +67,13 @@ setMethod(
 #' @return Properties of the object in a list
 #' @examples
 #' lapply(list(gaugeBand(fillAlpha = .4, value = 1), gaugeBand(fillAlpha = .5)), listProperties)
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "GaugeBand",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length(.Object@id) > 0 ){
-               ls <- list.append(ls, id = .Object@id)
+               ls <- rlist::list.append(ls, id = .Object@id)
              }
              return(ls)
            }

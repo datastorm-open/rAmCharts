@@ -19,6 +19,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter for Legend
 }
 \examples{
+library(pipeR)
 # Without chaining
 setLegend(amChart(), amLegend(useGraphSettings = TRUE))
 setLegend(amChart(), useGraphSettings = TRUE)

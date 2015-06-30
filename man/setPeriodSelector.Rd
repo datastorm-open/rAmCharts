@@ -25,6 +25,7 @@ Setter for PeriodSelector
 Use this methode in case of an AmStockChart.
 }
 \examples{
+library(pipeR)
 amStockChart() \%>>\% setPeriodSelector(dateFormat = "DD-MM-YYYY")
 }
 \seealso{

@@ -11,6 +11,7 @@
 Setter
 }
 \examples{
+library(pipeR)
 amGraph() \%>>\% setValueField("valueField")
 }
 

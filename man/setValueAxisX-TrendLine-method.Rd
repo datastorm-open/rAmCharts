@@ -11,6 +11,7 @@
 SETTER
 }
 \examples{
+library(pipeR)
 trendLine() \%>>\% setValueAxisX(title = "Hello !", axisTitleOffset = 12)
 valueAxis <- valueAxis(title = "Hello !", axisTitleOffset = 12)
 trendLine(valueAxis = valueAxis)

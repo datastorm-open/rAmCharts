@@ -20,6 +20,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Add a list of ValueAxes objects to an Amchart.
 }
 \examples{
+library(pipeR)
 valueAxes <- list(valueAxis(axisTitleOffset = 12, tickLength = 10), valueAxis(axisTitleOffset = 10, tickLength = 10))
 object <- amChart() \%>>\% setValueAxes(valueAxes)
 \dontrun{

@@ -61,7 +61,6 @@ NULL
 #' so if you need only one value axis, you don't need to create it.
 #' @slot \code{valueAxis}: Object of class \code{list}.
 #' List of Value axis properties for Gantt chart. Set it's type to "date" if your data is date or time based.
-#' @import shiny
 #' @examples
 #' new("AmChart")
 #' \dontrun{
@@ -196,79 +195,81 @@ setMethod(f = "initialize", signature = "AmChart",
 #' @description This method lists attributes of an AmChart to fit the API
 #' @details For certain attributes we do not verify if they are NULL, see constructor.
 #' @examples
+#' library(pipeR)
 #' amChart() %>>% setProperties(test = 1) %>>% listProperties
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "AmChart",
   definition = function(.Object)
   {
     ls <- callNextMethod()
     if( length(.Object@allLabels) > 0 ){
-      ls <- ls %>>% list.append(allLabels = .Object@allLabels)
+      ls <- rlist::list.append(ls, allLabels = .Object@allLabels)
     }else{}
     if( length(.Object@arrows) > 0 ){
-      ls <- list.append(ls, arrows = .Object@arrows)
+      ls <- rlist::list.append(ls, arrows = .Object@arrows)
     }else{}
     if( length(.Object@axes) > 0 ){
-      ls <- list.append(ls, axes = .Object@axes)
+      ls <- rlist::list.append(ls, axes = .Object@axes)
     }else{}
     if( length(.Object@balloon) > 0 ){
-      ls <- ls %>>% list.append(balloon = .Object@balloon)
+      ls <- rlist::list.append(ls, balloon = .Object@balloon)
     }else{}
     if( length(.Object@categoryAxis) > 0 ){
-      ls <- list.append(ls, categoryAxis = .Object@categoryAxis)
+      ls <- rlist::list.append(ls, categoryAxis = .Object@categoryAxis)
     }else{}
     if( length(.Object@categoryField) > 0 ){
-      ls <- ls %>>% list.append(categoryField = .Object@categoryField)
+      ls <- rlist::list.append(ls, categoryField = .Object@categoryField)
     }else{}
     if( length(.Object@creditsPosition) > 0 ){
-      ls <- ls %>>% list.append(creditsPosition = .Object@creditsPosition)
+      ls <- rlist::list.append(ls, creditsPosition = .Object@creditsPosition)
     }else{}
     if( length(.Object@chartCursor) > 0 ){
-      ls <- ls %>>% list.append(chartCursor = .Object@chartCursor)
+      ls <- rlist::list.append(ls, chartCursor = .Object@chartCursor)
     }else{}
     if( length(.Object@chartScrollbar) > 0 ){
-      ls <- ls %>>% list.append(chartScrollbar = .Object@chartScrollbar)
+      ls <- rlist::list.append(ls, chartScrollbar = .Object@chartScrollbar)
     }else{}
     if( length(.Object@dataProvider) > 0 ){
-      ls <- ls %>>% list.append(dataProvider = .Object@dataProvider)
+      ls <- rlist::list.append(ls, dataProvider = .Object@dataProvider)
     }else{}
     if( length(.Object@graphs) > 0 ){
-      ls <- ls %>>% list.append(graphs = .Object@graphs)
+      ls <- rlist::list.append(ls, graphs = .Object@graphs)
     }else{}
     if( length(.Object@graph) > 0 ){
-      ls <- list.append( ls, graph = .Object@graph)
+      ls <- rlist::list.append( ls, graph = .Object@graph)
     }else{}
     if( length(.Object@guides) > 0 ){
-      ls <- ls %>>% list.append(guides = .Object@guides)
+      ls <- rlist::list.append(ls, guides = .Object@guides)
     }else{}
     if( length(.Object@legend) > 0 ){
-      ls <- ls %>>% list.append(legend = .Object@legend)
+      ls <- rlist::list.append(ls, legend = .Object@legend)
     }else{}
     if( length(.Object@listeners) > 0 ){
-      ls <- ls %>>% list.append(listeners = .Object@listeners)
+      ls <- rlist::list.append(ls, listeners = .Object@listeners)
     }else{}
     if(length(.Object@segmentsField) > 0){
-      ls <- list.append(ls, segmentsField = .Object@segmentsField)
+      ls <- rlist::list.append(ls, segmentsField = .Object@segmentsField)
     }else{}
     if(length(.Object@subChartProperties) > 0){
-      ls <- list.append(ls, subChartProperties = .Object@subChartProperties)
+      ls <- rlist::list.append(ls, subChartProperties = .Object@subChartProperties)
     }else{}
     if(length(.Object@theme) > 0){
-      ls <- ls %>>% list.append(theme = .Object@theme)
+      ls <- rlist::list.append(ls, theme = .Object@theme)
     }else{}
     if(length(.Object@titles) > 0){
-      ls <- ls %>>% list.append(titles = .Object@titles)
+      ls <- rlist::list.append(ls, titles = .Object@titles)
     }else{}
     if(length(.Object@trendLines) > 0){
-      ls <- ls %>>% list.append(trendLines = .Object@trendLines)
+      ls <- rlist::list.append(ls, trendLines = .Object@trendLines)
     }else{}
     if(length(.Object@type) > 0){
-      ls <- ls %>>% list.append(type = .Object@type)
+      ls <- rlist::list.append(ls, type = .Object@type)
     }else{}
     if(length(.Object@valueAxes) > 0){
-      ls <- ls %>>% list.append(valueAxes = .Object@valueAxes)
+      ls <- rlist::list.append(ls, valueAxes = .Object@valueAxes)
     }else{}
     if( length(.Object@valueAxis) > 0 ){
-      ls <- list.append( ls, valueAxis = .Object@valueAxis)
+      ls <- rlist::list.append( ls, valueAxis = .Object@valueAxis)
     }else{}
     return(ls)
   }

@@ -11,6 +11,7 @@
 SETTER
 }
 \examples{
+library(pipeR)
 trendLine() \%>>\% setFinalXValue(16)
 }
 

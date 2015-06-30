@@ -19,7 +19,7 @@ The updated object of class \code{\linkS4class{Guide}}.
 Add a ValueAxis
 }
 \examples{
-# Setter for valueAxis
+library(pipeR)
 guide() \%>>\% addValueAxis( axisTitleOffset = 12, tickLength = 10 )
 }
 \seealso{

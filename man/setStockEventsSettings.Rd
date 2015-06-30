@@ -22,6 +22,7 @@ Setter for StockEventsSettings
 Use this methode in case of an AmStockChart.
 }
 \examples{
+library(pipeR)
 amStockChart() \%>>\% setStockEventsSettings(backgroundAlpha = 1)
 }
 \seealso{

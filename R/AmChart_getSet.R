@@ -8,6 +8,7 @@ setGeneric( name = "setAllLabels",
             def = function(.Object, allLabels, ...) { standardGeneric("setAllLabels") } )
 #' @title Setter for allLabels
 #' @examples
+#' library(pipeR)
 #' # Setter for allLabels
 #' allLabels <- list(label(text = "balloonText"), label(text = "column"))
 #' amChart() %>>% setAllLabels(allLabels)
@@ -40,6 +41,7 @@ setGeneric( name = "addLabel",
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' # Setter for label
+#' library(pipeR)
 #' amChart() %>>% addLabel(text = "balloonText")
 #' @family AmChart setters
 #' @family AmChart methods
@@ -47,6 +49,7 @@ setGeneric( name = "addLabel",
 #' @seealso \code{\linkS4class{Label}} S4 class
 #' @name addLabel
 #' @rdname addLabel
+#' @importFrom rlist list.append
 #' @export
 setMethod( f = "addLabel", signature = c("AmChart"),
            definition = function(.Object, label = NULL, ...)
@@ -54,7 +57,7 @@ setMethod( f = "addLabel", signature = c("AmChart"),
              if( is.null(label) ){
                label <- label(...)
              }else{}
-             .Object@allLabels <- list.append(.Object@allLabels, listProperties(label))
+             .Object@allLabels <- rlist::list.append(.Object@allLabels, listProperties(label))
              validObject(.Object)
              return(.Object)
            }
@@ -67,10 +70,9 @@ setGeneric( name = "setArrows",
             def = function(.Object, arrows = NULL) { standardGeneric("setArrows") } )
 #' @title Setter for arrows
 #' @examples
+#' library(pipeR)
 #' # Setter for arrows
-#' 
 #' amChart() %>>% setArrows()
-#' 
 #' arrows <- list( gaugeArrow(value = 130), gaugeArrow(value = 150) )
 #' amChart() %>>% setArrows(arrows)
 #' amChart(arrows = arrows)
@@ -105,7 +107,7 @@ setGeneric( name = "addArrow",
 #' @param \code{arrow}: Object of class \code{\linkS4class{GaugeArrow}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for arrow
+#' library(pipeR)
 #' amChart() %>>% addArrow(alpha = 1)
 #' @family AmChart setters
 #' @family AmChart methods
@@ -113,6 +115,7 @@ setGeneric( name = "addArrow",
 #' @seealso \code{\linkS4class{GaugeArrow}} S4 class
 #' @name addArrow
 #' @rdname addArrow
+#' @importFrom rlist list.append
 #' @export
 setMethod( f = "addArrow", signature = c("AmChart"),
            definition = function(.Object, arrow = NULL, ...)
@@ -120,7 +123,7 @@ setMethod( f = "addArrow", signature = c("AmChart"),
              if( is.null(arrow) && !missing(...) ){
                arrow <- gaugeArrow(...)
              }else{}
-             .Object@arrows <- list.append(.Object@arrows, listProperties(arrow))
+             .Object@arrows <- rlist::list.append(.Object@arrows, listProperties(arrow))
              validObject(.Object)
              return(.Object)
            }
@@ -133,6 +136,7 @@ setGeneric( name = "setAxes",
             def = function(.Object, axes, ...) { standardGeneric("setAxes") } )
 #' @title Setter for axes
 #' @examples
+#' library(pipeR)
 #' # Setter for axes
 #' axes <- list( gaugeAxis(value = 130), gaugeAxis(value = 150) )
 #' amChart() %>>% setAxes(axes)
@@ -164,6 +168,7 @@ setGeneric( name = "addAxe",
 #' @param \code{axe}: Object of class \code{\linkS4class{GaugeAxis}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
+#' library(pipeR)
 #' # Setter for axe
 #' amChart() %>>% addAxe(bandAlpha = 1)
 #' @family AmChart setters
@@ -172,6 +177,7 @@ setGeneric( name = "addAxe",
 #' @seealso \code{\linkS4class{GaugeAxis}} S4 class
 #' @name addAxe
 #' @rdname addAxe
+#' @importFrom rlist list.append
 #' @export
 setMethod( f = "addAxe", signature = c("AmChart"),
            definition = function(.Object, axe = NULL, ...)
@@ -179,7 +185,7 @@ setMethod( f = "addAxe", signature = c("AmChart"),
              if( is.null(axe) && !missing(...) ){
                axe <- gaugeAxis(...)
              }else{}
-             .Object@axes <- list.append(.Object@axes, listProperties(axe))
+             .Object@axes <- rlist::list.append(.Object@axes, listProperties(axe))
              validObject(.Object)
              return(.Object)
            }
@@ -195,7 +201,7 @@ setGeneric( name = "setBalloon",
 #' @param \code{amBalloon}: Object of class \code{\linkS4class{AmBalloon}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for balloon
+#' library(pipeR)
 #' amChart() %>>% setBalloon(adjustBorderColor = TRUE)
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @family AmChart setters
@@ -227,6 +233,7 @@ setGeneric( name = "setCategoryAxis",
 #' @param \code{categoryAxis}: Object of class \code{\linkS4class{CategoryAxis}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
+#' library(pipeR)
 #' # Setter for categoryAxis
 #' amChart() %>>% setCategoryAxis(categoryAxis(gridPosition = "start"))
 #' amChart() %>>% setCategoryAxis(gridPosition = "start")
@@ -263,7 +270,7 @@ setGeneric( name = "setCategoryField",
 #' @inheritParams amChart
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for categoryField
+#' library(pipeR)
 #' amChart() %>>% setCategoryField("category")
 #' @family AmChart setters
 #' @family AmChart methods
@@ -290,6 +297,7 @@ setGeneric(name = "setChartCursor",
 #' @param \code{chartCursor}: Object of class \code{\linkS4class{ChartCursor}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
+#' library(pipeR)
 #' amChart() %>>% setChartCursor(chartCursor(oneBallOnly = TRUE))
 #' 
 #' # same result
@@ -324,6 +332,7 @@ setGeneric(name = "setChartScrollbar",
 #' @param \code{.Object}: Object of class \code{\linkS4class{AmChart}}.
 #' @param \code{chartScrollbar}: Object of class \code{\linkS4class{ChartScrollbar}}.
 #' @examples
+#' library(pipeR)
 #' amChart() %>>% setChartScrollbar(chartScrollbar(oneBallOnly = TRUE))
 #' amChart() %>>% setChartScrollbar()
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
@@ -356,7 +365,7 @@ setGeneric( name = "setCreditsPosition",
 #' @inheritParams amChart
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for creditsPosition
+#' library(pipeR)
 #' amChart() %>>% setCreditsPosition("top-right")
 #' @family AmChart setters
 #' @family AmChart methods
@@ -380,7 +389,7 @@ setMethod( f = "setCreditsPosition", signature = c("AmChart", "character"),
 #' @param \code{dataProvider}: Object of class \code{data.frame}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for dataProvider
+#' library(pipeR)
 #' amChart() %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10)))
 #' @family AmChart setters
 #' @family AmChart methods
@@ -407,7 +416,7 @@ setGeneric( name = "setExport",
 #' @param \code{...}: properties for export
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for graph
+#' library(pipeR)
 #' amChart() %>>% setExport()
 #' @family AmChart setters
 #' @family AmChart methods
@@ -435,7 +444,7 @@ setGeneric( name = "setGraphs",
 #' Each element must be an object of class \code{\linkS4class{AmGraph}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for graphs
+#' library(pipeR)
 #' graphs <- list(amGraph(balloonText = "balloonText"), amGraph(type = "column"))
 #' amChart() %>>% setGraphs(graphs)
 #' @family AmChart setters
@@ -464,7 +473,7 @@ setGeneric( name = "addGraph",
 #' @param \code{amGraph}: Object of class \code{\linkS4class{amGraph}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for graph
+#' library(pipeR)
 #' amChart() %>>% addGraph(amGraph = amGraph(balloonText = "balloonText", "type" = "column"))
 #' amChart() %>>% addGraph(balloonText = "balloonText", "type" = "column")
 #' @family AmChart setters
@@ -473,6 +482,7 @@ setGeneric( name = "addGraph",
 #' @seealso \code{\linkS4class{AmGraph}} S4 class
 #' @name addGraph
 #' @rdname addGraph
+#' @importFrom rlist list.append
 #' @export
 setMethod( f = "addGraph", signature = c(.Object = "AmChart"),
            definition = function(.Object, amGraph = NULL , ...)
@@ -481,7 +491,7 @@ setMethod( f = "addGraph", signature = c(.Object = "AmChart"),
                amGraph <- amGraph(...)
              }else{}
              if( is(amGraph, "AmGraph") ){
-               .Object@graphs <- list.append(.Object@graphs, listProperties(amGraph))
+               .Object@graphs <- rlist::list.append(.Object@graphs, listProperties(amGraph))
              }
              validObject(.Object)
              return(.Object)
@@ -497,7 +507,7 @@ setMethod( f = "addGraph", signature = c(.Object = "AmChart"),
 #' @param \code{graph}: Object of class \code{\linkS4class{AmGraph}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for graph
+#' library(pipeR)
 #' amGanttChart() %>>% setGraph()
 #' @family AmChart setters
 #' @family AmChart methods
@@ -530,7 +540,7 @@ setGeneric( name = "setGuides",
 #' Each element must be an object of class \code{\linkS4class{Guide}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for guides
+#' library(pipeR)
 #' guides <- list(guide(fillAlpha = .1), guide(fillAlpha = .5))
 #' amChart() %>>% setGuides(guides)
 #' amChart(guides = guides)
@@ -557,7 +567,7 @@ setMethod( f = "setGuides", signature = c("AmChart", "list"),
 #' @param \code{guide}: Object of class \code{\linkS4class{Guide}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for guide
+#' library(pipeR)
 #' amChart() %>>% addGuide(fillAlpha = .1)
 #' @family AmChart setters
 #' @family AmChart methods
@@ -565,6 +575,7 @@ setMethod( f = "setGuides", signature = c("AmChart", "list"),
 #' @seealso \code{\linkS4class{Guide}} S4 class
 #' @name addGuide
 #' @rdname addGuide
+#' @importFrom rlist list.append
 #' @export
 setMethod( f = "addGuide", signature = c("AmChart"),
            definition = function(.Object, guide = NULL, ...)
@@ -572,7 +583,7 @@ setMethod( f = "addGuide", signature = c("AmChart"),
              if( is.null(guide) && !missing(...) ){
                guide <- guide(...)
              }
-             .Object@guides <- list.append(.Object@guides, listProperties(guide))
+             .Object@guides <- rlist::list.append(.Object@guides, listProperties(guide))
              validObject(.Object)
              return(.Object)
            }
@@ -587,6 +598,7 @@ setGeneric(name = "setLegend", def = function(.Object, amLegend = NULL, ...){ st
 #' @param \code{amLegend}: Object of class \code{\linkS4class{AmLegend}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
+#' library(pipeR)
 #' # Without chaining
 #' setLegend(amChart(), amLegend(useGraphSettings = TRUE))
 #' setLegend(amChart(), useGraphSettings = TRUE)
@@ -624,6 +636,7 @@ setGeneric(name = "addListener", def = function(.Object, name, expression) { sta
 #' @param \code{expression}: Object of class \code{character}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples 
+#' library(pipeR)
 #' amChart() %>>% addListener("select", "function onSelect (properties) {
 #'      alert('selected nodes: ' + properties.nodes);}")
 #' @family AmChart setters
@@ -658,6 +671,7 @@ setGeneric(name = "addSegment",
 #' ( or \code{list} of \code{data.frame} for multiple add ).
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
+#' library(pipeR)
 #' amGanttChart( segmentsField = "segments", dataProvider = data.frame( category = c( "John", "Julia") ) ) %>>%
 #' addSegment( 1, data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2") ) ) %>>%
 #' addSegment( 2, data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2") ) )
@@ -722,11 +736,13 @@ setGeneric(name = "addSubData", def = function(.Object, categoryIDs, data){stand
 #' @param \code{data}: Object of class \code{data.frame}. Data to draw at the second level,
 #' after clicking on the serial / column.
 #' @examples
+#' library(pipeR)
 #' amChart( dataProvider = data.frame(a = 1:5, b = 6:10) ) %>>%
 #' addSubData( 3, data.frame(a = 1:10, b = 11:20) )
 #' @family AmChart methods
 #' @rdname addSubData
 #' @name addSubData
+#' @importFrom rlist list.append
 #' @export
 setMethod(f = "addSubData", signature = c("AmChart", "numeric", "data.frame"),
           definition = function(.Object, categoryIDs, data)
@@ -739,12 +755,12 @@ setMethod(f = "addSubData", signature = c("AmChart", "numeric", "data.frame"),
             add <- function(.Object, categoryID, data){
               if( is(data, "data.frame") ){
                 #cat("data.frame")
-                .Object@dataProvider [[ eval(categoryID) ]] <- .Object@dataProvider[[ eval(categoryID) ]] %>>%
-                  list.append( subdata = toList(data) )
+                .Object@dataProvider [[ eval(categoryID) ]] <- rlist::list.append( .Object@dataProvider[[ eval(categoryID) ]],
+                                                                                  subdata = toList(data) )
               }else if ( is(data, "list") ){
                 #cat("list")
-                .Object@dataProvider [[ eval(categoryID) ]] <- .Object@dataProvider[[ eval(categoryID) ]] %>>%
-                  list.append( subdata = data )
+                .Object@dataProvider [[ eval(categoryID) ]] <- rlist::list.append( .Object@dataProvider[[ eval(categoryID) ]],
+                                                                                   subdata = data )
               }else{}
               return( .Object )
             }
@@ -774,6 +790,7 @@ setGeneric(name = "setSubChartProperties",
 #' @param \code{...}: Properties of AmChart.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
+#' library(pipeR)
 #' amSerialChart() %>>% setSubChartProperties(type = "pie")
 #' @family AmChart setters
 #' @family AmChart methods
@@ -804,6 +821,7 @@ setGeneric( name = "setTitles",
 #' Each element must be an object of class \code{\linkS4class{Titles}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
+#' library(pipeR)
 #' # Setter for titles
 #' titles <- list(title(text = "balloonText"), title(text = "column"))
 #' amChart() %>>% setTitles(titles)
@@ -840,7 +858,7 @@ setGeneric( name = "addTitle",
 #' @inheritParams amChart
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for title
+#' library(pipeR)
 #' amChart() %>>% addTitle( text = "balloonText" )
 #' @family AmChart setters
 #' @family AmChart methods
@@ -848,6 +866,7 @@ setGeneric( name = "addTitle",
 #' @seealso \code{\linkS4class{Title}} S4 class
 #' @name addTitle
 #' @rdname addTitle
+#' @importFrom rlist list.append
 #' @export
 setMethod( f = "addTitle", signature = c("AmChart"),
            definition = function(.Object, title = NULL, ...)
@@ -855,7 +874,7 @@ setMethod( f = "addTitle", signature = c("AmChart"),
              if ( is.null(title) && !missing(...) ){
                title <- title(...)
              }
-             .Object@titles <- list.append(.Object@titles, listProperties(title))
+             .Object@titles <- rlist::list.append(.Object@titles, listProperties(title))
              validObject(.Object)
              return(.Object)
            }
@@ -872,7 +891,7 @@ setGeneric( name = "setTrendLines",
 #' Each element must be of class \code{\linkS4class{TrendLine}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for trendLines
+#' library(pipeR)
 #' trendLines <- list(trendLine(initialValue = 1, finalValue = 5), trendLine(initialValue = 7, finalValue = 19))
 #' amChart() %>>% setTrendLines(trendLines)
 #' @family AmChart setters
@@ -900,7 +919,7 @@ setGeneric( name = "addTrendLine",
 #' @param \code{.Object}: Object of class \code{\linkS4class{AmChart}}.
 #' @inheritParams amChart
 #' @examples
-#' # Setter for trendLine
+#' library(pipeR)
 #' amChart() %>>% addTrendLine( initialValue = 1, finalValue = 11 )
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @family AmChart setters
@@ -929,6 +948,7 @@ setMethod( f = "addTrendLine", signature = c("AmChart"),
 #' @param \code{type}: Object of class \code{\linkS4class{character}}.
 #' @inheritParams amChart
 #' @examples
+#' library(pipeR)
 #' amChart() %>>% setType("pie")
 #' @name setType
 #' @rdname setType
@@ -955,6 +975,7 @@ setGeneric(name = "setValueAxes",
 #' Each element must be of class \code{\linkS4class{ValueAxes}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
+#' library(pipeR)
 #' valueAxes <- list(valueAxis(axisTitleOffset = 12, tickLength = 10), valueAxis(axisTitleOffset = 10, tickLength = 10))
 #' object <- amChart() %>>% setValueAxes(valueAxes)
 #' \dontrun{
@@ -987,7 +1008,7 @@ setGeneric( name = "addValueAxes",
 #' @param \code{valueAxis}: Object of class \code{\linkS4class{ValuesAxis}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for valueAxes
+#' library(pipeR)
 #' amChart() %>>% addValueAxes( axisTitleOffset = 12, tickLength = 10 )
 #' @family AmChart setters
 #' @family AmChart methods
@@ -995,6 +1016,7 @@ setGeneric( name = "addValueAxes",
 #' @seealso \code{\linkS4class{ValueAxis}} S4 class
 #' @name addValueAxes
 #' @rdname addValueAxes
+#' @importFrom rlist list.append
 #' @export
 setMethod( f = "addValueAxes", signature = c("AmChart"),
            definition = function(.Object, valueAxis = NULL, ...)
@@ -1002,7 +1024,7 @@ setMethod( f = "addValueAxes", signature = c("AmChart"),
              if( is.null(valueAxis) && !missing(...) ){
                valueAxis <- valueAxis(...)
              }
-             .Object@valueAxes <- list.append(.Object@valueAxes, listProperties(valueAxis))
+             .Object@valueAxes <- rlist::list.append(.Object@valueAxes, listProperties(valueAxis))
              validObject(.Object)
              return(.Object)
            }
@@ -1016,7 +1038,7 @@ setMethod( f = "addValueAxes", signature = c("AmChart"),
 #' @param \code{valueAxis}: Object of class \code{\linkS4class{ValueAxes}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for valueAxis
+#' library(pipeR)
 #' amGanttChart() %>>% setValueAxis()
 #' @family AmChart setters
 #' @family AmChart methods

@@ -28,6 +28,7 @@ setGeneric(name = "toList", def = function(df, keepNA = TRUE){standardGeneric("t
 #' toList(dp[1:10, ], keepNA = FALSE)
 #' }
 #' @name dataTable
+#' @import data.table
 #' @rdname classUnion
 setClassUnion("dataTable", members = c("data.table", "data.frame"))
 #' @export

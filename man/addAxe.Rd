@@ -19,6 +19,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter
 }
 \examples{
+library(pipeR)
 # Setter for axe
 amChart() \%>>\% addAxe(bandAlpha = 1)
 }

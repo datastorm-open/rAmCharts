@@ -115,6 +115,7 @@ setGeneric(name = "setAdjustBorderColor", def = function(.Object, adjustBorderCo
 #' Object of class \code{logical}.
 #' @return The updated object of class \code{\linkS4class{AmBalloon}}.
 #' @examples
+#' library(pipeR)
 #' amBalloon() %>>% setAdjustBorderColor(TRUE)
 #' @family AmBalloon methods
 #' @family AmBalloon setters
@@ -143,6 +144,7 @@ setGeneric(name = "setColor", def = function(.Object, color){ standardGeneric("s
 #' @param \code{color}:
 #' Object of class \code{character}.
 #' @examples
+#' library(pipeR)
 #' amBalloon() %>>% setColor("#000000")
 #' @return The updated object of class \code{\linkS4class{AmBalloon}}.
 #' @family AmBalloon methods
@@ -173,6 +175,7 @@ setGeneric(name = "setCornerRadius", def = function(.Object, cornerRadius){ stan
 #' Object of class \code{numeric}.
 #' @return The updated object of class \code{\linkS4class{AmBalloon}}.
 #' @examples
+#' library(pipeR)
 #' amBalloon() %>>% setCornerRadius(5)
 #' @family AmBalloon methos
 #' @family AmBalloon setters
@@ -202,6 +205,7 @@ setGeneric(name = "setFillColor", def = function(.Object, fillColor){ standardGe
 #' Object of class \code{character}.
 #' @return The updated object of class \code{\linkS4class{AmBalloon}}.
 #' @examples
+#' library(pipeR)
 #' amBalloon() %>>% setFillColor("#FFFFFF")
 #' @family AmBalloon methods
 #' @family AmBalloon setters
@@ -224,22 +228,24 @@ setMethod(
 #' @title List attributes of an AmGraph object
 #' @description This function is used to list attributes before addind to graphs (attribute of AmChart)
 #' @examples
+#' library(pipeR)
 #' amBalloon(adjustBorderColor = TRUE) %>>% listProperties
+#' @importFrom rlist list.append
 setMethod(f = "listProperties", signature = "AmBalloon",
           definition = function(.Object)
           {
             ls <- callNextMethod()
             if( length(.Object@adjustBorderColor) > 0 ){
-              ls <- ls %>>% list.append(adjustBorderColor = .Object@adjustBorderColor)
+              ls <- rlist::list.append(ls, adjustBorderColor = .Object@adjustBorderColor)
             }else{}
             if( length(.Object@color) > 0 ){
-              ls <- ls %>>% list.append(color = .Object@color)
+              ls <- rlist::list.append(ls, color = .Object@color)
             }else{}
             if( length(.Object@cornerRadius) > 0 ){
-              ls <- ls %>>% list.append(cornerRadius = .Object@cornerRadius)
+              ls <- rlist::list.append(ls, cornerRadius = .Object@cornerRadius)
             }else{}
             if( length(.Object@fillColor) > 0 ){
-              ls <- ls %>>% list.append(fillColor = .Object@fillColor)
+              ls <- rlist::list.append(ls, fillColor = .Object@fillColor)
             }else{}
             return (ls)
           }

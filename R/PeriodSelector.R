@@ -49,7 +49,7 @@ periodSelector <- function(periods, ...){
   if(!missing(periods)){
     .Object@period <- periods
   }
-  .Object <- .Object %>>% setProperties(...)
+  .Object <-  setProperties(.Object, ...)
   return( .Object )
 }
 
@@ -60,7 +60,7 @@ setGeneric("addPeriod", def = function(.Object, ...) { standardGeneric("addPerio
 #' @param \code{...}: Properties of period.
 #' @return The updated object of class \code{\linkS4class{PeriodSelector}}.
 #' @examples
-#' # Setter for period
+#' library(pipeR)
 #' periodSelector() %>>% addPeriod(  period = "MM", selected = TRUE, count = 1, label= "1 month" )
 #' @family PeriodSelector setters
 #' @family PeriodSelector methods
@@ -79,12 +79,13 @@ setMethod( f = "addPeriod", signature = c("PeriodSelector"),
 
 #' @title List properties
 #' @return Properties of the object in a list
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "PeriodSelector",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length(.Object@periods) > 0 ){
-               ls <- list.append(ls, periods = .Object@periods)
+               ls <- rlist::list.append(ls, periods = .Object@periods)
              }
              return(ls)
            }

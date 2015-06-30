@@ -130,6 +130,7 @@ setGeneric(name = "setInitialValue",
            def = function(.Object, initialValue){ standardGeneric("setInitialValue") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' trendLine() %>>% setInitialValue(16)
 #' @export
 setMethod(
@@ -150,6 +151,7 @@ setGeneric(name = "setInitialXValue",
            def = function(.Object, initialXValue){ standardGeneric("setInitialXValue") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' trendLine() %>>% setInitialXValue(16)
 #' @export
 setMethod(
@@ -170,6 +172,7 @@ setGeneric(name = "setFinalValue",
            def = function(.Object, finalValue){ standardGeneric("setFinalValue") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' trendLine() %>>% setFinalValue(16)
 #' @export
 setMethod(
@@ -190,6 +193,7 @@ setGeneric(name = "setFinalXValue",
            def = function(.Object, finalXValue){ standardGeneric("setFinalXValue") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' trendLine() %>>% setFinalXValue(16)
 #' @export
 setMethod(
@@ -207,6 +211,7 @@ setMethod(
 
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' trendLine() %>>% setValueAxis(valueAxis(title = "Hello !", axisTitleOffset = 12))
 #' @export
 setMethod(
@@ -230,6 +235,7 @@ setGeneric(name = "setValueAxisX",
            def = function(.Object, valueAxisX = NULL, ...){ standardGeneric("setValueAxisX") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' trendLine() %>>% setValueAxisX(title = "Hello !", axisTitleOffset = 12)
 #' valueAxis <- valueAxis(title = "Hello !", axisTitleOffset = 12)
 #' trendLine(valueAxis = valueAxis)
@@ -252,27 +258,28 @@ setMethod(
 #' @examples
 #' trendLine( initialValue = 1, valueAxis = valueAxis(axisTitleOffset = 12, tickLength = 10) )
 #' @return Properties of the object in a list
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "TrendLine",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length( .Object@initialValue ) > 0 ){
-               ls <- list.append(ls, initialValue = .Object@initialValue)
+               ls <- rlist::list.append(ls, initialValue = .Object@initialValue)
              }else{}
              if( length( .Object@initialXValue ) > 0 ){
-               ls <- list.append(ls, initialXValue = .Object@initialXValue)
+               ls <- rlist::list.append(ls, initialXValue = .Object@initialXValue)
              }else{}
              if( length( .Object@finalValue ) > 0 ){
-               ls <- list.append(ls, finalValue = .Object@finalValue)
+               ls <- rlist::list.append(ls, finalValue = .Object@finalValue)
              }else{}
              if( length( .Object@initialXValue ) > 0 ){
-               ls <- list.append(ls, finalXValue = .Object@finalXValue)
+               ls <- rlist::list.append(ls, finalXValue = .Object@finalXValue)
              }else{}
              if( length( .Object@valueAxis ) > 0 ){
-               ls <- list.append(ls, valueAxis = .Object@valueAxis)
+               ls <- rlist::list.append(ls, valueAxis = .Object@valueAxis)
              }else{}
              if( length( .Object@valueAxisX ) > 0 ){
-               ls <- list.append(ls, valueAxisX = .Object@valueAxisX)
+               ls <- rlist::list.append(ls, valueAxisX = .Object@valueAxisX)
              }else{}
              return(ls)
            }

@@ -25,6 +25,7 @@ Add a segment to a category of AmChart
 Use this methode in case of an AmChart.
 }
 \examples{
+library(pipeR)
 amGanttChart( segmentsField = "segments", dataProvider = data.frame( category = c( "John", "Julia") ) ) \%>>\%
 addSegment( 1, data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2") ) ) \%>>\%
 addSegment( 2, data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2") ) )

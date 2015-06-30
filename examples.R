@@ -1,4 +1,6 @@
 # BASIC EXAMPLES ---
+library(pipeR)
+
 ### amPieChart
 amPieChart(theme ="dark", valueField = "value", titleField = "key", creditsPosition = "top-right"
 ) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))

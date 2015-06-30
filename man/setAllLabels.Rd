@@ -11,6 +11,7 @@
 Setter for allLabels
 }
 \examples{
+library(pipeR)
 # Setter for allLabels
 allLabels <- list(label(text = "balloonText"), label(text = "column"))
 amChart() \%>>\% setAllLabels(allLabels)

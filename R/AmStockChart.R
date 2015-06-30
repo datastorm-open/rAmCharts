@@ -236,7 +236,7 @@ setGeneric( name = "setCategoryAxesSettings",
 #' @param \code{categoryAxesSettings}: Object of class \code{\linkS4class{CategoryAxis}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for categoryAxesSettings
+#' library(pipeR)
 #' amStockChart() %>>% setCategoryAxesSettings(gridPosition = "start")
 #' @family AmStockChart setters
 #' @family AmStockChart methods
@@ -267,6 +267,7 @@ setGeneric(name = "setChartCursorSettings",
 #' @param \code{chartCursorSettings}: Object of class \code{\linkS4class{ChartCursor}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% setChartCursorSettings( oneBallOnly = TRUE )
 #' @family AmStockChart setters
 #' @family AmStockChart methods
@@ -296,6 +297,7 @@ setGeneric(name = "setChartScrollbarSettings",
 #' @param \code{.Object}: Object of class \code{\linkS4class{AmChart}}.
 #' @param \code{chartScrollbarSettings}: Object of class \code{\linkS4class{ChartScrollbar}}.
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% setChartScrollbarSettings()
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @family AmStockChart setters
@@ -327,6 +329,7 @@ setGeneric(name = "setComparedDataSets",
 #' @param \code{comparedDataSets}: Object of class \code{\linkS4class{list}}.
 #' Each element of this list must be a dataSet
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% setComparedDataSets(list(dataSet(compared = TRUE), dataSet(compared = TRUE)))
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @family AmStockChart setters
@@ -358,6 +361,7 @@ setGeneric(name = "addComparedDataSet",
 #' Each element of this list must be a dataSet
 #' @param \code{...}: Properties of the \code{\linkS4class{DataSet}} to add.
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% addComparedDataSet(compared = TRUE)
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @family AmStockChart setters
@@ -390,6 +394,7 @@ setGeneric(name = "setDataSets",
 #' @param \code{dataSets}: Object of class \code{\linkS4class{list}}.
 #' Each element of this list must be a dataSet
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% setDataSets(list(dataSet(compared = FALSE), dataSet(compared = FALSE)))
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @family AmStockChart setters
@@ -421,6 +426,7 @@ setGeneric(name = "addDataSet",
 #' Each element of this list must be a dataSet
 #' @param \code{...}: Properties of the \code{\linkS4class{DataSet}} to add.
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% addDataSet(compared = FALSE) %>>% addDataSet(dataSet())
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @family AmStockChart setters
@@ -452,6 +458,7 @@ setGeneric(name = "setDataSetSelector",
 #' @param \code{.Object}: Object of class \code{\linkS4class{AmStockChart}}.
 #' @param \code{...}: Property of datSetSelector
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% setDataSetSelector(width = 180)
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @family AmStockChart setters
@@ -506,6 +513,7 @@ setGeneric(name = "setMainDataSet",
 #' Data set selected as main.
 #' @param \code{...}: Properties of the \code{\linkS4class{DataSet}} to add.
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% setMainDataSet(showInCompare = TRUE)
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @family AmStockChart setters
@@ -537,6 +545,7 @@ setGeneric(name = "setPanels",
 #' @param \code{panels}: Object of class \code{\linkS4class{list}}.
 #' Each element of this list must be a stockPanel
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% setPanels(list(stockPanel(compared = TRUE), stockPanel(compared = TRUE)))
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @family AmStockChart setters
@@ -568,6 +577,7 @@ setGeneric(name = "addPanel",
 #' Each element of this list must be a dataSet
 #' @param \code{...}: Properties of the \code{\linkS4class{StockPanel}} to add.
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% addPanel(allowTurningOff = TRUE)
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @family AmStockChart setters
@@ -599,6 +609,7 @@ setGeneric(name = "setPanelsSettings", def = function(.Object, ...){ standardGen
 #' @param \code{...}: Properties of \code{PanelsSettings}.
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% setPanelsSettings(backgroundAlpha = 0)
 #' @family AmStockChart setters
 #' @family AmStockChart methods
@@ -626,6 +637,7 @@ setGeneric(name = "setPeriodSelector", def = function(.Object, periodSelector = 
 #' @param \code{...}: Properties of the class \code{\linkS4class{PeriodSelector}}.
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% setPeriodSelector(dateFormat = "DD-MM-YYYY")
 #' @family AmStockChart setters
 #' @family AmStockChart methods
@@ -655,6 +667,7 @@ setGeneric(name = "setStockEventsSettings", def = function(.Object, ...){ standa
 #' @param \code{...}: Properties of \code{StockEventsSettings}.
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @examples
+#' library(pipeR)
 #' amStockChart() %>>% setStockEventsSettings(backgroundAlpha = 1)
 #' @family AmStockChart setters
 #' @family AmStockChart methods
@@ -682,7 +695,7 @@ setGeneric( name = "setValueAxesSettings",
 #' @param \code{...}: Properties of \code{ValueAxesSettings}.
 #' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @examples
-#' # Setter for valueAxesSettings
+#' library(pipeR)
 #' amStockChart() %>>% setValueAxesSettings(autoGridCount = "TRUE")
 #' @family AmStockChart setters
 #' @family AmStockChart methods
@@ -703,7 +716,9 @@ setMethod( f = "setValueAxesSettings", signature = c("AmStockChart"),
 #' @description This method lists attributes of an AmChart to fit the API
 #' @details For certain attributes we do not verify if they are NULL, see constructor.
 #' @examples
+#' library(pipeR)
 #' amChart() %>>% setProperties(test = 1) %>>% listProperties
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "AmStockChart",
            definition = function(.Object)
            {

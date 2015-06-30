@@ -82,7 +82,7 @@ dataSet <- function(compared = FALSE, dataProvider, fieldMappings, stockEvents,.
 #' @param \code{dataProvider}: Object of class \code{data.frame}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' # Setter for dataProvider
+#' library(pipeR)
 #' dataSet() %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10)))
 #' @family AmChart setters
 #' @family AmChart methods
@@ -102,7 +102,8 @@ setMethod( f = "setDataProvider", signature = c("DataSet", "data.frame"),
 #' @exportMethod addFieldMapping
 setGeneric(name = "addFieldMapping", def = function(.Object, ...){ standardGeneric("addFieldMapping") } )
 #' @title Add fieldMapping
-#' @examples 
+#' @examples
+#' library(pipeR) 
 #' dataSet() %>>% addFieldMapping(fromField ="val1", toField ="value")
 #' @export
 setMethod(
@@ -142,6 +143,7 @@ setGeneric(name = "addStockEvent", def = function(.Object, stockEvent = NULL, ..
 #' @title Add stockEvent 
 #' @examples 
 #' dataSet()
+#' @importFrom rlist list.append
 #' @export
 setMethod(
   f = "addStockEvent",
@@ -152,7 +154,7 @@ setMethod(
       stockEvent <- stockEvent(...)
     }else{}
     .Object@stockEvents <-
-      list.append(.Object@stockEvents, listProperties( stockEvent ) )
+      rlist::list.append(.Object@stockEvents, listProperties( stockEvent ) )
     validObject(.Object)
     return(.Object)
   }

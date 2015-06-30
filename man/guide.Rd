@@ -25,6 +25,7 @@ SETTER
 \examples{
 guide(fillAlpha = .4, value = 1)
 guide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
+library(pipeR)
 guide() \%>>\% setFillAlpha(1)
 }
 

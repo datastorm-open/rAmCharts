@@ -11,6 +11,7 @@
 Setter for axes
 }
 \examples{
+library(pipeR)
 # Setter for axes
 axes <- list( gaugeAxis(value = 130), gaugeAxis(value = 150) )
 amChart() \%>>\% setAxes(axes)

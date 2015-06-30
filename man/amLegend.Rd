@@ -21,7 +21,6 @@ An \code{\linkS4class{AmLegend}} object
 Constructor for AmLegend.
 }
 \examples{
-new("AmLegend", useGraphSettings = TRUE)
 amLegend(useGraphSettings = TRUE)
 }
 

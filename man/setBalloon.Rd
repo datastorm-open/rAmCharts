@@ -21,7 +21,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter
 }
 \examples{
-# Setter for balloon
+library(pipeR)
 amChart() \%>>\% setBalloon(adjustBorderColor = TRUE)
 }
 \seealso{

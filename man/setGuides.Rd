@@ -20,7 +20,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter
 }
 \examples{
-# Setter for guides
+library(pipeR)
 guides <- list(guide(fillAlpha = .1), guide(fillAlpha = .5))
 amChart() \%>>\% setGuides(guides)
 amChart(guides = guides)

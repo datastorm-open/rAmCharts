@@ -17,7 +17,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Setter
 }
 \examples{
-# Setter for creditsPosition
+library(pipeR)
 amChart() \%>>\% setCreditsPosition("top-right")
 }
 \seealso{

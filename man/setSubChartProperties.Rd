@@ -21,6 +21,7 @@ The updated object of class \code{\linkS4class{AmChart}}.
 Add subData for drilldrown
 }
 \examples{
+library(pipeR)
 amSerialChart() \%>>\% setSubChartProperties(type = "pie")
 }
 \seealso{

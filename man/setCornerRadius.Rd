@@ -19,6 +19,7 @@ The updated object of class \code{\linkS4class{AmBalloon}}.
 Setter for corner radius
 }
 \examples{
+library(pipeR)
 amBalloon() \%>>\% setCornerRadius(5)
 }
 \seealso{

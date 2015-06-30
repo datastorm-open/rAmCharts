@@ -64,6 +64,7 @@ chartCursor <- function(animationDuration = .3, oneBalloonOnly, valueLineAxis,..
 setGeneric(name = "setOneBalloonOnly", def = function(.Object, oneBalloonOnly){ standardGeneric("setOneBalloonOnly") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' chartCursor() %>>% setOneBalloonOnly(TRUE)
 #' @export
 setMethod(
@@ -84,6 +85,7 @@ setGeneric(name = "setValueLineAxis",
            def = function(.Object, valueLineAxis = NULL, ...){ standardGeneric("setValueLineAxis") } )
 #' @title SETTER
 #' @examples
+#' library(pipeR)
 #' chartCursor() %>>% setValueLineAxis( title = "Hello !", axisTitleOffset = 12 )
 #' @export
 setMethod(
@@ -104,15 +106,16 @@ setMethod(
 #' @examples
 #' new("ChartCursor", oneBalloonOnly = TRUE)
 #' @return Properties of the object in a list
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "ChartCursor",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
              if( length( .Object@oneBalloonOnly ) > 0 ){
-               ls <- list.append(ls, oneBalloonOnly = .Object@oneBalloonOnly)
+               ls <- rlist::list.append(ls, oneBalloonOnly = .Object@oneBalloonOnly)
              }else{}
              if( length( .Object@valueLineAxis) > 0 ){
-               ls <- list.append(ls, valueLineAxis = .Object@valueLineAxis)
+               ls <- rlist::list.append(ls, valueLineAxis = .Object@valueLineAxis)
              }else{}
              return(ls)
            }

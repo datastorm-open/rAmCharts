@@ -8,6 +8,7 @@ setGeneric( name = "amChartOutput",
 #' @param amChart: an \code{\linkS4class{AmChart}} object
 #' @name amChartOutput
 #' @rdname amChartOutput
+#' @import htmlwidgets
 #' @export
 setMethod(
   f = "amChartOutput",
@@ -34,7 +35,7 @@ setMethod(
                      stop("type error")
     )
     
-    shinyWidgetOutput(
+    htmlwidgets::shinyWidgetOutput(
       outputId = outputId,     
       name = eval(jsFile),   
       width = width,
@@ -67,6 +68,6 @@ setMethod(
       quoted <- FALSE
     }
     if (!quoted) { expr <- substitute(expr) } # force quoted
-    shinyRenderWidget(expr, amChartOutput, env, quoted = TRUE)
+    htmlwidgets::shinyRenderWidget(expr, amChartOutput, env, quoted = TRUE)
   }
 )
