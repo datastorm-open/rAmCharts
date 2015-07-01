@@ -5,7 +5,7 @@ Since it is still in developpment, some functionnalities might have an unexpecte
 
 # Installation
 
-Once the above dependent packages available, you can run the following code lines to install ***rAmCharts***:
+Run the following code lines to install ***rAmCharts***:
 
 ```{r, eval = FALSE}
 if ( require(devtools) ) {
