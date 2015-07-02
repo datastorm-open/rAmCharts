@@ -44,7 +44,6 @@ setMethod(f = "initialize", signature = "ChartCursor",
 #' @examples
 #' chartCursor()
 #' chartCursor(oneBalloonOnly = TRUE)
-#' chartCursor(valueLineAxis = "valuAxis-1")
 #' @export
 chartCursor <- function(animationDuration = .3, oneBalloonOnly, valueLineAxis,...){
   .Object <- new("ChartCursor", animationDuration = animationDuration)
@@ -96,11 +95,9 @@ setMethod(
   {
     if( is.null(valueLineAxis) && !missing(...) ){
       .Object@valueLineAxis <- listProperties(valueAxis(...))
-    } else if (!is.null(valueLineAxis) && is(valueLineAxis, "character")) {
-      .Object@valueLineAxis <- valueLineAxis
-    } else if (!is.null(valueLineAxis) && is(valueLineAxis, "ValueAxis")) {
+    } else {
       .Object@valueLineAxis <- listProperties(valueLineAxis)
-    } else {}
+    }
     validObject(.Object)
     return(.Object)
   }
