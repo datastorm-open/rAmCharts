@@ -24,8 +24,10 @@ setMethod(
                            "dark" = "#3f3f4f",
                            "chalk" = "#282828 url('http://www.amcharts.com/lib/3/patterns/chalk/bg.jpg')",
                            stop("[plot]: invalid theme"))
-    }else{}
-    
+    } else{}
+    if(length(listProperties(x)["backgroundColor"]) > 0){
+      background <- listProperties(x)["backgroundColor"]
+    } else{}
     
     if( length(x@subChartProperties) > 0 ){
       jsFile <- "amDrillChart"
