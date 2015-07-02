@@ -25,8 +25,8 @@ setMethod(
                            "chalk" = "#282828 url('http://www.amcharts.com/lib/3/patterns/chalk/bg.jpg')",
                            stop("[plot]: invalid theme"))
     } else{}
-    if(length(listProperties(x)["backgroundColor"]) > 0){
-      background <- listProperties(x)["backgroundColor"]
+    if(exists("backgroundColor", where = listProperties(x))){
+      background <- listProperties(x)[["backgroundColor"]]
     } else{}
     
     if( length(x@subChartProperties) > 0 ){
