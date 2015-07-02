@@ -3,9 +3,16 @@ library(pipeR)
 library(data.table)
 
 ### amPieChart
+amPieChart(valueField = "value", titleField = "key", creditsPosition = "top-right",
+           backgroundColor = "#ff0000"
+) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
+) %>>% setExport(position = "bottom-left") %>>% plot
+
+### amPieChart
 amPieChart(theme ="dark", valueField = "value", titleField = "key", creditsPosition = "top-right"
 ) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
 ) %>>% setExport(position = "bottom-left") %>>% plot
+
 
 ### amRadarChart
 amRadarChart(theme = "chalk", startDuration = 1, categoryField = "attribute"
