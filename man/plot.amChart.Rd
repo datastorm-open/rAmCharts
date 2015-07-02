@@ -17,17 +17,25 @@ Plots an object of class \code{\linkS4class{AmChart}}
 \examples{
 # BASIC EXAMPLES ---
 library(pipeR)
+library(data.table)
+
+### amPieChart
+amPieChart(valueField = "value", titleField = "key", creditsPosition = "top-right",
+           backgroundColor = "#ff0000"
+) \%>>\% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
+) \%>>\% setExport(position = "bottom-left") \%>>\% plot
 
 ### amPieChart
 amPieChart(theme ="dark", valueField = "value", titleField = "key", creditsPosition = "top-right"
 ) \%>>\% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
 ) \%>>\% setExport(position = "bottom-left") \%>>\% plot
 
+
 ### amRadarChart
 amRadarChart(theme = "chalk", startDuration = 1, categoryField = "attribute"
 ) \%>>\% setDataProvider (
   data.frame(attribute = c("data", "brand", "singleness"),
-              p1 = c(.3, -1, 0), p2 = c(.7, 1, 2))
+             p1 = c(.3, -1, 0), p2 = c(.7, 1, 2))
 ) \%>>\% addGraph(balloonText = "Utility : [[value]]", valueField = "p1", title = "p1"
 ) \%>>\% addGraph(balloonText = "Utility : [[value]]", valueField = "p2", title = "p2"
 ) \%>>\% addListener("clickGraphItem" , "function(event){ alert('ok !'); }"
@@ -49,20 +57,20 @@ amXYChart(theme = "chalk", startDuration = 0.5, marginLeft = 46, marginBottom = 
   y2 = c(-5,-15,-4,-5,-10,-2,0), x2 = c(-3,-8,6,-6,-8,0,-3), value2 = c(44,12,35,168,102,41,16))
 ) \%>>\% addValueAxes(position = "bottom", axisAlpha = 0) \%>>\%
   addValueAxes(minMaxMultiplier = 1.2, position = "left", axisAlpha = 0
- ) \%>>\% addGraph(balloonText = "x:<b>[[x]]</b> y:<b>[[y]]</b><br>value:<b>[[value]]</b>", bullet = "circle", bulletBorderAlpha = 0.2,
-                   bulletAlpha = 0.8,lineAlpha=0, fillAlphas = 0, valueField = "value", xField = "x",yField = "y", maxBulletSize = 100
- ) \%>>\% addGraph(balloonText = "x:<b>[[x]]</b> y:<b>[[y]]</b><br>value:<b>[[value]]</b>",bullet="diamond",bulletBorderAlpha=0.2,
-                   bulletAlpha = 0.8, lineAlpha = 0, fillAlphas = 0,valueField = "value2", xField = "x2", yField = "y2", maxBulletSize = 100
- ) \%>>\% setExport \%>>\% plot
+  ) \%>>\% addGraph(balloonText = "x:<b>[[x]]</b> y:<b>[[y]]</b><br>value:<b>[[value]]</b>", bullet = "circle", bulletBorderAlpha = 0.2,
+                  bulletAlpha = 0.8,lineAlpha=0, fillAlphas = 0, valueField = "value", xField = "x",yField = "y", maxBulletSize = 100
+  ) \%>>\% addGraph(balloonText = "x:<b>[[x]]</b> y:<b>[[y]]</b><br>value:<b>[[value]]</b>",bullet="diamond",bulletBorderAlpha=0.2,
+                  bulletAlpha = 0.8, lineAlpha = 0, fillAlphas = 0,valueField = "value2", xField = "x2", yField = "y2", maxBulletSize = 100
+  ) \%>>\% setExport \%>>\% plot
 
 ###  AmGanttChart
 ls <- list(data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2")), 
-            data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2")))
+           data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2")))
 
 amGanttChart(brightnessStep = 20, rotate = TRUE, theme = "dark",
-              startField = "start", endField = "end", segmentsField = "segments", dataDateFormat = "YYYY-MM-DD", startDate = "2015-01-01",
-              period = "hh", categoryField = "category", durationField = "duration",
-              valueAxis = valueAxis(type = "date"), graph = amGraph(fillAlphas = 1)
+             startField = "start", endField = "end", segmentsField = "segments", dataDateFormat = "YYYY-MM-DD", startDate = "2015-01-01",
+             period = "hh", categoryField = "category", durationField = "duration",
+             valueAxis = valueAxis(type = "date"), graph = amGraph(fillAlphas = 1)
 ) \%>>\% setDataProvider(data.frame(category = c("John", "Julia"))
 ) \%>>\% addSegment(1:2,  ls) \%>>\% setExport \%>>\% plot
 
@@ -79,7 +87,7 @@ amSerialChart(categoryField = "name"
   addGraph(valueField = 'utility', type = 'column', categoryField = "modality",
            lineAlpha = 0, fillColorsField = "color", fillAlphas = 0.9,
            balloonText = "[[modality]]: <b>[[utility]]</b>"
- ) \%>>\% plot
+  ) \%>>\% plot
 
 ### gaugeChart
 amAngularGaugeChart(theme = "chalk"
@@ -93,9 +101,9 @@ amAngularGaugeChart(theme = "chalk"
 
 ### funnelChart
 amFunnelChart(theme = "chalk", neckHeight = "30\%", neckWidth = "40\%", titleField = "title",
-               valueField = "value", creditsPosition = "bottom-left", 
-               dataProvider = data.frame(title = c("Website visits", "Downloads"),
-                                          value = c(300, 123))
+              valueField = "value", creditsPosition = "bottom-left", 
+              dataProvider = data.frame(title = c("Website visits", "Downloads"),
+                                        value = c(300, 123))
 ) \%>>\% plot
 
 
@@ -104,41 +112,41 @@ amFunnelChart(theme = "chalk", neckHeight = "30\%", neckWidth = "40\%", titleFie
 ### Stacked Column Chart
 amSerialChart(theme = "chalk",  categoryField = "year",  creditsPosition  =  "bottom-right"
 ) \%>>\% setDataProvider(data.frame( year  =  c(2003, 2004, 2005, 2006),  europe  =  c (2.5, 2.6, 2.8, 3.6), 
-                                     namerica  =  c(2.5, 2.7, 2.9, 2.5),  asia  =   c(2.1, 2.2, 2.4, 2.2), 
-                                     lamerica  =  c(0.3, 0.3, 0.3, 0.5),  meast  =  c(0.2, 0.3, 0.3, 0.2), 
-                                     africa  =  c(0.1, 0.1, 0.1, 0.3) )
+                                   namerica  =  c(2.5, 2.7, 2.9, 2.5),  asia  =   c(2.1, 2.2, 2.4, 2.2), 
+                                   lamerica  =  c(0.3, 0.3, 0.3, 0.5),  meast  =  c(0.2, 0.3, 0.3, 0.2), 
+                                   africa  =  c(0.1, 0.1, 0.1, 0.3) )
 ) \%>>\% setLegend(horizontalGap = 10, maxColumns = 1, position = "right", useGraphSettings = TRUE, markerSize = 10
 ) \%>>\% addValueAxes(stackType = "regular", axisAlpha = 0.3, gridAlpha = 0
 ) \%>>\% addGraph(balloonText = "<b>[[title]]</b><br><span style = 'font-size:14px'>[[category]]: <b>[[value]]</b></span>", 
-                 fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
-                 title = "Europe", type = "column", color = "#000000", valueField = "europe"
+                fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
+                title = "Europe", type = "column", color = "#000000", valueField = "europe"
 ) \%>>\% addGraph(balloonText = "<b>[[title]]</b><br><span style = 'font-size:14px'>[[category]]: <b>[[value]]</b></span>", 
-                 fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
-                 title = "North America", type = "column", color = "#000000", valueField = "namerica"
+                fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
+                title = "North America", type = "column", color = "#000000", valueField = "namerica"
 ) \%>>\% addGraph(balloonText = "<b>[[title]]</b><br><span style = 'font-size:14px'>[[category]]: <b>[[value]]</b></span>", 
-                 fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
-                 title = "Asia-Pacific", type = "column", color = "#000000", valueField = "asia"
+                fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
+                title = "Asia-Pacific", type = "column", color = "#000000", valueField = "asia"
 ) \%>>\% addGraph(balloonText = "<b>[[title]]</b><br><span style = 'font-size:14px'>[[category]]: <b>[[value]]</b></span>", 
-                 fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
-                 title = "Latin America", type = "column", color = "#000000", valueField = "lamerica"
+                fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
+                title = "Latin America", type = "column", color = "#000000", valueField = "lamerica"
 ) \%>>\% addGraph(balloonText = "<b>[[title]]</b><br><span style = 'font-size:14px'>[[category]]: <b>[[value]]</b></span>", 
-                 fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
-                 title = "Middle-East", type = "column", color = "#000000", valueField = "meast"
+                fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
+                title = "Middle-East", type = "column", color = "#000000", valueField = "meast"
 ) \%>>\% addGraph(balloonText = "<b>[[title]]</b><br><span style = 'font-size:14px'>[[category]]: <b>[[value]]</b></span>", 
-                 fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
-                 title = "Africa", type = "column", color = "#000000", valueField = "africa"
+                fillAlphas = 0.8, labelText = "[[value]]", lineAlpha = 0.3, 
+                title = "Africa", type = "column", color = "#000000", valueField = "africa"
 ) \%>>\% setCategoryAxis(gridPosition = "start", axisAlpha = 0, gridAlpha = 0, position = "left"
 ) \%>>\% setExport \%>>\% plot
 
 ### AmSerialChart
 amSerialChart(usePeriod  =  "60mm", theme = "chalk", marginRight = 80, marginTop = 17,
-               autoMarginOffset = 20, dataDateFormat = "YYYY-MM-DD JJ:NN:ss",
-               categoryField = "date"
+              autoMarginOffset = 20, dataDateFormat = "YYYY-MM-DD JJ:NN:ss",
+              categoryField = "date"
 ) \%>>\% setDataProvider(data.frame( price  =  runif(30),  date  =  as.character(seq(c(ISOdate(2015, 3, 28,  tz  = "CET")),  by  =  "hour",  length.out  =  30)) )
 ) \%>>\% addValueAxes(position  =  "left",  logarithmic  =  "true",  dashLength  =  1
 ) \%>>\% addGuide(dashLength  =  6, inside  =  TRUE, label  =  "average", lineAlpha  =  1,  value  =  0.3
 ) \%>>\% addGraph(bullet = "round", id = "g1", bulletBorderAlpha = 1, bulletColor = "#FFFFFF", bulletSize = 7, lineThickness = 2, title = "Price", 
-                 type = "smoothedLine", useLineColorForBulletBorder = TRUE, valueField = "price"
+                type = "smoothedLine", useLineColorForBulletBorder = TRUE, valueField = "price"
 ) \%>>\%  setChartScrollbar(chartScrollbar()
 ) \%>>\% setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE, valueLineAlpha = 0.5, fullWidth = TRUE, cursorAlpha = 0.05, categoryBalloonDateFormat = "YYYY-MM-DD JJ:NN:ss"
 ) \%>>\% setCategoryAxis( parseDates = TRUE, minPeriod = "ss"
@@ -147,18 +155,18 @@ amSerialChart(usePeriod  =  "60mm", theme = "chalk", marginRight = 80, marginTop
 ### AmSerialChart: mix
 # http://www.amcharts.com/demos/column-and-line-mix/
 amSerialChart(addClassNames = TRUE, theme = "chalk", autoMargins = FALSE, marginLeft = 30,
-               marginRight = 8, marginTop = 10, marginBottom = 26, startDuration = 1,
-               categoryField = "year"
+              marginRight = 8, marginTop = 10, marginBottom = 26, startDuration = 1,
+              categoryField = "year"
 ) \%>>\% setDataProvider(data.frame(year  =  c(2010, 2011, 2012, 2013, 2014), income  =  c(20.4, 20.6, 24.3, 21.5, 22.3), 
-                                    expenses  =  c(31.5, 32.4, 25.6, 22.6, 24.9), dashLengthColumn = c(NA, NA, NA, NA, 5), 
-                                    alpha = c(NA, NA, NA, NA, 0.2),  additional = c("", "", "", "", "(projection)"))
+                                  expenses  =  c(31.5, 32.4, 25.6, 22.6, 24.9), dashLengthColumn = c(NA, NA, NA, NA, 5), 
+                                  alpha = c(NA, NA, NA, NA, 0.2),  additional = c("", "", "", "", "(projection)"))
 ) \%>>\% setBalloon(adjustBorderColor = FALSE, horizontalPadding = 10, verticalPadding = 8, color = "#ffffff"
 ) \%>>\% addValueAxes(axisAlpha = 0, position = "left"
 ) \%>>\% addGraph(alphaField = "alpha", balloonText = "<span style = 'font-size:12px;'>[[title]] in [[category]]:<br><span style = 'font-size:20px;'>[[value]]</span> [[additional]]</span>", 
-                 fillAlphas = 1, title = "Income", type = "column", valueField = "income", dashLengthField = "dashLengthColumn"
+                fillAlphas = 1, title = "Income", type = "column", valueField = "income", dashLengthField = "dashLengthColumn"
 ) \%>>\% addGraph(id = "graph2", balloonText = "<span style = 'font-size:12px;'>[[title]] in [[category]]:<br><span style = 'font-size:20px;'>[[value]]</span> [[additional]]</span>", 
-                 bullet = "round", lineThickness = 3, bulletSize = 7, bulletBorderAlpha = 1, bulletColor = "#FFFFFF", useLineColorForBulletBorder = TRUE, bulletBorderThickness = 3, 
-                 fillAlphas = 0, lineAlpha = 1, title = "Expenses", valueField = "expenses"
+                bullet = "round", lineThickness = 3, bulletSize = 7, bulletBorderAlpha = 1, bulletColor = "#FFFFFF", useLineColorForBulletBorder = TRUE, bulletBorderThickness = 3, 
+                fillAlphas = 0, lineAlpha = 1, title = "Expenses", valueField = "expenses"
 ) \%>>\% setCategoryAxis(gridPosition = "start", axisAlpha = 0, tickLength = 0
 ) \%>>\% setExport \%>>\% plot
 
@@ -166,13 +174,13 @@ amSerialChart(addClassNames = TRUE, theme = "chalk", autoMargins = FALSE, margin
 ### AmSerialChart: Column With Rotated Series
 # http://www.amcharts.com/demos/exporting-chart-to-image/
 amSerialChart(theme = "chalk", startDuration = 2, categoryField = "country", depth3D = 40,
-               angle = 30
+              angle = 30
 ) \%>>\% setDataProvider(data.frame(
   country = c("USA", "China", "Japan", "Germany", "UK", "France", "India", "Spain", "Netherlands", "Russia"), 
   visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580), 
   color = c("#FF0F00", "#FF6600", "#FF9E01", "#FCD202", "#F8FF01", "#B0DE09", "#04D215", "#0D8ECF", "#0D52D1", "#2A0CD0"))
 ) \%>>\% addGraph(balloonText = "<b>[[category]]: [[value]]</b>", fillColorsField = "color", 
-                 fillAlphas = 0.85, lineAlpha = 0.1, type = "column", valueField = "visits"
+                fillAlphas = 0.85, lineAlpha = 0.1, type = "column", valueField = "visits"
 ) \%>>\% setChartCursor(categoryBalloonEnabled = FALSE, cursorAlpha = 0, zoomable = FALSE
 ) \%>>\% setCategoryAxis(gridPosition = "start", labelRotation = 45, axisAlpha = 0, gridAlpha = 0
 ) \%>>\% setExport \%>>\% plot
@@ -180,7 +188,7 @@ amSerialChart(theme = "chalk", startDuration = 2, categoryField = "country", dep
 ### AmSerialChart: stacked area
 # http://www.amcharts.com/demos/stacked-area/
 amSerialChart(theme = "dark", marginRight = 30, plotAreaBorderAlpha = 0,
-               categoryField = "year"
+              categoryField = "year"
 ) \%>>\% setDataProvider(data.frame(
   year  =  1994:2012, 
   cars  =  c(15, 13, 14, 15, 16, 18, 19, 22, 24, 20, 24, 25, 26, 35, 36, 37, 38, 39, 40), 
@@ -189,11 +197,11 @@ amSerialChart(theme = "dark", marginRight = 30, plotAreaBorderAlpha = 0,
 ) \%>>\% setLegend(equalWidths = FALSE, periodValueText = "total: [[value.sum]]", position = "top", valueAlign = "left", valueWidth = 100
 ) \%>>\% addValueAxes(stackType = "regular", gridAlpha = 0.07, position = "left", title = "Traffic incidents"
 ) \%>>\% addGraph(balloonText = "<img src = 'http://www.amcharts.com/lib/3/images/car.png' style = 'vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style = 'font-size:14px; color:#000000;'><b>[[value]]</b></span>", 
-                 fillAlphas = 0.6, hidden = TRUE, lineAlpha = 0.4, title = "Cars", valueField = "cars"
+                fillAlphas = 0.6, hidden = TRUE, lineAlpha = 0.4, title = "Cars", valueField = "cars"
 ) \%>>\% addGraph(balloonText = "<img src = 'http://www.amcharts.com/lib/3/images/motorcycle.png' style = 'vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style = 'font-size:14px; color:#000000;'><b>[[value]]</b></span>", 
-                 fillAlphas = 0.6, lineAlpha = 0.4, title = "Motorcycles", valueField = "motorcycles"
+                fillAlphas = 0.6, lineAlpha = 0.4, title = "Motorcycles", valueField = "motorcycles"
 ) \%>>\% addGraph(balloonText = "<img src = 'http://www.amcharts.com/lib/3/images/bicycle.png' style = 'vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style = 'font-size:14px; color:#000000;'><b>[[value]]</b></span>", 
-                 fillAlphas = 0.6, lineAlpha = 0.4, title = "Bicycles", valueField = "bicycles"
+                fillAlphas = 0.6, lineAlpha = 0.4, title = "Bicycles", valueField = "bicycles"
 ) \%>>\% setChartScrollbar(chartScrollbar()
 ) \%>>\% setChartCursor(cursorAlpha = 0
 ) \%>>\% setCategoryAxis(startOnAxis = TRUE, axisColor = "#DADADA", gridAlpha = 0.07
@@ -204,9 +212,9 @@ amSerialChart(theme = "dark", marginRight = 30, plotAreaBorderAlpha = 0,
 #### AmPieChart: simple radar
 # http://www.amcharts.com/demos/radar-chart/
 amPieChart(theme  =  "dark",  valueField = "litres", titleField = "country",
-            balloonText = "[[title]]<br><span style = 'font-size:14px'><b>[[value]]</b> ([[percents]]\%)</span>"
+           balloonText = "[[title]]<br><span style = 'font-size:14px'><b>[[value]]</b> ([[percents]]\%)</span>"
 ) \%>>\% setDataProvider(data.frame( country = c("Czech Republic", "Ireland", "Germany", "Australia", "Austria", "UK", "Belgium"), 
-                                     litres = c(250, 130, 100, 50, 30, 10, 2) )
+                                   litres = c(250, 130, 100, 50, 30, 10, 2) )
 ) \%>>\% setLegend(markerType = "circle", position = "right", marginRight = 80, autoMargins = FALSE
 ) \%>>\% setExport \%>>\% plot
 
@@ -217,14 +225,14 @@ amRadarChart(theme  =  "light",  startDuration  =  1, categoryField  =  "directi
   data.frame( direction  =  c("N", "NE", "E", "SE", "S", "SW", "W", "NW"),  value  =  c(10, 7, 8, 9, 5, 4, 6, 9) )
 ) \%>>\% setValueAxes(list(valueAxis(gridType = "circles", minimum = 0, autoGridCount = FALSE, axisAlpha = 0.2, fillAlpha = 0.05, fillColor = "#FFFFFF", gridAlpha = 0.08, position = "left"))
 ) \%>>\% setGuides(list(guide(angle = 225, fillAlpha = 0.3, fillColor = "#0066CC", tickLength = 0, toAngle = 315, toValue = 14, value = 0, lineAlpha = 0), 
-                        guide(angle = 45, fillAlpha = 0.3, fillColor = "#CC3333", tickLength = 0, toAngle = 135, toValue = 14, value = 0, lineAlpha = 0))
+                      guide(angle = 45, fillAlpha = 0.3, fillColor = "#CC3333", tickLength = 0, toAngle = 135, toValue = 14, value = 0, lineAlpha = 0))
 ) \%>>\% addGraph(balloonText = "[[category]]: [[value]] m/s", bullet = "round", fillAlphas = 0.3, valueField = "value"
 ) \%>>\% setExport \%>>\% plot
 
 ### AmSerialChart: cylinder gauge
 # http://www.amcharts.com/demos/cylinder-gauge/
 amSerialChart(theme  =  "light", depth3D  =  100,  angle  =  30,  autoMargins  =  TRUE,
-               categoryField  =  "category",  startDuration  =  2
+              categoryField  =  "category",  startDuration  =  2
 ) \%>>\% setDataProvider(data.frame( category  =  "Wine left in the barrel",  value1  =  30,  value2  =  70 )
 ) \%>>\% addValueAxes(stackType  =  "100\%",  gridAlpha  =  0
 ) \%>>\% addGraph(type = "column", topRadius = 1, columnWidth = 1, showOnAxis = TRUE, lineThickness = 2, lineAlpha = 0.5, fillAlphas = 0.8, lineColor = "#FFFFFF", fillColors = "#8d003b", fillAlphas = 0.8, valueField = "value1"
@@ -243,7 +251,7 @@ amSerialChart(theme = "light", startDuration = 1, columnWidth = 0.6, categoryFie
   balloonValue  =  c(11.13, 4.68, 15.81, 2.89, 4.24, 11.13) )
 ) \%>>\% addValueAxes(axisAlpha = 0, gridAlpha = 0.1, position = "left"
 ) \%>>\% addGraph(balloonText = "<span style = 'color:[[color]]'>[[category]]</span><br><b>$[[balloonValue]] Mln</b>", 
-                 colorField = "color", fillAlphas = 0.8, labelText = "$[[balloonValue]]", lineColor = "#BBBBBB", openField = "open", type = "column", valueField = "close"
+                colorField = "color", fillAlphas = 0.8, labelText = "$[[balloonValue]]", lineColor = "#BBBBBB", openField = "open", type = "column", valueField = "close"
 ) \%>>\% addTrendLine(dashLength = 3, finalCategory = "Income B", finalValue = 11.13, initialCategory = "Income A", initialValue = 11.13, lineColor = "#888888"
 ) \%>>\% addTrendLine(dashLength = 3, finalCategory = "Expenses A", finalValue = 15.81, initialCategory = "Income B", initialValue = 15.81, lineColor = "#888888"
 ) \%>>\% addTrendLine(dashLength = 3, finalCategory = "Expenses A", finalValue = 15.81, initialCategory = "Income B", initialValue = 15.81, lineColor = "#888888"
@@ -257,54 +265,123 @@ amSerialChart(theme = "light", startDuration = 1, columnWidth = 0.6, categoryFie
 amXYChart(theme = "light", startDuration = 0.5, marginLeft = 46, marginBottom = 35
 ) \%>>\% setDataProvider(
   data.frame( y = c(10, 5, -10, -6, 15, 13, 1),  x = c(14, 3, 8, 5, -4, 1, 6), 
-               value = c(59, 50, 19, 65, 92, 8, 16),  y2 = c(-5, -15, -4, -5, -10, -2, 0), 
-               x2 = c(-3, -8, 6, -6, -8, 0, -3),  value2 = c(44, 12, 35, 168, 102, 41, 16) )
+              value = c(59, 50, 19, 65, 92, 8, 16),  y2 = c(-5, -15, -4, -5, -10, -2, 0), 
+              x2 = c(-3, -8, 6, -6, -8, 0, -3),  value2 = c(44, 12, 35, 168, 102, 41, 16) )
 ) \%>>\% setValueAxes(list(valueAxis(position = "bottom", axisAlpha = 0), valueAxis(minMaxMultiplier = 1.2, position = "left", axisAlpha = 0))
 ) \%>>\% addGraph(balloonText = "x:<b>[[x]]</b> y:<b>[[y]]</b><br>value:<b>[[value]]</b>", bullet = "circle", bulletBorderAlpha = 0.2, 
-                 bulletAlpha = 0.8, lineAlpha = 0, fillAlphas = 0, valueField = "value", xField = "x", yField = "y", maxBulletSize = 100
+                bulletAlpha = 0.8, lineAlpha = 0, fillAlphas = 0, valueField = "value", xField = "x", yField = "y", maxBulletSize = 100
 ) \%>>\% addGraph(balloonText = "x:<b>[[x]]</b> y:<b>[[y]]</b><br>value:<b>[[value]]</b>", bullet = "diamond", bulletBorderAlpha = 0.2, 
-                 bulletAlpha = 0.8, lineAlpha = 0, fillAlphas = 0, valueField = "value2", xField = "x2", yField = "y2", maxBulletSize = 100
+                bulletAlpha = 0.8, lineAlpha = 0, fillAlphas = 0, valueField = "value2", xField = "x2", yField = "y2", maxBulletSize = 100
 ) \%>>\% setExport \%>>\% plot
 
 ### AmSerialChart: smoothed line chart
 # http://www.amcharts.com/demos/smoothed-line-chart/
 amSerialChart(theme = "dark", marginTop = 0, marginRight = 80, dataDateFormat = "YYYY",
-               categoryField = "year"
+              categoryField = "year"
 ) \%>>\% setDataProvider(
   data.frame(year = 1950:2015, value = runif(length(1950:2015), -1, 1))
 ) \%>>\% addValueAxes(axisAlpha = 0, position = "left"
 ) \%>>\% addGraph(id = "g1", balloonText =  "[[category]]<br><b><span style='font-size = 14px;'>[[value]]</span></b>",
-                 bullet = "round", bulletSize =  8, lineColor =  "#d1655d", lineThickness =  2,
-                 negativeLineColor =  "#637bb6", type =  "smoothedLine", valueField =  "value"
+                bullet = "round", bulletSize =  8, lineColor =  "#d1655d", lineThickness =  2,
+                negativeLineColor =  "#637bb6", type =  "smoothedLine", valueField =  "value"
 ) \%>>\% setChartScrollbar(graph = "g1", gridAlpha = 0, color = "#888888", scrollbarHeight = 55, backgroundAlpha = 0,
-                          selectedBackgroundAlpha = 0.1, selectedBackgroundColor = "#888888", graphFillAlpha = 0,
-                          autoGridCount = TRUE, selectedGraphFillAlpha = 0, graphLineAlpha = 0.2,
-                          graphLineColor = "#c2c2c2", selectedGraphLineColor = "#888888", selectedGraphLineAlpha = 1
+                         selectedBackgroundAlpha = 0.1, selectedBackgroundColor = "#888888", graphFillAlpha = 0,
+                         autoGridCount = TRUE, selectedGraphFillAlpha = 0, graphLineAlpha = 0.2,
+                         graphLineColor = "#c2c2c2", selectedGraphLineColor = "#888888", selectedGraphLineAlpha = 1
 ) \%>>\% setChartCursor(categoryBalloonDateFormat = "YYYY", cursorAlpha = 0, valueLineEnabled =TRUE,
-                       valueLineBalloonEnabled =TRUE, valueLineAlpha = 0.5, fullWidth = TRUE
+                      valueLineBalloonEnabled =TRUE, valueLineAlpha = 0.5, fullWidth = TRUE
 ) \%>>\% setCategoryAxis(minPeriod = "YYYY", parseDates = TRUE, minorGridAlpha = 0.1, minorGridEnabled = TRUE
 ) \%>>\% addListener("rendered", "function(event) { event.chart.zoomToIndexes(Math.round(event.chart.dataProvider.length * 0.4), Math.round(event.chart.dataProvider.length * 0.55)) }"
 ) \%>>\% setExport \%>>\% plot
 
 ### AmSerialChart
 # http://www.amcharts.com/demos/candlestick-chart/
-amSerialChart(categoryField = "date", theme = "dark", dataDateFormat = "YYYY-MM-DD"
-) \%>>\% setDataProvider(data.frame (date = paste0(2011, "-", 8:11, "-", replicate(4, 1:30)),
-                                     open = round(runif(length(paste0(2011, "-", 8:11, "-", replicate(4, 1:30))), 130, 140), 2), 
-                                     high = round(runif(length(paste0(2011, "-", 8:11, "-", replicate(4, 1:30))), 140, 150), 2),
-                                     low = round(runif(length(paste0(2011, "-", 8:11, "-", replicate(4, 1:30))), 120, 130), 2),
-                                     close = round(runif(length(paste0(2011, "-", 8:11, "-", replicate(4, 1:30))), 120, 150), 2))
+start <- as.POSIXct("01-01-2015", format = "\%d-\%m-\%Y")
+end <- as.POSIXct("31-12-2015", format = "\%d-\%m-\%Y")
+date <- seq.POSIXt(from = start, to = end, by = "day")
+date <- format(date, "\%m-\%d-\%Y")
+low <- c() ; open <- c() ; close <- c() ; high <- c() ; median <- c()
+
+n <- 100
+invisible(
+  sapply(1:length(date), function(i)
+  {
+    sample <- rnorm(n, mean = sample(1:10, 1), sd = sample(1:10/10, 1))
+    quant <- boxplot(sample, plot = FALSE)$stats
+    low <<- c(low, quant[1])
+    open <<- c(open, quant[2])
+    median <<- c(median, quant[3])
+    close <<- c(close, quant[4])
+    high <<- c(high, quant[5])
+  })
+)
+dp <- data.table(date = date, low = round(low, 2), open = round(open, 2), 
+                 close = round(close, 2), high = round(high, 2), median = round(median, 2)) 
+
+amSerialChart(categoryField = "date", theme = "light",
+              dataDateFormat = "MM-DD-YYYY", dataProvider = dp
+) \%>>\% setCategoryAxis(parseDates = TRUE
 ) \%>>\% addValueAxes(position = "left"
-) \%>>\% addGraph(id = "g1",
-                 balloonText = "Open : <b>[[open]]</b><br>Low =<b>[[low]]</b><br>High =<b>[[high]]</b><br>Close =<b>[[close]]</b><br>",
-                 closeField = "close", fillColors = "#7f8da9", highField = "high",
-                 lineColor = "#7f8da9", lineAlpha = 1, lowField = "low",
-                 fillAlphas = "0.9",  negativeFillColors = "#db4c3c", negativeLineColor = "#db4c3c",
-                 openField = "open", title = "Price:", type = "candlestick", valueField = "close"
+) \%>>\% addGraph(id = "g1", type = "candlestick", lineColor = "#7f8da9",
+                lowField = "low", closeField = "close",
+                highField = "high", openField = "open", valueField = "median",
+                balloonText = "Open : <b>[[open]]</b><br>Low =<b>[[low]]</b><br>High =<b>[[high]]</b><br>Close =<b>[[close]]</b><br>",
+                lineColor = "#7f8da9", lineAlpha = 1, fillAlphas = 0.9, negativeBase = 5,
+                negativeFillColors = "#db4c3c", negativeLineColor = "#db4c3c",
+                title = "Price: "
+) \%>>\% setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE
+) \%>>\% setChartScrollbar(graph = "g1", graphType = "line"
+) \%>>\% addListener("rendered", "function(event) { event.chart.zoomToIndexes(event.chart.dataProvider.length - 10, event.chart.dataProvider.length - 1) }"
+) \%>>\% setExport(position = "bottom-right") \%>>\% plot
+
+### AmSerialChart: example of boxPlot
+start <- as.POSIXct("01-01-2015", format = "\%d-\%m-\%Y")
+end <- as.POSIXct("31-12-2015", format = "\%d-\%m-\%Y")
+date <- seq.POSIXt(from = start, to = end, by = "day")
+date <- format(date, "\%m-\%d-\%Y \%H")
+n <- 100
+low_outlier <- c() ; low <- c() ; open <- c()
+close <- c() ; high <- c() ; high_outlier <- c() 
+median <- c()
+invisible(
+  sapply(1:length(date), function(i)
+  {
+    sample <- rnorm(n, mean = sample(1:10, 1), sd = sample(1:10/10, 1))
+    quant <- boxplot(sample, plot = FALSE)$stats
+    low_outlier <<- c(low_outlier, quant[1])
+    low <<- c(low, quant[1])
+    open <<- c(open, quant[2])
+    median <<- c(median, quant[3])
+    close <<- c(close, quant[4])
+    high <<- c(high, quant[5])
+    high_outlier <<- c(high_outlier, quant[5])
+  })
+)
+dp <- data.table(date = date, low_outlier = round(low_outlier, 2), low = round(low, 2),
+                 open = round(open, 2), median = round(median, 2), close = round(close, 2),
+                 high = round(high, 2), high_outlier = round(high_outlier, 2))
+
+
+amSerialChart(categoryField = "date", theme = "light",
+              dataDateFormat = "MM-DD-YYYY", dataProvider = dp
+) \%>>\% setCategoryAxis(parseDates = TRUE
+) \%>>\% addValueAxes(position = "left"
+) \%>>\% addGraph(id = "g1", type = "candlestick",
+                balloonText = "Low = <b>[[low_outlier]]</b><br/>1st quart. = <b>[[open]]</b><br/>Median = <b>[[median]]</b><br/>3rd quart. = <b>[[close]]</b><br/>High = <b>[[high_outlier]]</b><br/>",
+                closeField = "close", fillColors = "#7f8da9", highField = "high",
+                lineColor = "#7f8da9", lineAlpha = 1, lowField = "low",
+                fillAlphas = "0.9",  negativeFillColors = "#db4c3c", negativeLineColor = "#db4c3c",
+                openField = "open", title = "Price:", valueField = "close"
+) \%>>\% addGraph(id = "g2", type = "step", valueField = "median",
+                noStepRisers = TRUE, balloonText = ""
+) \%>>\% addGraph(id = "g3", type = "step", valueField = "low_outlier",
+                noStepRisers = TRUE, balloonText = ""
+) \%>>\% addGraph(id = "g4", type = "step", valueField = "high_outlier",
+                noStepRisers = TRUE, balloonText = ""
 ) \%>>\% setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE
 ) \%>>\% setChartScrollbar(parseDates = TRUE
 ) \%>>\% addListener("rendered", "function(event) { event.chart.zoomToIndexes(event.chart.dataProvider.length - 10, event.chart.dataProvider.length - 1) }"
-) \%>>\% setExport(position = "bottom-right") \%>>\% plot
+) \%>>\% setExport(position = "bottom-right") \%>>\% plot()
 
 
 ### AmStockChart
@@ -344,41 +421,41 @@ chartData4 <- as.data.frame(t(sapply(0:20, FUN = function(i)
 
 amStockChart(theme = "light"
 ) \%>>\% addDataSet(dataSet(title = "first data set", categoryField = "date",
-                            dataProvider = chartData1) \%>>\%
-                     addFieldMapping(fromField = "value", toField = "value") \%>>\%
-                     addFieldMapping(fromField = "volume", toField = "volume")
+                          dataProvider = chartData1) \%>>\%
+                    addFieldMapping(fromField = "value", toField = "value") \%>>\%
+                    addFieldMapping(fromField = "volume", toField = "volume")
 ) \%>>\% addDataSet(dataSet(title = "second data set", categoryField = "date",
-                            dataProvider = chartData2) \%>>\%
-                     addFieldMapping(fromField = "value", toField = "value") \%>>\%
-                     addFieldMapping(fromField = "volume", toField = "volume")
+                          dataProvider = chartData2) \%>>\%
+                    addFieldMapping(fromField = "value", toField = "value") \%>>\%
+                    addFieldMapping(fromField = "volume", toField = "volume")
 ) \%>>\% addDataSet(dataSet(title = "third data set", categoryField = "date",
-                            dataProvider = chartData3) \%>>\%
-                     addFieldMapping(fromField = "value", toField = "value") \%>>\%
-                     addFieldMapping(fromField = "volume", toField = "volume")
+                          dataProvider = chartData3) \%>>\%
+                    addFieldMapping(fromField = "value", toField = "value") \%>>\%
+                    addFieldMapping(fromField = "volume", toField = "volume")
 ) \%>>\% addDataSet(dataSet(title = "fourth data set", categoryField = "date",
-                            dataProvider = chartData4) \%>>\%
-                     addFieldMapping(fromField = "value", toField = "value") \%>>\%
-                     addFieldMapping(fromField = "volume", toField = "volume")
+                          dataProvider = chartData4) \%>>\%
+                    addFieldMapping(fromField = "value", toField = "value") \%>>\%
+                    addFieldMapping(fromField = "volume", toField = "volume")
 ) \%>>\% addPanel(stockPanel(showCategoryAxis = FALSE, title = "Value", percentHeight = 70) \%>>\%
-                   addStockGraph(id = "g1", valueField = "value", comparable = TRUE,
-                                 compareField = "value", balloonText = "[[title]] =<b>[[value]]</b>",
-                                 compareGraphBalloonText = "[[title]] =<b>[[value]]</b>"
+                  addStockGraph(id = "g1", valueField = "value", comparable = TRUE,
+                                compareField = "value", balloonText = "[[title]] =<b>[[value]]</b>",
+                                compareGraphBalloonText = "[[title]] =<b>[[value]]</b>"
                   ) \%>>\% setStockLegend(periodValueTextComparing = "[[percents.value.close]]\%",
-                                          periodValueTextRegular = "[[value.close]]")
+                                        periodValueTextRegular = "[[value.close]]")
 ) \%>>\% addPanel(stockPanel(title = "Volume", percentHeight = 30) \%>>\%
-                   addStockGraph(valueField = "volume", type = "column",
-                                 fillAlphas = 1) \%>>\%
-                   setStockLegend(periodValueTextRegular = "[[value.close]]")
+                  addStockGraph(valueField = "volume", type = "column",
+                                fillAlphas = 1) \%>>\%
+                  setStockLegend(periodValueTextRegular = "[[value.close]]")
 ) \%>>\% setChartScrollbarSettings(graph = "g1"
 ) \%>>\% setChartCursorSettings(valueBalloonsEnabled = TRUE, fullWidth = TRUE,
-                               cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
-                               valueLineEnabled = TRUE, valueLineAlpha = 0.5
+                              cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
+                              valueLineEnabled = TRUE, valueLineAlpha = 0.5
 ) \%>>\% setPeriodSelector(periodSelector(position = "left") \%>>\%
-                            addPeriod(period = "MM", selected = TRUE, count = 1, label = "1 month") \%>>\%
-                            addPeriod(period = "MAX", label = "MAX")
+                           addPeriod(period = "MM", selected = TRUE, count = 1, label = "1 month") \%>>\%
+                           addPeriod(period = "MAX", label = "MAX")
 ) \%>>\% setDataSetSelector(position = "left"
 ) \%>>\% setPanelsSettings(recalculateToPercents = FALSE
-) \%>>\% plot(width = "100\%")
+) \%>>\% plot()
 
 ### AmSerialChart: date
 ### Generate dates ----
@@ -405,12 +482,12 @@ dp[ , date := format(date, "\%m-\%d-\%Y \%H:\%M:\%S")]
 nTest <- 1000
 sample <- 1:nTest
 amSerialChart(categoryField = "date", creditsPosition = "top-right",
-               dataDateFormat = "MM-DD-YYYY JJ:NN:SS"
+              dataDateFormat = "MM-DD-YYYY JJ:NN:SS"
 ) \%>>\% setDataProvider(dataProvider = dp[ sample, ], keepNA = FALSE
 ) \%>>\% addGraph(id = "charge", valueField = "charge",
-                 valueAxis = "valueAxis1", lineColor = "#FF6600"
+                valueAxis = "valueAxis1", lineColor = "#FF6600"
 ) \%>>\% addGraph(id = "temperature", type = "smoothedLine", valueField = "temperature",
-                 valueAxis = "valueAxis2", lineColor = "#B0DE09"
+                valueAxis = "valueAxis2", lineColor = "#B0DE09"
 ) \%>>\% addValueAxes(id = "valueAxis1", gridAlpha = 0, position = "right",
                     axisColor = "#FF6600", axisThickness = 2
 ) \%>>\% addValueAxes(id = "valueAxis2", gridAlpha = 0, position = "left",
@@ -448,23 +525,23 @@ amStockChart(theme = "default" , dataDateFormat = "MM-DD-YYYY JJ:NN:SS"
                     addFieldMapping(fromField = "charge", toField = "charge") \%>>\%
                     addFieldMapping(fromField = "temperature", toField = "temperature") \%>>\%
                     addStockEvent( date = "01-02-2015 23:00:00", type = "sign", graph ="g1",
-                                    text = "I am a stockEvent", description = "I am a property of a DataSet")
+                                   text = "I am a stockEvent", description = "I am a property of a DataSet")
 ) \%>>\% addPanel(stockPanel(showCategoryAxis = FALSE, title = "Charge", percentHeight = 70) \%>>\%
-                   addStockGraph(id = "g1", valueField = "charge", comparable = TRUE,
-                                 compareField = "charge", balloonText = "[[title]] =<b>[[value]]</b>",
-                                 compareGraphBalloonText = "[[title]] =<b>[[value]]</b>"
+                  addStockGraph(id = "g1", valueField = "charge", comparable = TRUE,
+                                compareField = "charge", balloonText = "[[title]] =<b>[[value]]</b>",
+                                compareGraphBalloonText = "[[title]] =<b>[[value]]</b>"
                   ) \%>>\% setStockLegend(periodValueTextComparing = "[[percents.value.close]]\%",
-                                          periodValueTextRegular = "[[value.close]]")
+                                        periodValueTextRegular = "[[value.close]]")
 ) \%>>\% addPanel(stockPanel(title = "Temperature", percentHeight = 30) \%>>\%
-                   addStockGraph(valueField = "temperature", fillAlphas = 1) \%>>\%
-                   setStockLegend(periodValueTextRegular = "[[value.close]]")
+                  addStockGraph(valueField = "temperature", fillAlphas = 1) \%>>\%
+                  setStockLegend(periodValueTextRegular = "[[value.close]]")
 ) \%>>\% setChartScrollbarSettings(graph = "g1"
 ) \%>>\% setChartCursorSettings(valueBalloonsEnabled = TRUE, fullWidth = TRUE,
-                               cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
-                               valueLineEnabled = TRUE, valueLineAlpha = 0.5
+                              cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
+                              valueLineEnabled = TRUE, valueLineAlpha = 0.5
 ) \%>>\% setPeriodSelector(periodSelector(position = "left") \%>>\%
-                            addPeriod(period = "MM", selected = TRUE, count = 1, label = "1 month") \%>>\%
-                            addPeriod(period = "MAX", label = "MAX")
+                           addPeriod(period = "MM", selected = TRUE, count = 1, label = "1 month") \%>>\%
+                           addPeriod(period = "MAX", label = "MAX")
 ) \%>>\% setDataSetSelector(position = "left"
 ) \%>>\% setCategoryAxesSettings(minPeriod = "ss"
 ) \%>>\% setPanelsSettings(recalculateToPercents = FALSE
