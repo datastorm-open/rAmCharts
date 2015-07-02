@@ -9,12 +9,12 @@ Run the following code lines to install ***rAmCharts***:
 
 ```{r, eval = FALSE}
 if ( require(devtools) ) {
-  install.packages(devtools)
+  install.packages("devtools"")
 } else{}
 devtools::install_github("Djaiff/rAmCharts")
 ```
 
-## For examples, please refer to <http://djaiff.github.io/rAmChart/>
+## For examples, please refer to <http://djaiff.github.io/rAmCharts/>
 
 ---
 
