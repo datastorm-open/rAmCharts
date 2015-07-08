@@ -11,10 +11,10 @@ Run the following code lines to install ***rAmCharts***:
 if ( require(devtools) ) {
   install.packages("devtools"")
 } else{}
-devtools::install_github("Djaiff/rAmCharts")
+devtools::install_github("dataKnowledge/rAmCharts")
 ```
 
-## For examples, please refer to <http://djaiff.github.io/rAmCharts/>
+## For examples, please refer to <http://dataknowledge.github.io/rAmCharts/>
 
 ---
 
