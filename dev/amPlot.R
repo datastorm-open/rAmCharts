@@ -1,29 +1,4 @@
 
-amHist <- function(x, plot = FALSE, ...){
-  require(data.table)
-  if (!missing(...)){
-    resHist <- hist(x = x, plot = FALSE, ...)
-  }else{
-    resHist <- hist(x = x, plot = FALSE)
-  }
-  
-  if (plot) {
-    return (resHist)
-  } else 
-  {
-    dt <- data.table(x = resHist$mids, y = resHist$counts)
-    
-    amSerialChart(theme = "light", categoryField = "x", creditsPosition = "top-right",
-                  dataProvider = dt
-    ) %>>% addGraph(balloonText = "[[category]]: <b>[[value]]</b>", type = "column",
-                    valueField = "y", fillAlphas = .8, lineAlpha = .2
-    ) %>>% addGraph( valueField = "y", type = "smoothedLine"
-    ) %>>% setExport(position = "top-right"
-    ) %>>% setChartCursor %>>% plot
-  }
-}
-#amHist(rnorm(100), breaks = "Scott")
-
 amPlot <- function(x, y, export = TRUE, weights, id,...){
   if ( missing(y) ){
     dt <- data.table( x = x )
