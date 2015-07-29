@@ -1,6 +1,6 @@
 #' @exportMethod amChartOutput
 setGeneric( name = "amChartOutput",
-  def = function(outputId, type, width, height) { standardGeneric("amChartOutput") }
+            def = function(outputId, type, width, height) { standardGeneric("amChartOutput") }
 )
 
 #' @title SHINY
@@ -45,11 +45,7 @@ setMethod(
   }
 )
 
-#' @exportMethod amChartOutput
-setGeneric(
-  name = "renderAmChart",
-  def = function(expr, env, quoted) { standardGeneric("renderAmChart") }
-)
+
 
 #' @title SHINY
 #' @description Widget output function for use in Shiny
@@ -57,17 +53,13 @@ setGeneric(
 #' @name renderAmChart
 #' @rdname renderAmChart
 #' @export
-setMethod(
-  f = "renderAmChart",
-  definition = function(expr, env, quoted)
-  {
-    if(missing(env)){
-      env <- parent.frame()
-    }else{}
-    if(missing(quoted)){
-      quoted <- FALSE
-    }
-    if (!quoted) { expr <- substitute(expr) } # force quoted
-    htmlwidgets::shinyRenderWidget(expr, amChartOutput, env, quoted = TRUE)
+renderAmChart <- function(expr, env, quoted){
+  if(missing(env)){
+    env <- parent.frame()
+  }else{}
+  if(missing(quoted)){
+    quoted <- FALSE
   }
-)
+  if (!quoted) { expr <- substitute(expr) } # force quoted
+  htmlwidgets::shinyRenderWidget(expr, amChartOutput, env, quoted = TRUE)
+}

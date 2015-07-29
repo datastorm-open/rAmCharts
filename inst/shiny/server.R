@@ -10,9 +10,13 @@ library(rAmCharts)
 
 shinyServer(function(input, output) {
   
+  category <- reactive({
+    "attribute"
+  })
+  
   output$radar <- rAmCharts::renderAmChart({
     amRadarChart( 
-      startDuration = 1, categoryField = "attribute", theme = "dark"
+      startDuration = 1, categoryField = category(), theme = "dark"
     ) %>>% setDataProvider(
       data.frame(
         attribute = c("data", "brand", "singleness"), p1 = c(.3, -1, 0), p2 = c(.7, 1, 2)
