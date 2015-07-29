@@ -1,0 +1,6 @@
+rAmCharts 1.1
+--------------------------------------------------------------------------------
+  
+  * fix bug using renderAmChart with input/reactive values
+  * rename renderAmChart -> renderAmCharts
+  * rename amChartOutput -> amChartsOutput
