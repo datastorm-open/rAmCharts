@@ -7,6 +7,7 @@
 
 library(shiny)
 library(rAmCharts)
+library(pipeR)
 
 shinyServer(function(input, output) {
   
