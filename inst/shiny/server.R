@@ -14,7 +14,7 @@ shinyServer(function(input, output) {
     "attribute"
   })
   
-  output$radar <- rAmCharts::renderAmChart({
+  output$radar <- rAmCharts::renderAmCharts({
     amRadarChart( 
       startDuration = 1, categoryField = category(), theme = "dark"
     ) %>>% setDataProvider(
@@ -27,7 +27,7 @@ shinyServer(function(input, output) {
     ) %>>% setExport() %>>% plot  
   })
   
-  output$radar2 <- rAmCharts::renderAmChart({
+  output$radar2 <- rAmCharts::renderAmCharts({
     amRadarChart( 
       startDuration = 1, categoryField = "attribute", theme = "chalk", creditsPosition = "bottom-right"
     ) %>>% setDataProvider(
@@ -40,13 +40,13 @@ shinyServer(function(input, output) {
     ) %>>% setExport() %>>% plot  
   })
   
-  output$pie <- rAmCharts::renderAmChart({
+  output$pie <- rAmCharts::renderAmCharts({
     amPieChart(valueField = "value", titleField = "key", creditsPostion = "top-right"
     ) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
     ) %>>% setExport() %>>% plot
   })
   
-  output$serial <- rAmCharts::renderAmChart({
+  output$serial <- rAmCharts::renderAmCharts({
     amSerialChart( categoryField = "country", creditsPosition = "top-right", theme = "light"
     ) %>>% setDataProvider(data.frame(country = c("FR", "US"), visits = 1:2)
     ) %>>% addGraph( balloonText = "[[category]]: <b>[[value]]</b>", type = "column",
@@ -54,7 +54,7 @@ shinyServer(function(input, output) {
     ) %>>% setExport() %>>% plot
   })
   
-  output$drillColumnChart1 <-rAmCharts::renderAmChart({
+  output$drillColumnChart1 <-rAmCharts::renderAmCharts({
     df <- data.frame(
       name = c("data", "Brand", "singleness"), start = c(8,10,6), end = c(11,13,10),
       color = c('#007FFF', "#007FFF", "#003FFF"), description = c("click to drill-down","","")
@@ -73,7 +73,7 @@ shinyServer(function(input, output) {
     ) %>>% setExport() %>>% plot
   })
   
-  output$drillColumnChart2 <-rAmCharts::renderAmChart({
+  output$drillColumnChart2 <-rAmCharts::renderAmCharts({
     amSerialChart(categoryField = "name", theme = "chalk"
     ) %>>%setDataProvider( data.frame( name = c("data", "Brand", "singleness"),
                                        start = c(8,10,6), end = c(11,13,10),

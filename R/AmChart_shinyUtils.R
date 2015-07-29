@@ -1,17 +1,17 @@
-#' @exportMethod amChartOutput
-setGeneric( name = "amChartOutput",
-            def = function(outputId, type, width, height) { standardGeneric("amChartOutput") }
+#' @exportMethod amChartsOutput
+setGeneric( name = "amChartsOutput",
+            def = function(outputId, type, width, height) { standardGeneric("amChartsOutput") }
 )
 
 #' @title SHINY
 #' @description Widget output function for use in Shiny
 #' @param amChart: an \code{\linkS4class{AmChart}} object
-#' @name amChartOutput
-#' @rdname amChartOutput
+#' @name amChartsOutput
+#' @rdname amChartsOutput
 #' @import htmlwidgets
 #' @export
 setMethod(
-  f = "amChartOutput",
+  f = "amChartsOutput",
   signature = c("character", "character"),
   definition = function(outputId, type, width, height)
   {
@@ -50,10 +50,10 @@ setMethod(
 #' @title SHINY
 #' @description Widget output function for use in Shiny
 #' @param amChart: an \code{\linkS4class{AmChart}} object
-#' @name renderAmChart
-#' @rdname renderAmChart
+#' @name renderAmCharts
+#' @rdname renderAmCharts
 #' @export
-renderAmChart <- function(expr, env, quoted){
+renderAmCharts <- function(expr, env, quoted){
   if(missing(env)){
     env <- parent.frame()
   }else{}
@@ -61,5 +61,5 @@ renderAmChart <- function(expr, env, quoted){
     quoted <- FALSE
   }
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, amChartOutput, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, amChartsOutput, env, quoted = TRUE)
 }
