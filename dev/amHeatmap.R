@@ -21,7 +21,7 @@ colorData <- function(data,nbclasses=NULL,col=c("#FF0000","#FFFFFF","#0000FF"),c
       }
     }else{
       nbclasses <- length(unique(values)) 
-      classes <- unique(values)
+      classes <- sort(unique(values))
       for(i in 1:length(classes))
       {
         framclasses=framclasses+((data>=classes[i])+1-1)
@@ -64,7 +64,7 @@ colorData <- function(data,nbclasses=NULL,col=c("#FF0000","#FFFFFF","#0000FF"),c
   framclasses <- data.frame(framclasses)
   names(framclasses) <- paste0(names(data),"col")
   framclasses[] <- lapply(framclasses, as.character)
-  list(data = cbind(data,framclasses), nclasses = nbclasses)
+  list(data = cbind(data,framclasses), classes = list(nclasses = nbclasses, labels = classes))
 }
 
 #' Associeted constructor data.frame to initial data.frame
@@ -90,7 +90,7 @@ constructdata <- function(data){
 #' 
 #' 
 #' @return data.frame compound to original data.frame and associated constructor data.frame
-heatmap <- function(data,labels = TRUE,cex=10,main="",xLabelsRotation=45,colorby="all",col=c("#FF0000","#FFFFFF","#0000FF"), nclasses=10){
+heatmap <- function(data, classes, labels = TRUE,cex=10,main="",xLabelsRotation=45,colorby="all",col=c("#FF0000","#FFFFFF","#0000FF")){
 
   ncate <-(ncol(data)-1)/3
   
@@ -129,14 +129,20 @@ heatmap <- function(data,labels = TRUE,cex=10,main="",xLabelsRotation=45,colorby
 
   if(colorby=="all")
   {
-
-    classes <- quantile(sort((unlist(c(data[,2:(ncate+1)])))),seq(from = 0, to = 1,length.out = nclasses+1))
-    color <- colorRampPalette(col)(nclasses)
+    
+    nbclasses <- classes$nclasses
+    classes <- classes$labels
+    color <- colorRampPalette(col)(nbclasses)
     
     associated <- NULL
-    for(i in 1:length(classes)-1){
-      associated[i] <- paste0("[",classes[i]," , ",classes[i+1], ifelse(i==length(classes)-1, "]", "["))
+    if(nbclasses > length(classes)){
+      for(i in 1:length(classes)-1){
+        associated[i] <- paste0("[",classes[i]," , ",classes[i+1], ifelse(i==length(classes)-1, "]", "["))
+      }
+    }else{
+      associated <- classes
     }
+    
     datatemp <- data.frame(title=associated,color=color)
     for(i in 1:nrow(datatemp))
     {
@@ -292,18 +298,17 @@ amheatmap <- function(data, nclasses = 5, col = c("#FF0000","#FFFFFF","#0000FF")
                       xLabelsRotation=45, colorby="all", legend = TRUE){
   colordata <- colorData(data,nclasses,col,colorby)
   data <- constructdata(colordata$data)
-  heatmap(data, labels, cex, main, xLabelsRotation, colorby,col, colordata$nclasses)
+  heatmap(data, colordata$classes, labels, cex, main, xLabelsRotation, colorby,col)
 }
 
 # data <- USArrests
 # 
-# data <- data.frame(a = c(0,0), b = c(0,1))
+# data <- data.frame(a = c(3,0), b = c(2,1))
 # amheatmap(data)
 # 
 # nclasses = 5
 # col = c("#FF0000","#FFFFFF","#0000FF")
 # colorby="all"
-
 
 # toCharData <- function(data){
 #   
