@@ -135,7 +135,7 @@ heatmap <- function(data, classes, labels = TRUE,cex=10,main="",xLabelsRotation=
     color <- colorRampPalette(col)(nbclasses)
     
     associated <- NULL
-    if(nbclasses > length(classes)){
+    if(nbclasses < length(classes)){
       for(i in 1:length(classes)-1){
         associated[i] <- paste0("[",classes[i]," , ",classes[i+1], ifelse(i==length(classes)-1, "]", "["))
       }
