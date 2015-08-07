@@ -11,11 +11,21 @@ colorData <- function(data,nbclasses=NULL,col=c("#FF0000","#FFFFFF","#0000FF"),c
   
   if(colorby=="all")
   {
-    classes <- quantile(sort((unlist(c(data)))),seq(from = 0, to = 1,length.out = nbclasses+1))
     framclasses <- matrix(0,nrow=nrow(data),ncol=ncol(data))
-    for(i in 1:(length(classes)-1))
-    {
-      framclasses=framclasses+((data>=classes[i])+1-1)
+    values <- unlist(c(data))
+    if(nbclasses < length(unique(values))){
+      classes <- quantile(values,seq(from = 0, to = 1,length.out = nbclasses+1))
+      for(i in 1:(length(classes)-1))
+      {
+        framclasses=framclasses+((data>=classes[i])+1-1)
+      }
+    }else{
+      nbclasses <- length(unique(values)) 
+      classes <- unique(values)
+      for(i in 1:length(classes))
+      {
+        framclasses=framclasses+((data>=classes[i])+1-1)
+      }
     }
   }
   
@@ -47,7 +57,6 @@ colorData <- function(data,nbclasses=NULL,col=c("#FF0000","#FFFFFF","#0000FF"),c
     }
   }
 
-  
   color <- colorRampPalette(col)(nbclasses)
   for(i in 1:length(color)){
     framclasses[framclasses==as.character(i)] <- color[i]
@@ -55,7 +64,7 @@ colorData <- function(data,nbclasses=NULL,col=c("#FF0000","#FFFFFF","#0000FF"),c
   framclasses <- data.frame(framclasses)
   names(framclasses) <- paste0(names(data),"col")
   framclasses[] <- lapply(framclasses, as.character)
-  cbind(data,framclasses)
+  list(data = cbind(data,framclasses), nclasses = nbclasses)
 }
 
 #' Associeted constructor data.frame to initial data.frame
@@ -94,7 +103,7 @@ heatmap <- function(data,labels = TRUE,cex=10,main="",xLabelsRotation=45,colorby
                   
                   function(x){
                     
-                    amGraph(balloonText=paste0("<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[",x,"]]</b></span>"),
+                    amGraph(balloonText=paste0("<b>[[title]]-[[category]]</b><br><b> count : </b>[[",x,"]]"),
                             fillAlphas=0.8,labelText=if(labels){paste0("[[",x,"]]")}else{""},lineAlpha=0.3,fontSize=cex,
                             title=x,type="column",fillColorsField=paste0(x,"col"),valueField=paste0(x,"construct"))},USE.NAMES = FALSE
   )
@@ -126,7 +135,7 @@ heatmap <- function(data,labels = TRUE,cex=10,main="",xLabelsRotation=45,colorby
     
     associated <- NULL
     for(i in 1:length(classes)-1){
-      associated[i] <- paste0("[",classes[i]," , ",classes[i+1],"]")
+      associated[i] <- paste0("[",classes[i]," , ",classes[i+1], ifelse(i==length(classes)-1, "]", "["))
     }
     datatemp <- data.frame(title=associated,color=color)
     for(i in 1:nrow(datatemp))
@@ -146,7 +155,7 @@ heatmap <- function(data,labels = TRUE,cex=10,main="",xLabelsRotation=45,colorby
     setProperties(type="serial",theme="light",columnWidth=1,categoryField="row",gridAboveGraphs=TRUE,rotate=TRUE)%>>%
     setGuides(guides)%>>%
     addTitle(text=main)%>>%
-    setLegend(data=(legendlist),markerBorderColor="#000000")%>>%
+    setLegend(data=(legendlist),markerBorderColor="#000000", align = "center")%>>%
     addValueAxes(stackType="regular",axisAlpha=0,gridThickness=0,gridAlpha=1,position="left",labelRotation=xLabelsRotation,maximum=ncate,
       labelFunction = htmlwidgets::JS(paste0("function(value,valueString,axis){
         Math.trunc = Math.trunc || function(x) {
@@ -162,6 +171,95 @@ heatmap <- function(data,labels = TRUE,cex=10,main="",xLabelsRotation=45,colorby
       ;}")))%>>%
     setGraphs(chart)%>>%
     setCategoryAxis(gridPosition="start",axisAlpha=1,gridThickness=0,gridAlpha=1)%>>%
+    setExport(enabled = TRUE, 
+              menu = list(
+                list(
+                  class = "export-main",
+                  menu = list(
+                    list(
+                      label = "Download as ...",
+                      menu = list("PNG", "JPG", "SVG", "PDF")
+                    ),
+                    list(
+                      label = "Save data as CSV",
+                      click = htmlwidgets::JS(paste0('function() {
+
+                        var cfg = {
+				                  data: this.getChartData(),
+                          delimiter: ",",
+                          quotes: true,
+                          escape: true,
+                          dateFields: [],
+                          dateFormat: this.setup.chart.dataDateFormat || "YYYY-MM-DD"
+                        };
+
+                        var data = "";
+                                                     
+                        if ( this.setup.chart.categoryAxis && this.setup.chart.categoryAxis.parseDates && this.setup.chart.categoryField ) {
+                          cfg.dateFields.push( this.setup.chart.categoryField );
+                        }
+                        
+                        //header
+                        row = 0;
+                        var buffer = [];
+                        var cpt = 1;
+                        for ( col in cfg.data[ row ] ) {
+                        if(cpt <= ', ((ncol(data)-1)/3)+1, '){
+                          var value = cfg.data[ row ][col];
+                          value = col;
+                                                    
+                          if ( typeof value === "string" ) {
+                            if ( cfg.escape ) {
+                              value = value.replace( \'"\', \'""\' );
+                            }
+                            if ( cfg.quotes ) {
+                              value = [ \'"\', value, \'"\' ].join( "" );
+                            }
+                          }
+                                                     
+                          buffer.push( value );
+                          cpt = cpt+1;
+                        }
+                        }
+                        data += buffer.join( cfg.delimiter ) + "\\n";
+                                                      
+                        for ( row in cfg.data ) {
+                          var cpt = 1;
+                          var buffer = [];
+                          
+                          for ( col in cfg.data[ row ] ) {
+                            if(cpt <= ', ((ncol(data)-1)/3)+1, '){
+                            var value = cfg.data[ row ][ col ];
+                                                     
+                            if ( typeof value === "string" ) {
+                              value = value;
+                            } else if ( cfg.dateFormat && value instanceof Date && cfg.dateFields.indexOf( col ) != -1 ) {
+                              value = AmCharts.formatDate( value, cfg.dateFormat );
+                            }
+                            
+                            // WRAP IN QUOTES
+                            if ( typeof value === "string" ) {
+                              if ( cfg.escape ) {
+                                value = value.replace( \'"\', \'""\' );
+                              }
+                              if ( cfg.quotes ) {
+                                value = [ \'"\', value, \'"\' ].join( "" );
+                              }
+                            }
+                                                     
+                            buffer.push( value );
+                            cpt = cpt +1;
+                          }
+                          }
+                          data += buffer.join( cfg.delimiter ) + "\\n";
+                        };
+                      this.download( data, "text/plain", "heatmap.csv" );}')
+                    ))
+                    )
+                  )
+                )
+            
+          ) %>>%
     plot
   
 }
@@ -190,8 +288,32 @@ heatmap <- function(data,labels = TRUE,cex=10,main="",xLabelsRotation=45,colorby
 #' @return data.frame compound to original data.frame and associated constructor data.frame
 #' 
 #' @export
-amheatmap <- function(data,nclasses=5,col=c("#FF0000","#FFFFFF","#0000FF"),labels = TRUE,  cex=10,main="",xLabelsRotation=45,colorby="all",legend = TRUE){
-  data <- colorData(data,nclasses,col,colorby)
-  data <- constructdata(data)
-  heatmap(data,labels,cex,main,xLabelsRotation,colorby,col, nclasses)
+amheatmap <- function(data, nclasses = 5, col = c("#FF0000","#FFFFFF","#0000FF"), labels = TRUE, cex=10, main="", 
+                      xLabelsRotation=45, colorby="all", legend = TRUE){
+  colordata <- colorData(data,nclasses,col,colorby)
+  data <- constructdata(colordata$data)
+  heatmap(data, labels, cex, main, xLabelsRotation, colorby,col, colordata$nclasses)
 }
+
+# data <- USArrests
+# 
+# data <- data.frame(a = c(0,0), b = c(0,1))
+# amheatmap(data)
+# 
+# nclasses = 5
+# col = c("#FF0000","#FFFFFF","#0000FF")
+# colorby="all"
+
+
+# toCharData <- function(data){
+#   
+#   res <- paste0(paste("'row'", paste0("'", paste(colnames(data), collapse = "','"), "'"), sep = ","), "\\n")
+#   
+#   ctrl <- sapply(1:nrow(data), function(x){
+#     ligne <- paste0(paste(paste0("'", rownames(data)[x], "'"), paste0("'",paste(data[x, ], collapse = "','"), "'"), sep = ","), ifelse(x==nrow(data), "", "\\n"))
+#     res <<- paste0(res, ligne)
+#     NULL
+#   })
+#   
+#   res
+# }
