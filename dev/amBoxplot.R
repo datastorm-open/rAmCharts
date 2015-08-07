@@ -130,22 +130,27 @@ amBoxplot.formula <-function(formula, data = NULL, main = NULL, xlab = NULL, yla
   })
   
   outliers <- do.call("rbind", outliers[[2]])
-  outliers[, x := round(x, 2)]
+  if(nrow(outliers) > 0){
+    outliers[, x := round(x, 2)]
+    
+    split.outliers <- split(outliers, outliers$cat)
+    
+    final.outliers <- NULL
+    ctrl <- lapply(split.outliers, function(x){
+      inter <- formatOutlier(x)
+      if(is.null(final.outliers)){
+        final.outliers <<- inter
+      }else{
+        final.outliers <<- rbind(final.outliers, inter, fill = TRUE)
+      }
+      NULL
+    })
+    
+    final.outliers <- merge(dp, final.outliers, all = TRUE)
+  }else{
+    final.outliers <- dp
+  }
   
-  split.outliers <- split(outliers, outliers$cat)
-  
-  final.outliers <- NULL
-  ctrl <- lapply(split.outliers, function(x){
-    inter <- formatOutlier(x)
-    if(is.null(final.outliers)){
-      final.outliers <<- inter
-    }else{
-      final.outliers <<- rbind(final.outliers, inter, fill = TRUE)
-    }
-    NULL
-  })
-  
-  final.outliers <- merge(dp, final.outliers, all = TRUE)
   
   plotAmBoxplot(final.outliers, main =  main, xlab = xlab, 
                 ylab = ylab, ylim = ylim, col = col)
