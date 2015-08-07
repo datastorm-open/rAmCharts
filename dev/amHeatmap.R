@@ -1,6 +1,3 @@
-library(rAmCharts)
-library(pipeR)
-
 #' Associeted colors to data.frame
 #' @param data : data.frame
 #' @param nbclasses : number of classes
@@ -150,15 +147,19 @@ heatmap <- function(data,labels = TRUE,cex=10,main="",xLabelsRotation=45,colorby
     setGuides(guides)%>>%
     addTitle(text=main)%>>%
     setLegend(data=(legendlist),markerBorderColor="#000000")%>>%
-    addValueAxes(stackType="regular",axisAlpha=0,gridThickness=0,gridAlpha=1,position="left",labelRotation=xLabelsRotation,maximum=ncate,labelFunction=JS(paste0("function(value,valueString,axis){
-                                                                                                           var val = ", values, ";
-                                                                                                           var indice = Math.trunc(value);
-                                                                                                           if(indice < val.length && value % 1 != 0){
-                                                                                                           return val[indice];
-                                                                                                           }else{
-                                                                                                           return '';
-                                                                                                           }
-                                                                                                           ;}")))%>>%
+    addValueAxes(stackType="regular",axisAlpha=0,gridThickness=0,gridAlpha=1,position="left",labelRotation=xLabelsRotation,maximum=ncate,
+      labelFunction = htmlwidgets::JS(paste0("function(value,valueString,axis){
+        Math.trunc = Math.trunc || function(x) {
+          return x < 0 ? Math.ceil(x) : Math.floor(x);
+        };                                                                                                         
+        var val = ", values, ";
+        var indice = Math.trunc(value);
+        if(indice < val.length && value % 1 != 0){
+          return val[indice];
+        }else{
+          return '';
+        }
+      ;}")))%>>%
     setGraphs(chart)%>>%
     setCategoryAxis(gridPosition="start",axisAlpha=1,gridThickness=0,gridAlpha=1)%>>%
     plot
