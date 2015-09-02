@@ -6,12 +6,21 @@ library(data.table)
 amPieChart(valueField = "value", titleField = "key", creditsPosition = "top-right",
            backgroundColor = "#ff0000"
 ) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
-) %>>% setExport(position = "bottom-left") %>>% plot
+) %>>% setExport(position = "bottom-left") %>>% plot()
 
-### amPieChart
+### amPieChart with listener
 amPieChart(theme ="dark", valueField = "value", titleField = "key", creditsPosition = "top-right"
 ) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
-) %>>% setExport(position = "bottom-left") %>>% plot
+) %>>% addListener("clickSlice" , "function(event){ alert('ok !'); }"
+) %>>% plot()
+
+### amPieChart with listener
+legend <- amLegend(position = "right", marginRight = 100, autoMargins = FALSE, innerRadius = "30%"
+) %>>% addListener("hideItem" , "function(event){alert('hide'); }")
+amPieChart(theme ="dark", valueField = "value", titleField = "key", legend = legend
+) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
+) %>>% plot()
+
 
 
 ### amRadarChart
