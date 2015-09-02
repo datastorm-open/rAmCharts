@@ -9,7 +9,7 @@ NULL
 #' user rolls-over the slice, graph, etc.}
 #' @export
 setClass( Class = "AmLegend", contains = "AmObject",
-          representation = representation( useGraphSettings = "logical" )
+          representation = representation(useGraphSettings = "logical")
 )
 
 #' @title Initialize
@@ -17,11 +17,11 @@ setClass( Class = "AmLegend", contains = "AmObject",
 #' new("AmLegend", useGraphSettings = TRUE)
 #' @export
 setMethod(f = "initialize", signature = "AmLegend",
-          definition = function(.Object, useGraphSettings, ...)
+          definition = function(.Object, useGraphSettings, listeners, ...)
           {  
-            if(!missing(useGraphSettings)){
+            if (!missing(useGraphSettings)) {
               .Object@useGraphSettings <- useGraphSettings
-            }
+            } else {}
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
@@ -95,9 +95,9 @@ setMethod( f = "listProperties", signature = "AmLegend",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if( length( .Object@useGraphSettings ) > 0 ){
+             if (length( .Object@useGraphSettings ) > 0){
                ls <- rlist::list.append(ls, useGraphSettings = .Object@useGraphSettings)
-             }else{}
+             } else {}
              return(ls)
            }
 )
