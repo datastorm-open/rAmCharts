@@ -24,12 +24,16 @@ HTMLWidgets.widget({
       }
     }
       
-    if (window.Shiny){
-      for (key in x.chartData.legend.listeners) {
-        instance.amchart.legend.addListener(key, x.chartData.legend.listeners[key]);
+    if(x.chartData.legend !== undefined){
+      if(x.chartData.legend.listeners !== undefined){
+        if (window.Shiny){
+          for (key in x.chartData.legend.listeners) {
+            instance.amchart.legend.addListener(key, x.chartData.legend.listeners[key]);
+          }
+        }else{
+          instance.amchart.addListener("init", handleInit);
+        }
       }
-    }else{
-      instance.amchart.addListener("init", handleInit);
     }
   },
   
