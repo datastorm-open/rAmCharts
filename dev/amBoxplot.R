@@ -98,16 +98,21 @@ amBoxplot.matrix <- function(x, use.cols = TRUE, main = NULL, xlab = NULL, ylab 
   plotAmBoxplot(list(value = z, data = data), main = main, xlab = xlab, ylab = ylab, ylim = ylim, col = col)
 }
 
-amBoxplot.formula <-function(formula, data = NULL, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL, col = NULL){
+amBoxplot.formula <-function(formula, data = NULL, id = NULL, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL, col = NULL){
   
   if(missing(formula) || (length(formula) != 3L))
     stop("'formula' missing or incorrect")
   
-  if(!"data.table"%in%class(data)){
-    data <- data.table(data)
-  }
+  data <- data.table(data)
   
-  data[, id := 1:.N]
+  if(is.null(id)){
+    data[, id := 1:.N]
+  }else{
+    if(!id%in%colnames(data)){
+      stop("Can't find '", id, "' column in data")
+    }
+    setnames(data, id, "id")
+  }
   
   x <- as.character(formula)[2]
   y <- as.character(formula)[3]
@@ -130,6 +135,7 @@ amBoxplot.formula <-function(formula, data = NULL, main = NULL, xlab = NULL, yla
   })
   
   outliers <- do.call("rbind", outliers[[2]])
+  
   if(nrow(outliers) > 0){
     outliers[, x := round(x, 2)]
     
@@ -273,10 +279,12 @@ formatOutlier <- function(data){
 # 
 # xlab = "NULL"
 # ylab = "NULL"
+# id = "test"
 # 
 # boxplot(count ~ spray, data = InsectSprays, plot = FALSE)
 # # formula
-# res = amBoxplot(count ~ spray, data = InsectSprays, xlab = "re")
+# InsectSprays$test = 1:nrow(InsectSprays)*100
+# res = amBoxplot(count ~ spray, id = "test", data = InsectSprays, xlab = "re")
 # res
 # # vector
 # set.seed(144)
