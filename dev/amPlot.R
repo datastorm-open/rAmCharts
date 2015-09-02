@@ -13,7 +13,7 @@ amPlot <- function(x, y, export = TRUE, weights, id,...){
     if ( length(x) != length(y) ){
       stop("error")
     }else{}
-    if( missing( weights) ){
+    if( ! missing( weights) ){
       weights <- rep(1, length(x))
       labelWeights <- "weights:<b>[[weights]]</b>"
     }else{labelWeights <- ""}
