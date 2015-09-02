@@ -2,14 +2,15 @@
 #' @author DataKnowledge
 #' @description This is a virtual class for representing any Am** class
 #' @section Slots:
+#' @slot \code{listeners}: Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string. See examples for details.
 #' @slot \code{otherProperties}: Object of class \code{"list"},
 #' containing other avalaible properties non coded in the package yet
-#' @slot \code{otherProperties}: Object of class \code{"numeric"}
 #' @export
 #' @family rAmChart classes
 setClass(
   Class = "AmObject",
-  representation = representation(value = "numeric", otherProperties = "list", "VIRTUAL") 
+  representation = representation(value = "numeric", listeners = "list", otherProperties = "list", "VIRTUAL") 
 )
 
 #' @title Visualize with show
@@ -36,6 +37,39 @@ setMethod(f = "print", signature = "AmObject",
           definition = function(x, ...) { print(listProperties(x)) }
 )
 
+# > @listeners: setters ####
+
+#' @exportMethod addListener
+setGeneric(name = "addListener", def = function(.Object, name, expression) { standardGeneric("addListener") } )
+
+#' @title Setter for Listener
+#' @param \code{.Object}: Object of of inherited class \code{\linkS4class{AmObject}}.
+#' @param \code{name}: Object of class \code{character} containing the name of the listener.
+#' @param \code{expression}: Object of class \code{character} containing the associated function event.
+#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @examples 
+#' library(pipeR)
+#' amChart() %>>% addListener("select", "function onSelect (properties) {
+#'      alert('selected nodes: ' + properties.nodes);}")
+#' amLegend() %>>% addListener("select", "function onSelect (properties) {
+#'      alert('selected nodes: ' + properties.nodes);}")
+#' @family AmChart setters
+#' @family AmChart methods
+#' @seealso \code{\linkS4class{AmChart}} S4 class
+#' @seealso \code{\linkS4class{AmLegend}} S4 class
+#' @name addListener
+#' @rdname addListener
+#' @export
+setMethod (f = "addListener", signature = c("AmObject", "character", "character"),
+           definition = function(.Object, name, expression)
+           {
+             .Object@listeners[[ eval(name) ]] <- JS(expression)
+             # cat( class(JS(expression)), "\n")
+             # cat( class( .Object@listeners[[ eval(name) ]] ), '\n' )
+             validObject(.Object)
+             return(.Object)
+           }
+)
 
 # > @otherProperties: setProperties ####
 
@@ -59,11 +93,11 @@ setGeneric(name = "setProperties", def = function(.Object, list, ...){standardGe
 setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
           definition = function(.Object, list, ...)
           {
-            if(missing(list)){
+            if (missing(list)) {
               .Object@otherProperties <- rlist::list.append(.Object@otherProperties, ...)
-            }else if(is.list(list)){
+            } else if (is.list(list)) {
               .Object@otherProperties <- list
-            }else{}
+            } else {}
             validObject(.Object)
             return(.Object)
           }
@@ -93,6 +127,21 @@ setMethod( f = "getOtherProperties", definition = function(.Object) { return(.Ob
 setGeneric(name = "listProperties", def = function(.Object){standardGeneric("listProperties")})
 #' @title List attributes of an AmObject
 #' @details Factor the code for the commone attributes
+#' @examples
+#' library(pipeR)
+#' object <- amChart() %>>% addListener("select", "function onSelect (properties) {
+#'      alert('selected nodes: ' + properties.nodes);}")
+#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "AmObject",
-  definition = function(.Object) { return(.Object@otherProperties) }
+           definition = function(.Object) {
+             if (length(.Object@otherProperties)) {
+               properties <- .Object@otherProperties
+             } else {
+               properties <- list()
+             }
+             if (length(.Object@listeners)) {
+               properties <- rlist::list.append(properties, listeners = .Object@listeners)
+             } else {}
+             return(properties)
+           }
 )
