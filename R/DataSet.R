@@ -3,13 +3,14 @@ NULL
 
 #' @title DataSet class
 #' @author DataKnowledge
-#' @section Slots:
 #' 
-#' @slot \code{dataProvider}: Object of class \code{list}. The data set data.
+#' @slot dataProvider
+#' Object of class \code{list}. The data set data.
 #' Important: the data sets need to come pre-ordered in ascending order.
 #' Data with incorrect order might result in visual and functional glitches on the chart.
 #' 
-#' @slot \code{fieldMappings}: Object of class \code{list}.
+#' @slot fieldMappings
+#' Object of class \code{list}.
 #' Array of field mappings.
 #' Field mapping is an object with fromField and toField properties.
 #' fromField is a name of your value field in dataProvider.
@@ -17,8 +18,21 @@ NULL
 #' it will be used to set value/open/close/high/low fields for the StockGraph.
 #' Example: {fromField:"val1", toField:"value"}.
 #' 
-#' @slot \code{stockEvents}: Object of class \code{list}.
+#' @slot stockEvents
+#' Object of class \code{list}.
 #' Containing properties of stockEvents.
+#' 
+#' @slot listeners
+#' Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string.
+#' See examples for details.
+#' 
+#' @slot otherProperties
+#' Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet.
+#' 
+#' @slot value
+#' Object of class \code{numeric}.
 #' 
 #' @export
 setClass( Class = "DataSet", contains = "AmObject",

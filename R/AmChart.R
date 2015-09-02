@@ -3,70 +3,136 @@ NULL
 
 #' @title AmChart
 #' @description This class allow to define the amCharts parameters
-#' @details API for plotting AmChart with R
-#' @section Slots:
-#' @slot \code{allLabels}: Object of class \code{"list"}. List of Labels properties.
-#' See \code{\linkS4class{Label}.}
-#' @slot \code{arrows}: Object of class \code{"list"}.
-#' List of properties of \code{\linkS4class{GaugeArrow}}s.
-#' @slot \code{axes}: Object of class \code{"list"}.
-#' List of properties of \code{\linkS4class{GaugeArrow}}s.
-#' @slot \code{balloon}: Object of class \code{"list"}.
+#' 
+#' @slot allLabels
+#' Object of class \code{"list"}. List of Labels properties.
+#' See \code{\linkS4class{Label}}.
+#' 
+#' @slot arrows
+#' Object of class \code{"list"}
+#' containing object of class \code{\linkS4class{GaugeArrow}}.
+#' 
+#' @slot axes
+#' Object of class \code{"list"}
+#' containing object of class \code{\linkS4class{GaugeAxis}}.
+#' 
+#' @slot balloon
+#' Object of class \code{"list"}.
 #' List of an \code{\linkS4class{AmBalloon}} class properties.
 #' Creates the balloons (tooltips) of the chart,
 #' It follows the mouse cursor when you roll-over the data items.
-#' The framework generates the instances automatically you only need to adjust the appearance to your needs.
-#' @slot \code{categoryAxis}: Object of class \code{"list"}.
+#' The framework generates the instances automatically you only need to adjust
+#' the appearance to your needs.
+#' 
+#' @slot categoryAxis
+#' Object of class \code{"list"}.
 #' List of a \code{\linkS4class{CategoryAxis}} properties.
 #' Read-only. Chart creates category axis itself.
 #' If you want to change some properties,
 #' you should get this axis from the chart and set properties to this object.
-#' @slot \code{categoryField}: {Object of class \code{"character"}.
+#' 
+#' @slot categoryField
+#' Object of class \code{"character"}.
 #' Category field name tells the chart the name of the field in your dataProvider object
-#' which will be used for category axis values.}
-#' @slot \code{ChartCursor}: Object of class \code{"list"}.
+#' which will be used for category axis values.
+#' 
+#' @slot ChartCursor
+#' Object of class \code{"list"}.
 #' List of a \code{\linkS4class{ChartCursor}} class properties.
 #' Properties of the chart's cursor.
-#' @slot \code{ChartScrollbar}: Object of class \code{"list"}.
+#' 
+#' @slot ChartScrollbar
+#' Object of class \code{"list"}.
 #' List of a \code{\linkS4class{ChartScrollbar}} class properties.
 #' Properties of chart's scrollbar.
-#' @slot \code{creditsPosition}: {Object of class \code{"character"},
+#' 
+#' @slot creditsPosition
+#' Object of class \code{"character"},
 #' specifying position of link to amCharts site.
-#' Allowed values are: top-left, top-right, bottom-left and bottom-right..}
-#' @slot \code{dataProvider}: {Object of class \code{"list"}, containing the data.
-#' Use providing method toList* to convert a \code{data.frame}}
-#' @slot \code{graphs}: {Object of class \code{list}.  List of AmGraphs properties
-#' See \code{\linkS4class{AmGraph} class}.
+#' Allowed values are: top-left, top-right, bottom-left and bottom-right.
+#' 
+#' @slot dataProvider
+#' Object of class \code{"list"}, containing the data.
+#' Use providing method toList* to convert a \code{data.frame}.
+#' 
+#' @slot graphs
+#' Object of class \code{list}.  List of AmGraphs properties
+#' See \code{\linkS4class{AmGraph}} class.
 #' Creates the visualization of the data in following types: line, column, step line,
-#' smoothed line, olhc and candlestick.}
-#' @slot \code{guides}: {Object of class \code{list}.  List of Guides properties.
-#' See \code{\linkS4class{Guides} class}.
+#' smoothed line, olhc and candlestick.
+#' 
+#' @slot graph
+#' Object of class \code{\linkS4class{AmGraph}}.
+#' Graph of a Gantt chart. Gant chart actually creates multiple graphs (separate for each segment).
+#' Properties of this graph are passed to each of the created graphs
+#' - this allows you to control the look of segments.
+#' 
+#' @slot guides
+#' Object of class \code{list}.
+#' Each elemnt must be of class \code{\linkS4class{Guide}}.
 #' Instead of adding guides to the axes, you can push all of them to this array.
 #' In case guide has category or date defined, it will automatically will be assigned to the category axis.
-#' Otherwise to first value axis, unless you specify a different valueAxes for the guide.}
-#' @slot \code{legend}: {Object of class \code{"list"}.
+#' Otherwise to first value axis, unless you specify a different valueAxes for the guide.
+#' 
+#' @slot legend
+#' Object of class \code{"list"}.
 #' List of an \code{\linkS4class{AmLegend}} class properties.
-#' Properties of chart's legend.}
-#' @slot \code{titles}: {Object of class \code{"list"}. List of Titles properties
-#' See \code{\linkS4class{Title}} class}.
-#' @slot \code{trendLines}: {Object of class \code{"list"}.
-#' List of \code{\linkS4class{trendLine}} objects added to a chart.
-#' You can add trend lines to a chart using this list or access already existing trend lines.}
-#' @slot \code{type}: {Object of class \code{"character"}.
+#' Properties of chart's legend.
+#' 
+#' @slot segmentsField
+#' Object of class \code{character}.
+#' 
+#' @slot subChartProperties
+#' Object of class \code{list}
+#' 
+#' @slot theme
+#' Object of class \code{character}.
+#' Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
+#' 
+#' @slot titles
+#' Object of class \code{"list"}. List of Titles properties
+#' See \code{\linkS4class{Title}} class.
+#' 
+#' @slot trendLines
+#' Object of class \code{"list"}.
+#' List of \code{\linkS4class{TrendLine}} objects added to a chart.
+#' You can add trend lines to a chart using this list or access already existing trend lines.
+#' 
+#' @slot type
+#' Object of class \code{"character"}.
 #' Possible types are: serial, pie, radar,
-#' (types xy, radar, funnel, gauge, map, stock. are in development).}
-#' @slot \code{valueAxes}: Object of class \code{"list"}. List of ValueAxes' properties.
+#' (types xy, radar, funnel, gauge, map, stock. are in development).
+#' 
+#' @slot valueAxes Object of class \code{"list"}. List of ValueAxes' properties.
 #' See \code{\linkS4class{ValueAxis}} class.
 #' Chart creates one value axis automatically,
 #' so if you need only one value axis, you don't need to create it.
-#' @slot \code{valueAxis}: Object of class \code{list}.
+#' 
+#' @slot valueAxis
+#' Object of class \code{list}.
 #' List of Value axis properties for Gantt chart. Set it's type to "date" if your data is date or time based.
+#' In case of Value axis for a Gantt chart. Set it's type to "date" if your data is date or time based.
+#' 
+#' @slot listeners
+#' Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string. See examples for details.
+#' 
+#' @slot otherProperties
+#' Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet.
+#' 
+#' @slot value
+#' Object of class \code{numeric}.
+#' 
 #' @examples
-#' new("AmChart")
-#' \dontrun{
+#' new("AmChart", type = "serial")
+#' 
+#' \dontshow{
 #' # see available methods
 #' showMethods(class="AmChart")
 #' }
+#' 
+#' @details API for plotting AmChart with R
 #' @author Dataknowledge
 #' @seealso \code{\url{http://docs.amcharts.com/3/javascriptcharts}}
 #' @family rAmChart classes
@@ -101,6 +167,9 @@ setClass(Class = "AmChart", contains = "AmObject",
     if (length(object@type) > 0 && ! object@type %in% c("funnel", "gantt", "gauge", "pie", "radar", "serial", "xy", "stock")) {
       stop("[AmChart]: error when changing the type, maybe it is not implemented yet")
     }
+    if (length(object@creditsPosition) && !(object@creditsPosition %in% c("top-left", "top-right", "bottom-left", "bottom-right"))) {
+      stop("[AmChart]: invalid property 'creditsPosition'")
+    }
   }
 )
 
@@ -116,8 +185,7 @@ setMethod(f = "initialize", signature = "AmChart",
                                 categoryField, chartCursor,
                                 chartScrollbar, creditsPosition, dataProvider, graphs, graph,
                                 guides, legend, segmentsField, theme,
-                                titles, trendLines, type, valueAxes,
-                                valueAxis,
+                                titles, trendLines, type, valueAxes, valueAxis,
                                 pathToImages = "http://www.amcharts.com/lib/3/images/",...)
           {
             if (!missing(allLabels)) {
@@ -192,6 +260,7 @@ setMethod(f = "initialize", signature = "AmChart",
 
 #' @title List attributes of an AmChart
 #' @description This method lists attributes of an AmChart to fit the API
+#' @param .Object: \code{\linkS4class{AmChart}}
 #' @details For certain attributes we do not verify if they are NULL, see constructor.
 #' @examples
 #' library(pipeR)

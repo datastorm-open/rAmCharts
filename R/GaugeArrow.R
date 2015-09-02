@@ -3,11 +3,25 @@ NULL
 
 #' @title GaugeArrow class
 #' @author DataKnowledge
-#' @section Slots:
-#' @slot \code{axis}: Object of class \code{list}
+
+#' @slot axis
+#' Object of class \code{list}
 #' containing properties of \code{\linkS4class{GaugeAxis}}.
 #' Axis of the arrow. You can use reference to the axis or id of the axis.
 #' If you don't set any axis, the first axis of a chart will be used.
+#' 
+#' @slot listeners
+#' Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string.
+#' See examples for details.
+#' 
+#' @slot otherProperties
+#' Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet.
+#' 
+#' @slot value
+#' Object of class \code{numeric}.
+#' 
 #' @export
 setClass(Class = "GaugeArrow", contains = "AmObject",
          representation = representation( axis = "list" )

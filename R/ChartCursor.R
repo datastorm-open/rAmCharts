@@ -3,14 +3,30 @@ NULL
 
 #' @title ChartCursor class
 #' @author DataKnowledge
-#' @section Slots:
-#' @slot \code{oneBalloonOnly}: {Object of class \code{logical}.
+
+#' @slot oneBalloonOnly
+#' Object of class \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
-#' user rolls-over the slice, graph, etc.}
-#' @slot \code{valueLineAxis}: {Object of class \code{list}.
+#' user rolls-over the slice, graph, etc.
+#' 
+#' @slot valueLineAxis
+#' Object of class \code{list}.
 #' Properties of Axis of value line. If you set valueLineBalloonEnabled to true,
 #' but you have more than one axis, you can use this property
-#' to indicate which axis should display balloon.}
+#' to indicate which axis should display balloon.
+#' 
+#' @slot listeners
+#' Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string.
+#' See examples for details.
+#' 
+#' @slot otherProperties
+#' Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet.
+#' 
+#' @slot value
+#' Object of class \code{numeric}.
+#' 
 #' @export
 setClass( Class = "ChartCursor", contains = "AmObject",
           representation = representation(
@@ -84,6 +100,8 @@ setMethod(
 setGeneric(name = "setValueLineAxis",
            def = function(.Object, valueLineAxis = NULL, ...){ standardGeneric("setValueLineAxis") } )
 #' @title SETTER
+#' @param .Object: \code{\linkS4class{ChartCursor}}.
+#' @param valueLineAxis: object of class \code{\linkS4class{ValueAxis}}.
 #' @examples
 #' library(pipeR)
 #' chartCursor() %>>% setValueLineAxis( title = "Hello !", axisTitleOffset = 12 )

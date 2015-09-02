@@ -470,7 +470,7 @@ setGeneric( name = "addGraph",
             def = function(.Object, amGraph = NULL, ...) { standardGeneric("addGraph") } )
 #' @title Setter
 #' @param \code{.Object}: Object of class \code{\linkS4class{AmChart}}.
-#' @param \code{amGraph}: Object of class \code{\linkS4class{amGraph}}.
+#' @param \code{amGraph}: Object of class \code{\linkS4class{AmGraph}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' library(pipeR)
@@ -786,7 +786,7 @@ setGeneric( name = "setTitles",
 #' @title Set a list of Title's
 #' @param \code{.Object}: Object of class \code{\linkS4class{AmChart}}.
 #' @param \code{titles}: Object of class \code{list}.
-#' Each element must be an object of class \code{\linkS4class{Titles}}.
+#' Each element must be an object of class \code{\linkS4class{Title}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' library(pipeR)
@@ -940,7 +940,7 @@ setGeneric(name = "setValueAxes",
 #' @description Add a list of ValueAxes objects to an Amchart.
 #' @param \code{.Object}: Object of class \code{\linkS4class{AmChart}}.
 #' @param \code{valueAxes}: Object of class \code{list}.
-#' Each element must be of class \code{\linkS4class{ValueAxes}}.
+#' Each element must be of class \code{\linkS4class{ValueAxis}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' library(pipeR)
@@ -973,7 +973,7 @@ setGeneric( name = "addValueAxes",
             def = function(.Object, valueAxis = NULL, ... ) { standardGeneric("addValueAxes") } )
 #' @title Add a ValueAxes
 #' @param \code{.Object}: Object of class \code{\linkS4class{AmChart}}.
-#' @param \code{valueAxis}: Object of class \code{\linkS4class{ValuesAxis}}.
+#' @param \code{valueAxis}: Object of class \code{\linkS4class{ValueAxis}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' library(pipeR)
@@ -1003,7 +1003,7 @@ setMethod( f = "addValueAxes", signature = c("AmChart"),
 #' @title Setter for valueAxis
 #' @param \code{.Object}: Object of class \code{\linkS4class{AmChart}}
 #' with \code{type = "gantt"}.
-#' @param \code{valueAxis}: Object of class \code{\linkS4class{ValueAxes}}.
+#' @param \code{valueAxis}: Object of class \code{\linkS4class{ValueAxis}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' library(pipeR)

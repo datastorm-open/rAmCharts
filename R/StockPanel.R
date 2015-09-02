@@ -3,19 +3,140 @@ NULL
 
 #' @title StockPanel class
 #' 
-#' @section Slots:
-#' 
-#' @slot \code{drawOnAxis}: Object of class \code{list}. Containing properties of ValueAxis.
+#' @slot drawOnAxis
+#' Object of class \code{list}. Containing properties of ValueAxis.
 #' Specifies on which value axis user can draw trend lines.
 #' Set drawingIconsEnabled to true if you want drawing icons to be visible.
 #' First value axis will be used if not set here.
 #' You can use a reference to the value axis object or id of value axis.
 #' 
-#' @slot \code{stockGraphs}: Object of class \code{list}.
+#' @slot stockGraphs
+#' Object of class \code{list}.
 #' Each element must be have been created with stockGraph(*)
 #' 
-#' @slot \code{stockLegend}: Object of class \code{list}.
+#' @slot stockLegend
+#' Object of class \code{list}.
 #' Each element must be have been created with stockLegend(*)
+#' 
+#' @slot allLabels
+#' Object of class \code{"list"}. List of Labels properties.
+#' See \code{\linkS4class{Label}}.
+#' 
+#' @slot arrows
+#' Object of class \code{"list"}
+#' containing object of class \code{\linkS4class{GaugeArrow}}.
+#' 
+#' @slot axes
+#' Object of class \code{"list"}
+#' containing object of class \code{\linkS4class{GaugeAxis}}.
+#' 
+#' @slot balloon
+#' Object of class \code{"list"}.
+#' List of an \code{\linkS4class{AmBalloon}} class properties.
+#' Creates the balloons (tooltips) of the chart,
+#' It follows the mouse cursor when you roll-over the data items.
+#' The framework generates the instances automatically you only need to adjust
+#' the appearance to your needs.
+#' 
+#' @slot categoryAxis
+#' Object of class \code{"list"}.
+#' List of a \code{\linkS4class{CategoryAxis}} properties.
+#' Read-only. Chart creates category axis itself.
+#' If you want to change some properties,
+#' you should get this axis from the chart and set properties to this object.
+#' 
+#' @slot categoryField
+#' Object of class \code{"character"}.
+#' Category field name tells the chart the name of the field in your dataProvider object
+#' which will be used for category axis values.
+#' 
+#' @slot ChartCursor
+#' Object of class \code{"list"}.
+#' List of a \code{\linkS4class{ChartCursor}} class properties.
+#' Properties of the chart's cursor.
+#' 
+#' @slot ChartScrollbar
+#' Object of class \code{"list"}.
+#' List of a \code{\linkS4class{ChartScrollbar}} class properties.
+#' Properties of chart's scrollbar.
+#' 
+#' @slot creditsPosition
+#' Object of class \code{"character"},
+#' specifying position of link to amCharts site.
+#' Allowed values are: top-left, top-right, bottom-left and bottom-right.
+#' 
+#' @slot dataProvider
+#' Object of class \code{"list"}, containing the data.
+#' Use providing method toList* to convert a \code{data.frame}.
+#' 
+#' @slot graphs
+#' Object of class \code{list}.  List of AmGraphs properties
+#' See \code{\linkS4class{AmGraph}} class.
+#' Creates the visualization of the data in following types: line, column, step line,
+#' smoothed line, olhc and candlestick.
+#' 
+#' @slot graph
+#' Object of class \code{\linkS4class{AmGraph}}.
+#' Graph of a Gantt chart. Gant chart actually creates multiple graphs (separate for each segment).
+#' Properties of this graph are passed to each of the created graphs
+#' - this allows you to control the look of segments.
+#' 
+#' @slot guides
+#' Object of class \code{list}.
+#' Each elemnt must be of class \code{\linkS4class{Guide}}.
+#' Instead of adding guides to the axes, you can push all of them to this array.
+#' In case guide has category or date defined, it will automatically will be assigned to the category axis.
+#' Otherwise to first value axis, unless you specify a different valueAxes for the guide.
+#' 
+#' @slot legend
+#' Object of class \code{"list"}.
+#' List of an \code{\linkS4class{AmLegend}} class properties.
+#' Properties of chart's legend.
+#' 
+#' @slot segmentsField
+#' Object of class \code{character}.
+#' 
+#' @slot subChartProperties
+#' Object of class \code{list}
+#' 
+#' @slot theme
+#' Object of class \code{character}.
+#' Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
+#' 
+#' @slot titles
+#' Object of class \code{"list"}. List of Titles properties
+#' See \code{\linkS4class{Title}} class.
+#' 
+#' @slot trendLines
+#' Object of class \code{"list"}.
+#' List of \code{\linkS4class{TrendLine}} objects added to a chart.
+#' You can add trend lines to a chart using this list or access already existing trend lines.
+#' 
+#' @slot type
+#' Object of class \code{"character"}.
+#' Possible types are: serial, pie, radar,
+#' (types xy, radar, funnel, gauge, map, stock. are in development).
+#' 
+#' @slot valueAxes Object of class \code{"list"}. List of ValueAxes' properties.
+#' See \code{\linkS4class{ValueAxis}} class.
+#' Chart creates one value axis automatically,
+#' so if you need only one value axis, you don't need to create it.
+#' 
+#' @slot valueAxis
+#' Object of class \code{list}.
+#' List of Value axis properties for Gantt chart. Set it's type to "date" if your data is date or time based.
+#' In case of Value axis for a Gantt chart. Set it's type to "date" if your data is date or time based.
+#' 
+#' @slot listeners
+#' Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string. See examples for details.
+#' 
+#' @slot otherProperties
+#' Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet.
+#' 
+#' @slot value
+#' Object of class \code{numeric}.
 #' 
 #' @author DataKnowledge
 #' @export
@@ -129,9 +250,9 @@ setGeneric(name = "addStockGraph",
            def = function(.Object, stockGraph = NULL, ...){ standardGeneric("addStockGraph") } )
 #' @title Setter
 #' @param \code{.Object}: Object of class \code{\linkS4class{AmStockChart}}.
-#' @param \code{stockGraph}: (optionnal) Object of class \code{\linkS4class{amGraph}}.
+#' @param \code{stockGraph}: (optionnal) Object of class \code{\linkS4class{AmGraph}}.
 #' Use stockGraph(*) constructor
-#' @param \code{...}: Properties of the \code{\linkS4class{amGraph}} to add.
+#' @param \code{...}: Properties of the \code{\linkS4class{AmGraph}} to add.
 #' @examples
 #' library(pipeR)
 #' stockPanel() %>>% addStockGraph(comparable = FALSE)

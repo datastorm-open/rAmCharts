@@ -3,11 +3,27 @@ NULL
 
 #' @title Label class
 #' @author DataKnowledge
-#' @section Slots:
-#' @slot \code{text}: {Object of class \code{character}.
-#' Text of a title.}
-#' @slot \code{x}: {Object of class \code{numeric}.
-#' Text x of a title.}
+#' 
+#' @slot text
+#' Object of class \code{character}.
+#' Text of a title.
+#' 
+#' @slot x
+#' Object of class \code{numeric}.
+#' Text x of a title.
+#' 
+#' @slot listeners
+#' Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string.
+#' See examples for details.
+#' 
+#' @slot otherProperties
+#' Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet.
+#' 
+#' @slot value
+#' Object of class \code{numeric}.
+#' 
 #' @export
 setClass( Class = "Label", contains = "AmObject",
           representation =

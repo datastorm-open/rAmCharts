@@ -3,40 +3,56 @@ NULL
 
 #' @title AmBalloon class
 #' @author DataKnowledge
-#' @section Slots:
-#' @slot \code{adjustBorderColor}: Object of class \code{logical}.
+#' 
+#' @slot adjustBorderColor : Object of class \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
-#' @slot \code{color}: Object of class \code{character}.
+#' 
+#' @slot color : Object of class \code{character}.
 #' Color of text in the balloon.
-#' @slot \code{cornerRadius}: Object of class \code{numeric}.
+#' 
+#' @slot cornerRadius : Object of class \code{numeric}.
 #' Balloon corner radius.
-#' @slot \code{cornerRadius}: Object of class \code{character}.
+#' 
+#' @slot fillColor : Object of class \code{character}.
 #' Balloon background color. Usually balloon background color is set by the chart.
 #' Only if "adjustBorderColor" is "true" this color will be used.
+#' 
+#' @slot listeners : Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string.
+#' See examples for details.
+#' Inherited from \code{\linkS4class{AmObject}}.
+#' 
+#' @slot otherProperties : Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet.
+#' Inherited from \code{\linkS4class{AmObject}}.
+#' 
+#' @slot value : object of class \code{numeric}.
+#' Inherited from \code{\linkS4class{AmObject}}.
+#' 
 #' @export
 #' @family rAmChart classes
-setClass( Class = "AmBalloon", contains = "AmObject",
-  representation = representation(
-    adjustBorderColor = "logical",
-    color = "character",
-    cornerRadius = "numeric",
-    fillColor = "character"
-  )
+setClass(Class = "AmBalloon", contains = "AmObject",
+         representation = representation(
+           adjustBorderColor = "logical",
+           color = "character",
+           cornerRadius = "numeric",
+           fillColor = "character"
+         )
 )
 
 #' @title Initialize an AmBalloon
-#' @param \code{adjustBorderColor}: Object of class \code{logical}.
+#' @param adjustBorderColor: Object of class \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
-#' @param \code{color}: Object of class \code{character}.
+#' @param color: Object of class \code{character}.
 #' Color of text in the balloon.
-#' @param \code{cornerRadius}: Object of class \code{numeric}.
+#' @param cornerRadius: Object of class \code{numeric}.
 #' Balloon corner radius.
-#' @param \code{cornerRadius}: Object of class \code{character}.
+#' @param fillColor: Object of class \code{character}.
 #' Balloon background color. Usually balloon background color is set by the chart.
 #' Only if "adjustBorderColor" is "true" this color will be used.
-#' @param \code{...}: Properties of AmBalloon.
+#' @param ...: Other properties of AmBalloon.
 #' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}}.
 #' @return An object of class \code{\linkS4class{AmBalloon}}.
 #' @examples
@@ -45,20 +61,20 @@ setClass( Class = "AmBalloon", contains = "AmObject",
 #' @seealso \code{\linkS4class{AmBalloon}} S4 class
 #' @export
 setMethod(f = "initialize", signature = "AmBalloon",
-          definition = function(.Object, adjustBorderColor, color, cornerRadius, fillColor,...)
+          definition = function(.Object, adjustBorderColor, color, cornerRadius, fillColor, ...)
           {  
-            if(!missing(adjustBorderColor)){
-              .Object@adjustBorderColor <- adjustBorderColor
-            }
-            if(!missing(color)){
-              .Object@color<- color
-            }
-            if(!missing(cornerRadius)){
-              .Object@cornerRadius <- cornerRadius
-            }
-            if(!missing(fillColor)){
-              .Object@fillColor <- fillColor
-            }
+            if (!missing(adjustBorderColor)) {
+              .Object <- setAdjustBorderColor(.Object = .Object, adjustBorderColor = adjustBorderColor)
+            } else {}
+            if (!missing(color)) {
+              .Object <- setColor(.Object = .Object, color = color)
+            } else {}
+            if (!missing(cornerRadius)) {
+              .Object <- setCornerRadius(.Object = .Object, cornerRadius = cornerRadius)
+            } else {}
+            if (!missing(fillColor)) {
+              .Object <- setFillColor(.Object = .Object, fillColor = fillColor)
+            } else {}
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
@@ -67,18 +83,20 @@ setMethod(f = "initialize", signature = "AmBalloon",
 
 # CONSTRUCTOR ####
 #' @title Constructor for an AmBalloon
-#' @param \code{adjustBorderColor}: Object of class \code{logical}.
+#' 
+#' @param adjustBorderColor: Object of class \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
-#' @param \code{color}: Object of class \code{character}.
+#' @param color: Object of class \code{character}.
 #' Color of text in the balloon.
-#' @param \code{cornerRadius}: Object of class \code{numeric}.
+#' @param cornerRadius: Object of class \code{numeric}.
 #' Balloon corner radius.
-#' @param \code{cornerRadius}: Object of class \code{character}.
+#' @param fillColor: Object of class \code{character}.
 #' Balloon background color. Usually balloon background color is set by the chart.
 #' Only if "adjustBorderColor" is "true" this color will be used.
-#' @param \code{...}: Properties of AmBalloon.
+#' @param ...: Properties of AmBalloon.
 #' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}}.
+#' 
 #' @return The updated \code{\linkS4class{AmBalloon}} object.
 #' @examples
 #' object <- amBalloon(adjustBorderColor = TRUE)
@@ -87,21 +105,21 @@ setMethod(f = "initialize", signature = "AmBalloon",
 #' @export
 amBalloon <- function(adjustBorderColor, color, cornerRadius, fillColor, ...){
   .Object <- new("AmBalloon")
-  if(!missing(adjustBorderColor)){
+  if (!missing(adjustBorderColor)){
     .Object@adjustBorderColor <- adjustBorderColor
-  }
-  if(!missing(color)){
+  } else {}
+  if (!missing(color)){
     .Object@color<- color
-  }
-  if(!missing(cornerRadius)){
+  } else {}
+  if (!missing(cornerRadius)){
     .Object@cornerRadius <- cornerRadius
-  }
-  if(!missing(fillColor)){
+  } else {}
+  if (!missing(fillColor)){
     .Object@fillColor <- fillColor
-  }
+  } else {}
   .Object <- setProperties(.Object, ...)
   validObject(.Object)
-  return( .Object )
+  return(.Object )
 }
 
 # > @adjustBorderColor : setters ####
@@ -109,10 +127,8 @@ amBalloon <- function(adjustBorderColor, color, cornerRadius, fillColor, ...){
 #' @exportMethod setAdjustBorderColor
 setGeneric(name = "setAdjustBorderColor", def = function(.Object, adjustBorderColor){ standardGeneric("setAdjustBorderColor") } )
 #' @title Setter for adjustBorderColor
-#' @param \code{.Object}:
-#' Object of class \code{\linkS4class{AmBalloon}}.
-#' @param \code{adjustBorderColor}:
-#' Object of class \code{logical}.
+#' @inheritParams amBalloon
+#' @param .Object: Object of class \code{\linkS4class{AmBalloon}}.
 #' @return The updated object of class \code{\linkS4class{AmBalloon}}.
 #' @examples
 #' library(pipeR)
@@ -139,10 +155,8 @@ setMethod(
 #' @exportMethod setColor
 setGeneric(name = "setColor", def = function(.Object, color){ standardGeneric("setColor") } )
 #' @title Setter for color
-#' @param \code{.Object}:
-#' Object of class \code{\linkS4class{AmBalloon}}.
-#' @param \code{color}:
-#' Object of class \code{character}.
+#' @param .Object: Object of class \code{\linkS4class{AmBalloon}}.
+#' @inheritParams amBalloon
 #' @examples
 #' library(pipeR)
 #' amBalloon() %>>% setColor("#000000")
@@ -169,10 +183,9 @@ setMethod(
 #' @exportMethod setCornerRadius
 setGeneric(name = "setCornerRadius", def = function(.Object, cornerRadius){ standardGeneric("setCornerRadius") } )
 #' @title Setter for corner radius
-#' @param \code{.Object}:
+#' @param .Object:
 #' Object of class \code{\linkS4class{AmBalloon}}.
-#' @param \code{cornerRadius}:
-#' Object of class \code{numeric}.
+#' @inheritParams amBalloon
 #' @return The updated object of class \code{\linkS4class{AmBalloon}}.
 #' @examples
 #' library(pipeR)
@@ -199,10 +212,9 @@ setMethod(
 #' @exportMethod setFillColor
 setGeneric(name = "setFillColor", def = function(.Object, fillColor){ standardGeneric("setFillColor") } )
 #' @title Setter for fillColor
-#' @param \code{.Object}:
+#' @param .Object:
 #' Object of class \code{\linkS4class{AmBalloon}}.
-#' @param \code{fillColor}:
-#' Object of class \code{character}.
+#' @inheritParams amBalloon
 #' @return The updated object of class \code{\linkS4class{AmBalloon}}.
 #' @examples
 #' library(pipeR)
@@ -227,6 +239,7 @@ setMethod(
 # listProperties ####
 #' @title List attributes of an AmGraph object
 #' @description This function is used to list attributes before addind to graphs (attribute of AmChart)
+#' @param .Object: \code{\linkS4class{AmBalloon}}.
 #' @examples
 #' library(pipeR)
 #' amBalloon(adjustBorderColor = TRUE) %>>% listProperties
@@ -235,18 +248,18 @@ setMethod(f = "listProperties", signature = "AmBalloon",
           definition = function(.Object)
           {
             ls <- callNextMethod()
-            if( length(.Object@adjustBorderColor) > 0 ){
+            if (length(.Object@adjustBorderColor)) {
               ls <- rlist::list.append(ls, adjustBorderColor = .Object@adjustBorderColor)
-            }else{}
-            if( length(.Object@color) > 0 ){
+            } else {}
+            if (length(.Object@color)) {
               ls <- rlist::list.append(ls, color = .Object@color)
-            }else{}
-            if( length(.Object@cornerRadius) > 0 ){
+            } else {}
+            if (length(.Object@cornerRadius)) {
               ls <- rlist::list.append(ls, cornerRadius = .Object@cornerRadius)
-            }else{}
-            if( length(.Object@fillColor) > 0 ){
+            } else {}
+            if (length(.Object@fillColor)) {
               ls <- rlist::list.append(ls, fillColor = .Object@fillColor)
-            }else{}
+            } else {}
             return (ls)
           }
 )

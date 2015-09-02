@@ -3,13 +3,27 @@ NULL
 
 #' @title ChartScrollbar class
 #' @author DataKnowledge
-#' @section Slots:
-#' @slot \code{updateOnReleaseOnly}: Object of class \code{logical}.
+#' 
+#' @slot updateOnReleaseOnly
+#' Object of class \code{logical}.
 #' Specifies if the chart should be updated while dragging/resizing the scrollbar
 #' or only at the moment when user releases mouse button.
 #' 
-#' @slot \code{graph}: Object of class \code{AmGraph}.
+#' @slot graph
+#' Object of class \code{AmGraph}.
 #' Specifies which graph will be displayed in the scrollbar.
+#' 
+#' @slot listeners
+#' Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string.
+#' See examples for details.
+#' 
+#' @slot otherProperties
+#' Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet.
+#' 
+#' @slot value
+#' Object of class \code{numeric}.
 #' 
 #' @export
 setClass( Class = "ChartScrollbar", contains = "AmObject",

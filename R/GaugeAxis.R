@@ -3,10 +3,24 @@ NULL
 
 #' @title GaugeAxis class
 #' @author DataKnowledge
-#' @section Slots:
-#' @slot \code{bands}: Object of class \code{list}
+
+#' @slot bands
+#' Object of class \code{list}
 #' containing properties of one or several \code{\linkS4class{GaugeBand}} objects.
 #' Bands are used to draw color fills between specified values.
+#' 
+#' @slot listeners
+#' Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string.
+#' See examples for details.
+#' 
+#' @slot otherProperties
+#' Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet.
+#' 
+#' @slot value
+#' Object of class \code{numeric}.
+#' 
 #' @export
 setClass(Class = "GaugeAxis", contains = "AmObject",
          representation = representation( bands = "list" )

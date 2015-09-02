@@ -1,11 +1,18 @@
 #' @title AmObject class
 #' @author DataKnowledge
 #' @description This is a virtual class for representing any Am** class
-#' @section Slots:
-#' @slot \code{listeners}: Object of class \code{"list"} containining the listeners to add to the object.
+#' 
+#' @slot listeners
+#' Object of class \code{"list"} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string. See examples for details.
-#' @slot \code{otherProperties}: Object of class \code{"list"},
-#' containing other avalaible properties non coded in the package yet
+#' 
+#' @slot otherProperties
+#' Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet.
+#' 
+#' @slot value
+#' Object of class \code{numeric}.
+#' 
 #' @export
 #' @family rAmChart classes
 setClass(
@@ -26,7 +33,7 @@ setMethod( f = "show", signature = "AmObject",
 )
 
 #' @title Visualize with print
-#' @param object: an \code{\linkS4class{amSerialChart}} object   
+#' @param x: an \code{\linkS4class{AmChart}} 
 #' @examples
 #' print(new("AmChart", categoryField = "variables"))
 #' @export

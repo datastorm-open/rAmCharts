@@ -4,16 +4,28 @@ NULL
 #' @title AmGraph class
 #' @author DataKnowledge
 #' @description This class represents data for a serial chart
-#' @section Slots:
-#' @slot \code{balloonText}: {Object of class \code{character}.
+#' 
+#' @slot balloonText : Object of class \code{character}.
 #' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
-#' or any other field name from your data provider. HTML tags can also be used.}
-#' @slot \code{title}: {Object of class \code{character}. Graph title.}
-#' @slot \code{type}: {Object of class \code{character}.
+#' or any other field name from your data provider. HTML tags can also be used.
+#' 
+#' @slot title : Object of class \code{character}. Graph title.
+#' 
+#' @slot type : Object of class \code{character}.
 #' Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
-#' XY and Radar charts can only display "line" otherArguments graphs.}
-#' @slot \code{valueField}: {Object of class \code{character}.
+#' XY and Radar charts can only display "line" otherArguments graphs.
+#' 
+#' @slot valueField : {Object of class \code{character}.
 #' Name of the value field in your dataProvider.}
+#' 
+#' @slot listeners : Object of class \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API. Each element must a character string. See examples for details.
+#' 
+#' @slot otherProperties : Object of class \code{"list"},
+#' containing other avalaible properties non coded in the package yet
+#' 
+#' @slot value : object of class \code{numeric}.
+#' 
 #' @examples
 #' \dontrun{
 #' new("AmGraph")
