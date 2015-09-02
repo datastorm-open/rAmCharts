@@ -7,6 +7,9 @@
 \usage{
 \S4method{listProperties}{AmBalloon}(.Object)
 }
+\arguments{
+\item{.Object:}{\code{\linkS4class{AmBalloon}}.}
+}
 \description{
 This function is used to list attributes before addind to graphs (attribute of AmChart)
 }

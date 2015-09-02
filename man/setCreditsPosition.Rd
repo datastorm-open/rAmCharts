@@ -8,6 +8,10 @@
 \S4method{setCreditsPosition}{AmChart,character}(amChart, creditsPosition)
 }
 \arguments{
+\item{creditsPosition}{Object of class \code{"character"},
+specifying position of link to amCharts site.
+Allowed values are: top-left, top-right, bottom-left and bottom-right.}
+
 \item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
 }
 \value{

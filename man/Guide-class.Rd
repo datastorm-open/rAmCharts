@@ -10,18 +10,24 @@ Guide class
 \section{Slots}{
 
 \describe{
-\item{\code{\code{fillAlpha}:}}{{ Object of clas \code{numeric}.
+\item{\code{fillAlpha}}{Object of clas \code{numeric}.
 Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
-Possible values are: "start" and "middle" This setting doesn't work if parseDates is set to true.}}
+Possible values are: "start" and "middle" This setting doesn't work if parseDates is set to true.}
 
-\item{\code{\code{valueAxis}:}}{{ Object of class \code{list},
+\item{\code{valueAxis}}{Object of class \code{list},
 containing properties of a \linkS4class{ValueAxis} class.
-As you can add guides directly to the chart, you might need to specify which which value axis should be used.
-}}
-}}
-\section{Slots}{
+As you can add guides directly to the chart, you might need to specify
+which value axis should be used.}
 
-}
+\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
+The list must be named as in the official API. Each element must a character string.
+See examples for details.}
+
+\item{\code{otherProperties}}{Object of class \code{"list"},
+containing other avalaible properties non coded in the package yet.}
+
+\item{\code{value}}{Object of class \code{numeric}.}
+}}
 \author{
 DataKnowledge
 }

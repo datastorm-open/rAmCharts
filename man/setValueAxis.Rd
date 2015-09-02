@@ -11,7 +11,7 @@
 \item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}
 with \code{type = "gantt"}.}
 
-\item{\code{valueAxis}:}{Object of class \code{\linkS4class{ValueAxes}}.}
+\item{\code{valueAxis}:}{Object of class \code{\linkS4class{ValueAxis}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmChart}}.

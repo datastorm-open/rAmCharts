@@ -10,18 +10,24 @@ ChartCursor class
 \section{Slots}{
 
 \describe{
-\item{\code{\code{oneBalloonOnly}:}}{{Object of class \code{logical}.
+\item{\code{oneBalloonOnly}}{Object of class \code{logical}.
 If this is set to TRUE, border color instead of background color will be changed when
-user rolls-over the slice, graph, etc.}}
+user rolls-over the slice, graph, etc.}
 
-\item{\code{\code{valueLineAxis}:}}{{Object of class \code{list}.
+\item{\code{valueLineAxis}}{Object of class \code{list}.
 Properties of Axis of value line. If you set valueLineBalloonEnabled to true,
 but you have more than one axis, you can use this property
-to indicate which axis should display balloon.}}
-}}
-\section{Slots}{
+to indicate which axis should display balloon.}
 
-}
+\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
+The list must be named as in the official API. Each element must a character string.
+See examples for details.}
+
+\item{\code{otherProperties}}{Object of class \code{"list"},
+containing other avalaible properties non coded in the package yet.}
+
+\item{\code{value}}{Object of class \code{numeric}.}
+}}
 \author{
 DataKnowledge
 }

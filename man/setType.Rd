@@ -10,6 +10,10 @@
 \S4method{setType}{AmGraph,character}(.Object, type)
 }
 \arguments{
+\item{type}{Object of class \code{"character"}.
+Possible types are: serial, pie, radar,
+(types xy, radar, funnel, gauge, map, stock. are in development).}
+
 \item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
 
 \item{\code{type}:}{Object of class \code{\linkS4class{character}}.}

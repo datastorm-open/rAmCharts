@@ -10,10 +10,10 @@
 \arguments{
 \item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{stockGraph}:}{(optionnal) Object of class \code{\linkS4class{amGraph}}.
+\item{\code{stockGraph}:}{(optionnal) Object of class \code{\linkS4class{AmGraph}}.
 Use stockGraph(*) constructor}
 
-\item{\code{...}:}{Properties of the \code{\linkS4class{amGraph}} to add.}
+\item{\code{...}:}{Properties of the \code{\linkS4class{AmGraph}} to add.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmStockChart}}.

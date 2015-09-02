@@ -10,11 +10,20 @@ ValueAxis class
 \section{Slots}{
 
 \describe{
-\item{\code{\code{title}:}}{{ Object of class \code{character}. Title of the axis..}}
-}}
-\section{Slots}{
+\item{\code{title}}{Object of class \code{character}. Title of the axis.}
 
-}
+\item{\code{guides}}{Object of class \code{list}.}
+
+\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
+The list must be named as in the official API. Each element must a character string.
+See examples for details.}
+
+\item{\code{otherProperties}}{Object of class \code{"list"},
+containing other avalaible properties non coded in the package yet.}
+
+\item{\code{value}}{Object of class \code{numeric}.
+Guides belonging to this axis. Use addGuide method}
+}}
 \author{
 DataKnowledge
 }

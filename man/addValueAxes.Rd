@@ -10,7 +10,7 @@
 \arguments{
 \item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
 
-\item{\code{valueAxis}:}{Object of class \code{\linkS4class{ValuesAxis}}.}
+\item{\code{valueAxis}:}{Object of class \code{\linkS4class{ValueAxis}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmChart}}.

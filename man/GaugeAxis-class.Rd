@@ -10,13 +10,19 @@ GaugeAxis class
 \section{Slots}{
 
 \describe{
-\item{\code{\code{bands}:}}{Object of class \code{list}
+\item{\code{bands}}{Object of class \code{list}
 containing properties of one or several \code{\linkS4class{GaugeBand}} objects.
 Bands are used to draw color fills between specified values.}
-}}
-\section{Slots}{
 
-}
+\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
+The list must be named as in the official API. Each element must a character string.
+See examples for details.}
+
+\item{\code{otherProperties}}{Object of class \code{"list"},
+containing other avalaible properties non coded in the package yet.}
+
+\item{\code{value}}{Object of class \code{numeric}.}
+}}
 \author{
 DataKnowledge
 }

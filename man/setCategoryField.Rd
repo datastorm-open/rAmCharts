@@ -8,6 +8,10 @@
 \S4method{setCategoryField}{AmChart,character}(amChart, categoryField)
 }
 \arguments{
+\item{categoryField}{Object of class \code{"character"}.
+Category field name tells the chart the name of the field in your dataProvider object
+which will be used for category axis values.}
+
 \item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
 }
 \value{

@@ -10,14 +10,20 @@ StockEvent class
 \section{Slots}{
 
 \describe{
-\item{\code{\code{stockGraph}:}}{Object of class \code{list}.
+\item{\code{stockGraph}}{Object of class \code{list}.
 Containing properties of stockGraph.
 This is the graph on which event will be displayed.
 You can use a reference to the stock graph object or id of the graph.}
-}}
-\section{Slots}{
 
-}
+\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
+The list must be named as in the official API. Each element must a character string.
+See examples for details.}
+
+\item{\code{otherProperties}}{Object of class \code{"list"},
+containing other avalaible properties non coded in the package yet.}
+
+\item{\code{value}}{Object of class \code{numeric}.}
+}}
 \author{
 DataKnowledge
 }

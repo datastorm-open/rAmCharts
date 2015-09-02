@@ -10,30 +10,36 @@ TrendLine class
 \section{Slots}{
 
 \describe{
-\item{\code{\code{finalValue}:}}{Object of class \code{numeric}.
+\item{\code{finalValue}}{Object of class \code{numeric}.
 Value at which trend line should end.}
 
-\item{\code{\code{finalXValue}:}}{Object of class \code{numeric}.
+\item{\code{finalXValue}}{Object of class \code{numeric}.
 Used by XY chart only. X value at which trend line should end.}
 
-\item{\code{\code{initialValue}:}}{{Object of class \code{numeric}.
-Value from which trend line should start.}}
+\item{\code{initialValue}}{Object of class \code{numeric}.
+Value from which trend line should start.}
 
-\item{\code{\code{initialValue}:}}{{Object of class \code{numeric}.
-Used by XY chart only. X value from which trend line should start.}}
+\item{\code{initialValue}}{Object of class \code{numeric}.
+Used by XY chart only. X value from which trend line should start.}
 
-\item{\code{\code{valueAxis}:}}{{Object of class \code{\linkS4class{ValueAxis}}.
+\item{\code{valueAxis}}{Object of class \code{\linkS4class{ValueAxis}}.
 Value axis of the trend line. Will use first value axis of the chart if not set any.
-You can use a reference to the value axis object or id of value axis.}}
+You can use a reference to the value axis object or id of value axis.}
 
-\item{\code{\code{valueAxisX}:}}{{Object of class \code{\linkS4class{ValueAxis}}.
+\item{\code{valueAxisX}}{Object of class \code{\linkS4class{ValueAxis}}.
 Used by XY chart only. X axis of trend line.
 Will use first X axis of the chart if not set any.
-You can use a reference to the value axis object or id of value axis.}}
-}}
-\section{Slots}{
+You can use a reference to the value axis object or id of value axis.}
 
-}
+\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
+The list must be named as in the official API. Each element must a character string.
+See examples for details.}
+
+\item{\code{otherProperties}}{Object of class \code{"list"},
+containing other avalaible properties non coded in the package yet.}
+
+\item{\code{value}}{Object of class \code{numeric}.}
+}}
 \author{
 DataKnowledge
 }

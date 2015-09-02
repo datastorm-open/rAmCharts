@@ -8,9 +8,7 @@
 \S4method{setFillColor}{AmBalloon,character}(.Object, fillColor)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmBalloon}}.}
-
-\item{\code{fillColor}:}{Object of class \code{character}.}
+\item{.Object:}{Object of class \code{\linkS4class{AmBalloon}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmBalloon}}.

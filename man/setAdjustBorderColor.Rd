@@ -8,9 +8,7 @@
 \S4method{setAdjustBorderColor}{AmBalloon,logical}(.Object, adjustBorderColor)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmBalloon}}.}
-
-\item{\code{adjustBorderColor}:}{Object of class \code{logical}.}
+\item{.Object:}{Object of class \code{\linkS4class{AmBalloon}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmBalloon}}.

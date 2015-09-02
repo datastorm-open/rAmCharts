@@ -9,7 +9,7 @@
 \alias{amRadarChart}
 \alias{amSerialChart}
 \alias{amXYChart}
-\title{Constructor for a general AmChart object}
+\title{Constructor for AmChart object}
 \usage{
 amChart(allLabels, arrows, axes, balloon, categoryAxis, categoryField,
   chartCursor, chartScrollbar, creditsPosition, dataProvider, graph, graphs,
@@ -35,75 +35,78 @@ amGanttChart(categoryField, dataProvider, graph, segmentsField, valueAxis, ...)
 amXYChart(creditsPosition, dataProvider, graphs, ...)
 }
 \arguments{
-\item{\code{allLabels}:}{Object of class \code{"list"}. List of Labels properties.
+\item{allLabels}{Object of class \code{"list"}. List of Labels properties.
 See \code{\linkS4class{Label}}.}
 
-\item{\code{balloon}:}{Object of class \code{"list"}.
+\item{balloon}{Object of class \code{"list"}.
 List of an \code{\linkS4class{AmBalloon}} class properties.
 Creates the balloons ( tooltips ) of the chart,
 It follows the mouse cursor when you roll-over the data items.
 The framework generates the instances automatically you only need to adjust the appearance to your needs.}
 
-\item{\code{categoryAxis}:}{Object of class \code{"list"}.
+\item{categoryAxis}{Object of class \code{"list"}.
 List of a \code{\linkS4class{CategoryAxis}} properties.
 Read-only. Chart creates category axis itself.
 If you want to change some properties,
 you should get this axis from the chart and set properties to this object.}
 
-\item{\code{categoryField}:}{Object of class \code{"character"}.
+\item{categoryField}{Object of class \code{"character"}.
 Category field name tells the chart the name of the field in your dataProvider object
 which will be used for category axis values.}
 
-\item{\code{ChartCursor}:}{Object of class \code{"list"}.
-List of a \code{\linkS4class{ChartCursor}} class properties.
-Properties of the chart's cursor}
-
-\item{\code{ChartScrollbar}:}{Object of class \code{"list"}.
-List of a \code{\linkS4class{ChartScrollbar}} class properties.
-Properties of chart's scrollbar.}
-
-\item{\code{creditsPosition}:}{Object of class \code{"character"},
+\item{creditsPosition}{Object of class \code{"character"},
 specifying position of link to amCharts site.
 Allowed values are: top-left, top-right, bottom-left and bottom-right.}
 
-\item{\code{dataProvider}:}{Object of class \code{"list"}, containing the data.}
+\item{dataProvider}{Object of class \code{"list"}, containing the data.}
 
-\item{\code{graphs}:}{Object of class \code{list}.  List of AmGraphs properties
+\item{graphs}{Object of class \code{list}.  List of AmGraphs properties
 See \code{\linkS4class{AmGraph} class.
 Creates the visualization of the data in following types: line, column, step line,
 smoothed line, olhc and candlestick.}}
 
-\item{\code{guides}:}{Object of class \code{list}.  List of Guides properties.
+\item{guides}{Object of class \code{list}.  List of Guides properties.
 See \code{\linkS4class{Guides} class.
 Instead of adding guides to the axes, you can push all of them to this array.
 In case guide has category or date defined, it will automatically will be assigned to the category axis.
 Otherwise to first value axis, unless you specify a different valueAxes for the guide.}}
 
-\item{\code{legend}:}{Object of class \code{"list"}.
+\item{legend}{Object of class \code{"list"}.
 List of an \code{\linkS4class{AmLegend}} class properties.
 Properties of chart's legend.}
 
-\item{\code{titles}:}{Object of class \code{"list"}. List of Titles properties
+\item{titles}{Object of class \code{"list"}. List of Titles properties
 See \code{\linkS4class{Title}} class.}
 
-\item{\code{trendLines}:}{Object of class \code{"list"}.
+\item{trendLines}{Object of class \code{"list"}.
 List of \code{\linkS4class{trendLine}} objects added to a chart.
 You can add trend lines to a chart using this list or access already existing trend lines.}
 
-\item{\code{type}:}{Object of class \code{"character"}.
+\item{type}{Object of class \code{"character"}.
 Possible types are: serial, pie, radar,
 (types xy, radar, funnel, gauge, map, stock. are in development).}
 
-\item{\code{valueAxes}:}{Object of class \code{"list"}. List of ValueAxes' properties.
+\item{valueAxes}{Object of class \code{"list"}. List of ValueAxes' properties.
 See \code{\linkS4class{ValueAxis}} class.
 Chart creates one value axis automatically,
 so if you need only one value axis, you don't need to create it.}
+
+\item{valueAxis}{Object of class \code{list}.
+List of Value axis properties for Gantt chart. Set it's type to "date" if your data is date or time based.}
+
+\item{ChartCursor}{Object of class \code{"list"}.
+List of a \code{\linkS4class{ChartCursor}} class properties.
+Properties of the chart's cursor}
+
+\item{ChartScrollbar}{Object of class \code{"list"}.
+List of a \code{\linkS4class{ChartScrollbar}} class properties.
+Properties of chart's scrollbar.}
 }
 \value{
 An \code{\linkS4class{AmChart}} object
 }
 \description{
-Constructor for a general AmChart object
+Constructor for AmChart object
 
 amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}
 
@@ -125,12 +128,6 @@ for instantiating AmChart of type \code{gantt}
 amXYChart is a shortcut constructor
 for instantiating AmChart of type \code{xy}
 }
-\section{Slots}{
-
-\describe{
-\item{\code{\code{valueAxis}:}}{Object of class \code{list}.
-List of Value axis properties for Gantt chart. Set it's type to "date" if your data is date or time based.}
-}}
 \examples{
 amChart(type = "pie")
 amAngularGaugeChart()

@@ -10,7 +10,7 @@
 \arguments{
 \item{\code{.Object}:}{Object of class \code{\linkS4class{Guide}}.}
 
-\item{\code{valueAxis}:}{Object of class \code{\linkS4class{ValuesAxes}}.}
+\item{\code{valueAxis}:}{Object of class \code{\linkS4class{ValueAxis}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{Guide}}.
@@ -20,7 +20,7 @@ Add a ValueAxis
 }
 \examples{
 library(pipeR)
-guide() \%>>\% addValueAxis( axisTitleOffset = 12, tickLength = 10 )
+guide() \%>>\% addValueAxis(axisTitleOffset = 12, tickLength = 10)
 }
 \seealso{
 \code{\linkS4class{Guide}} S4 class

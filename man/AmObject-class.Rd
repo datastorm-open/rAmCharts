@@ -10,15 +10,14 @@ This is a virtual class for representing any Am** class
 \section{Slots}{
 
 \describe{
-\item{\code{\code{listeners}:}}{Object of class \code{"list"} containining the listeners to add to the object.
+\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string. See examples for details.}
 
-\item{\code{\code{otherProperties}:}}{Object of class \code{"list"},
-containing other avalaible properties non coded in the package yet}
-}}
-\section{Slots}{
+\item{\code{otherProperties}}{Object of class \code{"list"},
+containing other avalaible properties non coded in the package yet.}
 
-}
+\item{\code{value}}{Object of class \code{numeric}.}
+}}
 \author{
 DataKnowledge
 }

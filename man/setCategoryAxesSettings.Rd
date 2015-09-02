@@ -26,7 +26,7 @@ amStockChart() \%>>\% setCategoryAxesSettings(gridPosition = "start")
 \seealso{
 \code{\linkS4class{AmChart}} S4 class
 
-\code{\linkS4class{CategoryAxesSettings}} S4 class
+\code{\linkS4class{CategoryAxis}} S4 class
 
 Other AmStockChart methods: \code{\link{addComparedDataSet}};
   \code{\link{addDataSet}}; \code{\link{addPanel}};

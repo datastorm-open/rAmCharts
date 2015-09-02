@@ -7,6 +7,11 @@
 \usage{
 \S4method{setValueLineAxis}{ChartCursor}(.Object, valueLineAxis = NULL, ...)
 }
+\arguments{
+\item{.Object:}{\code{\linkS4class{ChartCursor}}.}
+
+\item{valueLineAxis:}{object of class \code{\linkS4class{ValueAxis}}.}
+}
 \description{
 SETTER
 }

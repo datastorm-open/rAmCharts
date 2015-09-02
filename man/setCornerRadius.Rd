@@ -8,9 +8,7 @@
 \S4method{setCornerRadius}{AmBalloon,numeric}(.Object, cornerRadius)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmBalloon}}.}
-
-\item{\code{cornerRadius}:}{Object of class \code{numeric}.}
+\item{.Object:}{Object of class \code{\linkS4class{AmBalloon}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmBalloon}}.

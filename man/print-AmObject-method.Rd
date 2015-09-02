@@ -8,7 +8,7 @@
 \S4method{print}{AmObject}(x, ...)
 }
 \arguments{
-\item{object:}{an \code{\linkS4class{amSerialChart}} object}
+\item{x:}{an \code{\linkS4class{AmChart}}}
 }
 \description{
 Visualize with print

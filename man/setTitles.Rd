@@ -11,7 +11,7 @@
 \item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
 
 \item{\code{titles}:}{Object of class \code{list}.
-Each element must be an object of class \code{\linkS4class{Titles}}.}
+Each element must be an object of class \code{\linkS4class{Title}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmChart}}.

@@ -5,7 +5,7 @@
 \alias{setValueAxis,Guide-method}
 \title{SETTER}
 \usage{
-\S4method{setValueAxis}{Guide}(.Object, valueAxis)
+\S4method{setValueAxis}{Guide}(.Object, valueAxis = NULL, ...)
 }
 \description{
 SETTER
