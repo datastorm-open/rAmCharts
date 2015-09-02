@@ -625,38 +625,6 @@ setMethod( f = "setLegend", signature = c("AmChart"),
            }
 )
 
-# > @listeners: setters ####
-
-#' @exportMethod addListener
-setGeneric(name = "addListener", def = function(.Object, name, expression) { standardGeneric("addListener") } )
-
-#' @title Setter for Listener
-#' @param \code{.Object}: Object of class \code{\linkS4class{AmChart}}.
-#' @param \code{name}: Object of class \code{character}.
-#' @param \code{expression}: Object of class \code{character}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @examples 
-#' library(pipeR)
-#' amChart() %>>% addListener("select", "function onSelect (properties) {
-#'      alert('selected nodes: ' + properties.nodes);}")
-#' @family AmChart setters
-#' @family AmChart methods
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{AmLegend}} S4 class
-#' @name addListener
-#' @rdname addListener
-#' @export
-setMethod( f = "addListener", signature = c("AmChart", "character", "character"),
-           definition = function(.Object, name, expression)
-           {
-             .Object@listeners[[ eval(name) ]] <- JS(expression)
-             # cat( class(JS(expression)), "\n")
-             # cat( class( .Object@listeners[[ eval(name) ]] ), '\n' )
-             validObject(.Object)
-             return(.Object)
-           }
-)
-
 # > @segments: setters ####
 
 #' @exportMethod addSegment
