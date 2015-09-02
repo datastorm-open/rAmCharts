@@ -19,11 +19,18 @@ HTMLWidgets.widget({
     
     // Add listeners for legend
     // the chart must be initialized before
-    instance.amchart.addListener("init", handleInit);
     function handleInit() {
       for (var key in x.chartData.legend.listeners) {
         instance.amchart.legend.addListener(key, x.chartData.legend.listeners[key]);
       }
+    }
+      
+    if (window.Shiny){
+      for (key in x.chartData.legend.listeners) {
+        instance.amchart.legend.addListener(key, x.chartData.legend.listeners[key]);
+      }
+    }else{
+      instance.amchart.addListener("init", handleInit);
     }
   },
   
