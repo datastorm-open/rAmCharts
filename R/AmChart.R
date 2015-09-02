@@ -13,7 +13,7 @@ NULL
 #' List of properties of \code{\linkS4class{GaugeArrow}}s.
 #' @slot \code{balloon}: Object of class \code{"list"}.
 #' List of an \code{\linkS4class{AmBalloon}} class properties.
-#' Creates the balloons ( tooltips ) of the chart,
+#' Creates the balloons (tooltips) of the chart,
 #' It follows the mouse cursor when you roll-over the data items.
 #' The framework generates the instances automatically you only need to adjust the appearance to your needs.
 #' @slot \code{categoryAxis}: Object of class \code{"list"}.
@@ -71,7 +71,7 @@ NULL
 #' @seealso \code{\url{http://docs.amcharts.com/3/javascriptcharts}}
 #' @family rAmChart classes
 #' @export
-setClass( Class = "AmChart", contains = "AmObject",
+setClass(Class = "AmChart", contains = "AmObject",
   representation = representation(
     allLabels = "list",
     arrows = "list",
@@ -87,7 +87,6 @@ setClass( Class = "AmChart", contains = "AmObject",
     graph = "list",
     guides = "list",
     legend = "list",
-    listeners = "list",
     segmentsField = "character",
     subChartProperties = "list",
     theme = "character",
@@ -96,11 +95,11 @@ setClass( Class = "AmChart", contains = "AmObject",
     type = "character",
     valueAxes = "list",
     valueAxis = "list"
-  ),
+ ),
   validity = function(object)
     {
-    if( length(object@type) > 0 && ! object@type %in% c("funnel", "gantt", "gauge", "pie", "radar", "serial", "xy", "stock" ) ){
-      stop( "[AmChart]: error when changing the type, maybe it is not implemented yet")
+    if (length(object@type) > 0 && ! object@type %in% c("funnel", "gantt", "gauge", "pie", "radar", "serial", "xy", "stock")) {
+      stop("[AmChart]: error when changing the type, maybe it is not implemented yet")
     }
   }
 )
@@ -121,69 +120,69 @@ setMethod(f = "initialize", signature = "AmChart",
                                 valueAxis,
                                 pathToImages = "http://www.amcharts.com/lib/3/images/",...)
           {
-            if( !missing(allLabels) ){
-              .Object <- setAllLabels( .Object, allLabels )
-            }else{}
-            if( !missing(arrows) ){
-              .Object <- setArrows( .Object, arrows )
-            }else{}
-            if( !missing(axes) ){
-              .Object <- setAxes( .Object, axes )
-            }else{}
-            if( !missing(balloon) ){
-              .Object <- setBalloon( .Object, balloon )
-            }else{}
-            if( !missing(categoryAxis) ){
-              .Object <- setCategoryAxis( .Object, categoryAxis )
-            }else{}
-            if( !missing(categoryField) ){
-              .Object<- setCategoryField( .Object, categoryField )
-            }else{}
-            if( !missing(creditsPosition) ){
-              .Object <- setCreditsPosition( .Object, creditsPosition )
-            }else{}
-            if( !missing(chartCursor) ){
-              .Object <- setChartCursor( .Object, chartCursor )
-            }else{}
-            if( !missing(chartScrollbar) ){
-              .Object <- setChartScrollbar( .Object, chartScrollbar )
-            }else{}
-            if( !missing(dataProvider) ){
-              .Object <- setDataProvider( .Object, dataProvider )
-            }else{}
-            if( !missing(graphs) ){
+            if (!missing(allLabels)) {
+              .Object <- setAllLabels(.Object, allLabels)
+            } else {}
+            if (!missing(arrows)) {
+              .Object <- setArrows(.Object, arrows)
+            } else {}
+            if (!missing(axes)) {
+              .Object <- setAxes(.Object, axes)
+            } else {}
+            if (!missing(balloon)) {
+              .Object <- setBalloon(.Object, balloon)
+            } else {}
+            if (!missing(categoryAxis)) {
+              .Object <- setCategoryAxis(.Object, categoryAxis)
+            } else {}
+            if (!missing(categoryField)) {
+              .Object<- setCategoryField(.Object, categoryField)
+            } else {}
+            if (!missing(creditsPosition)) {
+              .Object <- setCreditsPosition(.Object, creditsPosition)
+            } else {}
+            if (!missing(chartCursor)) {
+              .Object <- setChartCursor(.Object, chartCursor)
+            } else {}
+            if (!missing(chartScrollbar)) {
+              .Object <- setChartScrollbar(.Object, chartScrollbar)
+            } else {}
+            if (!missing(dataProvider)) {
+              .Object <- setDataProvider(.Object, dataProvider)
+            } else {}
+            if (!missing(graphs)) {
               .Object <- setGraphs(.Object, graphs)
-            }else{}
-            if( !missing(graph) ){
-              .Object <- setGraph( .Object, graph)
-            }else{}
-            if( !missing(guides) ){
+            } else {}
+            if (!missing(graph)) {
+              .Object <- setGraph(.Object, graph)
+            } else {}
+            if (!missing(guides)) {
               .Object <- setGuides(.Object, guides)
-            }else{}
-            if( !missing(legend) ){
-              .Object <- setLegend( .Object, legend )
-            }else{}
-            if( !missing(segmentsField) ){
+            } else {}
+            if (!missing(legend)) {
+              .Object <- setLegend(.Object, legend)
+            } else {}
+            if (!missing(segmentsField)) {
               .Object@segmentsField <- segmentsField
-            }else{}
-            if(!missing(theme)){
+            } else {}
+            if (!missing(theme)) {
               .Object@theme <- theme
-            }else{}
-            if(!missing(titles)){
+            } else {}
+            if (!missing(titles)) {
               .Object <- setTitles(.Object, titles)
-            }else{}
-            if(!missing(trendLines)){
+            } else {}
+            if (!missing(trendLines)) {
               .Object <- setTrendLines(.Object, trendLines)
-            }else{}
-            if(!missing(type)){
-              .Object <- setType( .Object, type)
-            }else{}
-            if(!missing(valueAxes)){
+            } else {}
+            if (!missing(type)) {
+              .Object <- setType(.Object, type)
+            } else {}
+            if (!missing(valueAxes)) {
               .Object <- setValueAxes(.Object, valueAxes)
-            }else{}
-            if( !missing(valueAxis) > 0 ){
+            } else {}
+            if (!missing(valueAxis) > 0) {
               .Object <- setValueAxis(.Object, valueAxis)
-            }else{}
+            } else {}
             .Object <- setProperties(.Object, pathToImages = pathToImages, ...)
             #, path = "http://www.amcharts.com/lib/3/images/"))
             validObject(.Object)
@@ -198,79 +197,76 @@ setMethod(f = "initialize", signature = "AmChart",
 #' library(pipeR)
 #' amChart() %>>% setProperties(test = 1) %>>% listProperties
 #' @importFrom rlist list.append
-setMethod( f = "listProperties", signature = "AmChart",
+setMethod(f = "listProperties", signature = "AmChart",
   definition = function(.Object)
   {
     ls <- callNextMethod()
-    if( length(.Object@allLabels) > 0 ){
+    if (length(.Object@allLabels) > 0) {
       ls <- rlist::list.append(ls, allLabels = .Object@allLabels)
-    }else{}
-    if( length(.Object@arrows) > 0 ){
+    } else {}
+    if (length(.Object@arrows) > 0) {
       ls <- rlist::list.append(ls, arrows = .Object@arrows)
-    }else{}
-    if( length(.Object@axes) > 0 ){
+    } else {}
+    if (length(.Object@axes) > 0) {
       ls <- rlist::list.append(ls, axes = .Object@axes)
-    }else{}
-    if( length(.Object@balloon) > 0 ){
+    } else {}
+    if (length(.Object@balloon) > 0) {
       ls <- rlist::list.append(ls, balloon = .Object@balloon)
-    }else{}
-    if( length(.Object@categoryAxis) > 0 ){
+    } else {}
+    if (length(.Object@categoryAxis) > 0) {
       ls <- rlist::list.append(ls, categoryAxis = .Object@categoryAxis)
-    }else{}
-    if( length(.Object@categoryField) > 0 ){
+    } else {}
+    if (length(.Object@categoryField) > 0) {
       ls <- rlist::list.append(ls, categoryField = .Object@categoryField)
-    }else{}
-    if( length(.Object@creditsPosition) > 0 ){
+    } else {}
+    if (length(.Object@creditsPosition) > 0) {
       ls <- rlist::list.append(ls, creditsPosition = .Object@creditsPosition)
-    }else{}
-    if( length(.Object@chartCursor) > 0 ){
+    } else {}
+    if (length(.Object@chartCursor) > 0) {
       ls <- rlist::list.append(ls, chartCursor = .Object@chartCursor)
-    }else{}
-    if( length(.Object@chartScrollbar) > 0 ){
+    } else {}
+    if (length(.Object@chartScrollbar) > 0) {
       ls <- rlist::list.append(ls, chartScrollbar = .Object@chartScrollbar)
-    }else{}
-    if( length(.Object@dataProvider) > 0 ){
+    } else {}
+    if (length(.Object@dataProvider) > 0) {
       ls <- rlist::list.append(ls, dataProvider = .Object@dataProvider)
-    }else{}
-    if( length(.Object@graphs) > 0 ){
+    } else {}
+    if (length(.Object@graphs) > 0) {
       ls <- rlist::list.append(ls, graphs = .Object@graphs)
-    }else{}
-    if( length(.Object@graph) > 0 ){
-      ls <- rlist::list.append( ls, graph = .Object@graph)
-    }else{}
-    if( length(.Object@guides) > 0 ){
+    } else {}
+    if (length(.Object@graph) > 0) {
+      ls <- rlist::list.append(ls, graph = .Object@graph)
+    } else {}
+    if (length(.Object@guides) > 0) {
       ls <- rlist::list.append(ls, guides = .Object@guides)
-    }else{}
-    if( length(.Object@legend) > 0 ){
+    } else {}
+    if (length(.Object@legend) > 0) {
       ls <- rlist::list.append(ls, legend = .Object@legend)
-    }else{}
-    if( length(.Object@listeners) > 0 ){
-      ls <- rlist::list.append(ls, listeners = .Object@listeners)
-    }else{}
-    if(length(.Object@segmentsField) > 0){
+    } else {}
+    if (length(.Object@segmentsField) > 0) {
       ls <- rlist::list.append(ls, segmentsField = .Object@segmentsField)
-    }else{}
-    if(length(.Object@subChartProperties) > 0){
+    } else {}
+    if (length(.Object@subChartProperties) > 0) {
       ls <- rlist::list.append(ls, subChartProperties = .Object@subChartProperties)
-    }else{}
-    if(length(.Object@theme) > 0){
+    } else {}
+    if (length(.Object@theme) > 0) {
       ls <- rlist::list.append(ls, theme = .Object@theme)
-    }else{}
-    if(length(.Object@titles) > 0){
+    } else {}
+    if (length(.Object@titles) > 0) {
       ls <- rlist::list.append(ls, titles = .Object@titles)
-    }else{}
-    if(length(.Object@trendLines) > 0){
+    } else {}
+    if (length(.Object@trendLines) > 0) {
       ls <- rlist::list.append(ls, trendLines = .Object@trendLines)
-    }else{}
-    if(length(.Object@type) > 0){
+    } else {}
+    if (length(.Object@type) > 0) {
       ls <- rlist::list.append(ls, type = .Object@type)
-    }else{}
-    if(length(.Object@valueAxes) > 0){
+    } else {}
+    if (length(.Object@valueAxes) > 0) {
       ls <- rlist::list.append(ls, valueAxes = .Object@valueAxes)
-    }else{}
-    if( length(.Object@valueAxis) > 0 ){
-      ls <- rlist::list.append( ls, valueAxis = .Object@valueAxis)
-    }else{}
+    } else {}
+    if (length(.Object@valueAxis) > 0) {
+      ls <- rlist::list.append(ls, valueAxis = .Object@valueAxis)
+    } else {}
     return(ls)
   }
 )
