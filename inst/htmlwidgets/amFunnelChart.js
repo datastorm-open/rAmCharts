@@ -16,8 +16,14 @@ HTMLWidgets.widget({
       instance.amchart.addListener(key, x.chartData.listeners[key]);
     }
     
-    //document.getElementById(el.id).className = "responsive-container";
-    //document.getElementById('htmlwidget_container').className = "container";
+    // Add listeners for legend
+    // the chart must be initialized before
+    instance.amchart.addListener("init", handleInit);
+    function handleInit() {
+      for (var key in x.chartData.legend.listeners) {
+        instance.amchart.legend.addListener(key, x.chartData.legend.listeners[key]);
+      }
+    }
   },
   
   resize: function(el, width, height, instance) {
