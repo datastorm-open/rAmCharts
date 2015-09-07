@@ -59,9 +59,9 @@ setMethod( f = "listProperties", signature = "AxisBase",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if( length( .Object@guides ) > 0 ){
+             if (length( .Object@guides )) {
                ls <- rlist::list.append(ls, guides = .Object@guides)
-             }
+             } else {}
              return(ls)
            }
 )

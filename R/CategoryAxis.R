@@ -24,8 +24,10 @@ setClass( Class = "CategoryAxis", contains = "AxisBase",
 )
 
 #' @title Initialize a CategoryAxis
-#' @param \code{gridPosition}: {Object of class \code{character}.}
-#' @param \code{guides}: {Object of class \code{list}. List of guides.}
+#' @param gridPosition
+#' Object of class \code{character}.
+#' @param guides
+#' Object of class \code{list}. List of guides.
 #' @examples
 #' \donttest{
 #' new("CategoryAxis")
@@ -50,21 +52,20 @@ setMethod(f = "initialize", signature = c("CategoryAxis"),
 )
 
 # CONSTRUCTOR ####
-#' @title
-#' #’ Constructor.
 #' @title Constructor for an AmGraph
-#' @param \code{...}: {Properties of CategoryAxis.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/CategoryAxis}}}
+#' @param ...
+#' Properties of CategoryAxis.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/CategoryAxis}
 #' @return An \code{\linkS4class{CategoryAxis}} object
 #' @examples
 #' new("CategoryAxis", gridPosition = "start")
 #' categoryAxis(gridPosition = "start", adjustBorderColor = TRUE)
 #' @export
-categoryAxis <- function(gridPosition, ...){
+categoryAxis <- function(gridPosition, ...) {
   .Object <- new(Class="CategoryAxis")
-  if(!missing(gridPosition)){
+  if (!missing(gridPosition)) {
     .Object@gridPosition <- gridPosition
-  }
+  } else {}
   .Object <- setProperties(.Object, ...)
   return( .Object )
 }
@@ -86,12 +87,12 @@ setMethod(
     .Object@gridPosition <- gridPosition
     validObject(.Object)
     return(.Object)
-  }
-)
+  })
 
 
 #' @title List properties
 #' @return Properties of the object in a list
+#' @param .Object
 #' @examples
 #' \dontshow{
 #' library(pipeR)
@@ -104,12 +105,8 @@ setMethod( f = "listProperties", signature = "CategoryAxis",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if( length(.Object@gridPosition) > 0 ){
+             if (length(.Object@gridPosition)) {
              ls <- rlist::list.append(ls, gridPosition = .Object@gridPosition)
-             }
-             if( length( .Object@guides ) > 0 ){
-               ls <- c(ls, guides)
-             }
+             } else {}
              return(ls)
-           }
-)
+           })

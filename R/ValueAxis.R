@@ -59,15 +59,15 @@ setMethod(f = "initialize", signature = c("ValueAxis"),
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # CONSTRUCTOR ####
-#' @title
-#' #’ Constructor.
 #' @title Constructor for an AmGraph
-#' @param \code{...}: {Properties of ValueAxis.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/ValueAxis}}}
+#' @param title
+#' Object of class \code{character}. Title of the axis.
+#' @param ...
+#' Properties of ValueAxis.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/ValueAxis}
 #' @return An \code{\linkS4class{ValueAxis}} object
 #' @examples
 #' valueAxis(title = "Hello !", axisTitleOffset = 12)
@@ -82,6 +82,9 @@ valueAxis <- function(title, ...){
 }
 
 #' @title SETTER
+#' @param .Object
+#' @param title
+#' Object of class \code{character}. Title of the axis.
 #' @examples
 #' library(pipeR)
 #' valueAxis() %>>% setTitle("Hello !")
@@ -92,10 +95,10 @@ setMethod( f = "setTitle", signature = c("ValueAxis", "character"),
     .Object@title <- title
     validObject(.Object)
     return(.Object)
-  }
-)
+  })
 
 #' @title List properties
+#' @param .Object
 #' @return Properties of the object in a list
 #' @examples
 #' library(pipeR)

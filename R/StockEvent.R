@@ -30,36 +30,42 @@ setClass( Class = "StockEvent", contains = "AmObject",
 )
 
 #' @title Initialize a StockEvent
+#' @param backgroundAlpha
+#' @param stockGraph
 #' @examples
 #' new("StockEvent")
 #' @export
 setMethod(f = "initialize", signature = "StockEvent",
           definition = function(.Object, backgroundAlpha = 1, stockGraph, ...)
           {  
-            if(!missing(stockGraph)){
-              .Object <- setStockEvents( .Object, stockGraph)
-            }
+            if (!missing(stockGraph)) {
+              .Object <- setStockGraph( .Object, stockGraph)
+            } else {}
             .Object <- setProperties(.Object, backgroundAlpha	 = backgroundAlpha, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # CONSTRUCTOR ####
-#' @title
-#' #’ Constructor.
 #' @title Constructor for an StockEvent
-#' @param \code{...}: {Properties of StockEvent.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/StockEvent}}}
+#' @param backgroundAlpha
+#' @param stockGraph
+#' Object of class \code{list}.
+#' Containing properties of stockGraph.
+#' This is the graph on which event will be displayed.
+#' You can use a reference to the stock graph object or id of the graph.
+#' @param ...
+#' Properties of StockEvent.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/StockEvent}
 #' @return An \code{\linkS4class{StockEvent}} object
 #' @examples
 #' stockEvent()
 #' @export
 stockEvent <- function(backgroundAlpha = 1, stockGraph,...){
   .Object <- new( "StockEvent", backgroundAlpha	 = backgroundAlpha	 )
-  if( !missing(stockGraph) ){
+  if (!missing(stockGraph)) {
     .Object <- setStockGraph( .Object, stockGraph )
-  }
+  } else {}
   .Object <- setProperties( .Object, ... )
   validObject(.Object)
   return( .Object )
@@ -70,23 +76,32 @@ stockEvent <- function(backgroundAlpha = 1, stockGraph,...){
 #' @exportMethod setStockGraph
 setGeneric(name = "setStockGraph", def = function(.Object, stockGraph = NULL, ...){ standardGeneric("setStockGraph") } )
 #' @title SETTER
+#' @param stockGraph
+#' Object of class \code{list}.
+#' Containing properties of stockGraph.
+#' This is the graph on which event will be displayed.
+#' You can use a reference to the stock graph object or id of the graph.
+#' @param ...
 #' @examples
 #' library(pipeR)
-#' stockEvent() %>>% setStockGraph()
+#' stockEvent() %>>% setStockGraph(stockGraph = stockGraph(balloonText = "balloonText"))
+#' stockEvent() %>>% setStockGraph(stockGraph = "stockGraph1")
 #' @export
 setMethod(
   f = "setStockGraph",
   signature = c("StockEvent"),
   definition = function(.Object, stockGraph = NULL, ...)
   {
-    if( is.null(stockGraph) ){
+    if (is.null(stockGraph)) {
       stockGraph <- stockGraph(...)
-    }
-    .Object@stockGraph <- listProperties(stockGraph)
+    } else if (is(stockGraph, "AmGraph")) {
+      .Object@stockGraph <- listProperties(stockGraph)
+    } else if (is.character(stockGraph)) {
+      .Object <- setProperties(.Object, stockGraph = stockGraph)
+    } else {}
     validObject(.Object)
     return(.Object)
-  }
-)
+  })
 
 #' @title List properties
 #' @return Properties of the object in a list
@@ -95,9 +110,8 @@ setMethod( f = "listProperties", signature = "StockEvent",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if( length( .Object@stockGraph ) > 0 ){
+             if (length(.Object@stockGraph)) {
                ls <- rlist::list.append(ls, stockGraph = .Object@stockGraph)
-             }else{}
+             } else {}
              return(ls)
-           }
-)
+           })

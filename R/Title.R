@@ -50,11 +50,10 @@ setMethod(f = "initialize", signature = "Title",
 )
 
 # CONSTRUCTOR ####
-#' @title
-#' #’ Constructor.
 #' @title Constructor for an AmGraph
-#' @param \code{...}: {Properties of Title.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/Title}}}
+#' @param ...
+#' Properties of Title.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/Title}
 #' @return An \code{\linkS4class{Title}} object
 #' @examples
 #' new("Title", text = "bonjour")

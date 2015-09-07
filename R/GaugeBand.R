@@ -44,8 +44,9 @@ setMethod(f = "initialize", signature = c("GaugeBand"),
 # CONSTRUCTOR ####
 #' @title Constructor.
 #' @title Constructor for a GaugeBand
-#' @param \code{...}: {Properties of GaugeBand.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/GaugeBand}}}
+#' @param ...
+#' Properties of GaugeBand.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/GaugeBand}
 #' @return An \code{\linkS4class{GaugeBand}} object
 #' @examples
 #' gaugeBand()

@@ -118,18 +118,22 @@ amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueFiel
   return(.Object)
 }
 
-#’ Constructor for stockGraph.
 #' @title Constructor for a stockGraph (class AmGraph)
-#' @param \code{balloonText}: {Object of class \code{character}.
+#' @param balloonText
+#' Object of class \code{character}.
 #' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
-#' or any other field name from your data provider. HTML tags can also be used.}
-#' @param \code{title}: {Object of class \code{character}. Graph title.}
-#' @param \code{type}: {Object of class \code{character}.
+#' or any other field name from your data provider. HTML tags can also be used.
+#' @param title
+#' Object of class \code{character}. Graph title.
+#' @param type
+#' Object of class \code{character}.
 #' Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
-#' XY and Radar charts can only display "line" otherArguments graphs.}
-#' @param \code{valueField}: {Object of class \code{character}.
-#' Name of the value field in your dataProvider.}
-#' @param \code{...}: See \code{\url{http://docs.amcharts.com/3/javascriptstockchart/StockGraph}}
+#' XY and Radar charts can only display "line" otherArguments graphs.
+#' @param valueField
+#' Object of class \code{character}.
+#' Name of the value field in your dataProvider.
+#' @param ...
+#' \url{http://docs.amcharts.com/3/javascriptstockchart/StockGraph}
 #' @return An \code{\linkS4class{AmGraph}} object
 #' @examples
 #' stockGraph(balloonText = "balloonText", "type" = "column", valueField = "value", animationPlayed = TRUE)

@@ -5,15 +5,13 @@ NULL
 #' @author DataKnowledge
 #' 
 #' @slot periods
-#' Object of clas \code{numeric}.
-#' Array of predefined period objects.
+#' Object of clas \code{list}.
 #' Period object has 4 properties - period, count, label and selected.
 #' Possible period values are:
 #' "ss" - seconds, "mm" - minutes, "hh" - hours, "DD" - days, "MM" - months and "YYYY" - years.
 #' property "count" specifies how many periods this button will select.
 #' "label" will be displayed on a button and "selected" is a boolean
 #' which specifies if this button is selected when chart is initialized or not.
-#' Example: {period:"DD", count:10, label:"10 days", selected:false}.
 #' 
 #' @slot listeners
 #' Object of class \code{"list"} containining the listeners to add to the object.
@@ -39,20 +37,27 @@ setClass(Class = "PeriodSelector", contains = "AmObject",
 setMethod(f = "initialize", signature = c("PeriodSelector"),
           definition = function(.Object, periods, ...)
           {            
-            if(!missing(periods)){
+            if (!missing(periods)) {
               .Object@periods <- periods
-            }
+            } else {}
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # CONSTRUCTOR ####
-#' @title Constructor.
 #' @title Constructor for a PeriodSelector
-#' @param \code{...}: {Properties of PeriodSelector.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/PeriodSelector}}}
+#' @param periods
+#' Object of clas \code{list}.
+#' Period object has 4 properties - period, count, label and selected.
+#' Possible period values are:
+#' "ss" - seconds, "mm" - minutes, "hh" - hours, "DD" - days, "MM" - months and "YYYY" - years.
+#' property "count" specifies how many periods this button will select.
+#' "label" will be displayed on a button and "selected" is a boolean
+#' which specifies if this button is selected when chart is initialized or not.
+#' @param ...
+#' Properties of PeriodSelector.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/PeriodSelector}
 #' @return An \code{\linkS4class{PeriodSelector}} object
 #' @examples
 #' periodSelector(fillAlpha = .4, value = 1)
@@ -60,9 +65,9 @@ setMethod(f = "initialize", signature = c("PeriodSelector"),
 #' @export
 periodSelector <- function(periods, ...){
   .Object <- new(Class="PeriodSelector")
-  if(!missing(periods)){
+  if (!missing(periods)) {
     .Object@period <- periods
-  }
+  } else {}
   .Object <-  setProperties(.Object, ...)
   return( .Object )
 }
@@ -70,12 +75,14 @@ periodSelector <- function(periods, ...){
 #' @exportMethod addPeriod
 setGeneric("addPeriod", def = function(.Object, ...) { standardGeneric("addPeriod")} )
 #' @title Add a period
-#' @param \code{.Object}: Object of class \code{\linkS4class{PeriodSelector}}.
-#' @param \code{...}: Properties of period.
+#' @param .Object
+#' Object of class \code{\linkS4class{PeriodSelector}}.
+#' @param ...
+#' Properties of period.
 #' @return The updated object of class \code{\linkS4class{PeriodSelector}}.
 #' @examples
 #' library(pipeR)
-#' periodSelector() %>>% addPeriod(  period = "MM", selected = TRUE, count = 1, label= "1 month" )
+#' periodSelector() %>>% addPeriod(period = "MM", selected = TRUE, count = 1, label= "1 month")
 #' @family PeriodSelector setters
 #' @family PeriodSelector methods
 #' @seealso \code{\linkS4class{PeriodSelector}} S4 class
@@ -88,8 +95,7 @@ setMethod( f = "addPeriod", signature = c("PeriodSelector"),
              .Object@periods <- rlist::list.append( .Object@periods, list(...) )
              validObject(.Object)
              return(.Object)
-           }
-)
+           })
 
 #' @title List properties
 #' @return Properties of the object in a list

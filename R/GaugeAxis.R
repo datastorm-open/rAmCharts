@@ -46,10 +46,10 @@ setMethod(f = "initialize", signature = c("GaugeAxis"),
 )
 
 # CONSTRUCTOR ####
-#' @title Constructor.
 #' @title Constructor for a GaugeAxis
-#' @param \code{...}: {Properties of GaugeAxis.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/GaugeAxis}}}
+#' @param ...
+#' Properties of GaugeAxis.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/GaugeAxis}
 #' @return An \code{\linkS4class{GaugeAxis}} object
 #' @examples
 #' gaugeAxis()

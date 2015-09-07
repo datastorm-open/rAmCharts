@@ -27,11 +27,16 @@ setClass( Class = "AmLegend", contains = "AmObject",
 )
 
 #' @title Initialize
+#' @param .Object
+#' @param useGraphSettings
+#' Object of class \code{logical}.
+#' If this is set to TRUE, border color instead of background color will be changed when
+#' user rolls-over the slice, graph, etc.
 #' @examples
 #' new("AmLegend", useGraphSettings = TRUE)
 #' @export
 setMethod(f = "initialize", signature = "AmLegend",
-          definition = function(.Object, useGraphSettings, listeners, ...)
+          definition = function(.Object, useGraphSettings,...)
           {  
             if (!missing(useGraphSettings)) {
               .Object@useGraphSettings <- useGraphSettings
@@ -39,44 +44,46 @@ setMethod(f = "initialize", signature = "AmLegend",
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # CONSTRUCTOR ####
-#' @title Constructor for AmLegend.
+
 #' @title Constructor for an AmLegend
-#' @param \code{useGraphSettings}: Legend markers can mirror graph’s settings,
+#' @param useGraphSettings
+#' Legend markers can mirror graph's settings,
 #' displaying a line and a real bullet as in the graph itself.
 #' Set this property to true if you want to enable this feature.
-#' @param \code{...}: {Properties of AmLegend.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/AmLegend}}}
+#' @param ...
+#' Properties of AmLegend.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/AmLegend}
 #' @return An \code{\linkS4class{AmLegend}} object
 #' @examples
 #' amLegend(useGraphSettings = TRUE)
 #' @export
 amLegend <- function(useGraphSettings, ...){
   .Object <- new("AmLegend")
-  if(!missing(useGraphSettings)){
+  if (!missing(useGraphSettings)) {
     .Object@useGraphSettings <- useGraphSettings
-  }
+  } else {}
   .Object <- setProperties(.Object, ...)
   validObject(.Object)
   return( .Object )
 }
 
 #' @title Constructor for StockLegend.
-#' @title Constructor for an AmLegend
-#' @param \code{useGraphSettings}: Legend markers can mirror graph’s settings,
+#' @param useGraphSettings
+#' Legend markers can mirror graph's settings,
 #' displaying a line and a real bullet as in the graph itself.
 #' Set this property to true if you want to enable this feature.
-#' @param \code{...}: Properties of AmLegend.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptstockchart/StockLegend}}
+#' @param ...
+#' Properties of AmLegend.
+#' See \url{http://docs.amcharts.com/3/javascriptstockchart/StockLegend}
 #' @return An \code{\linkS4class{AmLegend}} object
 #' @examples
-#' stockLegend( useGraphSettings = TRUE )
+#' stockLegend(useGraphSettings = TRUE)
 #' @export
 stockLegend <- function(useGraphSettings, valueTextComparing = "[[percents.value]]%", ...){
-  amLegend(useGraphSettings, valueTextComparing = valueTextComparing, ...)
+  amLegend(useGraphSettings = useGraphSettings, valueTextComparing = valueTextComparing, ...)
 }
 
 # > @useGraphSettings : setters ####
@@ -84,6 +91,11 @@ stockLegend <- function(useGraphSettings, valueTextComparing = "[[percents.value
 #' @exportMethod setUseGraphSettings
 setGeneric(name = "setUseGraphSettings", def = function(.Object, useGraphSettings){ standardGeneric("setUseGraphSettings") } )
 #' @title SETTER
+#' @param .Object
+#' @param useGraphSettings
+#' Object of class \code{logical}.
+#' If this is set to TRUE, border color instead of background color will be changed when
+#' user rolls-over the slice, graph, etc.
 #' @examples
 #' library(pipeR)
 #' amLegend() %>>% setUseGraphSettings(TRUE)
@@ -97,21 +109,20 @@ setMethod(
     .Object@useGraphSettings <- useGraphSettings
     validObject(.Object)
     return(.Object)
-  }
-)
+  })
 
 #' @title List properties
+#' @param .Object
 #' @examples
 #' is(listProperties(amLegend(useGraphSettings = TRUE)), "list")
 #' @return Properties of the object in a list
 #' @importFrom rlist list.append
-setMethod( f = "listProperties", signature = "AmLegend",
+setMethod(f = "listProperties", signature = "AmLegend",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if (length( .Object@useGraphSettings ) > 0){
+             if (length( .Object@useGraphSettings )){
                ls <- rlist::list.append(ls, useGraphSettings = .Object@useGraphSettings)
              } else {}
              return(ls)
-           }
-)
+           })

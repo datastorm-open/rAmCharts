@@ -55,10 +55,10 @@ setMethod(f = "initialize", signature = c("Guide"),
 )
 
 # CONSTRUCTOR ####
-#' @title Constructor.
 #' @title Constructor for a Guide
-#' @param \code{...}: {Properties of Guide.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/Guide}}}
+#' @param ...
+#' Properties of Guide.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/Guide}
 #' @return An \code{\linkS4class{Guide}} object
 #' @examples
 #' guide(fillAlpha = .4, value = 1)
@@ -119,8 +119,10 @@ setMethod(
 )
 
 #' @title Add a ValueAxis
-#' @param \code{.Object}: Object of class \code{\linkS4class{Guide}}.
-#' @param \code{valueAxis}: Object of class \code{\linkS4class{ValueAxis}}.
+#' @param .Object
+#' Object of class \code{\linkS4class{Guide}}.
+#' @param valueAxis
+#' Object of class \code{\linkS4class{ValueAxis}}.
 #' @return The updated object of class \code{\linkS4class{Guide}}.
 #' @examples
 #' library(pipeR)
@@ -154,13 +156,13 @@ setMethod(f = "listProperties", signature = "Guide",
           definition = function(.Object)
           { 
             ls <- callNextMethod()
-            if (length(.Object@fillAlpha) > 0) {
+            if (length(.Object@fillAlpha)) {
               ls <- rlist::list.append(ls, fillAlpha = .Object@fillAlpha)
-            }
-            if (length(.Object@valueAxis) > 0) {
+            } else {}
+            if (length(.Object@valueAxis)) {
               ls <- rlist::list.append(ls, valueAxis = .Object@valueAxis)
-            }
-            if (length(.Object@value) > 0) {
+            } else {}
+            if (length(.Object@value)) {
               ls <- rlist::list.append(ls, value = .Object@value)
             }
             return(ls)

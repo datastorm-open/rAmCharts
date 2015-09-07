@@ -44,10 +44,10 @@ setMethod(f = "initialize", signature = c("GaugeArrow"),
 )
 
 # CONSTRUCTOR ####
-#' @title Constructor.
 #' @title Constructor for a GaugeArrow
-#' @param \code{...}: {Properties of GaugeArrow.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/GaugeArrow}}}
+#' @param ...
+#' Properties of GaugeArrow.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/GaugeArrow}
 #' @return An \code{\linkS4class{GaugeArrow}} object
 #' @examples
 #' gaugeArrow()

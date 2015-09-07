@@ -4,19 +4,19 @@ NULL
 #' @title AmChart
 #' @description This class allow to define the amCharts parameters
 #' 
-#' @slot allLabels
+#' @field allLabels
 #' Object of class \code{"list"}. List of Labels properties.
 #' See \code{\linkS4class{Label}}.
 #' 
-#' @slot arrows
+#' @field arrows
 #' Object of class \code{"list"}
 #' containing object of class \code{\linkS4class{GaugeArrow}}.
 #' 
-#' @slot axes
+#' @field axes
 #' Object of class \code{"list"}
 #' containing object of class \code{\linkS4class{GaugeAxis}}.
 #' 
-#' @slot balloon
+#' @field balloon
 #' Object of class \code{"list"}.
 #' List of an \code{\linkS4class{AmBalloon}} class properties.
 #' Creates the balloons (tooltips) of the chart,
@@ -24,104 +24,104 @@ NULL
 #' The framework generates the instances automatically you only need to adjust
 #' the appearance to your needs.
 #' 
-#' @slot categoryAxis
+#' @field categoryAxis
 #' Object of class \code{"list"}.
 #' List of a \code{\linkS4class{CategoryAxis}} properties.
 #' Read-only. Chart creates category axis itself.
 #' If you want to change some properties,
 #' you should get this axis from the chart and set properties to this object.
 #' 
-#' @slot categoryField
+#' @field categoryField
 #' Object of class \code{"character"}.
 #' Category field name tells the chart the name of the field in your dataProvider object
 #' which will be used for category axis values.
 #' 
-#' @slot ChartCursor
+#' @field ChartCursor
 #' Object of class \code{"list"}.
 #' List of a \code{\linkS4class{ChartCursor}} class properties.
 #' Properties of the chart's cursor.
 #' 
-#' @slot ChartScrollbar
+#' @field ChartScrollbar
 #' Object of class \code{"list"}.
 #' List of a \code{\linkS4class{ChartScrollbar}} class properties.
 #' Properties of chart's scrollbar.
 #' 
-#' @slot creditsPosition
+#' @field creditsPosition
 #' Object of class \code{"character"},
 #' specifying position of link to amCharts site.
 #' Allowed values are: top-left, top-right, bottom-left and bottom-right.
 #' 
-#' @slot dataProvider
+#' @field dataProvider
 #' Object of class \code{"list"}, containing the data.
 #' Use providing method toList* to convert a \code{data.frame}.
 #' 
-#' @slot graphs
+#' @field graphs
 #' Object of class \code{list}.  List of AmGraphs properties
 #' See \code{\linkS4class{AmGraph}} class.
 #' Creates the visualization of the data in following types: line, column, step line,
 #' smoothed line, olhc and candlestick.
 #' 
-#' @slot graph
+#' @field graph
 #' Object of class \code{\linkS4class{AmGraph}}.
 #' Graph of a Gantt chart. Gant chart actually creates multiple graphs (separate for each segment).
 #' Properties of this graph are passed to each of the created graphs
 #' - this allows you to control the look of segments.
 #' 
-#' @slot guides
+#' @field guides
 #' Object of class \code{list}.
 #' Each elemnt must be of class \code{\linkS4class{Guide}}.
 #' Instead of adding guides to the axes, you can push all of them to this array.
 #' In case guide has category or date defined, it will automatically will be assigned to the category axis.
 #' Otherwise to first value axis, unless you specify a different valueAxes for the guide.
 #' 
-#' @slot legend
+#' @field legend
 #' Object of class \code{"list"}.
 #' List of an \code{\linkS4class{AmLegend}} class properties.
 #' Properties of chart's legend.
 #' 
-#' @slot segmentsField
+#' @field segmentsField
 #' Object of class \code{character}.
 #' 
-#' @slot subChartProperties
+#' @field subChartProperties
 #' Object of class \code{list}
 #' 
-#' @slot theme
+#' @field theme
 #' Object of class \code{character}.
 #' Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
 #' 
-#' @slot titles
+#' @field titles
 #' Object of class \code{"list"}. List of Titles properties
 #' See \code{\linkS4class{Title}} class.
 #' 
-#' @slot trendLines
+#' @field trendLines
 #' Object of class \code{"list"}.
 #' List of \code{\linkS4class{TrendLine}} objects added to a chart.
 #' You can add trend lines to a chart using this list or access already existing trend lines.
 #' 
-#' @slot type
+#' @field type
 #' Object of class \code{"character"}.
 #' Possible types are: serial, pie, radar,
 #' (types xy, radar, funnel, gauge, map, stock. are in development).
 #' 
-#' @slot valueAxes Object of class \code{"list"}. List of ValueAxes' properties.
+#' @field valueAxes Object of class \code{"list"}. List of ValueAxes' properties.
 #' See \code{\linkS4class{ValueAxis}} class.
 #' Chart creates one value axis automatically,
 #' so if you need only one value axis, you don't need to create it.
 #' 
-#' @slot valueAxis
+#' @field valueAxis
 #' Object of class \code{list}.
 #' List of Value axis properties for Gantt chart. Set it's type to "date" if your data is date or time based.
 #' In case of Value axis for a Gantt chart. Set it's type to "date" if your data is date or time based.
 #' 
-#' @slot listeners
+#' @field listeners
 #' Object of class \code{"list"} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string. See examples for details.
 #' 
-#' @slot otherProperties
+#' @field otherProperties
 #' Object of class \code{"list"},
 #' containing other avalaible properties non coded in the package yet.
 #' 
-#' @slot value
+#' @field value
 #' Object of class \code{numeric}.
 #' 
 #' @examples
@@ -134,7 +134,7 @@ NULL
 #' 
 #' @details API for plotting AmChart with R
 #' @author Dataknowledge
-#' @seealso \code{\url{http://docs.amcharts.com/3/javascriptcharts}}
+#' @seealso \url{http://docs.amcharts.com/3/javascriptcharts}
 #' @family rAmChart classes
 #' @export
 setClass(Class = "AmChart", contains = "AmObject",
@@ -248,7 +248,7 @@ setMethod(f = "initialize", signature = "AmChart",
             if (!missing(valueAxes)) {
               .Object <- setValueAxes(.Object, valueAxes)
             } else {}
-            if (!missing(valueAxis) > 0) {
+            if (!missing(valueAxis)) {
               .Object <- setValueAxis(.Object, valueAxis)
             } else {}
             .Object <- setProperties(.Object, pathToImages = pathToImages, ...)
@@ -270,70 +270,70 @@ setMethod(f = "listProperties", signature = "AmChart",
   definition = function(.Object)
   {
     ls <- callNextMethod()
-    if (length(.Object@allLabels) > 0) {
+    if (length(.Object@allLabels)) {
       ls <- rlist::list.append(ls, allLabels = .Object@allLabels)
     } else {}
-    if (length(.Object@arrows) > 0) {
+    if (length(.Object@arrows)) {
       ls <- rlist::list.append(ls, arrows = .Object@arrows)
     } else {}
-    if (length(.Object@axes) > 0) {
+    if (length(.Object@axes)) {
       ls <- rlist::list.append(ls, axes = .Object@axes)
     } else {}
-    if (length(.Object@balloon) > 0) {
+    if (length(.Object@balloon)) {
       ls <- rlist::list.append(ls, balloon = .Object@balloon)
     } else {}
-    if (length(.Object@categoryAxis) > 0) {
+    if (length(.Object@categoryAxis)) {
       ls <- rlist::list.append(ls, categoryAxis = .Object@categoryAxis)
     } else {}
-    if (length(.Object@categoryField) > 0) {
+    if (length(.Object@categoryField)) {
       ls <- rlist::list.append(ls, categoryField = .Object@categoryField)
     } else {}
-    if (length(.Object@creditsPosition) > 0) {
+    if (length(.Object@creditsPosition)) {
       ls <- rlist::list.append(ls, creditsPosition = .Object@creditsPosition)
     } else {}
-    if (length(.Object@chartCursor) > 0) {
+    if (length(.Object@chartCursor)) {
       ls <- rlist::list.append(ls, chartCursor = .Object@chartCursor)
     } else {}
-    if (length(.Object@chartScrollbar) > 0) {
+    if (length(.Object@chartScrollbar)) {
       ls <- rlist::list.append(ls, chartScrollbar = .Object@chartScrollbar)
     } else {}
-    if (length(.Object@dataProvider) > 0) {
+    if (length(.Object@dataProvider)) {
       ls <- rlist::list.append(ls, dataProvider = .Object@dataProvider)
     } else {}
-    if (length(.Object@graphs) > 0) {
+    if (length(.Object@graphs)) {
       ls <- rlist::list.append(ls, graphs = .Object@graphs)
     } else {}
-    if (length(.Object@graph) > 0) {
+    if (length(.Object@graph)) {
       ls <- rlist::list.append(ls, graph = .Object@graph)
     } else {}
-    if (length(.Object@guides) > 0) {
+    if (length(.Object@guides)) {
       ls <- rlist::list.append(ls, guides = .Object@guides)
     } else {}
-    if (length(.Object@legend) > 0) {
+    if (length(.Object@legend)) {
       ls <- rlist::list.append(ls, legend = .Object@legend)
     } else {}
-    if (length(.Object@segmentsField) > 0) {
+    if (length(.Object@segmentsField)) {
       ls <- rlist::list.append(ls, segmentsField = .Object@segmentsField)
     } else {}
-    if (length(.Object@subChartProperties) > 0) {
+    if (length(.Object@subChartProperties)) {
       ls <- rlist::list.append(ls, subChartProperties = .Object@subChartProperties)
     } else {}
-    if (length(.Object@theme) > 0) {
+    if (length(.Object@theme)) {
       ls <- rlist::list.append(ls, theme = .Object@theme)
     } else {}
-    if (length(.Object@titles) > 0) {
+    if (length(.Object@titles)) {
       ls <- rlist::list.append(ls, titles = .Object@titles)
     } else {}
-    if (length(.Object@trendLines) > 0) {
+    if (length(.Object@trendLines)) {
       ls <- rlist::list.append(ls, trendLines = .Object@trendLines)
     } else {}
-    if (length(.Object@type) > 0) {
+    if (length(.Object@type)) {
       ls <- rlist::list.append(ls, type = .Object@type)
     } else {}
-    if (length(.Object@valueAxes) > 0) {
+    if (length(.Object@valueAxes)) {
       ls <- rlist::list.append(ls, valueAxes = .Object@valueAxes)
     } else {}
-    if (length(.Object@valueAxis) > 0) {
+    if (length(.Object@valueAxis)) {
       ls <- rlist::list.append(ls, valueAxis = .Object@valueAxis)
     } else {}
     return(ls)

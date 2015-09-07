@@ -42,18 +42,23 @@ setClass(Class = "AmBalloon", contains = "AmObject",
 )
 
 #' @title Initialize an AmBalloon
-#' @param adjustBorderColor: Object of class \code{logical}.
+#' @param adjustBorderColor
+#' Object of class \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
-#' @param color: Object of class \code{character}.
+#' @param color
+#' Object of class \code{character}.
 #' Color of text in the balloon.
-#' @param cornerRadius: Object of class \code{numeric}.
+#' @param cornerRadius
+#' Object of class \code{numeric}.
 #' Balloon corner radius.
-#' @param fillColor: Object of class \code{character}.
+#' @param fillColor
+#' Object of class \code{character}.
 #' Balloon background color. Usually balloon background color is set by the chart.
 #' Only if "adjustBorderColor" is "true" this color will be used.
-#' @param ...: Other properties of AmBalloon.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}}.
+#' @param ...
+#' Other properties of AmBalloon.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.
 #' @return An object of class \code{\linkS4class{AmBalloon}}.
 #' @examples
 #' new("AmBalloon", cornerRadius = 10)
@@ -78,8 +83,7 @@ setMethod(f = "initialize", signature = "AmBalloon",
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # CONSTRUCTOR ####
 #' @title Constructor for an AmBalloon
@@ -95,7 +99,7 @@ setMethod(f = "initialize", signature = "AmBalloon",
 #' Balloon background color. Usually balloon background color is set by the chart.
 #' Only if "adjustBorderColor" is "true" this color will be used.
 #' @param ...: Properties of AmBalloon.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}}.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.
 #' 
 #' @return The updated \code{\linkS4class{AmBalloon}} object.
 #' @examples

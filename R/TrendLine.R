@@ -16,7 +16,7 @@ NULL
 #' Object of class \code{numeric}.
 #' Value from which trend line should start.
 #' 
-#' @slot initialValue
+#' @slot initialXValue
 #' Object of class \code{numeric}.
 #' Used by XY chart only. X value from which trend line should start.
 #' 
@@ -95,26 +95,31 @@ setMethod(f = "initialize", signature = "TrendLine",
 )
 
 # CONSTRUCTOR ####
-#' @title
-#' #’ Constructor.
 #' @title Constructor for an AmGraph
-#' @param \code{finalValue}: Object of class \code{numeric}.
+#' @param finalValue
+#' Object of class \code{numeric}.
 #' Value at which trend line should end.
-#' @param \code{finalXValue}: Object of class \code{numeric}.
+#' @param finalXValue
+#' Object of class \code{numeric}.
 #' Used by XY chart only. X value at which trend line should end.
-#' @param \code{initialValue}: Object of class \code{numeric}.
+#' @param initialValue
+#' Object of class \code{numeric}.
 #' Value from which trend line should start.
-#' @param \code{initialValue}: Object of class \code{numeric}.
+#' @param initialValue
+#' Object of class \code{numeric}.
 #' Used by XY chart only. X value from which trend line should start.
-#' @param \code{valueAxis}: Object of class \code{\linkS4class{ValueAxis}}.
+#' @param valueAxis
+#' Object of class \code{\linkS4class{ValueAxis}}.
 #' Value axis of the trend line. Will use first value axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
-#' @param \code{valueAxisX}: Object of class \code{\linkS4class{ValueAxis}}.
+#' @param valueAxisX
+#' Object of class \code{\linkS4class{ValueAxis}}.
 #' Used by XY chart only. X axis of trend line.
 #' Will use first X axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
-#' @param \code{...}: Properties of TrendLine.
-#' See \code{\url{http://docs.amcharts.com/3/javascriptcharts/TrendLine}}
+#' @param ...
+#' Properties of TrendLine.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/TrendLine}
 #' @return An \code{\linkS4class{TrendLine}} object
 #' @examples
 #' trendLine(initialValue = 1, finalValue = 11)
@@ -124,24 +129,24 @@ trendLine <- function(.Object,
                       finalValue, finalXValue,
                       valueAxis, valueAxisX, ...){
   .Object <- new("TrendLine")
-  if(!missing(initialValue)){
+  if (!missing(initialValue)) {
     .Object@initialValue <- initialValue
-  }
-  if(!missing(initialXValue)){
+  } else {}
+  if (!missing(initialXValue)) {
     .Object@initialXValue <- initialXValue
-  }
-  if(!missing(finalValue)){
+  } else {}
+  if (!missing(finalValue)) {
     .Object@finalValue <- finalValue
-  }
-  if(!missing(finalXValue)){
+  } else {}
+  if (!missing(finalXValue)) {
     .Object@finalXValue <- finalXValue
-  }
-  if(!missing(valueAxis)){
+  } else {}
+  if (!missing(valueAxis)) {
     .Object <- setValueAxis( .Object, valueAxis )
-  }
-  if(!missing(valueAxisX)){
+  } else {}
+  if (!missing(valueAxisX)){
     .Object <- setValueAxis( .Object, valueAxisX )
-  }
+  } else {}
   .Object <- setProperties(.Object, ...)
   validObject(.Object)
   return( .Object )
@@ -236,16 +241,17 @@ setMethod(
 #' @title SETTER
 #' @examples
 #' library(pipeR)
-#' trendLine() %>>% setValueAxis(valueAxis(title = "Hello !", axisTitleOffset = 12))
+#' setValueAxis(trendLine(), valueAxis(title = "Hello !", axisTitleOffset = 12))
+#' setValueAxis(trendLine(), title = "Hello !", axisTitleOffset = 12)
 #' @export
 setMethod(
   f = "setValueAxis",
   signature = c("TrendLine"),
   definition = function(.Object, valueAxis = NULL, ...)
   {
-    if( is.null(valueAxis) && !missing(...) ){
-      valueAxis <- valuesAxis(...)
-    }
+    if (is.null(valueAxis) && !missing(...)) {
+      valueAxis <- valueAxis(...)
+    } else {}
     .Object@valueAxis <- listProperties(valueAxis)
     validObject(.Object)
     return(.Object)
