@@ -8,9 +8,9 @@
 \S4method{setValueAxes}{AmChart,list}(.Object, valueAxes)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmChart}}.}
 
-\item{\code{valueAxes}:}{Object of class \code{list}.
+\item{valueAxes}{Object of class \code{list}.
 Each element must be of class \code{\linkS4class{ValueAxis}}.}
 }
 \value{
@@ -29,10 +29,6 @@ amChart(valueAxes = valueAxes)
 }
 }
 \seealso{
-\code{\linkS4class{AmChart}} S4 class
-
-\code{\linkS4class{ValueAxes}} S4 class
-
 Other AmChart methods: \code{\link{addArrow}};
   \code{\link{addAxe}}; \code{\link{addGraph}};
   \code{\link{addGuide}},

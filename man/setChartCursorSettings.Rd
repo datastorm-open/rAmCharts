@@ -26,7 +26,7 @@ amStockChart() \%>>\% setChartCursorSettings( oneBallOnly = TRUE )
 \seealso{
 \code{\linkS4class{AmChart}} S4 class
 
-\code{\linkS4class{ChartCursorSettings}} S4 class
+\code{\linkS4class{ChartCursor}} S4 class
 
 Other AmStockChart methods: \code{\link{addComparedDataSet}};
   \code{\link{addDataSet}}; \code{\link{addPanel}};

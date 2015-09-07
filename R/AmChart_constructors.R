@@ -52,7 +52,7 @@ NULL
 #' 
 #' @param guides
 #' Object of class \code{list}.  List of Guides properties.
-#' See \code{\linkS4class{Guides} class.
+#' See \code{\linkS4class{Guide} class.
 #' Instead of adding guides to the axes, you can push all of them to this array.
 #' In case guide has category or date defined, it will automatically will be assigned to the category axis.
 #' Otherwise to first value axis, unless you specify a different valueAxes for the guide.}
@@ -68,7 +68,7 @@ NULL
 #' 
 #' @param trendLines
 #' Object of class \code{"list"}.
-#' List of \code{\linkS4class{trendLine}} objects added to a chart.
+#' List of \code{\linkS4class{TrendLine}} objects added to a chart.
 #' You can add trend lines to a chart using this list or access already existing trend lines.
 #' 
 #' @param type

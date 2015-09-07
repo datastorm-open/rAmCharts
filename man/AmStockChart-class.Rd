@@ -107,7 +107,7 @@ containing other avalaible properties non coded in the package yet.}
 \item{\code{value}}{Object of class \code{numeric}.}
 
 \item{\code{categoryAxesSettings}}{Object of class \code{"list"}.
-List of a \code{\linkS4class{CategoryAxes}} properties.
+List of a \code{\linkS4class{CategoryAxis}} properties.
 CategoryAxesSettings settings set's settings common for all CategoryAxes of StockPanels.
 If you change a property after the chart is initialized,
 you should call stockChart.validateNow() method in order for it to work.

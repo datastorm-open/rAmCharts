@@ -125,7 +125,7 @@ NULL
 #' 
 #' @slot categoryAxesSettings
 #' Object of class \code{"list"}.
-#' List of a \code{\linkS4class{CategoryAxes}} properties.
+#' List of a \code{\linkS4class{CategoryAxis}} properties.
 #' CategoryAxesSettings settings set's settings common for all CategoryAxes of StockPanels.
 #' If you change a property after the chart is initialized,
 #' you should call stockChart.validateNow() method in order for it to work.
@@ -402,7 +402,7 @@ setGeneric(name = "setChartCursorSettings",
 #' @family AmStockChart setters
 #' @family AmStockChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{ChartCursorSettings}} S4 class
+#' @seealso \code{\linkS4class{ChartCursor}} S4 class
 #' @name setChartCursorSettings
 #' @rdname setChartCursorSettings
 #' @export

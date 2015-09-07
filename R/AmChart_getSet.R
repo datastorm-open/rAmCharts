@@ -938,9 +938,14 @@ setGeneric(name = "setValueAxes",
            def = function(.Object, valueAxes = NULL, ...){ standardGeneric("setValueAxes") } )
 #' @title Setter for ValueAxes
 #' @description Add a list of ValueAxes objects to an Amchart.
-#' @param \code{.Object}: Object of class \code{\linkS4class{AmChart}}.
-#' @param \code{valueAxes}: Object of class \code{list}.
+#' 
+#' @param .Object
+#' Object of class \code{\linkS4class{AmChart}}.
+#' 
+#' @param valueAxes
+#' Object of class \code{list}.
 #' Each element must be of class \code{\linkS4class{ValueAxis}}.
+#' 
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' library(pipeR)
@@ -952,8 +957,6 @@ setGeneric(name = "setValueAxes",
 #' }
 #' @family AmChart setters
 #' @family AmChart methods
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{ValueAxes}} S4 class
 #' @name setValueAxes
 #' @rdname setValueAxes
 #' @export
