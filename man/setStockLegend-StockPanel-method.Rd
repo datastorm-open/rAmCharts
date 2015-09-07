@@ -7,6 +7,14 @@
 \usage{
 \S4method{setStockLegend}{StockPanel}(.Object, stockLegend = NULL, ...)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
+
+\item{stockLegend}{}
+}
+\value{
+The updated \code{.Object}
+}
 \description{
 SETTER
 }

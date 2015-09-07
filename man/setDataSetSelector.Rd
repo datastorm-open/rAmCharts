@@ -8,9 +8,9 @@
 \S4method{setDataSetSelector}{AmStockChart}(.Object, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{...}:}{Property of datSetSelector}
+\item{...}{Property of datSetSelector}
 }
 \value{
 The updated object of class \code{\linkS4class{AmStockChart}}.

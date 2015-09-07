@@ -7,6 +7,15 @@
 \usage{
 \S4method{setBold}{Label,logical}(.Object, bold)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{Label}}}
+
+\item{bold}{Object of class \code{character}.
+Specifies if label is bold or not.}
+}
+\value{
+The updated .Object.
+}
 \description{
 SETTER
 }

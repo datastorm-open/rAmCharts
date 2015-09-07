@@ -8,9 +8,9 @@
 \S4method{setPanelsSettings}{AmStockChart}(.Object, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{...}:}{Properties of \code{PanelsSettings}.}
+\item{...}{Properties of \code{PanelsSettings}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmStockChart}}.

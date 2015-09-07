@@ -12,6 +12,7 @@ SETTER
 }
 \examples{
 library(pipeR)
-trendLine() \%>>\% setValueAxis(valueAxis(title = "Hello !", axisTitleOffset = 12))
+setValueAxis(trendLine(), valueAxis(title = "Hello !", axisTitleOffset = 12))
+setValueAxis(trendLine(), title = "Hello !", axisTitleOffset = 12)
 }
 

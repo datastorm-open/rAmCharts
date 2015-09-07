@@ -8,9 +8,9 @@
 \S4method{addPeriod}{PeriodSelector}(.Object, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{PeriodSelector}}.}
+\item{.Object}{Object of class \code{\linkS4class{PeriodSelector}}.}
 
-\item{\code{...}:}{Properties of period.}
+\item{...}{Properties of period.}
 }
 \value{
 The updated object of class \code{\linkS4class{PeriodSelector}}.
@@ -20,7 +20,7 @@ Add a period
 }
 \examples{
 library(pipeR)
-periodSelector() \%>>\% addPeriod(  period = "MM", selected = TRUE, count = 1, label= "1 month" )
+periodSelector() \%>>\% addPeriod(period = "MM", selected = TRUE, count = 1, label= "1 month")
 }
 \seealso{
 \code{\linkS4class{PeriodSelector}} S4 class

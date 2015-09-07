@@ -6,7 +6,22 @@
 \title{Initialize a ChartCursor}
 \usage{
 \S4method{initialize}{ChartCursor}(.Object, animationDuration = 0.3,
-  oneBalloonOnly, ...)
+  oneBalloonOnly, valueLineAxis, ...)
+}
+\arguments{
+\item{animationDuration}{Duration of animation of a line, in seconds.}
+
+\item{oneBalloonOnly}{Object of class \code{logical}.
+If this is set to TRUE, border color instead of background color will be changed when
+user rolls-over the slice, graph, etc.}
+
+\item{valueLineAxis}{Object of class \code{list}.
+Properties of Axis of value line. If you set valueLineBalloonEnabled to true,
+but you have more than one axis, you can use this property
+to indicate which axis should display balloon.}
+
+\item{...}{Properties of ChartCursor.
+See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}}
 }
 \description{
 Initialize a ChartCursor

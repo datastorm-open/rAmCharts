@@ -4,21 +4,21 @@
 \name{guide}
 \alias{guide}
 \alias{setFillAlpha,Guide,numeric-method}
-\title{Constructor.}
+\title{Constructor for a Guide}
 \usage{
 guide(fillAlpha, valueAxis, value, ...)
 
 \S4method{setFillAlpha}{Guide,numeric}(.Object, fillAlpha)
 }
 \arguments{
-\item{\code{...}:}{{Properties of Guide.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/Guide}}}}
+\item{...}{Properties of Guide.
+See \url{http://docs.amcharts.com/3/javascriptcharts/Guide}}
 }
 \value{
 An \code{\linkS4class{Guide}} object
 }
 \description{
-Constructor.
+Constructor for a Guide
 
 SETTER
 }

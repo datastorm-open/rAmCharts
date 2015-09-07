@@ -12,9 +12,9 @@
   keepNA = TRUE)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{DataSet}}.}
 
-\item{\code{dataProvider}:}{Object of class \code{data.frame}.}
+\item{dataProvider}{Object of class \code{data.frame}.}
 
 \item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
 
@@ -23,7 +23,7 @@
 \value{
 The updated object of class \code{\linkS4class{AmChart}}.
 
-The updated object of class \code{\linkS4class{AmChart}}.
+The updated .Object
 }
 \description{
 Setter for dataProvider

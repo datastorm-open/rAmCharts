@@ -7,7 +7,7 @@
 \description{
 AmStockChart
 }
-\section{Slots}{
+\section{Fields}{
 
 \describe{
 \item{\code{allLabels}}{Object of class \code{"list"}. List of Labels properties.
@@ -150,6 +150,8 @@ Period selector object.
 You can add it if you want user's to be able to enter
 date ranges or zoom chart with predefined period buttons.}
 
+\item{\code{scrollbarChart}}{Read-only. Scrollbar's chart object.}
+
 \item{\code{stockEventsSettings}}{Object of class \code{"list"}. Settings for stock events.}
 
 \item{\code{valueAxesSettings}}{Object of class \code{"list"}. Settings for value axes.}
@@ -158,6 +160,6 @@ date ranges or zoom chart with predefined period buttons.}
 Dataknowledge
 }
 \seealso{
-\code{\url{http://docs.amcharts.com/3/javascriptstockchart/AmStockChart}}
+\url{http://docs.amcharts.com/3/javascriptstockchart/AmStockChart}
 }
 

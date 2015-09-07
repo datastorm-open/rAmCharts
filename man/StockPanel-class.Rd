@@ -7,7 +7,7 @@
 \description{
 StockPanel class
 }
-\section{Slots}{
+\section{Fields}{
 
 \describe{
 \item{\code{drawOnAxis}}{Object of class \code{list}. Containing properties of ValueAxis.

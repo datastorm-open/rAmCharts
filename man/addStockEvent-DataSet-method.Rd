@@ -7,6 +7,14 @@
 \usage{
 \S4method{addStockEvent}{DataSet}(.Object, stockEvent = NULL, ...)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{DataSet}}.}
+
+\item{stockEvent}{(optional) Object of class \code{\linkS4class{StockEvent}}}
+
+\item{...}{Properties of \code{\linkS4class{StockEvent}}
+See \url{http://docs.amcharts.com/3/javascriptstockchart/StockEvent}}
+}
 \description{
 Add stockEvent
 }

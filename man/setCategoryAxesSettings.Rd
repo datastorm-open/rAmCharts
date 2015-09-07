@@ -9,9 +9,11 @@
   categoryAxesSettings = NULL, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
+\item{categoryAxesSettings}{Object of class \code{\linkS4class{CategoryAxis}}.}
 
-\item{\code{categoryAxesSettings}:}{Object of class \code{\linkS4class{CategoryAxis}}.}
+\item{...}{Properties of the \code{\linkS4class{DataSet}} to add.}
+
+\item{.Object}{Object of class \code{\linkS4class{AmChart}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmChart}}.

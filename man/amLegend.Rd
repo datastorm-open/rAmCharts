@@ -2,23 +2,23 @@
 % Please edit documentation in R/AmLegend.R
 \name{amLegend}
 \alias{amLegend}
-\title{Constructor for AmLegend.}
+\title{Constructor for an AmLegend}
 \usage{
 amLegend(useGraphSettings, ...)
 }
 \arguments{
-\item{\code{useGraphSettings}:}{Legend markers can mirror graph’s settings,
+\item{useGraphSettings}{Legend markers can mirror graph's settings,
 displaying a line and a real bullet as in the graph itself.
 Set this property to true if you want to enable this feature.}
 
-\item{\code{...}:}{{Properties of AmLegend.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/AmLegend}}}}
+\item{...}{Properties of AmLegend.
+See \url{http://docs.amcharts.com/3/javascriptcharts/AmLegend}}
 }
 \value{
 An \code{\linkS4class{AmLegend}} object
 }
 \description{
-Constructor for AmLegend.
+Constructor for an AmLegend
 }
 \examples{
 amLegend(useGraphSettings = TRUE)

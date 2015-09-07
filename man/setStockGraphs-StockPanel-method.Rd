@@ -7,6 +7,14 @@
 \usage{
 \S4method{setStockGraphs}{StockPanel}(.Object, stockGraphs)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
+
+\item{stockGraphs}{}
+}
+\value{
+The updated \code{.Object}
+}
 \description{
 SETTER
 }

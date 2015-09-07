@@ -2,19 +2,19 @@
 % Please edit documentation in R/CategoryAxis.R
 \name{categoryAxis}
 \alias{categoryAxis}
-\title{#’ Constructor.}
+\title{Constructor for an AmGraph}
 \usage{
 categoryAxis(gridPosition, ...)
 }
 \arguments{
-\item{\code{...}:}{{Properties of CategoryAxis.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/CategoryAxis}}}}
+\item{...}{Properties of CategoryAxis.
+See \url{http://docs.amcharts.com/3/javascriptcharts/CategoryAxis}}
 }
 \value{
 An \code{\linkS4class{CategoryAxis}} object
 }
 \description{
-#’ Constructor.
+Constructor for an AmGraph
 }
 \examples{
 new("CategoryAxis", gridPosition = "start")

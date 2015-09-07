@@ -2,19 +2,27 @@
 % Please edit documentation in R/PeriodSelector.R
 \name{periodSelector}
 \alias{periodSelector}
-\title{Constructor.}
+\title{Constructor for a PeriodSelector}
 \usage{
 periodSelector(periods, ...)
 }
 \arguments{
-\item{\code{...}:}{{Properties of PeriodSelector.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/PeriodSelector}}}}
+\item{periods}{Object of clas \code{list}.
+Period object has 4 properties - period, count, label and selected.
+Possible period values are:
+"ss" - seconds, "mm" - minutes, "hh" - hours, "DD" - days, "MM" - months and "YYYY" - years.
+property "count" specifies how many periods this button will select.
+"label" will be displayed on a button and "selected" is a boolean
+which specifies if this button is selected when chart is initialized or not.}
+
+\item{...}{Properties of PeriodSelector.
+See \url{http://docs.amcharts.com/3/javascriptcharts/PeriodSelector}}
 }
 \value{
 An \code{\linkS4class{PeriodSelector}} object
 }
 \description{
-Constructor.
+Constructor for a PeriodSelector
 }
 \examples{
 periodSelector(fillAlpha = .4, value = 1)

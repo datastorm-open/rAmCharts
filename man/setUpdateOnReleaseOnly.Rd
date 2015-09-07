@@ -8,6 +8,13 @@
 \S4method{setUpdateOnReleaseOnly}{ChartScrollbar,logical}(.Object,
   updateOnReleaseOnly)
 }
+\arguments{
+\item{.Object}{}
+
+\item{updateOnReleaseOnly}{Object of class \code{logical}.
+Specifies if the chart should be updated while dragging/resizing the scrollbar
+or only at the moment when user releases mouse button.}
+}
 \description{
 SETTER
 }

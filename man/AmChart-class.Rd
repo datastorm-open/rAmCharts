@@ -10,7 +10,7 @@ This class allow to define the amCharts parameters
 \details{
 API for plotting AmChart with R
 }
-\section{Slots}{
+\section{Fields}{
 
 \describe{
 \item{\code{allLabels}}{Object of class \code{"list"}. List of Labels properties.
@@ -121,7 +121,7 @@ showMethods(class="AmChart")
 Dataknowledge
 }
 \seealso{
-\code{\url{http://docs.amcharts.com/3/javascriptcharts}}
+\url{http://docs.amcharts.com/3/javascriptcharts}
 
 Other rAmChart classes: \code{\link{AmBalloon-class}};
   \code{\link{AmGraph-class}}; \code{\link{AmObject-class}}

@@ -8,12 +8,12 @@ stockLegend(useGraphSettings, valueTextComparing = "[[percents.value]]\%",
   ...)
 }
 \arguments{
-\item{\code{useGraphSettings}:}{Legend markers can mirror graph’s settings,
+\item{useGraphSettings}{Legend markers can mirror graph's settings,
 displaying a line and a real bullet as in the graph itself.
 Set this property to true if you want to enable this feature.}
 
-\item{\code{...}:}{Properties of AmLegend.
-See \code{\url{http://docs.amcharts.com/3/javascriptstockchart/StockLegend}}}
+\item{...}{Properties of AmLegend.
+See \url{http://docs.amcharts.com/3/javascriptstockchart/StockLegend}}
 }
 \value{
 An \code{\linkS4class{AmLegend}} object
@@ -22,6 +22,6 @@ An \code{\linkS4class{AmLegend}} object
 Constructor for StockLegend.
 }
 \examples{
-stockLegend( useGraphSettings = TRUE )
+stockLegend(useGraphSettings = TRUE)
 }
 

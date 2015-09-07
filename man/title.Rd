@@ -2,19 +2,19 @@
 % Please edit documentation in R/Title.R
 \name{title}
 \alias{title}
-\title{#’ Constructor.}
+\title{Constructor for an AmGraph}
 \usage{
 title(text, size, ...)
 }
 \arguments{
-\item{\code{...}:}{{Properties of Title.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/Title}}}}
+\item{...}{Properties of Title.
+See \url{http://docs.amcharts.com/3/javascriptcharts/Title}}
 }
 \value{
 An \code{\linkS4class{Title}} object
 }
 \description{
-#’ Constructor.
+Constructor for an AmGraph
 }
 \examples{
 new("Title", text = "bonjour")

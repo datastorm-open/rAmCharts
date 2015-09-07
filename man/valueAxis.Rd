@@ -2,19 +2,21 @@
 % Please edit documentation in R/ValueAxis.R
 \name{valueAxis}
 \alias{valueAxis}
-\title{#’ Constructor.}
+\title{Constructor for an AmGraph}
 \usage{
 valueAxis(title, ...)
 }
 \arguments{
-\item{\code{...}:}{{Properties of ValueAxis.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/ValueAxis}}}}
+\item{title}{Object of class \code{character}. Title of the axis.}
+
+\item{...}{Properties of ValueAxis.
+See \url{http://docs.amcharts.com/3/javascriptcharts/ValueAxis}}
 }
 \value{
 An \code{\linkS4class{ValueAxis}} object
 }
 \description{
-#’ Constructor.
+Constructor for an AmGraph
 }
 \examples{
 valueAxis(title = "Hello !", axisTitleOffset = 12)

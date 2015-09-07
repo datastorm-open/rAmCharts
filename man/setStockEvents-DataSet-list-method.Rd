@@ -7,6 +7,14 @@
 \usage{
 \S4method{setStockEvents}{DataSet,list}(.Object, stockEvents)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{DataSet}}.}
+
+\item{stockEvents}{Object of class \code{list} containing \code{\linkS4class{StockEvent}}}
+}
+\value{
+The updated .Object
+}
 \description{
 SETTER
 }

@@ -7,7 +7,15 @@
 \usage{
 \S4method{listProperties}{Label}(.Object)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{Label}}.}
+
+\item{y}{Object of class \code{numeric}.
+Y position of a label.}
+}
 \value{
+The updated .Object.
+
 Properties of the object in a list
 }
 \description{

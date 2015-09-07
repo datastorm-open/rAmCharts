@@ -7,8 +7,8 @@
 gaugeBand(alpha = 1, id, ...)
 }
 \arguments{
-\item{\code{...}:}{{Properties of GaugeBand.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/GaugeBand}}}}
+\item{...}{Properties of GaugeBand.
+See \url{http://docs.amcharts.com/3/javascriptcharts/GaugeBand}}
 }
 \value{
 An \code{\linkS4class{GaugeBand}} object

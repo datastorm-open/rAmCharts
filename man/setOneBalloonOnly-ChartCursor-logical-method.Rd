@@ -7,6 +7,16 @@
 \usage{
 \S4method{setOneBalloonOnly}{ChartCursor,logical}(.Object, oneBalloonOnly)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{ChartCursor}}}
+
+\item{oneBalloonOnly}{Object of class \code{logical}.
+If this is set to TRUE, border color instead of background color will be changed when
+user rolls-over the slice, graph, etc.}
+}
+\value{
+Updated .Object
+}
 \description{
 SETTER
 }

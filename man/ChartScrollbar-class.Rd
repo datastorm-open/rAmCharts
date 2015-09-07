@@ -14,8 +14,9 @@ ChartScrollbar class
 Specifies if the chart should be updated while dragging/resizing the scrollbar
 or only at the moment when user releases mouse button.}
 
-\item{\code{graph}}{Object of class \code{AmGraph}.
-Specifies which graph will be displayed in the scrollbar.}
+\item{\code{graph}}{Object of class \code{list}.
+Specifies which graph properties will be displayed in the scrollbar.
+Only Serial chart's scrollbar can display a graph.}
 
 \item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.

@@ -7,6 +7,9 @@
 \usage{
 \S4method{listProperties}{AmStockChart}(.Object)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
+}
 \description{
 This method lists attributes of an AmChart to fit the API
 }

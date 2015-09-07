@@ -22,7 +22,7 @@ Balloon background color. Usually balloon background color is set by the chart.
 Only if "adjustBorderColor" is "true" this color will be used.}
 
 \item{...:}{Properties of AmBalloon.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}}.}
+See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.}
 }
 \value{
 The updated \code{\linkS4class{AmBalloon}} object.

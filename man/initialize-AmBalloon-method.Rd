@@ -9,22 +9,22 @@
   cornerRadius, fillColor, ...)
 }
 \arguments{
-\item{adjustBorderColor:}{Object of class \code{logical}.
+\item{adjustBorderColor}{Object of class \code{logical}.
 If this is set to TRUE, border color instead of background color will be changed when
 user rolls-over the slice, graph, etc.}
 
-\item{color:}{Object of class \code{character}.
+\item{color}{Object of class \code{character}.
 Color of text in the balloon.}
 
-\item{cornerRadius:}{Object of class \code{numeric}.
+\item{cornerRadius}{Object of class \code{numeric}.
 Balloon corner radius.}
 
-\item{fillColor:}{Object of class \code{character}.
+\item{fillColor}{Object of class \code{character}.
 Balloon background color. Usually balloon background color is set by the chart.
 Only if "adjustBorderColor" is "true" this color will be used.}
 
-\item{...:}{Other properties of AmBalloon.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}}.}
+\item{...}{Other properties of AmBalloon.
+See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.}
 }
 \value{
 An object of class \code{\linkS4class{AmBalloon}}.

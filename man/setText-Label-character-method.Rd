@@ -7,6 +7,15 @@
 \usage{
 \S4method{setText}{Label,character}(.Object, text)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{Label}}}
+
+\item{text}{Object of class \code{character}.
+Text of a title.}
+}
+\value{
+The updated .Object
+}
 \description{
 SETTER
 }

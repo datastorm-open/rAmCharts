@@ -7,6 +7,13 @@
 \usage{
 \S4method{setUseGraphSettings}{AmLegend,logical}(.Object, useGraphSettings)
 }
+\arguments{
+\item{.Object}{}
+
+\item{useGraphSettings}{Object of class \code{logical}.
+If this is set to TRUE, border color instead of background color will be changed when
+user rolls-over the slice, graph, etc.}
+}
 \description{
 SETTER
 }

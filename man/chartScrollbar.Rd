@@ -2,20 +2,29 @@
 % Please edit documentation in R/ChartScrollbar.R
 \name{chartScrollbar}
 \alias{chartScrollbar}
-\title{#’ Constructor.}
+\title{Constructor for an AmGraph}
 \usage{
-chartScrollbar(graph, updateOnReleaseOnly,
-  pathToImages = "http://www.amcharts.com/lib/3/images/", ...)
+chartScrollbar(graph, pathToImages = "http://www.amcharts.com/lib/3/images/",
+  updateOnReleaseOnly, ...)
 }
 \arguments{
-\item{\code{...}:}{{Properties of ChartScrollbar.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/ChartScrollbar}}}}
+\item{graph}{Object of class \code{AmGraph}.
+Specifies which graph will be displayed in the scrollbar.}
+
+\item{pathToImages}{}
+
+\item{updateOnReleaseOnly}{Object of class \code{logical}.
+Specifies if the chart should be updated while dragging/resizing the scrollbar
+or only at the moment when user releases mouse button.}
+
+\item{...}{Properties of ChartScrollbar
+See \url{http://docs.amcharts.com/3/javascriptcharts/ChartScrollbar}}
 }
 \value{
 An \code{\linkS4class{ChartScrollbar}} object
 }
 \description{
-#’ Constructor.
+Constructor for an AmGraph
 }
 \examples{
 chartScrollbar()

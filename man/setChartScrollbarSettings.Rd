@@ -9,9 +9,11 @@
   chartScrollbarSettings = NULL, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmChart}}.}
 
-\item{\code{chartScrollbarSettings}:}{Object of class \code{\linkS4class{ChartScrollbar}}.}
+\item{chartScrollbarSettings}{(optional) Object of class \code{\linkS4class{ChartScrollbar}}.}
+
+\item{...}{Properties of the \code{\linkS4class{DataSet}} to add.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmChart}}.

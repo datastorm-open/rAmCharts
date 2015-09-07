@@ -8,9 +8,9 @@
 \S4method{setDataSets}{AmStockChart}(.Object, dataSets)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{dataSets}:}{Object of class \code{\linkS4class{list}}.
+\item{dataSets}{Object of class \code{\linkS4class{list}}.
 Each element of this list must be a dataSet}
 }
 \value{

@@ -7,6 +7,9 @@
 \usage{
 \S4method{listProperties}{ValueAxis}(.Object)
 }
+\arguments{
+\item{.Object}{}
+}
 \value{
 Properties of the object in a list
 }

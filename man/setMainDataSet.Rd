@@ -8,12 +8,12 @@
 \S4method{setMainDataSet}{AmStockChart}(.Object, dataSet = NULL, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{dataSet}:}{(optionnal) Object of class \code{\linkS4class{DataSet}}.
+\item{dataSet}{(optionnal) Object of class \code{\linkS4class{DataSet}}.
 Data set selected as main.}
 
-\item{\code{...}:}{Properties of the \code{\linkS4class{DataSet}} to add.}
+\item{...}{Properties of the \code{\linkS4class{DataSet}} to add.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmStockChart}}.

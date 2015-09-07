@@ -7,6 +7,9 @@
 \usage{
 \S4method{listProperties}{DataSet}(.Object)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{DataSet}}.}
+}
 \value{
 Properties of the object in a list
 }

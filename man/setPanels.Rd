@@ -8,9 +8,9 @@
 \S4method{setPanels}{AmStockChart,list}(.Object, panels)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{panels}:}{Object of class \code{\linkS4class{list}}.
+\item{panels}{Object of class \code{\linkS4class{list}}.
 Each element of this list must be a stockPanel}
 }
 \value{

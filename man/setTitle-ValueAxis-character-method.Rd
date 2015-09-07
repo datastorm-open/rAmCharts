@@ -7,6 +7,11 @@
 \usage{
 \S4method{setTitle}{ValueAxis,character}(.Object, title)
 }
+\arguments{
+\item{.Object}{}
+
+\item{title}{Object of class \code{character}. Title of the axis.}
+}
 \description{
 SETTER
 }

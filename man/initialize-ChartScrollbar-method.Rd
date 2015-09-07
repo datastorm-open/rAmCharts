@@ -9,6 +9,19 @@
   pathToImages = "http://www.amcharts.com/lib/3/images/", updateOnReleaseOnly,
   ...)
 }
+\arguments{
+\item{graph}{Object of class \code{AmGraph}.
+Specifies which graph will be displayed in the scrollbar.}
+
+\item{pathToImages}{}
+
+\item{updateOnReleaseOnly}{Object of class \code{logical}.
+Specifies if the chart should be updated while dragging/resizing the scrollbar
+or only at the moment when user releases mouse button.}
+
+\item{...}{Properties of ChartScrollbar
+See \url{http://docs.amcharts.com/3/javascriptcharts/ChartScrollbar}}
+}
 \description{
 Initialize a ChartScrollbar
 }

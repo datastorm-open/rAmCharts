@@ -8,9 +8,9 @@
 \S4method{setStockEventsSettings}{AmStockChart}(.Object, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{...}:}{Properties of \code{StockEventsSettings}.}
+\item{...}{Properties of \code{StockEventsSettings}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmStockChart}}.

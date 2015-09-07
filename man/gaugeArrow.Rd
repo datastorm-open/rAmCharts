@@ -2,19 +2,19 @@
 % Please edit documentation in R/GaugeArrow.R
 \name{gaugeArrow}
 \alias{gaugeArrow}
-\title{Constructor.}
+\title{Constructor for a GaugeArrow}
 \usage{
 gaugeArrow(fillAlpha, alpha = 1, axis, ...)
 }
 \arguments{
-\item{\code{...}:}{{Properties of GaugeArrow.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/GaugeArrow}}}}
+\item{...}{Properties of GaugeArrow.
+See \url{http://docs.amcharts.com/3/javascriptcharts/GaugeArrow}}
 }
 \value{
 An \code{\linkS4class{GaugeArrow}} object
 }
 \description{
-Constructor.
+Constructor for a GaugeArrow
 }
 \examples{
 gaugeArrow()

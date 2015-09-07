@@ -2,41 +2,41 @@
 % Please edit documentation in R/TrendLine.R
 \name{trendLine}
 \alias{trendLine}
-\title{#’ Constructor.}
+\title{Constructor for an AmGraph}
 \usage{
 trendLine(.Object, initialValue, initialXValue, finalValue, finalXValue,
   valueAxis, valueAxisX, ...)
 }
 \arguments{
-\item{\code{finalValue}:}{Object of class \code{numeric}.
-Value at which trend line should end.}
-
-\item{\code{finalXValue}:}{Object of class \code{numeric}.
-Used by XY chart only. X value at which trend line should end.}
-
-\item{\code{initialValue}:}{Object of class \code{numeric}.
+\item{initialValue}{Object of class \code{numeric}.
 Value from which trend line should start.}
 
-\item{\code{initialValue}:}{Object of class \code{numeric}.
-Used by XY chart only. X value from which trend line should start.}
+\item{finalValue}{Object of class \code{numeric}.
+Value at which trend line should end.}
 
-\item{\code{valueAxis}:}{Object of class \code{\linkS4class{ValueAxis}}.
+\item{finalXValue}{Object of class \code{numeric}.
+Used by XY chart only. X value at which trend line should end.}
+
+\item{valueAxis}{Object of class \code{\linkS4class{ValueAxis}}.
 Value axis of the trend line. Will use first value axis of the chart if not set any.
 You can use a reference to the value axis object or id of value axis.}
 
-\item{\code{valueAxisX}:}{Object of class \code{\linkS4class{ValueAxis}}.
+\item{valueAxisX}{Object of class \code{\linkS4class{ValueAxis}}.
 Used by XY chart only. X axis of trend line.
 Will use first X axis of the chart if not set any.
 You can use a reference to the value axis object or id of value axis.}
 
-\item{\code{...}:}{Properties of TrendLine.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/TrendLine}}}
+\item{...}{Properties of TrendLine.
+See \url{http://docs.amcharts.com/3/javascriptcharts/TrendLine}}
+
+\item{initialValue}{Object of class \code{numeric}.
+Used by XY chart only. X value from which trend line should start.}
 }
 \value{
 An \code{\linkS4class{TrendLine}} object
 }
 \description{
-#’ Constructor.
+Constructor for an AmGraph
 }
 \examples{
 trendLine(initialValue = 1, finalValue = 11)

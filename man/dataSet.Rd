@@ -2,19 +2,33 @@
 % Please edit documentation in R/DataSet.R
 \name{dataSet}
 \alias{dataSet}
-\title{#’ Constructor.}
+\title{Constructor for an DataSet}
 \usage{
 dataSet(compared = FALSE, dataProvider, fieldMappings, stockEvents, ...)
 }
 \arguments{
-\item{\code{...}:}{Properties of DataSet.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/DataSet}}}
+\item{dataProvider}{Object of class \code{data.frame}. The data set data.
+Important: the data sets need to come pre-ordered in ascending order.
+Data with incorrect order might result in visual and functional glitches on the chart.}
+
+\item{fieldMappings}{Object of class \code{list}.
+Array of field mappings.
+Field mapping is an object with fromField and toField properties.
+fromField is a name of your value field in dataProvider.
+toField might be chosen freely,
+it will be used to set value/open/close/high/low fields for the StockGraph.}
+
+\item{stockEvents}{Object of class \code{StockEvent}.
+Containing properties of stockEvents.}
+
+\item{...}{Properties of DataSet.
+See \url{http://docs.amcharts.com/3/javascriptcharts/DataSet}}
 }
 \value{
 An \code{\linkS4class{DataSet}} object
 }
 \description{
-#’ Constructor.
+Constructor for an DataSet
 }
 \examples{
 dataSet( categoryField = "categoryField" )

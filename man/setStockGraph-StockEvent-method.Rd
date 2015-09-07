@@ -7,11 +7,20 @@
 \usage{
 \S4method{setStockGraph}{StockEvent}(.Object, stockGraph = NULL, ...)
 }
+\arguments{
+\item{stockGraph}{Object of class \code{list}.
+Containing properties of stockGraph.
+This is the graph on which event will be displayed.
+You can use a reference to the stock graph object or id of the graph.}
+
+\item{...}{}
+}
 \description{
 SETTER
 }
 \examples{
 library(pipeR)
-stockEvent() \%>>\% setStockGraph()
+stockEvent() \%>>\% setStockGraph(stockGraph = stockGraph(balloonText = "balloonText"))
+stockEvent() \%>>\% setStockGraph(stockGraph = "stockGraph1")
 }
 

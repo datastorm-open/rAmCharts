@@ -7,20 +7,20 @@
 stockGraph(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 }
 \arguments{
-\item{\code{balloonText}:}{{Object of class \code{character}.
+\item{balloonText}{Object of class \code{character}.
 Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
-or any other field name from your data provider. HTML tags can also be used.}}
+or any other field name from your data provider. HTML tags can also be used.}
 
-\item{\code{title}:}{{Object of class \code{character}. Graph title.}}
+\item{title}{Object of class \code{character}. Graph title.}
 
-\item{\code{type}:}{{Object of class \code{character}.
+\item{type}{Object of class \code{character}.
 Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
-XY and Radar charts can only display "line" otherArguments graphs.}}
+XY and Radar charts can only display "line" otherArguments graphs.}
 
-\item{\code{valueField}:}{{Object of class \code{character}.
-Name of the value field in your dataProvider.}}
+\item{valueField}{Object of class \code{character}.
+Name of the value field in your dataProvider.}
 
-\item{\code{...}:}{See \code{\url{http://docs.amcharts.com/3/javascriptstockchart/StockGraph}}}
+\item{...}{\url{http://docs.amcharts.com/3/javascriptstockchart/StockGraph}}
 }
 \value{
 An \code{\linkS4class{AmGraph}} object

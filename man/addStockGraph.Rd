@@ -8,14 +8,16 @@
 \S4method{addStockGraph}{StockPanel}(.Object, stockGraph = NULL, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{stockGraph}:}{(optionnal) Object of class \code{\linkS4class{AmGraph}}.
+\item{stockGraph}{(optionnal) Object of class \code{\linkS4class{AmGraph}}.
 Use stockGraph(*) constructor}
 
-\item{\code{...}:}{Properties of the \code{\linkS4class{AmGraph}} to add.}
+\item{...}{Properties of the \code{\linkS4class{AmGraph}} to add.}
 }
 \value{
+The updated \code{.Object}
+
 The updated object of class \code{\linkS4class{AmStockChart}}.
 }
 \description{

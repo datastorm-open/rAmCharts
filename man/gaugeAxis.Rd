@@ -2,19 +2,19 @@
 % Please edit documentation in R/GaugeAxis.R
 \name{gaugeAxis}
 \alias{gaugeAxis}
-\title{Constructor.}
+\title{Constructor for a GaugeAxis}
 \usage{
 gaugeAxis(fillAlpha, axisAlpha = 1, bands, ...)
 }
 \arguments{
-\item{\code{...}:}{{Properties of GaugeAxis.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/GaugeAxis}}}}
+\item{...}{Properties of GaugeAxis.
+See \url{http://docs.amcharts.com/3/javascriptcharts/GaugeAxis}}
 }
 \value{
 An \code{\linkS4class{GaugeAxis}} object
 }
 \description{
-Constructor.
+Constructor for a GaugeAxis
 }
 \examples{
 gaugeAxis()

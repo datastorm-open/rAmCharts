@@ -7,6 +7,15 @@
 \usage{
 \S4method{setX}{Label,numeric}(.Object, x)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{Label}}}
+
+\item{x}{Object of class \code{numeric}.
+X position of a label.}
+}
+\value{
+The updated .Object.
+}
 \description{
 SETTER
 }

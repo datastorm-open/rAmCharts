@@ -9,9 +9,11 @@
   chartCursorSettings = NULL, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmChart}}.}
 
-\item{\code{chartCursorSettings}:}{Object of class \code{\linkS4class{ChartCursor}}.}
+\item{chartCursorSettings}{(optional) Object of class \code{\linkS4class{ChartCursor}}.}
+
+\item{...}{Properties of the \code{\linkS4class{DataSet}} to add.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmChart}}.

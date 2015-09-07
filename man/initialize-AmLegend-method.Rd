@@ -5,7 +5,14 @@
 \alias{initialize,AmLegend-method}
 \title{Initialize}
 \usage{
-\S4method{initialize}{AmLegend}(.Object, useGraphSettings, listeners, ...)
+\S4method{initialize}{AmLegend}(.Object, useGraphSettings, ...)
+}
+\arguments{
+\item{.Object}{}
+
+\item{useGraphSettings}{Object of class \code{logical}.
+If this is set to TRUE, border color instead of background color will be changed when
+user rolls-over the slice, graph, etc.}
 }
 \description{
 Initialize

@@ -7,11 +7,24 @@
 \usage{
 \S4method{setDrawOnAxis}{StockPanel}(.Object, valueAxis = NULL, ...)
 }
+\arguments{
+\item{.Object}{}
+
+\item{drawOnAxis}{Object of class \code{ValueAxis}.
+Specifies on which value axis user can draw trend lines.
+Set drawingIconsEnabled to true if you want drawing icons to be visible.
+First value axis will be used if not set here.
+You can use a reference to the value axis object or id of value axis.}
+}
+\value{
+The updated \code{.Object}
+}
 \description{
 SETTER
 }
 \examples{
 library(pipeR)
-stockPanel() \%>>\% setDrawOnAxis( valueAxis() )
+stockPanel() \%>>\% setDrawOnAxis(valueAxis = valueAxis())
+stockPanel() \%>>\% setDrawOnAxis(valueAxis = "valueAxis1")
 }
 

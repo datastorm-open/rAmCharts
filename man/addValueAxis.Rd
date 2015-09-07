@@ -8,9 +8,9 @@
 \S4method{addValueAxis}{Guide}(.Object, valueAxis = NULL, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{Guide}}.}
+\item{.Object}{Object of class \code{\linkS4class{Guide}}.}
 
-\item{\code{valueAxis}:}{Object of class \code{\linkS4class{ValueAxis}}.}
+\item{valueAxis}{Object of class \code{\linkS4class{ValueAxis}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{Guide}}.

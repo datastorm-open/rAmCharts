@@ -8,12 +8,12 @@
 \S4method{addPanel}{AmStockChart}(.Object, panel = NULL, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{panel}:}{(optionnal) Object of class \code{\linkS4class{StockPanel}}.
+\item{panel}{(optionnal) Object of class \code{\linkS4class{StockPanel}}.
 Each element of this list must be a dataSet}
 
-\item{\code{...}:}{Properties of the \code{\linkS4class{StockPanel}} to add.}
+\item{...}{Properties of the \code{\linkS4class{StockPanel}} to add.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmStockChart}}.

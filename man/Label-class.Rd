@@ -10,11 +10,17 @@ Label class
 \section{Slots}{
 
 \describe{
+\item{\code{bold}}{Object of class \code{character}.
+Specifies if label is bold or not.}
+
 \item{\code{text}}{Object of class \code{character}.
 Text of a title.}
 
 \item{\code{x}}{Object of class \code{numeric}.
-Text x of a title.}
+X position of a label.}
+
+\item{\code{y}}{Object of class \code{numeric}.
+Y position of a label.}
 
 \item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.

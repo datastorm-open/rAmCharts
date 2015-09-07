@@ -9,9 +9,9 @@
   valueAxesSettings = NULL, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{...}:}{Properties of \code{ValueAxesSettings}.}
+\item{...}{Named properties of \code{ValueAxesSettings}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmStockChart}}.

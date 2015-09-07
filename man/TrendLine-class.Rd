@@ -19,7 +19,7 @@ Used by XY chart only. X value at which trend line should end.}
 \item{\code{initialValue}}{Object of class \code{numeric}.
 Value from which trend line should start.}
 
-\item{\code{initialValue}}{Object of class \code{numeric}.
+\item{\code{initialXValue}}{Object of class \code{numeric}.
 Used by XY chart only. X value from which trend line should start.}
 
 \item{\code{valueAxis}}{Object of class \code{\linkS4class{ValueAxis}}.

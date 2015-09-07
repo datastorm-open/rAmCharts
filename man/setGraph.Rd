@@ -10,13 +10,16 @@
 \S4method{setGraph}{ChartScrollbar}(.Object, graph = NULL, ...)
 }
 \arguments{
+\item{.Object}{Object of class \code{\linkS4class{AmChart}}.}
+
+\item{graph}{(optionnal) Object of class \code{\linkS4class{AmGraph}}.}
+
+\item{...}{Properties of AmGraph
+See \url{http://docs.amcharts.com/3/javascriptcharts/AmGraph}}
+
 \item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}} and type \code{gantt}.}
 
 \item{\code{graph}:}{Object of class \code{\linkS4class{AmGraph}}.}
-
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmChart}}.}
-
-\item{\code{graph}:}{(optionnal) Object of class \code{\linkS4class{AmGraph}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmChart}}.

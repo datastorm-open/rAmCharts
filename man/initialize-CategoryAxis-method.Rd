@@ -8,9 +8,9 @@
 \S4method{initialize}{CategoryAxis}(.Object, gridPosition, guides, ...)
 }
 \arguments{
-\item{\code{gridPosition}:}{{Object of class \code{character}.}}
+\item{gridPosition}{Object of class \code{character}.}
 
-\item{\code{guides}:}{{Object of class \code{list}. List of guides.}}
+\item{guides}{Object of class \code{list}. List of guides.}
 }
 \description{
 Initialize a CategoryAxis

@@ -8,10 +8,12 @@
 \S4method{setComparedDataSets}{AmStockChart}(.Object, comparedDataSets)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{comparedDataSets}:}{Object of class \code{\linkS4class{list}}.
+\item{comparedDataSets}{Object of class \code{\linkS4class{list}}.
 Each element of this list must be a dataSet}
+
+\item{...}{Properties of the \code{\linkS4class{DataSet}} to add.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmStockChart}}.

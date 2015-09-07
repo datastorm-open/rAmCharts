@@ -2,19 +2,31 @@
 % Please edit documentation in R/StockPanel.R
 \name{stockPanel}
 \alias{stockPanel}
-\title{#’ Constructor.}
+\title{Constructor for an StockPanel}
 \usage{
 stockPanel(drawOnAxis, stockGraphs, stockLegend, ...)
 }
 \arguments{
-\item{\code{...}:}{{Properties of StockPanel.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/StockPanel}}}}
+\item{drawOnAxis}{Object of class \code{ValueAxis}.
+Specifies on which value axis user can draw trend lines.
+Set drawingIconsEnabled to true if you want drawing icons to be visible.
+First value axis will be used if not set here.
+You can use a reference to the value axis object or id of value axis.}
+
+\item{stockGraphs}{Object of class \code{list}.
+Each element must be have been created with stockGraph(*)}
+
+\item{stockLegend}{Object of class \code{list}.
+Each element must be have been created with stockLegend(*)}
+
+\item{...}{Properties of StockPanel.
+See \url{http://docs.amcharts.com/3/javascriptcharts/StockPanel}}
 }
 \value{
 An \code{\linkS4class{StockPanel}} object
 }
 \description{
-#’ Constructor.
+Constructor for an StockPanel
 }
 \examples{
 stockPanel()

@@ -8,6 +8,11 @@
 \S4method{initialize}{StockEvent}(.Object, backgroundAlpha = 1, stockGraph,
   ...)
 }
+\arguments{
+\item{backgroundAlpha}{}
+
+\item{stockGraph}{}
+}
 \description{
 Initialize a StockEvent
 }

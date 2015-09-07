@@ -7,6 +7,12 @@
 \usage{
 \S4method{setY}{Label,numeric}(.Object, y)
 }
+\arguments{
+\item{.Object}{Object of class \code{\linkS4class{Label}}}
+}
+\value{
+The updated .Object.
+}
 \description{
 SETTER
 }

@@ -2,19 +2,26 @@
 % Please edit documentation in R/StockEvent.R
 \name{stockEvent}
 \alias{stockEvent}
-\title{#’ Constructor.}
+\title{Constructor for an StockEvent}
 \usage{
 stockEvent(backgroundAlpha = 1, stockGraph, ...)
 }
 \arguments{
-\item{\code{...}:}{{Properties of StockEvent.
-See \code{\url{http://docs.amcharts.com/3/javascriptcharts/StockEvent}}}}
+\item{backgroundAlpha}{}
+
+\item{stockGraph}{Object of class \code{list}.
+Containing properties of stockGraph.
+This is the graph on which event will be displayed.
+You can use a reference to the stock graph object or id of the graph.}
+
+\item{...}{Properties of StockEvent.
+See \url{http://docs.amcharts.com/3/javascriptcharts/StockEvent}}
 }
 \value{
 An \code{\linkS4class{StockEvent}} object
 }
 \description{
-#’ Constructor.
+Constructor for an StockEvent
 }
 \examples{
 stockEvent()

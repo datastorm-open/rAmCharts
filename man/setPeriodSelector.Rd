@@ -9,11 +9,11 @@
   ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{periodSelector}:}{Object of class \code{\linkS4class{PeriodSelector}}.}
+\item{periodSelector}{Object of class \code{\linkS4class{PeriodSelector}}.}
 
-\item{\code{...}:}{Properties of the class \code{\linkS4class{PeriodSelector}}.}
+\item{...}{Properties of the class \code{\linkS4class{PeriodSelector}}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmStockChart}}.

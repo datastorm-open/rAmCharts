@@ -8,9 +8,9 @@
 \S4method{setLegendSettings}{AmStockChart}(.Object, ...)
 }
 \arguments{
-\item{\code{.Object}:}{Object of class \code{\linkS4class{AmStockChart}}.}
+\item{.Object}{Object of class \code{\linkS4class{AmStockChart}}.}
 
-\item{\code{...}:}{Properties of \code{LegendSettings}.}
+\item{...}{Properties of \code{LegendSettings}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmStockChart}}.
