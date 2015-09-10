@@ -36,6 +36,7 @@ setClass( Class = "ChartScrollbar", contains = "AmObject",
 #' Object of class \code{AmGraph}.
 #' Specifies which graph will be displayed in the scrollbar.
 #' @param pathToImages
+#' URL to API images (for buttons)
 #' @param updateOnReleaseOnly
 #' Object of class \code{logical}.
 #' Specifies if the chart should be updated while dragging/resizing the scrollbar
@@ -100,8 +101,6 @@ chartScrollbar <- function(graph,
 # > @graph : setters ####
 
 #' @title Setter for graph
-#' @details Method to use in case of AmChart of type \code{gantt}.
-#' For other type see \code{\link{setGraphs}} or \code{\link{addGraph}}.
 #' @param .Object
 #' Object of class \code{\linkS4class{AmChart}}.
 #' @param graph
@@ -116,7 +115,6 @@ chartScrollbar <- function(graph,
 #' @family ChartScrollbar setters
 #' @family ChartScrollbar methods
 #' @seealso \code{\linkS4class{ChartScrollbar}} S4 class
-#' @name setGraph
 #' @rdname setGraph
 #' @export
 setMethod(f = "setGraph", signature = c("ChartScrollbar"),

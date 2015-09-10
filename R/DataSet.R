@@ -115,7 +115,6 @@ dataSet <- function(compared = FALSE, dataProvider, fieldMappings, stockEvents,.
 #' @family AmChart setters
 #' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @name setDataProvider
 #' @rdname setDataProvider
 #' @export
 setMethod( f = "setDataProvider", signature = c("DataSet", "data.frame"),
@@ -156,6 +155,7 @@ setGeneric(name = "addFieldMapping", def = function(.Object, ...){ standardGener
 #' @param .Object
 #' Object of class \code{\linkS4class{DataSet}}.
 #' @param ...
+#' Properties of fieldMapping.
 #' @return The updated .Object
 #' @examples
 #' library(pipeR) 

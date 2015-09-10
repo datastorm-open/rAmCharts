@@ -8,7 +8,7 @@
 \S4method{listProperties}{AmChart}(.Object)
 }
 \arguments{
-\item{.Object:}{\code{\linkS4class{AmChart}}}
+\item{.Object}{\code{\linkS4class{AmChart}}}
 }
 \description{
 This method lists attributes of an AmChart to fit the API
@@ -17,7 +17,6 @@ This method lists attributes of an AmChart to fit the API
 For certain attributes we do not verify if they are NULL, see constructor.
 }
 \examples{
-library(pipeR)
-amChart() \%>>\% setProperties(test = 1) \%>>\% listProperties
+amChart(test = 1)
 }
 

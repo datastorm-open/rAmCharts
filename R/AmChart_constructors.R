@@ -1,197 +1,90 @@
 #' @include AmChart_getSet.R
 NULL
 
-#' @title Constructor for AmChart object
-#' 
-#' @param allLabels
-#' Object of class \code{"list"}. List of Labels properties.
-#' See \code{\linkS4class{Label}}.
-#' 
-#' @param balloon
-#' Object of class \code{"list"}.
-#' List of an \code{\linkS4class{AmBalloon}} class properties.
-#' Creates the balloons ( tooltips ) of the chart,
-#' It follows the mouse cursor when you roll-over the data items.
-#' The framework generates the instances automatically you only need to adjust the appearance to your needs.
-#' 
-#' @param categoryAxis
-#' Object of class \code{"list"}.
-#' List of a \code{\linkS4class{CategoryAxis}} properties.
-#' Read-only. Chart creates category axis itself.
-#' If you want to change some properties,
-#' you should get this axis from the chart and set properties to this object.
-#' 
-#' @param categoryField
-#' Object of class \code{"character"}.
-#' Category field name tells the chart the name of the field in your dataProvider object
-#' which will be used for category axis values.
-#' 
-#' @param ChartCursor
-#' Object of class \code{"list"}.
-#' List of a \code{\linkS4class{ChartCursor}} class properties.
-#' Properties of the chart's cursor
-#' 
-#' @param ChartScrollbar
-#' Object of class \code{"list"}.
-#' List of a \code{\linkS4class{ChartScrollbar}} class properties.
-#' Properties of chart's scrollbar.
-#' 
-#' @param creditsPosition
-#' Object of class \code{"character"},
-#' specifying position of link to amCharts site.
-#' Allowed values are: top-left, top-right, bottom-left and bottom-right.
-#' 
-#' @param dataProvider
-#' Object of class \code{"list"}, containing the data.
-#' 
-#' @param graphs
-#' Object of class \code{list}.  List of AmGraphs properties
-#' See \code{\linkS4class{AmGraph} class.
-#' Creates the visualization of the data in following types: line, column, step line,
-#' smoothed line, olhc and candlestick.}
-#' 
-#' @param guides
-#' Object of class \code{list}.  List of Guides properties.
-#' See \code{\linkS4class{Guide} class.
-#' Instead of adding guides to the axes, you can push all of them to this array.
-#' In case guide has category or date defined, it will automatically will be assigned to the category axis.
-#' Otherwise to first value axis, unless you specify a different valueAxes for the guide.}
-#' 
-#' @param legend
-#' Object of class \code{"list"}.
-#' List of an \code{\linkS4class{AmLegend}} class properties.
-#' Properties of chart's legend.
-#' 
-#' @param titles
-#' Object of class \code{"list"}. List of Titles properties
-#' See \code{\linkS4class{Title}} class.
-#' 
-#' @param trendLines
-#' Object of class \code{"list"}.
-#' List of \code{\linkS4class{TrendLine}} objects added to a chart.
-#' You can add trend lines to a chart using this list or access already existing trend lines.
-#' 
-#' @param type
-#' Object of class \code{"character"}.
-#' Possible types are: serial, pie, radar,
-#' (types xy, radar, funnel, gauge, map, stock. are in development).
-#' 
-#' @param valueAxes
-#' Object of class \code{"list"}. List of ValueAxes' properties.
-#' See \code{\linkS4class{ValueAxis}} class.
-#' Chart creates one value axis automatically,
-#' so if you need only one value axis, you don't need to create it.
-#' 
-#' @param valueAxis
-#' Object of class \code{list}.
-#' List of Value axis properties for Gantt chart. Set it's type to "date" if your data is date or time based.
-#' 
-#' @return An \code{\linkS4class{AmChart}} object
-#' 
 #' @examples
 #' amChart(type = "pie")
-#' 
-#' @family rAmChart class constructors
-#' @family \code{\linkS4class{AmChart}} constructors
-#' @importFrom rlist list.append
+#' @describeIn initialize-AmChart
 #' @export
-amChart <- function(allLabels,
-                    arrows,
-                    axes,
-                    balloon,
-                    categoryAxis,
-                    categoryField,
-                    chartCursor,
-                    chartScrollbar,
-                    creditsPosition,
-                    dataProvider,
-                    graph,
-                    graphs,
-                    guides,
-                    legend,
-                    segmentsField,
-                    theme,
-                    titles,
-                    trendLines,
-                    type,
-                    valueAxes,
-                    valueAxis,
+amChart <- function(allLabels, arrows, axes, balloon, categoryAxis, categoryField,
+                    chartCursor, chartScrollbar, creditsPosition, dataProvider,
+                    graph, graphs, guides, legend, segmentsField, theme, titles,
+                    trendLines, type, valueAxes, valueAxis,
                     pathToImages = "http://www.amcharts.com/lib/3/images/",...)
 {
   # "http://www.amcharts.com/lib/3/images/"
   object <- new(Class="AmChart", pathToImages = pathToImages)
-  if( !missing(allLabels) ){
+  if (!missing(allLabels)) {
     object <-setAllLabels( object, allLabels )
-  }else{}
-  if( !missing(arrows) ){
+  } else {}
+  if (!missing(arrows)) {
     object <-setArrows( object, arrows )
-  }else{}
-  if( !missing(axes) ){
+  } else {}
+  if (!missing(axes)) {
     object <-setAxes( object, axes)
-  }else{}
-  if( !missing(balloon) ){
+  } else {}
+  if (!missing(balloon)) {
     object <- setBalloon( object, balloon )
-  }else{}
-  if( !missing(categoryAxis) ){
+  } else {}
+  if (!missing(categoryAxis)) {
     object <- setCategoryAxis( object, categoryAxis )
-  }else{}
-  if( !missing(categoryField) ){
+  } else {}
+  if (!missing(categoryField)) {
     object<- setCategoryField( object, categoryField )
-  }else{}
-  if( !missing(creditsPosition) ){
+  } else {}
+  if (!missing(creditsPosition)) {
     object <- setCreditsPosition( object, creditsPosition )
-  }else{}
-  if( !missing(chartCursor) ){
+  } else {}
+  if (!missing(chartCursor)) {
     object <- setChartCursor( object, chartCursor )
-  }else{}
-  if( !missing(chartScrollbar) ){
+  } else {}
+  if (!missing(chartScrollbar)) {
     object <- setChartScrollbar( object, chartScrollbar )
-  }else{}
-  if( !missing(dataProvider) ){
+  } else {}
+  if (!missing(dataProvider)) {
     object <- setDataProvider( object, dataProvider )
-  }else{}
-  if( !missing(graph) ){
+  } else {}
+  if (!missing(graph)) {
     object <- setGraph( object, graph )
-  }else{}
-  if( !missing(graphs) ){
+  } else {}
+  if (!missing(graphs)) {
     object <- setGraphs(object, graphs)
-  }else{}
-  if( !missing(guides) ){
+  } else {}
+  if (!missing(guides)) {
     object <- setGuides(object, guides)
-  }else{}
-  if( !missing(legend) ){
+  } else {}
+  if (!missing(legend)) {
     object <- setLegend( object, legend )
-  }else{}
-  if( !missing(segmentsField) ){
+  } else {}
+  if (!missing(segmentsField)) {
     object@segmentsField <- segmentsField
-  }else{}
-  if(!missing(type)){
+  } else {}
+  if (!missing(type)) {
     object <- setType( object, type)
-  }else{}
-  if(!missing(theme)){
+  } else {}
+  if (!missing(theme)) {
     object@theme <- theme
-  }else{}
-  if(!missing(titles)){
+  } else {}
+  if (!missing(titles)) {
     object <- setTitles(object, titles)
-  }else{}
-  if(!missing(trendLines)){
+  } else {}
+  if (!missing(trendLines)) {
     object <- setTrendLines(object, trendLines)
-  }else{}
-  if( !missing(valueAxes) ){
+  } else {}
+  if (!missing(valueAxes)) {
     object <- setValueAxes(object, valueAxes)
-  }else{}
-  if( !missing(valueAxis) ){
+  } else {}
+  if (!missing(valueAxis)) {
     object <- setValueAxis(object, valueAxis)
-  }else{}
+  } else {}
   object@otherProperties <- rlist::list.append(object@otherProperties, ...)
   validObject(object)
   return(object)
 }
 
-#' @title amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}
+#' @details amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}
 #' @examples
 #' amAngularGaugeChart()
-#' @rdname amChart
+#' @describeIn initialize-AmChart
 #' @export
 amAngularGaugeChart <- function(arrows, titles, axes, ...)
 {
@@ -200,11 +93,11 @@ amAngularGaugeChart <- function(arrows, titles, axes, ...)
   return(object)
 }
 
-#' @title amFunnelChart is a shortcut
+#' @details amFunnelChart is a shortcut
 #' for instantiating AmChart of type \code{funnel}
 #' @examples
-#' amFunnelChart()
-#' @rdname amChart
+#' amFunnelChart(marginLeft = 15)
+#' @describeIn initialize-AmChart
 #' @export
 amFunnelChart <- function(dataProvider, ...)
 {
@@ -214,11 +107,11 @@ amFunnelChart <- function(dataProvider, ...)
   return(object)
 }
 
-#' @title amRadarChart is a shortcut
+#' @details amRadarChart is a shortcut
 #' for instantiating AmChart of type \code{radar}
 #' @examples
 #' amRadarChart()
-#' @rdname amChart
+#' @describeIn initialize-AmChart
 #' @export
 amRadarChart <- function(allLabels,
                          balloon,
@@ -239,27 +132,15 @@ amRadarChart <- function(allLabels,
   return(object)
 }
 
-#' @title amSerialChart is a shortcut constructor 
+#' @details amSerialChart is a shortcut constructor 
 #' for instantiating AmChart of type \code{serial}
 #' @examples
-#' amSerialChart()
-#' @rdname amChart
+#' amSerialChart(creditsPostion = "top-right")
+#' @describeIn initialize-AmChart
 #' @export
-amSerialChart <- function(allLabels,
-                          balloon,
-                          categoryAxis,
-                          categoryField,
-                          chartCursor,
-                          chartScrollbar,
-                          creditsPosition,
-                          dataProvider,
-                          graphs,
-                          guides,
-                          legend,
-                          titles,
-                          trendLines,
-                          valueAxes,
-                          ...)
+amSerialChart <- function(allLabels, balloon, categoryAxis, categoryField, chartCursor,
+                          chartScrollbar, creditsPosition, dataProvider, graphs, guides,
+                          legend, titles, trendLines, valueAxes, ...)
 {
   object <- amChart(allLabels = allLabels, balloon = balloon, categoryAxis = categoryAxis,
                     categoryField = categoryField, chartCursor = chartCursor,
@@ -271,11 +152,11 @@ amSerialChart <- function(allLabels,
   return(object)
 }
 
-#' @title amPieChart is a shortcut constructor
+#' @details amPieChart is a shortcut constructor
 #' for instantiating AmChart of type \code{pie}
 #' @examples
 #' amPieChart()
-#' @rdname amChart
+#' @describeIn initialize-AmChart
 #' @export
 amPieChart <- function(allLabels,
                        balloon,
@@ -291,11 +172,11 @@ amPieChart <- function(allLabels,
   return(object)
 }
 
-#' @title amGanttChart is a constructor
+#' @details amGanttChart is a constructor
 #' for instantiating AmChart of type \code{gantt}
 #' @examples
 #' amGanttChart(segmentsField = "segments")
-#' @rdname amChart
+#' @describeIn initialize-AmChart
 #' @export
 amGanttChart <- function(categoryField,
                          dataProvider,
@@ -310,17 +191,15 @@ amGanttChart <- function(categoryField,
   return(object)
 }
 
-#' @title amXYChart is a shortcut constructor
+#' @details amXYChart is a shortcut constructor
 #' for instantiating AmChart of type \code{xy}
 #' @examples
 #' amXYChart()
-#' @rdname amChart
+#' @describeIn initialize-AmChart
 #' @export
-amXYChart <- function(creditsPosition,
-                      dataProvider,
-                      graphs, ...)
+amXYChart <- function(creditsPosition, dataProvider, graphs, ...)
 {
-  object <- amChart( creditsPosition = creditsPosition, dataProvider = dataProvider,
+  object <- amChart(creditsPosition = creditsPosition, dataProvider = dataProvider,
                      graphs = graphs, type = "xy", ...)
   validObject(object)
   return(object)

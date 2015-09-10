@@ -4,11 +4,7 @@ NULL
 #' @title PLOTTING METHOD
 #' @description Basic method to plot an AmChart 
 #' @details Plots an object of class \code{\linkS4class{AmChart}}
-#' @example 
-#' examples.R
-#' @name plot
 #' @rdname plot.amChart
-#' @importFrom rlist list.remove
 #' @import htmlwidgets
 #' @export
 setMethod(

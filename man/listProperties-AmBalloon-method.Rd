@@ -11,10 +11,9 @@
 \item{.Object:}{\code{\linkS4class{AmBalloon}}.}
 }
 \description{
-This function is used to list attributes before addind to graphs (attribute of AmChart)
+List attributes of an AmGraph object
 }
 \examples{
-library(pipeR)
-amBalloon(adjustBorderColor = TRUE) \%>>\% listProperties
+amBalloon(adjustBorderColor = TRUE)
 }
 

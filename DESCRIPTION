@@ -34,10 +34,11 @@ Collate:
     'GaugeAxis.R'
     'GaugeArrow.R'
     'PeriodSelector.R'
+    'shiny.R'
     'utils.R'
 Imports:
     htmlwidgets,
     rlist,
-    data.table
-Suggests:
-    pipeR
+    data.table,
+    pipeR,
+    shiny

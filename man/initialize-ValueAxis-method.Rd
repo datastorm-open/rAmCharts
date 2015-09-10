@@ -16,13 +16,9 @@
 Initialize
 }
 \examples{
-\dontshow{
+\dontrun{
 new("ValueAxis", title = "Hello !", 1) # 1 is not take into account
-listProperties(guide(fillAlpha = .4))
-lapply(list(guide(fillAlpha = .4), guide(fillAlpha = .5)), listProperties)
-}
 
-\donttest{
 # If one element of guides is not a Guide object, it shows an error
 guides <- list(guide(fillAlpha = .4), b = 1)
 new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)

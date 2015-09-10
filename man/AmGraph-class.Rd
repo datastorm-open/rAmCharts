@@ -10,26 +10,26 @@ This class represents data for a serial chart
 \section{Slots}{
 
 \describe{
-\item{\code{balloonText}}{: Object of class \code{character}.
+\item{\code{balloonText}}{\code{character}.
 Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
 or any other field name from your data provider. HTML tags can also be used.}
 
-\item{\code{title}}{: Object of class \code{character}. Graph title.}
+\item{\code{title}}{\code{character}. Graph title.}
 
-\item{\code{type}}{: Object of class \code{character}.
+\item{\code{type}}{\code{character}
 Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
 XY and Radar charts can only display "line" otherArguments graphs.}
 
-\item{\code{valueField}}{: {Object of class \code{character}.
-Name of the value field in your dataProvider.}}
+\item{\code{valueField}}{\code{character}.
+Name of the value field in your dataProvider.}
 
-\item{\code{listeners}}{: Object of class \code{"list"} containining the listeners to add to the object.
+\item{\code{listeners}}{\code{"list"} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string. See examples for details.}
 
-\item{\code{otherProperties}}{: Object of class \code{"list"},
+\item{\code{otherProperties}}{\code{"list"},
 containing other avalaible properties non coded in the package yet}
 
-\item{\code{value}}{: object of class \code{numeric}.}
+\item{\code{value}}{\code{numeric}.}
 }}
 \examples{
 \dontrun{

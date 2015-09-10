@@ -131,7 +131,6 @@ setMethod(
 #' @family Guide methods
 #' @seealso \code{\linkS4class{Guide}} S4 class
 #' @seealso \code{\linkS4class{ValueAxis}} S4 class
-#' @name addValueAxis
 #' @rdname addValueAxis
 #' @importFrom rlist list.append
 #' @export
@@ -151,7 +150,6 @@ setMethod(f = "addValueAxis", signature = c("Guide"),
 #' @return Properties of the object in a list
 #' @examples
 #' lapply(list(guide(fillAlpha = .4, value = 1), guide(fillAlpha = .5)), listProperties)
-#' @importFrom rlist list.append
 setMethod(f = "listProperties", signature = "Guide",
           definition = function(.Object)
           { 

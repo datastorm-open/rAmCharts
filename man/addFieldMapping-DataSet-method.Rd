@@ -10,7 +10,7 @@
 \arguments{
 \item{.Object}{Object of class \code{\linkS4class{DataSet}}.}
 
-\item{...}{}
+\item{...}{Properties of fieldMapping.}
 }
 \value{
 The updated .Object

@@ -290,7 +290,6 @@ setGeneric(name = "addStockGraph",
 #' @family StockPanel methods
 #' @seealso \code{\linkS4class{AmStockChart}} S4 class
 #' @seealso \code{\linkS4class{AmGraph}} S4 class
-#' @name addStockGraph
 #' @rdname addStockGraph
 #' @export
 setMethod(f = "addStockGraph", signature = c("StockPanel"),

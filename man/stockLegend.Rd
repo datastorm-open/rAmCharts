@@ -12,6 +12,8 @@ stockLegend(useGraphSettings, valueTextComparing = "[[percents.value]]\%",
 displaying a line and a real bullet as in the graph itself.
 Set this property to true if you want to enable this feature.}
 
+\item{valueTextComparing}{\code{character}}
+
 \item{...}{Properties of AmLegend.
 See \url{http://docs.amcharts.com/3/javascriptstockchart/StockLegend}}
 }

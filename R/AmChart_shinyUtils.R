@@ -6,10 +6,8 @@ setGeneric( name = "amChartsOutput",
 #' @title SHINY
 #' @description Widget output function for use in Shiny
 #' @param amChart: an \code{\linkS4class{AmChart}} object
-#' @name amChartsOutput
 #' @rdname amChartsOutput
 #' @import htmlwidgets
-#' @export
 setMethod(
   f = "amChartsOutput",
   signature = c("character", "character"),
@@ -50,7 +48,6 @@ setMethod(
 #' @title SHINY
 #' @description Widget output function for use in Shiny
 #' @param amChart: an \code{\linkS4class{AmChart}} object
-#' @name renderAmCharts
 #' @rdname renderAmCharts
 #' @export
 renderAmCharts <- function(expr, env, quoted){

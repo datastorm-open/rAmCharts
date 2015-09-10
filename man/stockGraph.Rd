@@ -7,23 +7,23 @@
 stockGraph(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 }
 \arguments{
-\item{balloonText}{Object of class \code{character}.
+\item{animationPlayed}{\code{logical}.}
+
+\item{balloonText}{\code{character}.
 Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
 or any other field name from your data provider. HTML tags can also be used.}
 
-\item{title}{Object of class \code{character}. Graph title.}
+\item{title}{\code{character}. Graph title.}
 
-\item{type}{Object of class \code{character}.
+\item{type}{\code{character}.
 Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
 XY and Radar charts can only display "line" otherArguments graphs.}
 
-\item{valueField}{Object of class \code{character}.
+\item{valueField}{\code{character}.
 Name of the value field in your dataProvider.}
-
-\item{...}{\url{http://docs.amcharts.com/3/javascriptstockchart/StockGraph}}
 }
 \value{
-An \code{\linkS4class{AmGraph}} object
+An object of class \code{\linkS4class{AmGraph}}.
 }
 \description{
 Constructor for a stockGraph (class AmGraph)

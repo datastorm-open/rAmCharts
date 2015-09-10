@@ -27,13 +27,15 @@ setClass( Class = "AmLegend", contains = "AmObject",
 )
 
 #' @title Initialize
-#' @param .Object
-#' @param useGraphSettings
-#' Object of class \code{logical}.
+#' @param .Object \code{\linkS4class{AmLegend}}.
+#' @param useGraphSettings \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
+#' @param ... Other properties of AmLegend
+#' See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}
 #' @examples
 #' new("AmLegend", useGraphSettings = TRUE)
+#' @rdname initialize-AmLegend
 #' @export
 setMethod(f = "initialize", signature = "AmLegend",
           definition = function(.Object, useGraphSettings,...)
@@ -48,26 +50,19 @@ setMethod(f = "initialize", signature = "AmLegend",
 
 # CONSTRUCTOR ####
 
-#' @title Constructor for an AmLegend
-#' @param useGraphSettings
-#' Legend markers can mirror graph's settings,
-#' displaying a line and a real bullet as in the graph itself.
-#' Set this property to true if you want to enable this feature.
-#' @param ...
-#' Properties of AmLegend.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/AmLegend}
-#' @return An \code{\linkS4class{AmLegend}} object
-#' @examples
-#' amLegend(useGraphSettings = TRUE)
+#' @description Constructor for an AmLegend.
+#' @examples 
+#' amLegend(useGraphSettings = FALSE)
+#' @describeIn initialize-AmLegend
 #' @export
-amLegend <- function(useGraphSettings, ...){
+amLegend <- function(useGraphSettings, ...) {
   .Object <- new("AmLegend")
   if (!missing(useGraphSettings)) {
     .Object@useGraphSettings <- useGraphSettings
   } else {}
   .Object <- setProperties(.Object, ...)
   validObject(.Object)
-  return( .Object )
+  return( .Object)
 }
 
 #' @title Constructor for StockLegend.
@@ -75,6 +70,7 @@ amLegend <- function(useGraphSettings, ...){
 #' Legend markers can mirror graph's settings,
 #' displaying a line and a real bullet as in the graph itself.
 #' Set this property to true if you want to enable this feature.
+#' @param valueTextComparing \code{character}
 #' @param ...
 #' Properties of AmLegend.
 #' See \url{http://docs.amcharts.com/3/javascriptstockchart/StockLegend}
@@ -82,46 +78,36 @@ amLegend <- function(useGraphSettings, ...){
 #' @examples
 #' stockLegend(useGraphSettings = TRUE)
 #' @export
-stockLegend <- function(useGraphSettings, valueTextComparing = "[[percents.value]]%", ...){
+stockLegend <- function(useGraphSettings, valueTextComparing = "[[percents.value]]%", ...) {
   amLegend(useGraphSettings = useGraphSettings, valueTextComparing = valueTextComparing, ...)
 }
 
 # > @useGraphSettings : setters ####
 
-#' @exportMethod setUseGraphSettings
-setGeneric(name = "setUseGraphSettings", def = function(.Object, useGraphSettings){ standardGeneric("setUseGraphSettings") } )
-#' @title SETTER
-#' @param .Object
-#' @param useGraphSettings
-#' Object of class \code{logical}.
-#' If this is set to TRUE, border color instead of background color will be changed when
-#' user rolls-over the slice, graph, etc.
+#' @description Setter for useGraphSettings.
 #' @examples
-#' library(pipeR)
-#' amLegend() %>>% setUseGraphSettings(TRUE)
-#' @rdname setUseGraphSettings
+#' setUseGraphSettings(.Object = amLegend(), useGraphSettings = TRUE)
+#' @rdname initialize-AmLegend
 #' @export
-setMethod(
-  f = "setUseGraphSettings",
-  signature = c("AmLegend", "logical"),
-  definition = function(.Object, useGraphSettings)
-  {
-    .Object@useGraphSettings <- useGraphSettings
-    validObject(.Object)
-    return(.Object)
-  })
+setGeneric(name = "setUseGraphSettings", def = function(.Object, useGraphSettings) { standardGeneric("setUseGraphSettings") })
+#' @rdname initialize-AmLegend
+setMethod(f = "setUseGraphSettings", signature = c("AmLegend", "logical"),
+          definition = function(.Object, useGraphSettings)
+          {
+            .Object@useGraphSettings <- useGraphSettings
+            validObject(.Object)
+            return(.Object)
+          })
 
-#' @title List properties
-#' @param .Object
+#' @description Attributes of an AmLegend object.
 #' @examples
-#' is(listProperties(amLegend(useGraphSettings = TRUE)), "list")
-#' @return Properties of the object in a list
-#' @importFrom rlist list.append
+#' listProperties(amLegend(useGraphSettings = TRUE))
+#' @rdname listProperties-AmObject
 setMethod(f = "listProperties", signature = "AmLegend",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if (length( .Object@useGraphSettings )){
+             if (length( .Object@useGraphSettings)) {
                ls <- rlist::list.append(ls, useGraphSettings = .Object@useGraphSettings)
              } else {}
              return(ls)

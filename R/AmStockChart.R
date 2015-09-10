@@ -208,121 +208,136 @@ setClass("AmStockChart", contains = "AmChart",
          ),
          validity = function(object)
          {
-           if ( object@type != "stock" ) {
-             stop( "[AmStockChart]: you cannot change the type when creating AmStockChart")
+           if (object@type != "stock") {
+             stop("[AmStockChart]: you cannot change the type when creating AmStockChart")
            }
          }
 )
 
 #' @title Initialize an AmStockChart
 #' @description Method for initializing any S4 class provided by the package.
+#' @param .Object \code{\linkS4class{AmStockChart}}
+#' @param categoryAxesSettings \code{list} of \code{\linkS4class{CategoryAxis}}.
+#' CategoryAxesSettings settings set's settings common for all CategoryAxes of StockPanels.
+#' If you change a property after the chart is initialized,
+#' you should call stockChart.validateNow() method in order for it to work.
+#' If there is no default value specified, default value of CategoryAxis class will be used.
+#' you should get this axis from the chart and set properties to this object.
+#' @param ChartCursorSettings \code{list} of \code{\linkS4class{ChartCursor}}.
+#' ChartCursorSettings settings set's settings for chart cursor.
+#' If you change a property after the chart is initialized,
+#' you should call stockChart.validateNow() method in order for it to work.
+#' If there is no default value specified, default value of ChartCursor class will be used.
+#' @param ChartScrollbarSettings \code{list} of \code{\linkS4class{ChartScrollbar}}.
+#' ChartScrollbarSettings settings set's settings for chart scrollbar.
+#' If you change a property after the chart is initialized,
+#' you should call stockChart.validateNow() method in order for it to work.
+#' If there is no default value specified, default value of ChartScrollbar class will be used.
+#' @param comparedDataSets \code{\linkS4class{DataSet}}. Data sets selected for comparing.
+#' @param dataSets \code{list} of \code{\linkS4class{DataSet}}. 
+#' @param dataSetSelector \code{"list"}. DataSetSelector properties.
+#' You can add it if you have more than one data set and want users to be able to select/compare them.
+#' @param legendSettings
+#' Object of class \code{"list"}. Legend settings.
+#' @param mainDataSet
+#' Object of class \code{"list"}. Data set selected as main.
+#' @param panels \code{"list"} of \code{\linkS4class{StockPanel}}.
+#' @param panelsSettings \code{"list"}. Settings for stock panels.
+#' @param periodSelector \code{\linkS4class{PeriodSelector}}.
+#' You can add it if you want user's to be able to enter
+#' date ranges or zoom chart with predefined period buttons.
+#' @param stockEventsSettings
+#' Object of class \code{"list"}. Settings for stock events.
+#' @param theme \code{character}
+#' @param valueAxesSettings
+#' Object of class \code{"list"}. Settings for value axes.
+#' @param pathToImages \code{character}
+#' @param ... Other properties...
+#' @return An object of class \code{\linkS4class{AmStockChart}}.
 #' @examples
 #' new("AmStockChart", theme = "dark")
-#' @family AmChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
+#' @rdname initialize-AmStockChart
 #' @export
 setMethod(f = "initialize", signature = "AmStockChart",
-          definition = function( .Object,
-                                 categoryAxesSettings,
-                                 chartCursorSettings,
-                                 chartScrollbarSettings,
-                                 comparedDataSets,
-                                 dataSets,
-                                 dataSetSelector,
-                                 legendSettings,
-                                 mainDataSet,
-                                 panels,
-                                 panelsSettings,
-                                 periodSelector,
-                                 stockEventsSettings,
-                                 theme,
-                                 valueAxesSettings,
-                                 pathToImages = "http://www.amcharts.com/lib/3/images/",
-                                 ...)
+          definition = function(.Object, categoryAxesSettings, chartCursorSettings,
+                                chartScrollbarSettings, comparedDataSets, dataSets,
+                                dataSetSelector, legendSettings, mainDataSet, panels,
+                                panelsSettings, periodSelector, stockEventsSettings,
+                                theme, valueAxesSettings,
+                                pathToImages = "http://www.amcharts.com/lib/3/images/",
+                                ...)
           {
             .Object@type = "stock"
-            if ( !missing(categoryAxesSettings) ) {
-              .Object <- setCategoryAxesSettings( .Object, categoryAxesSettings)
+            if (!missing(categoryAxesSettings)) {
+              .Object <- setCategoryAxesSettings(.Object, categoryAxesSettings)
             } else {}
-            if ( !missing(chartCursorSettings) ) {
-              .Object <- setChartCursorSettings( .Object, chartCursorSettings)
+            if (!missing(chartCursorSettings)) {
+              .Object <- setChartCursorSettings(.Object, chartCursorSettings)
             } else {}
-            if ( !missing(chartScrollbarSettings) ) {
-              .Object <- setChartScrollbarSettings( .Object, chartScrollbarSettings)
+            if (!missing(chartScrollbarSettings)) {
+              .Object <- setChartScrollbarSettings(.Object, chartScrollbarSettings)
             } else {}
-            if ( !missing(comparedDataSets) ) {
-              .Object <- setComparedDataSets( .Object, comparedDataSets)
+            if (!missing(comparedDataSets)) {
+              .Object <- setComparedDataSets(.Object, comparedDataSets)
             } else {}
-            if ( !missing(dataSets) ) {
+            if (!missing(dataSets)) {
               .Object <- setDataSets(.Object, dataSets)
             } else {}
-            if ( !missing(dataSetSelector) ) {
+            if (!missing(dataSetSelector)) {
               .Object <- setDataSetSelector(.Object, dataSetSelector)
             } else {}
-            if ( !missing(legendSettings) ) {
-              .Object <- setLegendSettings( .Object, legendSettings )
+            if (!missing(legendSettings)) {
+              .Object <- setLegendSettings(.Object, legendSettings)
             } else {}
-            if ( !missing(mainDataSet) ) {
-              .Object <- setMainDataSet( .Object, mainDataSet )
+            if (!missing(mainDataSet)) {
+              .Object <- setMainDataSet(.Object, mainDataSet)
             } else {}
-            if ( !missing(panels) ) {
-              .Object <- setPanels( .Object, panels )
+            if (!missing(panels)) {
+              .Object <- setPanels(.Object, panels)
             } else {}
-            if ( !missing(panelsSettings) ) {
-              .Object <- setPanelsSettings( .Object, panelsSettings )
+            if (!missing(panelsSettings)) {
+              .Object <- setPanelsSettings(.Object, panelsSettings)
             } else {}
-            if ( !missing(periodSelector) ) {
-              .Object <- setPeriodSelector( .Object, periodSelector )
+            if (!missing(periodSelector)) {
+              .Object <- setPeriodSelector(.Object, periodSelector)
             } else {}
-            if ( !missing(stockEventsSettings) ) {
-              .Object <- setStockEventsSettings( .Object, stockEventsSettings )
+            if (!missing(stockEventsSettings)) {
+              .Object <- setStockEventsSettings(.Object, stockEventsSettings)
             } else {}
-            if ( !missing(theme) ) {
+            if (!missing(theme)) {
               .Object@theme <- theme
             } else {}
-            if ( !missing(valueAxesSettings) ) {
-              .Object <- setValueAxesSettings( .Object, valueAxesSettings )
+            if (!missing(valueAxesSettings)) {
+              .Object <- setValueAxesSettings(.Object, valueAxesSettings)
             } else {}
             .Object <- setProperties(.Object, pathToImages = pathToImages, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
-#' @title amStockChart is a shortcut constructor 
+#' @description amStockChart is a shortcut constructor 
 #' for instantiating AmChart of type \code{stock}
 #' @examples
 #' amStockChart()
-#' @rdname amStockChart
+#' @describeIn initialize-AmStockChart
 #' @export
-amStockChart <- function(categoryAxesSettings,
-                         chartCursorSettings,
-                         chartScrollbarSettings,
-                         comparedDataSets,
-                         dataSets,
-                         dataSetSelector,
-                         legendSettings,
-                         mainDataSet,
-                         panels,
-                         panelsSettings,
-                         periodSelector,
-                         stockEventsSettings,
-                         theme,
-                         valueAxesSettings,
-                         ...)
+amStockChart <- function(categoryAxesSettings, chartCursorSettings, chartScrollbarSettings,
+                         comparedDataSets, dataSets, dataSetSelector, legendSettings,
+                         mainDataSet, panels, panelsSettings, periodSelector,
+                         stockEventsSettings, theme, valueAxesSettings, ...)
 {
   .Object = new("AmStockChart")
   if (!missing(categoryAxesSettings)) {
-    .Object <- setCategoryAxesSettings( .Object, categoryAxesSettings)
+    .Object <- setCategoryAxesSettings(.Object, categoryAxesSettings)
   } else {}
   if (!missing(chartCursorSettings)) {
-    .Object <- setChartCursorSettings( .Object, chartCursorSettings)
+    .Object <- setChartCursorSettings(.Object, chartCursorSettings)
   } else {}
   if (!missing(chartScrollbarSettings)) {
-    .Object <- setChartScrollbarSettings( .Object, chartScrollbarSettings)
+    .Object <- setChartScrollbarSettings(.Object, chartScrollbarSettings)
   } else {}
   if (!missing(comparedDataSets)) {
-    .Object <- setComparedDataSets( .Object, comparedDataSets)
+    .Object <- setComparedDataSets(.Object, comparedDataSets)
   } else {}
   if (!missing(dataSets)) {
     .Object <- setDataSets(.Object, dataSets)
@@ -331,28 +346,28 @@ amStockChart <- function(categoryAxesSettings,
     .Object <- setDataSetSelector(.Object, dataSetSelector)
   } else {}
   if (!missing(legendSettings)) {
-    .Object <- setLegendSettings( .Object, legendSettings )
+    .Object <- setLegendSettings(.Object, legendSettings)
   } else {}
   if (!missing(mainDataSet)) {
-    .Object <- setMainDataSet( .Object, mainDataSet )
+    .Object <- setMainDataSet(.Object, mainDataSet)
   } else {}
   if (!missing(panels)) {
-    .Object <- setPanels( .Object, panels )
+    .Object <- setPanels(.Object, panels)
   } else {}
   if (!missing(panelsSettings)) {
-    .Object <- setPanelsSettings( .Object, panelsSettings )
+    .Object <- setPanelsSettings(.Object, panelsSettings)
   } else {}
   if (!missing(periodSelector)) {
-    .Object <- setPeriodSelector( .Object, periodSelector )
+    .Object <- setPeriodSelector(.Object, periodSelector)
   } else {}
   if (!missing(stockEventsSettings)) {
-    .Object <- setStockEventsSettings( .Object, stockEventsSettings )
+    .Object <- setStockEventsSettings(.Object, stockEventsSettings)
   } else {}
   if (!missing(theme)) {
     .Object@theme <- theme
   } else {}
   if (!missing(valueAxesSettings)) {
-    .Object <- setValueAxesSettings( .Object, valueAxesSettings )
+    .Object <- setValueAxesSettings(.Object, valueAxesSettings)
   } else {}
   .Object <- setProperties(.Object,...)
   validObject(.Object)
@@ -361,67 +376,45 @@ amStockChart <- function(categoryAxesSettings,
 
 # > @categoryAxesSettings: setters ####
 
-#' @exportMethod setCategoryAxesSettings
-setGeneric( name = "setCategoryAxesSettings",
-            def = function(amChart, categoryAxesSettings = NULL , ...) {standardGeneric("setCategoryAxesSettings")} )
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmChart}}.
-#' @param categoryAxesSettings
-#' Object of class \code{\linkS4class{CategoryAxis}}.
-#' @param ...
-#' Properties of the \code{\linkS4class{DataSet}} to add.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @description Setter for categoryAxesSettings.
 #' @examples
-#' library(pipeR)
-#' amStockChart() %>>% setCategoryAxesSettings(gridPosition = "start")
-#' @family AmStockChart setters
-#' @family AmStockChart methods
+#' setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{CategoryAxis}} S4 class
-#' @name setCategoryAxesSettings
-#' @rdname setCategoryAxesSettings
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "setCategoryAxesSettings",
+           def = function(.Object, categoryAxesSettings = NULL, ...) {standardGeneric("setCategoryAxesSettings")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "setCategoryAxesSettings", signature = c("AmStockChart"),
-          definition = function(amChart, categoryAxesSettings = NULL, ...)
+          definition = function(.Object, categoryAxesSettings = NULL, ...)
           {
-            if ( is.null(categoryAxesSettings) ) {
+            if (is.null(categoryAxesSettings)) {
               categoryAxesSettings <- categoryAxis(...)
             } else {}
-            amChart@categoryAxesSettings <- listProperties(categoryAxesSettings)
-            validObject(amChart)
-            return(amChart)
+            .Object@categoryAxesSettings <- listProperties(categoryAxesSettings)
+            validObject(.Object)
+            return(.Object)
           })
 
 # > @chartCursorSettings : setters ####
 
-#' @exportMethod setChartCursorSettings
-setGeneric(name = "setChartCursorSettings",
-           def = function(.Object, chartCursorSettings = NULL, ...) { standardGeneric("setChartCursorSettings") } )
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmChart}}.
-#' @param chartCursorSettings
-#' (optional) Object of class \code{\linkS4class{ChartCursor}}.
-#' @param ...
-#' Properties of the \code{\linkS4class{DataSet}} to add.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @description Setter for chartCursorSettings.
 #' @examples
-#' library(pipeR)
-#' amStockChart() %>>% setChartCursorSettings( oneBallOnly = TRUE )
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmChart}} S4 class
+#' setChartCursorSettings(.Object = amStockChart(), oneBallOnly = TRUE)
+#' setChartCursorSettings(.Object = amStockChart(), chartCursorSettings = chartCursor())
 #' @seealso \code{\linkS4class{ChartCursor}} S4 class
-#' @name setChartCursorSettings
-#' @rdname setChartCursorSettings
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "setChartCursorSettings",
+           def = function(.Object, chartCursorSettings = NULL, ...) {standardGeneric("setChartCursorSettings")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "setChartCursorSettings", signature = c("AmStockChart"),
           definition = function(.Object, chartCursorSettings = NULL, ...)
           {
-            if ( is.null(chartCursorSettings) ) {
+            if (is.null(chartCursorSettings)) {
               chartCursorSettings <- chartCursor(...)
-            }else {}
+            } else {}
             .Object@chartCursorSettings <- listProperties(chartCursorSettings)
             validObject(.Object)
             return(.Object)
@@ -429,32 +422,20 @@ setMethod(f = "setChartCursorSettings", signature = c("AmStockChart"),
 
 # > @chartScrollbarSettings : setters ####
 
-#' @exportMethod setChartScrollbarSettings
-setGeneric(name = "setChartScrollbarSettings",
-           def = function(.Object, chartScrollbarSettings = NULL, ...) { standardGeneric("setChartScrollbarSettings") } )
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmChart}}.
-#' @param chartScrollbarSettings
-#' (optional) Object of class \code{\linkS4class{ChartScrollbar}}.
-#' @param ...
-#' Properties of the \code{\linkS4class{DataSet}} to add.
+#' @description Setter for chartScrollbarSettings.
 #' @examples
-#' library(pipeR)
-#' amStockChart() %>>% setChartScrollbarSettings()
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmChart}} S4 class
+#' setChartScrollbarSettings(.Object = amStockChart(), chartScrollbarSettings = chartScrollbar())
 #' @seealso \code{\linkS4class{ChartScrollbar}} S4 class
-#' @name setChartScrollbarSettings
-#' @rdname setChartScrollbarSettings
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "setChartScrollbarSettings",
+           def = function(.Object, chartScrollbarSettings = NULL, ...) {standardGeneric("setChartScrollbarSettings")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "setChartScrollbarSettings", signature = c("AmStockChart"),
           definition = function(.Object, chartScrollbarSettings = NULL, ...)
           {
             if (is.null(chartScrollbarSettings)) {
-              chartScrollbarSettings <- chartScrollbar( ... )
+              chartScrollbarSettings <- chartScrollbar(...)
             } else {}
             .Object@chartScrollbarSettings <- listProperties(chartScrollbarSettings)
             validObject(.Object)
@@ -463,28 +444,16 @@ setMethod(f = "setChartScrollbarSettings", signature = c("AmStockChart"),
 
 # > @comparedDataSets : setters ####
 
-#' @exportMethod setComparedDataSets
-setGeneric(name = "setComparedDataSets",
-           def = function(.Object, comparedDataSets) { standardGeneric("setComparedDataSets") } )
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param comparedDataSets
-#' Object of class \code{\linkS4class{list}}.
-#' Each element of this list must be a dataSet
-#' @param ...
-#' Properties of the \code{\linkS4class{DataSet}} to add.
+#' @description Setter for comparedDataSets
 #' @examples
 #' library(pipeR)
 #' amStockChart() %>>% setComparedDataSets(list(dataSet(compared = TRUE), dataSet(compared = TRUE)))
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
 #' @seealso \code{\linkS4class{DataSet}} S4 class
-#' @name setComparedDataSets
-#' @rdname setComparedDataSets
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "setComparedDataSets",
+           def = function(.Object, comparedDataSets) {standardGeneric("setComparedDataSets")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "setComparedDataSets", signature = c("AmStockChart"),
           definition = function(.Object, comparedDataSets)
           {
@@ -497,32 +466,19 @@ setMethod(f = "setComparedDataSets", signature = c("AmStockChart"),
             return(.Object)
           })
 
-#' @exportMethod addComparedDataSet
-setGeneric(name = "addComparedDataSet",
-           def = function(.Object, dataSet = NULL, ...) { standardGeneric("addComparedDataSet") } )
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param dataSet
-#' (optionnal) Object of class \code{\linkS4class{DataSet}}.
-#' Each element of this list must be a dataSet
-#' @param ...
-#' Properties of the \code{\linkS4class{DataSet}} to add.
+#' @description Setter for comparedDataSet
 #' @examples
-#' library(pipeR)
-#' amStockChart() %>>% addComparedDataSet(compared = TRUE)
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
+#' addComparedDataSet(.Object = amStockChart(), compared = TRUE)
 #' @seealso \code{\linkS4class{DataSet}} S4 class
-#' @name addComparedDataSet
-#' @rdname addComparedDataSet
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "addComparedDataSet",
+           def = function(.Object, dataSet = NULL, ...) {standardGeneric("addComparedDataSet")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "addComparedDataSet", signature = c("AmStockChart"),
           definition = function(.Object, dataSet = NULL, ...)
           {
-            if ( is.null(dataSet) && !missing(...) ) {
+            if (is.null(dataSet) && !missing(...)) {
               dataSet <- dataSet(...)
             } else {}
             .Object@comparedDataSets <- rlist::list.append(.Object@comparedDataSets,
@@ -533,31 +489,21 @@ setMethod(f = "addComparedDataSet", signature = c("AmStockChart"),
 
 # > @dataSets : setters ####
 
-#' @exportMethod setDataSets
-setGeneric(name = "setDataSets",
-           def = function(.Object, dataSets) { standardGeneric("setDataSets") } )
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param dataSets
-#' Object of class \code{\linkS4class{list}}.
-#' Each element of this list must be a dataSet
+#' @description Setter for DataSets
 #' @examples
 #' library(pipeR)
 #' amStockChart() %>>% setDataSets(list(dataSet(compared = FALSE), dataSet(compared = FALSE)))
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
 #' @seealso \code{\linkS4class{DataSet}} S4 class
-#' @name setDataSets
-#' @rdname setDataSets
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "setDataSets",
+           def = function(.Object, dataSets) {standardGeneric("setDataSets")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "setDataSets", signature = c("AmStockChart"),
           definition = function(.Object, dataSets)
           {
             rightClassElements <- prod(sapply(dataSets, function(element) {is(element, "DataSet")}))
-            if ( !rightClassElements ) {
+            if (!rightClassElements) {
               stop("[setDataSets]: each element of dataSets must be of class DataSet")
             } else {}
             .Object@dataSets <- lapply(dataSets, listProperties)
@@ -568,7 +514,7 @@ setMethod(f = "setDataSets", signature = c("AmStockChart"),
 
 #' @exportMethod addDataSet
 setGeneric(name = "addDataSet",
-           def = function(.Object, dataSet = NULL, ...) { standardGeneric("addDataSet") } )
+           def = function(.Object, dataSet = NULL, ...) {standardGeneric("addDataSet")})
 #' @title Setter
 #' @param .Object
 #' Object of class \code{\linkS4class{AmStockChart}}.
@@ -585,7 +531,6 @@ setGeneric(name = "addDataSet",
 #' @family AmStockChart methods
 #' @seealso \code{\linkS4class{AmStockChart}} S4 class
 #' @seealso \code{\linkS4class{DataSet}} S4 class
-#' @name addDataSet
 #' @rdname addDataSet
 #' @export
 setMethod(f = "addDataSet", signature = c("AmStockChart"),
@@ -604,7 +549,7 @@ setMethod(f = "addDataSet", signature = c("AmStockChart"),
 
 #' @exportMethod setDataSetSelector
 setGeneric(name = "setDataSetSelector",
-           def = function(.Object, ...) { standardGeneric("setDataSetSelector") } )
+           def = function(.Object, ...) {standardGeneric("setDataSetSelector")})
 #' @title Setter
 #' @param .Object
 #' Object of class \code{\linkS4class{AmStockChart}}.
@@ -617,7 +562,6 @@ setGeneric(name = "setDataSetSelector",
 #' @family AmStockChart setters
 #' @family AmStockChart methods
 #' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @name setDataSetSelector
 #' @rdname setDataSetSelector
 #' @export
 setMethod(f = "setDataSetSelector", signature = c("AmStockChart"),
@@ -631,7 +575,7 @@ setMethod(f = "setDataSetSelector", signature = c("AmStockChart"),
 # > @legendSettings : setters ####
 
 #' @exportMethod setLegendSettings
-setGeneric(name = "setLegendSettings", def = function(.Object, ...) { standardGeneric("setLegendSettings") } )
+setGeneric(name = "setLegendSettings", def = function(.Object, ...) {standardGeneric("setLegendSettings")})
 #' @title Setter for LegendSettings
 #' @details Use this methode in case of an AmStockChart.
 #' @param .Object
@@ -645,7 +589,6 @@ setGeneric(name = "setLegendSettings", def = function(.Object, ...) { standardGe
 #' @family AmStockChart setters
 #' @family AmStockChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @name setLegendSettings
 #' @rdname setLegendSettings
 #' @export
 setMethod(f = "setLegendSettings", signature = c("AmStockChart"),
@@ -659,7 +602,7 @@ setMethod(f = "setLegendSettings", signature = c("AmStockChart"),
 # > @mainDataSet: setter ###
 #' @exportMethod setMainDataSet
 setGeneric(name = "setMainDataSet",
-           def = function(.Object, dataSet = NULL, ...) { standardGeneric("setMainDataSet") } )
+           def = function(.Object, dataSet = NULL, ...) {standardGeneric("setMainDataSet")})
 #' @title Setter
 #' @param .Object
 #' Object of class \code{\linkS4class{AmStockChart}}.
@@ -676,13 +619,12 @@ setGeneric(name = "setMainDataSet",
 #' @family AmStockChart methods
 #' @seealso \code{\linkS4class{AmStockChart}} S4 class
 #' @seealso \code{\linkS4class{DataSet}} S4 class
-#' @name setMainDataSet
 #' @rdname setMainDataSet
 #' @export
 setMethod(f = "setMainDataSet", signature = c("AmStockChart"),
           definition = function(.Object, dataSet = NULL, ...)
           {
-            if ( is.null(dataSet) && !missing(...) ) {
+            if (is.null(dataSet) && !missing(...)) {
               dataSet <- dataSet(...)
             } else {}
             .Object@mainDataSet <- listProperties(dataSet)
@@ -694,7 +636,7 @@ setMethod(f = "setMainDataSet", signature = c("AmStockChart"),
 
 #' @exportMethod setPanels
 setGeneric(name = "setPanels",
-           def = function(.Object, panels) { standardGeneric("setPanels") } )
+           def = function(.Object, panels) {standardGeneric("setPanels")})
 #' @title Setter
 #' @param .Object
 #' Object of class \code{\linkS4class{AmStockChart}}.
@@ -709,14 +651,13 @@ setGeneric(name = "setPanels",
 #' @family AmStockChart methods
 #' @seealso \code{\linkS4class{AmStockChart}} S4 class
 #' @seealso \code{\linkS4class{StockPanel}} S4 class
-#' @name setPanels
 #' @rdname setPanels
 #' @export
 setMethod(f = "setPanels", signature = c("AmStockChart", "list"),
           definition = function(.Object, panels)
           {
             rightClassElements <- prod(sapply(panels, function(element) {is(element, "StockPanel")}))
-            if ( !rightClassElements ) {
+            if (!rightClassElements) {
               stop("[setPanels]: each element of panels must be of class Panel")
             } else {}
             .Object@panels <- lapply(panels, listProperties)
@@ -726,7 +667,7 @@ setMethod(f = "setPanels", signature = c("AmStockChart", "list"),
 
 #' @exportMethod addPanel
 setGeneric(name = "addPanel",
-           def = function(.Object, panel = NULL, ...) { standardGeneric("addPanel") } )
+           def = function(.Object, panel = NULL, ...) {standardGeneric("addPanel")})
 #' @title Setter
 #' @param .Object
 #' Object of class \code{\linkS4class{AmStockChart}}.
@@ -743,16 +684,15 @@ setGeneric(name = "addPanel",
 #' @family AmStockChart methods
 #' @seealso \code{\linkS4class{AmStockChart}} S4 class
 #' @seealso \code{\linkS4class{StockPanel}} S4 class
-#' @name addPanel
 #' @rdname addPanel
 #' @export
 setMethod(f = "addPanel", signature = c("AmStockChart"),
           definition = function(.Object, panel = NULL, ...)
           {
-            if ( is.null(panel) && !missing(...) ) {
+            if (is.null(panel) && !missing(...)) {
               panel <- stockPanel(...)
             } else {}
-            .Object@panels <- rlist::list.append( .Object@panels, listProperties(panel) )
+            .Object@panels <- rlist::list.append(.Object@panels, listProperties(panel))
             validObject(.Object)
             return(.Object)
           })
@@ -760,7 +700,7 @@ setMethod(f = "addPanel", signature = c("AmStockChart"),
 # > @panelSettings : setters ####
 
 #' @exportMethod setPanelsSettings
-setGeneric(name = "setPanelsSettings", def = function(.Object, ...) { standardGeneric("setPanelsSettings") } )
+setGeneric(name = "setPanelsSettings", def = function(.Object, ...) {standardGeneric("setPanelsSettings")})
 #' @title Setter for PanelsSettings
 #' @details Use this methode in case of an AmStockChart.
 #' @param .Object
@@ -774,7 +714,6 @@ setGeneric(name = "setPanelsSettings", def = function(.Object, ...) { standardGe
 #' @family AmStockChart setters
 #' @family AmStockChart methods
 #' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @name setPanelsSettings
 #' @rdname setPanelsSettings
 #' @export
 setMethod(f = "setPanelsSettings", signature = c("AmStockChart"),
@@ -788,7 +727,7 @@ setMethod(f = "setPanelsSettings", signature = c("AmStockChart"),
 # > @setPeriodSelector : setters ####
 
 #' @exportMethod setPeriodSelector
-setGeneric(name = "setPeriodSelector", def = function(.Object, periodSelector = NULL, ...) { standardGeneric("setPeriodSelector") } )
+setGeneric(name = "setPeriodSelector", def = function(.Object, periodSelector = NULL, ...) {standardGeneric("setPeriodSelector")})
 #' @title Setter for PeriodSelector
 #' @details Use this methode in case of an AmStockChart.
 #' @param .Object
@@ -804,13 +743,12 @@ setGeneric(name = "setPeriodSelector", def = function(.Object, periodSelector = 
 #' @family AmStockChart setters
 #' @family AmStockChart methods
 #' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @name setPeriodSelector
 #' @rdname setPeriodSelector
 #' @export
 setMethod(f = "setPeriodSelector", signature = c("AmStockChart"),
           definition = function(.Object, periodSelector = NULL, ...)
           {
-            if (is.null( periodSelector ) && !missing(...)) {
+            if (is.null(periodSelector) && !missing(...)) {
               periodSelector <- periodSelector(...)
             } else {}
             .Object@periodSelector <- listProperties(periodSelector)
@@ -821,7 +759,7 @@ setMethod(f = "setPeriodSelector", signature = c("AmStockChart"),
 # > @setStockEventsSettings : setters ####
 
 #' @exportMethod setStockEventsSettings
-setGeneric(name = "setStockEventsSettings", def = function(.Object, ...) { standardGeneric("setStockEventsSettings") } )
+setGeneric(name = "setStockEventsSettings", def = function(.Object, ...) {standardGeneric("setStockEventsSettings")})
 #' @title Setter for StockEventsSettings
 #' @details Use this methode in case of an AmStockChart.
 #' @param .Object
@@ -835,7 +773,6 @@ setGeneric(name = "setStockEventsSettings", def = function(.Object, ...) { stand
 #' @family AmStockChart setters
 #' @family AmStockChart methods
 #' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @name setStockEventsSettings
 #' @rdname setStockEventsSettings
 #' @export
 setMethod(f = "setStockEventsSettings", signature = c("AmStockChart"),
@@ -850,7 +787,7 @@ setMethod(f = "setStockEventsSettings", signature = c("AmStockChart"),
 
 #' @exportMethod setValueAxesSettings
 setGeneric(name = "setValueAxesSettings",
-           def = function(.Object, valueAxesSettings = NULL, ...) {standardGeneric("setValueAxesSettings")} )
+           def = function(.Object, valueAxesSettings = NULL, ...) {standardGeneric("setValueAxesSettings")})
 #' @title Setter for valueAxesSettings
 #' @param .Object
 #' Object of class \code{\linkS4class{AmStockChart}}.
@@ -862,7 +799,6 @@ setGeneric(name = "setValueAxesSettings",
 #' amStockChart() %>>% setValueAxesSettings(autoGridCount = "TRUE")
 #' @family AmStockChart setters
 #' @family AmStockChart methods
-#' @name setValueAxesSettings
 #' @rdname setValueAxesSettings
 #' @export
 setMethod(f = "setValueAxesSettings", signature = c("AmStockChart"),
@@ -882,51 +818,51 @@ setMethod(f = "setValueAxesSettings", signature = c("AmStockChart"),
 #' library(pipeR)
 #' amChart() %>>% setProperties(test = 1) %>>% listProperties
 #' @importFrom rlist list.append
-setMethod( f = "listProperties", signature = "AmStockChart",
-           definition = function(.Object)
-           {
-             ls <- callNextMethod()
-             if (length(.Object@categoryAxesSettings)) {
-               ls <- rlist::list.append( ls, categoryAxesSettings = .Object@categoryAxesSettings)
-             } else {}
-             if (length(.Object@chartCursorSettings)) {
-               ls <- rlist::list.append( ls, chartCursorSettings = .Object@chartCursorSettings)
-             } else {}
-             if (length(.Object@chartScrollbarSettings)) {
-               ls <- rlist::list.append( ls, chartScrollbarSettings = .Object@chartScrollbarSettings)
-             } else {}
-             if (length(.Object@comparedDataSets)) {
-               ls <- rlist::list.append( ls, comparedDataSets = .Object@comparedDataSets)
-             } else {}
-             if (length(.Object@dataSets)) {
-               ls <- rlist::list.append(ls, dataSets = .Object@dataSets)
-             } else {}
-             if (length(.Object@dataSetSelector)) {
-               ls <- rlist::list.append(ls, dataSetSelector = .Object@dataSetSelector)
-             } else {}
-             if (length(.Object@legendSettings)) {
-               ls <- rlist::list.append( ls, legendSettings = .Object@legendSettings)
-             } else {}
-             if (length(.Object@mainDataSet)) {
-               ls <- rlist::list.append( ls, mainDataSet = .Object@mainDataSet)
-             } else {}
-             if (length(.Object@panels)) {
-               ls <- rlist::list.append( ls, panels = .Object@panels)
-             } else {}
-             if (length(.Object@panelsSettings)) {
-               ls <- rlist::list.append( ls, panelsSettings = .Object@panelsSettings)
-             } else {}
-             if (length(.Object@periodSelector)) {
-               ls <- rlist::list.append( ls, panelsSettings = .Object@periodSelector)
-             } else {}
-             if (length(.Object@periodSelector)) {
-               ls <- rlist::list.append( ls, periodSelector = .Object@periodSelector)
-             } else {}
-             if (length(.Object@stockEventsSettings)) {
-               ls <- rlist::list.append( ls, stockEventsSettings = .Object@stockEventsSettings)
-             } else {}
-             if (length(.Object@valueAxesSettings)) {
-               ls <- rlist::list.append( ls, valueAxesSettings = .Object@valueAxesSettings)
-             } else {}
-             return(ls)
-           })
+setMethod(f = "listProperties", signature = "AmStockChart",
+          definition = function(.Object)
+          {
+            ls <- callNextMethod()
+            if (length(.Object@categoryAxesSettings)) {
+              ls <- rlist::list.append(ls, categoryAxesSettings = .Object@categoryAxesSettings)
+            } else {}
+            if (length(.Object@chartCursorSettings)) {
+              ls <- rlist::list.append(ls, chartCursorSettings = .Object@chartCursorSettings)
+            } else {}
+            if (length(.Object@chartScrollbarSettings)) {
+              ls <- rlist::list.append(ls, chartScrollbarSettings = .Object@chartScrollbarSettings)
+            } else {}
+            if (length(.Object@comparedDataSets)) {
+              ls <- rlist::list.append(ls, comparedDataSets = .Object@comparedDataSets)
+            } else {}
+            if (length(.Object@dataSets)) {
+              ls <- rlist::list.append(ls, dataSets = .Object@dataSets)
+            } else {}
+            if (length(.Object@dataSetSelector)) {
+              ls <- rlist::list.append(ls, dataSetSelector = .Object@dataSetSelector)
+            } else {}
+            if (length(.Object@legendSettings)) {
+              ls <- rlist::list.append(ls, legendSettings = .Object@legendSettings)
+            } else {}
+            if (length(.Object@mainDataSet)) {
+              ls <- rlist::list.append(ls, mainDataSet = .Object@mainDataSet)
+            } else {}
+            if (length(.Object@panels)) {
+              ls <- rlist::list.append(ls, panels = .Object@panels)
+            } else {}
+            if (length(.Object@panelsSettings)) {
+              ls <- rlist::list.append(ls, panelsSettings = .Object@panelsSettings)
+            } else {}
+            if (length(.Object@periodSelector)) {
+              ls <- rlist::list.append(ls, panelsSettings = .Object@periodSelector)
+            } else {}
+            if (length(.Object@periodSelector)) {
+              ls <- rlist::list.append(ls, periodSelector = .Object@periodSelector)
+            } else {}
+            if (length(.Object@stockEventsSettings)) {
+              ls <- rlist::list.append(ls, stockEventsSettings = .Object@stockEventsSettings)
+            } else {}
+            if (length(.Object@valueAxesSettings)) {
+              ls <- rlist::list.append(ls, valueAxesSettings = .Object@valueAxesSettings)
+            } else {}
+            return(ls)
+          })

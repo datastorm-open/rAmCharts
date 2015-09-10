@@ -13,7 +13,7 @@
 \item{graph}{Object of class \code{AmGraph}.
 Specifies which graph will be displayed in the scrollbar.}
 
-\item{pathToImages}{}
+\item{pathToImages}{URL to API images (for buttons)}
 
 \item{updateOnReleaseOnly}{Object of class \code{logical}.
 Specifies if the chart should be updated while dragging/resizing the scrollbar

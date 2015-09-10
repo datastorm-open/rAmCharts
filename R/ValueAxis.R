@@ -32,13 +32,9 @@ setClass( Class = "ValueAxis", contains = "AxisBase",
 #' @param \code{title}: {Object of class \code{character}}
 #' @param \code{guides}: {Object of class \code{list}. List of guides.}
 #' @examples
-#' \dontshow{
+#' \dontrun{
 #' new("ValueAxis", title = "Hello !", 1) # 1 is not take into account
-#' listProperties(guide(fillAlpha = .4))
-#' lapply(list(guide(fillAlpha = .4), guide(fillAlpha = .5)), listProperties)
-#' }
 #' 
-#' \donttest{
 #' # If one element of guides is not a Guide object, it shows an error
 #' guides <- list(guide(fillAlpha = .4), b = 1)
 #' new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)
@@ -108,7 +104,6 @@ setMethod( f = "setTitle", signature = c("ValueAxis", "character"),
 #' valueAxis( axisTitleOffset = 12, tickLength = 10 ) %>>%
 #' addGuide( fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1 ) %>>%
 #' setProperties( axisTitleOffset = 12 ) %>>% listProperties
-#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "ValueAxis",
            definition = function( .Object )
            { 
@@ -117,5 +112,4 @@ setMethod( f = "listProperties", signature = "ValueAxis",
                ls <- rlist::list.append(ls, title = .Object@title)
              }
              return(ls)
-           }
-)
+           })

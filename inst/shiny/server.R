@@ -38,7 +38,7 @@ shinyServer(function(input, output) {
     ) %>>% addGraph( balloonText = "Utility : [[value]]", valueField = "p1", title = "p1"
     ) %>>% addGraph( balloonText = "Utility : [[value]]", valueField = "p2", title = "p2"
     ) %>>% setLegend( useGraphSettings = TRUE
-    ) %>>% setExport() %>>% plot  
+    ) %>>% setExport() %>>% plot()  
   })
   
   output$pie <- rAmCharts::renderAmCharts({

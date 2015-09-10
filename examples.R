@@ -4,7 +4,7 @@ library(data.table)
 
 ### amPieChart
 amPieChart(valueField = "value", titleField = "key", creditsPosition = "top-right",
-           backgroundColor = "#ff0000"
+           backgroundColor = "#7870E8"
 ) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
 ) %>>% setExport(position = "bottom-left") %>>% plot()
 
@@ -14,46 +14,49 @@ amPieChart(theme ="dark", valueField = "value", titleField = "key", creditsPosit
 ) %>>% addListener("clickSlice" , "function(event){ alert('ok !'); }"
 ) %>>% plot()
 
-### amPieChart with listener
+### amPieChart with listener V1
 legend <- amLegend(position = "right", marginRight = 100, autoMargins = FALSE, innerRadius = "30%"
 ) %>>% addListener("hideItem" , "function(event){alert('hide'); }")
 amPieChart(theme ="dark", valueField = "value", titleField = "key", legend = legend
 ) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
 ) %>>% plot()
 
+### amPieChart with listener V2
+amPieChart(theme ="light", valueField = "value", titleField = "key"
+) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
+) %>>% setLegend(position = "right", marginRight = 100, autoMargins = FALSE, innerRadius = "30%",
+                 listeners = list(hideItem = htmlwidgets::JS("function(event){alert('hide'); }"))
+) %>>% plot()
+
+
 ### custom legend listener, using chart method
-df <- data.frame(binf=c(1,2,3,4,5),bsup = c(3,4,5,6,7), value = c(2,3,4,5,6),heure = c("9h","10h","11h","12h","13h"))
-titre <- "essai"
-
-legend <- amLegend(equalWidths=FALSE, position="bottom", valueAlign="left", valueWidth=100
-) %>>% addListener("hideItem" , 'function(event){
-  var id = event.dataItem.id;
-  event.chart.hideGraph(event.chart.getGraphById(id + "_from"));
-  event.chart.hideGraph(event.chart.getGraphById(id + "_to"));
-}') %>>% addListener("showItem" , 'function(event){
-  var id = event.dataItem.id;
-  event.chart.showGraph(event.chart.getGraphById(id + "_from"));
-  event.chart.showGraph(event.chart.getGraphById(id + "_to"));
-}')
-
-
-amSerialChart(legend = legend)%>>%
-  setDataProvider(df) %>>%
-  setProperties(type="serial",addClassNames=TRUE,theme="light",autoMargins=TRUE,startDuration=0.5,categoryField="heure",export = list(enabled=TRUE))%>>%
-  setBalloon(adjustBorderColor=FALSE,horizontalPadding=10,verticalPadding=8,color="#ffffff")%>>%
-  addValueAxes(axisAlpha=0,position="left")%>>%
-  setGraphs(list(
-    amGraph(id = "2014_from", lineAlpha = 0, valueField = "binf", showBalloon = FALSE, visibleInLegend = FALSE),
-    amGraph(id = "2014_to", lineAlpha = 0, fillAlphas = 0.2, fillToGraph = "2014_from",valueField = "bsup", 
-            showBalloon = FALSE, visibleInLegend = FALSE),
-    amGraph(id = "2014", valueField = "value")))%>>%
-  setCategoryAxis(gridPosition="start",axisAlpha=0,tickLength=0)%>>%
-  setChartCursor(cursorAlpha=1)%>>%
-  addTitle(text=titre)%>>%
-  plot
+amSerialChart(addClassNames = TRUE, theme = "light", autoMargins = TRUE,
+              startDuration = 0.5, categoryField = "heure"
+) %>>% addTitle(text = "TEST"
+) %>>% setDataProvider(
+  data.frame(binf = c(1,2,3,4,5), bsup = c(3,4,5,6,7), value = c(2,3,4,5,6), heure = c("9h","10h","11h","12h","13h"))
+) %>>% setBalloon(adjustBorderColor = FALSE, horizontalPadding = 10,verticalPadding = 8, color = "#ffffff"
+) %>>% addValueAxes(axisAlpha = 0, position = "left"
+) %>>% setGraphs(list(
+  amGraph(id = "2014_from", lineAlpha = 0, valueField = "binf", showBalloon = FALSE, visibleInLegend = FALSE),
+  amGraph(id = "2014_to", lineAlpha = 0, fillAlphas = 0.2, fillToGraph = "2014_from", valueField = "bsup", 
+          showBalloon = FALSE, visibleInLegend = FALSE),
+  amGraph(id = "2014", valueField = "value"))
+) %>>% setCategoryAxis(gridPosition = "start", axisAlpha = 0, tickLength = 0
+) %>>% setChartCursor(cursorAlpha = 1
+) %>>% setLegend(amLegend = amLegend(equalWidths=FALSE, position="bottom", valueAlign="left", valueWidth=100) %>>%
+                   addListener("hideItem" , 'function(event){
+                                              var id = event.dataItem.id;
+                                              event.chart.hideGraph(event.chart.getGraphById(id + "_from"));
+                                              event.chart.hideGraph(event.chart.getGraphById(id + "_to")); }') %>>%
+                   addListener("showItem" , 'function(event){
+                                              var id = event.dataItem.id;
+                                              event.chart.showGraph(event.chart.getGraphById(id + "_from"));
+                                              event.chart.showGraph(event.chart.getGraphById(id + "_to"));}')
+) %>>% setExport() %>>% plot ()
 
 ### amRadarChart
-amRadarChart(theme = "chalk", startDuration = 1, categoryField = "attribute"
+amRadarChart(startDuration = 1, categoryField = "attribute"
 ) %>>% setDataProvider (
   data.frame(attribute = c("data", "brand", "singleness"),
              p1 = c(.3, -1, 0), p2 = c(.7, 1, 2))

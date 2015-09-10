@@ -173,17 +173,92 @@ setClass(Class = "AmChart", contains = "AmObject",
   }
 )
 
-#' @title Initialize an AmChart
+#' @title Create an AmChart
 #' @description Method for initializing any S4 class provided by the package.
+#' @param .Object \code{\linkS4class{AmChart}}
+#' @param allLabels
+#' Object of class \code{"list"}. List of Labels properties.
+#' See \code{\linkS4class{Label}}.
+#' @param arrows
+#' Object of class \code{"list"}
+#' containing object of class \code{\linkS4class{GaugeArrow}}.
+#' @param axes
+#' Object of class \code{"list"}
+#' containing object of class \code{\linkS4class{GaugeAxis}}.
+#' @param balloon
+#' Object of class \code{"list"}.
+#' List of an \code{\linkS4class{AmBalloon}} class properties.
+#' Creates the balloons (tooltips) of the chart,
+#' It follows the mouse cursor when you roll-over the data items.
+#' The framework generates the instances automatically you only need to adjust
+#' the appearance to your needs.
+#' @param categoryAxis
+#' Object of class \code{"list"}.
+#' List of a \code{\linkS4class{CategoryAxis}} properties.
+#' Read-only. Chart creates category axis itself.
+#' If you want to change some properties,
+#' you should get this axis from the chart and set properties to this object.
+#' @param categoryField \code{"character"}.
+#' Category field name tells the chart the name of the field in your dataProvider object
+#' which will be used for category axis values.
+#' @param ChartCursor \code{"list"}.
+#' List of a \code{\linkS4class{ChartCursor}} class properties.
+#' Properties of the chart's cursor.
+#' @param ChartScrollbar \code{"list"}.
+#' List of a \code{\linkS4class{ChartScrollbar}} class properties.
+#' Properties of chart's scrollbar.
+#' @param creditsPosition \code{"character"},
+#' specifying position of link to amCharts site.
+#' Allowed values are: top-left, top-right, bottom-left and bottom-right.
+#' @param dataProvider \code{"list"}, containing the data.
+#' Use providing method toList* to convert a \code{data.frame}.
+#' @param graphs \code{list}. 
+#' List of AmGraphs properties
+#' See \code{\linkS4class{AmGraph}} class.
+#' Creates the visualization of the data in following types: line, column, step line,
+#' smoothed line, olhc and candlestick.
+#' @param graph code{\linkS4class{AmGraph}}.
+#' Graph of a Gantt chart. Gant chart actually creates multiple graphs (separate for each segment).
+#' Properties of this graph are passed to each of the created graphs
+#' - this allows you to control the look of segments.
+#' @param legend \code{"list"}.
+#' List of an \code{\linkS4class{AmLegend}} class properties.
+#' Properties of chart's legend.
+#' @param segmentsField \code{character}.
+#' @param theme \code{character}.
+#' Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
+#' @param titles \code{"list"}.
+#' List of \code{\linkS4class{Title}} properties.
+#' See \code{\linkS4class{Title}} class.
+#' @param trendLines \code{"list"}.
+#' List of \code{\linkS4class{TrendLine}} objects added to a chart.
+#' You can add trend lines to a chart using this list or access already existing trend lines.
+#' @param type \code{"character"}.
+#' Possible types are: serial, pie, radar,
+#' (types xy, radar, funnel, gauge, map, stock. are in development).
+#' @param valueAxes \code{"list"}.
+#' List of ValueAxes' properties.
+#' See \code{\linkS4class{ValueAxis}} class.
+#' Chart creates one value axis automatically,
+#' so if you need only one value axis, you don't need to create it.
+#' @param valueAxis \code{list}.
+#' List of Value axis properties for Gantt chart.
+#' Set it's type to "date" if your data is date or time based.
+#' In case of Value axis for a Gantt chart.
+#' Set it's type to "date" if your data is date or time based.
+#' @param pathToImages \code{character}
+#' @param ... Other properties of \code{\linkS4class{AmChart}}.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts}
+#' @return Returns an object of class \code{\linkS4class{AmChart}} with arguments.
 #' @examples
 #' new("AmChart", valueField = "value")
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
+#' @rdname initialize-AmChart
 #' @export
 setMethod(f = "initialize", signature = "AmChart",
           definition = function(.Object, allLabels, arrows, axes, balloon, categoryAxis,
-                                categoryField, chartCursor,
-                                chartScrollbar, creditsPosition, dataProvider, graphs, graph,
+                                categoryField, chartCursor, chartScrollbar,
+                                creditsPosition, dataProvider, graphs, graph,
                                 guides, legend, segmentsField, theme,
                                 titles, trendLines, type, valueAxes, valueAxis,
                                 pathToImages = "http://www.amcharts.com/lib/3/images/",...)
@@ -260,11 +335,10 @@ setMethod(f = "initialize", signature = "AmChart",
 
 #' @title List attributes of an AmChart
 #' @description This method lists attributes of an AmChart to fit the API
-#' @param .Object: \code{\linkS4class{AmChart}}
+#' @param .Object  \code{\linkS4class{AmChart}}
 #' @details For certain attributes we do not verify if they are NULL, see constructor.
 #' @examples
-#' library(pipeR)
-#' amChart() %>>% setProperties(test = 1) %>>% listProperties
+#' amChart(test = 1)
 #' @importFrom rlist list.append
 setMethod(f = "listProperties", signature = "AmChart",
   definition = function(.Object)

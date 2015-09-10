@@ -4,15 +4,13 @@
 #' \donttest{
 #' library(pipeR)
 #' library(shiny)
-#' shinyExamples()
+#' runShinyExamples()
 #' }
+#' @import shiny
+#' @import pipeR
 #' @export
-shinyExamples <- function()
+runShinyExamples <- function()
 {
-  # Check package dependencies
-  stopifnot(require(shiny))
-  stopifnot(require(pipeR))
-  
   # Load App
   shinyApp(
     ui <- fluidPage(
@@ -44,13 +42,11 @@ shinyExamples <- function()
         amRadarChart( 
           startDuration = 1, categoryField = category(), theme = "dark"
         ) %>>% setDataProvider(
-          data.frame(
-            attribute = c("data", "brand", "singleness"), p1 = c(.3, -1, 0), p2 = c(.7, 1, 2)
-          )
-        ) %>>% addGraph( balloonText = "Utility : [[value]]", valueField = "p1", title = "p1"
-        ) %>>% addGraph( balloonText = "Utility : [[value]]", valueField = "p2", title = "p2"
-        ) %>>% setLegend( useGraphSettings = TRUE
-        ) %>>% setExport() %>>% plot  
+          data.frame(attribute = c("data", "brand", "singleness"), p1 = c(.3, -1, 0), p2 = c(.7, 1, 2))
+        ) %>>% addGraph(balloonText = "Utility : [[value]]", valueField = "p1", title = "p1"
+        ) %>>% addGraph(balloonText = "Utility : [[value]]", valueField = "p2", title = "p2"
+        ) %>>% setLegend(useGraphSettings = TRUE
+        ) %>>% setExport() %>>% plot()
       })
       
       output$radar2 <- rAmCharts::renderAmCharts({
@@ -101,7 +97,7 @@ shinyExamples <- function()
       
       output$drillColumnChart2 <-rAmCharts::renderAmCharts({
         amSerialChart(categoryField = "name", theme = "chalk"
-        ) %>>%setDataProvider( data.frame( name = c("data", "Brand", "singleness"),
+        ) %>>% setDataProvider( data.frame( name = c("data", "Brand", "singleness"),
                                            start = c(8,10,6), end = c(11,13,10),
                                            color = c('#007FFF', "#007FFF", "#003FFF"),
                                            description = c("click to drill-down","","") )
@@ -115,7 +111,7 @@ shinyExamples <- function()
                          lineAlpha = 0, fillColorsField = "color", fillAlphas = 0.9,
                          balloonText = "[[modality]]: <b>[[utility]]</b>" )
         ) %>>% setExport() %>>% plot
-      })
+      }) 
     }
   )
 }

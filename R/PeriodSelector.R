@@ -86,7 +86,6 @@ setGeneric("addPeriod", def = function(.Object, ...) { standardGeneric("addPerio
 #' @family PeriodSelector setters
 #' @family PeriodSelector methods
 #' @seealso \code{\linkS4class{PeriodSelector}} S4 class
-#' @name addPeriod
 #' @rdname addPeriod
 #' @export
 setMethod( f = "addPeriod", signature = c("PeriodSelector"),

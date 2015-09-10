@@ -5,26 +5,26 @@ NULL
 #' @author DataKnowledge
 #' @description This class represents data for a serial chart
 #' 
-#' @slot balloonText : Object of class \code{character}.
+#' @slot balloonText  \code{character}.
 #' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
 #' or any other field name from your data provider. HTML tags can also be used.
 #' 
-#' @slot title : Object of class \code{character}. Graph title.
+#' @slot title \code{character}. Graph title.
 #' 
-#' @slot type : Object of class \code{character}.
+#' @slot type \code{character}
 #' Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
 #' XY and Radar charts can only display "line" otherArguments graphs.
 #' 
-#' @slot valueField : {Object of class \code{character}.
-#' Name of the value field in your dataProvider.}
+#' @slot valueField \code{character}.
+#' Name of the value field in your dataProvider.
 #' 
-#' @slot listeners : Object of class \code{"list"} containining the listeners to add to the object.
+#' @slot listeners \code{"list"} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string. See examples for details.
 #' 
-#' @slot otherProperties : Object of class \code{"list"},
+#' @slot otherProperties \code{"list"},
 #' containing other avalaible properties non coded in the package yet
 #' 
-#' @slot value : object of class \code{numeric}.
+#' @slot value \code{numeric}.
 #' 
 #' @examples
 #' \dontrun{
@@ -32,8 +32,9 @@ NULL
 #' unclass(new("AmGraph"))
 #' }
 #' @family rAmChart classes
+#' @rdname AmGraph-class
 #' @export
-setClass( Class = "AmGraph", contains = "AmObject",
+setClass (Class = "AmGraph", contains = "AmObject",
   representation = representation(
     balloonText = "character",
     title = "character",
@@ -42,211 +43,192 @@ setClass( Class = "AmGraph", contains = "AmObject",
   ),
   validity = function(object)
   {
-    if(length(object@balloonText) > 1){
+    if (length(object@balloonText) > 1) {
       stop("[AmGraph : validation] : argument 'balloonText' must be of length 1")
-    }else{}
-    if(length(object@type) > 1){
+    } else {}
+    if (length(object@type) > 1) {
       stop("[AmGraph : validation] : argument 'type' must be of length 1")
-    }else{}
-    if(length(object@title) > 1){
+    } else {}
+    if (length(object@title) > 1) {
       stop("[AmGraph : validation] : argument 'title' must be of length 1")
-    }else{}
-    if(length(object@valueField) > 1){
+    } else {}
+    if (length(object@valueField) > 1) {
       stop("[AmGraph : validation] : argument 'valueField' must be of length 1")
-    }else{}
+    } else {}
     return(TRUE)
-  }
-)
+  })
 
 #' @title Initialize an AmGraph
+#' @description To create an AmGraph, you can use the usual methode Initialize or the constructor.
+#' You can update properties with setters.
+#' @param balloonText \code{character}.
+#' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
+#' or any other field name from your data provider. HTML tags can also be used.
+#' @param title \code{character}. Graph title.
+#' @param type \code{character}.
+#' Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
+#' XY and Radar charts can only display "line" otherArguments graphs.
+#' @param valueField \code{character}.
+#' Name of the value field in your dataProvider.
+#' @param listeners \code{"list"} containining the listeners to add to the object.
+#' The list must be named as in the official API.
+#' Each element must a character string. See examples for details.
+#' @param otherProperties \code{"list"},
+#' containing other avalaible properties non coded in the package yet
+#' @param value  \code{numeric}.
+#' @return An object of class \code{\linkS4class{AmGraph}} with the properties given.
 #' @examples
 #' new("AmGraph", valueField = "value")
+#' @rdname initialize-AmGraph
 #' @export
 setMethod(f = "initialize", signature = "AmGraph",
           definition = function(.Object, animationPlayed = FALSE, balloonText, title, type, valueField, ...)
           {  
-            if(!missing(balloonText)){
+            if (!missing(balloonText)) {
               .Object@balloonText <- balloonText
-            }else{}
-            if(!missing(title)){
+            } else {}
+            if (!missing(title)) {
               .Object@title <- title
-            }else{}
-            if(!missing(type)){
+            } else {}
+            if (!missing(type)) {
               .Object@type <- type
-            }else{}
-            if(!missing(valueField)){
+            } else {}
+            if (!missing(valueField)) {
               .Object@valueField <- valueField
-            }else{}
-            .Object@otherProperties <- list( animationPlayed = animationPlayed, ...)
+            } else {}
+            .Object@otherProperties <- list (animationPlayed = animationPlayed, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
-#’ Constructor.
-#' @title Constructor for an AmGraph
-#' @param \code{balloonText}: {Object of class \code{character}.
-#' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
-#' or any other field name from your data provider. HTML tags can also be used.}
-#' @param \code{title}: {Object of class \code{character}. Graph title.}
-#' @param \code{type}: {Object of class \code{character}.
-#' Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
-#' XY and Radar charts can only display "line" otherArguments graphs.}
-#' @param \code{valueField}: {Object of class \code{character}.
-#' Name of the value field in your dataProvider.}
-#' @return An \code{\linkS4class{AmGraph}} object
+#' @description Constructor
 #' @examples
 #' amGraph(balloonText = "balloonText", "type" = "column", valueField = "value", animationPlayed = TRUE)
+#' @describeIn initialize-AmGraph
 #' @export
 amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 {
   .Object <- new(Class="AmGraph", animationPlayed = animationPlayed)
-  if(!missing(balloonText)){
+  if (!missing(balloonText)) {
     .Object@balloonText <- balloonText
-  }else{}
-  if(!missing(title)){
+  } else {}
+  if (!missing(title)) {
     .Object@title <- title
-  }else{}
-  if(!missing(type)){
+  } else {}
+  if (!missing(type)) {
     .Object@type <- type
-  }else{}
-  if(!missing(valueField)){
+  } else {}
+  if (!missing(valueField)) {
     .Object@valueField <- valueField
-  }else{}
+  } else {}
   .Object@otherProperties <- list(...)
   validObject(.Object)
   return(.Object)
 }
 
 #' @title Constructor for a stockGraph (class AmGraph)
-#' @param balloonText
-#' Object of class \code{character}.
+#' @param animationPlayed \code{logical}.
+#' @param balloonText \code{character}.
 #' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
 #' or any other field name from your data provider. HTML tags can also be used.
-#' @param title
-#' Object of class \code{character}. Graph title.
-#' @param type
-#' Object of class \code{character}.
+#' @param title \code{character}. Graph title.
+#' @param type \code{character}.
 #' Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
 #' XY and Radar charts can only display "line" otherArguments graphs.
-#' @param valueField
-#' Object of class \code{character}.
+#' @param valueField \code{character}.
 #' Name of the value field in your dataProvider.
-#' @param ...
-#' \url{http://docs.amcharts.com/3/javascriptstockchart/StockGraph}
-#' @return An \code{\linkS4class{AmGraph}} object
 #' @examples
 #' stockGraph(balloonText = "balloonText", "type" = "column", valueField = "value", animationPlayed = TRUE)
+#' @return An object of class \code{\linkS4class{AmGraph}}.
 #' @export 
 stockGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 {
   amGraph(animationPlayed, balloonText, title, type, valueField, ...)
 }
 
-# > SETTERS ####
-
 # > @balloonText ####
-#' @exportMethod setBalloonText
-setGeneric(name = "setBalloonText", def = function(.Object, balloonText){standardGeneric("setBalloonText")})
-#' @title Setter
+
+#' @description Setter for balloonText.
 #' @examples
-#' library(pipeR)
-#' amGraph() %>>% setBalloonText("balloonText")
-#' @name setBalloonText
-#' @rdname setBalloonText
+#' setBalloonText(.Object = amGraph(), balloonText = "performance")
+#' @rdname initialize-AmGraph
 #' @export
+setGeneric(name = "setBalloonText", def = function(.Object, balloonText) {standardGeneric("setBalloonText")})
+#' @rdname initialize-AmGraph
 setMethod(f = "setBalloonText", signature = c("AmGraph", "character"),
           definition = function(.Object, balloonText)
           {
             .Object@balloonText <- balloonText
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # > @title ####
 
-#' @title Setter
+#' @description Setter for title.
 #' @examples
-#' library(pipeR)
-#' amGraph() %>>% setTitle("title")
-#' @rdname setTitle
-#' @name setTitle
-#' @export
+#' setTitle(.Object = amGraph(), title = "Power")
+#' @rdname initialize-AmGraph
 setMethod(f = "setTitle", signature = c("AmGraph", "character"),
           definition = function(.Object, title)
           {
             .Object@title <- title
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
-#' @title Setter
+#' @description Setter for type.
 #' @examples
-#' library(pipeR)
-#' amGraph() %>>% setType("type")
-#' @name setType
-#' @rdname setType
-#' @export
+#' setType(.Object = amGraph(), type = "type")
+#' @rdname initialize-AmGraph
 setMethod(f = "setType", signature = c("AmGraph", "character"),
           definition = function(.Object, type)
           {
             .Object@type <- type
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # > @valueField ####
 
-#' @exportMethod setValueField
-setGeneric(name = "setValueField", def = function(.Object, valueField){standardGeneric("setValueField")})
-#' @title Setter
+#' @description Setter for valueField
 #' @examples
-#' library(pipeR)
-#' amGraph() %>>% setValueField("valueField")
-#' @name setValueField
-#' @rdname setValueField
+#' setValueField(.Object = amGraph(), valueField = "score")
+#' @rdname initialize-AmGraph
 #' @export
+setGeneric(name = "setValueField", def = function(.Object, valueField) {standardGeneric("setValueField")})
+#' @rdname initialize-AmGraph
 setMethod(f = "setValueField", signature = c("AmGraph", "character"),
           definition = function(.Object, valueField)
           {
             .Object@valueField <- valueField
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # > METHODS ###
 
 # listProperties ####
-#' @title List attributes of an AmGraph object
-#' @description This function is used to list attributes before addind to graphs (attribute of AmChart)
+#' @description Attributes of an AmGraph object.
 #' @examples
-#' library(pipeR)
-#' amGraph(balloonText = "toto", type = "type", valueField = "valueField") %>>%
-#' listProperties
-#' 
-#' amGraph(balloonText = "toto", type = "type") %>>%
-#' listProperties
-#' @importFrom rlist list.append
+#' listProperties(amGraph(balloonText = "toto", type = "type", valueField = "valueField"))
+#' listProperties(amGraph(balloonText = "toto", type = "type"))
+#' @rdname listProperties-AmObject
 setMethod(f = "listProperties", signature = "AmGraph",
           definition = function(.Object)
           {
             ls <- callNextMethod()
-            if( length(.Object@balloonText) > 0 ){
+            if (length(.Object@balloonText)) {
               ls <- rlist::list.append(ls, balloonText = .Object@balloonText)
-            }else{}
-            if( length(.Object@title) > 0 ){
+            } else {}
+            if (length(.Object@title)) {
               ls <- rlist::list.append(ls, title = .Object@title)
-            }else{}
-            if( length(.Object@type) > 0 ){
+            } else {}
+            if (length(.Object@type)) {
               ls <- rlist::list.append(ls, type = .Object@type)
-            }else{}
-            if( length(.Object@valueField) > 0 ){
+            } else {}
+            if (length(.Object@valueField)) {
               ls <- rlist::list.append(ls, valueField = .Object@valueField)
-            }else{}
+            } else {}
             return (ls)
-          }
-)
+          })

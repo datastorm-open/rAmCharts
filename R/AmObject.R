@@ -28,9 +28,8 @@ setClass(
 #' @family AmObject methods
 #' @family Visualizations
 #' @seealso \code{\linkS4class{AmObject}}
-setMethod( f = "show", signature = "AmObject",
-           definition = function(object) { print(listProperties(object)) }
-)
+setMethod(f = "show", signature = "AmObject",
+          definition = function(object) {print(listProperties(object))})
 
 #' @title Visualize with print
 #' @param x: an \code{\linkS4class{AmChart}} 
@@ -64,7 +63,6 @@ setGeneric(name = "addListener", def = function(.Object, name, expression) { sta
 #' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{AmLegend}} S4 class
-#' @name addListener
 #' @rdname addListener
 #' @export
 setMethod (f = "addListener", signature = c("AmObject", "character", "character"),
@@ -107,8 +105,7 @@ setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
             } else {}
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # > @otherProperties: getters ####
 
@@ -130,15 +127,15 @@ setMethod( f = "getOtherProperties", definition = function(.Object) { return(.Ob
 # > listProperties ####
 
 #' @title List attributes of an S4 object
-#' @exportMethod listProperties
-setGeneric(name = "listProperties", def = function(.Object){standardGeneric("listProperties")})
-#' @title List attributes of an AmObject
-#' @details Factor the code for the commone attributes
+#' @param .Object any class object of the package
 #' @examples
 #' library(pipeR)
 #' object <- amChart() %>>% addListener("select", "function onSelect (properties) {
 #'      alert('selected nodes: ' + properties.nodes);}")
-#' @importFrom rlist list.append
+#' @rdname listProperties-AmObject
+#' @export
+setGeneric(name = "listProperties", def = function(.Object){standardGeneric("listProperties")})
+#' @rdname listProperties-AmObject
 setMethod( f = "listProperties", signature = "AmObject",
            definition = function(.Object) {
              if (length(.Object@otherProperties)) {
@@ -150,5 +147,4 @@ setMethod( f = "listProperties", signature = "AmObject",
                properties <- rlist::list.append(properties, listeners = .Object@listeners)
              } else {}
              return(properties)
-           }
-)
+           })

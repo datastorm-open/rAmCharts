@@ -1,7 +1,7 @@
 
+#' @import data.table
 amHist <- function(x, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL, plot = FALSE, col = NULL,
                    labels = FALSE, ...){
-  require(data.table)
   if (!missing(...)){
     resHist <- hist(x = x, plot = FALSE, ...)
   }else{
