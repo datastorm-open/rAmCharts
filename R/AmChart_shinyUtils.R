@@ -1,24 +1,24 @@
-#' @exportMethod amChartsOutput
+#' @rdname amChartsOutput
+#' @export
 setGeneric( name = "amChartsOutput",
-            def = function(outputId, type, width, height) { standardGeneric("amChartsOutput") }
-)
-
+            def = function(outputId, type, width, height) {standardGeneric("amChartsOutput")})
 #' @title SHINY
 #' @description Widget output function for use in Shiny
-#' @param amChart: an \code{\linkS4class{AmChart}} object
+#' @param outputId \code{character}.
+#' @param type \code{character}
+#' indicating the chart type.
+#' @param width \code{character}.
+#' @param height \code{character}.
 #' @rdname amChartsOutput
-#' @import htmlwidgets
-setMethod(
-  f = "amChartsOutput",
-  signature = c("character", "character"),
+setMethod(f = "amChartsOutput", signature = c("character", "character"),
   definition = function(outputId, type, width, height)
   {
-    if(missing(width)){
+    if (missing(width)) {
       width <- "100%"
-    }else{}
-    if(missing(height)){
+    } else {}
+    if (missing(height)) {
       height <- "400px"
-    }
+    } else {}
     
     jsFile <- switch(type,
                      "funnel" = "amFunnelChart",
@@ -43,20 +43,20 @@ setMethod(
   }
 )
 
-
-
 #' @title SHINY
 #' @description Widget output function for use in Shiny
-#' @param amChart: an \code{\linkS4class{AmChart}} object
+#' @param expr \code{expression}.
+#' @param env see htmlwidgets doc
+#' @param quoted \code{logical}.
 #' @rdname renderAmCharts
 #' @export
 renderAmCharts <- function(expr, env, quoted){
-  if(missing(env)){
+  if (missing(env)) {
     env <- parent.frame()
-  }else{}
-  if(missing(quoted)){
+  } else {}
+  if (missing(quoted)) {
     quoted <- FALSE
-  }
+  } else {}
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, amChartsOutput, env, quoted = TRUE)
 }

@@ -4,6 +4,10 @@
 \name{initialize,AmStockChart-method}
 \alias{addComparedDataSet}
 \alias{addComparedDataSet,AmStockChart-method}
+\alias{addDataSet}
+\alias{addDataSet,AmStockChart-method}
+\alias{addPanel}
+\alias{addPanel,AmStockChart-method}
 \alias{amStockChart}
 \alias{initialize,AmStockChart-method}
 \alias{setCategoryAxesSettings}
@@ -14,8 +18,24 @@
 \alias{setChartScrollbarSettings,AmStockChart-method}
 \alias{setComparedDataSets}
 \alias{setComparedDataSets,AmStockChart-method}
+\alias{setDataSetSelector}
+\alias{setDataSetSelector,AmStockChart-method}
 \alias{setDataSets}
 \alias{setDataSets,AmStockChart-method}
+\alias{setLegendSettings}
+\alias{setLegendSettings,AmStockChart-method}
+\alias{setMainDataSet}
+\alias{setMainDataSet,AmStockChart-method}
+\alias{setPanels}
+\alias{setPanels,AmStockChart,list-method}
+\alias{setPanelsSettings}
+\alias{setPanelsSettings,AmStockChart-method}
+\alias{setPeriodSelector}
+\alias{setPeriodSelector,AmStockChart-method}
+\alias{setStockEventsSettings}
+\alias{setStockEventsSettings,AmStockChart-method}
+\alias{setValueAxesSettings}
+\alias{setValueAxesSettings,AmStockChart-method}
 \title{Initialize an AmStockChart}
 \usage{
 \S4method{initialize}{AmStockChart}(.Object, categoryAxesSettings,
@@ -55,6 +75,48 @@ addComparedDataSet(.Object, dataSet = NULL, ...)
 setDataSets(.Object, dataSets)
 
 \S4method{setDataSets}{AmStockChart}(.Object, dataSets)
+
+addDataSet(.Object, dataSet = NULL, ...)
+
+\S4method{addDataSet}{AmStockChart}(.Object, dataSet = NULL, ...)
+
+setDataSetSelector(.Object, ...)
+
+\S4method{setDataSetSelector}{AmStockChart}(.Object, ...)
+
+setLegendSettings(.Object, ...)
+
+\S4method{setLegendSettings}{AmStockChart}(.Object, ...)
+
+setMainDataSet(.Object, dataSet = NULL, ...)
+
+\S4method{setMainDataSet}{AmStockChart}(.Object, dataSet = NULL, ...)
+
+setPanels(.Object, panels)
+
+\S4method{setPanels}{AmStockChart,list}(.Object, panels)
+
+addPanel(.Object, panel = NULL, ...)
+
+\S4method{addPanel}{AmStockChart}(.Object, panel = NULL, ...)
+
+setPanelsSettings(.Object, ...)
+
+\S4method{setPanelsSettings}{AmStockChart}(.Object, ...)
+
+setPeriodSelector(.Object, periodSelector = NULL, ...)
+
+\S4method{setPeriodSelector}{AmStockChart}(.Object, periodSelector = NULL,
+  ...)
+
+setStockEventsSettings(.Object, ...)
+
+\S4method{setStockEventsSettings}{AmStockChart}(.Object, ...)
+
+setValueAxesSettings(.Object, valueAxesSettings = NULL, ...)
+
+\S4method{setValueAxesSettings}{AmStockChart}(.Object,
+  valueAxesSettings = NULL, ...)
 }
 \arguments{
 \item{.Object}{\code{\linkS4class{AmStockChart}}}
@@ -66,7 +128,19 @@ you should call stockChart.validateNow() method in order for it to work.
 If there is no default value specified, default value of CategoryAxis class will be used.
 you should get this axis from the chart and set properties to this object.}
 
-\item{comparedDataSets}{\code{\linkS4class{"DataSet"}}. Data sets selected for comparing.}
+\item{chartCursorSettings}{\code{list} of \code{\linkS4class{ChartCursor}}.
+ChartCursorSettings settings set's settings for chart cursor.
+If you change a property after the chart is initialized,
+you should call stockChart.validateNow() method in order for it to work.
+If there is no default value specified, default value of ChartCursor class will be used.}
+
+\item{chartScrollbarSettings}{\code{list} of \code{\linkS4class{ChartScrollbar}}.
+ChartScrollbarSettings settings set's settings for chart scrollbar.
+If you change a property after the chart is initialized,
+you should call stockChart.validateNow() method in order for it to work.
+If there is no default value specified, default value of ChartScrollbar class will be used.}
+
+\item{comparedDataSets}{\code{\linkS4class{DataSet}}. Data sets selected for comparing.}
 
 \item{dataSets}{\code{list} of \code{\linkS4class{DataSet}}.}
 
@@ -95,17 +169,9 @@ date ranges or zoom chart with predefined period buttons.}
 
 \item{...}{Other properties...}
 
-\item{ChartCursorSettings}{\code{list} of \code{\linkS4class{ChartCursor}}.
-ChartCursorSettings settings set's settings for chart cursor.
-If you change a property after the chart is initialized,
-you should call stockChart.validateNow() method in order for it to work.
-If there is no default value specified, default value of ChartCursor class will be used.}
+\item{dataSet}{\linkS4class{DataSet}.}
 
-\item{ChartScrollbarSettings}{\code{list} of \code{\linkS4class{ChartScrollbar}}.
-ChartScrollbarSettings settings set's settings for chart scrollbar.
-If you change a property after the chart is initialized,
-you should call stockChart.validateNow() method in order for it to work.
-If there is no default value specified, default value of ChartScrollbar class will be used.}
+\item{panel}{\linkS4class{StockPanel}.}
 }
 \value{
 An object of class \code{\linkS4class{AmStockChart}}.
@@ -116,17 +182,7 @@ Method for initializing any S4 class provided by the package.
 amStockChart is a shortcut constructor
 for instantiating AmChart of type \code{stock}
 
-Setter for categoryAxesSettings.
-
-Setter for chartCursorSettings.
-
-Setter for chartScrollbarSettings.
-
-Setter for comparedDataSets
-
-Setter for comparedDataSet
-
-Setter for DataSets
+Setter for PanelsSettings.
 }
 \section{Functions}{
 \itemize{
@@ -138,12 +194,28 @@ amStockChart()
 setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")
 setChartCursorSettings(.Object = amStockChart(), oneBallOnly = TRUE)
 setChartCursorSettings(.Object = amStockChart(), chartCursorSettings = chartCursor())
+\dontrun{
+setChartCursorSettings(.Object = amStockChart(), chartCursorSettings = "foo")
+}
 setChartScrollbarSettings(.Object = amStockChart(), chartScrollbarSettings = chartScrollbar())
 library(pipeR)
 amStockChart() \%>>\% setComparedDataSets(list(dataSet(compared = TRUE), dataSet(compared = TRUE)))
 addComparedDataSet(.Object = amStockChart(), compared = TRUE)
 library(pipeR)
 amStockChart() \%>>\% setDataSets(list(dataSet(compared = FALSE), dataSet(compared = FALSE)))
+library(pipeR)
+amStockChart() \%>>\% addDataSet(compared = FALSE) \%>>\% addDataSet(dataSet())
+library(pipeR)
+amStockChart() \%>>\% setDataSetSelector(width = 180)
+setLegendSettings(.Object = amStockChart(), equalWidths = TRUE)
+setMainDataSet(.Object = amStockChart(), showInCompare = TRUE)
+panels <- list(stockPanel(compared = TRUE), stockPanel(compared = TRUE))
+setPanels(.Object = amStockChart(), panels = panels)
+addPanel(.Object = amStockChart(), allowTurningOff = TRUE)
+setPanelsSettings(.Object = amStockChart(), backgroundAlpha = 0)
+setPeriodSelector(.Object = amStockChart(), dateFormat = "DD-MM-YYYY")
+setStockEventsSettings(.Object = amStockChart(), backgroundAlpha = 1)
+setValueAxesSettings(.Object = amStockChart(), autoGridCount = "TRUE")
 }
 \seealso{
 \code{\linkS4class{AmChart}} S4 class

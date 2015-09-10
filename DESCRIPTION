@@ -4,7 +4,7 @@ Date: 2015-07-29
 Version: 1.1
 Author: DataKnowledge
 Maintainer: Jeffery Petit <jeff@datak.fr>
-Description: This packages provides an API for using AmChart Library
+Description: API for using AmChart Library.
 License: GPL (>= 2)
 Collate:
     'AmObject.R'
@@ -37,6 +37,7 @@ Collate:
     'shiny.R'
     'utils.R'
 Imports:
+    methods,
     htmlwidgets,
     rlist,
     data.table,

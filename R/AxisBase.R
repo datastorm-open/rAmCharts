@@ -24,44 +24,35 @@ setClass(Class = "AxisBase", contains = "AmObject",
   representation = representation(guides = "list", "VIRTUAL")
 )
 
-#' @title Add A Guide
-#' @param \code{.Object}: Object of class \linkS4class{AxisBase}
-#' @param \code{guide}: Object of class \linkS4class{Guide}
+#' @title Add a Guide
+#' @param .Object \linkS4class{AxisBase}
+#' @param guide \linkS4class{Guide}
+#' @param ... Properties of \code{\linkS4class{Guide}}.
 #' @examples
-#' \dontshow{
 #' library(pipeR)
 #' valueAxis(axisTitleOffset = 12, tickLength = 10) %>>%
 #' addGuide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
-#' 
-#' valueAxis( axisTitleOffset = 12, tickLength = 10 )
-#' }
-#' @rdname addGuide
-#' @importFrom rlist list.append
-#' @export
+#' @rdname initialize-AxisBase
 setMethod(
   f = "addGuide",
   signature = c("AxisBase"),
   definition = function(.Object, guide = NULL, ...)
   {
-    if( is.null(guide) && !missing(...) ){
+    if (is.null(guide) && !missing(...)) {
       guide <- guide(...)
-    }else{}
+    } else {}
     .Object@guides <- rlist::list.append(.Object@guides, listProperties(guide))
     validObject(.Object)
     return(.Object)
-  }
-)
+  })
 
-#' @title List properties
-#' @return Properties of the object in a list
-#' @importFrom rlist list.append
-setMethod( f = "listProperties", signature = "AxisBase",
+#' @rdname listProperties-AmObject
+setMethod(f = "listProperties", signature = "AxisBase",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if (length( .Object@guides )) {
+             if (length(.Object@guides)) {
                ls <- rlist::list.append(ls, guides = .Object@guides)
              } else {}
              return(ls)
-           }
-)
+           })

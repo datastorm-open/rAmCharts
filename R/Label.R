@@ -39,6 +39,18 @@ setClass( Class = "Label", contains = "AmObject",
 )
 
 #' @title Initialize
+#' @param .Object \linkS4class{Label}.
+#' @param bold \code{character}.
+#' Specifies if label is bold or not.
+#' @param text \code{character}.
+#' Text of a title.
+#' @param x \code{numeric}.
+#' X position of a label.
+#' @param y \code{numeric}.
+#' Y position of a label.
+#' @param ... Other properties.
+#' @return (updated) .Object of class \linkS4class{Label}.
+#' @rdname initialize-Label
 #' @examples
 #' new("Label", x = 10)
 #' @export
@@ -63,25 +75,8 @@ setMethod(f = "initialize", signature = "Label",
           })
 
 # CONSTRUCTOR ####
-#' @title Constructor for an AmGraph
-#' @param bold
-#' Object of class \code{character}.
-#' Specifies if label is bold or not.
-#' @param text
-#' Object of class \code{character}.
-#' Text of a title.
-#' @param x
-#' Object of class \code{numeric}.
-#' X position of a label.
-#' @param y
-#' Object of class \code{numeric}.
-#' Y position of a label.
-#' @param ...
-#' Properties of Label.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/Label}
-#' @return An \code{\linkS4class{Label}} object
+#' @describeIn  initialize-Label
 #' @examples
-#' new("Label", text = "bonjour")
 #' label(text = "bonjour")
 #' @export
 label <- function(text, bold, x, y, ...){
@@ -105,110 +100,68 @@ label <- function(text, bold, x, y, ...){
 
 # > @bold : setters ####
 
-#' @exportMethod setBold
-setGeneric(name = "setBold", def = function(.Object, bold){ standardGeneric("setBold") } )
-#' @title SETTER
-#' @param .Object
-#' Object of class \code{\linkS4class{Label}}
-#' @param bold
-#' Object of class \code{character}.
-#' Specifies if label is bold or not.
-#' @return The updated .Object.
-#' @examples
-#' library(pipeR)
-#' label() %>>% setBold(TRUE)
+#' @rdname initialize-Label
 #' @export
-setMethod(
-  f = "setBold",
-  signature = c("Label", "logical"),
-  definition = function(.Object, bold)
-  {
-    .Object@bold <- bold
-    validObject(.Object)
-    return(.Object)
-  })
+setGeneric(name = "setBold", def = function(.Object, bold){ standardGeneric("setBold") } )
+#' @examples
+#' setBold(.Object = label(), bold = TRUE)
+#' @rdname initialize-Label
+setMethod(f = "setBold", signature = c("Label", "logical"),
+          definition = function(.Object, bold)
+          {
+            .Object@bold <- bold
+            validObject(.Object)
+            return(.Object)
+          })
 
 # > @text : setters ####
 
-#' @title SETTER
-#' @param .Object
-#' Object of class \code{\linkS4class{Label}}
-#' @param text
-#' Object of class \code{character}.
-#' Text of a title.
-#' @return The updated .Object
 #' @examples
-#' library(pipeR)
-#' label() %>>% setText("Bonjour")
-#' @export
-setMethod(
-  f = "setText",
-  signature = c("Label", "character"),
-  definition = function(.Object, text)
-  {
-    .Object@text <- text
-    validObject(.Object)
-    return(.Object)
-  })
+#' setText(.Object = label(), text = "Bonjour")
+#' @rdname initialize-Label
+setMethod(f = "setText", signature = c("Label", "character"),
+          definition = function(.Object, text)
+          {
+            .Object@text <- text
+            validObject(.Object)
+            return(.Object)
+          })
 
 # > @x : setters ####
 
-#' @exportMethod setX
-setGeneric(name = "setX", def = function(.Object, x){ standardGeneric("setX") } )
-#' @title SETTER
-#' @param .Object
-#' Object of class \code{\linkS4class{Label}}
-#' @param x
-#' Object of class \code{numeric}.
-#' X position of a label.
-#' @return The updated .Object.
-#' @examples
-#' library(pipeR)
-#' label() %>>% setX(16)
+#' @rdname initialize-Label
 #' @export
-setMethod(
-  f = "setX",
-  signature = c("Label", "numeric"),
-  definition = function(.Object, x)
-  {
-    .Object@x <- x
-    validObject(.Object)
-    return(.Object)
-  })
+setGeneric(name = "setX", def = function(.Object, x){ standardGeneric("setX") } )
+#' @examples
+#' setX(.Object = label(), x = 16)
+#' @rdname initialize-Label
+setMethod(f = "setX", signature = c("Label", "numeric"),
+          definition = function(.Object, x)
+          {
+            .Object@x <- x
+            validObject(.Object)
+            return(.Object)
+          })
 
 # > @y : setters ####
 
-#' @exportMethod setY
-setGeneric(name = "setY", def = function(.Object, y){ standardGeneric("setY") } )
-#' @title SETTER
-#' @param .Object
-#' Object of class \code{\linkS4class{Label}}
-#' @return The updated .Object.
-#' @examples
-#' library(pipeR)
-#' label() %>>% setY(16)
+#' @rdname initialize-Label
 #' @export
-setMethod(
-  f = "setY",
-  signature = c("Label", "numeric"),
-  definition = function(.Object, y)
-  {
-    .Object@y <- y
-    validObject(.Object)
-    return(.Object)
-  })
-
-#' @title List properties
-#' @param .Object
-#' Object of class \code{\linkS4class{Label}}.
-#' @param y
-#' Object of class \code{numeric}.
-#' Y position of a label.
-#' @return The updated .Object.
+setGeneric(name = "setY", def = function(.Object, y){ standardGeneric("setY") } )
 #' @examples
-#' label(text = "balloonText")
-#' @return Properties of the object in a list
-#' @importFrom rlist list.append
+#' setY(.Object = label(), y = 16)
+#' @rdname initialize-Label
+setMethod(f = "setY", signature = c("Label", "numeric"),
+          definition = function(.Object, y)
+          {
+            .Object@y <- y
+            validObject(.Object)
+            return(.Object)
+          })
+
+#' @examples
+#' listProperties(label(text = "balloonText"))
+#' @rdname listProperties-AmObject
 setMethod( f = "listProperties", signature = "Label",
            definition = function(.Object)
            { 
@@ -226,5 +179,4 @@ setMethod( f = "listProperties", signature = "Label",
                ls <- rlist::list.append(ls, y = .Object@y)
              } else {}
              return(ls)
-           }
-)
+           })

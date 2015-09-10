@@ -34,22 +34,22 @@ setClass(Class = "ChartCursor", contains = "AmObject",
 )
 
 #' @title Initialize a ChartCursor
+#' @param .Object \linkS4class{ChartCursor}.
 #' @param animationDuration
 #' Duration of animation of a line, in seconds.
-#' @param oneBalloonOnly
-#' Object of class \code{logical}.
+#' @param oneBalloonOnly \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
-#' @param valueLineAxis
-#' Object of class \code{list}.
+#' @param valueLineAxis \code{list}.
 #' Properties of Axis of value line. If you set valueLineBalloonEnabled to true,
 #' but you have more than one axis, you can use this property
 #' to indicate which axis should display balloon.
-#' @param ...
-#' Properties of ChartCursor.
+#' @param ... Properties of ChartCursor.
 #' See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}
+#' @return (updated) .Object of class \linkS4class{ChartCursor}.
 #' @examples
 #' new("ChartCursor", oneBalloonOnly = TRUE)
+#' @rdname initialize-ChartCursor
 #' @export
 setMethod(f = "initialize", signature = "ChartCursor",
           definition = function(.Object, animationDuration = .3, oneBalloonOnly, valueLineAxis,...)
@@ -66,22 +66,8 @@ setMethod(f = "initialize", signature = "ChartCursor",
           })
 
 # CONSTRUCTOR ####
-#' @title Constructor for an ChartCursor
-#' @param animationDuration
-#' Duration of animation of a line, in seconds.
-#' @param oneBalloonOnly
-#' Object of class \code{logical}.
-#' If this is set to TRUE, border color instead of background color will be changed when
-#' user rolls-over the slice, graph, etc.
-#' @param valueLineAxis
-#' Object of class \code{list}.
-#' Properties of Axis of value line. If you set valueLineBalloonEnabled to true,
-#' but you have more than one axis, you can use this property
-#' to indicate which axis should display balloon.
-#' @param ...
-#' Properties of ChartCursor.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}
-#' @return An \code{\linkS4class{ChartCursor}} object
+
+#' @describeIn initialize-ChartCursor
 #' @examples
 #' chartCursor()
 #' chartCursor(oneBalloonOnly = TRUE)
@@ -101,68 +87,44 @@ chartCursor <- function(animationDuration = .3, oneBalloonOnly, valueLineAxis,..
 
 # > @oneBalloonOnly : setters ####
 
-#' @exportMethod setOneBalloonOnly
-setGeneric(name = "setOneBalloonOnly", def = function(.Object, oneBalloonOnly){ standardGeneric("setOneBalloonOnly") } )
-#' @title SETTER
-#' @param .Object
-#' Object of class \code{\linkS4class{ChartCursor}}
-#' @param oneBalloonOnly
-#' Object of class \code{logical}.
-#' If this is set to TRUE, border color instead of background color will be changed when
-#' user rolls-over the slice, graph, etc.
-#' @return Updated .Object
-#' @examples
-#' library(pipeR)
-#' chartCursor() %>>% setOneBalloonOnly(TRUE)
+#' @rdname initialize-ChartCursor
 #' @export
-setMethod(
-  f = "setOneBalloonOnly",
-  signature = c("ChartCursor", "logical"),
-  definition = function(.Object, oneBalloonOnly)
-  {
-    .Object@oneBalloonOnly <- oneBalloonOnly
-    validObject(.Object)
-    return(.Object)
-  }
-)
+setGeneric(name = "setOneBalloonOnly", def = function(.Object, oneBalloonOnly) {standardGeneric("setOneBalloonOnly")})
+#' @examples
+#' setOneBalloonOnly(.Object = chartCursor(), oneBalloonOnly = TRUE)
+#' @rdname initialize-ChartCursor
+setMethod(f = "setOneBalloonOnly", signature = c("ChartCursor", "logical"),
+          definition = function(.Object, oneBalloonOnly)
+          {
+            .Object@oneBalloonOnly <- oneBalloonOnly
+            validObject(.Object)
+            return(.Object)
+          })
 
 # > @valueLineAxis : setters ####
 
-#' @exportMethod setValueLineAxis
-setGeneric(name = "setValueLineAxis",
-           def = function(.Object, valueLineAxis = NULL, ...){ standardGeneric("setValueLineAxis") } )
-#' @title SETTER
-#' @param .Object
-#' \code{\linkS4class{ChartCursor}}.
-#' @param valueLineAxis
-#' (optional) Object of class \code{\linkS4class{ValueAxis}}.
-#' @param ...
-#' Properties of valueAxis
-#' @return Updated .Object
-#' @examples
-#' library(pipeR)
-#' chartCursor() %>>% setValueLineAxis( title = "Hello !", axisTitleOffset = 12 )
+#' @rdname initialize-ChartCursor
 #' @export
-setMethod(
-  f = "setValueLineAxis",
-  signature = c("ChartCursor"),
-  definition = function(.Object, valueLineAxis = NULL, ...)
-  {
-    if (is.null(valueLineAxis) && !missing(...)) {
-      .Object@valueLineAxis <- listProperties(valueAxis(...))
-    } else {
-      .Object@valueLineAxis <- listProperties(valueLineAxis)
-    }
-    validObject(.Object)
-    return(.Object)
-  }
-)
+setGeneric(name = "setValueLineAxis",
+           def = function(.Object, valueLineAxis = NULL, ...) {standardGeneric("setValueLineAxis")})
+#' @examples
+#' setValueLineAxis(.Object = chartCursor(), title = "Hello !", axisTitleOffset = 12)
+#' @rdname initialize-ChartCursor
+setMethod(f = "setValueLineAxis", signature = c("ChartCursor"),
+          definition = function(.Object, valueLineAxis = NULL, ...)
+          {
+            if (is.null(valueLineAxis) && !missing(...)) {
+              .Object@valueLineAxis <- listProperties(valueAxis(...))
+            } else {
+              .Object@valueLineAxis <- listProperties(valueLineAxis)
+            }
+            validObject(.Object)
+            return(.Object)
+          })
 
-#' @title List properties
+#' @rdname listProperties-AmObject
 #' @examples
 #' new("ChartCursor", oneBalloonOnly = TRUE)
-#' @return Properties of the object in a list
-#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "ChartCursor",
            definition = function(.Object)
            { 

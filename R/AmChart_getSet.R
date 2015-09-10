@@ -8,6 +8,7 @@ NULL
 #' object of class \code{\linkS4class{AmChart}}.
 #' @param allLabels
 #' object of class \code{list}.
+#' @param ... Other properties.
 #' @return
 #' The updater object of class \code{\linkS4class{AmChart}}
 #' @examples
@@ -140,6 +141,7 @@ setMethod(f = "addArrow", signature = c("AmChart"),
 #' object of class \code{\linkS4class{AmChart}}
 #' @param axes
 #' object of class \code{\linkS4class{GaugeAxis}}
+#' @param ... Other properties
 #' @examples
 #' axes <- list(gaugeAxis(value = 130), gaugeAxis(value = 150))
 #' setAxes(.Object = amChart(), axes = axes)
@@ -253,17 +255,17 @@ setMethod(f = "setBalloon", signature = c("AmChart"),
 #' @rdname setCategoryAxis
 #' @export
 setGeneric(name = "setCategoryAxis",
-            def = function(amChart, categoryAxis = NULL , ...) {standardGeneric("setCategoryAxis")} )
+            def = function(.Object, categoryAxis = NULL , ...) {standardGeneric("setCategoryAxis")} )
 #' @describeIn setCategoryAxis
 setMethod(f = "setCategoryAxis", signature = c("AmChart"),
-          definition = function(amChart, categoryAxis = NULL, ...)
+          definition = function(.Object, categoryAxis = NULL, ...)
           {
             if (is.null(categoryAxis)) {
               categoryAxis <- categoryAxis(...)
             } else {}
-            amChart@categoryAxis <- listProperties(categoryAxis)
-            validObject(amChart)
-            return(amChart)
+            .Object@categoryAxis <- listProperties(categoryAxis)
+            validObject(.Object)
+            return(.Object)
           })
 
 # > @categoryField: setters ####
@@ -657,14 +659,16 @@ setMethod(f = "setLegend", signature = c("AmChart"),
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' library(pipeR)
-#' amGanttChart( segmentsField = "segments", dataProvider = data.frame( category = c( "John", "Julia") ) ) %>>%
-#' addSegment( 1, data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2") ) ) %>>%
-#' addSegment( 2, data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2") ) )
+#' amGanttChart(segmentsField = "segments"
+#' ) %>>% setDataProvider(data.frame(category = c( "John", "Julia"))
+#' ) %>>% addSegment(1, data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2"))
+#' ) %>>% addSegment(2, data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2")))
 #' 
-#' ls <- list( data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2") ), 
-#' data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2") ) )
-#' amGanttChart( segmentsField = "segments", dataProvider = data.frame( category = c( "John", "Julia") ) ) %>>%
-#' addSegment( 1:2,  ls)
+#' ls <- list( data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2")), 
+#' data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2")))
+#' amGanttChart(segmentsField = "segments"
+#' ) %>>% setDataProvider(data.frame(category = c( "John", "Julia")) 
+#' ) %>>% addSegment( 1:2,  ls)
 #' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname addSegment
@@ -879,9 +883,10 @@ setMethod(f = "addTitle", signature = c("AmChart"),
 #' Each element must be of class \code{\linkS4class{TrendLine}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' library(pipeR)
-#' trendLines <- list(trendLine(initialValue = 1, finalValue = 5), trendLine(initialValue = 7, finalValue = 19))
-#' amChart() %>>% setTrendLines(trendLines)
+#' trendLines <- list(trendLine(initialValue = 1, finalValue = 5),
+#'                    trendLine(initialValue = 7, finalValue = 19))
+#' setTrendLines(.Object = amChart(), trendLines = trendLines)
+#' amChart(trendLines = trendLines) # Equivalent
 #' @family AmChart setters
 #' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
@@ -904,7 +909,7 @@ setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
 #' @title Add a trendLine
 #' @param .Object
 #' object of class \code{\linkS4class{AmChart}}.
-#' @param trendline
+#' @param trendLine
 #' object of class \code{\linkS4class{TrendLine}}, default \code{NULL}.
 #' @param ...
 #' properties of class \code{\linkS4class{TrendLine}}.
@@ -962,10 +967,12 @@ setMethod(f = "setType", signature = c("AmChart", "character"),
 #' object of class \code{\linkS4class{AmChart}}.
 #' @param valueAxes
 #' object of class \code{list}.
-#' Each element must be of class \code{\linkS4class{ValueAxis}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' Each element must be of class \linkS4class{ValueAxis}.
+#' @param  ... Properties of \linkS4class{ValueAxis}.
+#' @return The updated object of class \linkS4class{AmChart}.
 #' @examples
-#' valueAxes <- list(valueAxis(axisTitleOffset = 12, tickLength = 10), valueAxis(axisTitleOffset = 10, tickLength = 10))
+#' valueAxes <- list(valueAxis(axisTitleOffset = 12, tickLength = 10),
+#'                   valueAxis(axisTitleOffset = 10, tickLength = 10))
 #' setValueAxes(.Object = amChart(), valueAxes = valueAxes)
 #' \dontrun{
 #' lapply(valueAxes, listProperties)

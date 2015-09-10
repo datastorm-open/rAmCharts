@@ -8,19 +8,15 @@
 \S4method{show}{AmObject}(object)
 }
 \arguments{
-\item{object:}{\code{\linkS4class{AmObject}} object}
+\item{object}{\linkS4class{AmObject}}
 }
 \description{
 Visualize with show
 }
 \examples{
-new("AmChart")
+show(amSerialChart())
 }
 \seealso{
-\code{\linkS4class{AmObject}}
-
-Other AmObject methods: \code{\link{print,AmObject-method}}
-
 Other Visualizations: \code{\link{print,AmObject-method}}
 }
 

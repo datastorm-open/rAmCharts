@@ -27,9 +27,10 @@ Setter for trendLines
 \item \code{.Object = AmChart,trendLines = list}: 
 }}
 \examples{
-library(pipeR)
-trendLines <- list(trendLine(initialValue = 1, finalValue = 5), trendLine(initialValue = 7, finalValue = 19))
-amChart() \%>>\% setTrendLines(trendLines)
+trendLines <- list(trendLine(initialValue = 1, finalValue = 5),
+                   trendLine(initialValue = 7, finalValue = 19))
+setTrendLines(.Object = amChart(), trendLines = trendLines)
+amChart(trendLines = trendLines) # Equivalent
 }
 \seealso{
 \code{\linkS4class{AmChart}} S4 class
@@ -42,11 +43,9 @@ Other AmChart methods: \code{\link{addArrow}},
   \code{\link{addAxe,AmChart-method}};
   \code{\link{addGraph}},
   \code{\link{addGraph,AmChart-method}};
-  \code{\link{addGuide,AmChart-method}},
-  \code{\link{addGuide,AxisBase-method}};
+  \code{\link{addGuide,AmChart-method}};
   \code{\link{addLabel}},
   \code{\link{addLabel,AmChart-method}};
-  \code{\link{addListener,AmObject,character,character-method}};
   \code{\link{addSegment}},
   \code{\link{addSegment,AmChart,numeric-method}};
   \code{\link{addSubData}},
@@ -75,12 +74,10 @@ Other AmChart methods: \code{\link{addArrow}},
   \code{\link{setChartScrollbar,AmChart-method}};
   \code{\link{setCreditsPosition}},
   \code{\link{setCreditsPosition,AmChart,character-method}};
-  \code{\link{setDataProvider,AmChart,data.frame-method}},
-  \code{\link{setDataProvider,DataSet,data.frame-method}};
+  \code{\link{setDataProvider,AmChart,data.frame-method}};
   \code{\link{setExport}},
   \code{\link{setExport,AmChart-method}};
-  \code{\link{setGraph,AmChart-method}},
-  \code{\link{setGraph,ChartScrollbar-method}};
+  \code{\link{setGraph,AmChart-method}};
   \code{\link{setGraphs}},
   \code{\link{setGraphs,AmChart,list-method}};
   \code{\link{setGuides}},
@@ -101,11 +98,9 @@ Other AmChart setters: \code{\link{addArrow}},
   \code{\link{addAxe,AmChart-method}};
   \code{\link{addGraph}},
   \code{\link{addGraph,AmChart-method}};
-  \code{\link{addGuide,AmChart-method}},
-  \code{\link{addGuide,AxisBase-method}};
+  \code{\link{addGuide,AmChart-method}};
   \code{\link{addLabel}},
   \code{\link{addLabel,AmChart-method}};
-  \code{\link{addListener,AmObject,character,character-method}};
   \code{\link{addTitle}},
   \code{\link{addTitle,AmChart-method}};
   \code{\link{addTrendLine}},
@@ -130,12 +125,10 @@ Other AmChart setters: \code{\link{addArrow}},
   \code{\link{setChartScrollbar,AmChart-method}};
   \code{\link{setCreditsPosition}},
   \code{\link{setCreditsPosition,AmChart,character-method}};
-  \code{\link{setDataProvider,AmChart,data.frame-method}},
-  \code{\link{setDataProvider,DataSet,data.frame-method}};
+  \code{\link{setDataProvider,AmChart,data.frame-method}};
   \code{\link{setExport}},
   \code{\link{setExport,AmChart-method}};
-  \code{\link{setGraph,AmChart-method}},
-  \code{\link{setGraph,ChartScrollbar-method}};
+  \code{\link{setGraph,AmChart-method}};
   \code{\link{setGraphs}},
   \code{\link{setGraphs,AmChart,list-method}};
   \code{\link{setGuides}},

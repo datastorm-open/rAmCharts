@@ -24,12 +24,19 @@ NULL
 #' 
 #' @export
 setClass(Class = "GaugeArrow", contains = "AmObject",
-         representation = representation( axis = "list" )
-)
+         representation = representation( axis = "list" ))
 
 #' @title Initialize a GaugeArrow
+#' @param .Object \linkS4class{GaugeArrow}.
+#' @param alpha \code{numeric}.
+#' @param axis \linkS4class{GaugeAxis}.
+#' Axis of the arrow. You can use reference to the axis or id of the axis.
+#' If you don't set any axis, the first axis of a chart will be used.
+#' @param ... Other properties.
+#' @return (updated) .Object of class \linkS4class{GaugeArrow}.
 #' @examples
 #' new("GaugeArrow")
+#' @rdname initialize-GaugeArrow
 #' @export
 setMethod(f = "initialize", signature = c("GaugeArrow"),
           definition = function(.Object, alpha = 1, axis, ...)
@@ -40,38 +47,30 @@ setMethod(f = "initialize", signature = c("GaugeArrow"),
             .Object <- setProperties(.Object, alpha = alpha, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # CONSTRUCTOR ####
-#' @title Constructor for a GaugeArrow
-#' @param ...
-#' Properties of GaugeArrow.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/GaugeArrow}
-#' @return An \code{\linkS4class{GaugeArrow}} object
+
+#' @describeIn initialize-GaugeArrow
 #' @examples
 #' gaugeArrow()
 #' @export
-gaugeArrow <- function( fillAlpha, alpha = 1,  axis, ... ){
+gaugeArrow <- function(alpha = 1,  axis, ... ){
   .Object <- new( "GaugeArrow", alpha = alpha )
-  if( !missing(axis) ){
+  if (!missing(axis)) {
     .Object@axis <- listProperties(axis)
-  }
+  } else {}
   .Object <-  setProperties(.Object, ...)
   return( .Object )
 }
 
-
-#' @exportMethod setAxis
-setGeneric(name = "setAxis", def = function(.Object, axis = NULL, ...){ standardGeneric( "setAxis" ) } )
-#' @title SETTER
-#' @examples
-#' library(pipeR)
-#' gaugeArrow() %>>% setAxis()
+#' @rdname initialize-GaugeArrow
 #' @export
-setMethod(
-  f = "setAxis",
-  signature = "GaugeArrow",
+setGeneric(name = "setAxis", def = function(.Object, axis = NULL, ...) {standardGeneric("setAxis")})
+#' @examples
+#' setAxis(.Object = gaugeArrow(), axis = gaugeAxis())
+#' @rdname initialize-GaugeArrow
+setMethod(f = "setAxis", signature = "GaugeArrow",
   definition = function(.Object, axis = NULL, ...)
   {
     if( is.null(axis) ){
@@ -80,21 +79,17 @@ setMethod(
       .Object@axis <- listProperties(axis)
     validObject(.Object)
     return(.Object)
-  }
-)
+  })
 
-#' @title List properties
-#' @return Properties of the object in a list
+#' @rdname listProperties-AmObject
 #' @examples
 #' lapply(list(gaugeArrow(alpha = .4, value = 1), gaugeArrow(alpha = .5)), listProperties)
-#' @importFrom rlist list.append
 setMethod( f = "listProperties", signature = "GaugeArrow",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if( length(.Object@axis) > 0 ){
+             if (length(.Object@axis)){
                ls <- rlist::list.append(ls, axis = .Object@axis)
-             }
+             } else {}
              return(ls)
-           }
-)
+           })

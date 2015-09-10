@@ -140,95 +140,82 @@ NULL
 #' 
 #' @author DataKnowledge
 #' @export
-setClass( Class = "StockPanel", contains = "AmChart",
+setClass(Class = "StockPanel", contains = "AmChart",
           representation = representation(
             drawOnAxis = "list",
             stockGraphs = "list",
             stockLegend = "list"
-          )
-)
+         ))
 
 #' @title Initialize a StockPanel
+#' @param .Object \code{\linkS4class{StockPanel}}.
+#' @param drawOnAxis \code{\linkS4class{ValueAxis}}.
+#' Specifies on which value axis user can draw trend lines.
+#' Set drawingIconsEnabled to true if you want drawing icons to be visible.
+#' First value axis will be used if not set here.
+#' You can use a reference to the value axis object or id of value axis.
+#' @param stockGraphs \code{list} of \code{\linkS4class{AmGraph}}.
+#' Each element must be have been created with stockGraph(*)
+#' @param stockLegend \code{list} of \code{\linkS4class{AmLegend}}.
+#' Each element must be have been created with stockLegend(*)
+#' @param ... Other properties...
+#' @return (updated) \linkS4class{StockPanel} with given properties.
 #' @examples
 #' new("StockPanel")
+#' @rdname initialize-StockPanel
 #' @export
 setMethod(f = "initialize", signature = "StockPanel",
           definition = function(.Object, drawOnAxis, stockGraphs, stockLegend, ...)
           {  
             if(!missing(drawOnAxis)){
-              .Object <- setDrawOnAxis( .Object, drawOnAxis)
+              .Object <- setDrawOnAxis(.Object, drawOnAxis)
             }
             if(!missing(stockGraphs)){
-              .Object <- setStockGraphs( .Object, stockGraphs)
+              .Object <- setStockGraphs(.Object, stockGraphs)
             }
             if(!missing(stockLegend)){
-              .Object <- setStockLegend( .Object, stockLegend)
+              .Object <- setStockLegend(.Object, stockLegend)
             }
-            .Object <- setProperties( .Object, ... )
+            .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
           })
 
 # CONSTRUCTOR ####
-#' @title Constructor for an StockPanel
-#' @param drawOnAxis
-#' Object of class \code{ValueAxis}.
-#' Specifies on which value axis user can draw trend lines.
-#' Set drawingIconsEnabled to true if you want drawing icons to be visible.
-#' First value axis will be used if not set here.
-#' You can use a reference to the value axis object or id of value axis.
-#' @param stockGraphs
-#' Object of class \code{list}.
-#' Each element must be have been created with stockGraph(*)
-#' @param stockLegend
-#' Object of class \code{list}.
-#' Each element must be have been created with stockLegend(*)
-#' @param ...
-#' Properties of StockPanel.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/StockPanel}
-#' @return An \code{\linkS4class{StockPanel}} object
+
+#' @describeIn initialize-StockPanel
 #' @examples
 #' stockPanel()
 #' @export
 stockPanel <- function(drawOnAxis, stockGraphs, stockLegend, ...){
-  .Object <- new( "StockPanel")
+  .Object <- new("StockPanel")
   if (!missing(drawOnAxis)) {
-    .Object <- setDrawOnAxis( .Object, drawOnAxis)
+    .Object <- setDrawOnAxis(.Object, drawOnAxis)
   } else {}
   if (!missing(stockGraphs)) {
-    .Object <- setStockGraphs( .Object, stockGraphs)
+    .Object <- setStockGraphs(.Object, stockGraphs)
   } else {}
   if (!missing(stockLegend)) {
-    .Object <- setStockLegend( .Object, stockLegend)
+    .Object <- setStockLegend(.Object, stockLegend)
   } else {}
-  .Object <- setProperties( .Object, ... )
+  .Object <- setProperties(.Object, ...)
   validObject(.Object)
-  return( .Object )
+  return(.Object)
 }
 
 # > @drawOnAxis : setters ####
 
-#' @exportMethod setDrawOnAxis
-setGeneric(name = "setDrawOnAxis",
-           def = function( .Object, valueAxis = NULL, ... ){ standardGeneric("setDrawOnAxis") } )
-#' @title SETTER
-#' @param .Object
-#' @param drawOnAxis
-#' Object of class \code{ValueAxis}.
-#' Specifies on which value axis user can draw trend lines.
-#' Set drawingIconsEnabled to true if you want drawing icons to be visible.
-#' First value axis will be used if not set here.
-#' You can use a reference to the value axis object or id of value axis.
-#' @return The updated \code{.Object}
+#' @param valueAxis \linkS4class{ValueAxis}
 #' @examples
-#' library(pipeR)
-#' stockPanel() %>>% setDrawOnAxis(valueAxis = valueAxis())
-#' stockPanel() %>>% setDrawOnAxis(valueAxis = "valueAxis1")
+#' setDrawOnAxis(.Object = stockPanel(), valueAxis = valueAxis())
+#' setDrawOnAxis(.Object = stockPanel(), valueAxis = "valueAxis1")
+#' @rdname initialize-StockPanel
 #' @export
-setMethod(
-  f = "setDrawOnAxis",
-  signature = c("StockPanel"),
-  definition = function( .Object, valueAxis = NULL, ... )
+setGeneric(name = "setDrawOnAxis",
+           def = function(.Object, valueAxis = NULL, ...){ standardGeneric("setDrawOnAxis") })
+#' @rdname initialize-StockPanel
+setMethod(f = "setDrawOnAxis", signature = c("StockPanel"),
+  definition = function(.Object, valueAxis = NULL, ...)
   {
     if (is.null(valueAxis) && !missing(...)) {
       valueAxis <- valueAxis(...)
@@ -243,55 +230,36 @@ setMethod(
 
 # > @stockGraphs : setters ####
 
-#' @exportMethod setStockGraphs
+#' @examples
+#' stockGraphs <- list(stockGraph(comparable = TRUE), stockGraph(comparable = FALSE)) 
+#' setStockGraphs(.Object =  stockPanel(), stockGraphs = stockGraphs)
+#' stockPanel(stockGraphs = stockGraphs)
+#' @rdname initialize-StockPanel
+#' @export
 setGeneric(name = "setStockGraphs",
-           def = function(.Object, stockGraphs ){ standardGeneric("setStockGraphs") } )
-#' @title SETTER
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param stockGraphs
-#' @return The updated \code{.Object}
-#' @examples
-#' library(pipeR)
-#' stockPanel() %>>% setStockGraphs( list( stockGraph(comparable = TRUE), stockGraph(comparable = FALSE) ) )
-#' @export
-setMethod(
-  f = "setStockGraphs",
-  signature = c("StockPanel"),
-  definition = function(.Object, stockGraphs)
-  {
-    rightClassElements <- prod(sapply(stockGraphs, function(element) {is(element, "AmGraph")}))
-    if( !rightClassElements ){
-      stop("[setStockGraphs]: each element must be created with stockGraph(*)")
-    }else{}
-    .Object@stockGraphs <- lapply(stockGraphs, listProperties)
-    validObject(.Object)
-    return(.Object)
-  })
+           def = function(.Object, stockGraphs){ standardGeneric("setStockGraphs") })
+#' @rdname initialize-StockPanel
+setMethod(f = "setStockGraphs", signature = c("StockPanel"),
+          definition = function(.Object, stockGraphs)
+          {
+            rightClassElements <- prod(sapply(stockGraphs, function(element) {is(element, "AmGraph")}))
+            if(!rightClassElements){
+              stop("[setStockGraphs]: each element must be created with stockGraph(*)")
+            }else{}
+            .Object@stockGraphs <- lapply(stockGraphs, listProperties)
+            validObject(.Object)
+            return(.Object)
+          })
 
-#' @exportMethod addStockGraph
-setGeneric(name = "addStockGraph",
-           def = function(.Object, stockGraph = NULL, ...){ standardGeneric("addStockGraph") } )
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param stockGraph
-#' (optionnal) Object of class \code{\linkS4class{AmGraph}}.
-#' Use stockGraph(*) constructor
-#' @param ...
-#' Properties of the \code{\linkS4class{AmGraph}} to add.
-#' @return The updated \code{.Object}
+#' @param stockGraph \linkS4class{AmGraph}, created with stockGraph(...)
 #' @examples
-#' library(pipeR)
-#' stockPanel() %>>% addStockGraph(comparable = FALSE)
-#' stockPanel() %>>% addStockGraph( stockGraph(comparable = FALSE) )
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
-#' @family StockPanel setters
-#' @family StockPanel methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @seealso \code{\linkS4class{AmGraph}} S4 class
-#' @rdname addStockGraph
+#' addStockGraph(.Object = stockPanel(), comparable = FALSE)
+#' addStockGraph(.Object = stockPanel(), stockGraph = stockGraph(TEST = FALSE))
+#' @rdname initialize-StockPanel
 #' @export
+setGeneric(name = "addStockGraph",
+           def = function(.Object, stockGraph = NULL, ...){ standardGeneric("addStockGraph") })
+#' @rdname initialize-StockPanel
 setMethod(f = "addStockGraph", signature = c("StockPanel"),
           definition = function(.Object, stockGraph = NULL, ...)
           {
@@ -306,47 +274,39 @@ setMethod(f = "addStockGraph", signature = c("StockPanel"),
 
 # > @stockLegend : setters ####
 
-#' @exportMethod setStockLegend
-setGeneric(name = "setStockLegend",
-           def = function( .Object, stockLegend = NULL, ... ){ standardGeneric("setStockLegend") } )
-#' @title SETTER
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param stockLegend
-#' @return The updated \code{.Object}
 #' @examples
-#' library(pipeR)
-#' stockPanel() %>>% setStockLegend( stockLegend() )
+#' setStockLegend(.Object = stockPanel(), stockLegend = stockLegend())
+#' @rdname initialize-StockPanel
 #' @export
-setMethod(
-  f = "setStockLegend",
-  signature = c("StockPanel"),
-  definition = function( .Object, stockLegend = NULL, ... )
-  {
-    if (is.null(stockLegend) && !missing(...)) {
-      stockLegend <- stockLegend(...)
-    } else {}
-    .Object@stockLegend<- listProperties( stockLegend )
-    validObject(.Object)
-    return(.Object)
-  })
+setGeneric(name = "setStockLegend",
+           def = function(.Object, stockLegend = NULL, ...){ standardGeneric("setStockLegend") })
+#' @rdname initialize-StockPanel
+setMethod(f = "setStockLegend", signature = c("StockPanel"),
+          definition = function(.Object, stockLegend = NULL, ...)
+          {
+            if (is.null(stockLegend) && !missing(...)) {
+              stockLegend <- stockLegend(...)
+            } else {}
+            .Object@stockLegend<- listProperties(stockLegend)
+            validObject(.Object)
+            return(.Object)
+          })
 
-#' @title List properties
-#' @return Properties of the object in a list
-#' @importFrom rlist list.append
-setMethod( f = "listProperties", signature = "StockPanel",
+#' @examples
+#' stockPanel(drawnOnAxis = "axis1") 
+#' @rdname listProperties-AmObject
+setMethod(f = "listProperties", signature = "StockPanel",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if (length( .Object@drawOnAxis )) {
+             if (length(.Object@drawOnAxis)) {
                ls <- rlist::list.append(ls, drawOnAxis = .Object@drawOnAxis)
              } else {}
-             if (length( .Object@stockGraphs )) {
+             if (length(.Object@stockGraphs)) {
                ls <- rlist::list.append(ls, stockGraphs = .Object@stockGraphs)
              } else {}
-             if (length( .Object@stockLegend )) {
+             if (length(.Object@stockLegend)) {
                ls <- rlist::list.append(ls, stockLegend = .Object@stockLegend)
              } else {}
              return(ls)
-           }
-)
+           })

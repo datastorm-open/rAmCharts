@@ -223,12 +223,12 @@ setClass("AmStockChart", contains = "AmChart",
 #' you should call stockChart.validateNow() method in order for it to work.
 #' If there is no default value specified, default value of CategoryAxis class will be used.
 #' you should get this axis from the chart and set properties to this object.
-#' @param ChartCursorSettings \code{list} of \code{\linkS4class{ChartCursor}}.
+#' @param chartCursorSettings \code{list} of \code{\linkS4class{ChartCursor}}.
 #' ChartCursorSettings settings set's settings for chart cursor.
 #' If you change a property after the chart is initialized,
 #' you should call stockChart.validateNow() method in order for it to work.
 #' If there is no default value specified, default value of ChartCursor class will be used.
-#' @param ChartScrollbarSettings \code{list} of \code{\linkS4class{ChartScrollbar}}.
+#' @param chartScrollbarSettings \code{list} of \code{\linkS4class{ChartScrollbar}}.
 #' ChartScrollbarSettings settings set's settings for chart scrollbar.
 #' If you change a property after the chart is initialized,
 #' you should call stockChart.validateNow() method in order for it to work.
@@ -376,7 +376,6 @@ amStockChart <- function(categoryAxesSettings, chartCursorSettings, chartScrollb
 
 # > @categoryAxesSettings: setters ####
 
-#' @description Setter for categoryAxesSettings.
 #' @examples
 #' setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")
 #' @seealso \code{\linkS4class{AmChart}} S4 class
@@ -399,10 +398,12 @@ setMethod(f = "setCategoryAxesSettings", signature = c("AmStockChart"),
 
 # > @chartCursorSettings : setters ####
 
-#' @description Setter for chartCursorSettings.
 #' @examples
 #' setChartCursorSettings(.Object = amStockChart(), oneBallOnly = TRUE)
 #' setChartCursorSettings(.Object = amStockChart(), chartCursorSettings = chartCursor())
+#' \dontrun{
+#' setChartCursorSettings(.Object = amStockChart(), chartCursorSettings = "foo")
+#' }
 #' @seealso \code{\linkS4class{ChartCursor}} S4 class
 #' @rdname initialize-AmStockChart
 #' @export
@@ -422,7 +423,6 @@ setMethod(f = "setChartCursorSettings", signature = c("AmStockChart"),
 
 # > @chartScrollbarSettings : setters ####
 
-#' @description Setter for chartScrollbarSettings.
 #' @examples
 #' setChartScrollbarSettings(.Object = amStockChart(), chartScrollbarSettings = chartScrollbar())
 #' @seealso \code{\linkS4class{ChartScrollbar}} S4 class
@@ -444,7 +444,6 @@ setMethod(f = "setChartScrollbarSettings", signature = c("AmStockChart"),
 
 # > @comparedDataSets : setters ####
 
-#' @description Setter for comparedDataSets
 #' @examples
 #' library(pipeR)
 #' amStockChart() %>>% setComparedDataSets(list(dataSet(compared = TRUE), dataSet(compared = TRUE)))
@@ -466,7 +465,6 @@ setMethod(f = "setComparedDataSets", signature = c("AmStockChart"),
             return(.Object)
           })
 
-#' @description Setter for comparedDataSet
 #' @examples
 #' addComparedDataSet(.Object = amStockChart(), compared = TRUE)
 #' @seealso \code{\linkS4class{DataSet}} S4 class
@@ -489,7 +487,6 @@ setMethod(f = "addComparedDataSet", signature = c("AmStockChart"),
 
 # > @dataSets : setters ####
 
-#' @description Setter for DataSets
 #' @examples
 #' library(pipeR)
 #' amStockChart() %>>% setDataSets(list(dataSet(compared = FALSE), dataSet(compared = FALSE)))
@@ -509,30 +506,17 @@ setMethod(f = "setDataSets", signature = c("AmStockChart"),
             .Object@dataSets <- lapply(dataSets, listProperties)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
-#' @exportMethod addDataSet
-setGeneric(name = "addDataSet",
-           def = function(.Object, dataSet = NULL, ...) {standardGeneric("addDataSet")})
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param dataSet
-#' (optionnal) Object of class \code{\linkS4class{DataSet}}.
-#' Each element of this list must be a dataSet
-#' @param ...
-#' Properties of the \code{\linkS4class{DataSet}} to add.
+#' @param dataSet \linkS4class{DataSet}.
 #' @examples
 #' library(pipeR)
 #' amStockChart() %>>% addDataSet(compared = FALSE) %>>% addDataSet(dataSet())
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @seealso \code{\linkS4class{DataSet}} S4 class
-#' @rdname addDataSet
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "addDataSet",
+           def = function(.Object, dataSet = NULL, ...) {standardGeneric("addDataSet")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "addDataSet", signature = c("AmStockChart"),
           definition = function(.Object, dataSet = NULL, ...)
           {
@@ -547,23 +531,14 @@ setMethod(f = "addDataSet", signature = c("AmStockChart"),
 
 # > @dataSetSelector : setters ####
 
-#' @exportMethod setDataSetSelector
-setGeneric(name = "setDataSetSelector",
-           def = function(.Object, ...) {standardGeneric("setDataSetSelector")})
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param ...
-#' Property of datSetSelector
 #' @examples
 #' library(pipeR)
 #' amStockChart() %>>% setDataSetSelector(width = 180)
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @rdname setDataSetSelector
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "setDataSetSelector",
+           def = function(.Object, ...) {standardGeneric("setDataSetSelector")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "setDataSetSelector", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {
@@ -574,23 +549,12 @@ setMethod(f = "setDataSetSelector", signature = c("AmStockChart"),
 
 # > @legendSettings : setters ####
 
-#' @exportMethod setLegendSettings
-setGeneric(name = "setLegendSettings", def = function(.Object, ...) {standardGeneric("setLegendSettings")})
-#' @title Setter for LegendSettings
-#' @details Use this methode in case of an AmStockChart.
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param ...
-#' Properties of \code{LegendSettings}.
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @examples
-#' # Without chaining
-#' setLegendSettings(amStockChart(), equalWidths = TRUE)
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname setLegendSettings
+#' setLegendSettings(.Object = amStockChart(), equalWidths = TRUE)
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "setLegendSettings", def = function(.Object, ...) {standardGeneric("setLegendSettings")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "setLegendSettings", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {
@@ -600,27 +564,13 @@ setMethod(f = "setLegendSettings", signature = c("AmStockChart"),
           })
 
 # > @mainDataSet: setter ###
-#' @exportMethod setMainDataSet
+#' @examples
+#' setMainDataSet(.Object = amStockChart(), showInCompare = TRUE)
+#' @rdname initialize-AmStockChart
+#' @export
 setGeneric(name = "setMainDataSet",
            def = function(.Object, dataSet = NULL, ...) {standardGeneric("setMainDataSet")})
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param dataSet
-#' (optionnal) Object of class \code{\linkS4class{DataSet}}.
-#' Data set selected as main.
-#' @param ...
-#' Properties of the \code{\linkS4class{DataSet}} to add.
-#' @examples
-#' library(pipeR)
-#' amStockChart() %>>% setMainDataSet(showInCompare = TRUE)
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @seealso \code{\linkS4class{DataSet}} S4 class
-#' @rdname setMainDataSet
-#' @export
+#' @rdname initialize-AmStockChart
 setMethod(f = "setMainDataSet", signature = c("AmStockChart"),
           definition = function(.Object, dataSet = NULL, ...)
           {
@@ -634,25 +584,14 @@ setMethod(f = "setMainDataSet", signature = c("AmStockChart"),
 
 # > @panels : setters ####
 
-#' @exportMethod setPanels
+#' @examples
+#' panels <- list(stockPanel(compared = TRUE), stockPanel(compared = TRUE))
+#' setPanels(.Object = amStockChart(), panels = panels)
+#' @rdname initialize-AmStockChart
+#' @export
 setGeneric(name = "setPanels",
            def = function(.Object, panels) {standardGeneric("setPanels")})
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param panels
-#' Object of class \code{\linkS4class{list}}.
-#' Each element of this list must be a stockPanel
-#' @examples
-#' library(pipeR)
-#' amStockChart() %>>% setPanels(list(stockPanel(compared = TRUE), stockPanel(compared = TRUE)))
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @seealso \code{\linkS4class{StockPanel}} S4 class
-#' @rdname setPanels
-#' @export
+#' @rdname initialize-AmStockChart
 setMethod(f = "setPanels", signature = c("AmStockChart", "list"),
           definition = function(.Object, panels)
           {
@@ -665,27 +604,14 @@ setMethod(f = "setPanels", signature = c("AmStockChart", "list"),
             return(.Object)
           })
 
-#' @exportMethod addPanel
+#' @param panel \linkS4class{StockPanel}.
+#' @examples
+#' addPanel(.Object = amStockChart(), allowTurningOff = TRUE)
+#' @rdname initialize-AmStockChart
+#' @export
 setGeneric(name = "addPanel",
            def = function(.Object, panel = NULL, ...) {standardGeneric("addPanel")})
-#' @title Setter
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param panel
-#' (optionnal) Object of class \code{\linkS4class{StockPanel}}.
-#' Each element of this list must be a dataSet
-#' @param ...
-#' Properties of the \code{\linkS4class{StockPanel}} to add.
-#' @examples
-#' library(pipeR)
-#' amStockChart() %>>% addPanel(allowTurningOff = TRUE)
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @seealso \code{\linkS4class{StockPanel}} S4 class
-#' @rdname addPanel
-#' @export
+#' @rdname initialize-AmStockChart
 setMethod(f = "addPanel", signature = c("AmStockChart"),
           definition = function(.Object, panel = NULL, ...)
           {
@@ -699,23 +625,13 @@ setMethod(f = "addPanel", signature = c("AmStockChart"),
 
 # > @panelSettings : setters ####
 
-#' @exportMethod setPanelsSettings
-setGeneric(name = "setPanelsSettings", def = function(.Object, ...) {standardGeneric("setPanelsSettings")})
-#' @title Setter for PanelsSettings
-#' @details Use this methode in case of an AmStockChart.
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param ...
-#' Properties of \code{PanelsSettings}.
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
+#' @description Setter for PanelsSettings.
 #' @examples
-#' library(pipeR)
-#' amStockChart() %>>% setPanelsSettings(backgroundAlpha = 0)
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @rdname setPanelsSettings
+#' setPanelsSettings(.Object = amStockChart(), backgroundAlpha = 0)
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "setPanelsSettings", def = function(.Object, ...) {standardGeneric("setPanelsSettings")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "setPanelsSettings", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {
@@ -726,25 +642,12 @@ setMethod(f = "setPanelsSettings", signature = c("AmStockChart"),
 
 # > @setPeriodSelector : setters ####
 
-#' @exportMethod setPeriodSelector
-setGeneric(name = "setPeriodSelector", def = function(.Object, periodSelector = NULL, ...) {standardGeneric("setPeriodSelector")})
-#' @title Setter for PeriodSelector
-#' @details Use this methode in case of an AmStockChart.
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param periodSelector
-#' Object of class \code{\linkS4class{PeriodSelector}}.
-#' @param ...
-#' Properties of the class \code{\linkS4class{PeriodSelector}}.
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @examples
-#' library(pipeR)
-#' amStockChart() %>>% setPeriodSelector(dateFormat = "DD-MM-YYYY")
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @rdname setPeriodSelector
+#' setPeriodSelector(.Object = amStockChart(), dateFormat = "DD-MM-YYYY")
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "setPeriodSelector", def = function(.Object, periodSelector = NULL, ...) {standardGeneric("setPeriodSelector")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "setPeriodSelector", signature = c("AmStockChart"),
           definition = function(.Object, periodSelector = NULL, ...)
           {
@@ -758,23 +661,12 @@ setMethod(f = "setPeriodSelector", signature = c("AmStockChart"),
 
 # > @setStockEventsSettings : setters ####
 
-#' @exportMethod setStockEventsSettings
-setGeneric(name = "setStockEventsSettings", def = function(.Object, ...) {standardGeneric("setStockEventsSettings")})
-#' @title Setter for StockEventsSettings
-#' @details Use this methode in case of an AmStockChart.
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param ...
-#' Properties of \code{StockEventsSettings}.
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
 #' @examples
-#' library(pipeR)
-#' amStockChart() %>>% setStockEventsSettings(backgroundAlpha = 1)
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @seealso \code{\linkS4class{AmStockChart}} S4 class
-#' @rdname setStockEventsSettings
+#' setStockEventsSettings(.Object = amStockChart(), backgroundAlpha = 1)
+#' @rdname initialize-AmStockChart
 #' @export
+setGeneric(name = "setStockEventsSettings", def = function(.Object, ...) {standardGeneric("setStockEventsSettings")})
+#' @rdname initialize-AmStockChart
 setMethod(f = "setStockEventsSettings", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {
@@ -785,22 +677,13 @@ setMethod(f = "setStockEventsSettings", signature = c("AmStockChart"),
 
 # > @valueAxesSettings: setters ####
 
-#' @exportMethod setValueAxesSettings
+#' @examples
+#' setValueAxesSettings(.Object = amStockChart(), autoGridCount = "TRUE")
+#' @rdname initialize-AmStockChart
+#' @export
 setGeneric(name = "setValueAxesSettings",
            def = function(.Object, valueAxesSettings = NULL, ...) {standardGeneric("setValueAxesSettings")})
-#' @title Setter for valueAxesSettings
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @param ...
-#' Named properties of \code{ValueAxesSettings}.
-#' @return The updated object of class \code{\linkS4class{AmStockChart}}.
-#' @examples
-#' library(pipeR)
-#' amStockChart() %>>% setValueAxesSettings(autoGridCount = "TRUE")
-#' @family AmStockChart setters
-#' @family AmStockChart methods
-#' @rdname setValueAxesSettings
-#' @export
+#' @rdname initialize-AmStockChart
 setMethod(f = "setValueAxesSettings", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {
@@ -809,15 +692,9 @@ setMethod(f = "setValueAxesSettings", signature = c("AmStockChart"),
             return(.Object)
           })
 
-#' @title List attributes of an AmStockChart
-#' @description This method lists attributes of an AmChart to fit the API
-#' @param .Object
-#' Object of class \code{\linkS4class{AmStockChart}}.
-#' @details For certain attributes we do not verify if they are NULL, see constructor.
 #' @examples
-#' library(pipeR)
-#' amChart() %>>% setProperties(test = 1) %>>% listProperties
-#' @importFrom rlist list.append
+#' listProperties(amChart(test = 1))
+#' @rdname listProperties-AmObject
 setMethod(f = "listProperties", signature = "AmStockChart",
           definition = function(.Object)
           {

@@ -24,13 +24,15 @@ NULL
 #' Guides belonging to this axis. Use addGuide method
 #' 
 #' @export
-setClass( Class = "ValueAxis", contains = "AxisBase",
-  representation = representation( title = "character" )
+setClass(Class = "ValueAxis", contains = "AxisBase",
+  representation = representation(title = "character")
 )
 
 #' @title Initialize
-#' @param \code{title}: {Object of class \code{character}}
-#' @param \code{guides}: {Object of class \code{list}. List of guides.}
+#' @param .Object \code{\linkS4class{ValueAxis}}.
+#' @param title \code{character}.
+#' @param guides \code{list} of \code{\linkS4class{Guide}}.
+#' @param ... Other properties (depend of call function)
 #' @examples
 #' \dontrun{
 #' new("ValueAxis", title = "Hello !", 1) # 1 is not take into account
@@ -42,50 +44,41 @@ setClass( Class = "ValueAxis", contains = "AxisBase",
 #' 
 #' guides <- list(guide(fillAlpha = .4), guide(fillAlpha = .5))
 #' new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)
+#' @rdname initialize-ValueAxis
 #' @export
 setMethod(f = "initialize", signature = c("ValueAxis"),
           definition = function(.Object, title, guides, ...)
           {            
-            if(!missing(title)){
+            if (!missing(title)) {
               .Object@title <- title
-            }else{}
-            if(!missing(guides) && is.list(guides)){
+            } else {}
+            if (!missing(guides) && is.list(guides)) {
               .Object@guides <- lapply(guides, listProperties)
-            }else{}
+            } else {}
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
           })
 
 # CONSTRUCTOR ####
-#' @title Constructor for an AmGraph
-#' @param title
-#' Object of class \code{character}. Title of the axis.
-#' @param ...
-#' Properties of ValueAxis.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/ValueAxis}
-#' @return An \code{\linkS4class{ValueAxis}} object
+
 #' @examples
 #' valueAxis(title = "Hello !", axisTitleOffset = 12)
+#' @describeIn initialize-ValueAxis
 #' @export
-valueAxis <- function(title, ...){
+valueAxis <- function(title, ...) {
   .Object <- new(Class="ValueAxis")
-  if(!missing(title)){
+  if (!missing(title)) {
     .Object@title <- title
-  }
+  } else {}
   .Object <- setProperties(.Object, ...)
-  return( .Object )
+  return(.Object)
 }
 
-#' @title SETTER
-#' @param .Object
-#' @param title
-#' Object of class \code{character}. Title of the axis.
 #' @examples
-#' library(pipeR)
-#' valueAxis() %>>% setTitle("Hello !")
-#' @export
-setMethod( f = "setTitle", signature = c("ValueAxis", "character"),
+#' setTitle(.Object = valueAxis(), title = "Hello !")
+#' @rdname initialize-ValueAxis
+setMethod(f = "setTitle", signature = c("ValueAxis", "character"),
   definition = function(.Object, title)
   { 
     .Object@title <- title
@@ -93,23 +86,20 @@ setMethod( f = "setTitle", signature = c("ValueAxis", "character"),
     return(.Object)
   })
 
-#' @title List properties
-#' @param .Object
-#' @return Properties of the object in a list
 #' @examples
 #' library(pipeR)
 #' \dontshow{
-#' valueAxis( axisTitleOffset = 12, tickLength = 10 ) %>>% listProperties %>>% class
+#' valueAxis(axisTitleOffset = 12, tickLength = 10) %>>% listProperties %>>% class
 #' }
-#' valueAxis( axisTitleOffset = 12, tickLength = 10 ) %>>%
-#' addGuide( fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1 ) %>>%
-#' setProperties( axisTitleOffset = 12 ) %>>% listProperties
-setMethod( f = "listProperties", signature = "ValueAxis",
-           definition = function( .Object )
+#' valueAxis(axisTitleOffset = 12, tickLength = 10, axisTitleOffset = 12) %>>%
+#' addGuide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1) %>>% listProperties
+#' @rdname listProperties-AmObject
+setMethod(f = "listProperties", signature = "ValueAxis",
+           definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if( length(.Object@title) > 0 ){
+             if (length(.Object@title)) {
                ls <- rlist::list.append(ls, title = .Object@title)
-             }
+             } else {}
              return(ls)
            })

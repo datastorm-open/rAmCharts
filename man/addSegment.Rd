@@ -33,14 +33,16 @@ Use this methode in case of an AmChart.
 }}
 \examples{
 library(pipeR)
-amGanttChart( segmentsField = "segments", dataProvider = data.frame( category = c( "John", "Julia") ) ) \%>>\%
-addSegment( 1, data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2") ) ) \%>>\%
-addSegment( 2, data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2") ) )
+amGanttChart(segmentsField = "segments"
+) \%>>\% setDataProvider(data.frame(category = c( "John", "Julia"))
+) \%>>\% addSegment(1, data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2"))
+) \%>>\% addSegment(2, data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2")))
 
-ls <- list( data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2") ),
-data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2") ) )
-amGanttChart( segmentsField = "segments", dataProvider = data.frame( category = c( "John", "Julia") ) ) \%>>\%
-addSegment( 1:2,  ls)
+ls <- list( data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2")),
+data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2")))
+amGanttChart(segmentsField = "segments"
+) \%>>\% setDataProvider(data.frame(category = c( "John", "Julia"))
+) \%>>\% addSegment( 1:2,  ls)
 }
 \seealso{
 \code{\linkS4class{AmChart}} S4 class
@@ -51,11 +53,9 @@ Other AmChart methods: \code{\link{addArrow}},
   \code{\link{addAxe,AmChart-method}};
   \code{\link{addGraph}},
   \code{\link{addGraph,AmChart-method}};
-  \code{\link{addGuide,AmChart-method}},
-  \code{\link{addGuide,AxisBase-method}};
+  \code{\link{addGuide,AmChart-method}};
   \code{\link{addLabel}},
   \code{\link{addLabel,AmChart-method}};
-  \code{\link{addListener,AmObject,character,character-method}};
   \code{\link{addSubData}},
   \code{\link{addSubData,AmChart,numeric,data.frame-method}};
   \code{\link{addTitle}},
@@ -82,12 +82,10 @@ Other AmChart methods: \code{\link{addArrow}},
   \code{\link{setChartScrollbar,AmChart-method}};
   \code{\link{setCreditsPosition}},
   \code{\link{setCreditsPosition,AmChart,character-method}};
-  \code{\link{setDataProvider,AmChart,data.frame-method}},
-  \code{\link{setDataProvider,DataSet,data.frame-method}};
+  \code{\link{setDataProvider,AmChart,data.frame-method}};
   \code{\link{setExport}},
   \code{\link{setExport,AmChart-method}};
-  \code{\link{setGraph,AmChart-method}},
-  \code{\link{setGraph,ChartScrollbar-method}};
+  \code{\link{setGraph,AmChart-method}};
   \code{\link{setGraphs}},
   \code{\link{setGraphs,AmChart,list-method}};
   \code{\link{setGuides}},

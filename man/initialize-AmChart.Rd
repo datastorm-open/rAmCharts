@@ -71,6 +71,11 @@ you should get this axis from the chart and set properties to this object.}
 Category field name tells the chart the name of the field in your dataProvider object
 which will be used for category axis values.}
 
+\item{chartCursor}{\linkS4class{ChartCursor}.}
+
+\item{chartScrollbar}{\linkS4class{ChartScrollbar}.
+Properties of chart's scrollbar.}
+
 \item{creditsPosition}{\code{"character"},
 specifying position of link to amCharts site.
 Allowed values are: top-left, top-right, bottom-left and bottom-right.}
@@ -89,8 +94,9 @@ Graph of a Gantt chart. Gant chart actually creates multiple graphs (separate fo
 Properties of this graph are passed to each of the created graphs
 - this allows you to control the look of segments.}
 
-\item{legend}{\code{"list"}.
-List of an \code{\linkS4class{AmLegend}} class properties.
+\item{guides}{\code{list} of \linkS4class{Guide}.}
+
+\item{legend}{\linkS4class{AmLegend}.
 Properties of chart's legend.}
 
 \item{segmentsField}{\code{character}.}
@@ -126,14 +132,6 @@ Set it's type to "date" if your data is date or time based.}
 
 \item{...}{Other properties of \code{\linkS4class{AmChart}}.
 See \url{http://docs.amcharts.com/3/javascriptcharts}}
-
-\item{ChartCursor}{\code{"list"}.
-List of a \code{\linkS4class{ChartCursor}} class properties.
-Properties of the chart's cursor.}
-
-\item{ChartScrollbar}{\code{"list"}.
-List of a \code{\linkS4class{ChartScrollbar}} class properties.
-Properties of chart's scrollbar.}
 }
 \value{
 Returns an object of class \code{\linkS4class{AmChart}} with arguments.

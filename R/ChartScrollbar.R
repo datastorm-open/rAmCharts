@@ -32,21 +32,19 @@ setClass( Class = "ChartScrollbar", contains = "AmObject",
 )
 
 #' @title Initialize a ChartScrollbar
-#' @param graph
-#' Object of class \code{AmGraph}.
+#' @param .Object \linkS4class{ChartScrollbar}.
+#' @param graph \linkS4class{AmGraph}.
 #' Specifies which graph will be displayed in the scrollbar.
-#' @param pathToImages
-#' URL to API images (for buttons)
-#' @param updateOnReleaseOnly
-#' Object of class \code{logical}.
+#' @param pathToImages \code{character} URL to API images (for buttons)
+#' @param updateOnReleaseOnly \code{logical}.
 #' Specifies if the chart should be updated while dragging/resizing the scrollbar
 #' or only at the moment when user releases mouse button.
-#' @param ...
-#' Properties of ChartScrollbar
+#' @param ... Other preperties
 #' See \url{http://docs.amcharts.com/3/javascriptcharts/ChartScrollbar}
 #' @examples
 #' new("ChartScrollbar", graph = "g1")
 #' new("ChartScrollbar", graph = amGraph(test = 1))
+#' @rdname initialize-ChartScrollbar
 #' @export
 setMethod(f = "initialize", signature = "ChartScrollbar",
           definition = function(.Object,
@@ -65,20 +63,8 @@ setMethod(f = "initialize", signature = "ChartScrollbar",
             return(.Object)
           })
 
-# CONSTRUCTOR ####
-#' @title Constructor for an AmGraph
-#' @param graph
-#' Object of class \code{AmGraph}.
-#' Specifies which graph will be displayed in the scrollbar.
-#' @param pathToImages
-#' @param updateOnReleaseOnly
-#' Object of class \code{logical}.
-#' Specifies if the chart should be updated while dragging/resizing the scrollbar
-#' or only at the moment when user releases mouse button.
-#' @param ...
-#' Properties of ChartScrollbar
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/ChartScrollbar}
-#' @return An \code{\linkS4class{ChartScrollbar}} object
+
+#' @describeIn initialize-ChartScrollbar
 #' @examples
 #' chartScrollbar()
 #' chartScrollbar(updateOnReleaseOnly = TRUE)
@@ -100,22 +86,9 @@ chartScrollbar <- function(graph,
 
 # > @graph : setters ####
 
-#' @title Setter for graph
-#' @param .Object
-#' Object of class \code{\linkS4class{AmChart}}.
-#' @param graph
-#' (optionnal) Object of class \code{\linkS4class{AmGraph}}.
-#' @param ...
-#' Properties of AmGraph
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/AmGraph}
-#' @return The updated object of class \code{\linkS4class{ChartScrollbar}}.
 #' @examples
-#' library(pipeR)
-#' chartScrollbar() %>>% setGraph(test = 1)
-#' @family ChartScrollbar setters
-#' @family ChartScrollbar methods
-#' @seealso \code{\linkS4class{ChartScrollbar}} S4 class
-#' @rdname setGraph
+#' setGraph(.Object = chartScrollbar(), test = 1)
+#' @rdname initialize-ChartScrollbar
 #' @export
 setMethod(f = "setGraph", signature = c("ChartScrollbar"),
            definition = function(.Object, graph = NULL, ...)
@@ -143,35 +116,25 @@ setMethod(f = "setGraph", signature = c("ChartScrollbar"),
 
 # > @updateOnReleaseOnly : setters ####
 
-#' @exportMethod setUpdateOnReleaseOnly
+#' @rdname initialize-ChartScrollbar
+#' @export
 setGeneric(name = "setUpdateOnReleaseOnly",
            def = function(.Object, updateOnReleaseOnly){ standardGeneric("setUpdateOnReleaseOnly") } )
-#' @title SETTER
-#' @param .Object
-#' @param updateOnReleaseOnly
-#' Object of class \code{logical}.
-#' Specifies if the chart should be updated while dragging/resizing the scrollbar
-#' or only at the moment when user releases mouse button.
 #' @examples
-#' library(pipeR)
-#' chartScrollbar() %>>% setUpdateOnReleaseOnly(TRUE)
-#' @rdname setUpdateOnReleaseOnly
+#' setUpdateOnReleaseOnly(.Object = chartScrollbar(), updateOnReleaseOnly = TRUE)
+#' @rdname initialize-ChartScrollbar
 #' @export
-setMethod(
-  f = "setUpdateOnReleaseOnly",
-  signature = c("ChartScrollbar", "logical"),
-  definition = function(.Object, updateOnReleaseOnly)
-  {
-    .Object@updateOnReleaseOnly <- updateOnReleaseOnly
-    validObject(.Object)
-    return(.Object)
-  })
+setMethod(f = "setUpdateOnReleaseOnly", signature = c("ChartScrollbar", "logical"),
+          definition = function(.Object, updateOnReleaseOnly)
+          {
+            .Object@updateOnReleaseOnly <- updateOnReleaseOnly
+            validObject(.Object)
+            return(.Object)
+          })
 
-#' @title List properties
-#' @param .Object
+#' @rdname listProperties-AmObject
 #' @examples
-#' new("ChartScrollbar", updateOnReleaseOnly = TRUE)
-#' @return Properties of the object in a list
+#' listProperties(chartScrollbar(updateOnReleaseOnly = TRUE))
 setMethod( f = "listProperties", signature = "ChartScrollbar",
            definition = function(.Object)
            { 

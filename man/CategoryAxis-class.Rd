@@ -12,7 +12,8 @@ CategoryAxis class
 \describe{
 \item{\code{gridPosition}}{Object of class \code{character}.
 Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
-Possible values are: "start" and "middle" This setting doesn't work if parseDates is set to true.}
+Possible values are: "start" and "middle"
+This setting doesn't work if parseDates is set to true.}
 
 \item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.

@@ -201,11 +201,8 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' @param categoryField \code{"character"}.
 #' Category field name tells the chart the name of the field in your dataProvider object
 #' which will be used for category axis values.
-#' @param ChartCursor \code{"list"}.
-#' List of a \code{\linkS4class{ChartCursor}} class properties.
-#' Properties of the chart's cursor.
-#' @param ChartScrollbar \code{"list"}.
-#' List of a \code{\linkS4class{ChartScrollbar}} class properties.
+#' @param chartCursor \linkS4class{ChartCursor}.
+#' @param chartScrollbar \linkS4class{ChartScrollbar}.
 #' Properties of chart's scrollbar.
 #' @param creditsPosition \code{"character"},
 #' specifying position of link to amCharts site.
@@ -221,8 +218,8 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' Graph of a Gantt chart. Gant chart actually creates multiple graphs (separate for each segment).
 #' Properties of this graph are passed to each of the created graphs
 #' - this allows you to control the look of segments.
-#' @param legend \code{"list"}.
-#' List of an \code{\linkS4class{AmLegend}} class properties.
+#' @param guides \code{list} of \linkS4class{Guide}.
+#' @param legend  \linkS4class{AmLegend}.
 #' Properties of chart's legend.
 #' @param segmentsField \code{character}.
 #' @param theme \code{character}.
@@ -254,6 +251,7 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' new("AmChart", valueField = "value")
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname initialize-AmChart
+#' @import methods
 #' @export
 setMethod(f = "initialize", signature = "AmChart",
           definition = function(.Object, allLabels, arrows, axes, balloon, categoryAxis,

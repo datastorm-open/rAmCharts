@@ -14,6 +14,8 @@ setAxes(.Object, axes, ...)
 \item{.Object}{object of class \code{\linkS4class{AmChart}}}
 
 \item{axes}{object of class \code{\linkS4class{GaugeAxis}}}
+
+\item{...}{Other properties}
 }
 \description{
 Setter for axes
@@ -36,11 +38,9 @@ Other AmChart methods: \code{\link{addArrow}},
   \code{\link{addAxe,AmChart-method}};
   \code{\link{addGraph}},
   \code{\link{addGraph,AmChart-method}};
-  \code{\link{addGuide,AmChart-method}},
-  \code{\link{addGuide,AxisBase-method}};
+  \code{\link{addGuide,AmChart-method}};
   \code{\link{addLabel}},
   \code{\link{addLabel,AmChart-method}};
-  \code{\link{addListener,AmObject,character,character-method}};
   \code{\link{addSegment}},
   \code{\link{addSegment,AmChart,numeric-method}};
   \code{\link{addSubData}},
@@ -67,12 +67,10 @@ Other AmChart methods: \code{\link{addArrow}},
   \code{\link{setChartScrollbar,AmChart-method}};
   \code{\link{setCreditsPosition}},
   \code{\link{setCreditsPosition,AmChart,character-method}};
-  \code{\link{setDataProvider,AmChart,data.frame-method}},
-  \code{\link{setDataProvider,DataSet,data.frame-method}};
+  \code{\link{setDataProvider,AmChart,data.frame-method}};
   \code{\link{setExport}},
   \code{\link{setExport,AmChart-method}};
-  \code{\link{setGraph,AmChart-method}},
-  \code{\link{setGraph,ChartScrollbar-method}};
+  \code{\link{setGraph,AmChart-method}};
   \code{\link{setGraphs}},
   \code{\link{setGraphs,AmChart,list-method}};
   \code{\link{setGuides}},
@@ -95,11 +93,9 @@ Other AmChart setters: \code{\link{addArrow}},
   \code{\link{addAxe,AmChart-method}};
   \code{\link{addGraph}},
   \code{\link{addGraph,AmChart-method}};
-  \code{\link{addGuide,AmChart-method}},
-  \code{\link{addGuide,AxisBase-method}};
+  \code{\link{addGuide,AmChart-method}};
   \code{\link{addLabel}},
   \code{\link{addLabel,AmChart-method}};
-  \code{\link{addListener,AmObject,character,character-method}};
   \code{\link{addTitle}},
   \code{\link{addTitle,AmChart-method}};
   \code{\link{addTrendLine}},
@@ -122,12 +118,10 @@ Other AmChart setters: \code{\link{addArrow}},
   \code{\link{setChartScrollbar,AmChart-method}};
   \code{\link{setCreditsPosition}},
   \code{\link{setCreditsPosition,AmChart,character-method}};
-  \code{\link{setDataProvider,AmChart,data.frame-method}},
-  \code{\link{setDataProvider,DataSet,data.frame-method}};
+  \code{\link{setDataProvider,AmChart,data.frame-method}};
   \code{\link{setExport}},
   \code{\link{setExport,AmChart-method}};
-  \code{\link{setGraph,AmChart-method}},
-  \code{\link{setGraph,ChartScrollbar-method}};
+  \code{\link{setGraph,AmChart-method}};
   \code{\link{setGraphs}},
   \code{\link{setGraphs,AmChart,list-method}};
   \code{\link{setGuides}},

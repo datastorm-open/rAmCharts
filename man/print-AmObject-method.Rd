@@ -8,7 +8,9 @@
 \S4method{print}{AmObject}(x, ...)
 }
 \arguments{
-\item{x:}{an \code{\linkS4class{AmChart}}}
+\item{x}{\linkS4class{AmChart}}
+
+\item{...}{Other properties.}
 }
 \description{
 Visualize with print
@@ -17,10 +19,6 @@ Visualize with print
 print(new("AmChart", categoryField = "variables"))
 }
 \seealso{
-\code{\linkS4class{AmObject}}
-
-Other AmObject methods: \code{\link{show,AmObject-method}}
-
 Other Visualizations: \code{\link{show,AmObject-method}}
 }
 

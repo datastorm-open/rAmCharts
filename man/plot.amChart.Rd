@@ -8,6 +8,19 @@
 \S4method{plot}{AmChart}(x, y, width = "100\%", height = "500px",
   background = "#ffffff", ...)
 }
+\arguments{
+\item{x}{\linkS4class{AmChart}}
+
+\item{y}{unused}
+
+\item{width}{\code{charcter}.}
+
+\item{height}{\code{charcter}.}
+
+\item{background}{\code{charcter}.}
+
+\item{...}{Other properties.}
+}
 \description{
 Basic method to plot an AmChart
 }

@@ -21,37 +21,34 @@ setClass(
 )
 
 #' @title Visualize with show
-#' @param object: \code{\linkS4class{AmObject}} object
+#' @param object \linkS4class{AmObject}
 #' @examples
-#' new("AmChart")
-#' @export
-#' @family AmObject methods
+#' show(amSerialChart())
 #' @family Visualizations
-#' @seealso \code{\linkS4class{AmObject}}
+#' @export
 setMethod(f = "show", signature = "AmObject",
-          definition = function(object) {print(listProperties(object))})
+          definition = function(object)
+            {
+            cat("~", class(object),"~\n")
+            print(listProperties(object))
+            })
 
 #' @title Visualize with print
-#' @param x: an \code{\linkS4class{AmChart}} 
+#' @param x \linkS4class{AmChart}
+#' @param ... Other properties.
 #' @examples
 #' print(new("AmChart", categoryField = "variables"))
-#' @export
-#' @family AmObject methods
 #' @family Visualizations
-#' @seealso \code{\linkS4class{AmObject}}
+#' @export
 setMethod(f = "print", signature = "AmObject",
-          definition = function(x, ...) { print(listProperties(x)) }
-)
+          definition = function(x, ...) { print(listProperties(x))})
 
 # > @listeners: setters ####
 
-#' @exportMethod addListener
-setGeneric(name = "addListener", def = function(.Object, name, expression) { standardGeneric("addListener") } )
-
-#' @title Setter for Listener
-#' @param \code{.Object}: Object of of inherited class \code{\linkS4class{AmObject}}.
-#' @param \code{name}: Object of class \code{character} containing the name of the listener.
-#' @param \code{expression}: Object of class \code{character} containing the associated function event.
+#' @title Methods of AmObject
+#' @param .Object \code{\linkS4class{AmObject}}.
+#' @param name \code{character} containing the name of the listener.
+#' @param expression \code{character} containing the associated function event.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples 
 #' library(pipeR)
@@ -59,70 +56,46 @@ setGeneric(name = "addListener", def = function(.Object, name, expression) { sta
 #'      alert('selected nodes: ' + properties.nodes);}")
 #' amLegend() %>>% addListener("select", "function onSelect (properties) {
 #'      alert('selected nodes: ' + properties.nodes);}")
-#' @family AmChart setters
-#' @family AmChart methods
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{AmLegend}} S4 class
-#' @rdname addListener
+#' @rdname methods-AmObject
 #' @export
+setGeneric(name = "addListener", def = function(.Object, name, expression) { standardGeneric("addListener")})
+#' @rdname methods-AmObject
 setMethod (f = "addListener", signature = c("AmObject", "character", "character"),
            definition = function(.Object, name, expression)
            {
              .Object@listeners[[ eval(name) ]] <- JS(expression)
-             # cat( class(JS(expression)), "\n")
-             # cat( class( .Object@listeners[[ eval(name) ]] ), '\n' )
+             # cat(class(JS(expression)), "\n")
+             # cat(class(.Object@listeners[[ eval(name) ]]), '\n')
              validObject(.Object)
              return(.Object)
-           }
-)
+          })
 
 # > @otherProperties: setProperties ####
 
-#' @exportMethod setProperties
-setGeneric(name = "setProperties", def = function(.Object, list, ...){standardGeneric("setProperties")})
-#' @title Add a property (non referenced as an attribute) to an AmObject
-#' @description In case the property is a class attribute, it will be overwritten if the attribute is non NULL
-#' @param \code{properties}: {(Optional) Object of class \code{list} containing properties to set.
-#' The former properties will be overwritten.}
+#' @details If the property is a class property, it will be overwritten if the attribute is non NULL
+#' @param list (Optional) \code{list} containing properties to set.
+#' The former properties will be overwritten.
+#' @param ... Other properties
 #' @examples
 #' library(pipeR)
 #' # For an AmChart
 #' ls <- list(categoryAxis = list(gridPosition = "start"), test = 1)
-#' amChart() %>>% setProperties(list = ls) %>>% setType("pie") %>>% setProperties(fontSize = 15)
-#' @rdname setProperties
-#' @family AmObjects methods
-#' @family AmObject setters
-#' @seealso \code{\linkS4class{AmObject}}
-#' @importFrom rlist list.append
+#' amPieChart() %>>% setProperties(list = ls) %>>% setProperties(fontSize = 15)
+#' @rdname methods-AmObject
 #' @export
+setGeneric(name = "setProperties", def = function(.Object, list, ...){standardGeneric("setProperties")})
+#' @rdname methods-AmObject
 setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
           definition = function(.Object, list, ...)
           {
             if (missing(list)) {
               .Object@otherProperties <- rlist::list.append(.Object@otherProperties, ...)
-            } else if (is.list(list)) {
+           } else if (is.list(list)) {
               .Object@otherProperties <- list
-            } else {}
+           } else {}
             validObject(.Object)
             return(.Object)
-          })
-
-# > @otherProperties: getters ####
-
-#' @exportMethod getOtherProperties
-setGeneric( name = "getOtherProperties",
-            def = function(.Object) { standardGeneric("getOtherProperties") } )
-#' @title Getter
-#' @examples
-#' library(pipeR)
-#' ls <- list(categoryAxis = list(gridPosition = "start"), test = 1)
-#' amPieChart( otherProperties = ls) %>>% getOtherProperties
-#' @rdname getOtherProperties
-#' @family AmObjects methods
-#' @family AmObject getters
-#' @seealso \code{\linkS4class{AmObject}}
-#' @export
-setMethod( f = "getOtherProperties", definition = function(.Object) { return(.Object@otherProperties) } )
+         })
 
 # > listProperties ####
 
@@ -136,15 +109,15 @@ setMethod( f = "getOtherProperties", definition = function(.Object) { return(.Ob
 #' @export
 setGeneric(name = "listProperties", def = function(.Object){standardGeneric("listProperties")})
 #' @rdname listProperties-AmObject
-setMethod( f = "listProperties", signature = "AmObject",
+setMethod(f = "listProperties", signature = "AmObject",
            definition = function(.Object) {
              if (length(.Object@otherProperties)) {
                properties <- .Object@otherProperties
-             } else {
+            } else {
                properties <- list()
-             }
+            }
              if (length(.Object@listeners)) {
                properties <- rlist::list.append(properties, listeners = .Object@listeners)
-             } else {}
+            } else {}
              return(properties)
-           })
+          })

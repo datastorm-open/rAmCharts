@@ -21,6 +21,8 @@ XY and Radar charts can only display "line" otherArguments graphs.}
 
 \item{valueField}{\code{character}.
 Name of the value field in your dataProvider.}
+
+\item{...}{Other properties}
 }
 \value{
 An object of class \code{\linkS4class{AmGraph}}.
@@ -29,6 +31,7 @@ An object of class \code{\linkS4class{AmGraph}}.
 Constructor for a stockGraph (class AmGraph)
 }
 \examples{
-stockGraph(balloonText = "balloonText", "type" = "column", valueField = "value", animationPlayed = TRUE)
+stockGraph(balloonText = "balloonText", "type" = "column",
+           valueField = "value", animationPlayed = TRUE)
 }
 

@@ -29,12 +29,22 @@ NULL
 #' 
 #' @export
 setClass(Class = "Guide", contains = "AmObject",
-         representation = representation(fillAlpha = "numeric", valueAxis = "list")
-)
+         representation = representation(fillAlpha = "numeric", valueAxis = "list"))
 
 #' @title Initialize a Guide
+#' @param .Object \linkS4class{Guide}
+#' @param fillAlpha \code{numeric}.
+#' Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
+#' Possible values are: "start" and "middle"
+#' This setting doesn't work if parseDates is set to true.
+#' @param valueAxis \linkS4class{ValueAxis} class.
+#' As you can add guides directly to the chart, you might need to specify 
+#' which value axis should be used.
+#' @param value \code{numeric}.
+#' @param ... Other properties.
 #' @examples
-#' new("Guide", fillAlpha = 0.1,  gridThickness = 1, value = 1)
+#' new("Guide", fillAlpha = 0.1, gridThickness = 1, value = 1)
+#' @rdname initialize-Guide
 #' @export
 setMethod(f = "initialize", signature = c("Guide"),
           definition = function(.Object, fillAlpha, valueAxis, value, ...)
@@ -51,15 +61,11 @@ setMethod(f = "initialize", signature = c("Guide"),
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # CONSTRUCTOR ####
-#' @title Constructor for a Guide
-#' @param ...
-#' Properties of Guide.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/Guide}
-#' @return An \code{\linkS4class{Guide}} object
+
+#' @describeIn initialize-Guide
 #' @examples
 #' guide(fillAlpha = .4, value = 1)
 #' guide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
@@ -79,13 +85,12 @@ guide <- function(fillAlpha, valueAxis, value, ...) {
   return(.Object)
 }
 
-#' @exportMethod setFillAlpha
+#' @rdname initialize-Guide
+#' @export
 setGeneric(name = "setFillAlpha", def = function(.Object, fillAlpha) { standardGeneric("setFillAlpha") })
-#' @title SETTER
 #' @examples
-#' library(pipeR)
-#' guide() %>>% setFillAlpha(1)
-#' @rdname guide
+#' setFillAlpha(.Object = guide(), fillAlpha = 1)
+#' @rdname initialize-Guide
 #' @export
 setMethod(
   f = "setFillAlpha",
@@ -95,17 +100,15 @@ setMethod(
     .Object@fillAlpha <- fillAlpha
     validObject(.Object)
     return(.Object)
-  }
-)
+  })
 
 #' @title SETTER
 #' @examples
-#' library(pipeR)
-#' guide() %>>% setValueAxis(list(a = 1))
-#' @export
-setMethod(
-  f = "setValueAxis",
-  signature = "Guide",
+#' setValueAxis(.Object = guide(), valueAxis = list(valueAxis(test = "foo"),
+#'                                                  valueAxis(test2 = "foo2")))
+#' setValueAxis(.Object = guide(), valueAxis = valueAxis(test = "foo"))
+#' @rdname initialize-Guide
+setMethod(f = "setValueAxis", signature = "Guide",
   definition = function(.Object, valueAxis, ...)
   {
     if (is.list(valueAxis)) {
@@ -115,25 +118,14 @@ setMethod(
     } else {}
     validObject(.Object)
     return(.Object)
-  }
-)
+  })
 
-#' @title Add a ValueAxis
-#' @param .Object
-#' Object of class \code{\linkS4class{Guide}}.
-#' @param valueAxis
-#' Object of class \code{\linkS4class{ValueAxis}}.
-#' @return The updated object of class \code{\linkS4class{Guide}}.
 #' @examples
-#' library(pipeR)
-#' guide() %>>% addValueAxis(axisTitleOffset = 12, tickLength = 10)
-#' @family Guide setters
-#' @family Guide methods
+#' addValueAxis(.Object = guide(), axisTitleOffset = 12, tickLength = 10)
+#' valueAxis <- valueAxis(axisTitleOffset = 12, tickLength = 10)
+#' addValueAxis(.Object = guide(), valueAxis = valueAxis)
 #' @seealso \code{\linkS4class{Guide}} S4 class
-#' @seealso \code{\linkS4class{ValueAxis}} S4 class
-#' @rdname addValueAxis
-#' @importFrom rlist list.append
-#' @export
+#' @rdname initialize-Guide
 setMethod(f = "addValueAxis", signature = c("Guide"),
           definition = function(.Object, valueAxis = NULL, ...)
           {
@@ -143,13 +135,11 @@ setMethod(f = "addValueAxis", signature = c("Guide"),
             .Object@valueAxis <- rlist::list.append(.Object@valueAxis, listProperties(valueAxis))
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
-#' @title List properties
-#' @return Properties of the object in a list
 #' @examples
 #' lapply(list(guide(fillAlpha = .4, value = 1), guide(fillAlpha = .5)), listProperties)
+#' @rdname listProperties-AmObject
 setMethod(f = "listProperties", signature = "Guide",
           definition = function(.Object)
           { 
@@ -164,5 +154,4 @@ setMethod(f = "listProperties", signature = "Guide",
               ls <- rlist::list.append(ls, value = .Object@value)
             }
             return(ls)
-          }
-)
+          })

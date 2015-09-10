@@ -4,7 +4,8 @@
 #' @slot gridPosition
 #'  Object of class \code{character}.
 #' Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
-#' Possible values are: "start" and "middle" This setting doesn't work if parseDates is set to true.
+#' Possible values are: "start" and "middle"
+#' This setting doesn't work if parseDates is set to true.
 #' 
 #' @slot listeners
 #' Object of class \code{"list"} containining the listeners to add to the object.
@@ -20,45 +21,44 @@
 #' 
 #' @export
 setClass( Class = "CategoryAxis", contains = "AxisBase",
-  representation = representation( gridPosition = "character" )
-)
+  representation = representation(gridPosition = "character"))
 
 #' @title Initialize a CategoryAxis
-#' @param gridPosition
-#' Object of class \code{character}.
-#' @param guides
-#' Object of class \code{list}. List of guides.
+#' @param .Object \linkS4class{CategoryAxis}.
+#' @param gridPosition \code{character}.
+#' Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
+#' Possible values are: "start" and "middle"
+#' This setting doesn't work if parseDates is set to true.
+#' @param guides \code{list} of \linkS4class{Guide}.
+#' @param ... Other properties.
 #' @examples
 #' \donttest{
 #' new("CategoryAxis")
 #' new("CategoryAxis", gridPosition = "start", 1) # 1 is not take into account
 #' }
-#' guides <- list(guide(fillAlpha = .4, adjustBorderColor = TRUE), guide(fillAlpha = .4, adjustBorderColor = TRUE))
+#' guides <- list(guide(fillAlpha = .4, adjustBorderColor = TRUE),
+#'                guide(fillAlpha = .4, adjustBorderColor = TRUE))
 #' new("CategoryAxis", gridPosition = "start",  gridThickness = 1, guides = guides)
+#' @rdname initialize-CategoryAxis
 #' @export
 setMethod(f = "initialize", signature = c("CategoryAxis"),
           definition = function(.Object, gridPosition, guides, ...)
           {            
-            if(!missing(gridPosition)){
+            if (!missing(gridPosition)) {
               .Object@gridPosition <- gridPosition
-            }
-            if(!missing(guides) && is.list(guides)){
+            } else {}
+            if (!missing(guides) && is.list(guides)) {
               .Object@guides <- lapply(guides, listProperties)
-            }else{}
+            } else {}
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # CONSTRUCTOR ####
-#' @title Constructor for an AmGraph
-#' @param ...
-#' Properties of CategoryAxis.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/CategoryAxis}
-#' @return An \code{\linkS4class{CategoryAxis}} object
+
+#' @describeIn initialize-CategoryAxis
 #' @examples
-#' new("CategoryAxis", gridPosition = "start")
 #' categoryAxis(gridPosition = "start", adjustBorderColor = TRUE)
 #' @export
 categoryAxis <- function(gridPosition, ...) {
@@ -70,29 +70,22 @@ categoryAxis <- function(gridPosition, ...) {
   return( .Object )
 }
 
-#' @exportMethod setGridPosition
+#' @rdname initialize-CategoryAxis
+#' @export
 setGeneric(name = "setGridPosition",
            def = function(.Object, gridPosition){ standardGeneric("setGridPosition") } )
-#' @title SETTER
 #' @examples
-#' library(pipeR)
-#' categoryAxis() %>>% setGridPosition("start")
-#' @rdname setGridPosition
-#' @export
-setMethod(
-  f = "setGridPosition",
-  signature = c("CategoryAxis", "character"),
-  definition = function(.Object, gridPosition)
-  {
-    .Object@gridPosition <- gridPosition
-    validObject(.Object)
-    return(.Object)
-  })
+#' setGridPosition(.Object = categoryAxis(), gridPosition = "start")
+#' @rdname initialize-CategoryAxis
+setMethod(f = "setGridPosition", signature = c("CategoryAxis", "character"),
+          definition = function(.Object, gridPosition)
+          {
+            .Object@gridPosition <- gridPosition
+            validObject(.Object)
+            return(.Object)
+          })
 
-
-#' @title List properties
-#' @return Properties of the object in a list
-#' @param .Object
+#' @rdname listProperties-AmObject
 #' @examples
 #' \dontshow{
 #' library(pipeR)
@@ -100,8 +93,7 @@ setMethod(
 #' categoryAxis(ignoreAxisWidth = TRUE) %>>% listProperties() %>>% length
 #' categoryAxis(ignoreAxisWidth = TRUE) %>>% setGridPosition("start") %>>% listProperties()
 #' }
-#' @importFrom rlist list.append
-setMethod( f = "listProperties", signature = "CategoryAxis",
+setMethod(f = "listProperties", signature = "CategoryAxis",
            definition = function(.Object)
            { 
              ls <- callNextMethod()

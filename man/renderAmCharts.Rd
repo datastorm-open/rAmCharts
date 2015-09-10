@@ -7,7 +7,11 @@
 renderAmCharts(expr, env, quoted)
 }
 \arguments{
-\item{amChart:}{an \code{\linkS4class{AmChart}} object}
+\item{expr}{\code{expression}.}
+
+\item{env}{see htmlwidgets doc}
+
+\item{quoted}{\code{logical}.}
 }
 \description{
 Widget output function for use in Shiny

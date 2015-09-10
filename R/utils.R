@@ -1,14 +1,15 @@
 # setClassUnion("dataTable", members = c("data.table", "data.frame"))
-#' @exportMethod toList
+#' @rdname utils-methods
+#' @export toList
 setGeneric(name = "toList", def = function(df, keepNA = TRUE){standardGeneric("toList")})
 #' @title Convert a data.frame in list
 #' @description This function is useful for the use of rAmChart, particularly for drill-down feature
 #' @details Each row of the data.frame will be transform into a named list.
 #' Consequently, be sure that the columns are correctly named.
-#' @param df
-#' an object of class \code{data.frame} containing the data.
+#' @param df \code{data.frame} containing the data.
+#' @param keepNA \code{logical}.
 #' @examples
-#' toList( data.frame(V1 = c(rep(NA, 5), 6:10), V2 = 11:20, Char = rep("test", 10)), keepNA = FALSE )
+#' toList(data.frame(V1 = c(rep(NA, 5), 6:10), V2 = 11:20, Char = rep("test", 10)), keepNA = FALSE)
 #' \dontrun{
 #' library(data.table)
 #' start <- as.POSIXct("01-01-2015", format = "%d-%m-%Y")
@@ -30,7 +31,7 @@ setGeneric(name = "toList", def = function(df, keepNA = TRUE){standardGeneric("t
 #' toList(dp[1:10, ], keepNA = FALSE)
 #' }
 #' @import data.table
-#' @rdname classUnion
+#' @rdname utils-methods
 #' @export
 setMethod(f = "toList", signature = c("data.frame"),
           definition = function(df, keepNA = TRUE)

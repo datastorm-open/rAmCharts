@@ -30,6 +30,10 @@ setValueField(.Object, valueField)
 \S4method{setValueField}{AmGraph,character}(.Object, valueField)
 }
 \arguments{
+\item{.Object}{\linkS4class{AmGraph} (or "AmGraph").}
+
+\item{animationPlayed}{\code{logical}.}
+
 \item{balloonText}{\code{character}.
 Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
 or any other field name from your data provider. HTML tags can also be used.}
@@ -43,14 +47,7 @@ XY and Radar charts can only display "line" otherArguments graphs.}
 \item{valueField}{\code{character}.
 Name of the value field in your dataProvider.}
 
-\item{listeners}{\code{"list"} containining the listeners to add to the object.
-The list must be named as in the official API.
-Each element must a character string. See examples for details.}
-
-\item{otherProperties}{\code{"list"},
-containing other avalaible properties non coded in the package yet}
-
-\item{value}{\code{numeric}.}
+\item{...}{Other properties.}
 }
 \value{
 An object of class \code{\linkS4class{AmGraph}} with the properties given.
@@ -75,7 +72,8 @@ Setter for valueField
 }}
 \examples{
 new("AmGraph", valueField = "value")
-amGraph(balloonText = "balloonText", "type" = "column", valueField = "value", animationPlayed = TRUE)
+amGraph(balloonText = "balloonText", "type" = "column",
+        valueField = "value", animationPlayed = TRUE)
 setBalloonText(.Object = amGraph(), balloonText = "performance")
 setTitle(.Object = amGraph(), title = "Power")
 setType(.Object = amGraph(), type = "type")

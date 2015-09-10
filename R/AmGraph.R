@@ -61,6 +61,8 @@ setClass (Class = "AmGraph", contains = "AmObject",
 #' @title Initialize an AmGraph
 #' @description To create an AmGraph, you can use the usual methode Initialize or the constructor.
 #' You can update properties with setters.
+#' @param .Object \linkS4class{AmGraph} (or "AmGraph").
+#' @param animationPlayed \code{logical}.
 #' @param balloonText \code{character}.
 #' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
 #' or any other field name from your data provider. HTML tags can also be used.
@@ -70,12 +72,7 @@ setClass (Class = "AmGraph", contains = "AmObject",
 #' XY and Radar charts can only display "line" otherArguments graphs.
 #' @param valueField \code{character}.
 #' Name of the value field in your dataProvider.
-#' @param listeners \code{"list"} containining the listeners to add to the object.
-#' The list must be named as in the official API.
-#' Each element must a character string. See examples for details.
-#' @param otherProperties \code{"list"},
-#' containing other avalaible properties non coded in the package yet
-#' @param value  \code{numeric}.
+#' @param ... Other properties.
 #' @return An object of class \code{\linkS4class{AmGraph}} with the properties given.
 #' @examples
 #' new("AmGraph", valueField = "value")
@@ -103,7 +100,8 @@ setMethod(f = "initialize", signature = "AmGraph",
 
 #' @description Constructor
 #' @examples
-#' amGraph(balloonText = "balloonText", "type" = "column", valueField = "value", animationPlayed = TRUE)
+#' amGraph(balloonText = "balloonText", "type" = "column",
+#'         valueField = "value", animationPlayed = TRUE)
 #' @describeIn initialize-AmGraph
 #' @export
 amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
@@ -137,8 +135,10 @@ amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueFiel
 #' XY and Radar charts can only display "line" otherArguments graphs.
 #' @param valueField \code{character}.
 #' Name of the value field in your dataProvider.
+#' @param ... Other properties
 #' @examples
-#' stockGraph(balloonText = "balloonText", "type" = "column", valueField = "value", animationPlayed = TRUE)
+#' stockGraph(balloonText = "balloonText", "type" = "column",
+#'            valueField = "value", animationPlayed = TRUE)
 #' @return An object of class \code{\linkS4class{AmGraph}}.
 #' @export 
 stockGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)

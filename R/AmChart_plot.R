@@ -4,6 +4,12 @@ NULL
 #' @title PLOTTING METHOD
 #' @description Basic method to plot an AmChart 
 #' @details Plots an object of class \code{\linkS4class{AmChart}}
+#' @param x \linkS4class{AmChart}
+#' @param y unused
+#' @param width \code{charcter}.
+#' @param height \code{charcter}.
+#' @param background \code{charcter}.
+#' @param ... Other properties.
 #' @rdname plot.amChart
 #' @import htmlwidgets
 #' @export

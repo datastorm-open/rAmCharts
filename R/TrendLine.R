@@ -44,7 +44,7 @@ NULL
 #' Object of class \code{numeric}.
 #' 
 #' @export
-setClass( Class = "TrendLine", contains = "AmObject",
+setClass(Class = "TrendLine", contains = "AmObject",
           representation =
             representation(
               initialValue = "numeric",
@@ -53,16 +53,34 @@ setClass( Class = "TrendLine", contains = "AmObject",
               finalXValue = "numeric",
               valueAxis = "list",
               valueAxisX = "list"
-              )
+             )
 )
 
 #' @title Initialize a TrendLine
+#' @param .Object \code{\linkS4class{TrendLine}}.
+#' @param finalValue \code{numeric}.
+#' Value at which trend line should end.
+#' @param finalXValue \code{numeric}.
+#' Used by XY chart only. X value at which trend line should end.
+#' @param initialValue \code{numeric}.
+#' Value from which trend line should start.
+#' @param initialXValue \code{numeric}.
+#' Used by XY chart only. X value from which trend line should start.
+#' @param valueAxis \code{\linkS4class{ValueAxis}}.
+#' Value axis of the trend line. Will use first value axis of the chart if not set any.
+#' You can use a reference to the value axis object or id of value axis.
+#' @param valueAxisX \code{\linkS4class{ValueAxis}}.
+#' Used by XY chart only. X axis of trend line.
+#' Will use first X axis of the chart if not set any.
+#' You can use a reference to the value axis object or id of value axis.
+#' @param ... Other properties.
 #' @examples
 #' new("TrendLine", initialValue = 1, finalValue = 11)
 #' 
 #' # Other example
 #' valueAxis <- valueAxis(title = "Hello !", axisTitleOffset = 12)
 #' new("TrendLine", valueAxis = valueAxis)
+#' @rdname initialize-TrendLine
 #' @export
 setMethod(f = "initialize", signature = "TrendLine",
           definition = function(.Object,
@@ -70,64 +88,39 @@ setMethod(f = "initialize", signature = "TrendLine",
                                 finalValue, finalXValue,
                                 valueAxis, valueAxisX, ...)
           {  
-            if(!missing(initialValue)){
+            if (!missing(initialValue)) {
               .Object@initialValue <- initialValue
             }
-            if(!missing(initialXValue)){
+            if (!missing(initialXValue)) {
               .Object@initialXValue <- initialXValue
             }
-            if(!missing(finalValue)){
+            if (!missing(finalValue)) {
               .Object@finalValue <- finalValue
             }
-            if(!missing(finalXValue)){
+            if (!missing(finalXValue)) {
               .Object@finalXValue <- finalXValue
             }
-            if(!missing(valueAxis)){
-              .Object <- setValueAxis( .Object, valueAxis )
+            if (!missing(valueAxis)) {
+              .Object <- setValueAxis(.Object, valueAxis)
             }
-            if(!missing(valueAxisX)){
-              .Object <- setValueAxis( .Object, valueAxisX )
+            if (!missing(valueAxisX)) {
+              .Object <- setValueAxis(.Object, valueAxisX)
             }
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
-          }
-)
+          })
 
 # CONSTRUCTOR ####
-#' @title Constructor for an AmGraph
-#' @param finalValue
-#' Object of class \code{numeric}.
-#' Value at which trend line should end.
-#' @param finalXValue
-#' Object of class \code{numeric}.
-#' Used by XY chart only. X value at which trend line should end.
-#' @param initialValue
-#' Object of class \code{numeric}.
-#' Value from which trend line should start.
-#' @param initialValue
-#' Object of class \code{numeric}.
-#' Used by XY chart only. X value from which trend line should start.
-#' @param valueAxis
-#' Object of class \code{\linkS4class{ValueAxis}}.
-#' Value axis of the trend line. Will use first value axis of the chart if not set any.
-#' You can use a reference to the value axis object or id of value axis.
-#' @param valueAxisX
-#' Object of class \code{\linkS4class{ValueAxis}}.
-#' Used by XY chart only. X axis of trend line.
-#' Will use first X axis of the chart if not set any.
-#' You can use a reference to the value axis object or id of value axis.
-#' @param ...
-#' Properties of TrendLine.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/TrendLine}
-#' @return An \code{\linkS4class{TrendLine}} object
+
+#' @describeIn initialize-TrendLine
 #' @examples
 #' trendLine(initialValue = 1, finalValue = 11)
 #' @export
 trendLine <- function(.Object,
                       initialValue, initialXValue,
                       finalValue, finalXValue,
-                      valueAxis, valueAxisX, ...){
+                      valueAxis, valueAxisX, ...) {
   .Object <- new("TrendLine")
   if (!missing(initialValue)) {
     .Object@initialValue <- initialValue
@@ -142,175 +135,147 @@ trendLine <- function(.Object,
     .Object@finalXValue <- finalXValue
   } else {}
   if (!missing(valueAxis)) {
-    .Object <- setValueAxis( .Object, valueAxis )
+    .Object <- setValueAxis(.Object, valueAxis)
   } else {}
-  if (!missing(valueAxisX)){
-    .Object <- setValueAxis( .Object, valueAxisX )
+  if (!missing(valueAxisX)) {
+    .Object <- setValueAxis(.Object, valueAxisX)
   } else {}
   .Object <- setProperties(.Object, ...)
   validObject(.Object)
-  return( .Object )
+  return(.Object)
 }
 
 # > @initialValue : setters ####
 
-#' @exportMethod setInitialValue
-setGeneric(name = "setInitialValue",
-           def = function(.Object, initialValue){ standardGeneric("setInitialValue") } )
-#' @title SETTER
 #' @examples
-#' library(pipeR)
-#' trendLine() %>>% setInitialValue(16)
+#' setInitialValue(.Object = trendLine(), initialValue = 16)
+#' @rdname initialize-TrendLine
 #' @export
-setMethod(
-  f = "setInitialValue",
-  signature = c("TrendLine", "numeric"),
-  definition = function(.Object, initialValue)
-  {
-    .Object@initialValue <- initialValue
-    validObject(.Object)
-    return(.Object)
-  }
-)
+setGeneric(name = "setInitialValue",
+           def = function(.Object, initialValue) { standardGeneric("setInitialValue") })
+#' @rdname initialize-TrendLine
+setMethod(f = "setInitialValue", signature = c("TrendLine", "numeric"),
+          definition = function(.Object, initialValue)
+          {
+            .Object@initialValue <- initialValue
+            validObject(.Object)
+            return(.Object)
+          })
 
 # > @initialXValue : setters ####
 
-#' @exportMethod setInitialXValue
-setGeneric(name = "setInitialXValue",
-           def = function(.Object, initialXValue){ standardGeneric("setInitialXValue") } )
-#' @title SETTER
 #' @examples
-#' library(pipeR)
-#' trendLine() %>>% setInitialXValue(16)
+#' setInitialXValue(.Object = trendLine(), initialXValue = 16)
+#' @rdname initialize-TrendLine
 #' @export
-setMethod(
-  f = "setInitialXValue",
-  signature = c("TrendLine", "numeric"),
-  definition = function(.Object, initialXValue)
-  {
-    .Object@initialXValue <- initialXValue
-    validObject(.Object)
-    return(.Object)
-  }
-)
+setGeneric(name = "setInitialXValue",
+           def = function(.Object, initialXValue) { standardGeneric("setInitialXValue") })
+#' @rdname initialize-TrendLine
+setMethod(f = "setInitialXValue", signature = c("TrendLine", "numeric"),
+          definition = function(.Object, initialXValue)
+          {
+            .Object@initialXValue <- initialXValue
+            validObject(.Object)
+            return(.Object)
+          })
 
 # > @finalValue : setters ####
 
-#' @exportMethod setFinalValue
-setGeneric(name = "setFinalValue",
-           def = function(.Object, finalValue){ standardGeneric("setFinalValue") } )
-#' @title SETTER
 #' @examples
-#' library(pipeR)
-#' trendLine() %>>% setFinalValue(16)
+#' setFinalValue(.Object = trendLine(), finalValue = 16)
+#' @rdname initialize-TrendLine
 #' @export
-setMethod(
-  f = "setFinalValue",
-  signature = c("TrendLine", "numeric"),
-  definition = function(.Object, finalValue)
-  {
-    .Object@finalValue <- finalValue
-    validObject(.Object)
-    return(.Object)
-  }
-)
+setGeneric(name = "setFinalValue",
+           def = function(.Object, finalValue) { standardGeneric("setFinalValue") })
+#' @rdname initialize-TrendLine
+setMethod(f = "setFinalValue", signature = c("TrendLine", "numeric"),
+          definition = function(.Object, finalValue)
+          {
+            .Object@finalValue <- finalValue
+            validObject(.Object)
+            return(.Object)
+          })
 
 # > @finalXValue : setters ####
 
-#' @exportMethod setFinalXValue
-setGeneric(name = "setFinalXValue",
-           def = function(.Object, finalXValue){ standardGeneric("setFinalXValue") } )
-#' @title SETTER
 #' @examples
-#' library(pipeR)
-#' trendLine() %>>% setFinalXValue(16)
+#' setFinalXValue(.Object = trendLine(), finalXValue = 16)
+#' @rdname initialize-TrendLine
 #' @export
-setMethod(
-  f = "setFinalXValue",
-  signature = c("TrendLine", "numeric"),
-  definition = function(.Object, finalXValue)
-  {
-    .Object@finalXValue <- finalXValue
-    validObject(.Object)
-    return(.Object)
-  }
-)
+setGeneric(name = "setFinalXValue",
+           def = function(.Object, finalXValue) { standardGeneric("setFinalXValue") })
+#' @rdname initialize-TrendLine
+setMethod(f = "setFinalXValue", signature = c("TrendLine", "numeric"),
+          definition = function(.Object, finalXValue)
+          {
+            .Object@finalXValue <- finalXValue
+            validObject(.Object)
+            return(.Object)
+          })
 
 # > @valueAxis : setters ####
 
-#' @title SETTER
 #' @examples
-#' library(pipeR)
 #' setValueAxis(trendLine(), valueAxis(title = "Hello !", axisTitleOffset = 12))
 #' setValueAxis(trendLine(), title = "Hello !", axisTitleOffset = 12)
-#' @export
-setMethod(
-  f = "setValueAxis",
-  signature = c("TrendLine"),
-  definition = function(.Object, valueAxis = NULL, ...)
-  {
-    if (is.null(valueAxis) && !missing(...)) {
-      valueAxis <- valueAxis(...)
-    } else {}
-    .Object@valueAxis <- listProperties(valueAxis)
-    validObject(.Object)
-    return(.Object)
-  }
-)
+#' @rdname initialize-TrendLine
+setMethod(f = "setValueAxis", signature = c("TrendLine"),
+          definition = function(.Object, valueAxis = NULL, ...)
+          {
+            if (is.null(valueAxis) && !missing(...)) {
+              valueAxis <- valueAxis(...)
+            } else {}
+            .Object@valueAxis <- listProperties(valueAxis)
+            validObject(.Object)
+            return(.Object)
+          })
 
 # > @valueAxisX : setters ####
 
-#' @exportMethod setValueAxisX
-setGeneric(name = "setValueAxisX",
-           def = function(.Object, valueAxisX = NULL, ...){ standardGeneric("setValueAxisX") } )
-#' @title SETTER
 #' @examples
-#' library(pipeR)
-#' trendLine() %>>% setValueAxisX(title = "Hello !", axisTitleOffset = 12)
+#' setValueAxisX(.Object = trendLine(), title = "Hello !", axisTitleOffset = 12)
 #' valueAxis <- valueAxis(title = "Hello !", axisTitleOffset = 12)
 #' trendLine(valueAxis = valueAxis)
+#' @rdname initialize-TrendLine
 #' @export
-setMethod(
-  f = "setValueAxisX",
-  signature = c("TrendLine"),
+setGeneric(name = "setValueAxisX",
+           def = function(.Object, valueAxisX = NULL, ...) { standardGeneric("setValueAxisX") })
+#' @rdname initialize-TrendLine
+setMethod(f = "setValueAxisX", signature = c("TrendLine"),
   definition = function(.Object, valueAxisX = NULL, ...)
   {
-    if( is.null(valueAxisX) && !missing(...) ){
+    if (is.null(valueAxisX) && !missing(...)) {
       valueAxisX <- valueAxis(...)
-    }else{}
+    } else {}
     .Object@valueAxisX <- listProperties(valueAxisX)
     validObject(.Object)
     return(.Object)
-  }
-)
+  })
 
-#' @title List properties
 #' @examples
-#' trendLine( initialValue = 1, valueAxis = valueAxis(axisTitleOffset = 12, tickLength = 10) )
-#' @return Properties of the object in a list
-#' @importFrom rlist list.append
-setMethod( f = "listProperties", signature = "TrendLine",
+#' trendLine(initialValue = 1, valueAxis = valueAxis(axisTitleOffset = 12, tickLength = 10))
+#' @rdname listProperties-AmObject
+setMethod(f = "listProperties", signature = "TrendLine",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if( length( .Object@initialValue ) > 0 ){
+             if (length(.Object@initialValue)) {
                ls <- rlist::list.append(ls, initialValue = .Object@initialValue)
-             }else{}
-             if( length( .Object@initialXValue ) > 0 ){
+             } else {}
+             if (length(.Object@initialXValue)) {
                ls <- rlist::list.append(ls, initialXValue = .Object@initialXValue)
-             }else{}
-             if( length( .Object@finalValue ) > 0 ){
+             } else {}
+             if (length(.Object@finalValue)) {
                ls <- rlist::list.append(ls, finalValue = .Object@finalValue)
-             }else{}
-             if( length( .Object@initialXValue ) > 0 ){
+             } else {}
+             if (length(.Object@initialXValue)) {
                ls <- rlist::list.append(ls, finalXValue = .Object@finalXValue)
-             }else{}
-             if( length( .Object@valueAxis ) > 0 ){
+             } else {}
+             if (length(.Object@valueAxis)) {
                ls <- rlist::list.append(ls, valueAxis = .Object@valueAxis)
-             }else{}
-             if( length( .Object@valueAxisX ) > 0 ){
+             } else {}
+             if (length(.Object@valueAxisX)) {
                ls <- rlist::list.append(ls, valueAxisX = .Object@valueAxisX)
-             }else{}
+             } else {}
              return(ls)
-           }
-)
+           })

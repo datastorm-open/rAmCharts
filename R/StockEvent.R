@@ -23,15 +23,18 @@ NULL
 #' Object of class \code{numeric}.
 #' 
 #' @export
-setClass( Class = "StockEvent", contains = "AmObject",
-          representation = representation(
-            stockGraph = "list"
-          )
-)
+setClass(Class = "StockEvent", contains = "AmObject",
+          representation = representation(stockGraph = "list"))
 
 #' @title Initialize a StockEvent
-#' @param backgroundAlpha
-#' @param stockGraph
+#' @param .Object \linkS4class{StockEvent}.
+#' @param backgroundAlpha \code{numeric}
+#' @param stockGraph \linkS4class{AmGraph} created with stockGraph(*).
+#' This is the graph on which event will be displayed.
+#' You can use a reference to the stock graph object or id of the graph.
+#' @param ... Other properties.
+#' @return (updated) argument .Object of class \linkS4class{StockEvent}.
+#' @rdname initialize-StockEvent
 #' @examples
 #' new("StockEvent")
 #' @export
@@ -47,17 +50,7 @@ setMethod(f = "initialize", signature = "StockEvent",
           })
 
 # CONSTRUCTOR ####
-#' @title Constructor for an StockEvent
-#' @param backgroundAlpha
-#' @param stockGraph
-#' Object of class \code{list}.
-#' Containing properties of stockGraph.
-#' This is the graph on which event will be displayed.
-#' You can use a reference to the stock graph object or id of the graph.
-#' @param ...
-#' Properties of StockEvent.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/StockEvent}
-#' @return An \code{\linkS4class{StockEvent}} object
+#' @describeIn initialize-StockEvent
 #' @examples
 #' stockEvent()
 #' @export
@@ -73,23 +66,14 @@ stockEvent <- function(backgroundAlpha = 1, stockGraph,...){
 
 # > @stockGraph : setters ####
 
-#' @exportMethod setStockGraph
-setGeneric(name = "setStockGraph", def = function(.Object, stockGraph = NULL, ...){ standardGeneric("setStockGraph") } )
-#' @title SETTER
-#' @param stockGraph
-#' Object of class \code{list}.
-#' Containing properties of stockGraph.
-#' This is the graph on which event will be displayed.
-#' You can use a reference to the stock graph object or id of the graph.
-#' @param ...
-#' @examples
-#' library(pipeR)
-#' stockEvent() %>>% setStockGraph(stockGraph = stockGraph(balloonText = "balloonText"))
-#' stockEvent() %>>% setStockGraph(stockGraph = "stockGraph1")
+#' @rdname initialize-StockEvent
 #' @export
-setMethod(
-  f = "setStockGraph",
-  signature = c("StockEvent"),
+setGeneric(name = "setStockGraph", def = function(.Object, stockGraph = NULL, ...) {standardGeneric("setStockGraph")})
+#' @examples
+#' setStockGraph(.Object = stockEvent(), stockGraph = stockGraph(balloonText = "balloonText"))
+#' setStockGraph(.Object = stockEvent(), stockGraph = "stockGraph1")
+#' @rdname initialize-StockEvent
+setMethod(f = "setStockGraph", signature = c("StockEvent"),
   definition = function(.Object, stockGraph = NULL, ...)
   {
     if (is.null(stockGraph)) {
@@ -103,9 +87,9 @@ setMethod(
     return(.Object)
   })
 
-#' @title List properties
-#' @return Properties of the object in a list
-#' @importFrom rlist list.append
+#' @examples
+#' listProperties(stockEvent())
+#' @rdname listProperties-AmObject
 setMethod( f = "listProperties", signature = "StockEvent",
            definition = function(.Object)
            { 

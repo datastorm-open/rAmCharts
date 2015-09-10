@@ -40,6 +40,7 @@ setClass(Class = "AmBalloon", contains = "AmObject",
          ))
 
 #' @title Initialize an AmBalloon
+#' @param .Object \linkS4class{AmBalloon}.
 #' @param adjustBorderColor
 #' Object of class \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
@@ -174,8 +175,7 @@ setMethod(f = "setFillColor", signature = c("AmBalloon", "character"),
 
 # listProperties ####
 
-#' @title List attributes of an AmGraph object
-#' @param .Object: \code{\linkS4class{AmBalloon}}.
+#' @rdname listProperties-AmObject
 #' @examples
 #' amBalloon(adjustBorderColor = TRUE)
 setMethod(f = "listProperties", signature = "AmBalloon",
