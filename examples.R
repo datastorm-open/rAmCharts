@@ -9,19 +9,25 @@ amPieChart(valueField = "value", titleField = "key", creditsPosition = "top-righ
 ) %>>% setExport(position = "bottom-left") %>>% plot()
 
 ### amPieChart with listener
-amPieChart(theme ="dark", valueField = "value", titleField = "key", creditsPosition = "top-right"
-) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
-) %>>% addListener("clickSlice" , "function(event){ alert('ok !'); }"
-) %>>% plot()
+pipeR::pipeline(
+  amPieChart(theme ="dark", valueField = "value", titleField = "key"),
+  setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
+  addListener("clickSlice" , "function(event){ alert('ok !'); }"),
+  plot()
+)
 
-### amPieChart with listener V1
-legend <- amLegend(position = "right", marginRight = 100, autoMargins = FALSE, innerRadius = "30%"
-) %>>% addListener("hideItem" , "function(event){alert('hide'); }")
-amPieChart(theme ="dark", valueField = "value", titleField = "key", legend = legend
-) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
-) %>>% plot()
+### amPieChart: legend with listener V1
+pipeR::pipeline(
+  amPieChart(theme ="light", valueField = "value", titleField = "key"),
+  setLegend(amLegend = pipeR::pipeline(
+    amLegend(position = "right", marginRight = 100,
+             autoMargins = FALSE, innerRadius = "30%"),
+    addListener("hideItem" , "function(event){alert('hide');}"))),
+  setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
+  plot()
+)
 
-### amPieChart with listener V2
+### amPieChart: legend with listener V2
 amPieChart(theme ="light", valueField = "value", titleField = "key"
 ) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
 ) %>>% setLegend(position = "right", marginRight = 100, autoMargins = FALSE, innerRadius = "30%",
@@ -63,7 +69,7 @@ amRadarChart(startDuration = 1, categoryField = "attribute"
 ) %>>% addGraph(balloonText = "Utility : [[value]]", valueField = "p1", title = "p1"
 ) %>>% addGraph(balloonText = "Utility : [[value]]", valueField = "p2", title = "p2"
 ) %>>% addListener("clickGraphItem" , "function(event){ alert('ok !'); }"
-) %>>% setLegend(useGraphSettings = TRUE) %>>% setExport %>>% plot
+) %>>% setLegend(useGraphSettings = TRUE) %>>% setExport() %>>% plot()
 
 ### amSerialChart
 amSerialChart(theme = "dark", categoryField = "country", creditsPosition = "top-right"
@@ -100,18 +106,19 @@ amGanttChart(brightnessStep = 20, rotate = TRUE, theme = "dark",
 
 ### Chart with drilldown
 amSerialChart(categoryField = "name"
-) %>>% setDataProvider(data.frame(
-  name = c("data", "Brand", "singleness"), start = c(8,10,6), end = c(11,13,10),
-  color = c('#007FFF', "#007FFF", "#003FFF"), description = c("click to drill-down","",""))
+) %>>% setDataProvider(data.table(name = c("data", "Brand", "singleness"),
+                                  start = c(8,10,6), end = c(11,13,10),
+                                  color = c('#007FFF', "#007FFF", "#003FFF"),
+                                  description = c("click to drill-down","",""))
 ) %>>% addGraph(valueField = "end", type = "column", openField = "start", lineAlpha = 0,
                 fillColorsField = "color", fillAlphas = 0.9,
                 balloonText = "<b>[[category]]</b><br>from [[start]] to [[end]]<br>[[description]]"
 ) %>>% addSubData(1, data.frame(modality = c("3G", "4G"), utility = c(-1,2), color = c("#007FFF", "#007FFF"))
-) %>>% setSubChartProperties(type = "serial", creditsPosition = "bottom-right", categoryField = "modality") %>>%
-  addGraph(valueField = 'utility', type = 'column', categoryField = "modality",
-           lineAlpha = 0, fillColorsField = "color", fillAlphas = 0.9,
-           balloonText = "[[modality]]: <b>[[utility]]</b>"
-  ) %>>% plot
+) %>>% setSubChartProperties(type = "serial", creditsPosition = "bottom-right", categoryField = "modality"
+) %>>% addGraph(valueField = 'utility', type = 'column', categoryField = "modality",
+                lineAlpha = 0, fillColorsField = "color", fillAlphas = 0.9,
+                balloonText = "[[modality]]: <b>[[utility]]</b>"
+) %>>% plot()
 
 ### gaugeChart
 amAngularGaugeChart(theme = "chalk"

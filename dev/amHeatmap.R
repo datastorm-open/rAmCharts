@@ -99,13 +99,10 @@ heatmap <- function(data, classes, labels = TRUE,cex=10,main="",xLabelsRotation=
   values <- paste0("['", paste(namecat, collapse = "','"), "']")
   
   
-  chart <- sapply(namecat,
-                  
-                  function(x){
-                    
-                    amGraph(balloonText=paste0("<b>[[title]]-[[category]]</b><br><b> count : </b>[[",x,"]]"),
-                            fillAlphas=0.8,labelText=if(labels){paste0("[[",x,"]]")}else{""},lineAlpha=0.3,fontSize=cex,
-                            title=x,type="column",fillColorsField=paste0(x,"col"),valueField=paste0(x,"construct"))},USE.NAMES = FALSE
+  chart <- sapply(namecat, function(x) {
+    amGraph(balloonText=paste0("<b>[[title]]-[[category]]</b><br><b> count : </b>[[",x,"]]"),
+            fillAlphas=0.8,labelText=if(labels){paste0("[[",x,"]]")}else{""},lineAlpha=0.3,fontSize=cex,
+            title=x,type="column",fillColorsField=paste0(x,"col"),valueField=paste0(x,"construct"))},USE.NAMES = FALSE
   )
 
   guides = list()

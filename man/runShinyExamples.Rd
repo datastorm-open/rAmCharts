@@ -11,8 +11,6 @@ Launch a shiny app with amChart examples
 }
 \examples{
 \donttest{
-library(pipeR)
-library(shiny)
 runShinyExamples()
 }
 }

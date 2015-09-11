@@ -28,10 +28,10 @@ setClass(
 #' @export
 setMethod(f = "show", signature = "AmObject",
           definition = function(object)
-            {
+          {
             cat("~", class(object),"~\n")
             print(listProperties(object))
-            })
+          })
 
 #' @title Visualize with print
 #' @param x \linkS4class{AmChart}
@@ -60,14 +60,12 @@ setMethod(f = "print", signature = "AmObject",
 #' @export
 setGeneric(name = "addListener", def = function(.Object, name, expression) { standardGeneric("addListener")})
 #' @rdname methods-AmObject
-setMethod (f = "addListener", signature = c("AmObject", "character", "character"),
-           definition = function(.Object, name, expression)
-           {
-             .Object@listeners[[ eval(name) ]] <- JS(expression)
-             # cat(class(JS(expression)), "\n")
-             # cat(class(.Object@listeners[[ eval(name) ]]), '\n')
-             validObject(.Object)
-             return(.Object)
+setMethod(f = "addListener", signature = c("AmObject", "character", "character"),
+          definition = function(.Object, name, expression)
+          {
+            .Object@listeners[[ eval(name) ]] <- htmlwidgets::JS(expression)
+            validObject(.Object)
+            return(.Object)
           })
 
 # > @otherProperties: setProperties ####
@@ -90,12 +88,12 @@ setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
           {
             if (missing(list)) {
               .Object@otherProperties <- rlist::list.append(.Object@otherProperties, ...)
-           } else if (is.list(list)) {
+            } else if (is.list(list)) {
               .Object@otherProperties <- list
-           } else {}
+            } else {}
             validObject(.Object)
             return(.Object)
-         })
+          })
 
 # > listProperties ####
 
@@ -110,14 +108,14 @@ setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
 setGeneric(name = "listProperties", def = function(.Object){standardGeneric("listProperties")})
 #' @rdname listProperties-AmObject
 setMethod(f = "listProperties", signature = "AmObject",
-           definition = function(.Object) {
-             if (length(.Object@otherProperties)) {
-               properties <- .Object@otherProperties
+          definition = function(.Object) {
+            if (length(.Object@otherProperties)) {
+              properties <- .Object@otherProperties
             } else {
-               properties <- list()
+              properties <- list()
             }
-             if (length(.Object@listeners)) {
-               properties <- rlist::list.append(properties, listeners = .Object@listeners)
+            if (length(.Object@listeners)) {
+              properties <- rlist::list.append(properties, listeners = .Object@listeners)
             } else {}
-             return(properties)
+            return(properties)
           })

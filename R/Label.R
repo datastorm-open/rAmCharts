@@ -3,40 +3,27 @@ NULL
 
 #' @title Label class
 #' @author DataKnowledge
-#' 
-#' @slot bold
-#' Object of class \code{character}.
+#' @slot bold \code{character}.
 #' Specifies if label is bold or not.
-#' 
-#' @slot text
-#' Object of class \code{character}.
+#' @slot text \code{character}.
 #' Text of a title.
-#' 
-#' @slot x
-#' Object of class \code{numeric}.
+#' @slot x \code{numeric}.
 #' X position of a label.
-#' 
-#' @slot y
-#' Object of class \code{numeric}.
+#' @slot y \code{numeric}.
 #' Y position of a label.
-#' 
-#' @slot listeners
-#' Object of class \code{"list"} containining the listeners to add to the object.
+#' @slot listeners \code{"list"} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
-#' 
-#' @slot otherProperties
-#' Object of class \code{"list"},
+#' @slot otherProperties \code{"list"},
 #' containing other avalaible properties non coded in the package yet.
-#' 
-#' @slot value
-#' Object of class \code{numeric}.
-#' 
+#' @slot value \code{numeric}.
 #' @export
-setClass( Class = "Label", contains = "AmObject",
-          representation =
-            representation( text = "character", bold = "logical",  x = "numeric", y = "numeric" )
-)
+setClass(Class = "Label", contains = "AmObject",
+         representation = representation(
+           text = "character",
+           bold = "logical",
+           x = "numeric",
+           y = "numeric"))
 
 #' @title Initialize
 #' @param .Object \linkS4class{Label}.
