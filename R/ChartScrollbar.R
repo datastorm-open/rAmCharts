@@ -140,7 +140,7 @@ setMethod( f = "listProperties", signature = "ChartScrollbar",
            { 
              ls <- callNextMethod()
              if (length( .Object@updateOnReleaseOnly)) {
-               ls <- list.append(ls, updateOnReleaseOnly = .Object@updateOnReleaseOnly)
+               ls <- rlist::list.append(ls, updateOnReleaseOnly = .Object@updateOnReleaseOnly)
              } else {}
              return(ls)
            })
