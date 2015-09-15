@@ -8,22 +8,15 @@
 library(shiny)
 library(rAmCharts)
 
-shinyUI(fluidPage(
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
+shiny::shinyUI(shiny::navbarPage(
+  title = "Examples",
   
-  fluidRow(
-    column(
-      width = 6,
-      rAmCharts::amChartsOutput("radar", type = "radar"),
-      rAmCharts::amChartsOutput("radar2", type = "radar"),
-      rAmCharts::amChartsOutput("pie", type = "pie")
-    ),
-    column(
-      width = 6,
-      rAmCharts::amChartsOutput("serial", type = "serial"),
-      rAmCharts::amChartsOutput("drillColumnChart1", type = "drill"),
-      rAmCharts::amChartsOutput("drillColumnChart2", type = "drill")
-    )
-  )
+  source("./src/radar/radar_ui.R", local = TRUE)$value,
+  source("./src/pie/pie_ui.R", local = TRUE)$value,
+  source("./src/serial/serial_ui.R", local = TRUE)$value,
+  source("./src/xy/xy_ui.R", local = TRUE)$value,
+  source("./src/gauge/gauge_ui.R", local = TRUE)$value,
+  source("./src/funnel/funnel_ui.R", local = TRUE)$value,
+  source("./src/drilldown/drilldown_ui.R", local = TRUE)$value
+  
 ))
