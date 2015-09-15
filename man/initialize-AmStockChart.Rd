@@ -119,51 +119,51 @@ setValueAxesSettings(.Object, valueAxesSettings = NULL, ...)
   valueAxesSettings = NULL, ...)
 }
 \arguments{
-\item{.Object}{\code{\linkS4class{AmStockChart}}}
+\item{.Object}{\linkS4class{AmStockChart}.}
 
-\item{categoryAxesSettings}{\code{list} of \code{\linkS4class{CategoryAxis}}.
+\item{categoryAxesSettings}{\code{list} of \linkS4class{CategoryAxis}.
 CategoryAxesSettings settings set's settings common for all CategoryAxes of StockPanels.
 If you change a property after the chart is initialized,
 you should call stockChart.validateNow() method in order for it to work.
 If there is no default value specified, default value of CategoryAxis class will be used.
 you should get this axis from the chart and set properties to this object.}
 
-\item{chartCursorSettings}{\code{list} of \code{\linkS4class{ChartCursor}}.
+\item{chartCursorSettings}{\code{list} of \linkS4class{ChartCursor}.
 ChartCursorSettings settings set's settings for chart cursor.
 If you change a property after the chart is initialized,
 you should call stockChart.validateNow() method in order for it to work.
 If there is no default value specified, default value of ChartCursor class will be used.}
 
-\item{chartScrollbarSettings}{\code{list} of \code{\linkS4class{ChartScrollbar}}.
+\item{chartScrollbarSettings}{\code{list} of \linkS4class{ChartScrollbar}.
 ChartScrollbarSettings settings set's settings for chart scrollbar.
 If you change a property after the chart is initialized,
 you should call stockChart.validateNow() method in order for it to work.
 If there is no default value specified, default value of ChartScrollbar class will be used.}
 
-\item{comparedDataSets}{\code{\linkS4class{DataSet}}. Data sets selected for comparing.}
+\item{comparedDataSets}{\linkS4class{DataSet}. Data sets selected for comparing.}
 
-\item{dataSets}{\code{list} of \code{\linkS4class{DataSet}}.}
+\item{dataSets}{\code{list} of \linkS4class{DataSet}.}
 
 \item{dataSetSelector}{\code{"list"}. DataSetSelector properties.
 You can add it if you have more than one data set and want users to be able to select/compare them.}
 
-\item{legendSettings}{Object of class \code{"list"}. Legend settings.}
+\item{legendSettings}{\code{list}. Legend settings.}
 
-\item{mainDataSet}{Object of class \code{"list"}. Data set selected as main.}
+\item{mainDataSet}{\code{list}. Data set selected as main.}
 
-\item{panels}{\code{"list"} of \code{\linkS4class{StockPanel}}.}
+\item{panels}{\code{list} of \linkS4class{StockPanel}.}
 
-\item{panelsSettings}{\code{"list"}. Settings for stock panels.}
+\item{panelsSettings}{\code{list}. Settings for stock panels.}
 
-\item{periodSelector}{\code{\linkS4class{PeriodSelector}}.
+\item{periodSelector}{\linkS4class{PeriodSelector}.
 You can add it if you want user's to be able to enter
 date ranges or zoom chart with predefined period buttons.}
 
-\item{stockEventsSettings}{Object of class \code{"list"}. Settings for stock events.}
+\item{stockEventsSettings}{\code{list}. Settings for stock events.}
 
 \item{theme}{\code{character}}
 
-\item{valueAxesSettings}{Object of class \code{"list"}. Settings for value axes.}
+\item{valueAxesSettings}{\code{list}. Settings for value axes.}
 
 \item{pathToImages}{\code{character}}
 
@@ -174,7 +174,7 @@ date ranges or zoom chart with predefined period buttons.}
 \item{panel}{\linkS4class{StockPanel}.}
 }
 \value{
-An object of class \code{\linkS4class{AmStockChart}}.
+An object of class \linkS4class{AmStockChart}.
 }
 \description{
 Method for initializing any S4 class provided by the package.
@@ -205,8 +205,7 @@ library(pipeR)
 amStockChart() \%>>\% setDataSets(list(dataSet(compared = FALSE), dataSet(compared = FALSE)))
 library(pipeR)
 amStockChart() \%>>\% addDataSet(compared = FALSE) \%>>\% addDataSet(dataSet())
-library(pipeR)
-amStockChart() \%>>\% setDataSetSelector(width = 180)
+setDataSetSelector(.Object = amStockChart(), width = 180)
 setLegendSettings(.Object = amStockChart(), equalWidths = TRUE)
 setMainDataSet(.Object = amStockChart(), showInCompare = TRUE)
 panels <- list(stockPanel(compared = TRUE), stockPanel(compared = TRUE))

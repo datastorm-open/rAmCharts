@@ -38,7 +38,7 @@ setFillColor(.Object, fillColor)
 \arguments{
 \item{.Object}{\linkS4class{AmBalloon}.}
 
-\item{adjustBorderColor}{Object of class \code{logical}.
+\item{adjustBorderColor}{\code{logical}.
 If this is set to TRUE, border color instead of background color will be changed when
 user rolls-over the slice, graph, etc.}
 

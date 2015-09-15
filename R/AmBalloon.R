@@ -4,30 +4,30 @@ NULL
 #' @title AmBalloon class
 #' @author DataKnowledge
 #' 
-#' @slot adjustBorderColor : Object of class \code{logical}.
+#' @slot adjustBorderColor \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
 #' 
-#' @slot color : Object of class \code{character}.
+#' @slot color \code{character}.
 #' Color of text in the balloon.
 #' 
-#' @slot cornerRadius : Object of class \code{numeric}.
+#' @slot cornerRadius \code{numeric}.
 #' Balloon corner radius.
 #' 
-#' @slot fillColor : Object of class \code{character}.
+#' @slot fillColor \code{character}.
 #' Balloon background color. Usually balloon background color is set by the chart.
 #' Only if "adjustBorderColor" is "true" this color will be used.
 #' 
-#' @slot listeners : Object of class \code{"list"} containining the listeners to add to the object.
+#' @slot listeners \code{"list"} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
 #' Inherited from \code{\linkS4class{AmObject}}.
 #' 
-#' @slot otherProperties : Object of class \code{"list"},
+#' @slot otherProperties \code{"list"},
 #' containing other avalaible properties non coded in the package yet.
 #' Inherited from \code{\linkS4class{AmObject}}.
 #' 
-#' @slot value : object of class \code{numeric}.
+#' @slot value \code{numeric}.
 #' Inherited from \code{\linkS4class{AmObject}}.
 #' @family rAmChart classes
 #' @export
@@ -41,8 +41,7 @@ setClass(Class = "AmBalloon", contains = "AmObject",
 
 #' @title Initialize an AmBalloon
 #' @param .Object \linkS4class{AmBalloon}.
-#' @param adjustBorderColor
-#' Object of class \code{logical}.
+#' @param adjustBorderColor \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
 #' @param color \code{character}.

@@ -85,9 +85,7 @@ amBalloon(adjustBorderColor = TRUE)
 listProperties(amGraph(balloonText = "toto", type = "type", valueField = "valueField"))
 listProperties(amGraph(balloonText = "toto", type = "type"))
 listProperties(amLegend(useGraphSettings = TRUE))
-library(pipeR)
-object <- amChart() \%>>\% addListener("select", "function onSelect (properties) {
-     alert('selected nodes: ' + properties.nodes);}")
+amChart(type = "serial")
 listProperties(amChart(test = 1))
 \dontshow{
 library(pipeR)

@@ -3,13 +3,9 @@ NULL
 
 #' @title AmStockChart
 #' @author Dataknowledge
-#' @field allLabels
-#' Object of class \code{"list"}. List of Labels properties.
-#' See \code{\linkS4class{Label}}.
+#' @field allLabels \code{list} of \linkS4class{Label}.
 #' 
-#' @field arrows
-#' Object of class \code{"list"}
-#' containing object of class \code{\linkS4class{GaugeArrow}}.
+#' @field arrows \code{list} of class \linkS4class{GaugeArrow}.
 #' 
 #' @field axes
 #' Object of class \code{"list"}
@@ -216,44 +212,40 @@ setClass("AmStockChart", contains = "AmChart",
 
 #' @title Initialize an AmStockChart
 #' @description Method for initializing any S4 class provided by the package.
-#' @param .Object \code{\linkS4class{AmStockChart}}
-#' @param categoryAxesSettings \code{list} of \code{\linkS4class{CategoryAxis}}.
+#' @param .Object \linkS4class{AmStockChart}.
+#' @param categoryAxesSettings \code{list} of \linkS4class{CategoryAxis}.
 #' CategoryAxesSettings settings set's settings common for all CategoryAxes of StockPanels.
 #' If you change a property after the chart is initialized,
 #' you should call stockChart.validateNow() method in order for it to work.
 #' If there is no default value specified, default value of CategoryAxis class will be used.
 #' you should get this axis from the chart and set properties to this object.
-#' @param chartCursorSettings \code{list} of \code{\linkS4class{ChartCursor}}.
+#' @param chartCursorSettings \code{list} of \linkS4class{ChartCursor}.
 #' ChartCursorSettings settings set's settings for chart cursor.
 #' If you change a property after the chart is initialized,
 #' you should call stockChart.validateNow() method in order for it to work.
 #' If there is no default value specified, default value of ChartCursor class will be used.
-#' @param chartScrollbarSettings \code{list} of \code{\linkS4class{ChartScrollbar}}.
+#' @param chartScrollbarSettings \code{list} of \linkS4class{ChartScrollbar}.
 #' ChartScrollbarSettings settings set's settings for chart scrollbar.
 #' If you change a property after the chart is initialized,
 #' you should call stockChart.validateNow() method in order for it to work.
 #' If there is no default value specified, default value of ChartScrollbar class will be used.
-#' @param comparedDataSets \code{\linkS4class{DataSet}}. Data sets selected for comparing.
-#' @param dataSets \code{list} of \code{\linkS4class{DataSet}}. 
+#' @param comparedDataSets \linkS4class{DataSet}. Data sets selected for comparing.
+#' @param dataSets \code{list} of \linkS4class{DataSet}. 
 #' @param dataSetSelector \code{"list"}. DataSetSelector properties.
 #' You can add it if you have more than one data set and want users to be able to select/compare them.
-#' @param legendSettings
-#' Object of class \code{"list"}. Legend settings.
-#' @param mainDataSet
-#' Object of class \code{"list"}. Data set selected as main.
-#' @param panels \code{"list"} of \code{\linkS4class{StockPanel}}.
-#' @param panelsSettings \code{"list"}. Settings for stock panels.
-#' @param periodSelector \code{\linkS4class{PeriodSelector}}.
+#' @param legendSettings \code{list}. Legend settings.
+#' @param mainDataSet \code{list}. Data set selected as main.
+#' @param panels \code{list} of \linkS4class{StockPanel}.
+#' @param panelsSettings \code{list}. Settings for stock panels.
+#' @param periodSelector \linkS4class{PeriodSelector}.
 #' You can add it if you want user's to be able to enter
 #' date ranges or zoom chart with predefined period buttons.
-#' @param stockEventsSettings
-#' Object of class \code{"list"}. Settings for stock events.
+#' @param stockEventsSettings \code{list}. Settings for stock events.
 #' @param theme \code{character}
-#' @param valueAxesSettings
-#' Object of class \code{"list"}. Settings for value axes.
+#' @param valueAxesSettings \code{list}. Settings for value axes.
 #' @param pathToImages \code{character}
 #' @param ... Other properties...
-#' @return An object of class \code{\linkS4class{AmStockChart}}.
+#' @return An object of class \linkS4class{AmStockChart}.
 #' @examples
 #' new("AmStockChart", theme = "dark")
 #' @rdname initialize-AmStockChart
@@ -532,8 +524,7 @@ setMethod(f = "addDataSet", signature = c("AmStockChart"),
 # > @dataSetSelector : setters ####
 
 #' @examples
-#' library(pipeR)
-#' amStockChart() %>>% setDataSetSelector(width = 180)
+#' setDataSetSelector(.Object = amStockChart(), width = 180)
 #' @rdname initialize-AmStockChart
 #' @export
 setGeneric(name = "setDataSetSelector",

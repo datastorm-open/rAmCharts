@@ -10,11 +10,9 @@ AmStockChart
 \section{Fields}{
 
 \describe{
-\item{\code{allLabels}}{Object of class \code{"list"}. List of Labels properties.
-See \code{\linkS4class{Label}}.}
+\item{\code{allLabels}}{\code{list} of \linkS4class{Label}.}
 
-\item{\code{arrows}}{Object of class \code{"list"}
-containing object of class \code{\linkS4class{GaugeArrow}}.}
+\item{\code{arrows}}{\code{list} of class \linkS4class{GaugeArrow}.}
 
 \item{\code{axes}}{Object of class \code{"list"}
 containing object of class \code{\linkS4class{GaugeAxis}}.}

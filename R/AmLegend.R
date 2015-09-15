@@ -10,29 +10,29 @@ NULL
 #' user rolls-over the slice, graph, etc.
 #' 
 #' @slot listeners
-#' Object of class \code{"list"} containining the listeners to add to the object.
+#' Object of class \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
 #' 
 #' @slot otherProperties
-#' Object of class \code{"list"},
+#' Object of class \code{list},
 #' containing other avalaible properties non coded in the package yet.
 #' 
 #' @slot value
 #' object of class \code{numeric}.
 #' 
 #' @export
-setClass( Class = "AmLegend", contains = "AmObject",
+setClass(Class = "AmLegend", contains = "AmObject",
           representation = representation(useGraphSettings = "logical")
 )
 
 #' @title Initialize
-#' @param .Object \code{\linkS4class{AmLegend}}.
+#' @param .Object \linkS4class{AmLegend}.
 #' @param useGraphSettings \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
-#' @param ... Other properties of AmLegend
-#' See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}
+#' @param ... Other properties of \linkS4class{AmLegend}.
+#' See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}.
 #' @examples
 #' new("AmLegend", useGraphSettings = TRUE)
 #' @rdname initialize-AmLegend
@@ -62,7 +62,7 @@ amLegend <- function(useGraphSettings, ...) {
   } else {}
   .Object <- setProperties(.Object, ...)
   validObject(.Object)
-  return( .Object)
+  return(.Object)
 }
 
 #' @title Constructor for StockLegend.
@@ -107,7 +107,7 @@ setMethod(f = "listProperties", signature = "AmLegend",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if (length( .Object@useGraphSettings)) {
+             if (length(.Object@useGraphSettings)) {
                ls <- rlist::list.append(ls, useGraphSettings = .Object@useGraphSettings)
              } else {}
              return(ls)

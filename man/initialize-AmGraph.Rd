@@ -30,7 +30,7 @@ setValueField(.Object, valueField)
 \S4method{setValueField}{AmGraph,character}(.Object, valueField)
 }
 \arguments{
-\item{.Object}{\linkS4class{AmGraph} (or "AmGraph").}
+\item{.Object}{\linkS4class{AmGraph}.}
 
 \item{animationPlayed}{\code{logical}.}
 
@@ -50,7 +50,7 @@ Name of the value field in your dataProvider.}
 \item{...}{Other properties.}
 }
 \value{
-An object of class \code{\linkS4class{AmGraph}} with the properties given.
+An object of class \linkS4class{AmGraph} with the properties given.
 }
 \description{
 To create an AmGraph, you can use the usual methode Initialize or the constructor.

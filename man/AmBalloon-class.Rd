@@ -10,30 +10,30 @@ AmBalloon class
 \section{Slots}{
 
 \describe{
-\item{\code{adjustBorderColor}}{: Object of class \code{logical}.
+\item{\code{adjustBorderColor}}{\code{logical}.
 If this is set to TRUE, border color instead of background color will be changed when
 user rolls-over the slice, graph, etc.}
 
-\item{\code{color}}{: Object of class \code{character}.
+\item{\code{color}}{\code{character}.
 Color of text in the balloon.}
 
-\item{\code{cornerRadius}}{: Object of class \code{numeric}.
+\item{\code{cornerRadius}}{\code{numeric}.
 Balloon corner radius.}
 
-\item{\code{fillColor}}{: Object of class \code{character}.
+\item{\code{fillColor}}{\code{character}.
 Balloon background color. Usually balloon background color is set by the chart.
 Only if "adjustBorderColor" is "true" this color will be used.}
 
-\item{\code{listeners}}{: Object of class \code{"list"} containining the listeners to add to the object.
+\item{\code{listeners}}{\code{"list"} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.
 See examples for details.
 Inherited from \code{\linkS4class{AmObject}}.}
 
-\item{\code{otherProperties}}{: Object of class \code{"list"},
+\item{\code{otherProperties}}{\code{"list"},
 containing other avalaible properties non coded in the package yet.
 Inherited from \code{\linkS4class{AmObject}}.}
 
-\item{\code{value}}{: object of class \code{numeric}.
+\item{\code{value}}{\code{numeric}.
 Inherited from \code{\linkS4class{AmObject}}.}
 }}
 \author{

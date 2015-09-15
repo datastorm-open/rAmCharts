@@ -61,7 +61,7 @@ setClass (Class = "AmGraph", contains = "AmObject",
 #' @title Initialize an AmGraph
 #' @description To create an AmGraph, you can use the usual methode Initialize or the constructor.
 #' You can update properties with setters.
-#' @param .Object \linkS4class{AmGraph} (or "AmGraph").
+#' @param .Object \linkS4class{AmGraph}.
 #' @param animationPlayed \code{logical}.
 #' @param balloonText \code{character}.
 #' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
@@ -73,13 +73,14 @@ setClass (Class = "AmGraph", contains = "AmObject",
 #' @param valueField \code{character}.
 #' Name of the value field in your dataProvider.
 #' @param ... Other properties.
-#' @return An object of class \code{\linkS4class{AmGraph}} with the properties given.
+#' @return An object of class \linkS4class{AmGraph} with the properties given.
 #' @examples
 #' new("AmGraph", valueField = "value")
 #' @rdname initialize-AmGraph
 #' @export
 setMethod(f = "initialize", signature = "AmGraph",
-          definition = function(.Object, animationPlayed = FALSE, balloonText, title, type, valueField, ...)
+          definition = function(.Object, animationPlayed = FALSE, balloonText,
+                                title, type, valueField, ...)
           {  
             if (!missing(balloonText)) {
               .Object@balloonText <- balloonText

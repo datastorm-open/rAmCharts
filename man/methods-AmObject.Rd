@@ -38,11 +38,15 @@ Methods of AmObject
 If the property is a class property, it will be overwritten if the attribute is non NULL
 }
 \examples{
-library(pipeR)
-amChart() \%>>\% addListener("select", "function onSelect (properties) {
-     alert('selected nodes: ' + properties.nodes);}")
-amLegend() \%>>\% addListener("select", "function onSelect (properties) {
-     alert('selected nodes: ' + properties.nodes);}")
+addListener(.Object = amPieChart(),
+            name = "clickSlice" ,
+            expression = "function(event){ alert('ok !'); }")
+
+addListener(.Object = amLegend(),
+            name = "select",
+            expression = paste0("function onSelect (properties) {",
+                                "alert('selected nodes: ' + properties.nodes);",
+                                "}"))
 library(pipeR)
 # For an AmChart
 ls <- list(categoryAxis = list(gridPosition = "start"), test = 1)

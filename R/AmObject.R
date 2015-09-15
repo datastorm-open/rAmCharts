@@ -2,16 +2,13 @@
 #' @author DataKnowledge
 #' @description This is a virtual class for representing any Am** class
 #' 
-#' @slot listeners
-#' Object of class \code{"list"} containining the listeners to add to the object.
+#' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string. See examples for details.
 #' 
-#' @slot otherProperties
-#' Object of class \code{"list"},
+#' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
 #' 
-#' @slot value
-#' Object of class \code{numeric}.
+#' @slot value \code{numeric}.
 #' 
 #' @export
 #' @family rAmChart classes
@@ -41,7 +38,7 @@ setMethod(f = "show", signature = "AmObject",
 #' @family Visualizations
 #' @export
 setMethod(f = "print", signature = "AmObject",
-          definition = function(x, ...) { print(listProperties(x))})
+          definition = function(x, ...) {print(listProperties(x))})
 
 # > @listeners: setters ####
 
@@ -50,12 +47,16 @@ setMethod(f = "print", signature = "AmObject",
 #' @param name \code{character} containing the name of the listener.
 #' @param expression \code{character} containing the associated function event.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @examples 
-#' library(pipeR)
-#' amChart() %>>% addListener("select", "function onSelect (properties) {
-#'      alert('selected nodes: ' + properties.nodes);}")
-#' amLegend() %>>% addListener("select", "function onSelect (properties) {
-#'      alert('selected nodes: ' + properties.nodes);}")
+#' @examples
+#' addListener(.Object = amPieChart(),
+#'             name = "clickSlice" ,
+#'             expression = "function(event){ alert('ok !'); }")
+#'             
+#' addListener(.Object = amLegend(),
+#'             name = "select",
+#'             expression = paste0("function onSelect (properties) {",
+#'                                 "alert('selected nodes: ' + properties.nodes);",
+#'                                 "}"))
 #' @rdname methods-AmObject
 #' @export
 setGeneric(name = "addListener", def = function(.Object, name, expression) { standardGeneric("addListener")})
@@ -100,9 +101,7 @@ setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
 #' @title List attributes of an S4 object
 #' @param .Object any class object of the package
 #' @examples
-#' library(pipeR)
-#' object <- amChart() %>>% addListener("select", "function onSelect (properties) {
-#'      alert('selected nodes: ' + properties.nodes);}")
+#' amChart(type = "serial")
 #' @rdname listProperties-AmObject
 #' @export
 setGeneric(name = "listProperties", def = function(.Object){standardGeneric("listProperties")})
