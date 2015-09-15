@@ -42,9 +42,9 @@ amHist <- function(x, main = "Histogram",
   } else {}
   
   if (!missing(...)) {
-    resHist <- hist(x = x, plot = FALSE, ...)
+    resHist <- graphics::hist(x = x, plot = FALSE, ...)
   } else {
-    resHist <- hist(x = x, plot = FALSE)
+    resHist <- graphics::hist(x = x, plot = FALSE)
   }
   
   if (!plot) {

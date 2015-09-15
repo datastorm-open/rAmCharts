@@ -53,7 +53,8 @@ setMethod(f = "toList", signature = c("data.frame"),
           })
 
 #' @title See AmCharts API
-#' @description Open a window in your browser at \url{http://docs.amcharts.com/3/javascriptstockchart/*}
+#' @description Open a window in your browser at the referenced documentation
+#' under \url{http://docs.amcharts.com/3/javascriptstockchart/}.
 #' @param class
 #' Object of class \code{character}.
 #' Name of the class to see documentation.
@@ -64,9 +65,9 @@ setMethod(f = "toList", signature = c("data.frame"),
 #' @export
 seeOfficialAPI <- function(class = NULL){
   if (is.null(class)) {
-    browseURL("http://docs.amcharts.com/3/javascriptstockchart/")
+    utils::browseURL("http://docs.amcharts.com/3/javascriptstockchart/")
   } else {
     stopifnot(is.character(class) && length(class) == 1)
-    browseURL(paste0("http://docs.amcharts.com/3/javascriptstockchart/", class))
+    utils::browseURL(paste0("http://docs.amcharts.com/3/javascriptstockchart/", class))
   }
 }

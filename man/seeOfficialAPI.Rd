@@ -12,7 +12,8 @@ Name of the class to see documentation.
 Please respect lower and upper case.}
 }
 \description{
-Open a window in your browser at \url{http://docs.amcharts.com/3/javascriptstockchart/*}
+Open a window in your browser at the referenced documentation
+under \url{http://docs.amcharts.com/3/javascriptstockchart/}.
 }
 \examples{
 seeOfficialAPI()

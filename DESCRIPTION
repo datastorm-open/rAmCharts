@@ -1,11 +1,21 @@
 Package: rAmCharts
-Title: JavaScript Charts API tool
-Date: 2015-07-29
+Title: JavaScript Charts API Tool
+Description: API for using AmChart Library. Based on the htmlwidgets package,
+    it provides a global architecture to generate JavaScript source code for charts.
+    Most of classes in the Library have their equivalent in R with S4 classes; for
+    thoses classes, not all properties have been referenced but can easily be added
+    in the constructors. For complex properties (e.g. JavaScript) object can be
+    passed as named list. See <http://www.amcharts.com/> and the API documentation
+    for more information.
 Version: 1.1
-Author: DataKnowledge
-Maintainer: Jeffery Petit <jeff@datak.fr>
-Description: API for using AmChart Library.
+Authors@R: c(person(given = "Jeffery", family = "Petit", email = "jeff@datak.fr", role = c("aut", "cre")),
+             person(given = "DataKnowledge", role = c("ctb", "cph")))
+Date: 2015-09-15
 License: GPL (>= 2)
+URL: http://dataknowledge.github.io/rAmCharts/
+BugReports: https://github.com/DataKnowledge/rAmCharts/issues/
+Depends:
+    R (>= 3.2.0)
 Collate:
     'AmObject.R'
     'AmBalloon.R'
@@ -35,14 +45,16 @@ Collate:
     'GaugeArrow.R'
     'PeriodSelector.R'
     'amHist.R'
-    'shiny.R'
+    'shinyExamples.R'
     'startupMessage.R'
     'utils.R'
 Imports:
     methods,
     htmlwidgets,
     rlist,
-    data.table
+    data.table,
+    graphics,
+    utils
 Suggests:
     pipeR,
     shiny
