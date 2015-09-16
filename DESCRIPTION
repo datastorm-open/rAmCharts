@@ -13,11 +13,11 @@ Description: API for using 'AmCharts' Library. Based on the 'htmlwidgets'
     to this page <http://www.amcharts.com/online-store/> to purchase a licence,
     and thus support its creators and get a period of Priority Support. See also
     <http://www.amcharts.com/about/> for more information about 'AmCharts' company.
-Version: 1.2
+Version: 1.1.1
 Authors@R: c(
+    person(given = "Jeffery", family = "Petit", email = "jeff@datak.fr", role = c("aut", "cre")),
     person(given = "Antanas", family = " Marcelionis", role = c("aut", "cph"),
            comment = "'AmCharts' library in th directory htmlwidgets/lib/amcharts, refer to http://www.amcharts.com/"),
-    person(given = "Jeffery", family = "Petit", email = "jeff@datak.fr", role = c("aut", "cre")),
     person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datak.fr", role = c("aut", "ctb")),
     person(family = "DataKnowledge", role = c("ctb"),
             comment = "See official web site at http://www.datak.fr"))
