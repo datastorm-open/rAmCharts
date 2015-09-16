@@ -46,7 +46,7 @@ setValueAxisX(.Object, valueAxisX = NULL, ...)
 \S4method{setValueAxisX}{TrendLine}(.Object, valueAxisX = NULL, ...)
 }
 \arguments{
-\item{.Object}{\code{\linkS4class{TrendLine}}.}
+\item{.Object}{\linkS4class{TrendLine}.}
 
 \item{initialValue}{\code{numeric}.
 Value from which trend line should start.}
@@ -60,11 +60,11 @@ Value at which trend line should end.}
 \item{finalXValue}{\code{numeric}.
 Used by XY chart only. X value at which trend line should end.}
 
-\item{valueAxis}{\code{\linkS4class{ValueAxis}}.
+\item{valueAxis}{\linkS4class{ValueAxis}.
 Value axis of the trend line. Will use first value axis of the chart if not set any.
 You can use a reference to the value axis object or id of value axis.}
 
-\item{valueAxisX}{\code{\linkS4class{ValueAxis}}.
+\item{valueAxisX}{\linkS4class{ValueAxis}.
 Used by XY chart only. X axis of trend line.
 Will use first X axis of the chart if not set any.
 You can use a reference to the value axis object or id of value axis.}

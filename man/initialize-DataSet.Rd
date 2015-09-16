@@ -65,7 +65,7 @@ Should the missing values appear in the list ?}
 \item{stockEvent}{\linkS4class{StockEvent}.}
 }
 \value{
-(updated) \code{\linkS4class{DataSet}} object
+(updated) \linkS4class{DataSet} object
 }
 \description{
 Initialize a DataSet

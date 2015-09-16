@@ -11,11 +11,11 @@ addValueAxes(.Object, valueAxis = NULL, ...)
 \S4method{addValueAxes}{AmChart}(.Object, valueAxis = NULL, ...)
 }
 \arguments{
-\item{.Object}{object of class \code{\linkS4class{AmChart}}.}
+\item{.Object}{object of class \linkS4class{AmChart}.}
 
-\item{valueAxis}{object of class \code{\linkS4class{ValueAxis}}, default \code{NULL}.}
+\item{valueAxis}{object of class \linkS4class{ValueAxis}, default \code{NULL}.}
 
-\item{...}{properties of \code{\linkS4class{ValueAxis}}.}
+\item{...}{properties of \linkS4class{ValueAxis}.}
 }
 \value{
 The updated object of class \code{\linkS4class{AmChart}}.
@@ -34,111 +34,5 @@ addValueAxes(.Object = amChart(), axisTitleOffset = 12, tickLength = 10)
 \code{\linkS4class{AmChart}} S4 class
 
 \code{\linkS4class{ValueAxis}} S4 class
-
-Other AmChart methods: \code{\link{addArrow}},
-  \code{\link{addArrow,AmChart-method}};
-  \code{\link{addAxe}},
-  \code{\link{addAxe,AmChart-method}};
-  \code{\link{addGraph}},
-  \code{\link{addGraph,AmChart-method}};
-  \code{\link{addGuide,AmChart-method}};
-  \code{\link{addLabel}},
-  \code{\link{addLabel,AmChart-method}};
-  \code{\link{addSegment}},
-  \code{\link{addSegment,AmChart,numeric-method}};
-  \code{\link{addSubData}},
-  \code{\link{addSubData,AmChart,numeric,data.frame-method}};
-  \code{\link{addTitle}},
-  \code{\link{addTitle,AmChart-method}};
-  \code{\link{addTrendLine}},
-  \code{\link{addTrendLine,AmChart-method}};
-  \code{\link{setAllLabels}},
-  \code{\link{setAllLabels,AmChart,list-method}};
-  \code{\link{setArrows}},
-  \code{\link{setArrows,AmChart-method}};
-  \code{\link{setAxes}},
-  \code{\link{setAxes,AmChart,list-method}};
-  \code{\link{setBalloon}},
-  \code{\link{setBalloon,AmChart-method}};
-  \code{\link{setCategoryAxis}},
-  \code{\link{setCategoryAxis,AmChart-method}};
-  \code{\link{setCategoryField}},
-  \code{\link{setCategoryField,AmChart,character-method}};
-  \code{\link{setChartCursor}},
-  \code{\link{setChartCursor,AmChart-method}};
-  \code{\link{setChartScrollbar}},
-  \code{\link{setChartScrollbar,AmChart-method}};
-  \code{\link{setCreditsPosition}},
-  \code{\link{setCreditsPosition,AmChart,character-method}};
-  \code{\link{setDataProvider,AmChart,data.frame-method}};
-  \code{\link{setExport}},
-  \code{\link{setExport,AmChart-method}};
-  \code{\link{setGraph,AmChart-method}};
-  \code{\link{setGraphs}},
-  \code{\link{setGraphs,AmChart,list-method}};
-  \code{\link{setGuides}},
-  \code{\link{setGuides,AmChart,list-method}};
-  \code{\link{setLegend}},
-  \code{\link{setLegend,AmChart-method}};
-  \code{\link{setSubChartProperties}},
-  \code{\link{setSubChartProperties,AmChart-method}};
-  \code{\link{setTitles}},
-  \code{\link{setTitles,AmChart,list-method}};
-  \code{\link{setTrendLines}},
-  \code{\link{setTrendLines,AmChart,list-method}};
-  \code{\link{setValueAxes}},
-  \code{\link{setValueAxes,AmChart,list-method}};
-  \code{\link{setValueAxis,AmChart-method}}
-
-Other AmChart setters: \code{\link{addArrow}},
-  \code{\link{addArrow,AmChart-method}};
-  \code{\link{addAxe}},
-  \code{\link{addAxe,AmChart-method}};
-  \code{\link{addGraph}},
-  \code{\link{addGraph,AmChart-method}};
-  \code{\link{addGuide,AmChart-method}};
-  \code{\link{addLabel}},
-  \code{\link{addLabel,AmChart-method}};
-  \code{\link{addTitle}},
-  \code{\link{addTitle,AmChart-method}};
-  \code{\link{addTrendLine}},
-  \code{\link{addTrendLine,AmChart-method}};
-  \code{\link{setAllLabels}},
-  \code{\link{setAllLabels,AmChart,list-method}};
-  \code{\link{setArrows}},
-  \code{\link{setArrows,AmChart-method}};
-  \code{\link{setAxes}},
-  \code{\link{setAxes,AmChart,list-method}};
-  \code{\link{setBalloon}},
-  \code{\link{setBalloon,AmChart-method}};
-  \code{\link{setCategoryAxis}},
-  \code{\link{setCategoryAxis,AmChart-method}};
-  \code{\link{setCategoryField}},
-  \code{\link{setCategoryField,AmChart,character-method}};
-  \code{\link{setChartCursor}},
-  \code{\link{setChartCursor,AmChart-method}};
-  \code{\link{setChartScrollbar}},
-  \code{\link{setChartScrollbar,AmChart-method}};
-  \code{\link{setCreditsPosition}},
-  \code{\link{setCreditsPosition,AmChart,character-method}};
-  \code{\link{setDataProvider,AmChart,data.frame-method}};
-  \code{\link{setExport}},
-  \code{\link{setExport,AmChart-method}};
-  \code{\link{setGraph,AmChart-method}};
-  \code{\link{setGraphs}},
-  \code{\link{setGraphs,AmChart,list-method}};
-  \code{\link{setGuides}},
-  \code{\link{setGuides,AmChart,list-method}};
-  \code{\link{setLegend}},
-  \code{\link{setLegend,AmChart-method}};
-  \code{\link{setSubChartProperties}},
-  \code{\link{setSubChartProperties,AmChart-method}};
-  \code{\link{setTitles}},
-  \code{\link{setTitles,AmChart,list-method}};
-  \code{\link{setTrendLines}},
-  \code{\link{setTrendLines,AmChart,list-method}};
-  \code{\link{setValueAxes}},
-  \code{\link{setValueAxes,AmChart,list-method}};
-  \code{\link{setValueAxis,AmChart-method}}
 }
 

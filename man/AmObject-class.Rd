@@ -21,8 +21,4 @@ containing other avalaible properties non coded in the package yet.}
 \author{
 DataKnowledge
 }
-\seealso{
-Other rAmChart classes: \code{\link{AmBalloon-class}};
-  \code{\link{AmChart-class}}; \code{\link{AmGraph-class}}
-}
 

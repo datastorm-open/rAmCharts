@@ -23,14 +23,14 @@ addBand(.Object, band = NULL, ...)
 \S4method{addBand}{GaugeAxis}(.Object, band = NULL, ...)
 }
 \arguments{
-\item{.Object}{\linkS4class{GaugeAxis}}
+\item{.Object}{\linkS4class{GaugeAxis}.}
 
 \item{axisAlpha}{\code{numeric}.}
 
 \item{bands}{\code{list} of \linkS4class{GaugeBand}.
 Bands are used to draw color fills between specified values.}
 
-\item{...}{Other properties}
+\item{...}{other properties.}
 
 \item{band}{\linkS4class{GaugeBand}.}
 }

@@ -11,7 +11,7 @@ NULL
 #' 
 #' @slot title \code{character}. Graph title.
 #' 
-#' @slot type \code{character}
+#' @slot type \code{character}.
 #' Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
 #' XY and Radar charts can only display "line" otherArguments graphs.
 #' 
@@ -31,7 +31,6 @@ NULL
 #' new("AmGraph")
 #' unclass(new("AmGraph"))
 #' }
-#' @family rAmChart classes
 #' @rdname AmGraph-class
 #' @export
 setClass (Class = "AmGraph", contains = "AmObject",
@@ -59,7 +58,8 @@ setClass (Class = "AmGraph", contains = "AmObject",
   })
 
 #' @title Initialize an AmGraph
-#' @description To create an AmGraph, you can use the usual methode Initialize or the constructor.
+#' @description To create an AmGraph, you can use the usual methode
+#' Initialize or the constructor.
 #' You can update properties with setters.
 #' @param .Object \linkS4class{AmGraph}.
 #' @param animationPlayed \code{logical}.

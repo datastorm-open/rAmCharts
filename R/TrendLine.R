@@ -4,44 +4,35 @@ NULL
 #' @title TrendLine class
 #' @author DataKnowledge
 #' 
-#' @slot finalValue
-#' Object of class \code{numeric}.
+#' @slot finalValue \code{numeric}.
 #' Value at which trend line should end.
 #' 
-#' @slot finalXValue
-#' Object of class \code{numeric}.
+#' @slot finalXValue \code{numeric}.
 #' Used by XY chart only. X value at which trend line should end.
 #' 
-#' @slot initialValue
-#' Object of class \code{numeric}.
+#' @slot initialValue \code{numeric}.
 #' Value from which trend line should start.
 #' 
-#' @slot initialXValue
-#' Object of class \code{numeric}.
+#' @slot initialXValue \code{numeric}.
 #' Used by XY chart only. X value from which trend line should start.
 #' 
-#' @slot valueAxis
-#' Object of class \code{\linkS4class{ValueAxis}}.
+#' @slot valueAxis \linkS4class{ValueAxis}.
 #' Value axis of the trend line. Will use first value axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
 #' 
-#' @slot valueAxisX
-#' Object of class \code{\linkS4class{ValueAxis}}.
+#' @slot valueAxisX \linkS4class{ValueAxis}.
 #' Used by XY chart only. X axis of trend line.
 #' Will use first X axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
 #' 
-#' @slot listeners
-#' Object of class \code{"list"} containining the listeners to add to the object.
+#' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
 #' 
-#' @slot otherProperties
-#' Object of class \code{"list"},
+#' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
 #' 
-#' @slot value
-#' Object of class \code{numeric}.
+#' @slot value \code{numeric}.
 #' 
 #' @export
 setClass(Class = "TrendLine", contains = "AmObject",
@@ -57,7 +48,7 @@ setClass(Class = "TrendLine", contains = "AmObject",
 )
 
 #' @title Initialize a TrendLine
-#' @param .Object \code{\linkS4class{TrendLine}}.
+#' @param .Object \linkS4class{TrendLine}.
 #' @param finalValue \code{numeric}.
 #' Value at which trend line should end.
 #' @param finalXValue \code{numeric}.
@@ -66,10 +57,10 @@ setClass(Class = "TrendLine", contains = "AmObject",
 #' Value from which trend line should start.
 #' @param initialXValue \code{numeric}.
 #' Used by XY chart only. X value from which trend line should start.
-#' @param valueAxis \code{\linkS4class{ValueAxis}}.
+#' @param valueAxis \linkS4class{ValueAxis}.
 #' Value axis of the trend line. Will use first value axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
-#' @param valueAxisX \code{\linkS4class{ValueAxis}}.
+#' @param valueAxisX \linkS4class{ValueAxis}.
 #' Used by XY chart only. X axis of trend line.
 #' Will use first X axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.

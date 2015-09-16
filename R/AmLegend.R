@@ -4,22 +4,18 @@ NULL
 #' @title AmLegend class
 #' @author DataKnowledge
 #' 
-#' @slot useGraphSettings
-#' Object of class \code{logical}.
+#' @slot useGraphSettings \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
 #' 
-#' @slot listeners
-#' Object of class \code{list} containining the listeners to add to the object.
+#' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
 #' 
-#' @slot otherProperties
-#' Object of class \code{list},
+#' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
 #' 
-#' @slot value
-#' object of class \code{numeric}.
+#' @slot value \code{numeric}.
 #' 
 #' @export
 setClass(Class = "AmLegend", contains = "AmObject",

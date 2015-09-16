@@ -10,19 +10,19 @@ GaugeArrow class
 \section{Slots}{
 
 \describe{
-\item{\code{axis}}{Object of class \code{list}
-containing properties of \code{\linkS4class{GaugeAxis}}.
+\item{\code{axis}}{\code{list}
+containing properties of \linkS4class{GaugeAxis}.
 Axis of the arrow. You can use reference to the axis or id of the axis.
 If you don't set any axis, the first axis of a chart will be used.}
 
-\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
+\item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.
 See examples for details.}
 
-\item{\code{otherProperties}}{Object of class \code{"list"},
+\item{\code{otherProperties}}{\code{list},
 containing other avalaible properties non coded in the package yet.}
 
-\item{\code{value}}{Object of class \code{numeric}.}
+\item{\code{value}}{\code{numeric}.}
 }}
 \author{
 DataKnowledge

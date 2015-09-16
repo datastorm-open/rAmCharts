@@ -10,35 +10,35 @@ TrendLine class
 \section{Slots}{
 
 \describe{
-\item{\code{finalValue}}{Object of class \code{numeric}.
+\item{\code{finalValue}}{\code{numeric}.
 Value at which trend line should end.}
 
-\item{\code{finalXValue}}{Object of class \code{numeric}.
+\item{\code{finalXValue}}{\code{numeric}.
 Used by XY chart only. X value at which trend line should end.}
 
-\item{\code{initialValue}}{Object of class \code{numeric}.
+\item{\code{initialValue}}{\code{numeric}.
 Value from which trend line should start.}
 
-\item{\code{initialXValue}}{Object of class \code{numeric}.
+\item{\code{initialXValue}}{\code{numeric}.
 Used by XY chart only. X value from which trend line should start.}
 
-\item{\code{valueAxis}}{Object of class \code{\linkS4class{ValueAxis}}.
+\item{\code{valueAxis}}{\linkS4class{ValueAxis}.
 Value axis of the trend line. Will use first value axis of the chart if not set any.
 You can use a reference to the value axis object or id of value axis.}
 
-\item{\code{valueAxisX}}{Object of class \code{\linkS4class{ValueAxis}}.
+\item{\code{valueAxisX}}{\linkS4class{ValueAxis}.
 Used by XY chart only. X axis of trend line.
 Will use first X axis of the chart if not set any.
 You can use a reference to the value axis object or id of value axis.}
 
-\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
+\item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.
 See examples for details.}
 
-\item{\code{otherProperties}}{Object of class \code{"list"},
+\item{\code{otherProperties}}{\code{list},
 containing other avalaible properties non coded in the package yet.}
 
-\item{\code{value}}{Object of class \code{numeric}.}
+\item{\code{value}}{\code{numeric}.}
 }}
 \author{
 DataKnowledge

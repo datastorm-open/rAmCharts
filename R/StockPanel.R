@@ -3,140 +3,101 @@ NULL
 
 #' @title StockPanel class
 #' 
-#' @field drawOnAxis
-#' Object of class \code{list}. Containing properties of ValueAxis.
+#' @field drawOnAxis \code{list}. Containing properties of ValueAxis.
 #' Specifies on which value axis user can draw trend lines.
 #' Set drawingIconsEnabled to true if you want drawing icons to be visible.
 #' First value axis will be used if not set here.
 #' You can use a reference to the value axis object or id of value axis.
 #' 
-#' @field stockGraphs
-#' Object of class \code{list}.
+#' @field stockGraphs \code{list}.
 #' Each element must be have been created with stockGraph(*)
 #' 
-#' @field stockLegend
-#' Object of class \code{list}.
+#' @field stockLegend \code{list}.
 #' Each element must be have been created with stockLegend(*)
 #' 
-#' @field allLabels
-#' Object of class \code{"list"}. List of Labels properties.
-#' See \code{\linkS4class{Label}}.
+#' @field allLabels \code{list} of \linkS4class{Label} properties.
 #' 
-#' @field arrows
-#' Object of class \code{"list"}
-#' containing object of class \code{\linkS4class{GaugeArrow}}.
+#' @field arrows \code{list} of \linkS4class{GaugeArrow} properties.
 #' 
-#' @field axes
-#' Object of class \code{"list"}
-#' containing object of class \code{\linkS4class{GaugeAxis}}.
+#' @field axes \code{list} of \linkS4class{GaugeAxis} properties.
 #' 
-#' @field balloon
-#' Object of class \code{"list"}.
-#' List of an \code{\linkS4class{AmBalloon}} class properties.
+#' @field balloon \code{list} of an \linkS4class{AmBalloon} properties.
 #' Creates the balloons (tooltips) of the chart,
 #' It follows the mouse cursor when you roll-over the data items.
 #' The framework generates the instances automatically you only need to adjust
 #' the appearance to your needs.
 #' 
-#' @field categoryAxis
-#' Object of class \code{"list"}.
-#' List of a \code{\linkS4class{CategoryAxis}} properties.
+#' @field categoryAxis \code{list} of a \linkS4class{CategoryAxis} properties.
 #' Read-only. Chart creates category axis itself.
 #' If you want to change some properties,
 #' you should get this axis from the chart and set properties to this object.
 #' 
-#' @field categoryField
-#' Object of class \code{"character"}.
+#' @field categoryField \code{character}.
 #' Category field name tells the chart the name of the field in your dataProvider object
 #' which will be used for category axis values.
 #' 
-#' @field ChartCursor
-#' Object of class \code{"list"}.
-#' List of a \code{\linkS4class{ChartCursor}} class properties.
-#' Properties of the chart's cursor.
+#' @field ChartCursor \code{list} of a \linkS4class{ChartCursor} properties.
 #' 
-#' @field ChartScrollbar
-#' Object of class \code{"list"}.
-#' List of a \code{\linkS4class{ChartScrollbar}} class properties.
-#' Properties of chart's scrollbar.
+#' @field ChartScrollbar \code{list} of a \linkS4class{ChartScrollbar} properties.
 #' 
-#' @field creditsPosition
-#' Object of class \code{"character"},
+#' @field creditsPosition \code{character},
 #' specifying position of link to amCharts site.
 #' Allowed values are: top-left, top-right, bottom-left and bottom-right.
 #' 
-#' @field dataProvider
-#' Object of class \code{"list"}, containing the data.
+#' @field dataProvider \code{list}, containing the data.
 #' Use providing method toList* to convert a \code{data.frame}.
 #' 
-#' @field graphs
-#' Object of class \code{list}.  List of AmGraphs properties
-#' See \code{\linkS4class{AmGraph}} class.
+#' @field graphs \code{list}.  List of AmGraphs properties
+#' See \linkS4class{AmGraph}.
 #' Creates the visualization of the data in following types: line, column, step line,
 #' smoothed line, olhc and candlestick.
 #' 
-#' @field graph
-#' Object of class \code{\linkS4class{AmGraph}}.
+#' @field graph \code{list} of \linkS4class{AmGraph} properties.
 #' Graph of a Gantt chart. Gant chart actually creates multiple graphs (separate for each segment).
 #' Properties of this graph are passed to each of the created graphs
 #' - this allows you to control the look of segments.
 #' 
-#' @field guides
-#' Object of class \code{list}.
-#' Each elemnt must be of class \code{\linkS4class{Guide}}.
+#' @field guides \code{list} of Guides properties.
+#' See \linkS4class{Guide}.
 #' Instead of adding guides to the axes, you can push all of them to this array.
 #' In case guide has category or date defined, it will automatically will be assigned to the category axis.
 #' Otherwise to first value axis, unless you specify a different valueAxes for the guide.
 #' 
-#' @field legend
-#' Object of class \code{"list"}.
-#' List of an \code{\linkS4class{AmLegend}} class properties.
-#' Properties of chart's legend.
+#' @field legend \code{list} of an \linkS4class{AmLegend} properties.
 #' 
-#' @field segmentsField
-#' Object of class \code{character}.
+#' @field segmentsField \code{character}.
 #' 
-#' @field subChartProperties
-#' Object of class \code{list}
+#' @field subChartProperties \code{list}.
 #' 
-#' @field theme
-#' Object of class \code{character}.
+#' @field theme \code{character}.
 #' Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
 #' 
-#' @field titles
-#' Object of class \code{"list"}. List of Titles properties
-#' See \code{\linkS4class{Title}} class.
+#' @field titles \code{list} of Titles properties.
+#' See \linkS4class{Title}.
 #' 
-#' @field trendLines
-#' Object of class \code{"list"}.
-#' List of \code{\linkS4class{TrendLine}} objects added to a chart.
+#' @field trendLines \code{list} of \linkS4class{TrendLine}.
 #' You can add trend lines to a chart using this list or access already existing trend lines.
 #' 
-#' @field type
-#' Object of class \code{"character"}.
+#' @field type \code{character}.
 #' Possible types are: serial, pie, radar,
 #' (types xy, radar, funnel, gauge, map, stock. are in development).
 #' 
-#' @field valueAxes Object of class \code{"list"}. List of ValueAxes' properties.
-#' See \code{\linkS4class{ValueAxis}} class.
+#' @field valueAxes Object of class \code{list}. List of ValueAxes' properties.
+#' See \linkS4class{ValueAxis}.
 #' Chart creates one value axis automatically,
 #' so if you need only one value axis, you don't need to create it.
 #' 
-#' @field valueAxis
-#' Object of class \code{list}.
-#' List of Value axis properties for Gantt chart. Set it's type to "date" if your data is date or time based.
+#' @field valueAxis \code{list} of Value axis properties for Gantt chart.
+#' Set it's type to "date" if your data is date or time based.
 #' In case of Value axis for a Gantt chart. Set it's type to "date" if your data is date or time based.
 #' 
-#' @field listeners
-#' Object of class \code{"list"} containining the listeners to add to the object.
+#' @field listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string. See examples for details.
 #' 
-#' @field otherProperties
-#' Object of class \code{"list"},
-#' containing other avalaible properties non coded in the package yet.
+#' @field otherProperties \code{list},
+#' containing other avalaible properties for the class.
 #' 
-#' @field value
-#' Object of class \code{numeric}.
+#' @field value \code{numeric}.
 #' 
 #' @author DataKnowledge
 #' @export
@@ -148,15 +109,15 @@ setClass(Class = "StockPanel", contains = "AmChart",
          ))
 
 #' @title Initialize a StockPanel
-#' @param .Object \code{\linkS4class{StockPanel}}.
-#' @param drawOnAxis \code{\linkS4class{ValueAxis}}.
+#' @param .Object \linkS4class{StockPanel}.
+#' @param drawOnAxis \linkS4class{ValueAxis}.
 #' Specifies on which value axis user can draw trend lines.
 #' Set drawingIconsEnabled to true if you want drawing icons to be visible.
 #' First value axis will be used if not set here.
 #' You can use a reference to the value axis object or id of value axis.
-#' @param stockGraphs \code{list} of \code{\linkS4class{AmGraph}}.
+#' @param stockGraphs \code{list} of \linkS4class{AmGraph}.
 #' Each element must be have been created with stockGraph(*)
-#' @param stockLegend \code{list} of \code{\linkS4class{AmLegend}}.
+#' @param stockLegend \code{list} of \linkS4class{AmLegend}.
 #' Each element must be have been created with stockLegend(*)
 #' @param ... Other properties...
 #' @return (updated) \linkS4class{StockPanel} with given properties.

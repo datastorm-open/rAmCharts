@@ -11,10 +11,10 @@ NULL
 #' X position of a label.
 #' @slot y \code{numeric}.
 #' Y position of a label.
-#' @slot listeners \code{"list"} containining the listeners to add to the object.
+#' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
-#' @slot otherProperties \code{"list"},
+#' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
 #' @slot value \code{numeric}.
 #' @export

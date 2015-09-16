@@ -53,7 +53,8 @@ Name of the value field in your dataProvider.}
 An object of class \linkS4class{AmGraph} with the properties given.
 }
 \description{
-To create an AmGraph, you can use the usual methode Initialize or the constructor.
+To create an AmGraph, you can use the usual methode
+Initialize or the constructor.
 You can update properties with setters.
 
 Constructor

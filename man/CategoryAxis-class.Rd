@@ -10,19 +10,19 @@ CategoryAxis class
 \section{Slots}{
 
 \describe{
-\item{\code{gridPosition}}{Object of class \code{character}.
+\item{\code{gridPosition}}{\code{character}.
 Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
 Possible values are: "start" and "middle"
 This setting doesn't work if parseDates is set to true.}
 
-\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
+\item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.
 See examples for details.}
 
-\item{\code{otherProperties}}{Object of class \code{"list"},
+\item{\code{otherProperties}}{\code{list},
 containing other avalaible properties non coded in the package yet.}
 
-\item{\code{value}}{Object of class \code{numeric}.}
+\item{\code{value}}{\code{numeric}.}
 }}
 \author{
 DataKnowledge

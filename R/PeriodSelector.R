@@ -4,8 +4,7 @@ NULL
 #' @title PeriodSelector class
 #' @author DataKnowledge
 #' 
-#' @slot periods
-#' Object of clas \code{list}.
+#' @slot periods \code{list}.
 #' Period object has 4 properties - period, count, label and selected.
 #' Possible period values are:
 #' "ss" - seconds, "mm" - minutes, "hh" - hours, "DD" - days, "MM" - months and "YYYY" - years.
@@ -13,13 +12,11 @@ NULL
 #' "label" will be displayed on a button and "selected" is a boolean
 #' which specifies if this button is selected when chart is initialized or not.
 #' 
-#' @slot listeners
-#' Object of class \code{"list"} containining the listeners to add to the object.
+#' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
 #' 
-#' @slot otherProperties
-#' Object of class \code{"list"},
+#' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
 #' 
 #' @slot value
@@ -38,8 +35,8 @@ setClass(Class = "PeriodSelector", contains = "AmObject",
 #' property "count" specifies how many periods this button will select.
 #' "label" will be displayed on a button and "selected" is a boolean
 #' which specifies if this button is selected when chart is initialized or not.
-#' @param ... Other properties
-#' @return (updated) .Object of class \linkS4class{PeriodSelector}
+#' @param ... Other properties.
+#' @return (updated) .Object of class \linkS4class{PeriodSelector}.
 #' @examples
 #' new( "PeriodSelector")
 #' @rdname initialize-PeriodSelector

@@ -12,7 +12,7 @@
 
 \item{guide}{\linkS4class{Guide}}
 
-\item{...}{Properties of \code{\linkS4class{Guide}}.}
+\item{...}{Properties of \linkS4class{Guide}.}
 }
 \description{
 Add a Guide

@@ -36,18 +36,18 @@ setStockLegend(.Object, stockLegend = NULL, ...)
 \S4method{setStockLegend}{StockPanel}(.Object, stockLegend = NULL, ...)
 }
 \arguments{
-\item{.Object}{\code{\linkS4class{StockPanel}}.}
+\item{.Object}{\linkS4class{StockPanel}.}
 
-\item{drawOnAxis}{\code{\linkS4class{ValueAxis}}.
+\item{drawOnAxis}{\linkS4class{ValueAxis}.
 Specifies on which value axis user can draw trend lines.
 Set drawingIconsEnabled to true if you want drawing icons to be visible.
 First value axis will be used if not set here.
 You can use a reference to the value axis object or id of value axis.}
 
-\item{stockGraphs}{\code{list} of \code{\linkS4class{AmGraph}}.
+\item{stockGraphs}{\code{list} of \linkS4class{AmGraph}.
 Each element must be have been created with stockGraph(*)}
 
-\item{stockLegend}{\code{list} of \code{\linkS4class{AmLegend}}.
+\item{stockLegend}{\code{list} of \linkS4class{AmLegend}.
 Each element must be have been created with stockLegend(*)}
 
 \item{...}{Other properties...}

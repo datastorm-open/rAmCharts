@@ -24,12 +24,12 @@ Balloon corner radius.}
 Balloon background color. Usually balloon background color is set by the chart.
 Only if "adjustBorderColor" is "true" this color will be used.}
 
-\item{\code{listeners}}{\code{"list"} containining the listeners to add to the object.
+\item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.
 See examples for details.
 Inherited from \code{\linkS4class{AmObject}}.}
 
-\item{\code{otherProperties}}{\code{"list"},
+\item{\code{otherProperties}}{\code{list},
 containing other avalaible properties non coded in the package yet.
 Inherited from \code{\linkS4class{AmObject}}.}
 
@@ -38,9 +38,5 @@ Inherited from \code{\linkS4class{AmObject}}.}
 }}
 \author{
 DataKnowledge
-}
-\seealso{
-Other rAmChart classes: \code{\link{AmChart-class}};
-  \code{\link{AmGraph-class}}; \code{\link{AmObject-class}}
 }
 

@@ -18,18 +18,17 @@ NULL
 #' Balloon background color. Usually balloon background color is set by the chart.
 #' Only if "adjustBorderColor" is "true" this color will be used.
 #' 
-#' @slot listeners \code{"list"} containining the listeners to add to the object.
+#' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
 #' Inherited from \code{\linkS4class{AmObject}}.
 #' 
-#' @slot otherProperties \code{"list"},
+#' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
 #' Inherited from \code{\linkS4class{AmObject}}.
 #' 
 #' @slot value \code{numeric}.
 #' Inherited from \code{\linkS4class{AmObject}}.
-#' @family rAmChart classes
 #' @export
 setClass(Class = "AmBalloon", contains = "AmObject",
          representation = representation(

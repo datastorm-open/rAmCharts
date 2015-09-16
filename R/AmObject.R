@@ -11,7 +11,6 @@
 #' @slot value \code{numeric}.
 #' 
 #' @export
-#' @family rAmChart classes
 setClass(
   Class = "AmObject",
   representation = representation(value = "numeric", listeners = "list", otherProperties = "list", "VIRTUAL") 

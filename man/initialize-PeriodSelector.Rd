@@ -27,10 +27,10 @@ property "count" specifies how many periods this button will select.
 "label" will be displayed on a button and "selected" is a boolean
 which specifies if this button is selected when chart is initialized or not.}
 
-\item{...}{Other properties}
+\item{...}{Other properties.}
 }
 \value{
-(updated) .Object of class \linkS4class{PeriodSelector}
+(updated) .Object of class \linkS4class{PeriodSelector}.
 }
 \description{
 Initialize a PeriodSelector

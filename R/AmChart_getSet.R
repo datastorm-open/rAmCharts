@@ -15,8 +15,6 @@ NULL
 #' allLabels <- list(label(text = "balloonText"), label(text = "column"))
 #' setAllLabels(.Object = amChart(), allLabels = allLabels)
 #' amChart(allLabels = allLabels)
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname setAllLabels
 #' @docType methods
@@ -46,8 +44,6 @@ setMethod(f = "setAllLabels", signature = c("AmChart", "list"),
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' addLabel(.Object = amChart(), text = "balloonText")
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{Label}} S4 class
 #' @rdname addLabel
@@ -80,8 +76,6 @@ setMethod(f = "addLabel", signature = c("AmChart"),
 #' arrows <- list( gaugeArrow(value = 130), gaugeArrow(value = 150) )
 #' amChart() %>>% setArrows(arrows)
 #' amChart(arrows = arrows)
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname setArrows
 #' @export
@@ -112,8 +106,7 @@ setMethod(f = "setArrows", signature = c("AmChart"),
 #' @param ...
 #' properties of \code{\linkS4class{GaugeArrow}}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @family AmChart setters
-#' @family AmChart methods
+
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{GaugeArrow}} S4 class
 #' @rdname addArrow
@@ -146,8 +139,6 @@ setMethod(f = "addArrow", signature = c("AmChart"),
 #' axes <- list(gaugeAxis(value = 130), gaugeAxis(value = 150))
 #' setAxes(.Object = amChart(), axes = axes)
 #' amChart(axes = axes)
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname setAxes
 #' @export
@@ -176,8 +167,6 @@ setMethod(f = "setAxes", signature = c("AmChart", "list"),
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' addAxe(.Object = amChart(), bandAlpha = 1)
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{GaugeAxis}} S4 class
 #' @rdname addAxe
@@ -209,8 +198,6 @@ setMethod(f = "addAxe", signature = c("AmChart"),
 #' @examples
 #' setBalloon(.Object = amChart(), adjustBorderColor = TRUE)
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{AmBalloon}} S4 class
 #' @rdname setBalloon
@@ -248,8 +235,6 @@ setMethod(f = "setBalloon", signature = c("AmChart"),
 #' # The argument categoryAxis must be an object of class CategoryAxis
 #' amChart() %>>% setCategoryAxis(categoryAxis = "error")
 #' }
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{CategoryAxis}} S4 class
 #' @rdname setCategoryAxis
@@ -278,8 +263,6 @@ setMethod(f = "setCategoryAxis", signature = c("AmChart"),
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' setCategoryField(.Object = amChart(), categoryField = "category")
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname setCategoryField
 #' @export
@@ -312,8 +295,6 @@ setMethod(f = "setCategoryField", signature = c("AmChart", "character"),
 #' amChart() %>>% setChartCursor(oneBallOnly = TRUE)
 #' object <- amChart() %>>% setChartCursor()
 #' chartCursor() %>>% class
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{ChartCursor}} S4 class
 #' @rdname setChartCursor
@@ -346,8 +327,6 @@ setMethod(f = "setChartCursor", signature = c("AmChart"),
 #' amChart() %>>% setChartScrollbar(chartScrollbar(oneBallOnly = TRUE))
 #' amChart() %>>% setChartScrollbar()
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{ChartScrollbar}} S4 class
 #' @rdname setChartScrollbar
@@ -376,8 +355,6 @@ setMethod(f = "setChartScrollbar", signature = c("AmChart"),
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' setCreditsPosition(.Object = amChart(), creditsPosition = "top-right")
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname setCreditsPosition
 #' @export
@@ -406,8 +383,6 @@ setMethod(f = "setCreditsPosition", signature = c("AmChart", "character"),
 #' @examples
 #' library(pipeR)
 #' amChart() %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10)))
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname setDataProvider
 #' @export
@@ -433,8 +408,6 @@ setMethod(f = "setDataProvider", signature = c("AmChart", "data.frame"),
 #' @examples
 #' library(pipeR)
 #' amChart() %>>% setExport()
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname setExport
 #' @export
@@ -461,8 +434,6 @@ setMethod(f = "setExport", signature = c("AmChart"),
 #' @examples
 #' graphs <- list(amGraph(balloonText = "balloonText"), amGraph(type = "column"))
 #' setGraphs(.Object = amChart(), graphs = graphs)
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{AmGraph}} S4 class
 #' @rdname setGraphs
@@ -491,8 +462,6 @@ setMethod(f = "setGraphs", signature = c("AmChart", "list"),
 #' @examples
 #' addGraph(.Object = amChart(), amGraph = amGraph(balloonText = "balloonText", "type" = "column"))
 #' addGraph(.Object = amChart(), balloonText = "balloonText", "type" = "column")
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{AmGraph}} S4 class
 #' @rdname addGraph
@@ -527,8 +496,6 @@ setMethod(f = "addGraph", signature = c(.Object = "AmChart"),
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' setGraph(.Object = amGanttChart())
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname setGraph
 #' @export
@@ -559,8 +526,6 @@ setMethod(f = "setGraph", signature = c("AmChart"),
 #' guides <- list(guide(fillAlpha = .1), guide(fillAlpha = .5))
 #' amChart() %>>% setGuides(guides)
 #' amChart(guides = guides)
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{Guide}} S4 class
 #' @rdname setGuides
@@ -589,8 +554,6 @@ setMethod(f = "setGuides", signature = c("AmChart", "list"),
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' addGuide(.Object = amChart(), fillAlpha = .1)
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{Guide}} S4 class
 #' @rdname addGuide
@@ -625,8 +588,6 @@ setMethod(f = "addGuide", signature = c("AmChart"),
 #' # With chaining
 #' amChart() %>>% setLegend(useGraphSettings = TRUE)
 #' amChart() %>>% setLegend( amLegend(useGraphSettings = TRUE) )
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{AmLegend}} S4 class
 #' @rdname setLegend
@@ -669,7 +630,6 @@ setMethod(f = "setLegend", signature = c("AmChart"),
 #' amGanttChart(segmentsField = "segments"
 #' ) %>>% setDataProvider(data.frame(category = c( "John", "Julia")) 
 #' ) %>>% addSegment( 1:2,  ls)
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname addSegment
 #' @export
@@ -730,7 +690,6 @@ setMethod(f = "addSegment", signature = c( .Object = "AmChart", categoryIDs = "n
 #' library(pipeR)
 #' amChart(dataProvider = data.frame(a = 1:5, b = 6:10)) %>>%
 #' addSubData(3, data.frame(a = 1:10, b = 11:20))
-#' @family AmChart methods
 #' @rdname addSubData
 #' @export
 setGeneric(name = "addSubData",
@@ -783,8 +742,6 @@ setMethod(f = "addSubData", signature = c("AmChart", "numeric", "data.frame"),
 #' @examples
 #' library(pipeR)
 #' amSerialChart() %>>% setSubChartProperties(type = "pie")
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @rdname setSubChartProperties
 #' @export
@@ -821,8 +778,6 @@ setMethod(f = "setSubChartProperties", signature = c("AmChart"),
 #' titles <- list(title(text = "balloonText"), text = "column")
 #' amChart(titles = titles)
 #' }
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{Title}} S4 class
 #' @rdname setTitles
@@ -853,8 +808,6 @@ setMethod(f = "setTitles", signature = c("AmChart", "list"),
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' addTitle(.Object = amChart(), text = "balloonText")
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{Title}} S4 class
 #' @rdname addTitle
@@ -887,8 +840,6 @@ setMethod(f = "addTitle", signature = c("AmChart"),
 #'                    trendLine(initialValue = 7, finalValue = 19))
 #' setTrendLines(.Object = amChart(), trendLines = trendLines)
 #' amChart(trendLines = trendLines) # Equivalent
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{TrendLine}} S4 class
 #' @rdname setTrendLines
@@ -916,8 +867,6 @@ setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
 #' @examples
 #' addTrendLine(.Object = amChart(), initialValue = 1, finalValue = 11)
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{TrendLine}} S4 class
 #' @rdname addTrendLine
@@ -978,8 +927,6 @@ setMethod(f = "setType", signature = c("AmChart", "character"),
 #' lapply(valueAxes, listProperties)
 #' amChart(valueAxes = valueAxes)
 #' }
-#' @family AmChart setters
-#' @family AmChart methods
 #' @rdname setValueAxes
 #' @export
 setGeneric(name = "setValueAxes",
@@ -997,16 +944,14 @@ setMethod(f = "setValueAxes", signature = c("AmChart", "list"),
 
 #' @title Add a ValueAxes
 #' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
+#' object of class \linkS4class{AmChart}.
 #' @param valueAxis
-#' object of class \code{\linkS4class{ValueAxis}}, default \code{NULL}.
+#' object of class \linkS4class{ValueAxis}, default \code{NULL}.
 #' @param  ...
-#' properties of \code{\linkS4class{ValueAxis}}.
+#' properties of \linkS4class{ValueAxis}.
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' addValueAxes(.Object = amChart(), axisTitleOffset = 12, tickLength = 10)
-#' @family AmChart setters
-#' @family AmChart methods
 #' @seealso \code{\linkS4class{AmChart}} S4 class
 #' @seealso \code{\linkS4class{ValueAxis}} S4 class
 #' @rdname addValueAxes
@@ -1038,8 +983,6 @@ setMethod(f = "addValueAxes", signature = c("AmChart"),
 #' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' setValueAxis(.Object = amGanttChart())
-#' @family AmChart setters
-#' @family AmChart methods
 #' @rdname setValueAxis
 #' @export
 setMethod(f = "setValueAxis", signature = c("AmChart"),

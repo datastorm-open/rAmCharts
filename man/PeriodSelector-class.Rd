@@ -10,7 +10,7 @@ PeriodSelector class
 \section{Slots}{
 
 \describe{
-\item{\code{periods}}{Object of clas \code{list}.
+\item{\code{periods}}{\code{list}.
 Period object has 4 properties - period, count, label and selected.
 Possible period values are:
 "ss" - seconds, "mm" - minutes, "hh" - hours, "DD" - days, "MM" - months and "YYYY" - years.
@@ -18,11 +18,11 @@ property "count" specifies how many periods this button will select.
 "label" will be displayed on a button and "selected" is a boolean
 which specifies if this button is selected when chart is initialized or not.}
 
-\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
+\item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.
 See examples for details.}
 
-\item{\code{otherProperties}}{Object of class \code{"list"},
+\item{\code{otherProperties}}{\code{list},
 containing other avalaible properties non coded in the package yet.}
 
 \item{\code{value}}{Object of class \code{numeric}.}

@@ -135,7 +135,6 @@ NULL
 #' @details API for plotting AmChart with R
 #' @author Dataknowledge
 #' @seealso \url{http://docs.amcharts.com/3/javascriptcharts/}
-#' @family rAmChart classes
 #' @export
 setClass(Class = "AmChart", contains = "AmObject",
   representation = representation(

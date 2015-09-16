@@ -122,8 +122,5 @@ Dataknowledge
 }
 \seealso{
 \url{http://docs.amcharts.com/3/javascriptcharts/}
-
-Other rAmChart classes: \code{\link{AmBalloon-class}};
-  \code{\link{AmGraph-class}}; \code{\link{AmObject-class}}
 }
 

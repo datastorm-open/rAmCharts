@@ -4,23 +4,18 @@ NULL
 #' @title StockEvent class
 #' @author DataKnowledge
 #' 
-#' @slot stockGraph
-#' Object of class \code{list}.
-#' Containing properties of stockGraph.
+#' @slot stockGraph \code{list} containing properties of stockGraph.
 #' This is the graph on which event will be displayed.
 #' You can use a reference to the stock graph object or id of the graph.
 #' 
-#' @slot listeners
-#' Object of class \code{"list"} containining the listeners to add to the object.
+#' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
 #' 
-#' @slot otherProperties
-#' Object of class \code{"list"},
+#' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
 #' 
-#' @slot value
-#' Object of class \code{numeric}.
+#' @slot value \code{numeric}.
 #' 
 #' @export
 setClass(Class = "StockEvent", contains = "AmObject",
@@ -28,7 +23,7 @@ setClass(Class = "StockEvent", contains = "AmObject",
 
 #' @title Initialize a StockEvent
 #' @param .Object \linkS4class{StockEvent}.
-#' @param backgroundAlpha \code{numeric}
+#' @param backgroundAlpha \code{numeric}.
 #' @param stockGraph \linkS4class{AmGraph} created with stockGraph(*).
 #' This is the graph on which event will be displayed.
 #' You can use a reference to the stock graph object or id of the graph.

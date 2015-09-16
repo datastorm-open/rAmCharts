@@ -32,12 +32,12 @@ setValueLineAxis(.Object, valueLineAxis = NULL, ...)
 If this is set to TRUE, border color instead of background color will be changed when
 user rolls-over the slice, graph, etc.}
 
-\item{valueLineAxis}{\code{list}.
-Properties of Axis of value line. If you set valueLineBalloonEnabled to true,
+\item{valueLineAxis}{\linkS4class{ValueAxis}.
+If you set valueLineBalloonEnabled to true,
 but you have more than one axis, you can use this property
 to indicate which axis should display balloon.}
 
-\item{...}{Properties of ChartCursor.
+\item{...}{other properties.
 See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}}
 }
 \value{

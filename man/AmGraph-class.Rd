@@ -16,7 +16,7 @@ or any other field name from your data provider. HTML tags can also be used.}
 
 \item{\code{title}}{\code{character}. Graph title.}
 
-\item{\code{type}}{\code{character}
+\item{\code{type}}{\code{character}.
 Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
 XY and Radar charts can only display "line" otherArguments graphs.}
 
@@ -39,9 +39,5 @@ unclass(new("AmGraph"))
 }
 \author{
 DataKnowledge
-}
-\seealso{
-Other rAmChart classes: \code{\link{AmBalloon-class}};
-  \code{\link{AmChart-class}}; \code{\link{AmObject-class}}
 }
 

@@ -20,7 +20,7 @@ setStockGraph(.Object, stockGraph = NULL, ...)
 \arguments{
 \item{.Object}{\linkS4class{StockEvent}.}
 
-\item{backgroundAlpha}{\code{numeric}}
+\item{backgroundAlpha}{\code{numeric}.}
 
 \item{stockGraph}{\linkS4class{AmGraph} created with stockGraph(*).
 This is the graph on which event will be displayed.

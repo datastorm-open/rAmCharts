@@ -3,35 +3,29 @@ NULL
 
 #' @title ChartCursor class
 #' @author DataKnowledge
-#' @slot oneBalloonOnly
-#' Object of class \code{logical}.
+#' @slot oneBalloonOnly \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
 #' 
-#' @slot valueLineAxis
-#' Object of class \code{list}.
+#' @slot valueLineAxis \code{list}.
 #' Properties of Axis of value line. If you set valueLineBalloonEnabled to true,
 #' but you have more than one axis, you can use this property
 #' to indicate which axis should display balloon.
 #' 
-#' @slot listeners
-#' Object of class \code{"list"} containining the listeners to add to the object.
+#' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
 #' 
-#' @slot otherProperties
-#' Object of class \code{"list"},
+#' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
 #' 
-#' @slot value
-#' Object of class \code{numeric}.
+#' @slot value \code{numeric}.
 #' 
 #' @export
 setClass(Class = "ChartCursor", contains = "AmObject",
          representation = representation(
            oneBalloonOnly = "logical", valueLineAxis = "list"
-         )
-)
+         ))
 
 #' @title Initialize a ChartCursor
 #' @param .Object \linkS4class{ChartCursor}.
@@ -40,11 +34,11 @@ setClass(Class = "ChartCursor", contains = "AmObject",
 #' @param oneBalloonOnly \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
-#' @param valueLineAxis \code{list}.
-#' Properties of Axis of value line. If you set valueLineBalloonEnabled to true,
+#' @param valueLineAxis \linkS4class{ValueAxis}.
+#' If you set valueLineBalloonEnabled to true,
 #' but you have more than one axis, you can use this property
 #' to indicate which axis should display balloon.
-#' @param ... Properties of ChartCursor.
+#' @param ... other properties.
 #' See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}
 #' @return (updated) .Object of class \linkS4class{ChartCursor}.
 #' @examples
