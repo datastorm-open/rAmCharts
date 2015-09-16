@@ -60,10 +60,10 @@ setMethod(f = "toList", signature = c("data.frame"),
 #' Name of the class to see documentation.
 #' Please respect lower and upper case.
 #' @examples
-#' seeOfficialAPI()
-#' seeOfficialAPI("AmChart")
+#' api()
+#' api("AmChart")
 #' @export
-seeOfficialAPI <- function(class = NULL){
+api <- function(class = NULL){
   if (is.null(class)) {
     utils::browseURL("http://docs.amcharts.com/3/javascriptstockchart/")
   } else {
