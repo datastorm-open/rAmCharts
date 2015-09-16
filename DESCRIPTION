@@ -1,6 +1,6 @@
 Package: rAmCharts
 Title: JavaScript Charts API Tool
-Description: API for using 'AmChart' Library. Based on the 'htmlwidgets'
+Description: API for using 'AmCharts' Library. Based on the 'htmlwidgets'
     package, it provides a global architecture to generate 'JavaScript' source
     code for charts. Most of classes in the library have their equivalent in R
     with S4 classes; for those classes, not all properties have been referenced
@@ -8,10 +8,18 @@ Description: API for using 'AmChart' Library. Based on the 'htmlwidgets'
     'JavaScript' object) can be passed as named list. See examples at <http://
     dataknowledge.github.io/rAmCharts/>. and <http://www.amcharts.com/> for more
     information about the library.
+    The package uses the free version of 'AmCharts' Library. Its only limitation
+    is that a small link to this web site will be displayed in your charts.
+    If you enjoy this library, do not hesitate to refer to this page <http://www.amcharts.com/online-store/>
+    to purchase a licence, and thus support its creators and get a period of
+    priority Support.
 Version: 1.1.1
-Authors@R: c(person(given = "Jeffery", family = "Petit", email = "jeff@datak.fr", role = c("aut", "cre")),
-             person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datak.fr", role = "ctb"),
-             person(given = "DataKnowledge", role = c("ctb", "cph")))
+Authors@R: c(
+person(given = "amCharts", role = c("aut", "cph"),
+       comment = "AmCharts.js library in htmlwidgets/lib/amcharts, http://www.amcharts.com/),
+person(given = "Jeffery", family = "Petit", email = "jeff@datak.fr", role = c("aut", "cre")),
+person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datak.fr", role = c("aut", "ctb"),
+person(given = "DataKnowledge", role = c("ctb")))
 Date: 2015-09-15
 License: GPL (>= 2)
 URL: http://dataknowledge.github.io/rAmCharts/
