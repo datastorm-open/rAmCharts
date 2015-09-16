@@ -1,14 +1,15 @@
 Package: rAmCharts
 Title: JavaScript Charts API Tool
-Description: API for using AmChart Library. Based on the htmlwidgets package,
-    it provides a global architecture to generate JavaScript source code for charts.
-    Most of classes in the Library have their equivalent in R with S4 classes; for
-    thoses classes, not all properties have been referenced but can easily be added
-    in the constructors. For complex properties (e.g. JavaScript) object can be
-    passed as named list. See <http://www.amcharts.com/> and the API documentation
-    for more information.
+Description: API for using AmChart Library. Based on the 'htmlwidgets' package,
+    it provides a global architecture to generate 'JavaScript' source code for
+    charts. Most of classes in the library have their equivalent in R with S4
+    classes; for those classes, not all properties have been referenced but can
+    easily be added in the constructors. Complex properties (e.g. 'JavaScript'
+    object) can be passed as named list. See examples at <http://dataknowledge.github.io/rAmCharts/>.
+    and <http://www.amcharts.com/> for more information about the library.
 Version: 1.1
 Authors@R: c(person(given = "Jeffery", family = "Petit", email = "jeff@datak.fr", role = c("aut", "cre")),
+             person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datak.fr", role = "ctb"),
              person(given = "DataKnowledge", role = c("ctb", "cph")))
 Date: 2015-09-15
 License: GPL (>= 2)
