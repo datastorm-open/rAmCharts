@@ -51,19 +51,37 @@ pipeR::pipeline(
   plot()
 )
 
-### amSerialChart
+### amSerialChart: graph listener
 
 pipeR::pipeline(
-  amSerialChart(theme = "dark", categoryField = "country", creditsPosition = "top-right"),
-  setDataProvider(data.frame(country = c("FR", "US"), visits = 1:2)),
-  addGraph(balloonText = "[[category]]: <b>[[value]]</b>", type = "column",
-           valueField = "visits", fillAlphas = .8, lineAlpha = .2),
-  addListener("clickGraphItem" , "function(event) {alert('ok !');}"), 
-  setExport(position = "bottom-right"),
-  setChartCursor(),
-  setChartScrollbar(),
-  plot()
+  rAmCharts::amSerialChart(theme = "dark", categoryField = "country", creditsPosition = "top-right"),
+  rAmCharts::setDataProvider(data.frame(country = c("France", "US"), visits = 1:2)),
+  rAmCharts::addGraph(balloonText = "[[category]]: <b>[[value]]</b>", type = "column",
+                      valueField = "visits", fillAlphas = .8, lineAlpha = .2),
+  rAmCharts::addListener("clickGraphItem" , "function(event) {alert('ok !');}"), 
+  rAmCharts::setExport(position = "bottom-right"),
+  rAmCharts::setChartCursor(),
+  rAmCharts::plot()
 )
+
+### amSerialChart: category formatter
+
+pipeR::pipeline(
+  rAmCharts::amSerialChart(theme = "chalk", categoryField = "country", creditsPosition = "top-right"),
+  rAmCharts::setDataProvider(data.frame(country = c("France", "United States of America"), visits = round(runif(2),2))),
+  rAmCharts::addGraph(balloonText = "<b>[[value]]</b>", type = "column",
+                      valueField = "visits", fillAlphas = .8, lineAlpha = .2),
+  rAmCharts::setCategoryAxis(labelFunction = htmlwidgets::JS(paste0("function (valueText, date, categoryAxis) {",
+                                                                    "   if (valueText.length > 5) {",
+                                                                    "    return valueText.substring(0,3).concat('...');",
+                                                                    "   } else {",
+                                                                    "    return valueText;",
+                                                                    "   }",
+                                                                    "}"))),
+  rAmCharts::setChartCursor(),
+  rAmCharts::plot()
+)
+
 
 ### amXYChart
 
