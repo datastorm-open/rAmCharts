@@ -3,37 +3,79 @@ title: "NOTICE"
 output: html_document
 ---
 
----
 This package includes the free version of amcharts.js (please refer to [http://www.amcharts.com][amcharts_home]).
+This AmCharts software is free under a linkware license.
 
-The only limitation of the free version is that a small link to this web site will be displayed in the top left corner of your charts. If you would like to use charts without this link, or you appreciate the software and would like to support its creators, please purchase a commercial license at [https://www.amcharts.com/online-store/][amcharts_store].
+This means you may not remove or hide in any other way link to amcharts
+web site - www.amcharts.com.
+
+If you wish to remove the link, you should purchase commercial license.
+
+You may not redistribute, sublicense or sell this program without written
+permission of Antanas Marcelionis, the author of amcharts software.
+
+This software is provided without warranty.
+***
+A commercial version (without link) is available at amCharts's website:
+http://www.amcharts.com/online-store/
+***
+
+---
+
+### Third party software used:
+
+    Jason S. Kerchner base class (http://livingmachines.net)
+    Licensed under BSD license: http://livingmachines.net/license/
+
+    David Knape & Patrick Mineault Bezier curves drawing logic.
+
+    Code optimization made using Closure Compiling service:
+    http://closure-compiler.appspot.com/home
+
+### Libraries used for exporting:
+
+    filesaver: https://github.com/eligrey/FileSaver.js/
+    https://github.com/eligrey/FileSaver.js/blob/master/LICENSE.md
+
+    blobjs: https://github.com/eligrey/Blob.js/
+    https://github.com/eligrey/Blob.js/blob/master/LICENSE.md
+
+    fabricjs: https://github.com/kangax/fabric.js
+    https://github.com/kangax/fabric.js/blob/master/LICENSE
+
+    jszip: https://github.com/Stuk/jszip
+    https://github.com/Stuk/jszip/blob/master/LICENSE.markdown
+
+    pdfmake: https://github.com/bpampuch/pdfmake
+    https://github.com/bpampuch/pdfmake/blob/master/LICENSE
+
+    SheetJS.js: https://github.com/SheetJS/js-xlsx
+    https://github.com/SheetJS/js-xlsx/blob/master/LICENSE
+*********************************************************************************
 
 ___
 
-## Licences
+## About the licences
 
 ### Free even for commercial use (package version)
 
-You can download and use all amCharts products for free. The only limitation of the free version is that a small link to this web site will be displayed in your charts.
+    You can download and use all amCharts products for free. The only limitation of the free version is that a small link to this web site will be displayed in the top left corner of your charts. If you would like to use charts without this link, or you appreciate the software and would like to support its creators, please purchase a commercial license at [https://www.amcharts.com/online-store/][amcharts_store].
 
 ### Single website license
 
-If you have a public website (no signup is necessary), or you’re a web developer who is developing a website for a client and want to add charting or mapping capabilities to it, Single website license will do. The license is also good if your site spans several physical servers or sub-domains.
+    If you have a public website (no signup is necessary), or you’re a web developer who is developing a website for a client and want to add charting or mapping capabilities to it, Single website license will do. The license is also good if your site spans several physical servers or sub-domains.
 
  
 ### Multiple websites license
 
-This license type is good if you have several public websites that you want to add our libraries to. By acquiring Multiple websites license you will avoid the need to purchase a Single website license for each of your sites separately.
-It’s also very convenient license type for web developers who want to use amCharts stuff in multiple projects for their clients. No additional licenses will need to be acquired for your clients. However, this license does not give right to redistribute a standalone version of the libraries OR bundle them as part of the redistributable software package such as CMS.
+    This license type is good if you have several public websites that you want to add our libraries to. By acquiring Multiple websites license you will avoid the need to purchase a Single website license for each of your sites separately. It’s also very convenient license type for web developers who want to use amCharts stuff in multiple projects for their clients. No additional licenses will need to be acquired for your clients. However, this license does not give right to redistribute a standalone version of the libraries OR bundle them as part of the redistributable software package such as CMS.
 
  
 ### OEM SaaS license
 
-The ultimate in licenses. In additional to allowing you to freely use the library in all websites that are owned or developed by you, it also gives the right to redistribute them as part of other software such as CMS, BI or Intranet applications. It is also the only license type that includes full source code for the product it was purchased for.
+    The ultimate in licenses. In additional to allowing you to freely use the library in all websites that are owned or developed by you, it also gives the right to redistribute them as part of other software such as CMS, BI or Intranet applications. It is also the only license type that includes full source code for the product it was purchased for. One thing to note about SaaS (Software as a Service). If you’re not certain whether your website is SaaS or not, use this rule of thumb: if your users need a subscription (paid ir free) to access parts of the site that relies on our libraries, we consider it an SaaS scenario. If you’re still not sure which license type to choose, please contact us – we’ll help you to figure that out.
 
-One thing to note about SaaS (Software as a Service). If you’re not certain whether your website is SaaS or not, use this rule of thumb: if your users need a subscription (paid ir free) to access parts of the site that relies on our libraries, we consider it an SaaS scenario.
-
-If you’re still not sure which license type to choose, please contact us – we’ll help you to figure that out.
+---
 
 [amcharts_home]: http://www.amcharts.com "amcharts_home"
 [amcharts_store]: http://www.amcharts.com "amcharts_store"
