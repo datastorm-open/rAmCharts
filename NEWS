@@ -5,3 +5,5 @@ rAmCharts 1.1
   * rename renderAmChart -> renderAmCharts
   * rename amChartOutput -> amChartsOutput
   * add listeners on legend
+  * new function 'runShinyExamples'
+  * access the documentation with the functions api() or api(class = [className])

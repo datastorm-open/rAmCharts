@@ -8,11 +8,14 @@ Since it is still in developpment, some functionnalities might have an unexpecte
 Run the following code lines to install ***rAmCharts***:
 
 ```{r, eval = FALSE}
-if ( require(devtools) ) {
+if (require(devtools)) {
   install.packages("devtools"")
-} else{}
+} else {}
+
 devtools::install_github("dataKnowledge/rAmCharts")
 ```
+
+---
 
 ## For examples, please refer to <http://dataknowledge.github.io/rAmCharts/>
 
