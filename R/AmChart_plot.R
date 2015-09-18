@@ -31,8 +31,8 @@ setMethod(f = "plot", signature = "AmChart",
             
             if (length(x@subChartProperties)) {
               jsFile <- "amDrillChart"
-              data <- list( main = rlist::list.remove( listProperties(x), "subChartProperties" ) ,
-                            subProperties = x@subChartProperties, background = background )
+              data <- list(main = rlist::list.remove(listProperties(x), "subChartProperties") ,
+                            subProperties = x@subChartProperties, background = background)
             } else {
               jsFile <- switch(x@type,
                                "funnel" = "amFunnelChart",
@@ -47,12 +47,35 @@ setMethod(f = "plot", signature = "AmChart",
               data <- list(chartData = listProperties(x), background = background)
             }
             
-            htmlwidgets::createWidget(
+            widget <- htmlwidgets::createWidget(
               name = eval(jsFile),
               data,
               width = width,
               height = height,
               package = 'rAmCharts'
             )
+            
+            
+            if (exists("chartData", where = data) && exists("export", where = data$chartData) && data$chartData$export$enabled) {
+              export_dep <- htmltools::htmlDependency(
+                name = "amcharts_plugins_export",
+                version = "3",
+                src = c(file = system.file("htmlwidgets/lib/amcharts/plugins/export", package = "rAmCharts")),
+                stylesheet = "export.css",
+                script = c("export.min.js", "libs/blob.js/blob.js", "libs/fabric.js/fabric.min.js",
+                           "libs/FileSaver.js/FileSaver.min.js", "libs/jszip/jszip.min.js",
+                           "libs/pdfmake/pdfmake.min.js", "libs/pdfmake/vfs_fonts.js",
+                           "libs/xlsx/xlsx.min.js")
+              )
+              
+              if (length(widget$dependencies) == 0) {
+                widget$dependencies = list()
+              } else {}
+              
+              widget$dependencies[[length(widget$dependencies)+1]] <- export_dep
+              
+            } else {}
+            
+            widget
           })
 
