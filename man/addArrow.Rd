@@ -28,7 +28,7 @@ Setter
 \item \code{AmChart}: 
 }}
 \examples{
-addArrow(.Object = amChart(), alpha = 1)
+print(addArrow(.Object = amAngularGaugeChart(), alpha = 1))
 }
 \seealso{
 \code{\linkS4class{AmChart}} S4 class

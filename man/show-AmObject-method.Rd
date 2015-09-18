@@ -14,7 +14,12 @@
 Visualize with show
 }
 \examples{
-show(amSerialChart())
+pipeR::pipeline(
+  rAmCharts::amPieChart(valueField = "value", titleField = "key", creditsPosition = "top-right",
+                        backgroundColor = "#7870E8"),
+  rAmCharts::setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
+  rAmCharts::setExport(position = "bottom-left")
+)
 }
 \seealso{
 Other Visualizations: \code{\link{print,AmObject-method}}

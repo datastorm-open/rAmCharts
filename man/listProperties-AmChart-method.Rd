@@ -17,6 +17,6 @@ This method lists attributes of an AmChart to fit the API
 For certain attributes we do not verify if they are NULL, see constructor.
 }
 \examples{
-amChart(test = 1)
+print(amChart(test = 1))
 }
 
