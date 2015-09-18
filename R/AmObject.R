@@ -30,7 +30,9 @@ setClass(
 setMethod(f = "show", signature = "AmObject",
           definition = function(object)
           {
-            rAmCharts::plot(object)
+            cat("~", class(object),"~\n")
+            print(listProperties(object))
+            # plot(object)
           })
 
 #' @title Visualize with print
