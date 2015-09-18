@@ -41,8 +41,8 @@ dependencies:
     script:
       - blob.js/blob.js
       - fabric.js/fabric.min.js
-      - FileSaver.js/FileSaver.js
-      - jszip/jszip.js
+      - FileSaver.js/FileSaver.min.js
+      - jszip/jszip.min.js
       - pdfmake/pdfmake.min.js
       - pdfmake/vfs_fonts.js
-      - xlsx/xlsx.js
+      - xlsx/xlsx.min.js

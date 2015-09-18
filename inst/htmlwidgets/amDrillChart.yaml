@@ -42,12 +42,17 @@ dependencies:
     src: htmlwidgets/lib/amcharts/plugins/export
     script:
       - export.min.js
-      - /libs/blob.js/blob.js
-      - /libs/fabric.js/fabric.min.js
-      - /libs/FileSaver.js/FileSaver.js
-      - /libs/jszip/jszip.js
-      - /libs/pdfmake/pdfmake.min.js
-      - /libs/pdfmake/vfs_fonts.js
-      - /libs/xlsx/xlsx.js
     stylesheet:
       - export.css
+  
+  - name: amcharts_plugins_export_libs
+    version: 3
+    src: htmlwidgets/lib/amcharts/plugins/export/libs
+    script:
+      - blob.js/blob.js
+      - fabric.js/fabric.min.js
+      - FileSaver.js/FileSaver.min.js
+      - jszip/jszip.min.js
+      - pdfmake/pdfmake.min.js
+      - pdfmake/vfs_fonts.js
+      - xlsx/xlsx.min.js

@@ -25,18 +25,18 @@ dependencies:
     version: 3
     src: htmlwidgets/lib/amcharts/plugins/export
     script:
-    - export.min.js
+      - export.min.js
     stylesheet:
-    - export.css
-
+      - export.css
+  
   - name: amcharts_plugins_export_libs
     version: 3
     src: htmlwidgets/lib/amcharts/plugins/export/libs
     script:
-    - blob.js/blob.js
-    - fabric.js/fabric.min.js
-    - FileSaver.js/FileSaver.js
-    - jszip/jszip.js
-    - pdfmake/pdfmake.min.js
-    - pdfmake/vfs_fonts.js
-    - xlsx/xlsx.js
+      - blob.js/blob.js
+      - fabric.js/fabric.min.js
+      - FileSaver.js/FileSaver.min.js
+      - jszip/jszip.min.js
+      - pdfmake/pdfmake.min.js
+      - pdfmake/vfs_fonts.js
+      - xlsx/xlsx.min.js
