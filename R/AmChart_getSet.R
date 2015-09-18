@@ -111,7 +111,7 @@ setMethod(f = "setArrows", signature = c("AmChart"),
 #' @seealso \code{\linkS4class{GaugeArrow}} S4 class
 #' @rdname addArrow
 #' @examples
-#' addArrow(.Object = amChart(), alpha = 1)
+#' print(addArrow(.Object = amAngularGaugeChart(), alpha = 1))
 #' @export
 setGeneric(name = "addArrow",
             def = function(.Object, arrow = NULL, ...) { standardGeneric("addArrow") } )
