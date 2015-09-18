@@ -314,7 +314,7 @@ setMethod(f = "initialize", signature = "AmChart",
 #' @param .Object  \code{\linkS4class{AmChart}}
 #' @details For certain attributes we do not verify if they are NULL, see constructor.
 #' @examples
-#' amChart(test = 1)
+#' print(amChart(test = 1))
 setMethod(f = "listProperties", signature = "AmChart",
   definition = function(.Object)
   {
