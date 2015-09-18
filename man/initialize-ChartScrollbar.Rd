@@ -9,12 +9,9 @@
 \alias{setUpdateOnReleaseOnly,ChartScrollbar,logical-method}
 \title{Initialize a ChartScrollbar}
 \usage{
-\S4method{initialize}{ChartScrollbar}(.Object, graph,
-  pathToImages = "http://www.amcharts.com/lib/3/images/", updateOnReleaseOnly,
-  ...)
+\S4method{initialize}{ChartScrollbar}(.Object, graph, updateOnReleaseOnly, ...)
 
-chartScrollbar(graph, pathToImages = "http://www.amcharts.com/lib/3/images/",
-  updateOnReleaseOnly, ...)
+chartScrollbar(graph, updateOnReleaseOnly = FALSE, ...)
 
 \S4method{setGraph}{ChartScrollbar}(.Object, graph = NULL, ...)
 
@@ -28,8 +25,6 @@ setUpdateOnReleaseOnly(.Object, updateOnReleaseOnly)
 
 \item{graph}{\linkS4class{AmGraph}.
 Specifies which graph will be displayed in the scrollbar.}
-
-\item{pathToImages}{\code{character} URL to API images (for buttons)}
 
 \item{updateOnReleaseOnly}{\code{logical}.
 Specifies if the chart should be updated while dragging/resizing the scrollbar

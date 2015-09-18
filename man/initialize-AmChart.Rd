@@ -16,13 +16,12 @@
 \S4method{initialize}{AmChart}(.Object, allLabels, arrows, axes, balloon,
   categoryAxis, categoryField, chartCursor, chartScrollbar, creditsPosition,
   dataProvider, graphs, graph, guides, legend, segmentsField, theme, titles,
-  trendLines, type, valueAxes, valueAxis,
-  pathToImages = "http://www.amcharts.com/lib/3/images/", ...)
+  trendLines, type, valueAxes, valueAxis, ...)
 
 amChart(allLabels, arrows, axes, balloon, categoryAxis, categoryField,
   chartCursor, chartScrollbar, creditsPosition, dataProvider, graph, graphs,
   guides, legend, segmentsField, theme, titles, trendLines, type, valueAxes,
-  valueAxis, pathToImages = "http://www.amcharts.com/lib/3/images/", ...)
+  valueAxis, ...)
 
 amAngularGaugeChart(arrows, titles, axes, ...)
 
@@ -116,8 +115,6 @@ so if you need only one value axis, you don't need to create it.}
 Set it's type to "date" if your data is date or time based.
 In case of Value axis for a Gantt chart.
 Set it's type to "date" if your data is date or time based.}
-
-\item{pathToImages}{\code{character}}
 
 \item{...}{Other properties of \linkS4class{AmChart}.
 See \url{http://docs.amcharts.com/3/javascriptstockchart/AmChart}.}
