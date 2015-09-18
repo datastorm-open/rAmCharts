@@ -19,14 +19,18 @@ setClass(
 #' @title Visualize with show
 #' @param object \linkS4class{AmObject}
 #' @examples
-#' show(amSerialChart())
+#' pipeR::pipeline(
+#'   rAmCharts::amPieChart(valueField = "value", titleField = "key", creditsPosition = "top-right",
+#'                         backgroundColor = "#7870E8"),
+#'   rAmCharts::setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
+#'   rAmCharts::setExport(position = "bottom-left")
+#' )
 #' @family Visualizations
 #' @export
 setMethod(f = "show", signature = "AmObject",
           definition = function(object)
           {
-            cat("~", class(object),"~\n")
-            print(listProperties(object))
+            rAmCharts::plot(object)
           })
 
 #' @title Visualize with print

@@ -83,7 +83,7 @@ amHist <- function(x, main = "Histogram",
       setCategoryAxis(title = xlab),
       addTitle(text = main, size = 18),
       setExport(position = "top-right"),
-      setChartCursor(), plot()
+      setChartCursor()
     )
   }
 }
