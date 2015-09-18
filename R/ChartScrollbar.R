@@ -30,7 +30,6 @@ setClass( Class = "ChartScrollbar", contains = "AmObject",
 #' @param .Object \linkS4class{ChartScrollbar}.
 #' @param graph \linkS4class{AmGraph}.
 #' Specifies which graph will be displayed in the scrollbar.
-#' @param pathToImages \code{character} URL to API images (for buttons)
 #' @param updateOnReleaseOnly \code{logical}.
 #' Specifies if the chart should be updated while dragging/resizing the scrollbar
 #' or only at the moment when user releases mouse button.
@@ -44,7 +43,6 @@ setClass( Class = "ChartScrollbar", contains = "AmObject",
 setMethod(f = "initialize", signature = "ChartScrollbar",
           definition = function(.Object,
                                 graph,
-                                pathToImages = "http://www.amcharts.com/lib/3/images/",
                                 updateOnReleaseOnly, ...)
           { 
             if (!missing(graph)) {
@@ -53,7 +51,7 @@ setMethod(f = "initialize", signature = "ChartScrollbar",
             if(!missing(updateOnReleaseOnly)){
               .Object@updateOnReleaseOnly <- updateOnReleaseOnly
             } else {}
-            .Object <- setProperties(.Object, pathToImages = pathToImages,...)
+            .Object <- setProperties(.Object,...)
             validObject(.Object)
             return(.Object)
           })
@@ -64,15 +62,10 @@ setMethod(f = "initialize", signature = "ChartScrollbar",
 #' chartScrollbar()
 #' chartScrollbar(updateOnReleaseOnly = TRUE)
 #' @export
-chartScrollbar <- function(graph,
-                           pathToImages = "http://www.amcharts.com/lib/3/images/",
-                           updateOnReleaseOnly,...){
-  .Object <- new("ChartScrollbar", pathToImages = pathToImages)
+chartScrollbar <- function(graph, updateOnReleaseOnly = FALSE,...){
+  .Object <- new("ChartScrollbar", updateOnReleaseOnly = updateOnReleaseOnly)
   if (!missing(graph)) {
     .Object <- setGraph(.Object, graph)
-  } else {}
-  if (!missing(updateOnReleaseOnly)) {
-    .Object@updateOnReleaseOnly <- updateOnReleaseOnly
   } else {}
   .Object <- setProperties(.Object, ...)
   validObject(.Object)
