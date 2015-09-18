@@ -8,11 +8,10 @@ NULL
 amChart <- function(allLabels, arrows, axes, balloon, categoryAxis, categoryField,
                     chartCursor, chartScrollbar, creditsPosition, dataProvider,
                     graph, graphs, guides, legend, segmentsField, theme, titles,
-                    trendLines, type, valueAxes, valueAxis,
-                    pathToImages = "http://www.amcharts.com/lib/3/images/",...)
+                    trendLines, type, valueAxes, valueAxis,...)
 {
   # "http://www.amcharts.com/lib/3/images/"
-  object <- new(Class="AmChart", pathToImages = pathToImages)
+  object <- new(Class="AmChart")
   if (!missing(allLabels)) {
     object <-setAllLabels( object, allLabels )
   } else {}

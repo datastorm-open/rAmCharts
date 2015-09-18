@@ -226,7 +226,6 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' Set it's type to "date" if your data is date or time based.
 #' In case of Value axis for a Gantt chart.
 #' Set it's type to "date" if your data is date or time based.
-#' @param pathToImages \code{character}
 #' @param ... Other properties of \linkS4class{AmChart}.
 #' See \url{http://docs.amcharts.com/3/javascriptstockchart/AmChart}.
 #' @return Returns an object of class \linkS4class{AmChart} with arguments.
@@ -241,8 +240,7 @@ setMethod(f = "initialize", signature = "AmChart",
                                 categoryField, chartCursor, chartScrollbar,
                                 creditsPosition, dataProvider, graphs, graph,
                                 guides, legend, segmentsField, theme,
-                                titles, trendLines, type, valueAxes, valueAxis,
-                                pathToImages = "http://www.amcharts.com/lib/3/images/",...)
+                                titles, trendLines, type, valueAxes, valueAxis,...)
           {
             if (!missing(allLabels)) {
               .Object <- setAllLabels(.Object, allLabels)
@@ -307,8 +305,6 @@ setMethod(f = "initialize", signature = "AmChart",
             if (!missing(valueAxis)) {
               .Object <- setValueAxis(.Object, valueAxis)
             } else {}
-            .Object <- setProperties(.Object, pathToImages = pathToImages, ...)
-            #, path = "http://www.amcharts.com/lib/3/images/"))
             validObject(.Object)
             return(.Object)
           })
