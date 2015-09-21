@@ -3,24 +3,20 @@ NULL
 
 #' @title AmLegend class
 #' @author DataKnowledge
-#' 
+#' @description Creates the legend for the chart, automatically adapts the color settings of the graphs.
+#' @details Run \code{api(AmLegend)} for more information and all avalaible properties.
 #' @slot useGraphSettings \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
-#' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
-#' 
 #' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
-#' 
 #' @slot value \code{numeric}.
-#' 
 #' @export
 setClass(Class = "AmLegend", contains = "AmObject",
-          representation = representation(useGraphSettings = "logical")
-)
+          representation = representation(useGraphSettings = "logical"))
 
 #' @title Initialize
 #' @param .Object \linkS4class{AmLegend}.

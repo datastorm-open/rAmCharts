@@ -5,16 +5,17 @@
 \alias{Title-class}
 \title{Title class}
 \description{
-Title class
+Creates a title on above the chart, multiple can be assigned.
+}
+\details{
+Run \code{api("Title")} for more information and all avalaible properties.
 }
 \section{Slots}{
 
 \describe{
-\item{\code{text}}{\code{character}.
-Text of a title.}
+\item{\code{text}}{\code{character}. Text of a title.}
 
-\item{\code{size}}{\code{numeric}.
-Text size of a title.}
+\item{\code{size}}{\code{numeric}. Text size of a title.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.

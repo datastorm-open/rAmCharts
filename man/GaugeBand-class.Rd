@@ -5,23 +5,24 @@
 \alias{GaugeBand-class}
 \title{GaugeBand class}
 \description{
-GaugeBand class
+Creates a band for a specified value range on the GaugeAxis.
+Multiple bands can be assigned to a single GaugeAxis.
+}
+\details{
+Run \code{api("GaugeBand")} for more information and all avalaible properties.
 }
 \section{Slots}{
 
 \describe{
-\item{\code{id}}{\code{character}}
+\item{\code{id}}{\code{character}. Unique id of a band.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.
 See examples for details.}
 
-\item{\code{otherProperties}}{\code{list},
-containing other avalaible properties non coded in the package yet.}
+\item{\code{otherProperties}}{\code{list}, containing other avalaible properties}
 
-\item{\code{value}}{\code{numeric}.
-
-Unique id of a band..}
+\item{\code{value}}{\code{numeric}.}
 }}
 \author{
 DataKnowledge

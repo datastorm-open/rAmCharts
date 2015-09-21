@@ -4,7 +4,7 @@
 \name{initialize,ChartScrollbar-method}
 \alias{chartScrollbar}
 \alias{initialize,ChartScrollbar-method}
-\alias{setGraph,ChartScrollbar-method}
+\alias{setGraph,ChartScrollbar,ANY-method}
 \alias{setUpdateOnReleaseOnly}
 \alias{setUpdateOnReleaseOnly,ChartScrollbar,logical-method}
 \title{Initialize a ChartScrollbar}
@@ -13,7 +13,7 @@
 
 chartScrollbar(graph, updateOnReleaseOnly = FALSE, ...)
 
-\S4method{setGraph}{ChartScrollbar}(.Object, graph = NULL, ...)
+\S4method{setGraph}{ChartScrollbar,ANY}(.Object, graph = NULL, ...)
 
 setUpdateOnReleaseOnly(.Object, updateOnReleaseOnly)
 

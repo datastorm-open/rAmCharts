@@ -5,7 +5,11 @@
 \alias{CategoryAxis-class}
 \title{CategoryAxis class}
 \description{
-CategoryAxis class
+Children class of AxisBase.
+Gets automatically populated if none has been specified.
+}
+\details{
+Run \code{api("CategoryAxis")} for more information and all avalaible properties.
 }
 \section{Slots}{
 

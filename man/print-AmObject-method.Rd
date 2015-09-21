@@ -5,10 +5,12 @@
 \alias{print,AmObject-method}
 \title{Visualize with print}
 \usage{
-\S4method{print}{AmObject}(x, ...)
+\S4method{print}{AmObject}(x, withDetail = TRUE, ...)
 }
 \arguments{
-\item{x}{\linkS4class{AmChart}}
+\item{x}{\linkS4class{AmChart}.}
+
+\item{withDetail}{\code{logical}. Should the detail be printed ?}
 
 \item{...}{Other properties.}
 }
@@ -16,7 +18,8 @@
 Visualize with print
 }
 \examples{
-print(new("AmChart", categoryField = "variables"))
+print(new("AmChart", categoryField = "variables", type = "serial"))
+print(new("AmChart", categoryField = "variables", type = "serial"), withDetail = FALSE)
 }
 \seealso{
 Other Visualizations: \code{\link{show,AmObject-method}}

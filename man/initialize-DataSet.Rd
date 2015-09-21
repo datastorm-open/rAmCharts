@@ -8,7 +8,7 @@
 \alias{addStockEvent,DataSet-method}
 \alias{dataSet}
 \alias{initialize,DataSet-method}
-\alias{setDataProvider,DataSet,data.frame-method}
+\alias{setDataProvider,DataSet,data.frame,ANY-method}
 \alias{setFieldMappings}
 \alias{setFieldMappings,DataSet,list-method}
 \alias{setStockEvents}
@@ -20,7 +20,7 @@
 
 dataSet(compared = FALSE, dataProvider, fieldMappings, stockEvents, ...)
 
-\S4method{setDataProvider}{DataSet,data.frame}(.Object, dataProvider,
+\S4method{setDataProvider}{DataSet,data.frame,ANY}(.Object, dataProvider,
   keepNA = TRUE)
 
 setFieldMappings(.Object, fieldMappings)

@@ -39,7 +39,7 @@ Initialize a GaugeArrow
 }}
 \examples{
 new("GaugeArrow")
-gaugeArrow()
+gaugeArrow(value = 10)
 setAxis(.Object = gaugeArrow(), axis = gaugeAxis())
 }
 

@@ -5,7 +5,13 @@
 \alias{ValueAxis-class}
 \title{ValueAxis class}
 \description{
-ValueAxis class
+Extension for ValueAxis to create an axis for amSerialChart, amRadarChart,
+amXYChart charts, multiple can be assigned.
+Gets automatically populated, one for amSerialChart and two for amXYChart charts,
+if none has been specified.
+}
+\details{
+Run \code{api("ValueAxis")} for more information and all avalaible properties.
 }
 \section{Slots}{
 

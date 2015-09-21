@@ -5,7 +5,12 @@
 \alias{AmBalloon-class}
 \title{AmBalloon class}
 \description{
-AmBalloon class
+Creates the balloons (tooltips) of the chart.
+It follows the mouse cursor when you roll-over the data items.
+The framework generates the instances automatically you only need to adjust the appearance to your needs.
+}
+\details{
+Run \code{api("AmBalloon")} for more information and all avalaible properties.
 }
 \section{Slots}{
 

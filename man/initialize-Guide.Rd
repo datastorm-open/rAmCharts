@@ -7,7 +7,7 @@
 \alias{initialize,Guide-method}
 \alias{setFillAlpha}
 \alias{setFillAlpha,Guide,numeric-method}
-\alias{setValueAxis,Guide-method}
+\alias{setValueAxis,Guide,ANY-method}
 \title{Initialize a Guide}
 \usage{
 \S4method{initialize}{Guide}(.Object, fillAlpha, valueAxis, value, ...)
@@ -18,7 +18,7 @@ setFillAlpha(.Object, fillAlpha)
 
 \S4method{setFillAlpha}{Guide,numeric}(.Object, fillAlpha)
 
-\S4method{setValueAxis}{Guide}(.Object, valueAxis = NULL, ...)
+\S4method{setValueAxis}{Guide,ANY}(.Object, valueAxis = NULL, ...)
 
 \S4method{addValueAxis}{Guide}(.Object, valueAxis = NULL, ...)
 }

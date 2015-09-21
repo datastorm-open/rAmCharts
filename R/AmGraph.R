@@ -3,35 +3,24 @@ NULL
 
 #' @title AmGraph class
 #' @author DataKnowledge
-#' @description This class represents data for a serial chart
-#' 
+#' @description Creates the visualization of the data in following types:
+#' line, column, step line, smoothed line, olhc and candlestick.
+#' @details Run \code{api("AmGraph")} for more details and all avalaible properties.
 #' @slot balloonText  \code{character}.
 #' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
 #' or any other field name from your data provider. HTML tags can also be used.
-#' 
 #' @slot title \code{character}. Graph title.
-#' 
 #' @slot type \code{character}.
 #' Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
 #' XY and Radar charts can only display "line" otherArguments graphs.
-#' 
 #' @slot valueField \code{character}.
 #' Name of the value field in your dataProvider.
-#' 
 #' @slot listeners \code{"list"} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string. See examples for details.
-#' 
+#' The list must be named as in the official API. Each element must a character string.
+#' See examples for details.
 #' @slot otherProperties \code{"list"},
 #' containing other avalaible properties non coded in the package yet
-#' 
 #' @slot value \code{numeric}.
-#' 
-#' @examples
-#' \dontrun{
-#' new("AmGraph")
-#' unclass(new("AmGraph"))
-#' }
-#' @rdname AmGraph-class
 #' @export
 setClass (Class = "AmGraph", contains = "AmObject",
   representation = representation(

@@ -39,6 +39,9 @@ Collate:
     'TrendLine.R'
     'Title.R'
     'Label.R'
+    'GaugeBand.R'
+    'GaugeAxis.R'
+    'GaugeArrow.R'
     'ChartScrollbar.R'
     'ChartCursor.R'
     'CategoryAxis.R'
@@ -52,9 +55,6 @@ Collate:
     'AmStockChart.R'
     'StockEvent.R'
     'DataSet.R'
-    'GaugeBand.R'
-    'GaugeAxis.R'
-    'GaugeArrow.R'
     'PeriodSelector.R'
     'amHist.R'
     'shinyExamples.R'
@@ -66,7 +66,8 @@ Imports:
     rlist,
     data.table,
     graphics,
-    utils
+    utils,
 Suggests:
     pipeR,
-    shiny
+    shiny,
+    testthat

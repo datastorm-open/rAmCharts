@@ -5,21 +5,22 @@
 \alias{GaugeAxis-class}
 \title{GaugeAxis class}
 \description{
-GaugeAxis class
+Creates an axis for AmAngularGaugeChart, multiple can be assigned.
+}
+\details{
+Run \code{api("GaugeAxis")} for more information and all avalaible properties.
 }
 \section{Slots}{
 
 \describe{
-\item{\code{bands}}{\code{list}
-containing properties of one or several \code{\linkS4class{GaugeBand}} objects.
+\item{\code{bands}}{\code{list} containing properties of one or several \linkS4class{GaugeBand} objects.
 Bands are used to draw color fills between specified values.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.
 See examples for details.}
 
-\item{\code{otherProperties}}{\code{list},
-containing other avalaible properties non coded in the package yet.}
+\item{\code{otherProperties}}{\code{list}, containing other avalaible properties.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

@@ -4,18 +4,17 @@ NULL
 #' @title GaugeBand class
 #' @author DataKnowledge
 #' 
-#' @slot id \code{character}
+#' @description Creates a band for a specified value range on the GaugeAxis.
+#' Multiple bands can be assigned to a single GaugeAxis.
+#' @details Run \code{api("GaugeBand")} for more information and all avalaible properties.
 #' 
+#' @slot id \code{character}. Unique id of a band.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
-#' 
-#' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the package yet.
-#' 
+#' @slot otherProperties \code{list}, containing other avalaible properties
 #' @slot value \code{numeric}.
 #' 
-#' Unique id of a band..
 #' @export
 setClass(Class = "GaugeBand", contains = "AmObject",
          representation = representation( id = "character" )

@@ -1,150 +1,134 @@
-#' @include sharedGenerics.R CategoryAxis.R AmGraph.R ValueAxis.R ChartCursor.R ChartScrollbar.R AmLegend.R TrendLine.R Title.R Label.R Guide.R
+#' @include sharedGenerics.R CategoryAxis.R AmGraph.R ValueAxis.R ChartCursor.R ChartScrollbar.R AmLegend.R TrendLine.R Title.R Label.R GaugeArrow.R Guide.R
 NULL
 
 # > @allLabels : setters ####
 
-#' @title Setter for allLabels
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param allLabels
-#' object of class \code{list}.
-#' @param ... Other properties.
-#' @return
-#' The updater object of class \code{\linkS4class{AmChart}}
-#' @examples
-#' allLabels <- list(label(text = "balloonText"), label(text = "column"))
-#' setAllLabels(.Object = amChart(), allLabels = allLabels)
-#' amChart(allLabels = allLabels)
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname setAllLabels
-#' @docType methods
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setAllLabels",
-            def = function(.Object, allLabels, ...) { standardGeneric("setAllLabels") } )
-#' @describeIn setAllLabels
+           def = function(.Object, allLabels) {standardGeneric("setAllLabels")})
+#' @examples
+#' allLabels <- list(label(text = "balloonText"), label(text = "column"))
+#' print(setAllLabels(.Object = amSerialChart(), allLabels = allLabels))
+#' # equivalent to:
+#' print(amSerialChart(allLabels = allLabels))
+#' # ---
+#' @rdname initialize-AmChart
 setMethod(f = "setAllLabels", signature = c("AmChart", "list"),
           definition = function(.Object, allLabels)
           {
             rightClassElements <- prod(sapply(allLabels, function(element) {is(element, "Label")}))
             if (!rightClassElements) {
               stop("[setAllLabels]: each element of allLabels must be of class Label")
-            } else{}
+            } else {}
             .Object@allLabels <- lapply(allLabels, listProperties)
             validObject(.Object)
             return(.Object)
           })
 
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}
-#' @param label
-#' Object of class \code{\linkS4class{Label}}.
-#' @param ...
-#' properties of class \code{\linkS4class{Label}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @param label (optional) \linkS4class{Label}.
+#' Argument of method \code{addLabel}.
 #' @examples
-#' addLabel(.Object = amChart(), text = "balloonText")
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{Label}} S4 class
-#' @rdname addLabel
+#' print(addLabel(.Object = amSerialChart(), text = "balloonText"))
+#' # equivalent to:
+#' label_obj <- label(text = "balloonText")
+#' print(addLabel(.Object = amSerialChart(), label = label_obj))
+#' \dontrun{
+#' # Error use cases:
+#'  addLabel(.Object = amChart())
+#'  addLabel(.Object = amChart(), label = "another class")
+#' }
+#' # ---
+#' @seealso \linkS4class{Label}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addLabel",
-            def = function(.Object, label = NULL, ...) { standardGeneric("addLabel") } )
-#' @describeIn addLabel
-setMethod(f = "addLabel", signature = c("AmChart"),
+            def = function(.Object, label = NULL, ...) {standardGeneric("addLabel")})
+setClassUnion(name = "LabelOrMissing", members = c("Label", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "addLabel", signature = c("AmChart", "LabelOrMissing"),
           definition = function(.Object, label = NULL, ...)
           {
-            if (is.null(label)) {
+            if (is.null(label) && !missing(...)) {
               label <- label(...)
+            } else if (is.null(label) && missing(...)) {
+              stop("You must either provide argument label or give its properties")
             } else {}
+            
             .Object@allLabels <- rlist::list.append(.Object@allLabels, listProperties(label))
             validObject(.Object)
             return(.Object)
           })
 
-# > @arrows : setters ####
-
-#' @title Setter for arrows
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param arrows
-#' (optionnal) list of \code{\linkS4class{GaugeArrow}}.
 #' @examples
-#' library(pipeR)
-#' # Setter for arrows
-#' amChart() %>>% setArrows()
-#' arrows <- list( gaugeArrow(value = 130), gaugeArrow(value = 150) )
-#' amChart() %>>% setArrows(arrows)
-#' amChart(arrows = arrows)
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname setArrows
+#' arrows_ls <- list(gaugeArrow(value = 130), gaugeArrow(value = 150) )
+#' print(setArrows(.Object = amAngularGaugeChart(), arrows = arrows_ls))
+#' # equivalent to:
+#' print(amAngularGaugeChart(arrows = arrows_ls))
+#' # ---
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setArrows",
             def = function(.Object, arrows = NULL) { standardGeneric("setArrows") } )
-#' @describeIn setArrows
+#' @rdname initialize-AmChart
 setMethod(f = "setArrows", signature = c("AmChart"),
           definition = function(.Object, arrows = NULL)
           {
-            if (is.null(arrows)) {
-              .Object@arrows <- list(listProperties(gaugeArrow()))
-            } else {
-              rightClassElements <- prod(sapply(arrows, function(element) {is(element, "GaugeArrow")}))
-              if (!rightClassElements) {
-                stop("[setArrows]: each element of arrows must be of class GaugeArrow")
-              } else {}
-              .Object@arrows <- lapply(arrows, listProperties)
-            }
+            rightClassElements <- prod(sapply(arrows, function(element) {is(element, "GaugeArrow")}))
+            if (!rightClassElements) {
+              stop("[setArrows]: each element of arrows must be of class GaugeArrow")
+            } else {}
+            .Object@arrows <- lapply(arrows, listProperties)
+            
             validObject(.Object)
             return(.Object)
           })
 
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}
-#' @param arrow
-#' (optional) Object of class \code{\linkS4class{GaugeArrow}}.
-#' @param ...
-#' properties of \code{\linkS4class{GaugeArrow}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
-
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{GaugeArrow}} S4 class
-#' @rdname addArrow
+#' @param arrow (optional) \linkS4class{GaugeArrow}.
+#' Argument of method \code{addArrow}.
+#' @seealso \linkS4class{GaugeArrow}.
 #' @examples
-#' print(addArrow(.Object = amAngularGaugeChart(), alpha = 1))
+#' print(addArrow(.Object = amAngularGaugeChart(), value = 10))
+#' # equivalent to:
+#' gaugeArrow_obj <- gaugeArrow(value = 10)
+#' print(addArrow(.Object = amAngularGaugeChart(), arrow = gaugeArrow_obj))
+#' \dontrun{
+#' # Error use cases: 
+#' addArrow(.Object = amAngularGaugeChart())
+#' addArrow(.Object = amAngularGaugeChart(), arrow = "error")
+#' }
+#' # ---
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addArrow",
             def = function(.Object, arrow = NULL, ...) { standardGeneric("addArrow") } )
-#' @describeIn addArrow
-setMethod(f = "addArrow", signature = c("AmChart"),
+setClassUnion(name = "GaugeArrowOrMissing", members = c("GaugeArrow", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "addArrow", signature = c("AmChart", "GaugeArrowOrMissing"),
            definition = function(.Object, arrow = NULL, ...)
            {
              if (is.null(arrow) && !missing(...)) {
                arrow <- gaugeArrow(...)
+             } else if (is.null(arrow) && missing(...)) {
+               stop("You must either provide argument arrow or give its properties")
              } else {}
+             
              .Object@arrows <- rlist::list.append(.Object@arrows, listProperties(arrow))
              validObject(.Object)
              return(.Object)
            })
 
-# > @axes : setters ####
-
-#' @title Setter for axes
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}
-#' @param axes
-#' object of class \code{\linkS4class{GaugeAxis}}
-#' @param ... Other properties
 #' @examples
-#' axes <- list(gaugeAxis(value = 130), gaugeAxis(value = 150))
-#' setAxes(.Object = amChart(), axes = axes)
-#' amChart(axes = axes)
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname setAxes
+#' axes_ls <- list(gaugeAxis(value = 130), gaugeAxis(value = 150))
+#' setAxes(.Object = amAngularGaugeChart(), axes = axes_ls)
+#' # equivalent to:
+#' amChart(axes = axes_ls)
+#' # ---
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setAxes",
             def = function(.Object, axes, ...) {standardGeneric("setAxes")})
-#' @describeIn setAxes
+#' @rdname initialize-AmChart
 setMethod(f = "setAxes", signature = c("AmChart", "list"),
           definition = function(.Object, axes)
           {
@@ -157,118 +141,112 @@ setMethod(f = "setAxes", signature = c("AmChart", "list"),
             return(.Object)
           })
 
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}
-#' @param axe
-#' object of class \code{\linkS4class{GaugeAxis}}.
-#' @param ...
-#' properties of \code{\linkS4class{GaugeAxis}}
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @param axe (optional) \linkS4class{GaugeAxis}.
+#' Argument of method \code{addAxe}.
 #' @examples
-#' addAxe(.Object = amChart(), bandAlpha = 1)
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{GaugeAxis}} S4 class
-#' @rdname addAxe
+#' print(addAxe(.Object = amAngularGaugeChart(), startValue = 0, enValue = 100, valueInterval = 10))
+#' # equivalent to:
+#' gaugeAxis_obj <- gaugeAxis(startValue = 0, enValue = 100, valueInterval = 10)
+#' print(addAxe(.Object = amAngularGaugeChart(), axe = gaugeAxis_obj))
+#' \dontrun{
+#' # Error use cases: 
+#' addAxe(.Object = amAngularGaugeChart())
+#' addAxe(.Object = amAngularGaugeChart(), axe = "error")
+#' }
+#' # ---
+#' @seealso \linkS4class{GaugeAxis}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addAxe",
             def = function(.Object, axe = NULL, ...) {standardGeneric("addAxe")})
-#' @describeIn addAxe
-setMethod(f = "addAxe", signature = c("AmChart"),
+setClassUnion(name = "GaugeAxisOrMissing", members = c("GaugeAxis", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "addAxe", signature = c("AmChart", "GaugeAxisOrMissing"),
           definition = function(.Object, axe = NULL, ...)
           {
             if (is.null(axe) && !missing(...)) {
               axe <- gaugeAxis(...)
+            } else if (is.null(axe) && missing(...)) {
+              stop("You must either give 'axe' argement or its properties")
             } else {}
+            
             .Object@axes <- rlist::list.append(.Object@axes, listProperties(axe))
             validObject(.Object)
             return(.Object)
           })
 
-# > @balloon: setters ####
-
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param amBalloon
-#' object of class \code{\linkS4class{AmBalloon}}.
-#' @param ...
-#' properties of \code{\linkS4class{AmBalloon}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @param amBalloon \linkS4class{AmBalloon}, argument of method 'setBalloon'.
 #' @examples
-#' setBalloon(.Object = amChart(), adjustBorderColor = TRUE)
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{AmBalloon}} S4 class
-#' @rdname setBalloon
+#' print(setBalloon(.Object = amSerialChart(), adjustBorderColor = TRUE, fillColor = "#FFFFFF",
+#'                  color = "#000000", cornerRadius = 5))
+#' # equivalent to:
+#' amBalloon_obj <- amBalloon(adjustBorderColor = TRUE, fillColor = "#FFFFFF",
+#'                            color = "#000000", cornerRadius = 5)
+#' print(setBalloon(.Object = amSerialChart(), amBalloon = amBalloon_obj))
+#' \dontrun{
+#' # Error use cases: 
+#' setBalloon(.Object = amSerialChart())
+#' setBalloon(.Object = amSerialChart(), amBalloon = "error")
+#' }
+#' # ---
+#' @seealso \linkS4class{AmBalloon}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setBalloon",
-            def = function(.Object, amBalloon = NULL, ...) {standardGeneric("setBalloon")} )
-#' @describeIn setBalloon
-setMethod(f = "setBalloon", signature = c("AmChart"),
+            def = function(.Object, amBalloon = NULL, ...) {standardGeneric("setBalloon")})
+setClassUnion(name = "AmBalloonOrMissing", members = c("AmBalloon", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "setBalloon", signature = c("AmChart", "AmBalloonOrMissing"),
            definition = function(.Object, amBalloon = NULL, ...)
            {
-             if (is.null(amBalloon)) {
+             if (is.null(amBalloon) && !missing(...)) {
                amBalloon <- amBalloon(...)
+             } else if (is.null(amBalloon) && missing(...)) {
+               stop("You must either give argument 'amBalloon' or its properties")
              } else {}
+             
              .Object@balloon <- listProperties(amBalloon)
              validObject(.Object)
              return(.Object)
            })
 
-# > @categoryAxis: setters ####
-
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param categoryAxis
-#' object of class \code{\linkS4class{CategoryAxis}}.
-#' @param ...
-#' properties of \code{\linkS4class{CategoryAxis}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' library(pipeR)
-#' # Setter for categoryAxis
-#' amChart() %>>% setCategoryAxis(categoryAxis(gridPosition = "start"))
-#' amChart() %>>% setCategoryAxis(gridPosition = "start")
+#' print(setCategoryAxis(.Object = amSerialChart(), gridPosition = "start"))
+#' # equivalent to:
+#' categoryAxis_obj <- categoryAxis(gridPosition = "start")
+#' print(setCategoryAxis(.Object = amSerialChart(), categoryAxis = categoryAxis_obj))
 #' \dontrun{
 #' # The argument categoryAxis must be an object of class CategoryAxis
-#' amChart() %>>% setCategoryAxis(categoryAxis = "error")
+#' setCategoryAxis(.Object = amSerialChart(), categoryAxis = "error")
 #' }
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{CategoryAxis}} S4 class
-#' @rdname setCategoryAxis
+#' # ---
+#' @seealso \linkS4class{CategoryAxis}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setCategoryAxis",
             def = function(.Object, categoryAxis = NULL , ...) {standardGeneric("setCategoryAxis")} )
-#' @describeIn setCategoryAxis
+#' @rdname initialize-AmChart
 setMethod(f = "setCategoryAxis", signature = c("AmChart"),
           definition = function(.Object, categoryAxis = NULL, ...)
           {
-            if (is.null(categoryAxis)) {
+            if (is.null(categoryAxis) && !missing(...)) {
               categoryAxis <- categoryAxis(...)
+            } else if (is.null(categoryAxis) && missing(...)) {
+              stop("You must either give argument 'categoryAxis' or its properties")
             } else {}
+            
             .Object@categoryAxis <- listProperties(categoryAxis)
             validObject(.Object)
             return(.Object)
           })
 
-# > @categoryField: setters ####
-
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}
-#' @param categoryField
-#' object of class \code{category}
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' setCategoryField(.Object = amChart(), categoryField = "category")
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname setCategoryField
+#' print(setCategoryField(.Object = amSerialChart(), categoryField = "country"))
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setCategoryField",
             def = function(.Object, categoryField) {standardGeneric("setCategoryField")} )
-#' @describeIn setCategoryField
+#' @rdname initialize-AmChart
 setMethod(f = "setCategoryField", signature = c("AmChart", "character"),
           definition = function(.Object, categoryField)
           {
@@ -277,37 +255,36 @@ setMethod(f = "setCategoryField", signature = c("AmChart", "character"),
             return(.Object)
           })
 
-# > @chartCursor : setters ####
-
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param chartCursor
-#' Object of class \code{\linkS4class{ChartCursor}}.
-#' @param ...
-#' properties of \code{\linkS4class{ChartCursor}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' library(pipeR)
-#' amChart() %>>% setChartCursor(chartCursor(oneBallOnly = TRUE))
-#' 
-#' # same result
-#' amChart() %>>% setChartCursor(oneBallOnly = TRUE)
-#' object <- amChart() %>>% setChartCursor()
-#' chartCursor() %>>% class
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{ChartCursor}} S4 class
-#' @rdname setChartCursor
+#' # with default value, nor argument needed
+#' print(setChartCursor(.Object = amSerialChart()))
+#' # other example
+#' print(setChartCursor(.Object = amSerialChart(), oneBallOnly = TRUE))
+#' # equivalent to
+#' chartCursor_obj <- chartCursor(oneBallOnly = TRUE)
+#' print(setChartCursor(.Object = amSerialChart(), chartCursor = chartCursor_obj))
+#' \dontrun{
+#' Error use case:
+#' setChartCursor(.Object = amSerialChart(), chartCursor = "error")
+#' }
+#' # ---
+#' @seealso \linkS4class{ChartCursor}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setChartCursor",
-           def = function(.Object, chartCursor = NULL, ...) { standardGeneric("setChartCursor") } )
-#' @describeIn setChartCursor
-setMethod(f = "setChartCursor", signature = c("AmChart"),
+           def = function(.Object, chartCursor = NULL, ...) {standardGeneric("setChartCursor")})
+setClassUnion("ChartCursorOrMissing", c("ChartCursor", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "setChartCursor", signature = c("AmChart", "ChartCursorOrMissing"),
           definition = function(.Object, chartCursor = NULL, ...)
           {
-            if (is.null(chartCursor)) {
+            if (is.null(chartCursor) && !missing(...)) {
               chartCursor <- chartCursor(...)
+            } else if (is.null(chartCursor) && missing(...)) {
+              chartCursor <- chartCursor()
+              message("default 'chartCursor' added")
             } else {}
+            
             .Object@chartCursor <- listProperties(chartCursor)
             validObject(.Object)
             return(.Object)
@@ -315,52 +292,50 @@ setMethod(f = "setChartCursor", signature = c("AmChart"),
 
 # > @chartScrollbar : setters ####
 
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}
-#' @param chartScrollbar
-#' object of class \code{\linkS4class{ChartScrollbar}}.
-#' @param ...
-#' properties of \code{\linkS4class{ChartScrollbar}}.
 #' @examples
-#' library(pipeR)
-#' amChart() %>>% setChartScrollbar(chartScrollbar(oneBallOnly = TRUE))
-#' amChart() %>>% setChartScrollbar()
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{ChartScrollbar}} S4 class
-#' @rdname setChartScrollbar
+#' # Add the default scrollbar
+#' print(setChartScrollbar(.Object = amSerialChart()))
+#' # equivalent to:
+#' chartScrollbar_obj <- chartScrollbar(updateOnReleaseOnly = FALSE)
+#' print(setChartScrollbar(.Object = amSerialChart(), chartScrollbar = chartScrollbar_obj))
+#' \dontrun{
+#' setChartScrollbar(.Object = amSerialChart(), chartScrollbar = list(updateOnReleaseOnly = FALSE))
+#' }
+#' # ---
+#' @seealso \linkS4class{ChartScrollbar}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setChartScrollbar",
-           def = function(.Object, chartScrollbar = NULL, ...) { standardGeneric("setChartScrollbar") } )
-#' @describeIn setChartScrollbar
-setMethod(f = "setChartScrollbar", signature = c("AmChart"),
+           def = function(.Object, chartScrollbar = NULL, ...) {standardGeneric("setChartScrollbar")})
+setClassUnion("ChartScrollbarOrMissing", c("ChartScrollbar", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "setChartScrollbar", signature = c("AmChart", "ChartScrollbarOrMissing"),
           definition = function(.Object, chartScrollbar = NULL, ...)
           {
-            if (is.null(chartScrollbar)) {
-              chartScrollbar <- chartScrollbar( ... )
+            if (is.null(chartScrollbar) && !missing(...)) {
+              chartScrollbar <- chartScrollbar(...)
+            } else if (is.null(chartScrollbar) && missing(...)) {
+              chartScrollbar <- chartScrollbar()
+              message("default 'chartScrollbar' added")
             } else {}
+            
             .Object@chartScrollbar <- listProperties(chartScrollbar)
             validObject(.Object)
             return(.Object)
           })
 
-# > @creditsPosition: setters ####
-
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param creditsPosition
-#' object of class \code{character}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' setCreditsPosition(.Object = amChart(), creditsPosition = "top-right")
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname setCreditsPosition
+#' print(setCreditsPosition(.Object = amPieChart(), creditsPosition = "top-right"))
+#' \dontrun{
+#' Error use case:
+#' setCreditsPosition(.Object = amPieChart(), creditsPosition = "top-center")
+#' }
+#' # ---
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setCreditsPosition",
             def = function(.Object, creditsPosition) {standardGeneric("setCreditsPosition")} )
-#' @describeIn setCreditsPosition
+#' @rdname initialize-AmChart
 setMethod(f = "setCreditsPosition", signature = c("AmChart", "character"),
           definition = function(.Object, creditsPosition)
           {
@@ -369,24 +344,18 @@ setMethod(f = "setCreditsPosition", signature = c("AmChart", "character"),
             return(.Object)
           })
 
-# > @dataProvider : setters ####
-
-#' @title Setter for dataProvider
-#' @param .Object
-#' Object of class \code{\linkS4class{AmChart}}.
-#' @param dataProvider
-#' object of class \code{data.frame}.
+setClassUnion("logicalOrMissing", c("logical", "missing"))
 #' @param keepNA
 #' object of class \code{logical}, default \code{TRUE}.
 #' Indicates if \code{NULL} values have to be kept or ignored. 
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' library(pipeR)
-#' amChart() %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10)))
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname setDataProvider
+#' dataProvider_obj <- data.frame(key = c("FR", "US", "GER", "ENG", "IT" ),
+#'                                value = round(runif(5, max = 100)))
+#' print(setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj))
+#' # ---
+#' @rdname initialize-AmChart
 #' @export
-setMethod(f = "setDataProvider", signature = c("AmChart", "data.frame"),
+setMethod(f = "setDataProvider", signature = c("AmChart", "data.frame", "logicalOrMissing"),
            definition = function(.Object, dataProvider, keepNA = TRUE)
            {
              .Object@dataProvider <- toList(dataProvider, keepNA )
@@ -394,26 +363,17 @@ setMethod(f = "setDataProvider", signature = c("AmChart", "data.frame"),
              return(.Object)
            })
 
-# > @export: setters ####
 
-#' @title Setter for export
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param enabled
-#' object of class \code{logical}, default \code{TRUE}.
+#' @param enabled \code{logical}, default \code{TRUE}.
 #' Should the export button be shown ?
-#' @param ...
-#' properties for export
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' library(pipeR)
-#' amChart() %>>% setExport()
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname setExport
+#' print(setExport(.Object = amSerialChart()))
+#' # ---
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setExport",
             def = function(.Object, enabled = TRUE, ...) { standardGeneric("setExport") } )
-#' @describeIn setExport
+#' @rdname initialize-AmChart
 setMethod(f = "setExport", signature = c("AmChart"),
            definition = function(.Object, enabled = TRUE, ...)
            {
@@ -424,23 +384,20 @@ setMethod(f = "setExport", signature = c("AmChart"),
 
 # > @graphs : setters ####
 
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}
-#' @param graphs
-#' Object of class \code{list}.
-#' Each element must be an object of class \code{\linkS4class{AmGraph}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' graphs <- list(amGraph(balloonText = "balloonText"), amGraph(type = "column"))
-#' setGraphs(.Object = amChart(), graphs = graphs)
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{AmGraph}} S4 class
-#' @rdname setGraphs
+#' graphs_ls <- list(amGraph(balloonText = "balloonText"), amGraph(type = "column"))
+#' print(setGraphs(.Object = amChart(), graphs = graphs_ls))
+#' \dontrun{
+#' graphs_ls <- list(list(balloonText = "balloonText"), list(type = "column"))
+#' setGraphs(.Object = amChart(), graphs = graphs_ls)
+#' }
+#' # ---
+#' @seealso \linkS4class{AmGraph}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setGraphs",
             def = function(.Object, graphs) { standardGeneric("setGraphs") } )
-#' @describeIn setGraphs
+#' @rdname initialize-AmChart
 setMethod(f = "setGraphs", signature = c("AmChart", "list"),
           definition = function(.Object, graphs)
           {
@@ -451,88 +408,70 @@ setMethod(f = "setGraphs", signature = c("AmChart", "list"),
             return(.Object)
           })
 
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param amGraph
-#' object of class \code{\linkS4class{AmGraph}}, default \code{NULL}.
-#' @param ...
-#' properties of \code{\linkS4class{AmGraph}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @param amGraph (optional) \linkS4class{AmGraph}.
 #' @examples
-#' addGraph(.Object = amChart(), amGraph = amGraph(balloonText = "balloonText", "type" = "column"))
-#' addGraph(.Object = amChart(), balloonText = "balloonText", "type" = "column")
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{AmGraph}} S4 class
-#' @rdname addGraph
+#' print(addGraph(.Object = amSerialChart(), balloonText = "balloonText", "type" = "column"))
+#' # equivalent to
+#' amGraph_obj <- amGraph(balloonText = "balloonText", "type" = "column")
+#' print(addGraph(.Object = amSerialChart(), amGraph = amGraph_obj))
+#' # ---
+#' @seealso \linkS4class{AmGraph} S4 class
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addGraph",
-            def = function(.Object, amGraph = NULL, ...) { standardGeneric("addGraph") } )
-#' @describeIn addGraph
-setMethod(f = "addGraph", signature = c(.Object = "AmChart"),
+            def = function(.Object, amGraph = NULL, ...) {standardGeneric("addGraph")})
+setClassUnion(name = "AmGraphOrMissing", members = c("AmGraph", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "addGraph", signature = c("AmChart", "AmGraphOrMissing"),
           definition = function(.Object, amGraph = NULL , ...)
           {
             if (is.null(amGraph) && !missing(...)) {
               amGraph <- amGraph(...)
+            } else if (is.null(amGraph) && missing(...)) {
+              stop("You must either give arguemnt 'amGraph' or its properties")
             } else {}
-            if (is(amGraph, "AmGraph")) {
-              .Object@graphs <- rlist::list.append(.Object@graphs, listProperties(amGraph))
-            } else {}
+            
+            .Object@graphs <- rlist::list.append(.Object@graphs, listProperties(amGraph))
             validObject(.Object)
             return(.Object)
           })
 
-# > @graph: setters ####
-
-#' @title Setter for graph
-#' @details Method to use in case of AmChart of type \code{gantt}.
-#' For other type see methods \code{setGraphs} or \code{addGraph}.
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}} and type \code{gantt}.
-#' @param graph
-#' Object of class \code{\linkS4class{AmGraph}}.
-#' @param ...
-#' properties of \code{\linkS4class{AmGraph}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @details Method \code{setGraph} is only valid for Gantt Charts.
 #' @examples
-#' setGraph(.Object = amGanttChart())
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname setGraph
+#' print(setGraph(.Object = amGanttChart(), id = "amGraph-1"))
+#' # equivalent to
+#' amGraph_obj <- amGraph(id = "amGraph-1")
+#' print(setGraph(.Object = amGanttChart(), amGraph = amGraph_obj))
+#' # ---
+#' @seealso \linkS4class{AmChart}
+#' @rdname initialize-AmChart
 #' @export
-setMethod(f = "setGraph", signature = c("AmChart"),
+setMethod(f = "setGraph", signature = c("AmChart", "AmGraphOrMissing"),
           definition = function(.Object, graph = NULL, ...)
           {
             if (is.null(graph) && !missing(...)) {
               graph <- amGraph(...)
             } else if (is.null(graph) && missing(...)) {
-              graph <- amGraph(balloonText = "[[value]]")
+              stop("You must either give arguemnt 'amGraph' or its properties")
             } else {}
+            
             .Object@graph <- listProperties(graph)
             validObject(.Object)
             return(.Object)
           })
 
-# > @guides : setters ####
-
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param guides
-#' Object of class \code{list}.
-#' Each element must be an object of class \code{\linkS4class{Guide}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' library(pipeR)
-#' guides <- list(guide(fillAlpha = .1), guide(fillAlpha = .5))
-#' amChart() %>>% setGuides(guides)
-#' amChart(guides = guides)
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{Guide}} S4 class
-#' @rdname setGuides
+#' guides_ls <- list(guide(fillAlpha = .1), guide(fillAlpha = .5))
+#' print(setGuides(.Object = amSerialChart(), guides = guides_ls))
+#' # or...
+#' amSerialChart(guides = guides_ls)
+#' # ---
+#' @seealso \linkS4class{Guide}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setGuides",
-           def = function(.Object, guides) { standardGeneric("setGuides") })
-#' @describeIn setGuides
+           def = function(.Object, guides) {standardGeneric("setGuides")})
+#' @rdname initialize-AmChart
 setMethod(f = "setGuides", signature = c("AmChart", "list"),
           definition = function(.Object, guides)
           {
@@ -544,98 +483,82 @@ setMethod(f = "setGuides", signature = c("AmChart", "list"),
             return(.Object)
           })
 
-#' @title Setter
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param guide
-#' object of class \code{\linkS4class{Guide}}, default \code{NULL}
-#' @param ...
-#' properties of \code{\linkS4class{Guide}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+setClassUnion(name = "GuideOrMissing", members = c("Guide", "missing"))
+#' @param guide (optional) \linkS4class{Guide}.
 #' @examples
-#' addGuide(.Object = amChart(), fillAlpha = .1)
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{Guide}} S4 class
-#' @rdname addGuide
+#' print(addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10))
+#' # equivalent to
+#' guide_obj <- guide(fillAlpha = .1, value = 0, toVAlue = 10)
+#' print(addGuide(.Object = amSerialChart(), guide = guide_obj))
+#' # ---
+#' @seealso \linkS4class{Guide}
+#' @rdname initialize-AmChart
 #' @export
-setMethod(f = "addGuide", signature = c("AmChart"),
+setMethod(f = "addGuide", signature = c("AmChart", "GuideOrMissing"),
           definition = function(.Object, guide = NULL, ...)
           {
             if (is.null(guide) && !missing(...)) {
               guide <- guide(...)
+            } else if (is.null(guide) && missing(...)) {
+              stop("You must provide either argument 'guide' or its properties")
             } else {}
+            
             .Object@guides <- rlist::list.append(.Object@guides, listProperties(guide))
             validObject(.Object)
             return(.Object)
           })
 
-# > @legend : setters ####
-
-#' @title Setter for Legend
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param amLegend
-#' object of class \code{\linkS4class{AmLegend}}, default \code{NULL}.
-#' @param ...
-#' properties of \code{\linkS4class{AmLegend}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @param amLegend (optional) \linkS4class{AmLegend}.
 #' @examples
-#' library(pipeR)
-#' # Without chaining
-#' setLegend(.Object = amChart(), amLegend = amLegend(useGraphSettings = TRUE))
-#' setLegend(.Object = amChart(), useGraphSettings = TRUE)
-#' 
-#' # With chaining
-#' amChart() %>>% setLegend(useGraphSettings = TRUE)
-#' amChart() %>>% setLegend( amLegend(useGraphSettings = TRUE) )
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{AmLegend}} S4 class
-#' @rdname setLegend
+#' print(setLegend(.Object = amChart(), amLegend = amLegend(useGraphSettings = TRUE)))
+#' # equivalent to:
+#' print(setLegend(.Object = amChart(), useGraphSettings = TRUE))
+#' # ---
+#' @seealso \linkS4class{AmLegend} S4 class
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setLegend",
            def = function(.Object, amLegend = NULL, ...) {standardGeneric("setLegend")})
-#' @describeIn setLegend
-setMethod(f = "setLegend", signature = c("AmChart"),
+setClassUnion(name = "AmLegendOrMissing", members = c("AmLegend", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "setLegend", signature = c("AmChart", "AmLegendOrMissing"),
           definition = function(.Object, amLegend = NULL, ...)
           {
             if (is.null(amLegend) && !missing(...)) {
               amLegend <- amLegend(...)
+            } else if (is.null(amLegend) && missing(...)) {
+              stop("You must provide either argument 'amLegend' or its properties")
             } else {}
+            
             .Object@legend <- listProperties(amLegend)
             validObject(.Object)
             return(.Object)
           })
 
-# > @segments: setters ####
-
-#' @title Add a segment to a category of AmChart
-#' @details Use this methode in case of an AmChart.
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}
-#' @param categoryIDs
-#' Object of class \code{numeric}.
-#' @param sgts
-#' Object of class \code{data.frame}
+#' @param categoryIDs \code{numeric}, see details.
+#' @param sgts \code{data.frame}
 #' ( or \code{list} of \code{data.frame} for multiple add ).
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' library(pipeR)
-#' amGanttChart(segmentsField = "segments"
-#' ) %>>% setDataProvider(data.frame(category = c( "John", "Julia"))
-#' ) %>>% addSegment(1, data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2"))
-#' ) %>>% addSegment(2, data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2")))
-#' 
-#' ls <- list( data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2")), 
-#' data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2")))
-#' amGanttChart(segmentsField = "segments"
-#' ) %>>% setDataProvider(data.frame(category = c( "John", "Julia")) 
-#' ) %>>% addSegment( 1:2,  ls)
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname addSegment
+#' pipeR::pipeline(
+#'   amGanttChart(segmentsField = "segments"),
+#'   setDataProvider(data.frame(category = c( "John", "Julia"))),
+#'   addSegment(1, data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2"))),
+#'   addSegment(2, data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2")))
+#' )
+#' # ---
+#' ls <- list(data.frame(start = 7, duration = 2:3, task = c("Task #1", "Task #2")), 
+#'            data.frame(start = 10, duration = 2:3, task = c("Task #1", "Task #2")))
+#' pipeR::pipeline(
+#'   amGanttChart(segmentsField = "segments"),
+#'   setDataProvider(data.frame(category = c( "John", "Julia"))),
+#'   addSegment(1:2,  ls)
+#' )
+#' # ---
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addSegment",
            def = function (.Object, categoryIDs, sgts) { standardGeneric("addSegment") })
-#' @describeIn addSegment
+#' @rdname initialize-AmChart
 setMethod(f = "addSegment", signature = c( .Object = "AmChart", categoryIDs = "numeric"),
           definition = function(.Object, categoryIDs, sgts) {
             
@@ -677,24 +600,20 @@ setMethod(f = "addSegment", signature = c( .Object = "AmChart", categoryIDs = "n
 # > subData for drillChart: setters ####
 
 #' @title Add subData for drilldrown
-#' @description This method allows to add subdata for a chart with drilldown.
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param categoryIDs
-#' object of class \code{numeric} (vector or simple value).
-#' Indicates corresponding indice(s) of the \code{dataProvider} where to add the data.
-#' @param data
-#' object of class \code{data.frame}. Data to draw at the second level,
-#' after clicking on the serial / column.
+#' @details 'addSubData' allows to add subdata for a chart with drilldown. 
+#' In this case, categoryIDs indicates corresponding indice(s)
+#' of the \code{dataProvider} where to add the data.
+#' @param data \code{data.frame}. Data to draw at the second level,
+#' after clicking on the column.
 #' @examples
-#' library(pipeR)
-#' amChart(dataProvider = data.frame(a = 1:5, b = 6:10)) %>>%
-#' addSubData(3, data.frame(a = 1:10, b = 11:20))
-#' @rdname addSubData
+#' amChart_obj <- amChart(dataProvider = data.frame(a = 1:5, b = 6:10))
+#' print(addSubData(.Object = amChart_obj, categoryIDs = 3, data = data.frame(a = 1:10, b = 11:20)))
+#' # ---
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addSubData",
            def = function(.Object, categoryIDs, data) {standardGeneric("addSubData")})
-#' @describeIn addSubData
+#' @rdname initialize-AmChart
 setMethod(f = "addSubData", signature = c("AmChart", "numeric", "data.frame"),
           definition = function(.Object, categoryIDs, data)
           {
@@ -729,25 +648,15 @@ setMethod(f = "addSubData", signature = c("AmChart", "numeric", "data.frame"),
             return(.Object)
           })
 
-# > @subChartProperties (for drillChart): setters ####
-
-#' @title Add subData for drilldrown
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param .subObject
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param ...
-#' Properties of \code{\linkS4class{AmChart}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @param .subObject \linkS4class{AmChart}.
 #' @examples
-#' library(pipeR)
-#' amSerialChart() %>>% setSubChartProperties(type = "pie")
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @rdname setSubChartProperties
+#' print(setSubChartProperties(.Object = amSerialChart(), type = "serial"))
+#' # ---
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setSubChartProperties",
            def = function(.Object, .subObject = NULL, ...) {standardGeneric("setSubChartProperties")})
-#' @describeIn setSubChartProperties
+#' @rdname initialize-AmChart
 setMethod(f = "setSubChartProperties", signature = c("AmChart"),
           definition = function(.Object, .subObject = NULL, ...)
           {
@@ -759,32 +668,18 @@ setMethod(f = "setSubChartProperties", signature = c("AmChart"),
             return(.Object)
           })
 
-# > @titles : setters ####
-
-#' @title Set a list of Title's
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param titles
-#' object of class \code{list}.
-#' Each element must be an object of class \code{\linkS4class{Title}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
-#' library(pipeR)
-#' # Setter for titles
-#' titles <- list(title(text = "balloonText"), title(text = "column"))
-#' amChart() %>>% setTitles(titles)
-#' amChart(titles = titles)
-#' \dontrun{
-#' titles <- list(title(text = "balloonText"), text = "column")
-#' amChart(titles = titles)
-#' }
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{Title}} S4 class
-#' @rdname setTitles
+#' titles_ls <- list(title(text = "balloonText"), title(text = "column"))
+#' print(setTitles(.Object = amXYChart(), titles = titles_ls))
+#' # or...
+#' print(amChart(titles = titles_ls))
+#' # ---
+#' @seealso \linkS4class{Title}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setTitles",
             def = function(.Object, titles) { standardGeneric("setTitles") } )
-#' @describeIn setTitles
+#' @rdname initialize-AmChart
 setMethod(f = "setTitles", signature = c("AmChart", "list"),
           definition = function(.Object, titles)
           {
@@ -797,56 +692,46 @@ setMethod(f = "setTitles", signature = c("AmChart", "list"),
             return(.Object)
           })
 
-#' @title Add a Title
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param title
-#' object of class \code{\linkS4class{Title}}, default \code{NULL}.
-#' @param ...
-#' properties of class \code{\linkS4class{Title}}.
-#' @inheritParams amChart
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @param title (optional) \linkS4class{Title}, argument of method \code{addTitle}.
 #' @examples
-#' addTitle(.Object = amChart(), text = "balloonText")
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{Title}} S4 class
-#' @rdname addTitle
+#' print(addTitle(.Object = amPieChart(), text = "balloonText", size = 15))
+#' # equivalent to
+#' title_obj <- title(text = "balloonText", size = 15)
+#' print(addTitle(.Object = amPieChart(), title = title_obj))
+#' # ---
+#' @seealso \linkS4class{Title}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addTitle",
-            def = function(.Object, title = NULL, ...) { standardGeneric("addTitle") } )
-#' @describeIn addTitle
-setMethod(f = "addTitle", signature = c("AmChart"),
+            def = function(.Object, title = NULL, ...) {standardGeneric("addTitle")})
+setClassUnion(name = "TitleOrMissing", members = c("Title", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "addTitle", signature = c("AmChart", "TitleOrMissing"),
           definition = function(.Object, title = NULL, ...)
           {
             if (is.null(title) && !missing(...)) {
               title <- title(...)
+            } else if (is.null(title) && missing(...)) {
+              stop("You must either give argument 'title' or its properties")
             } else {}
+            
             .Object@titles <- rlist::list.append(.Object@titles, listProperties(title))
             validObject(.Object)
             return(.Object)
           })
 
-# > @trendLines : setters ####
-
-#' @title Setter for trendLines
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param trendLines
-#' object of class \code{list}.
-#' Each element must be of class \code{\linkS4class{TrendLine}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
 #' @examples
 #' trendLines <- list(trendLine(initialValue = 1, finalValue = 5),
 #'                    trendLine(initialValue = 7, finalValue = 19))
-#' setTrendLines(.Object = amChart(), trendLines = trendLines)
-#' amChart(trendLines = trendLines) # Equivalent
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{TrendLine}} S4 class
-#' @rdname setTrendLines
+#' print(setTrendLines(.Object = amChart(), trendLines = trendLines))
+#'# or... 
+#' print(amChart(trendLines = trendLines)) # Equivalent
+#' @seealso \linkS4class{TrendLine}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setTrendLines",
-            def = function(.Object, trendLines) { standardGeneric("setTrendLines") } )
-#' @describeIn setTrendLines
+            def = function(.Object, trendLines) {standardGeneric("setTrendLines")})
+#' @rdname initialize-AmChart
 setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
           definition = function(.Object, trendLines)
           {
@@ -857,47 +742,40 @@ setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
             return(.Object)
           })
 
-#' @title Add a trendLine
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param trendLine
-#' object of class \code{\linkS4class{TrendLine}}, default \code{NULL}.
-#' @param ...
-#' properties of class \code{\linkS4class{TrendLine}}.
-#' @examples
-#' addTrendLine(.Object = amChart(), initialValue = 1, finalValue = 11)
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{TrendLine}} S4 class
-#' @rdname addTrendLine
+#' @param trendLine (optional) \linkS4class{TrendLine}.
+#' Argument of method \code{addTrendLine}.
+#' @examples 
+#' addTrendLine(.Object = amSerialChart(), initialValue = 1, initialXValue = 1,
+#'              finalValue = 11, finalXValue = 12)
+#' # equivalent to:
+#' trendLine_obj <- trendLine(initialValue = 1, initialXValue = 1, finalValue = 11, finalXValue = 12)
+#' addTrendLine(.Object = amSerialChart(), trendLine = trendLine_obj)
+#' @seealso \linkS4class{TrendLine}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addTrendLine",
-            def = function(.Object, trendLine = NULL, ...) { standardGeneric("addTrendLine") } )
-#' @describeIn addTrendLine
-setMethod(f = "addTrendLine", signature = c("AmChart"),
+           def = function(.Object, trendLine = NULL, ...) {standardGeneric("addTrendLine")})
+setClassUnion("TrendLineOrMissing", c("TrendLine", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "addTrendLine", signature = c("AmChart", "TrendLineOrMissing"),
           definition = function(.Object, trendLine = NULL, ...)
           {
             if (is.null(trendLine) && !missing(...)) {
               trendLine <- trendLine(...)
+            } else if (is.null(trendLine) && missing(...)) {
+              stop("You must provide either argument 'trendline' or its properties")
             } else {}
+            
             .Object@trendLines <- rlist::list.append(.Object@trendLines, listProperties(trendLine))
             validObject(.Object)
             return(.Object)
           })
 
-# > @type : setters ####
-
-#' @title Setter for Type
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param type
-#' object of class \code{\linkS4class{character}}.
-#' @inheritParams amChart
 #' @examples
 #' setType(.Object = amChart(), type = "pie")
-#' # equivalent to
+#' # equivalent to:
 #' amPieChart()
-#' @rdname setType
+#' @rdname initialize-AmChart
 #' @export
 setMethod(f = "setType", signature = c("AmChart", "character"),
           definition = function(.Object, type)
@@ -907,31 +785,18 @@ setMethod(f = "setType", signature = c("AmChart", "character"),
             return(.Object)
           })
 
-
-# > @valueAxes : setters ####
-
-#' @title Setter for ValueAxes
-#' @description Add a list of ValueAxes objects to an Amchart.
-#' @param .Object
-#' object of class \code{\linkS4class{AmChart}}.
-#' @param valueAxes
-#' object of class \code{list}.
-#' Each element must be of class \linkS4class{ValueAxis}.
-#' @param  ... Properties of \linkS4class{ValueAxis}.
-#' @return The updated object of class \linkS4class{AmChart}.
 #' @examples
 #' valueAxes <- list(valueAxis(axisTitleOffset = 12, tickLength = 10),
 #'                   valueAxis(axisTitleOffset = 10, tickLength = 10))
-#' setValueAxes(.Object = amChart(), valueAxes = valueAxes)
-#' \dontrun{
-#' lapply(valueAxes, listProperties)
-#' amChart(valueAxes = valueAxes)
-#' }
-#' @rdname setValueAxes
+#' setValueAxes(.Object = amSerialChart(), valueAxes = valueAxes)
+#' # or...
+#' amSerialChart(valueAxes = valueAxes)
+#' # ---
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setValueAxes",
-           def = function(.Object, valueAxes = NULL, ...) { standardGeneric("setValueAxes") } )
-#' @describeIn setValueAxes
+           def = function(.Object, valueAxes) {standardGeneric("setValueAxes")})
+#' @rdname initialize-AmChart
 setMethod(f = "setValueAxes", signature = c("AmChart", "list"),
           definition = function(.Object, valueAxes)
           {
@@ -942,56 +807,47 @@ setMethod(f = "setValueAxes", signature = c("AmChart", "list"),
             return(.Object)
           })
 
-#' @title Add a ValueAxes
-#' @param .Object
-#' object of class \linkS4class{AmChart}.
-#' @param valueAxis
-#' object of class \linkS4class{ValueAxis}, default \code{NULL}.
-#' @param  ...
-#' properties of \linkS4class{ValueAxis}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' @details For method \code{addValueAxes}: valueAxis is optional.
 #' @examples
-#' addValueAxes(.Object = amChart(), axisTitleOffset = 12, tickLength = 10)
-#' @seealso \code{\linkS4class{AmChart}} S4 class
-#' @seealso \code{\linkS4class{ValueAxis}} S4 class
-#' @rdname addValueAxes
+#' addValueAxes(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10)
+#' # equivalent to:
+#' valueAxis_obj <- valueAxis(axisTitleOffset = 12, tickLength = 10)
+#' addValueAxes(.Object = amSerialChart(), valueAxis = valueAxis_obj)
+#' # ---
+#' @seealso \linkS4class{ValueAxis}
+#' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addValueAxes",
-            def = function(.Object, valueAxis = NULL, ... ) { standardGeneric("addValueAxes") } )
-#' @describeIn addValueAxes
-setMethod(f = "addValueAxes", signature = c("AmChart"),
-          definition = function(.Object, valueAxis = NULL, ...)
-          {
-            if (is.null(valueAxis) && !missing(...)) {
-              valueAxis <- valueAxis(...)
-            } else {}
-            .Object@valueAxes <- rlist::list.append(.Object@valueAxes, listProperties(valueAxis))
-            validObject(.Object)
-            return(.Object)
-          })
-
-# > @valueAxis: setters ####
-
-#' @title Setter for valueAxis
-#' @param .Object
-#' Object of class \code{\linkS4class{AmChart}}
-#' with \code{type = "gantt"}.
-#' @param valueAxis
-#' Object of class \code{\linkS4class{ValueAxis}}, default \code{NULL}.
-#' @param  ...
-#' properties of \code{\linkS4class{ValueAxis}}.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
-#' @examples
-#' setValueAxis(.Object = amGanttChart())
-#' @rdname setValueAxis
-#' @export
-setMethod(f = "setValueAxis", signature = c("AmChart"),
+            def = function(.Object, valueAxis = NULL, ... ) {standardGeneric("addValueAxes")})
+setClassUnion("ValueAxisOrMissing", c("ValueAxis", "missing"))
+#' @rdname initialize-AmChart
+setMethod(f = "addValueAxes", signature = c("AmChart", "ValueAxisOrMissing"),
           definition = function(.Object, valueAxis = NULL, ...)
           {
             if (is.null(valueAxis) && !missing(...)) {
               valueAxis <- valueAxis(...)
             } else if (is.null(valueAxis) && missing(...)) {
-              valueAxis <- valueAxis(  autoGridCount = TRUE )
+              stop("You must provide argument 'valueAxis' or its properties")
+            } else {}
+            
+            .Object@valueAxes <- rlist::list.append(.Object@valueAxes, listProperties(valueAxis))
+            validObject(.Object)
+            return(.Object)
+          })
+
+#' @details Method \code{setValueAxis} is only valid for Gantt charts.
+#' @examples
+#' print(setValueAxis(.Object = amGanttChart()))
+#' print(setValueAxis(.Object = amGanttChart(), type = "date"))
+#' @rdname initialize-AmChart
+#' @export
+setMethod(f = "setValueAxis", signature = c("AmChart", "ValueAxisOrMissing"),
+          definition = function(.Object, valueAxis = NULL, ...)
+          {
+            if (is.null(valueAxis) && !missing(...)) {
+              valueAxis <- valueAxis(...)
+            } else if (is.null(valueAxis) && missing(...)) {
+              valueAxis <- valueAxis(autoGridCount = TRUE)
             } else {}
             .Object@valueAxis <- listProperties(valueAxis)
             validObject(.Object)

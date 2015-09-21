@@ -3,20 +3,21 @@ NULL
 
 #' @title Label class
 #' @author DataKnowledge
-#' @slot bold \code{character}.
-#' Specifies if label is bold or not.
-#' @slot text \code{character}.
-#' Text of a title.
-#' @slot x \code{numeric}.
-#' X position of a label.
-#' @slot y \code{numeric}.
-#' Y position of a label.
+#' 
+#' @description Creates a label on the chart which can be placed anywhere, multiple can be assigned.
+#' @details Run \code{api("Label")} for more information and all avalaible properties.
+#' 
+#' @slot bold \code{character}. Specifies if label is bold or not.
+#' @slot text \code{character}. Text of a title.
+#' @slot x \code{numeric}. X position of a label.
+#' @slot y \code{numeric}. Y position of a label.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
 #' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
 #' @slot value \code{numeric}.
+#' 
 #' @export
 setClass(Class = "Label", contains = "AmObject",
          representation = representation(

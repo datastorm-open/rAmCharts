@@ -3,22 +3,23 @@ NULL
 
 #' @title ChartCursor class
 #' @author DataKnowledge
+#' 
+#' @description Creates a cursor for the chart which follows the mouse movements.
+#' In case of AmSerialChart charts it shows the balloons of hovered data points.
+#' @details Run \code{api("ChartCursor")} for more information and all avalaible properties.
+#' 
 #' @slot oneBalloonOnly \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
-#' 
 #' @slot valueLineAxis \code{list}.
 #' Properties of Axis of value line. If you set valueLineBalloonEnabled to true,
 #' but you have more than one axis, you can use this property
 #' to indicate which axis should display balloon.
-#' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
-#' 
 #' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
-#' 
 #' @slot value \code{numeric}.
 #' 
 #' @export

@@ -5,7 +5,7 @@
 \alias{AxisBase-class}
 \title{AxisBase class}
 \description{
-AxisBase class
+Base class for ValueAxis and CategoryAxis. It can not be instantiated explicitly.
 }
 \section{Slots}{
 
@@ -13,7 +13,8 @@ AxisBase class
 \item{\code{guides}}{\code{list}.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must a character string. See examples for details.}
+The list must be named as in the official API. Each element must a character string.
+See examples for details.}
 
 \item{\code{otherProperties}}{\code{list},
 containing other avalaible properties non coded in the package yet.}

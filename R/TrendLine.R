@@ -4,34 +4,26 @@ NULL
 #' @title TrendLine class
 #' @author DataKnowledge
 #' 
-#' @slot finalValue \code{numeric}.
-#' Value at which trend line should end.
+#' @description Creates a trendline for amSerialChart and amXYChart charts which indicates the trend
+#' of your data or covers some different purposes. Multiple can be assigned.
+#' @details Run \code{api("TrendLine")} for more information and all avalaible properties.
 #' 
-#' @slot finalXValue \code{numeric}.
-#' Used by XY chart only. X value at which trend line should end.
-#' 
-#' @slot initialValue \code{numeric}.
-#' Value from which trend line should start.
-#' 
-#' @slot initialXValue \code{numeric}.
-#' Used by XY chart only. X value from which trend line should start.
-#' 
-#' @slot valueAxis \linkS4class{ValueAxis}.
-#' Value axis of the trend line. Will use first value axis of the chart if not set any.
+#' @slot finalValue \code{numeric}. Value at which trend line should end.
+#' @slot finalXValue \code{numeric}. Used by XY chart only. X value at which trend line should end.
+#' @slot initialValue \code{numeric}. Value from which trend line should start.
+#' @slot initialXValue \code{numeric}. Used by XY chart only.
+#' X value from which trend line should start.
+#' @slot valueAxis \linkS4class{ValueAxis}. Value axis of the trend line.
+#' Will use first value axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
-#' 
-#' @slot valueAxisX \linkS4class{ValueAxis}.
-#' Used by XY chart only. X axis of trend line.
+#' @slot valueAxisX \linkS4class{ValueAxis}. Used by XY chart only. X axis of trend line.
 #' Will use first X axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
-#' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
-#' 
 #' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the package yet.
-#' 
+#' containing other avalaible properties.
 #' @slot value \code{numeric}.
 #' 
 #' @export

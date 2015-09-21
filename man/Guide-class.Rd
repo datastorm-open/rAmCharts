@@ -5,7 +5,12 @@
 \alias{Guide-class}
 \title{Guide class}
 \description{
-Guide class
+Creates a horizontal/vertical guideline-/area for
+amSerialChart, amXYChart and amRadarChart charts,
+automatically adapts it's settings from the axes if none has been specified.
+}
+\details{
+Run \code{api("GaugeArrow")} for more information and all avalaible properties.
 }
 \section{Slots}{
 

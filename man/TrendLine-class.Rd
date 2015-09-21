@@ -5,29 +5,29 @@
 \alias{TrendLine-class}
 \title{TrendLine class}
 \description{
-TrendLine class
+Creates a trendline for amSerialChart and amXYChart charts which indicates the trend
+of your data or covers some different purposes. Multiple can be assigned.
+}
+\details{
+Run \code{api("TrendLine")} for more information and all avalaible properties.
 }
 \section{Slots}{
 
 \describe{
-\item{\code{finalValue}}{\code{numeric}.
-Value at which trend line should end.}
+\item{\code{finalValue}}{\code{numeric}. Value at which trend line should end.}
 
-\item{\code{finalXValue}}{\code{numeric}.
-Used by XY chart only. X value at which trend line should end.}
+\item{\code{finalXValue}}{\code{numeric}. Used by XY chart only. X value at which trend line should end.}
 
-\item{\code{initialValue}}{\code{numeric}.
-Value from which trend line should start.}
+\item{\code{initialValue}}{\code{numeric}. Value from which trend line should start.}
 
-\item{\code{initialXValue}}{\code{numeric}.
-Used by XY chart only. X value from which trend line should start.}
+\item{\code{initialXValue}}{\code{numeric}. Used by XY chart only.
+X value from which trend line should start.}
 
-\item{\code{valueAxis}}{\linkS4class{ValueAxis}.
-Value axis of the trend line. Will use first value axis of the chart if not set any.
+\item{\code{valueAxis}}{\linkS4class{ValueAxis}. Value axis of the trend line.
+Will use first value axis of the chart if not set any.
 You can use a reference to the value axis object or id of value axis.}
 
-\item{\code{valueAxisX}}{\linkS4class{ValueAxis}.
-Used by XY chart only. X axis of trend line.
+\item{\code{valueAxisX}}{\linkS4class{ValueAxis}. Used by XY chart only. X axis of trend line.
 Will use first X axis of the chart if not set any.
 You can use a reference to the value axis object or id of value axis.}
 
@@ -36,7 +36,7 @@ The list must be named as in the official API. Each element must a character str
 See examples for details.}
 
 \item{\code{otherProperties}}{\code{list},
-containing other avalaible properties non coded in the package yet.}
+containing other avalaible properties.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

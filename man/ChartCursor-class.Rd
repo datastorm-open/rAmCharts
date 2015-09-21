@@ -5,7 +5,11 @@
 \alias{ChartCursor-class}
 \title{ChartCursor class}
 \description{
-ChartCursor class
+Creates a cursor for the chart which follows the mouse movements.
+In case of AmSerialChart charts it shows the balloons of hovered data points.
+}
+\details{
+Run \code{api("ChartCursor")} for more information and all avalaible properties.
 }
 \section{Slots}{
 

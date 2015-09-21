@@ -3,19 +3,17 @@ NULL
 
 #' @title GaugeArrow class
 #' @author DataKnowledge
-
-#' @slot axis \code{list}
-#' containing properties of \linkS4class{GaugeAxis}.
+#' 
+#' @description Creates an arrow for AmAngularGaugeChart, multiple can be assigned.
+#' @details Run \code{api("GaugeArrow")} for more information and all avalaible properties.
+#' 
+#' @slot axis \code{list} containing properties of \linkS4class{GaugeAxis}.
 #' Axis of the arrow. You can use reference to the axis or id of the axis.
 #' If you don't set any axis, the first axis of a chart will be used.
-#' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
-#' 
-#' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the package yet.
-#' 
+#' @slot otherProperties \code{list}, containing other avalaible properties non coded in the package yet.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -49,7 +47,7 @@ setMethod(f = "initialize", signature = c("GaugeArrow"),
 
 #' @describeIn initialize-GaugeArrow
 #' @examples
-#' gaugeArrow()
+#' gaugeArrow(value = 10)
 #' @export
 gaugeArrow <- function(alpha = 1,  axis, ... ){
   .Object <- new( "GaugeArrow", alpha = alpha )

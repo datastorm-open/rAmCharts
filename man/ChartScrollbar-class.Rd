@@ -5,7 +5,10 @@
 \alias{ChartScrollbar-class}
 \title{ChartScrollbar class}
 \description{
-ChartScrollbar class
+Create a scrollbar for amSerialChart and amXYChart charts.
+}
+\details{
+Run \code{api("ChartScrollbar")} for more information and all avalaible properties.
 }
 \section{Slots}{
 

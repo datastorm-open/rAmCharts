@@ -11,7 +11,7 @@
 \alias{setInitialValue,TrendLine,numeric-method}
 \alias{setInitialXValue}
 \alias{setInitialXValue,TrendLine,numeric-method}
-\alias{setValueAxis,TrendLine-method}
+\alias{setValueAxis,TrendLine,ANY-method}
 \alias{setValueAxisX}
 \alias{setValueAxisX,TrendLine-method}
 \alias{trendLine}
@@ -39,7 +39,7 @@ setFinalXValue(.Object, finalXValue)
 
 \S4method{setFinalXValue}{TrendLine,numeric}(.Object, finalXValue)
 
-\S4method{setValueAxis}{TrendLine}(.Object, valueAxis = NULL, ...)
+\S4method{setValueAxis}{TrendLine,ANY}(.Object, valueAxis = NULL, ...)
 
 setValueAxisX(.Object, valueAxisX = NULL, ...)
 

@@ -13,105 +13,113 @@ API for plotting AmChart with R
 \section{Fields}{
 
 \describe{
-\item{\code{allLabels}}{Object of class \code{"list"}. List of Labels properties.
-See \code{\linkS4class{Label}}.}
+\item{\code{allLabels}}{\code{list} of \linkS4class{Label}.
+Example of label object, with all possible properties:
+label(x = 20, y = 20, text = "this is label", align = "left", size = 12, color = "#CC0000",
+      alpha = 1, rotation = 0, bold = TRUE, url = "http=//www.amcharts.com")
+Run \code{api("Label")} for more information.}
 
-\item{\code{arrows}}{Object of class \code{"list"}
-containing object of class \code{\linkS4class{GaugeArrow}}.}
+\item{\code{arrows}}{\code{list} of \linkS4class{GaugeArrow}. Only valid for gauge charts.
+Run \code{api("GaugeArrow")} for more information.}
 
-\item{\code{axes}}{Object of class \code{"list"}
-containing object of class \code{\linkS4class{GaugeAxis}}.}
+\item{\code{axes}}{\code{list} of \linkS4class{GaugeAxis} properties.
+Only valid for gauge charts.
+Run \code{api("GaugeAxis")} for more information.}
 
-\item{\code{balloon}}{Object of class \code{"list"}.
-List of an \code{\linkS4class{AmBalloon}} class properties.
+\item{\code{balloon}}{\linkS4class{AmBalloon}.
 Creates the balloons (tooltips) of the chart,
 It follows the mouse cursor when you roll-over the data items.
 The framework generates the instances automatically you only need to adjust
-the appearance to your needs.}
+the appearance to your needs.
+Run \code{api("AmBalloon")} for more information.}
 
-\item{\code{categoryAxis}}{Object of class \code{"list"}.
-List of a \code{\linkS4class{CategoryAxis}} properties.
+\item{\code{categoryAxis}}{\linkS4class{CategoryAxis}.
 Read-only. Chart creates category axis itself.
 If you want to change some properties,
 you should get this axis from the chart and set properties to this object.}
 
-\item{\code{categoryField}}{Object of class \code{"character"}.
+\item{\code{categoryField}}{\code{character}.
 Category field name tells the chart the name of the field in your dataProvider object
 which will be used for category axis values.}
 
-\item{\code{ChartCursor}}{Object of class \code{"list"}.
-List of a \code{\linkS4class{ChartCursor}} class properties.
-Properties of the chart's cursor.}
+\item{\code{ChartCursor}}{\linkS4class{ChartCursor}.
+Cursor of a chart.
+Run \code{api("ChartCursor")} for more information.}
 
-\item{\code{ChartScrollbar}}{Object of class \code{"list"}.
-List of a \code{\linkS4class{ChartScrollbar}} class properties.
-Properties of chart's scrollbar.}
+\item{\code{ChartScrollbar}}{\linkS4class{ChartScrollbar}.
+Chart's scrollbar.
+Run \code{api("ChartScrollbar")} for more information.}
 
-\item{\code{creditsPosition}}{Object of class \code{"character"},
+\item{\code{creditsPosition}}{\code{character},
 specifying position of link to amCharts site.
-Allowed values are: top-left, top-right, bottom-left and bottom-right.}
+Allowed values are: "top-left", "top-right", "bottom-left" and "bottom-right".}
 
-\item{\code{dataProvider}}{Object of class \code{"list"}, containing the data.
-Use providing method toList* to convert a \code{data.frame}.}
+\item{\code{dataProvider}}{\code{data.frame}, containing the data.}
 
-\item{\code{graphs}}{Object of class \code{list}.  List of AmGraphs properties
-See \code{\linkS4class{AmGraph}} class.
+\item{\code{graphs}}{\code{list} of \linkS4class{AmGraph}.
 Creates the visualization of the data in following types: line, column, step line,
 smoothed line, olhc and candlestick.}
 
-\item{\code{graph}}{Object of class \code{\linkS4class{AmGraph}}.
-Graph of a Gantt chart. Gant chart actually creates multiple graphs (separate for each segment).
+\item{\code{graph}}{\linkS4class{AmGraph}.
+Only valid for Gantt charts.
+Gant chart actually creates multiple graphs (separate for each segment).
 Properties of this graph are passed to each of the created graphs
-- this allows you to control the look of segments.}
+- this allows you to control the look of segments.
+Run \code{api("AmGraph")} for more information.}
 
-\item{\code{guides}}{Object of class \code{list}.
-Each elemnt must be of class \code{\linkS4class{Guide}}.
+\item{\code{guides}}{\code{list} of \linkS4class{Guide}.
 Instead of adding guides to the axes, you can push all of them to this array.
 In case guide has category or date defined, it will automatically will be assigned to the category axis.
-Otherwise to first value axis, unless you specify a different valueAxes for the guide.}
+Otherwise to first value axis, unless you specify a different valueAxes for the guide.
+Run \code{api("Guide")} for more information.}
 
-\item{\code{legend}}{Object of class \code{"list"}.
-List of an \code{\linkS4class{AmLegend}} class properties.
-Properties of chart's legend.}
+\item{\code{legend}}{\linkS4class{AmLegend}.
+Legend of a chart.
+Run \code{api("AmLegend")} for more information.}
 
-\item{\code{segmentsField}}{Object of class \code{character}.}
+\item{\code{segmentsField}}{\code{character}.
+Segments field in your data provider.
+Only valid for Gantt Charts.}
 
-\item{\code{subChartProperties}}{Object of class \code{list}}
+\item{\code{subChartProperties}}{\code{list}.
+Only valid for Drilldown charts.}
 
-\item{\code{theme}}{Object of class \code{character}.
-Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.}
+\item{\code{theme}}{\code{character}.
+Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
+See \url{http://www.amcharts.com/tutorials/working-with-themes/}.}
 
-\item{\code{titles}}{Object of class \code{"list"}. List of Titles properties
-See \code{\linkS4class{Title}} class.}
+\item{\code{titles}}{\code{list} of \linkS4class{Title}.
+Run \code{api("Title")} for more information.}
 
-\item{\code{trendLines}}{Object of class \code{"list"}.
-List of \code{\linkS4class{TrendLine}} objects added to a chart.
+\item{\code{trendLines}}{\code{list} of \linkS4class{TrendLine} objects added to a chart.
 You can add trend lines to a chart using this list or access already existing trend lines.}
 
-\item{\code{type}}{Object of class \code{"character"}.
-Possible types are: serial, pie, radar,
-(types xy, radar, funnel, gauge, map, stock. are in development).}
+\item{\code{type}}{\code{character}.
+Possible types are: "serial", "pie", "radar", "xy", "radar", "funnel", "gauge", "stock".
+See details about using argument type.
+(type map is in development).}
 
-\item{\code{valueAxes}}{Object of class \code{"list"}. List of ValueAxes' properties.
-See \code{\linkS4class{ValueAxis}} class.
+\item{\code{valueAxes}}{\code{list} of .
 Chart creates one value axis automatically,
-so if you need only one value axis, you don't need to create it.}
+so if you need only one value axis, you don't need to create it.
+Run \code{api("ValueAxis")} for more information.}
 
-\item{\code{valueAxis}}{Object of class \code{list}.
-List of Value axis properties for Gantt chart. Set it's type to "date" if your data is date or time based.
-In case of Value axis for a Gantt chart. Set it's type to "date" if your data is date or time based.}
+\item{\code{valueAxis}}{\linkS4class{ValueAxis}.
+Only valid for Gantt Charts.
+Set it's type to "date" if your data is date or time based.}
 
-\item{\code{listeners}}{Object of class \code{"list"} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must a character string. See examples for details.}
+\item{\code{listeners}}{\code{list} containining the listeners to add to the object.
+The list must be named as in the official API. Each element must a character string.
+Run \code{runShinyExamples()} for examples.}
 
-\item{\code{otherProperties}}{Object of class \code{"list"},
-containing other avalaible properties non coded in the package yet.}
+\item{\code{otherProperties}}{\code{list},
+containing other avalaible properties non coded in the package.}
 
-\item{\code{value}}{Object of class \code{numeric}.}
+\item{\code{value}}{\code{numeric}.}
 }}
 \examples{
 new("AmChart", type = "serial")
-
+# Run runShinyExamples() for more examples.
 \dontshow{
 # see available methods
 showMethods(class="AmChart")

@@ -36,14 +36,31 @@ setMethod(f = "show", signature = "AmObject",
           })
 
 #' @title Visualize with print
-#' @param x \linkS4class{AmChart}
+#' @param x \linkS4class{AmChart}.
+#' @param withDetail \code{logical}. Should the detail be printed ?
 #' @param ... Other properties.
 #' @examples
-#' print(new("AmChart", categoryField = "variables"))
+#' print(new("AmChart", categoryField = "variables", type = "serial"))
+#' print(new("AmChart", categoryField = "variables", type = "serial"), withDetail = FALSE)
 #' @family Visualizations
 #' @export
 setMethod(f = "print", signature = "AmObject",
-          definition = function(x, ...) {print(listProperties(x))})
+          definition = function(x, withDetail = TRUE,...) {
+            if (withDetail) {
+              cat("~ ", class(x)," object (with detail)~\n\n")
+              cat("Referenced properties:\n")
+              ls <- listProperties(x)
+              cat(paste(names(ls), collapse = ", "), "\n\n")
+              cat("   - Detail:\n")
+              print(ls)
+            } else {
+              cat("~ ", class(x)," object (without detail)~\n\n")
+              cat("Referenced properties:\n")
+              ls <- listProperties(x)
+              cat(paste(names(ls), collapse = ", "))
+            }
+            cat("\n")
+          })
 
 # > @listeners: setters ####
 

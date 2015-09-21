@@ -8,7 +8,7 @@ pipeR::pipeline(
              backgroundColor = "#7870E8"),
   setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
   setExport(position = "bottom-left"),
-  plot()
+  plot
 )
 
 ### amPieChart with listener
@@ -24,18 +24,22 @@ pipeR::pipeline(
   amPieChart(theme ="light", valueField = "value", titleField = "key"),
   setLegend(amLegend = pipeR::pipeline(
     amLegend(position = "right", marginRight = 100,
-             autoMargins = FALSE, innerRadius = "30%"),
+                        autoMargins = FALSE, innerRadius = "30%"),
     addListener("hideItem" , "function(event){alert('hide');}"))),
   setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
+  setExport(),
   plot()
 )
 
 ### amPieChart: legend with listener V2
-amPieChart(theme ="light", valueField = "value", titleField = "key"
-) %>>% setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))
-) %>>% setLegend(position = "right", marginRight = 100, autoMargins = FALSE, innerRadius = "30%",
-                 listeners = list(hideItem = htmlwidgets::JS("function(event){alert('hide'); }"))
-) %>>% plot()
+pipeR::pipeline(
+  amPieChart(theme ="light", valueField = "value", titleField = "key"),
+  setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
+  setLegend(position = "right", marginRight = 100,
+                       autoMargins = FALSE, innerRadius = "30%",
+                       listeners = list(hideItem = htmlwidgets::JS("function(event){alert('hide');}"))),
+  plot()
+)
 
 
 ### amRadarChart
@@ -54,32 +58,33 @@ pipeR::pipeline(
 ### amSerialChart: graph listener
 
 pipeR::pipeline(
-  rAmCharts::amSerialChart(theme = "dark", categoryField = "country", creditsPosition = "top-right"),
-  rAmCharts::setDataProvider(data.frame(country = c("France", "US"), visits = 1:2)),
-  rAmCharts::addGraph(balloonText = "[[category]]: <b>[[value]]</b>", type = "column",
+  amSerialChart(theme = "dark", categoryField = "country", creditsPosition = "top-right"),
+  setDataProvider(data.frame(country = c("France", "US"), visits = 1:2)),
+  addGraph(balloonText = "[[category]]: <b>[[value]]</b>", type = "column",
                       valueField = "visits", fillAlphas = .8, lineAlpha = .2),
-  rAmCharts::addListener("clickGraphItem" , "function(event) {alert('ok !');}"), 
-  rAmCharts::setExport(position = "bottom-right"),
-  rAmCharts::setChartCursor(),
-  rAmCharts::plot()
+  addListener("clickGraphItem" , "function(event) {alert('ok !');}"), 
+  # setExport(position = "bottom-right"),
+  setChartCursor(),
+  setChartScrollbar(),
+  plot()
 )
 
 ### amSerialChart: category formatter
 
 pipeR::pipeline(
-  rAmCharts::amSerialChart(theme = "chalk", categoryField = "country", creditsPosition = "top-right"),
-  rAmCharts::setDataProvider(data.frame(country = c("France", "United States of America"), visits = round(runif(2),2))),
-  rAmCharts::addGraph(balloonText = "<b>[[value]]</b>", type = "column",
+  amSerialChart(theme = "chalk", categoryField = "country", creditsPosition = "top-right"),
+  setDataProvider(data.frame(country = c("France", "United States of America"), visits = round(runif(2),2))),
+  addGraph(balloonText = "<b>[[value]]</b>", type = "column",
                       valueField = "visits", fillAlphas = .8, lineAlpha = .2),
-  rAmCharts::setCategoryAxis(labelFunction = htmlwidgets::JS(paste0("function (valueText, date, categoryAxis) {",
+  setCategoryAxis(labelFunction = htmlwidgets::JS(paste0("function (valueText, date, categoryAxis) {",
                                                                     "   if (valueText.length > 5) {",
                                                                     "    return valueText.substring(0,3).concat('...');",
                                                                     "   } else {",
                                                                     "    return valueText;",
                                                                     "   }",
                                                                     "}"))),
-  rAmCharts::setChartCursor(),
-  rAmCharts::plot()
+  setChartCursor(),
+  plot()
 )
 
 
@@ -88,20 +93,21 @@ pipeR::pipeline(
 pipeR::pipeline(
   amXYChart(theme = "chalk", startDuration = 0.5, marginLeft = 46, marginBottom = 35),
   setDataProvider(data.table(y = c(10,5,-10,-6,15,13,1),  x = c(14,3,8,5,-4,1,6),
-                             value = c(59,50,19,65,92,8,16),
-                             y2 = c(-5,-15,-4,-5,-10,-2,0), x2 = c(-3,-8,6,-6,-8,0,-3),
-                             value2 = c(44,12,35,168,102,41,16))),
+                                        value = c(59,50,19,65,92,8,16),
+                                        y2 = c(-5,-15,-4,-5,-10,-2,0), x2 = c(-3,-8,6,-6,-8,0,-3),
+                                        value2 = c(44,12,35,168,102,41,16))),
   addValueAxes(position = "bottom", axisAlpha = 0),
   addValueAxes(minMaxMultiplier = 1.2, position = "left", axisAlpha = 0),
   addGraph(balloonText = "x:<b>[[x]]</b> y:<b>[[y]]</b><br>value:<b>[[value]]</b>",
-           bullet = "circle", bulletBorderAlpha = 0.2,
-           bulletAlpha = 0.8,lineAlpha=0, fillAlphas = 0,
-           valueField = "value", xField = "x",yField = "y", maxBulletSize = 100),
+                      bullet = "circle", bulletBorderAlpha = 0.2,
+                      bulletAlpha = 0.8,lineAlpha=0, fillAlphas = 0,
+                      valueField = "value", xField = "x",yField = "y", maxBulletSize = 100),
   addGraph(balloonText = "x:<b>[[x]]</b> y:<b>[[y]]</b><br>value:<b>[[value]]</b>",
-           bullet = "diamond",bulletBorderAlpha=0.2,
-           bulletAlpha = 0.8, lineAlpha = 0, fillAlphas = 0, valueField = "value2",
-           xField = "x2", yField = "y2", maxBulletSize = 100),
+                      bullet = "diamond",bulletBorderAlpha=0.2,
+                      bulletAlpha = 0.8, lineAlpha = 0, fillAlphas = 0, valueField = "value2",
+                      xField = "x2", yField = "y2", maxBulletSize = 100),
   setExport(),
+  setChartScrollbar(),
   plot()
 )
 
@@ -673,32 +679,36 @@ dp[ , date := format(date, "%m-%d-%Y %H:%M:%S")]
 
 nTest <- 1000
 sample <- 1:nTest
-amStockChart(theme = "default" , dataDateFormat = "MM-DD-YYYY JJ:NN:SS"
-) %>>% addDataSet(dataSet(title = "Courbe de charge", categoryField = "date") %>>%
-                    setDataProvider(dp[ sample, ], keepNA = FALSE) %>>%
-                    addFieldMapping(fromField = "charge", toField = "charge") %>>%
-                    addFieldMapping(fromField = "temperature", toField = "temperature") %>>%
-                    addStockEvent( date = "01-02-2015 23:00:00", type = "sign", graph ="g1",
-                                   text = "I am a stockEvent", description = "I am a property of a DataSet")
-) %>>% addPanel(stockPanel(showCategoryAxis = FALSE, title = "Charge", percentHeight = 70) %>>%
-                  addStockGraph(id = "g1", valueField = "charge", comparable = TRUE,
-                                compareField = "charge", balloonText = "[[title]] =<b>[[value]]</b>",
-                                compareGraphBalloonText = "[[title]] =<b>[[value]]</b>"
-                  ) %>>% setStockLegend(periodValueTextComparing = "[[percents.value.close]]%",
-                                        periodValueTextRegular = "[[value.close]]")
-) %>>% addPanel(stockPanel(title = "Temperature", percentHeight = 30) %>>%
-                  addStockGraph(valueField = "temperature", fillAlphas = 1) %>>%
-                  setStockLegend(periodValueTextRegular = "[[value.close]]")
-) %>>% setChartScrollbarSettings(graph = "g1"
-) %>>% setChartCursorSettings(valueBalloonsEnabled = TRUE, fullWidth = TRUE,
-                              cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
-                              valueLineEnabled = TRUE, valueLineAlpha = 0.5
-) %>>% setPeriodSelector(periodSelector(position = "left") %>>%
-                           addPeriod(period = "MM", selected = TRUE, count = 1, label = "1 month") %>>%
-                           addPeriod(period = "MAX", label = "MAX")
-) %>>% setDataSetSelector(position = "left"
-) %>>% setCategoryAxesSettings(minPeriod = "ss"
-) %>>% setPanelsSettings(recalculateToPercents = FALSE
-) %>>% plot(width = "100%")
+pipeR::pipeline(
+  amStockChart(theme = "default" , dataDateFormat = "MM-DD-YYYY JJ:NN:SS"),
+  addDataSet(dataSet(title = "Courbe de charge", categoryField = "date") %>>%
+                          setDataProvider(dp[ sample, ], keepNA = FALSE) %>>%
+                          addFieldMapping(fromField = "charge", toField = "charge") %>>%
+                          addFieldMapping(fromField = "temperature", toField = "temperature") %>>%
+                          addStockEvent( date = "01-02-2015 23:00:00", type = "sign", graph ="g1",
+                                         text = "I am a stockEvent", description = "I am a property of a DataSet")),
+  addPanel(pipeR::pipeline(stockPanel(showCategoryAxis = FALSE, title = "Charge",
+                                                 percentHeight = 70),
+                                      addStockGraph(id = "g1", valueField = "charge", comparable = TRUE,
+                                                    compareField = "charge", balloonText = "[[title]] =<b>[[value]]</b>",
+                                                    compareGraphBalloonText = "[[title]] =<b>[[value]]</b>"),
+                                      setStockLegend(periodValueTextComparing = "[[percents.value.close]]%",
+                                                     periodValueTextRegular = "[[value.close]]"))),
+  addPanel(pipeR::pipeline(stockPanel(title = "Temperature", percentHeight = 30),
+                                      addStockGraph(valueField = "temperature", fillAlphas = 1),
+                                      setStockLegend(periodValueTextRegular = "[[value.close]]"))),
+  setChartScrollbarSettings(graph = "g1"),
+  setChartCursorSettings(valueBalloonsEnabled = TRUE, fullWidth = TRUE,
+                                    cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
+                                    valueLineEnabled = TRUE, valueLineAlpha = 0.5),
+  setPeriodSelector(pipeR::pipeline(periodSelector(position = "left"),
+                                               addPeriod(period = "MM", selected = TRUE,
+                                                         count = 1, label = "1 month"),
+                                               addPeriod(period = "MAX", label = "MAX"))),
+  setDataSetSelector(position = "left"),
+  setCategoryAxesSettings(minPeriod = "ss"),
+  setPanelsSettings(recalculateToPercents = FALSE),
+  plot(width = "100%")
+)
 
 
