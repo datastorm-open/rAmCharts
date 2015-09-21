@@ -1,7 +1,5 @@
-#' @include sharedGenerics.R CategoryAxis.R AmGraph.R ValueAxis.R ChartCursor.R ChartScrollbar.R AmLegend.R TrendLine.R Title.R Label.R GaugeArrow.R Guide.R
+#' @include sharedGenerics.R AmBalloon.R CategoryAxis.R AmGraph.R ValueAxis.R ChartCursor.R ChartScrollbar.R AmLegend.R TrendLine.R Title.R Label.R GaugeArrow.R Guide.R
 NULL
-
-# > @allLabels : setters ####
 
 #' @rdname initialize-AmChart
 #' @export
@@ -39,7 +37,6 @@ setMethod(f = "setAllLabels", signature = c("AmChart", "list"),
 #'  addLabel(.Object = amChart(), label = "another class")
 #' }
 #' # ---
-#' @seealso \linkS4class{Label}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addLabel",
@@ -86,7 +83,6 @@ setMethod(f = "setArrows", signature = c("AmChart"),
 
 #' @param arrow (optional) \linkS4class{GaugeArrow}.
 #' Argument of method \code{addArrow}.
-#' @seealso \linkS4class{GaugeArrow}.
 #' @examples
 #' print(addArrow(.Object = amAngularGaugeChart(), value = 10))
 #' # equivalent to:
@@ -154,7 +150,6 @@ setMethod(f = "setAxes", signature = c("AmChart", "list"),
 #' addAxe(.Object = amAngularGaugeChart(), axe = "error")
 #' }
 #' # ---
-#' @seealso \linkS4class{GaugeAxis}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addAxe",
@@ -189,7 +184,6 @@ setMethod(f = "addAxe", signature = c("AmChart", "GaugeAxisOrMissing"),
 #' setBalloon(.Object = amSerialChart(), amBalloon = "error")
 #' }
 #' # ---
-#' @seealso \linkS4class{AmBalloon}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setBalloon",
@@ -220,7 +214,6 @@ setMethod(f = "setBalloon", signature = c("AmChart", "AmBalloonOrMissing"),
 #' setCategoryAxis(.Object = amSerialChart(), categoryAxis = "error")
 #' }
 #' # ---
-#' @seealso \linkS4class{CategoryAxis}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setCategoryAxis",
@@ -268,7 +261,6 @@ setMethod(f = "setCategoryField", signature = c("AmChart", "character"),
 #' setChartCursor(.Object = amSerialChart(), chartCursor = "error")
 #' }
 #' # ---
-#' @seealso \linkS4class{ChartCursor}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setChartCursor",
@@ -302,7 +294,6 @@ setMethod(f = "setChartCursor", signature = c("AmChart", "ChartCursorOrMissing")
 #' setChartScrollbar(.Object = amSerialChart(), chartScrollbar = list(updateOnReleaseOnly = FALSE))
 #' }
 #' # ---
-#' @seealso \linkS4class{ChartScrollbar}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setChartScrollbar",
@@ -392,7 +383,6 @@ setMethod(f = "setExport", signature = c("AmChart"),
 #' setGraphs(.Object = amChart(), graphs = graphs_ls)
 #' }
 #' # ---
-#' @seealso \linkS4class{AmGraph}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setGraphs",
@@ -415,7 +405,6 @@ setMethod(f = "setGraphs", signature = c("AmChart", "list"),
 #' amGraph_obj <- amGraph(balloonText = "balloonText", "type" = "column")
 #' print(addGraph(.Object = amSerialChart(), amGraph = amGraph_obj))
 #' # ---
-#' @seealso \linkS4class{AmGraph} S4 class
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addGraph",
@@ -443,7 +432,6 @@ setMethod(f = "addGraph", signature = c("AmChart", "AmGraphOrMissing"),
 #' amGraph_obj <- amGraph(id = "amGraph-1")
 #' print(setGraph(.Object = amGanttChart(), amGraph = amGraph_obj))
 #' # ---
-#' @seealso \linkS4class{AmChart}
 #' @rdname initialize-AmChart
 #' @export
 setMethod(f = "setGraph", signature = c("AmChart", "AmGraphOrMissing"),
@@ -466,7 +454,6 @@ setMethod(f = "setGraph", signature = c("AmChart", "AmGraphOrMissing"),
 #' # or...
 #' amSerialChart(guides = guides_ls)
 #' # ---
-#' @seealso \linkS4class{Guide}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setGuides",
@@ -491,7 +478,6 @@ setClassUnion(name = "GuideOrMissing", members = c("Guide", "missing"))
 #' guide_obj <- guide(fillAlpha = .1, value = 0, toVAlue = 10)
 #' print(addGuide(.Object = amSerialChart(), guide = guide_obj))
 #' # ---
-#' @seealso \linkS4class{Guide}
 #' @rdname initialize-AmChart
 #' @export
 setMethod(f = "addGuide", signature = c("AmChart", "GuideOrMissing"),
@@ -514,7 +500,6 @@ setMethod(f = "addGuide", signature = c("AmChart", "GuideOrMissing"),
 #' # equivalent to:
 #' print(setLegend(.Object = amChart(), useGraphSettings = TRUE))
 #' # ---
-#' @seealso \linkS4class{AmLegend} S4 class
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setLegend",
@@ -674,7 +659,6 @@ setMethod(f = "setSubChartProperties", signature = c("AmChart"),
 #' # or...
 #' print(amChart(titles = titles_ls))
 #' # ---
-#' @seealso \linkS4class{Title}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setTitles",
@@ -699,7 +683,6 @@ setMethod(f = "setTitles", signature = c("AmChart", "list"),
 #' title_obj <- title(text = "balloonText", size = 15)
 #' print(addTitle(.Object = amPieChart(), title = title_obj))
 #' # ---
-#' @seealso \linkS4class{Title}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addTitle",
@@ -726,7 +709,6 @@ setMethod(f = "addTitle", signature = c("AmChart", "TitleOrMissing"),
 #' print(setTrendLines(.Object = amChart(), trendLines = trendLines))
 #'# or... 
 #' print(amChart(trendLines = trendLines)) # Equivalent
-#' @seealso \linkS4class{TrendLine}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setTrendLines",
@@ -750,7 +732,6 @@ setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
 #' # equivalent to:
 #' trendLine_obj <- trendLine(initialValue = 1, initialXValue = 1, finalValue = 11, finalXValue = 12)
 #' addTrendLine(.Object = amSerialChart(), trendLine = trendLine_obj)
-#' @seealso \linkS4class{TrendLine}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addTrendLine",
@@ -814,7 +795,6 @@ setMethod(f = "setValueAxes", signature = c("AmChart", "list"),
 #' valueAxis_obj <- valueAxis(axisTitleOffset = 12, tickLength = 10)
 #' addValueAxes(.Object = amSerialChart(), valueAxis = valueAxis_obj)
 #' # ---
-#' @seealso \linkS4class{ValueAxis}
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addValueAxes",

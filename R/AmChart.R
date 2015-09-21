@@ -109,14 +109,13 @@ NULL
 #' @field value \code{numeric}.
 #' 
 #' @examples
-#' new("AmChart", type = "serial")
-#' # Run runShinyExamples() for more examples.
+#' # Run runShinyExamples() for examples.
 #' \dontshow{
 #' # see available methods
 #' showMethods(class="AmChart")
 #' }
-#' 
-#' @details API for plotting AmChart with R
+
+#' @details API for plotting AmChart with R.
 #' @author Dataknowledge
 #' @seealso \url{http://docs.amcharts.com/3/javascriptcharts/}
 #' @rdname AmChart-class
@@ -262,7 +261,6 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' @return (updated) \linkS4class{AmChart} with given properties.
 #' @examples
 #' new("AmChart", valueField = "value")
-#' @seealso \linkS4class{AmChart} S4 class
 #' @rdname initialize-AmChart
 #' @import methods
 #' @export

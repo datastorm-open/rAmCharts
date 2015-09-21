@@ -613,43 +613,4 @@ addValueAxes(.Object = amSerialChart(), valueAxis = valueAxis_obj)
 print(setValueAxis(.Object = amGanttChart()))
 print(setValueAxis(.Object = amGanttChart(), type = "date"))
 }
-\seealso{
-\linkS4class{AmChart} S4 class
-
-\linkS4class{Label}
-
-\linkS4class{GaugeArrow}.
-
-\linkS4class{GaugeAxis}
-
-\linkS4class{AmBalloon}
-
-\linkS4class{CategoryAxis}
-
-\linkS4class{ChartCursor}
-
-\linkS4class{ChartScrollbar}
-
-\linkS4class{AmGraph}
-
-\linkS4class{AmGraph} S4 class
-
-\linkS4class{AmChart}
-
-\linkS4class{Guide}
-
-\linkS4class{Guide}
-
-\linkS4class{AmLegend} S4 class
-
-\linkS4class{Title}
-
-\linkS4class{Title}
-
-\linkS4class{TrendLine}
-
-\linkS4class{TrendLine}
-
-\linkS4class{ValueAxis}
-}
 

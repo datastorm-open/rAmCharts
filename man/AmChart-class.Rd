@@ -8,7 +8,7 @@
 This class allow to define the amCharts parameters
 }
 \details{
-API for plotting AmChart with R
+API for plotting AmChart with R.
 }
 \section{Fields}{
 
@@ -118,8 +118,7 @@ containing other avalaible properties non coded in the package.}
 \item{\code{value}}{\code{numeric}.}
 }}
 \examples{
-new("AmChart", type = "serial")
-# Run runShinyExamples() for more examples.
+# Run runShinyExamples() for examples.
 \dontshow{
 # see available methods
 showMethods(class="AmChart")
