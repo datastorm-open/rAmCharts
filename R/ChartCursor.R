@@ -1,4 +1,4 @@
-#' @include AmObject.R ValueAxis.R
+#' @include AmObject.R ListOrCharacter.R
 NULL
 
 #' @title ChartCursor class
@@ -25,13 +25,12 @@ NULL
 #' @export
 setClass(Class = "ChartCursor", contains = "AmObject",
          representation = representation(
-           oneBalloonOnly = "logical", valueLineAxis = "list"
+           oneBalloonOnly = "logical",
+           valueLineAxis = "listOrCharacter"
          ))
 
 #' @title Initialize a ChartCursor
 #' @param .Object \linkS4class{ChartCursor}.
-#' @param animationDuration
-#' Duration of animation of a line, in seconds.
 #' @param oneBalloonOnly \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
@@ -47,7 +46,7 @@ setClass(Class = "ChartCursor", contains = "AmObject",
 #' @rdname initialize-ChartCursor
 #' @export
 setMethod(f = "initialize", signature = "ChartCursor",
-          definition = function(.Object, animationDuration = .3, oneBalloonOnly, valueLineAxis,...)
+          definition = function(.Object, oneBalloonOnly, valueLineAxis,...)
           {  
             if (!missing(oneBalloonOnly)) {
               .Object@oneBalloonOnly <- oneBalloonOnly
@@ -55,7 +54,7 @@ setMethod(f = "initialize", signature = "ChartCursor",
             if (!missing(valueLineAxis)) {
               .Object <- setValueLineAxis(.Object, valueLineAxis)
             } else {}
-            .Object <- setProperties(.Object, animationDuration = animationDuration, ...)
+            .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
           })
@@ -63,6 +62,7 @@ setMethod(f = "initialize", signature = "ChartCursor",
 # CONSTRUCTOR ####
 
 #' @describeIn initialize-ChartCursor
+#' @param animationDuration \code{numeric}, duration of animation of a line, in seconds.
 #' @examples
 #' chartCursor()
 #' chartCursor(oneBalloonOnly = TRUE)
@@ -80,55 +80,18 @@ chartCursor <- function(animationDuration = .3, oneBalloonOnly, valueLineAxis,..
   return( .Object )
 }
 
-# > @oneBalloonOnly : setters ####
-
-#' @rdname initialize-ChartCursor
-#' @export
-setGeneric(name = "setOneBalloonOnly", def = function(.Object, oneBalloonOnly) {standardGeneric("setOneBalloonOnly")})
-#' @examples
-#' setOneBalloonOnly(.Object = chartCursor(), oneBalloonOnly = TRUE)
-#' @rdname initialize-ChartCursor
-setMethod(f = "setOneBalloonOnly", signature = c("ChartCursor", "logical"),
-          definition = function(.Object, oneBalloonOnly)
-          {
-            .Object@oneBalloonOnly <- oneBalloonOnly
-            validObject(.Object)
-            return(.Object)
-          })
-
-# > @valueLineAxis : setters ####
-
-#' @rdname initialize-ChartCursor
-#' @export
-setGeneric(name = "setValueLineAxis",
-           def = function(.Object, valueLineAxis = NULL, ...) {standardGeneric("setValueLineAxis")})
-#' @examples
-#' setValueLineAxis(.Object = chartCursor(), title = "Hello !", axisTitleOffset = 12)
-#' @rdname initialize-ChartCursor
-setMethod(f = "setValueLineAxis", signature = c("ChartCursor"),
-          definition = function(.Object, valueLineAxis = NULL, ...)
-          {
-            if (is.null(valueLineAxis) && !missing(...)) {
-              .Object@valueLineAxis <- listProperties(valueAxis(...))
-            } else {
-              .Object@valueLineAxis <- listProperties(valueLineAxis)
-            }
-            validObject(.Object)
-            return(.Object)
-          })
-
 #' @rdname listProperties-AmObject
 #' @examples
 #' new("ChartCursor", oneBalloonOnly = TRUE)
-setMethod( f = "listProperties", signature = "ChartCursor",
-           definition = function(.Object)
-           { 
-             ls <- callNextMethod()
-             if (length(.Object@oneBalloonOnly)) {
-               ls <- rlist::list.append(ls, oneBalloonOnly = .Object@oneBalloonOnly)
-             } else {}
-             if(length(.Object@valueLineAxis)){
-               ls <- rlist::list.append(ls, valueLineAxis = .Object@valueLineAxis)
-             } else {}
-             return(ls)
-           })
+setMethod(f = "listProperties", signature = "ChartCursor",
+          definition = function(.Object)
+          { 
+            ls <- callNextMethod()
+            if (length(.Object@oneBalloonOnly)) {
+              ls <- rlist::list.append(ls, oneBalloonOnly = .Object@oneBalloonOnly)
+            } else {}
+            if(length(.Object@valueLineAxis)){
+              ls <- rlist::list.append(ls, valueLineAxis = .Object@valueLineAxis)
+            } else {}
+            return(ls)
+          })

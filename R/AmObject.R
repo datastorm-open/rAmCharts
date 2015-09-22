@@ -4,17 +4,16 @@
 #' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string. See examples for details.
-#' 
 #' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the package yet.
-#' 
+#' containing other avalaible properties non coded in the class.
 #' @slot value \code{numeric}.
 #' 
 #' @export
-setClass(
-  Class = "AmObject",
-  representation = representation(value = "numeric", listeners = "list", otherProperties = "list", "VIRTUAL") 
-)
+setClass(Class = "AmObject",
+         representation = representation(
+           value = "numeric",
+           listeners = "list",
+           otherProperties = "list", "VIRTUAL"))
 
 #' @title Visualize with show
 #' @param object \linkS4class{AmObject}

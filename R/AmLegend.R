@@ -3,8 +3,10 @@ NULL
 
 #' @title AmLegend class
 #' @author DataKnowledge
+#' 
 #' @description Creates the legend for the chart, automatically adapts the color settings of the graphs.
-#' @details Run \code{api(AmLegend)} for more information and all avalaible properties.
+#' @details Run \code{api("AmLegend")} for more information and all avalaible properties.
+#' 
 #' @slot useGraphSettings \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.

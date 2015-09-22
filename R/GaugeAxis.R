@@ -1,4 +1,4 @@
-#' @include AmObject.R GaugeBand.R
+#' @include AmObject.R
 NULL
 
 #' @title GaugeAxis class
@@ -55,47 +55,6 @@ gaugeAxis <- function(axisAlpha = 1, bands, ...) {
   .Object <-  setProperties(.Object, ...)
   return(.Object )
 }
-
-#' @rdname initialize-GaugeAxis
-#' @export
-setGeneric(name = "setBands", def = function(.Object, bands){standardGeneric("setBands")})
-#' @examples
-#' bands <- list(gaugeBand(), gaugeBand())
-#' gaugeAxis(bands = bands)
-#' \dontrun{
-#' # error
-#' bands <- list(gaugeBand(), test = 1)
-#' gaugeAxis(bands = bands)
-#' }
-#' @rdname initialize-GaugeAxis
-setMethod(f = "setBands", signature = c("GaugeAxis", "list"),
-          definition = function(.Object, bands)
-          {
-            rightClassElements <- prod(sapply(bands, function(element) {is(element, "GaugeBand")}))
-            if (! rightClassElements ) {
-              stop("[setBands]: each elements of bands must be a GaugeBand")
-            } else {}
-            .Object@bands <- lapply(bands, listProperties)
-            validObject(.Object)
-            return(.Object)
-          })
-
-#' @param band \linkS4class{GaugeBand}.
-#' @rdname initialize-GaugeAxis
-#' @export
-setGeneric(name = "addBand", def = function(.Object, band = NULL, ...){standardGeneric("addBand" ) } )
-#' @examples
-#' addBand(.Object = gaugeAxis(), band = gaugeBand(test = "foo"))
-#' @rdname initialize-GaugeAxis
-setMethod(f = "addBand", signature = c("GaugeAxis"),
-          definition = function(.Object, band = NULL, ...)
-          {
-            if (is.null(band) && !missing(...) ) {
-              band <- gaugeBand(...)
-            } else {}
-            .Object@bands <- rlist::list.append(.Object@bands, listProperties(band) )
-            return(.Object)
-          })
 
 #' @examples
 #' listProperties(gaugeAxis())

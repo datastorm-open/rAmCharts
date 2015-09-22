@@ -1,5 +1,7 @@
-#' @include AmChart.R
+#' @include AmChart.R AmStockChart.R
 NULL
+
+setClassUnion(name = "AmCharts", members = c("AmChart", "AmStockChart"))
 
 #' @title PLOTTING METHOD
 #' @description Basic method to plot an AmChart 
@@ -12,7 +14,7 @@ NULL
 #' @param ... Other properties.
 #' @rdname plot.AmChart
 #' @export
-setMethod(f = "plot", signature = "AmChart",
+setMethod(f = "plot", signature = "AmCharts",
           definition = function(x, y, width = "100%", height = "500px",
                                 background = "#ffffff",...)
           {
@@ -29,7 +31,7 @@ setMethod(f = "plot", signature = "AmChart",
               background <- listProperties(x)[["backgroundColor"]]
             } else {}
             
-            if (length(x@subChartProperties)) {
+            if (exists("subChartProperties", where = listProperties(x))) {
               jsFile <- "amDrillChart"
               data <- list(main = rlist::list.remove(listProperties(x), "subChartProperties") ,
                             subProperties = x@subChartProperties, background = background)

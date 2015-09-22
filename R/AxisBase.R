@@ -1,4 +1,4 @@
-#' @include AmObject.R Guide.R sharedGenerics.R
+#' @include AmObject.R
 NULL
 
 #' @title AxisBase class
@@ -14,30 +14,7 @@ NULL
 #' Guides belonging to this axis. Use addGuide method
 #' @export
 setClass(Class = "AxisBase", contains = "AmObject",
-  representation = representation(guides = "list", "VIRTUAL")
-)
-
-#' @title Add a Guide
-#' @param .Object \linkS4class{AxisBase}
-#' @param guide \linkS4class{Guide}
-#' @param ... Properties of \linkS4class{Guide}.
-#' @examples
-#' library(pipeR)
-#' valueAxis(axisTitleOffset = 12, tickLength = 10) %>>%
-#' addGuide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
-#' @rdname initialize-AxisBase
-setMethod(
-  f = "addGuide",
-  signature = c("AxisBase"),
-  definition = function(.Object, guide = NULL, ...)
-  {
-    if (is.null(guide) && !missing(...)) {
-      guide <- guide(...)
-    } else {}
-    .Object@guides <- rlist::list.append(.Object@guides, listProperties(guide))
-    validObject(.Object)
-    return(.Object)
-  })
+         representation = representation(guides = "list", "VIRTUAL"))
 
 #' @rdname listProperties-AmObject
 setMethod(f = "listProperties", signature = "AxisBase",

@@ -17,7 +17,7 @@ NULL
 #' 
 #' @export
 setClass(Class = "GaugeBand", contains = "AmObject",
-         representation = representation( id = "character" )
+         representation = representation(id = "character")
 )
 
 #' @title Initialize a GaugeBand

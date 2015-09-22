@@ -1,4 +1,4 @@
-#' @include AmObject.R
+#' @include AmObject.R ListOrCharacter.R
 NULL
 
 #' @title ChartScrollbar class
@@ -7,7 +7,7 @@ NULL
 #' @description Create a scrollbar for amSerialChart and amXYChart charts.
 #' @details Run \code{api("ChartScrollbar")} for more information and all avalaible properties.
 #' 
-#' @slot updateOnReleaseOnly \code{logical}.
+#' @slot enabled \code{logical}.
 #' Specifies if the chart should be updated while dragging/resizing the scrollbar
 #' or only at the moment when user releases mouse button.
 #' @slot graph \code{list}.
@@ -22,13 +22,13 @@ NULL
 #' 
 #' @export
 setClass(Class = "ChartScrollbar", contains = "AmObject",
-         representation = representation(graph = "list", updateOnReleaseOnly = "logical" ))
+         representation = representation(graph = "listOrCharacter", enabled = "logical" ))
 
 #' @title Initialize a ChartScrollbar
 #' @param .Object \linkS4class{ChartScrollbar}.
 #' @param graph \linkS4class{AmGraph}.
 #' Specifies which graph will be displayed in the scrollbar.
-#' @param updateOnReleaseOnly \code{logical}.
+#' @param enabled \code{logical}.
 #' Specifies if the chart should be updated while dragging/resizing the scrollbar
 #' or only at the moment when user releases mouse button.
 #' @param ... Other preperties
@@ -41,27 +41,26 @@ setClass(Class = "ChartScrollbar", contains = "AmObject",
 setMethod(f = "initialize", signature = "ChartScrollbar",
           definition = function(.Object,
                                 graph,
-                                updateOnReleaseOnly, ...)
+                                enabled, ...)
           { 
             if (!missing(graph)) {
               .Object <- setGraph(.Object, graph = graph)
             } else {}
-            if(!missing(updateOnReleaseOnly)){
-              .Object@updateOnReleaseOnly <- updateOnReleaseOnly
+            if(!missing(enabled)){
+              .Object@enabled <- enabled
             } else {}
             .Object <- setProperties(.Object,...)
             validObject(.Object)
             return(.Object)
           })
 
-
 #' @describeIn initialize-ChartScrollbar
 #' @examples
 #' chartScrollbar()
-#' chartScrollbar(updateOnReleaseOnly = TRUE)
+#' chartScrollbar(enabled = TRUE)
 #' @export
-chartScrollbar <- function(graph, updateOnReleaseOnly = FALSE,...){
-  .Object <- new("ChartScrollbar", updateOnReleaseOnly = updateOnReleaseOnly)
+chartScrollbar <- function(graph, enabled = TRUE,...){
+  .Object <- new("ChartScrollbar", enabled = enabled)
   if (!missing(graph)) {
     .Object <- setGraph(.Object, graph)
   } else {}
@@ -70,63 +69,38 @@ chartScrollbar <- function(graph, updateOnReleaseOnly = FALSE,...){
   return( .Object )
 }
 
-# > @graph : setters ####
-
+#' @describeIn initialize-ChartScrollbar
+#' @description ChartScrollbarSettings settings set's settings for chart scrollbar.
+#' If you change a property after the chart is initialized,
+#' you should call stockChart.validateNow() method in order for it to work.
+#' If there is no default value specified, default value of ChartScrollbar class will be used.
+#' Run \code{api("ChartScrollbarSettings")} for more information.
 #' @examples
-#' setGraph(.Object = chartScrollbar(), test = 1)
-#' @rdname initialize-ChartScrollbar
+#' chartScrollbar()
+#' chartScrollbar(enabled = TRUE)
 #' @export
-setMethod(f = "setGraph", signature = c("ChartScrollbar"),
-          definition = function(.Object, graph = NULL, ...)
-          {
-            if (is.null(graph) && !missing(...)) {
-              .Object@otherProperties <- rlist::list.append(
-                .Object@otherProperties,  graph = listProperties(amGraph(...))
-              )
-            } else if (is.null(graph) && missing(...)) {
-              .Object@otherProperties <- rlist::list.append(
-                .Object@otherProperties,  graph = listProperties(amGraph(balloonText = "[[value]]"))
-              )
-            } else if (!is.null(graph) && is(graph, "AmGraph")) {
-              .Object@otherProperties <- rlist::list.append(
-                .Object@otherProperties,  graph = listProperties(graph)
-              )
-            } else if (!is.null(graph) && is(graph, "character")) {
-              .Object@otherProperties <- rlist::list.append(
-                .Object@otherProperties,  graph = graph
-              )
-            } else {}
-            validObject(.Object)
-            return(.Object)
-          })
-
-# > @updateOnReleaseOnly : setters ####
-
-#' @rdname initialize-ChartScrollbar
-#' @export
-setGeneric(name = "setUpdateOnReleaseOnly",
-           def = function(.Object, updateOnReleaseOnly){ standardGeneric("setUpdateOnReleaseOnly") } )
-#' @examples
-#' setUpdateOnReleaseOnly(.Object = chartScrollbar(), updateOnReleaseOnly = TRUE)
-#' @rdname initialize-ChartScrollbar
-#' @export
-setMethod(f = "setUpdateOnReleaseOnly", signature = c("ChartScrollbar", "logical"),
-          definition = function(.Object, updateOnReleaseOnly)
-          {
-            .Object@updateOnReleaseOnly <- updateOnReleaseOnly
-            validObject(.Object)
-            return(.Object)
-          })
+chartScrollbarSettings <- function(graph, enabled = TRUE,...){
+  .Object <- new("ChartScrollbar", enabled = enabled)
+  if (!missing(graph)) {
+    .Object <- setGraph(.Object, graph)
+  } else {}
+  .Object <- setProperties(.Object, ...)
+  validObject(.Object)
+  return( .Object )
+}
 
 #' @rdname listProperties-AmObject
 #' @examples
-#' listProperties(chartScrollbar(updateOnReleaseOnly = TRUE))
+#' listProperties(chartScrollbar(enabled = TRUE))
 setMethod( f = "listProperties", signature = "ChartScrollbar",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if (length( .Object@updateOnReleaseOnly)) {
-               ls <- rlist::list.append(ls, updateOnReleaseOnly = .Object@updateOnReleaseOnly)
+             if (length(.Object@graph)) {
+               ls <- rlist::list.append(ls, graph = .Object@graph)
+             } else {}
+             if (length(.Object@enabled)) {
+               ls <- rlist::list.append(ls, enabled = .Object@enabled)
              } else {}
              return(ls)
            })

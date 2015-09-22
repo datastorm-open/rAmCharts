@@ -24,7 +24,7 @@ NULL
 #' 
 #' @export
 setClass(Class = "PeriodSelector", contains = "AmObject",
-         representation = representation( periods = "list"))
+         representation = representation(periods = "list"))
 
 #' @title Initialize a PeriodSelector
 #' @param .Object \linkS4class{PeriodSelector}.
@@ -78,7 +78,7 @@ setGeneric("addPeriod", def = function(.Object, ...) { standardGeneric("addPerio
 setMethod( f = "addPeriod", signature = c("PeriodSelector"),
            definition = function(.Object, ...)
            {
-             .Object@periods <- rlist::list.append( .Object@periods, list(...) )
+             .Object@periods <- rlist::list.append(.Object@periods, list(...) )
              validObject(.Object)
              return(.Object)
            })

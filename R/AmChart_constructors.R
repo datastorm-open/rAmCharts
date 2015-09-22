@@ -1,6 +1,3 @@
-#' @include AmChart_getSet.R
-NULL
-
 #' @examples
 #' amChart(type = "pie")
 #' @describeIn initialize-AmChart

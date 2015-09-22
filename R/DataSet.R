@@ -1,31 +1,27 @@
-#' @include AmObject.R StockEvent.R
+#' @include AmObject.R
 NULL
 
 #' @title DataSet class
 #' @author DataKnowledge
 #' 
+#' @description DataSet is objects which holds all information about data.
+#' @details Run \code{api("DataSet")} for mor information.
+#' 
 #' @slot dataProvider \code{list}. The data set data.
 #' Important: the data sets need to come pre-ordered in ascending order.
 #' Data with incorrect order might result in visual and functional glitches on the chart.
-#' 
-#' @slot fieldMappings \code{list}.
-#' Array of field mappings.
+#' @slot fieldMappings \code{list} field mappings.
 #' Field mapping is an object with fromField and toField properties.
 #' fromField is a name of your value field in dataProvider.
 #' toField might be chosen freely,
 #' it will be used to set value/open/close/high/low fields for the StockGraph.
 #' Example: {fromField:"val1", toField:"value"}.
-#' 
-#' @slot stockEvents \code{list}.
-#' Containing properties of stockEvents.
-#' 
+#' @slot stockEvents \code{list} of \linkS4class{StockEvent}.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
-#' 
 #' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
-#' 
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -64,7 +60,7 @@ setMethod(f = "initialize", signature = "DataSet",
             if (!missing(fieldMappings)) {
               .Object <- setFieldMappings( .Object, fieldMappings)
             } else {}
-            if(!missing(stockEvents)) {
+            if (!missing(stockEvents)) {
               .Object <- setStockEvents( .Object, stockEvents)
             } else {}
             .Object <- setProperties(.Object, compared = compared, ...)
@@ -93,84 +89,6 @@ dataSet <- function(compared = FALSE, dataProvider, fieldMappings, stockEvents,.
   validObject(.Object)
   return( .Object )
 }
-
-#' @param keepNA \code{logical}.
-#' Should the missing values appear in the list ?
-#' @examples
-#' setDataProvider(.Object = dataSet(), data.frame(key = c("FR", "US"), value = c(20,10)))
-#' @rdname initialize-DataSet
-setMethod(f = "setDataProvider", signature = c("DataSet", "data.frame"),
-          definition = function(.Object, dataProvider, keepNA = TRUE)
-          {
-            .Object@dataProvider <- toList(dataProvider, keepNA)
-            validObject(.Object)
-            return(.Object)
-          })
-
-# > @fieldMapping : setters ####
-
-#' @rdname initialize-DataSet
-#' @export
-setGeneric(name = "setFieldMappings", def = function(.Object, fieldMappings) {standardGeneric("setFieldMappings")})
-#' @examples
-#' addFieldMapping(.Object = dataSet(), fieldMappings = list(fromField ="val1", toField ="value"))
-#' @rdname initialize-DataSet
-setMethod(f = "setFieldMappings", signature = c("DataSet", "list"),
-          definition = function(.Object, fieldMappings)
-          {
-            .Object@fieldMappings <- fieldMappings
-            validObject(.Object)
-            return(.Object)
-          })
-
-#' @rdname initialize-DataSet
-#' @export
-setGeneric(name = "addFieldMapping", def = function(.Object, ...) {standardGeneric("addFieldMapping")})
-#' @examples
-#' addFieldMapping(.Object = dataSet(), fromField ="val1", toField ="value")
-#' @rdname initialize-DataSet
-setMethod(f = "addFieldMapping", signature = c("DataSet"),
-          definition = function(.Object, ...)
-          {
-            .Object@fieldMappings <- rlist::list.append(.Object@fieldMappings, list(...))
-            validObject(.Object)
-            return(.Object)
-          })
-
-# > @stockEvents : setters ####
-
-#' @rdname initialize-DataSet
-#' @export
-setGeneric(name = "setStockEvents", def = function(.Object, stockEvents) {standardGeneric("setStockEvents")})
-#' @rdname initialize-DataSet
-setMethod(f = "setStockEvents", signature = c("DataSet", "list"),
-          definition = function(.Object, stockEvents)
-          {
-            rightClassElements <- prod(sapply(stockEvents, function(element) {is(element, "StockEvent")}))
-            if (!rightClassElements) {
-              stop("Each element of setStockEvents must be of class StockEvent")
-            } else {}
-            .Object@stockEvents <- lapply( stockEvents, listProperties )
-            validObject(.Object)
-            return(.Object)
-          })
-
-#' @param stockEvent \linkS4class{StockEvent}.
-#' @rdname initialize-DataSet
-#' @export
-setGeneric(name = "addStockEvent", def = function(.Object, stockEvent = NULL, ...) {standardGeneric("addStockEvent")})
-#' @rdname initialize-DataSet
-setMethod(f = "addStockEvent", signature = c("DataSet"),
-          definition = function(.Object, stockEvent = NULL, ...)
-          {
-            if (is.null(stockEvent)) {
-              stockEvent <- stockEvent(...)
-            } else {}
-            .Object@stockEvents <-
-              rlist::list.append(.Object@stockEvents, listProperties(stockEvent))
-            validObject(.Object)
-            return(.Object)
-          })
 
 #' @rdname listProperties-AmObject
 setMethod( f = "listProperties", signature = "DataSet",

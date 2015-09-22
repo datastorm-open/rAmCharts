@@ -1,109 +1,109 @@
-#' @include AmObject.R AmGraph.R AmLegend.R ValueAxis.R
+#' @include AmChart.R ListOrCharacter.R
 NULL
 
 #' @title StockPanel class
+#' @author DataKnowledge
 #' 
-#' @field drawOnAxis \code{list}. Containing properties of ValueAxis.
+#' @description StockPanel class creates stock panels (charts).
+#' AmStockChart can have multiple Stock panels.
+#' @details Run \code{api("StockPanel")} for more information and all avalaible properties.
+#' 
+#' 
+#' @field drawOnAxis \linkS4class{ValueAxis}.
 #' Specifies on which value axis user can draw trend lines.
 #' Set drawingIconsEnabled to true if you want drawing icons to be visible.
 #' First value axis will be used if not set here.
 #' You can use a reference to the value axis object or id of value axis.
-#' 
 #' @field stockGraphs \code{list}.
 #' Each element must be have been created with stockGraph(*)
-#' 
 #' @field stockLegend \code{list}.
 #' Each element must be have been created with stockLegend(*)
 #' 
-#' @field allLabels \code{list} of \linkS4class{Label} properties.
-#' 
-#' @field arrows \code{list} of \linkS4class{GaugeArrow} properties.
-#' 
+#' @field allLabels \code{list} of \linkS4class{Label}.
+#' Example of label object, with all possible properties:
+#' label(x = 20, y = 20, text = "this is label", align = "left", size = 12, color = "#CC0000",
+#'       alpha = 1, rotation = 0, bold = TRUE, url = "http=//www.amcharts.com")
+#' Run \code{api("Label")} for more information.
+#' @field arrows \code{list} of \linkS4class{GaugeArrow}. Only valid for gauge charts.
+#' Run \code{api("GaugeArrow")} for more information.
 #' @field axes \code{list} of \linkS4class{GaugeAxis} properties.
-#' 
-#' @field balloon \code{list} of an \linkS4class{AmBalloon} properties.
+#' Only valid for gauge charts.
+#' Run \code{api("GaugeAxis")} for more information.
+#' @field balloon \linkS4class{AmBalloon}.
 #' Creates the balloons (tooltips) of the chart,
 #' It follows the mouse cursor when you roll-over the data items.
 #' The framework generates the instances automatically you only need to adjust
 #' the appearance to your needs.
-#' 
-#' @field categoryAxis \code{list} of a \linkS4class{CategoryAxis} properties.
+#' Run \code{api("AmBalloon")} for more information.
+#' @field categoryAxis \linkS4class{CategoryAxis}.
 #' Read-only. Chart creates category axis itself.
 #' If you want to change some properties,
 #' you should get this axis from the chart and set properties to this object.
-#' 
 #' @field categoryField \code{character}.
 #' Category field name tells the chart the name of the field in your dataProvider object
 #' which will be used for category axis values.
-#' 
-#' @field ChartCursor \code{list} of a \linkS4class{ChartCursor} properties.
-#' 
-#' @field ChartScrollbar \code{list} of a \linkS4class{ChartScrollbar} properties.
-#' 
+#' @field ChartCursor \linkS4class{ChartCursor}.
+#' Cursor of a chart.
+#' Run \code{api("ChartCursor")} for more information.
+#' @field ChartScrollbar \linkS4class{ChartScrollbar}.
+#' Chart's scrollbar.
+#' Run \code{api("ChartScrollbar")} for more information.
 #' @field creditsPosition \code{character},
 #' specifying position of link to amCharts site.
-#' Allowed values are: top-left, top-right, bottom-left and bottom-right.
-#' 
-#' @field dataProvider \code{list}, containing the data.
-#' Use providing method toList* to convert a \code{data.frame}.
-#' 
-#' @field graphs \code{list}.  List of AmGraphs properties
-#' See \linkS4class{AmGraph}.
+#' Allowed values are: "top-left", "top-right", "bottom-left" and "bottom-right".
+#' @field dataProvider \code{data.frame}, containing the data.
+#' @field graphs \code{list} of \linkS4class{AmGraph}.
 #' Creates the visualization of the data in following types: line, column, step line,
 #' smoothed line, olhc and candlestick.
-#' 
-#' @field graph \code{list} of \linkS4class{AmGraph} properties.
-#' Graph of a Gantt chart. Gant chart actually creates multiple graphs (separate for each segment).
+#' @field graph \linkS4class{AmGraph}.
+#' Only valid for Gantt charts.
+#' Gant chart actually creates multiple graphs (separate for each segment).
 #' Properties of this graph are passed to each of the created graphs
 #' - this allows you to control the look of segments.
-#' 
-#' @field guides \code{list} of Guides properties.
-#' See \linkS4class{Guide}.
+#' Run \code{api("AmGraph")} for more information.
+#' @field guides \code{list} of \linkS4class{Guide}.
 #' Instead of adding guides to the axes, you can push all of them to this array.
 #' In case guide has category or date defined, it will automatically will be assigned to the category axis.
 #' Otherwise to first value axis, unless you specify a different valueAxes for the guide.
-#' 
-#' @field legend \code{list} of an \linkS4class{AmLegend} properties.
-#' 
+#' Run \code{api("Guide")} for more information.
+#' @field legend  \linkS4class{AmLegend}.
+#' Legend of a chart.
+#' Run \code{api("AmLegend")} for more information.
 #' @field segmentsField \code{character}.
-#' 
+#' Segments field in your data provider.
+#' Only valid for Gantt Charts.
 #' @field subChartProperties \code{list}.
-#' 
+#' Only valid for Drilldown charts.
 #' @field theme \code{character}.
 #' Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
-#' 
-#' @field titles \code{list} of Titles properties.
-#' See \linkS4class{Title}.
-#' 
-#' @field trendLines \code{list} of \linkS4class{TrendLine}.
+#' See \url{http://www.amcharts.com/tutorials/working-with-themes/}.
+#' @field titles \code{list} of \linkS4class{Title}.
+#' Run \code{api("Title")} for more information.
+#' @field trendLines \code{list} of \linkS4class{TrendLine} objects added to a chart.
 #' You can add trend lines to a chart using this list or access already existing trend lines.
-#' 
 #' @field type \code{character}.
-#' Possible types are: serial, pie, radar,
-#' (types xy, radar, funnel, gauge, map, stock. are in development).
-#' 
-#' @field valueAxes Object of class \code{list}. List of ValueAxes' properties.
-#' See \linkS4class{ValueAxis}.
+#' Possible types are: "serial", "pie", "radar", "xy", "radar", "funnel", "gauge", "stock".
+#' See details about using argument type.
+#' (type map is in development).
+#' @field valueAxes \code{list} of \linkS4class{ValueAxis}.
 #' Chart creates one value axis automatically,
 #' so if you need only one value axis, you don't need to create it.
-#' 
-#' @field valueAxis \code{list} of Value axis properties for Gantt chart.
+#' Run \code{api("ValueAxis")} for more information.
+#' @field valueAxis \linkS4class{ValueAxis}.
+#' Only valid for Gantt Charts.
 #' Set it's type to "date" if your data is date or time based.
-#' In case of Value axis for a Gantt chart. Set it's type to "date" if your data is date or time based.
-#' 
 #' @field listeners \code{list} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string. See examples for details.
-#' 
+#' The list must be named as in the official API. Each element must a character string.
+#' Run \code{runShinyExamples()} for examples.
 #' @field otherProperties \code{list},
-#' containing other avalaible properties for the class.
-#' 
+#' containing other avalaible properties non coded in the package.
 #' @field value \code{numeric}.
 #' 
 #' @author DataKnowledge
 #' @export
 setClass(Class = "StockPanel", contains = "AmChart",
           representation = representation(
-            drawOnAxis = "list",
+            drawOnAxis = "listOrCharacter",
             stockGraphs = "list",
             stockLegend = "list"
          ))
@@ -164,94 +164,25 @@ stockPanel <- function(drawOnAxis, stockGraphs, stockLegend, ...){
   return(.Object)
 }
 
-# > @drawOnAxis : setters ####
-
-#' @param valueAxis \linkS4class{ValueAxis}
+#' @describeIn initialize-StockPanel
 #' @examples
-#' setDrawOnAxis(.Object = stockPanel(), valueAxis = valueAxis())
-#' setDrawOnAxis(.Object = stockPanel(), valueAxis = "valueAxis1")
-#' @rdname initialize-StockPanel
+#' panel()
 #' @export
-setGeneric(name = "setDrawOnAxis",
-           def = function(.Object, valueAxis = NULL, ...){ standardGeneric("setDrawOnAxis") })
-#' @rdname initialize-StockPanel
-setMethod(f = "setDrawOnAxis", signature = c("StockPanel"),
-  definition = function(.Object, valueAxis = NULL, ...)
-  {
-    if (is.null(valueAxis) && !missing(...)) {
-      valueAxis <- valueAxis(...)
-    } else if (is(valueAxis, "ValueAxis")) {
-      .Object@drawOnAxis<- listProperties(valueAxis)
-    } else if (is.character(valueAxis)) {
-      .Object <- setProperties(.Object, drawOnAxis = valueAxis)
-    } else {}
-    validObject(.Object)
-    return(.Object)
-  })
-
-# > @stockGraphs : setters ####
-
-#' @examples
-#' stockGraphs <- list(stockGraph(comparable = TRUE), stockGraph(comparable = FALSE)) 
-#' setStockGraphs(.Object =  stockPanel(), stockGraphs = stockGraphs)
-#' stockPanel(stockGraphs = stockGraphs)
-#' @rdname initialize-StockPanel
-#' @export
-setGeneric(name = "setStockGraphs",
-           def = function(.Object, stockGraphs){ standardGeneric("setStockGraphs") })
-#' @rdname initialize-StockPanel
-setMethod(f = "setStockGraphs", signature = c("StockPanel"),
-          definition = function(.Object, stockGraphs)
-          {
-            rightClassElements <- prod(sapply(stockGraphs, function(element) {is(element, "AmGraph")}))
-            if(!rightClassElements){
-              stop("[setStockGraphs]: each element must be created with stockGraph(*)")
-            }else{}
-            .Object@stockGraphs <- lapply(stockGraphs, listProperties)
-            validObject(.Object)
-            return(.Object)
-          })
-
-#' @param stockGraph \linkS4class{AmGraph}, created with stockGraph(...)
-#' @examples
-#' addStockGraph(.Object = stockPanel(), comparable = FALSE)
-#' addStockGraph(.Object = stockPanel(), stockGraph = stockGraph(TEST = FALSE))
-#' @rdname initialize-StockPanel
-#' @export
-setGeneric(name = "addStockGraph",
-           def = function(.Object, stockGraph = NULL, ...){ standardGeneric("addStockGraph") })
-#' @rdname initialize-StockPanel
-setMethod(f = "addStockGraph", signature = c("StockPanel"),
-          definition = function(.Object, stockGraph = NULL, ...)
-          {
-            if (is.null(stockGraph) && !missing(...)) {
-              stockGraph <- stockGraph(...)
-            } else {}
-            .Object@stockGraphs <- rlist::list.append(.Object@stockGraphs,
-                                                      listProperties(stockGraph))
-            validObject(.Object)
-            return(.Object)
-          })
-
-# > @stockLegend : setters ####
-
-#' @examples
-#' setStockLegend(.Object = stockPanel(), stockLegend = stockLegend())
-#' @rdname initialize-StockPanel
-#' @export
-setGeneric(name = "setStockLegend",
-           def = function(.Object, stockLegend = NULL, ...){ standardGeneric("setStockLegend") })
-#' @rdname initialize-StockPanel
-setMethod(f = "setStockLegend", signature = c("StockPanel"),
-          definition = function(.Object, stockLegend = NULL, ...)
-          {
-            if (is.null(stockLegend) && !missing(...)) {
-              stockLegend <- stockLegend(...)
-            } else {}
-            .Object@stockLegend<- listProperties(stockLegend)
-            validObject(.Object)
-            return(.Object)
-          })
+panel <- function(drawOnAxis, stockGraphs, stockLegend, ...){
+  .Object <- new("StockPanel")
+  if (!missing(drawOnAxis)) {
+    .Object <- setDrawOnAxis(.Object, drawOnAxis)
+  } else {}
+  if (!missing(stockGraphs)) {
+    .Object <- setStockGraphs(.Object, stockGraphs)
+  } else {}
+  if (!missing(stockLegend)) {
+    .Object <- setStockLegend(.Object, stockLegend)
+  } else {}
+  .Object <- setProperties(.Object, ...)
+  validObject(.Object)
+  return(.Object)
+}
 
 #' @examples
 #' stockPanel(drawnOnAxis = "axis1") 

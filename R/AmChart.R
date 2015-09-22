@@ -90,7 +90,7 @@ NULL
 #' See details about using argument type.
 #' (type map is in development).
 #' 
-#' @field valueAxes \code{list} of .
+#' @field valueAxes \code{list} of \linkS4class{ValueAxis}.
 #' Chart creates one value axis automatically,
 #' so if you need only one value axis, you don't need to create it.
 #' Run \code{api("ValueAxis")} for more information.

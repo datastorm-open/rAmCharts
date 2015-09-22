@@ -1,10 +1,9 @@
-#' @include sharedGenerics.R AmBalloon.R CategoryAxis.R AmGraph.R ValueAxis.R ChartCursor.R ChartScrollbar.R AmLegend.R TrendLine.R Title.R Label.R GaugeArrow.R Guide.R
+#' @include classUnion.R sharedGenerics.R CategoryAxis.R
 NULL
 
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setAllLabels",
-           def = function(.Object, allLabels) {standardGeneric("setAllLabels")})
+setGeneric(name = "setAllLabels", def = function(.Object, allLabels) {standardGeneric("setAllLabels")})
 #' @examples
 #' allLabels <- list(label(text = "balloonText"), label(text = "column"))
 #' print(setAllLabels(.Object = amSerialChart(), allLabels = allLabels))
@@ -41,7 +40,6 @@ setMethod(f = "setAllLabels", signature = c("AmChart", "list"),
 #' @export
 setGeneric(name = "addLabel",
             def = function(.Object, label = NULL, ...) {standardGeneric("addLabel")})
-setClassUnion(name = "LabelOrMissing", members = c("Label", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "addLabel", signature = c("AmChart", "LabelOrMissing"),
           definition = function(.Object, label = NULL, ...)
@@ -98,7 +96,6 @@ setMethod(f = "setArrows", signature = c("AmChart"),
 #' @export
 setGeneric(name = "addArrow",
             def = function(.Object, arrow = NULL, ...) { standardGeneric("addArrow") } )
-setClassUnion(name = "GaugeArrowOrMissing", members = c("GaugeArrow", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "addArrow", signature = c("AmChart", "GaugeArrowOrMissing"),
            definition = function(.Object, arrow = NULL, ...)
@@ -122,8 +119,7 @@ setMethod(f = "addArrow", signature = c("AmChart", "GaugeArrowOrMissing"),
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setAxes",
-            def = function(.Object, axes, ...) {standardGeneric("setAxes")})
+setGeneric(name = "setAxes", def = function(.Object, axes, ...) {standardGeneric("setAxes")})
 #' @rdname initialize-AmChart
 setMethod(f = "setAxes", signature = c("AmChart", "list"),
           definition = function(.Object, axes)
@@ -154,7 +150,6 @@ setMethod(f = "setAxes", signature = c("AmChart", "list"),
 #' @export
 setGeneric(name = "addAxe",
             def = function(.Object, axe = NULL, ...) {standardGeneric("addAxe")})
-setClassUnion(name = "GaugeAxisOrMissing", members = c("GaugeAxis", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "addAxe", signature = c("AmChart", "GaugeAxisOrMissing"),
           definition = function(.Object, axe = NULL, ...)
@@ -184,11 +179,6 @@ setMethod(f = "addAxe", signature = c("AmChart", "GaugeAxisOrMissing"),
 #' setBalloon(.Object = amSerialChart(), amBalloon = "error")
 #' }
 #' # ---
-#' @rdname initialize-AmChart
-#' @export
-setGeneric(name = "setBalloon",
-            def = function(.Object, amBalloon = NULL, ...) {standardGeneric("setBalloon")})
-setClassUnion(name = "AmBalloonOrMissing", members = c("AmBalloon", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "setBalloon", signature = c("AmChart", "AmBalloonOrMissing"),
            definition = function(.Object, amBalloon = NULL, ...)
@@ -265,7 +255,6 @@ setMethod(f = "setCategoryField", signature = c("AmChart", "character"),
 #' @export
 setGeneric(name = "setChartCursor",
            def = function(.Object, chartCursor = NULL, ...) {standardGeneric("setChartCursor")})
-setClassUnion("ChartCursorOrMissing", c("ChartCursor", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "setChartCursor", signature = c("AmChart", "ChartCursorOrMissing"),
           definition = function(.Object, chartCursor = NULL, ...)
@@ -298,7 +287,6 @@ setMethod(f = "setChartCursor", signature = c("AmChart", "ChartCursorOrMissing")
 #' @export
 setGeneric(name = "setChartScrollbar",
            def = function(.Object, chartScrollbar = NULL, ...) {standardGeneric("setChartScrollbar")})
-setClassUnion("ChartScrollbarOrMissing", c("ChartScrollbar", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "setChartScrollbar", signature = c("AmChart", "ChartScrollbarOrMissing"),
           definition = function(.Object, chartScrollbar = NULL, ...)
@@ -335,7 +323,6 @@ setMethod(f = "setCreditsPosition", signature = c("AmChart", "character"),
             return(.Object)
           })
 
-setClassUnion("logicalOrMissing", c("logical", "missing"))
 #' @param keepNA
 #' object of class \code{logical}, default \code{TRUE}.
 #' Indicates if \code{NULL} values have to be kept or ignored. 
@@ -409,7 +396,6 @@ setMethod(f = "setGraphs", signature = c("AmChart", "list"),
 #' @export
 setGeneric(name = "addGraph",
             def = function(.Object, amGraph = NULL, ...) {standardGeneric("addGraph")})
-setClassUnion(name = "AmGraphOrMissing", members = c("AmGraph", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "addGraph", signature = c("AmChart", "AmGraphOrMissing"),
           definition = function(.Object, amGraph = NULL , ...)
@@ -470,8 +456,8 @@ setMethod(f = "setGuides", signature = c("AmChart", "list"),
             return(.Object)
           })
 
-setClassUnion(name = "GuideOrMissing", members = c("Guide", "missing"))
 #' @param guide (optional) \linkS4class{Guide}.
+#' Argument of method \code{addGuide}.
 #' @examples
 #' print(addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10))
 #' # equivalent to
@@ -504,7 +490,6 @@ setMethod(f = "addGuide", signature = c("AmChart", "GuideOrMissing"),
 #' @export
 setGeneric(name = "setLegend",
            def = function(.Object, amLegend = NULL, ...) {standardGeneric("setLegend")})
-setClassUnion(name = "AmLegendOrMissing", members = c("AmLegend", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "setLegend", signature = c("AmChart", "AmLegendOrMissing"),
           definition = function(.Object, amLegend = NULL, ...)
@@ -687,7 +672,6 @@ setMethod(f = "setTitles", signature = c("AmChart", "list"),
 #' @export
 setGeneric(name = "addTitle",
             def = function(.Object, title = NULL, ...) {standardGeneric("addTitle")})
-setClassUnion(name = "TitleOrMissing", members = c("Title", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "addTitle", signature = c("AmChart", "TitleOrMissing"),
           definition = function(.Object, title = NULL, ...)
@@ -736,7 +720,6 @@ setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
 #' @export
 setGeneric(name = "addTrendLine",
            def = function(.Object, trendLine = NULL, ...) {standardGeneric("addTrendLine")})
-setClassUnion("TrendLineOrMissing", c("TrendLine", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "addTrendLine", signature = c("AmChart", "TrendLineOrMissing"),
           definition = function(.Object, trendLine = NULL, ...)
@@ -799,7 +782,6 @@ setMethod(f = "setValueAxes", signature = c("AmChart", "list"),
 #' @export
 setGeneric(name = "addValueAxes",
             def = function(.Object, valueAxis = NULL, ... ) {standardGeneric("addValueAxes")})
-setClassUnion("ValueAxisOrMissing", c("ValueAxis", "missing"))
 #' @rdname initialize-AmChart
 setMethod(f = "addValueAxes", signature = c("AmChart", "ValueAxisOrMissing"),
           definition = function(.Object, valueAxis = NULL, ...)

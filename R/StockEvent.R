@@ -1,25 +1,28 @@
-#' @include AmObject.R AmGraph.R
+#' @include AmObject.R ListOrCharacter.R
 NULL
 
 #' @title StockEvent class
 #' @author DataKnowledge
 #' 
-#' @slot stockGraph \code{list} containing properties of stockGraph.
+#' @description StockEvent is object which holds information about event (bullet).
+#' Values from StockEventsSettings will be used if not set.
+#' Stock event bullet's size depends on it's graphs fontSize.
+#' When user rolls-over, clicks or rolls-out of the event bullet, AmStockChart dispatches events.
+#' @details Run \code{api("StockEvent")} for more information.
+#' 
+#' @slot stockGraph \linkS4class{AmGraph} containing properties of stockGraph.
 #' This is the graph on which event will be displayed.
 #' You can use a reference to the stock graph object or id of the graph.
-#' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
-#' 
 #' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
-#' 
 #' @slot value \code{numeric}.
 #' 
 #' @export
 setClass(Class = "StockEvent", contains = "AmObject",
-          representation = representation(stockGraph = "list"))
+          representation = representation(stockGraph = "listOrCharacter"))
 
 #' @title Initialize a StockEvent
 #' @param .Object \linkS4class{StockEvent}.
@@ -37,7 +40,7 @@ setMethod(f = "initialize", signature = "StockEvent",
           definition = function(.Object, backgroundAlpha = 1, stockGraph, ...)
           {  
             if (!missing(stockGraph)) {
-              .Object <- setStockGraph( .Object, stockGraph)
+              .Object <- setStockGraph(.Object, stockGraph)
             } else {}
             .Object <- setProperties(.Object, backgroundAlpha	 = backgroundAlpha, ...)
             validObject(.Object)
@@ -58,29 +61,6 @@ stockEvent <- function(backgroundAlpha = 1, stockGraph,...){
   validObject(.Object)
   return( .Object )
 }
-
-# > @stockGraph : setters ####
-
-#' @rdname initialize-StockEvent
-#' @export
-setGeneric(name = "setStockGraph", def = function(.Object, stockGraph = NULL, ...) {standardGeneric("setStockGraph")})
-#' @examples
-#' setStockGraph(.Object = stockEvent(), stockGraph = stockGraph(balloonText = "balloonText"))
-#' setStockGraph(.Object = stockEvent(), stockGraph = "stockGraph1")
-#' @rdname initialize-StockEvent
-setMethod(f = "setStockGraph", signature = c("StockEvent"),
-  definition = function(.Object, stockGraph = NULL, ...)
-  {
-    if (is.null(stockGraph)) {
-      stockGraph <- stockGraph(...)
-    } else if (is(stockGraph, "AmGraph")) {
-      .Object@stockGraph <- listProperties(stockGraph)
-    } else if (is.character(stockGraph)) {
-      .Object <- setProperties(.Object, stockGraph = stockGraph)
-    } else {}
-    validObject(.Object)
-    return(.Object)
-  })
 
 #' @examples
 #' listProperties(stockEvent())

@@ -1,4 +1,4 @@
-#' @include AmObject.R
+#' @include AmObject.R ListOrCharacter.R
 NULL
 
 #' @title Guide class
@@ -7,13 +7,12 @@ NULL
 #' @description Creates a horizontal/vertical guideline-/area for
 #' amSerialChart, amXYChart and amRadarChart charts,
 #' automatically adapts it's settings from the axes if none has been specified.
-#' @details Run \code{api("GaugeArrow")} for more information and all avalaible properties.
+#' @details Run \code{api("Guide")} for more information and all avalaible properties.
 #' 
 #' @slot fillAlpha \code{numeric}.
 #' Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
 #' Possible values are: "start" and "middle" This setting doesn't work if parseDates is set to true.
-#' @slot valueAxis \code{list},
-#' containing properties of a \linkS4class{ValueAxis} class.
+#' @slot valueAxis \linkS4class{ValueAxis}.
 #' As you can add guides directly to the chart, you might need to specify 
 #' which value axis should be used.
 #' @slot listeners \code{list} containining the listeners to add to the object.
@@ -25,7 +24,7 @@ NULL
 #' 
 #' @export
 setClass(Class = "Guide", contains = "AmObject",
-         representation = representation(fillAlpha = "numeric", valueAxis = "list"))
+         representation = representation(fillAlpha = "numeric", valueAxis = "listOrCharacter"))
 
 #' @title Initialize a Guide
 #' @param .Object \linkS4class{Guide}
@@ -47,14 +46,15 @@ setMethod(f = "initialize", signature = c("Guide"),
           {            
             if (!missing(fillAlpha)) {
               .Object@fillAlpha <- fillAlpha
-            }
+            } else {}
             if (!missing(valueAxis)) {
               .Object@valueAxis <- listProperties(valueAxis)
-            }
+            } else {}
             if (!missing(value)) {
               .Object@value <- value
-            }
+            } else {}
             .Object <- setProperties(.Object, ...)
+            
             validObject(.Object)
             return(.Object)
           })
@@ -69,69 +69,19 @@ setMethod(f = "initialize", signature = c("Guide"),
 guide <- function(fillAlpha, valueAxis, value, ...) {
   .Object <- new(Class="Guide")
   if (!missing(fillAlpha)) {
-    .Object@fillAlpha <- fillAlpha
-  }
+    .Object <- setFillAlpha(.Object = .Object, fillAlpha = fillAlpha)
+  } else {}
   if (!missing(valueAxis)) {
-    .Object@valueAxis <- listProperties(valueAxis)
-  }
+    .Object <- setValueAxis(.Object = .Object, valueAxis = valueAxis)
+  } else {}
   if (!missing(value)) {
     .Object@value <- value
-  }
+  } else {}
   .Object <- setProperties(.Object, ...)
+  
+  validObject(.Object)
   return(.Object)
 }
-
-#' @rdname initialize-Guide
-#' @export
-setGeneric(name = "setFillAlpha", def = function(.Object, fillAlpha) { standardGeneric("setFillAlpha") })
-#' @examples
-#' setFillAlpha(.Object = guide(), fillAlpha = 1)
-#' @rdname initialize-Guide
-#' @export
-setMethod(
-  f = "setFillAlpha",
-  signature = c("Guide", "numeric"),
-  definition = function(.Object, fillAlpha)
-  {
-    .Object@fillAlpha <- fillAlpha
-    validObject(.Object)
-    return(.Object)
-  })
-
-#' @title SETTER
-#' @examples
-#' setValueAxis(.Object = guide(), valueAxis = list(valueAxis(test = "foo"),
-#'                                                  valueAxis(test2 = "foo2")))
-#' setValueAxis(.Object = guide(), valueAxis = valueAxis(test = "foo"))
-#' @rdname initialize-Guide
-setMethod(f = "setValueAxis", signature = "Guide",
-  definition = function(.Object, valueAxis, ...)
-  {
-    if (is.list(valueAxis)) {
-      .Object@valueAxis <- valueAxis
-    } else if (is(valueAxis,"ValueAxis")) {
-      .Object@valueAxis <- listProperties(valueAxis)
-    } else {}
-    validObject(.Object)
-    return(.Object)
-  })
-
-#' @examples
-#' addValueAxis(.Object = guide(), axisTitleOffset = 12, tickLength = 10)
-#' valueAxis <- valueAxis(axisTitleOffset = 12, tickLength = 10)
-#' addValueAxis(.Object = guide(), valueAxis = valueAxis)
-#' @seealso \code{\linkS4class{Guide}} S4 class
-#' @rdname initialize-Guide
-setMethod(f = "addValueAxis", signature = c("Guide"),
-          definition = function(.Object, valueAxis = NULL, ...)
-          {
-            if (is.null(valueAxis) && !missing(...)) {
-              valueAxis <- valueAxis(...)
-            }
-            .Object@valueAxis <- rlist::list.append(.Object@valueAxis, listProperties(valueAxis))
-            validObject(.Object)
-            return(.Object)
-          })
 
 #' @examples
 #' lapply(list(guide(fillAlpha = .4, value = 1), guide(fillAlpha = .5)), listProperties)
