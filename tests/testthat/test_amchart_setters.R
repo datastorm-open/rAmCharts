@@ -1,4 +1,5 @@
-context("Setters")
+context("AmChart setters (class unions)")
+
 testthat::test_that("addLabel method", {
   testthat::expect_error(addLabel(.Object = amSerialChart()))
   testthat::expect_error(addLabel(.Object = amChart(), label = "another class"))
