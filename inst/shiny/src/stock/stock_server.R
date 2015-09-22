@@ -1,6 +1,4 @@
-
 output$stock1 <- renderAmCharts({
-  data('data_stock1')
   pipeR::pipeline(
     amStockChart(theme = 'light'),
     addDataSet(dataSet(title = 'first data set', categoryField = 'date',

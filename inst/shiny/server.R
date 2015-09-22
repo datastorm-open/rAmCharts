@@ -16,6 +16,8 @@ shinyServer(function(input, output) {
     "attribute"
   })
   
+  data('data_stock1')
+  
   source("./src/radar/radar_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/pie/pie_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/serial/serial_server.R", local = TRUE, encoding = "UTF-8")
