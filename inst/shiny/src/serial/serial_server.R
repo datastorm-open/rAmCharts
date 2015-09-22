@@ -1,6 +1,6 @@
-output$serial1 <- rAmCharts::renderAmCharts({
+output$serial1 <- renderAmCharts({
   pipeR::pipeline(
-    amSerialChart(theme = 'dark', categoryField = 'country', creditsPosition = 'top-right'),
+    amSerialChart(categoryField = 'country', creditsPosition = 'top-right'),
     setDataProvider(data.frame(country = c('FR', 'US'), visits = 1:2)),
     addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
              valueField = 'visits', fillAlphas = .8, lineAlpha = .2),
@@ -15,7 +15,7 @@ output$serial1 <- rAmCharts::renderAmCharts({
 output$code_serial1 <- renderText({
   "
   pipeR::pipeline(
-    amSerialChart(theme = 'dark', categoryField = 'country', creditsPosition = 'top-right'),
+    amSerialChart(categoryField = 'country', creditsPosition = 'top-right'),
     setDataProvider(data.frame(country = c('FR', 'US'), visits = 1:2)),
     addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
              valueField = 'visits', fillAlphas = .8, lineAlpha = .2),
@@ -28,7 +28,7 @@ output$code_serial1 <- renderText({
   "
 })
 
-output$serial2 <- rAmCharts::renderAmCharts({
+output$serial2 <- renderAmCharts({
   pipeR::pipeline(
     amSerialChart(addClassNames = TRUE, theme = 'chalk', autoMargins = FALSE,
                   marginLeft = 30, marginRight = 8, marginTop = 10,
@@ -86,11 +86,9 @@ output$code_serial2 <- renderText({
   "
 })
 
-output$serial3 <- rAmCharts::renderAmCharts({
+output$serial3 <- renderAmCharts({
   pipeR::pipeline(
-    amSerialChart(theme = 'chalk', startDuration = 2,
-                  categoryField = 'country', depth3D = 40,
-                  angle = 30),
+    amSerialChart(startDuration = 2, categoryField = 'country', depth3D = 40, angle = 30),
     setDataProvider(data.table(
       country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France', 'India', 'Spain', 'Netherlands', 'Russia'), 
       visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580), 
@@ -106,9 +104,7 @@ output$serial3 <- rAmCharts::renderAmCharts({
 output$code_serial3 <- renderText({
   "
   pipeR::pipeline(
-    amSerialChart(theme = 'chalk', startDuration = 2,
-                  categoryField = 'country', depth3D = 40,
-                  angle = 30),
+    amSerialChart(startDuration = 2, categoryField = 'country', depth3D = 40, angle = 30),
     setDataProvider(data.table(
       country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France', 'India', 'Spain', 'Netherlands', 'Russia'), 
       visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580), 
@@ -124,7 +120,7 @@ output$code_serial3 <- renderText({
 
 output$serial4 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
-    amSerialChart(theme = 'dark', marginRight = 30, plotAreaBorderAlpha = 0,
+    amSerialChart(theme = 'light', marginRight = 30, plotAreaBorderAlpha = 0,
                   categoryField = 'year'),
     setDataProvider(data.frame(
       year = 1994:2012, 
@@ -156,7 +152,7 @@ output$serial4 <- rAmCharts::renderAmCharts({
 output$code_serial4 <- renderText({
   "
   pipeR::pipeline(
-    amSerialChart(theme = 'dark', marginRight = 30, plotAreaBorderAlpha = 0,
+    amSerialChart(theme = 'light', marginRight = 30, plotAreaBorderAlpha = 0,
                   categoryField = 'year'),
     setDataProvider(data.frame(
       year = 1994:2012, 
@@ -181,6 +177,56 @@ output$code_serial4 <- renderText({
                          dashLength = 2, inside = TRUE, labelRotation = 90,
                          label = 'motorcycle fee introduced'))),
     setChartScrollbar(),
+    plot()
+  )
+  "
+})
+
+output$serial5 <- renderAmCharts({
+  pipeR::pipeline(
+    amSerialChart(theme = 'light', marginTop = 0, marginRight = 80, dataDateFormat = 'YYYY',
+                  categoryField = 'year'),
+    setDataProvider(data.frame(year = 1950:2015, value = runif(length(1950:2015), -1, 1))),
+    addValueAxes(axisAlpha = 0, position = 'left'),
+    addGraph(id = 'g1', balloonText =  '[[category]]<br><b><span style="font-size = 14px;">[[value]]</span></b>',
+             bullet = 'round', bulletSize =  8, lineColor =  '#d1655d', lineThickness =  2,
+             negativeLineColor =  '#637bb6', type =  'smoothedLine', valueField =  'value'),
+    setChartScrollbar(graph = 'g1', gridAlpha = 0, color = '#888888', scrollbarHeight = 55, backgroundAlpha = 0,
+                      selectedBackgroundAlpha = 0.1, selectedBackgroundColor = '#888888', graphFillAlpha = 0,
+                      autoGridCount = TRUE, selectedGraphFillAlpha = 0, graphLineAlpha = 0.2,
+                      graphLineColor = '#c2c2c2', selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1),
+    setChartCursor(categoryBalloonDateFormat = 'YYYY', cursorAlpha = 0, valueLineEnabled =TRUE,
+                   valueLineBalloonEnabled =TRUE, valueLineAlpha = 0.5, fullWidth = TRUE),
+    setCategoryAxis(minPeriod = 'YYYY', parseDates = TRUE, minorGridAlpha = 0.1, minorGridEnabled = TRUE),
+    addListener('rendered', paste('function(event) {',
+                                  'event.chart.zoomToIndexes(Math.round(event.chart.dataProvider.length * 0.4),',
+                                  'Math.round(event.chart.dataProvider.length * 0.55))',
+                                  '}')),
+    plot()
+  )
+})
+
+output$code_serial5 <- renderText({
+  "
+  pipeR::pipeline(
+    amSerialChart(theme = 'light', marginTop = 0, marginRight = 80, dataDateFormat = 'YYYY',
+                  categoryField = 'year'),
+    setDataProvider(data.frame(year = 1950:2015, value = runif(length(1950:2015), -1, 1))),
+    addValueAxes(axisAlpha = 0, position = 'left'),
+    addGraph(id = 'g1', balloonText =  '[[category]]<br><b><span style=\"font-size = 14px;\">[[value]]</span></b>',
+             bullet = 'round', bulletSize =  8, lineColor =  '#d1655d', lineThickness =  2,
+             negativeLineColor =  '#637bb6', type =  'smoothedLine', valueField =  'value'),
+    setChartScrollbar(graph = 'g1', gridAlpha = 0, color = '#888888', scrollbarHeight = 55, backgroundAlpha = 0,
+                      selectedBackgroundAlpha = 0.1, selectedBackgroundColor = '#888888', graphFillAlpha = 0,
+                      autoGridCount = TRUE, selectedGraphFillAlpha = 0, graphLineAlpha = 0.2,
+                      graphLineColor = '#c2c2c2', selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1),
+    setChartCursor(categoryBalloonDateFormat = 'YYYY', cursorAlpha = 0, valueLineEnabled =TRUE,
+                   valueLineBalloonEnabled =TRUE, valueLineAlpha = 0.5, fullWidth = TRUE),
+    setCategoryAxis(minPeriod = 'YYYY', parseDates = TRUE, minorGridAlpha = 0.1, minorGridEnabled = TRUE),
+    addListener('rendered', paste('function(event) {',
+                                  'event.chart.zoomToIndexes(Math.round(event.chart.dataProvider.length * 0.4),',
+                                  'Math.round(event.chart.dataProvider.length * 0.55))',
+                                  '}')),
     plot()
   )
   "

@@ -1,6 +1,6 @@
 output$radar1 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
-    amRadarChart(startDuration = 1, categoryField = category(), theme = "dark"),
+    amRadarChart(startDuration = 1, categoryField = category()),
     setDataProvider(data.frame(attribute = c("data", "brand", "singleness"),
                                p1 = c(.3, -1, 0), p2 = c(.7, 1, 2))),
     addGraph( balloonText = "Utility : [[value]]", valueField = "p1", title = "p1"),
@@ -13,7 +13,7 @@ output$radar1 <- rAmCharts::renderAmCharts({
 output$code_radar1 <- renderText({
  "
   pipeR::pipeline(
-    amRadarChart(startDuration = 1, categoryField = category(), theme = 'dark'),
+    amRadarChart(startDuration = 1, categoryField = category()),
     setDataProvider(data.frame(attribute = c('data', 'brand', 'singleness'),
                                p1 = c(.3, -1, 0), p2 = c(.7, 1, 2))),
     addGraph(balloonText = 'Utility : [[value]]', valueField = 'p1', title = 'p1'),

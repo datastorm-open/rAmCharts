@@ -10,7 +10,9 @@ shiny::tabPanel(
       rAmCharts::amChartsOutput("serial3", type = "serial"),
       verbatimTextOutput("code_serial3"),
       rAmCharts::amChartsOutput("serial4", type = "serial"),
-      verbatimTextOutput("code_serial4")
+      verbatimTextOutput("code_serial4"),
+      rAmCharts::amChartsOutput("serial5", type = "serial"),
+      verbatimTextOutput("code_serial5")
     )
   )
 )

@@ -22,6 +22,7 @@ shinyServer(function(input, output) {
   source("./src/xy/xy_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/gauge/gauge_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/funnel/funnel_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/stock/stock_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
 
 })
