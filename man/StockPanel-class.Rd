@@ -5,12 +5,16 @@
 \alias{StockPanel-class}
 \title{StockPanel class}
 \description{
-StockPanel class
+StockPanel class creates stock panels (charts).
+AmStockChart can have multiple Stock panels.
+}
+\details{
+Run \code{api("StockPanel")} for more information and all avalaible properties.
 }
 \section{Fields}{
 
 \describe{
-\item{\code{drawOnAxis}}{\code{list}. Containing properties of ValueAxis.
+\item{\code{drawOnAxis}}{\linkS4class{ValueAxis}.
 Specifies on which value axis user can draw trend lines.
 Set drawingIconsEnabled to true if you want drawing icons to be visible.
 First value axis will be used if not set here.
@@ -22,19 +26,27 @@ Each element must be have been created with stockGraph(*)}
 \item{\code{stockLegend}}{\code{list}.
 Each element must be have been created with stockLegend(*)}
 
-\item{\code{allLabels}}{\code{list} of \linkS4class{Label} properties.}
+\item{\code{allLabels}}{\code{list} of \linkS4class{Label}.
+Example of label object, with all possible properties:
+label(x = 20, y = 20, text = "this is label", align = "left", size = 12, color = "#CC0000",
+      alpha = 1, rotation = 0, bold = TRUE, url = "http=//www.amcharts.com")
+Run \code{api("Label")} for more information.}
 
-\item{\code{arrows}}{\code{list} of \linkS4class{GaugeArrow} properties.}
+\item{\code{arrows}}{\code{list} of \linkS4class{GaugeArrow}. Only valid for gauge charts.
+Run \code{api("GaugeArrow")} for more information.}
 
-\item{\code{axes}}{\code{list} of \linkS4class{GaugeAxis} properties.}
+\item{\code{axes}}{\code{list} of \linkS4class{GaugeAxis} properties.
+Only valid for gauge charts.
+Run \code{api("GaugeAxis")} for more information.}
 
-\item{\code{balloon}}{\code{list} of an \linkS4class{AmBalloon} properties.
+\item{\code{balloon}}{\linkS4class{AmBalloon}.
 Creates the balloons (tooltips) of the chart,
 It follows the mouse cursor when you roll-over the data items.
 The framework generates the instances automatically you only need to adjust
-the appearance to your needs.}
+the appearance to your needs.
+Run \code{api("AmBalloon")} for more information.}
 
-\item{\code{categoryAxis}}{\code{list} of a \linkS4class{CategoryAxis} properties.
+\item{\code{categoryAxis}}{\linkS4class{CategoryAxis}.
 Read-only. Chart creates category axis itself.
 If you want to change some properties,
 you should get this axis from the chart and set properties to this object.}
@@ -43,70 +55,84 @@ you should get this axis from the chart and set properties to this object.}
 Category field name tells the chart the name of the field in your dataProvider object
 which will be used for category axis values.}
 
-\item{\code{ChartCursor}}{\code{list} of a \linkS4class{ChartCursor} properties.}
+\item{\code{ChartCursor}}{\linkS4class{ChartCursor}.
+Cursor of a chart.
+Run \code{api("ChartCursor")} for more information.}
 
-\item{\code{ChartScrollbar}}{\code{list} of a \linkS4class{ChartScrollbar} properties.}
+\item{\code{ChartScrollbar}}{\linkS4class{ChartScrollbar}.
+Chart's scrollbar.
+Run \code{api("ChartScrollbar")} for more information.}
 
 \item{\code{creditsPosition}}{\code{character},
 specifying position of link to amCharts site.
-Allowed values are: top-left, top-right, bottom-left and bottom-right.}
+Allowed values are: "top-left", "top-right", "bottom-left" and "bottom-right".}
 
-\item{\code{dataProvider}}{\code{list}, containing the data.
-Use providing method toList* to convert a \code{data.frame}.}
+\item{\code{dataProvider}}{\code{data.frame}, containing the data.}
 
-\item{\code{graphs}}{\code{list}.  List of AmGraphs properties
-See \linkS4class{AmGraph}.
+\item{\code{graphs}}{\code{list} of \linkS4class{AmGraph}.
 Creates the visualization of the data in following types: line, column, step line,
 smoothed line, olhc and candlestick.}
 
-\item{\code{graph}}{\code{list} of \linkS4class{AmGraph} properties.
-Graph of a Gantt chart. Gant chart actually creates multiple graphs (separate for each segment).
+\item{\code{graph}}{\linkS4class{AmGraph}.
+Only valid for Gantt charts.
+Gant chart actually creates multiple graphs (separate for each segment).
 Properties of this graph are passed to each of the created graphs
-- this allows you to control the look of segments.}
+- this allows you to control the look of segments.
+Run \code{api("AmGraph")} for more information.}
 
-\item{\code{guides}}{\code{list} of Guides properties.
-See \linkS4class{Guide}.
+\item{\code{guides}}{\code{list} of \linkS4class{Guide}.
 Instead of adding guides to the axes, you can push all of them to this array.
 In case guide has category or date defined, it will automatically will be assigned to the category axis.
-Otherwise to first value axis, unless you specify a different valueAxes for the guide.}
+Otherwise to first value axis, unless you specify a different valueAxes for the guide.
+Run \code{api("Guide")} for more information.}
 
-\item{\code{legend}}{\code{list} of an \linkS4class{AmLegend} properties.}
+\item{\code{legend}}{\linkS4class{AmLegend}.
+Legend of a chart.
+Run \code{api("AmLegend")} for more information.}
 
-\item{\code{segmentsField}}{\code{character}.}
+\item{\code{segmentsField}}{\code{character}.
+Segments field in your data provider.
+Only valid for Gantt Charts.}
 
-\item{\code{subChartProperties}}{\code{list}.}
+\item{\code{subChartProperties}}{\code{list}.
+Only valid for Drilldown charts.}
 
 \item{\code{theme}}{\code{character}.
-Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.}
+Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
+See \url{http://www.amcharts.com/tutorials/working-with-themes/}.}
 
-\item{\code{titles}}{\code{list} of Titles properties.
-See \linkS4class{Title}.}
+\item{\code{titles}}{\code{list} of \linkS4class{Title}.
+Run \code{api("Title")} for more information.}
 
-\item{\code{trendLines}}{\code{list} of \linkS4class{TrendLine}.
+\item{\code{trendLines}}{\code{list} of \linkS4class{TrendLine} objects added to a chart.
 You can add trend lines to a chart using this list or access already existing trend lines.}
 
 \item{\code{type}}{\code{character}.
-Possible types are: serial, pie, radar,
-(types xy, radar, funnel, gauge, map, stock. are in development).}
+Possible types are: "serial", "pie", "radar", "xy", "radar", "funnel", "gauge", "stock".
+See details about using argument type.
+(type map is in development).}
 
-\item{\code{valueAxes}}{Object of class \code{list}. List of ValueAxes' properties.
-See \linkS4class{ValueAxis}.
+\item{\code{valueAxes}}{\code{list} of \linkS4class{ValueAxis}.
 Chart creates one value axis automatically,
-so if you need only one value axis, you don't need to create it.}
+so if you need only one value axis, you don't need to create it.
+Run \code{api("ValueAxis")} for more information.}
 
-\item{\code{valueAxis}}{\code{list} of Value axis properties for Gantt chart.
-Set it's type to "date" if your data is date or time based.
-In case of Value axis for a Gantt chart. Set it's type to "date" if your data is date or time based.}
+\item{\code{valueAxis}}{\linkS4class{ValueAxis}.
+Only valid for Gantt Charts.
+Set it's type to "date" if your data is date or time based.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must a character string. See examples for details.}
+The list must be named as in the official API. Each element must a character string.
+Run \code{runShinyExamples()} for examples.}
 
 \item{\code{otherProperties}}{\code{list},
-containing other avalaible properties for the class.}
+containing other avalaible properties non coded in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}
 \author{
+DataKnowledge
+
 DataKnowledge
 }
 

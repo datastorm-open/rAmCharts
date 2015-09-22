@@ -13,7 +13,7 @@ Run \code{api("ChartScrollbar")} for more information and all avalaible properti
 \section{Slots}{
 
 \describe{
-\item{\code{updateOnReleaseOnly}}{\code{logical}.
+\item{\code{enabled}}{\code{logical}.
 Specifies if the chart should be updated while dragging/resizing the scrollbar
 or only at the moment when user releases mouse button.}
 

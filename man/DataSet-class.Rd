@@ -5,7 +5,10 @@
 \alias{DataSet-class}
 \title{DataSet class}
 \description{
-DataSet class
+DataSet is objects which holds all information about data.
+}
+\details{
+Run \code{api("DataSet")} for mor information.
 }
 \section{Slots}{
 
@@ -14,16 +17,14 @@ DataSet class
 Important: the data sets need to come pre-ordered in ascending order.
 Data with incorrect order might result in visual and functional glitches on the chart.}
 
-\item{\code{fieldMappings}}{\code{list}.
-Array of field mappings.
+\item{\code{fieldMappings}}{\code{list} field mappings.
 Field mapping is an object with fromField and toField properties.
 fromField is a name of your value field in dataProvider.
 toField might be chosen freely,
 it will be used to set value/open/close/high/low fields for the StockGraph.
 Example: {fromField:"val1", toField:"value"}.}
 
-\item{\code{stockEvents}}{\code{list}.
-Containing properties of stockEvents.}
+\item{\code{stockEvents}}{\code{list} of \linkS4class{StockEvent}.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.

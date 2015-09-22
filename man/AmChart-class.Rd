@@ -99,7 +99,7 @@ Possible types are: "serial", "pie", "radar", "xy", "radar", "funnel", "gauge", 
 See details about using argument type.
 (type map is in development).}
 
-\item{\code{valueAxes}}{\code{list} of .
+\item{\code{valueAxes}}{\code{list} of \linkS4class{ValueAxis}.
 Chart creates one value axis automatically,
 so if you need only one value axis, you don't need to create it.
 Run \code{api("ValueAxis")} for more information.}

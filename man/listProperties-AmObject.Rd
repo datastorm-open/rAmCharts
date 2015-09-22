@@ -86,7 +86,8 @@ listProperties(amGraph(balloonText = "toto", type = "type", valueField = "valueF
 listProperties(amGraph(balloonText = "toto", type = "type"))
 listProperties(amLegend(useGraphSettings = TRUE))
 amChart(type = "serial")
-listProperties(amChart(test = 1))
+listProperties(amStockChart(test = 1))
+# ---
 \dontshow{
 library(pipeR)
 categoryAxis(ignoreAxisWidth = TRUE) \%>>\% listProperties() \%>>\% class
@@ -94,7 +95,7 @@ categoryAxis(ignoreAxisWidth = TRUE) \%>>\% listProperties() \%>>\% length
 categoryAxis(ignoreAxisWidth = TRUE) \%>>\% setGridPosition("start") \%>>\% listProperties()
 }
 new("ChartCursor", oneBalloonOnly = TRUE)
-listProperties(chartScrollbar(updateOnReleaseOnly = TRUE))
+listProperties(chartScrollbar(enabled = TRUE))
 lapply(list(gaugeArrow(alpha = .4, value = 1), gaugeArrow(alpha = .5)), listProperties)
 listProperties(gaugeAxis())
 lapply(list(gaugeBand(fillAlpha = .4, value = 1), gaugeBand(fillAlpha = .5)), listProperties)

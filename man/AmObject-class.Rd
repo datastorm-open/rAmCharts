@@ -14,7 +14,7 @@ This is a virtual class for representing any Am** class
 The list must be named as in the official API. Each element must a character string. See examples for details.}
 
 \item{\code{otherProperties}}{\code{list},
-containing other avalaible properties non coded in the package yet.}
+containing other avalaible properties non coded in the class.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

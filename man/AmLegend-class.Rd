@@ -8,7 +8,7 @@
 Creates the legend for the chart, automatically adapts the color settings of the graphs.
 }
 \details{
-Run \code{api(AmLegend)} for more information and all avalaible properties.
+Run \code{api("AmLegend")} for more information and all avalaible properties.
 }
 \section{Slots}{
 
