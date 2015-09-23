@@ -1,24 +1,20 @@
 output$radar1 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
-    amRadarChart(startDuration = 1, categoryField = category()),
-    setDataProvider(data.frame(attribute = c("data", "brand", "singleness"),
-                               p1 = c(.3, -1, 0), p2 = c(.7, 1, 2))),
-    addGraph( balloonText = "Utility : [[value]]", valueField = "p1", title = "p1"),
-    addGraph( balloonText = "Utility : [[value]]", valueField = "p2", title = "p2"),
-    setLegend( useGraphSettings = TRUE),
+    amRadarChart(startDuration = 1, categoryField = 'country', dataProvider = data_gdp),
+    addGraph(balloonText = '[[category]]: [[value]]', valueField = 'gdp',
+             title = 'GDP 2015', bullet = 'round'),
+    setExport(),
     plot()
   )
 })
 
 output$code_radar1 <- renderText({
- "
+  "
   pipeR::pipeline(
-    amRadarChart(startDuration = 1, categoryField = category()),
-    setDataProvider(data.frame(attribute = c('data', 'brand', 'singleness'),
-                               p1 = c(.3, -1, 0), p2 = c(.7, 1, 2))),
-    addGraph(balloonText = 'Utility : [[value]]', valueField = 'p1', title = 'p1'),
-    addGraph(balloonText = 'Utility : [[value]]', valueField = 'p2', title = 'p2'),
-    setLegend(useGraphSettings = TRUE),
+    amRadarChart(startDuration = 1, categoryField = 'country', dataProvider = data_gdp),
+    addGraph(balloonText = '[[category]]: [[value]]', valueField = 'gdp',
+             title = 'GDP 2015', bullet = 'round'),
+    setExport(),
     plot()
   )
   "

@@ -2,46 +2,6 @@
 library(pipeR)
 library(data.table)
 
-### amPieChart
-pipeR::pipeline(
-  amPieChart(valueField = "value", titleField = "key", creditsPosition = "top-right",
-             backgroundColor = "#7870E8"),
-  setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
-  setExport(position = "bottom-left"),
-  plot
-)
-
-### amPieChart with listener
-pipeR::pipeline(
-  amPieChart(theme ="dark", valueField = "value", titleField = "key"),
-  setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
-  addListener("clickSlice" , "function(event){ alert('ok !'); }"),
-  plot()
-)
-
-### amPieChart: legend with listener V1
-pipeR::pipeline(
-  amPieChart(theme ="light", valueField = "value", titleField = "key"),
-  setLegend(amLegend = pipeR::pipeline(
-    amLegend(position = "right", marginRight = 100,
-                        autoMargins = FALSE, innerRadius = "30%"),
-    addListener("hideItem" , "function(event){alert('hide');}"))),
-  setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
-  setExport(),
-  plot()
-)
-
-### amPieChart: legend with listener V2
-pipeR::pipeline(
-  amPieChart(theme ="light", valueField = "value", titleField = "key"),
-  setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
-  setLegend(position = "right", marginRight = 100,
-                       autoMargins = FALSE, innerRadius = "30%",
-                       listeners = list(hideItem = htmlwidgets::JS("function(event){alert('hide');}"))),
-  plot()
-)
-
-
 ### amRadarChart
 
 pipeR::pipeline(
@@ -254,7 +214,7 @@ amSerialChart(usePeriod  =  "60mm", theme = "chalk", marginRight = 80, marginTop
 ) %>>% addGuide(dashLength  =  6, inside  =  TRUE, label  =  "average", lineAlpha  =  1,  value  =  0.3
 ) %>>% addGraph(bullet = "round", id = "g1", bulletBorderAlpha = 1, bulletColor = "#FFFFFF", bulletSize = 7, lineThickness = 2, title = "Price", 
                 type = "smoothedLine", useLineColorForBulletBorder = TRUE, valueField = "price"
-) %>>%  setChartScrollbar(chartScrollbar()
+) %>>%  setChartScrollbar(
 ) %>>% setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE, valueLineAlpha = 0.5, fullWidth = TRUE, cursorAlpha = 0.05, categoryBalloonDateFormat = "YYYY-MM-DD JJ:NN:ss"
 ) %>>% setCategoryAxis( parseDates = TRUE, minPeriod = "ss"
 ) %>>% setExport() %>>% plot()
@@ -321,7 +281,7 @@ amSerialChart(theme = "dark", marginRight = 30, plotAreaBorderAlpha = 0,
                 fillAlphas = 0.6, lineAlpha = 0.4, title = "Motorcycles", valueField = "motorcycles"
 ) %>>% addGraph(balloonText = "<img src = 'http://www.amcharts.com/lib/3/images/bicycle.png' style = 'vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style = 'font-size:14px; color:#000000;'><b>[[value]]</b></span>", 
                 fillAlphas = 0.6, lineAlpha = 0.4, title = "Bicycles", valueField = "bicycles"
-) %>>% setChartScrollbar(chartScrollbar()
+) %>>% setChartScrollbar(
 ) %>>% setChartCursor(cursorAlpha = 0
 ) %>>% setCategoryAxis(startOnAxis = TRUE, axisColor = "#DADADA", gridAlpha = 0.07
 ) %>>% setGuides(list(guide(category = "2001", toCategory = "2003", lineColor = "#CC0000", lineAlpha = 1, fillAlpha = 0.2, fillColor = "#CC0000", dashLength = 2, inside = TRUE, labelRotation = 90, label = "fines for speeding increased"), guide(category = "2007", lineColor = "#CC0000", lineAlpha = 1, dashLength = 2, inside = TRUE, labelRotation = 90, label =  "motorcycle fee introduced"))
@@ -424,23 +384,28 @@ amXYChart(theme = "light", startDuration = 0.5, marginLeft = 46, marginBottom = 
 # http://www.amcharts.com/demos/smoothed-line-chart/
 # --------------------------------------------------
 
-amSerialChart(theme = "dark", marginTop = 0, marginRight = 80, dataDateFormat = "YYYY",
-              categoryField = "year"
-) %>>% setDataProvider(
-  data.frame(year = 1950:2015, value = runif(length(1950:2015), -1, 1))
-) %>>% addValueAxes(axisAlpha = 0, position = "left"
-) %>>% addGraph(id = "g1", balloonText =  "[[category]]<br><b><span style='font-size = 14px;'>[[value]]</span></b>",
-                bullet = "round", bulletSize =  8, lineColor =  "#d1655d", lineThickness =  2,
-                negativeLineColor =  "#637bb6", type =  "smoothedLine", valueField =  "value"
-) %>>% setChartScrollbar(graph = "g1", gridAlpha = 0, color = "#888888", scrollbarHeight = 55, backgroundAlpha = 0,
-                         selectedBackgroundAlpha = 0.1, selectedBackgroundColor = "#888888", graphFillAlpha = 0,
-                         autoGridCount = TRUE, selectedGraphFillAlpha = 0, graphLineAlpha = 0.2,
-                         graphLineColor = "#c2c2c2", selectedGraphLineColor = "#888888", selectedGraphLineAlpha = 1
-) %>>% setChartCursor(categoryBalloonDateFormat = "YYYY", cursorAlpha = 0, valueLineEnabled =TRUE,
-                      valueLineBalloonEnabled =TRUE, valueLineAlpha = 0.5, fullWidth = TRUE
-) %>>% setCategoryAxis(minPeriod = "YYYY", parseDates = TRUE, minorGridAlpha = 0.1, minorGridEnabled = TRUE
-) %>>% addListener("rendered", "function(event) { event.chart.zoomToIndexes(Math.round(event.chart.dataProvider.length * 0.4), Math.round(event.chart.dataProvider.length * 0.55)) }"
-) %>>% setExport() %>>% plot()
+pipeR::pipeline(
+  amSerialChart(theme = "light", marginTop = 0, marginRight = 80, dataDateFormat = "YYYY",
+                categoryField = "year"),
+  setDataProvider(data.frame(year = 1950:2015, value = runif(length(1950:2015), -1, 1))),
+  addValueAxes(axisAlpha = 0, position = "left"),
+  addGraph(id = "g1", balloonText =  "[[category]]<br><b><span style='font-size = 14px;'>[[value]]</span></b>",
+           bullet = "round", bulletSize =  8, lineColor =  "#d1655d", lineThickness =  2,
+           negativeLineColor =  "#637bb6", type =  "smoothedLine", valueField =  "value"),
+  setChartScrollbar(graph = "g1", gridAlpha = 0, color = "#888888", scrollbarHeight = 55, backgroundAlpha = 0,
+                    selectedBackgroundAlpha = 0.1, selectedBackgroundColor = "#888888", graphFillAlpha = 0,
+                    autoGridCount = TRUE, selectedGraphFillAlpha = 0, graphLineAlpha = 0.2,
+                    graphLineColor = "#c2c2c2", selectedGraphLineColor = "#888888", selectedGraphLineAlpha = 1),
+  setChartCursor(categoryBalloonDateFormat = "YYYY", cursorAlpha = 0, valueLineEnabled =TRUE,
+                 valueLineBalloonEnabled =TRUE, valueLineAlpha = 0.5, fullWidth = TRUE),
+  setCategoryAxis(minPeriod = "YYYY", parseDates = TRUE, minorGridAlpha = 0.1, minorGridEnabled = TRUE),
+  addListener("rendered", paste("function(event) {",
+                                "event.chart.zoomToIndexes(Math.round(event.chart.dataProvider.length * 0.4),",
+                                "Math.round(event.chart.dataProvider.length * 0.55))",
+                                "}")),
+  plot()
+)
+
 
 # ------------------------------------------------
 # AmSerialChart
@@ -582,9 +547,11 @@ amSerialChart(categoryField = "date", creditsPosition = "top-right",
 # http://www.amcharts.com/demos/multiple-data-sets/
 # -------------------------------------------------
 
+library(pipeR)
+library(data.table)
 
 firstDate <- Sys.Date()
-chartData1 <- as.data.frame(t(sapply(0:20, FUN = function(i)
+chartData1 <- as.data.table(t(sapply(0:20, FUN = function(i)
 {
   date <- format(firstDate + i, "%m/%d/%Y")
   a <- round(runif(1) * (40 + i)) + 100 + i
@@ -592,7 +559,7 @@ chartData1 <- as.data.frame(t(sapply(0:20, FUN = function(i)
   c(date = date, value = a,  volume = b)
 })))
 
-chartData2 <- as.data.frame(t(sapply(0:20, FUN = function(i)
+chartData2 <- as.data.table(t(sapply(0:20, FUN = function(i)
 {
   date <- format(firstDate + i, "%m/%d/%Y")
   a <- round(runif(1) * (100 + i)) + 200 + i
@@ -600,7 +567,7 @@ chartData2 <- as.data.frame(t(sapply(0:20, FUN = function(i)
   c(date = date, value = a,  volume = b)
 })))
 
-chartData3 <- as.data.frame(t(sapply(0:20, FUN = function(i)
+chartData3 <- as.data.table(t(sapply(0:20, FUN = function(i)
 {
   date <- format(firstDate + i, "%m/%d/%Y")
   a <- round(runif(1) * (100 + i)) + 200 + i
@@ -608,51 +575,55 @@ chartData3 <- as.data.frame(t(sapply(0:20, FUN = function(i)
   c(date = date, value = a,  volume = b)
 })))
 
-chartData4 <- as.data.frame(t(sapply(0:20, FUN = function(i)
+chartData4 <- as.data.table(t(sapply(0:20, FUN = function(i)
 {
   date <- format(firstDate + i, "%m/%d/%Y")
   a <- round(runif(1) * (100 + i)) + 200 + i
   b <- round(runif(1) * (1000 + i)) + 600 + i * 2
   c(date = date, value = a,  volume = b)
 })))
+# data_stock1 <- list(chartData1 = chartData2, chartData2 = chartData2, chartData3 = chartData3, chartData4 = chartData4)
+# devtools::use_data(data_stock1)
 
-amStockChart(theme = "light"
-) %>>% addDataSet(dataSet(title = "first data set", categoryField = "date",
-                          dataProvider = chartData1) %>>%
-                    addFieldMapping(fromField = "value", toField = "value") %>>%
-                    addFieldMapping(fromField = "volume", toField = "volume")
-) %>>% addDataSet(dataSet(title = "second data set", categoryField = "date",
-                          dataProvider = chartData2) %>>%
-                    addFieldMapping(fromField = "value", toField = "value") %>>%
-                    addFieldMapping(fromField = "volume", toField = "volume")
-) %>>% addDataSet(dataSet(title = "third data set", categoryField = "date",
-                          dataProvider = chartData3) %>>%
-                    addFieldMapping(fromField = "value", toField = "value") %>>%
-                    addFieldMapping(fromField = "volume", toField = "volume")
-) %>>% addDataSet(dataSet(title = "fourth data set", categoryField = "date",
-                          dataProvider = chartData4) %>>%
-                    addFieldMapping(fromField = "value", toField = "value") %>>%
-                    addFieldMapping(fromField = "volume", toField = "volume")
-) %>>% addPanel(stockPanel(showCategoryAxis = FALSE, title = "Value", percentHeight = 70) %>>%
-                  addStockGraph(id = "g1", valueField = "value", comparable = TRUE,
-                                compareField = "value", balloonText = "[[title]] =<b>[[value]]</b>",
-                                compareGraphBalloonText = "[[title]] =<b>[[value]]</b>"
-                  ) %>>% setStockLegend(periodValueTextComparing = "[[percents.value.close]]%",
-                                        periodValueTextRegular = "[[value.close]]")
-) %>>% addPanel(stockPanel(title = "Volume", percentHeight = 30) %>>%
-                  addStockGraph(valueField = "volume", type = "column",
-                                fillAlphas = 1) %>>%
-                  setStockLegend(periodValueTextRegular = "[[value.close]]")
-) %>>% setChartScrollbarSettings(graph = "g1"
-) %>>% setChartCursorSettings(valueBalloonsEnabled = TRUE, fullWidth = TRUE,
-                              cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
-                              valueLineEnabled = TRUE, valueLineAlpha = 0.5
-) %>>% setPeriodSelector(periodSelector(position = "left") %>>%
-                           addPeriod(period = "MM", selected = TRUE, count = 1, label = "1 month") %>>%
-                           addPeriod(period = "MAX", label = "MAX")
-) %>>% setDataSetSelector(position = "left"
-) %>>% setPanelsSettings(recalculateToPercents = FALSE
-) %>>% plot()
+pipeR::pipeline(
+  amStockChart(theme = "light"),
+  addDataSet(dataSet(title = "first data set", categoryField = "date",
+                     dataProvider = chartData1) %>>%
+               addFieldMapping(fromField = "value", toField = "value") %>>%
+               addFieldMapping(fromField = "volume", toField = "volume")),
+  addDataSet(dataSet(title = "second data set", categoryField = "date",
+                     dataProvider = chartData2) %>>%
+               addFieldMapping(fromField = "value", toField = "value") %>>%
+               addFieldMapping(fromField = "volume", toField = "volume")),
+  addDataSet(dataSet(title = "third data set", categoryField = "date",
+                     dataProvider = chartData3) %>>%
+               addFieldMapping(fromField = "value", toField = "value") %>>%
+               addFieldMapping(fromField = "volume", toField = "volume")),
+  addDataSet(dataSet(title = "fourth data set", categoryField = "date",
+                     dataProvider = chartData4) %>>%
+               addFieldMapping(fromField = "value", toField = "value") %>>%
+               addFieldMapping(fromField = "volume", toField = "volume")),
+  addPanel(stockPanel(showCategoryAxis = FALSE, title = "Value",
+                      percentHeight = 70) %>>%
+             addStockGraph(id = "g1", valueField = "value", comparable = TRUE,
+                           compareField = "value", balloonText = "[[title]] =<b>[[value]]</b>",
+                           compareGraphBalloonText = "[[title]] =<b>[[value]]</b>") %>>%
+             setStockLegend(periodValueTextComparing = "[[percents.value.close]]%",
+                            periodValueTextRegular = "[[value.close]]")),
+  addPanel(stockPanel(title = "Volume", percentHeight = 30) %>>%
+             addStockGraph(valueField = "volume", type = "column", fillAlphas = 1) %>>%
+             setStockLegend(periodValueTextRegular = "[[value.close]]")),
+  setChartScrollbarSettings(graph = "g1"),
+  setChartCursorSettings(valueBalloonsEnabled = TRUE, fullWidth = TRUE,
+                         cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
+                         valueLineEnabled = TRUE, valueLineAlpha = 0.5),
+  setPeriodSelector(periodSelector(position = "left") %>>%
+                      addPeriod(period = "MM", selected = TRUE, count = 1, label = "1 month") %>>%
+                      addPeriod(period = "MAX", label = "MAX")),
+  setDataSetSelector(position = "left"),
+  setPanelsSettings(recalculateToPercents = FALSE),
+  plot()
+)
 
 
 # -------------------------

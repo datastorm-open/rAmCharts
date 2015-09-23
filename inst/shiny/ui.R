@@ -11,8 +11,8 @@ library(rAmCharts)
 shiny::shinyUI(shiny::navbarPage(
   title = "Examples",
   
-  source("./src/radar/radar_ui.R", local = TRUE)$value,
   source("./src/pie/pie_ui.R", local = TRUE)$value,
+  source("./src/radar/radar_ui.R", local = TRUE)$value,
   source("./src/serial/serial_ui.R", local = TRUE)$value,
   source("./src/xy/xy_ui.R", local = TRUE)$value,
   source("./src/gauge/gauge_ui.R", local = TRUE)$value,

@@ -54,3 +54,18 @@ load("data/data_stock1.rda")
 #' }
 #'
 "data_stock1"
+
+data_gdp <- data.table(country = c('China', 'United States', 'India', 'Japan', 'Germany',
+                                   'Russia', 'Brazil', 'Indonesia', 'United Kingdom', 'France'),
+                       gdp = c(18.976, 18.125, 7.997, 4.843, 3.815, 3.458, 3.259, 2.840, 2.641, 2.634))
+# devtools::use_data(data_gdp , overwrite = TRUE)
+
+#' @title 10 Richest Countries in the World by 2015 GDP
+#' @description Value in $ trillion
+#' @format Dataset of 2 columns and 10 rows
+#' \describe{
+#'   \item{country}{\code{chracter}}
+#'   \item{gdp}{\code{numeric}}
+#' }
+#' @source \url{http://www.insidermonkey.com/blog/10-richest-countries-in-the-world-by-2015-gdp-344692/}
+"data_gdp"

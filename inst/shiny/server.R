@@ -17,6 +17,7 @@ shinyServer(function(input, output) {
   })
   
   data('data_stock1')
+  data('data_gdp')
   
   source("./src/radar/radar_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/pie/pie_server.R", local = TRUE, encoding = "UTF-8")
