@@ -17,10 +17,7 @@ devtools::install_github("dataKnowledge/rAmCharts")
 
 ---
 
-## See some examples:
-
-- Consult <http://dataknowledge.github.io/rAmCharts/>
-- Run `rAmCharts::runShinyExamples()`
+## See some examples by runnig `rAmCharts::runShinyExamples()`
 
 
 ---
