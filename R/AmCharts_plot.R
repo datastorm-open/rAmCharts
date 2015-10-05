@@ -84,7 +84,7 @@ setMethod(f = "plot", signature = "AmCharts",
             if (exists("chartData", where = data)
                  && exists("theme", where = data$chartData)) {
               theme_dep <- htmltools::htmlDependency(
-                name = "amcharts_themes",
+                name = paste0("amcharts_themes_", x@theme),
                 version = "3",
                 src = c(file = system.file("htmlwidgets/lib/themes", package = "rAmCharts")),
                 script = switch(x@theme,
@@ -92,7 +92,6 @@ setMethod(f = "plot", signature = "AmCharts",
                                 "patterns" = "patterns.js",
                                 "default" = "",
                                 "dark" = "dark.js",
-                                "black" = "black.js",
                                 "chalk" = "chalk.js",
                                 stop("[plot]: invalid theme")
                 )
