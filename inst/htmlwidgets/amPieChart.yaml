@@ -1,23 +1,19 @@
 dependencies:
   - name: amcharts
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
     - amcharts.js
     
   - name: amPieChart_pie
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
     - pie.js
 
-  - name: amcharts_themes
+  - name: amcharts_style
     version: 3
-    src: htmlwidgets/lib/amcharts/themes
-    script:
-      - black.js
-      - chalk.js
-      - dark.js
-      - light.js
-      - patterns.js
+    src: htmlwidgets
+    stylesheet:
+    - style.css
 

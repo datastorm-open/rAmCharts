@@ -1,29 +1,25 @@
 dependencies:
   - name: amcharts
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
       - amcharts.js
       
   - name: amcharts_serial
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
       - serial.js
       
   - name: amcharts_gantt
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
       - gantt.js
-      
-  - name: amcharts_themes
-    version: 3
-    src: htmlwidgets/lib/amcharts/themes
-    script:
-      - black.js
-      - chalk.js
-      - dark.js
-      - light.js
-      - patterns.js
 
+  - name: amcharts_style
+    version: 3
+    src: htmlwidgets
+    stylesheet:
+    - style.css
+      

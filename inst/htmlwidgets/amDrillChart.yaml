@@ -1,39 +1,35 @@
 dependencies:
   - name: amcharts
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
       - amcharts.js
 
   - name: amcharts_serial
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
       - serial.js
 
   - name: amcharts_pie
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
       - pie.js
 
   - name: amcharts_radar
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
       - radar.js
 
   - name: amcharts_themes
     version: 3
-    src: htmlwidgets/lib/amcharts/themes
+    src: htmlwidgets/lib/themes
     script:
       - black.js
       - chalk.js
       - dark.js
       - light.js
       - patterns.js
-
-  - name: amcharts_images
-    version: 3
-    src: htmlwidgets/lib/amcharts/images
 

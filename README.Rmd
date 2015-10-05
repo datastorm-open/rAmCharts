@@ -9,7 +9,7 @@ Run the following code lines to install ***rAmCharts***:
 
 ```{r, eval = FALSE}
 if (require(devtools)) {
-  install.packages("devtools"")
+  install.packages("devtools")
 } else {}
 
 devtools::install_github("dataKnowledge/rAmCharts")

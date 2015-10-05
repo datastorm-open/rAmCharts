@@ -1,43 +1,19 @@
 dependencies:
   - name: amcharts
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
       - amcharts.js
       
   - name: amcharts_xy
     version: 3
-    src: htmlwidgets/lib/amcharts
+    src: htmlwidgets/lib
     script:
       - xy.js
-      
-  - name: amcharts_themes
-    version: 3
-    src: htmlwidgets/lib/amcharts/themes
-    script:
-      - black.js
-      - chalk.js
-      - dark.js
-      - light.js
-      - patterns.js
-
-  - name: amcharts_plugins_export
-    version: 3
-    src: htmlwidgets/lib/amcharts/plugins/export
-    script:
-      - export.min.js
-    stylesheet:
-      - export.css
   
-  - name: amcharts_plugins_export_libs
+  - name: amcharts_style
     version: 3
-    src: htmlwidgets/lib/amcharts/plugins/export/libs
-    script:
-      - blob.js/blob.js
-      - fabric.js/fabric.min.js
-      - FileSaver.js/FileSaver.min.js
-      - jszip/jszip.min.js
-      - pdfmake/pdfmake.min.js
-      - pdfmake/vfs_fonts.js
-      - xlsx/xlsx.min.js
-
+    src: htmlwidgets
+    stylesheet:
+    - style.css
+      

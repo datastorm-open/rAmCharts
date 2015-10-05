@@ -24,7 +24,7 @@ setMethod(f = "plot", signature = "AmCharts",
                                    "patterns" = "#ffffff",
                                    "default" = "#ffffff",
                                    "dark" = "#3f3f4f",
-                                   "chalk" = "#282828 url('http://www.amcharts.com/lib/3/patterns/chalk/bg.jpg')",
+                                   "chalk" = "#282828",
                                    stop("[plot]: invalid theme"))
             } else {}
             if (exists("backgroundColor", where = listProperties(x))) {
@@ -57,12 +57,14 @@ setMethod(f = "plot", signature = "AmCharts",
               package = 'rAmCharts'
             )
             
-            
-            if (exists("chartData", where = data) && exists("export", where = data$chartData) && data$chartData$export$enabled) {
+            # Add dependency for eport
+            if (exists("chartData", where = data)
+                && exists("export", where = data$chartData)
+                && data$chartData$export$enabled) {
               export_dep <- htmltools::htmlDependency(
                 name = "amcharts_plugins_export",
                 version = "3",
-                src = c(file = system.file("htmlwidgets/lib/amcharts/plugins/export", package = "rAmCharts")),
+                src = c(file = system.file("htmlwidgets/lib/plugins/export", package = "rAmCharts")),
                 stylesheet = "export.css",
                 script = c("export.min.js", "libs/blob.js/blob.js", "libs/fabric.js/fabric.min.js",
                            "libs/FileSaver.js/FileSaver.min.js", "libs/jszip/jszip.min.js",
@@ -71,13 +73,37 @@ setMethod(f = "plot", signature = "AmCharts",
               )
               
               if (length(widget$dependencies) == 0) {
-                widget$dependencies = list()
+                widget$dependencies <- list()
               } else {}
               
               widget$dependencies[[length(widget$dependencies)+1]] <- export_dep
               
             } else {}
             
+            # Add dependency for theme
+            if (exists("chartData", where = data)
+                 && exists("theme", where = data$chartData)) {
+              theme_dep <- htmltools::htmlDependency(
+                name = "amcharts_themes",
+                version = "3",
+                src = c(file = system.file("htmlwidgets/lib/themes", package = "rAmCharts")),
+                script = switch(x@theme,
+                                "light" = "light.js",
+                                "patterns" = "patterns.js",
+                                "default" = "",
+                                "dark" = "dark.js",
+                                "black" = "black.js",
+                                "chalk" = "chalk.js",
+                                stop("[plot]: invalid theme")
+                )
+              )
+              
+              if (length(widget$dependencies) == 0) {
+                widget$dependencies <- list()
+              } else {}
+              
+              widget$dependencies[[length(widget$dependencies) + 1]] <- theme_dep
+            }
             widget
           })
 

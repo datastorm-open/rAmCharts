@@ -461,7 +461,7 @@ setMethod(f = "setGuides", signature = c("AmChart", "list"),
 #' @examples
 #' print(addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10))
 #' # equivalent to
-#' guide_obj <- guide(fillAlpha = .1, value = 0, toVAlue = 10)
+#' guide_obj <- guide(fillAlpha = .1, value = 0, toValue = 10, valueAxis = "1")
 #' print(addGuide(.Object = amSerialChart(), guide = guide_obj))
 #' # ---
 #' @rdname initialize-AmChart

@@ -15,11 +15,11 @@ HTMLWidgets.widget({
     document.getElementById(el.id).innerHTML = "";
     
     // go back button
-    var backbutton = document.createElement("input");
+    var backbutton = document.createElement("button");
     backbutton.id = "backbtn"+el.id;
-    backbutton.setAttribute('type', 'button');  
-    backbutton.setAttribute('value', 'Back'); 
-    backbutton.setAttribute('style', 'visibility:hidden;background-color:#FFFFFF;border: none');
+    var t = document.createTextNode("<< BACK");       // Create a text node
+    backbutton.appendChild(t);
+    backbutton.setAttribute('style', 'visibility:hidden; background-color:transparent; color:#3c8dbc; border: none');
     backbutton.onclick = function resetChart() {
       //restore features
       if(instance.chart){
