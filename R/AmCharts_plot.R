@@ -8,9 +8,9 @@ setClassUnion(name = "AmCharts", members = c("AmChart", "AmStockChart"))
 #' @details Plots an object of class \code{\linkS4class{AmChart}}
 #' @param x \linkS4class{AmChart}
 #' @param y unused
-#' @param width \code{charcter}.
-#' @param height \code{charcter}.
-#' @param background \code{charcter}.
+#' @param width \code{character}.
+#' @param height \code{character}.
+#' @param background \code{character}.
 #' @param ... Other properties.
 #' @rdname plot.AmChart
 #' @export

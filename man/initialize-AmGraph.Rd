@@ -3,6 +3,7 @@
 \docType{methods}
 \name{initialize,AmGraph-method}
 \alias{amGraph}
+\alias{graph}
 \alias{initialize,AmGraph-method}
 \alias{setBalloonText}
 \alias{setBalloonText,AmGraph,character-method}
@@ -16,6 +17,8 @@
   title, type, valueField, ...)
 
 amGraph(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
+
+graph(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 
 setBalloonText(.Object, balloonText)
 
@@ -59,6 +62,8 @@ You can update properties with setters.
 
 Constructor
 
+Constructor (shortcut)
+
 Setter for balloonText.
 
 Setter for title.
@@ -70,11 +75,15 @@ Setter for valueField
 \section{Functions}{
 \itemize{
 \item \code{amGraph}: 
+
+\item \code{graph}: 
 }}
 \examples{
 new("AmGraph", valueField = "value")
 amGraph(balloonText = "balloonText", "type" = "column",
         valueField = "value", animationPlayed = TRUE)
+graph(balloonText = "balloonText", "type" = "column",
+      valueField = "value", animationPlayed = TRUE)
 setBalloonText(.Object = amGraph(), balloonText = "performance")
 setTitle(.Object = amGraph(), title = "Power")
 setType(.Object = amGraph(), type = "type")

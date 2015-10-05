@@ -13,11 +13,11 @@
 
 \item{y}{unused}
 
-\item{width}{\code{charcter}.}
+\item{width}{\code{character}.}
 
-\item{height}{\code{charcter}.}
+\item{height}{\code{character}.}
 
-\item{background}{\code{charcter}.}
+\item{background}{\code{character}.}
 
 \item{...}{Other properties.}
 }

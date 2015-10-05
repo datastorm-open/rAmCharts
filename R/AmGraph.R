@@ -114,6 +114,32 @@ amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueFiel
   return(.Object)
 }
 
+#' @description Constructor (shortcut)
+#' @examples
+#' graph(balloonText = "balloonText", "type" = "column",
+#'       valueField = "value", animationPlayed = TRUE)
+#' @describeIn initialize-AmGraph
+#' @export
+graph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
+{
+  .Object <- new(Class="AmGraph", animationPlayed = animationPlayed)
+  if (!missing(balloonText)) {
+    .Object@balloonText <- balloonText
+  } else {}
+  if (!missing(title)) {
+    .Object@title <- title
+  } else {}
+  if (!missing(type)) {
+    .Object@type <- type
+  } else {}
+  if (!missing(valueField)) {
+    .Object@valueField <- valueField
+  } else {}
+  .Object@otherProperties <- list(...)
+  validObject(.Object)
+  return(.Object)
+}
+
 #' @title Constructor for a stockGraph (class AmGraph)
 #' @param animationPlayed \code{logical}.
 #' @param balloonText \code{character}.
