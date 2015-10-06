@@ -5,7 +5,9 @@ Since it is still in developpment, some functionnalities might have an unexpecte
 
 # Installation
 
-Run the following code lines to install ***rAmCharts***:
+This package is also available on CRAN. However several improvements and bug fixes have been performed since the last submission. The "**dev version**" is preferable. A new submission will be done soon.
+
+Run the following code lines to install **rAmCharts**:
 
 ```{r, eval = FALSE}
 if (require(devtools)) {
