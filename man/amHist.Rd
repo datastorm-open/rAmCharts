@@ -41,7 +41,15 @@ If \code{plot = TRUE}, the resulting object of class \code{"histogram"} before i
 }
 \examples{
 x <- rnorm(100)
+
+# Default method
 (object <- amHist(x = x))
+print(object)
+
+# Without plot
+amHist(x = x, plot = FALSE)
+
+# Specific options
 amHist(x = x, freq = FALSE)
 amHist(x = x, breaks = "Scott")
 amHist(x = x, breaks = "Scott", labels = TRUE)

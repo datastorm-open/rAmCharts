@@ -46,37 +46,6 @@ setMethod(f = "amChartsOutput", signature = c("character", "character"),
 #' @title SHINY
 #' @description Widget output function for use in Shiny
 #' @param expr \code{expression}.
-#' @param env see htmlwidgets doc
-#' @param quoted \code{logical}.
-#' @rdname renderAmCharts
-#' @export
-renderAmCharts <- function(expr, env, quoted){
-  if (missing(env)) {
-    env <- parent.frame()
-  } else {}
-  if (missing(quoted)) {
-    quoted <- FALSE
-  } else {}
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  print(expr)
-  htmlwidgets::shinyRenderWidget(expr, amChartsOutput, env, quoted = TRUE)
-}
-
-
-# renderAmCharts <- function(expr, env, quoted){
-#   if (missing(env)) {
-#     env <- parent.frame()
-#   } else {}
-#   if (missing(quoted)) {
-#     quoted <- FALSE
-#   } else {}
-#   if (!quoted) {expr <- substitute(expr)} # force quoted
-#   htmlwidgets::shinyRenderWidget(expr, amChartsOutput, env, quoted = TRUE)
-# }
-
-#' @title SHINY
-#' @description Widget output function for use in Shiny
-#' @param expr \code{expression}.
 #' @param env see htmlwidgets doc.
 #' @param ... other arguments.
 #' @rdname renderAmCharts

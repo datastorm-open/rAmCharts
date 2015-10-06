@@ -9,8 +9,6 @@
 \usage{
 renderAmCharts(expr, env, ...)
 
-renderAmCharts(expr, env, ...)
-
 \S4method{renderAmCharts}{ANY}(expr, env, quoted)
 
 \S4method{renderAmCharts}{AmChart}(expr, env)
@@ -18,21 +16,13 @@ renderAmCharts(expr, env, ...)
 \arguments{
 \item{expr}{\code{expression}.}
 
-\item{env}{see htmlwidgets doc}
+\item{env}{see htmlwidgets doc.}
 
 \item{...}{other arguments.}
 
 \item{quoted}{\code{logical}.}
-
-\item{expr}{\code{expression}.}
-
-\item{env}{see htmlwidgets doc.}
-
-\item{quoted}{\code{logical}.}
 }
 \description{
-Widget output function for use in Shiny
-
 Widget output function for use in Shiny
 }
 
