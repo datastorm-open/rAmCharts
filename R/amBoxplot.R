@@ -17,7 +17,8 @@
 #' @examples
 #' 
 #' # formula
-#' amBoxplot(count ~ spray, data = InsectSprays)
+#' (obj <- amBoxplot(count ~ spray, data = InsectSprays))
+#' print(obj)
 #' 
 #' # adding parameters
 #' amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50),
