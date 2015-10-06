@@ -58,5 +58,52 @@ renderAmCharts <- function(expr, env, quoted){
     quoted <- FALSE
   } else {}
   if (!quoted) { expr <- substitute(expr) } # force quoted
+  print(expr)
   htmlwidgets::shinyRenderWidget(expr, amChartsOutput, env, quoted = TRUE)
 }
+
+
+# renderAmCharts <- function(expr, env, quoted){
+#   if (missing(env)) {
+#     env <- parent.frame()
+#   } else {}
+#   if (missing(quoted)) {
+#     quoted <- FALSE
+#   } else {}
+#   if (!quoted) {expr <- substitute(expr)} # force quoted
+#   htmlwidgets::shinyRenderWidget(expr, amChartsOutput, env, quoted = TRUE)
+# }
+
+#' @title SHINY
+#' @description Widget output function for use in Shiny
+#' @param expr \code{expression}.
+#' @param env see htmlwidgets doc.
+#' @param ... other arguments.
+#' @rdname renderAmCharts
+#' @export
+setGeneric(name = "renderAmCharts", def = function(expr, env, ...) {standardGeneric("renderAmCharts")})
+#' @param quoted \code{logical}.
+#' @rdname renderAmCharts
+setMethod(f = "renderAmCharts", signature = "ANY",
+          definition = function(expr, env, quoted){
+            if (missing(env)) {
+              env <- parent.frame()
+            } else {}
+            if (missing(quoted)) {
+              quoted <- FALSE
+            } else {}
+            if (!quoted) {
+              expr <- substitute(expr) # force quoted
+            } else {}
+            htmlwidgets::shinyRenderWidget(expr, amChartsOutput, env, quoted = TRUE)
+          })
+#' @rdname renderAmCharts
+setMethod(f = "renderAmCharts", signature = "AmChart",
+          definition = function(expr, env)
+            {
+            # message("right method")
+            if (missing(env)) {
+              env <- parent.frame()
+            } else {}
+            htmlwidgets::shinyRenderWidget(plot(expr), amChartsOutput, env, quoted = TRUE)
+          })

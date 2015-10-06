@@ -338,6 +338,28 @@ setMethod(f = "initialize", signature = "AmChart",
             return(.Object)
           })
 
+#' @title Visualize AmChart with show
+#' @param object \linkS4class{AmChart}
+#' @examples
+#' pipeR::pipeline(
+#'   rAmCharts::amPieChart(valueField = "value", titleField = "key"),
+#'   rAmCharts::setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
+#'   rAmCharts::setExport(position = "bottom-left")
+#' )
+#' @family Visualizations
+#' @export
+setMethod(f = "show", signature = "AmChart",
+          definition = function(object)
+          {
+            # message("call show method for 'AmChart'")
+            if (length(object@type)) {
+              # message("plot")
+              print(plot(object))
+            } else {
+              print(object)
+            }
+          })
+
 #' @title List attributes of an AmChart
 #' @description This method lists attributes of an AmChart to fit the API
 #' @param .Object  \code{\linkS4class{AmChart}}

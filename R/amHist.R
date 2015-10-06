@@ -21,7 +21,7 @@
 #' @param ... further arguments and graphical parameters passed to plot.histogram
 #' @examples
 #' x <- rnorm(100)
-#' amHist(x = x)
+#' (object <- amHist(x = x))
 #' amHist(x = x, freq = FALSE)
 #' amHist(x = x, breaks = "Scott")
 #' amHist(x = x, breaks = "Scott", labels = TRUE)
