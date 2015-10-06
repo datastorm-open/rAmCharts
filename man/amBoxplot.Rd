@@ -8,23 +8,27 @@
 \alias{amBoxplot.matrix}
 \title{Plotting boxplot using rAmCharts}
 \usage{
-amBoxplot(x, ...)
+amBoxplot(object, ...)
 
-\method{amBoxplot}{default}(x, main = NULL, xlab = NULL, ylab = NULL,
-  ylim = NULL, names = NULL, col = NULL, horizontal = FALSE)
+\method{amBoxplot}{default}(object, main = NULL, xlab = NULL, ylab = NULL,
+  ylim = NULL, names = NULL, col = NULL, horizontal = FALSE, ...)
 
-\method{amBoxplot}{data.frame}(x, main = NULL, id = NULL, xlab = NULL,
-  ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE)
-
-\method{amBoxplot}{matrix}(x, use.cols = TRUE, main = NULL, xlab = NULL,
-  ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE)
-
-\method{amBoxplot}{formula}(formula, data = NULL, id = NULL, main = NULL,
+\method{amBoxplot}{data.frame}(object, main = NULL, id = NULL,
   xlab = NULL, ylab = NULL, ylim = NULL, col = NULL,
-  horizontal = FALSE)
+  horizontal = FALSE, ...)
+
+\method{amBoxplot}{matrix}(object, use.cols = TRUE, main = NULL,
+  xlab = NULL, ylab = NULL, ylim = NULL, col = NULL,
+  horizontal = FALSE, ...)
+
+\method{amBoxplot}{formula}(object, data = NULL, id = NULL, main = NULL,
+  xlab = NULL, ylab = NULL, ylim = NULL, col = NULL,
+  horizontal = FALSE, ...)
 }
 \arguments{
-\item{x}{a vector, data.frame, or a matrix}
+\item{object}{a vector, data.frame, a matrix, or a formula !}
+
+\item{...}{Don't use... For S3 Definition...}
 
 \item{main}{\code{character}, title of the graph.}
 
@@ -41,8 +45,6 @@ amBoxplot(x, ...)
 \item{id}{in case of using a data.frame, column name of id for identify outliers}
 
 \item{use.cols}{for matrix only. Boxplot on columns or rows ?}
-
-\item{formula}{a formula, such as y ~ grp, where y is a numeric vector of data values to be split into groups according to the grouping variable grp (usually a factor).}
 
 \item{data}{a data.frame from which the variables in formula should be taken}
 }

@@ -3,8 +3,7 @@
 #' @description  amBoxplot computes a boxplot of the given data values.
 #' Can be a vector, a data.frame, or a matrix
 #' 
-#' @param x a vector, data.frame, or a matrix
-#' @param formula a formula, such as y ~ grp, where y is a numeric vector of data values to be split into groups according to the grouping variable grp (usually a factor).
+#' @param object a vector, data.frame, a matrix, or a formula !
 #' @param data a data.frame from which the variables in formula should be taken
 #' @param use.cols for matrix only. Boxplot on columns or rows ?
 #' @param main \code{character}, title of the graph.
@@ -14,7 +13,9 @@
 #' @param col color(s) to be used to fill the boxplot
 #' @param horizontal Boolean. Rotate boxplot ?
 #' @param id in case of using a data.frame, column name of id for identify outliers
+#' @param ... Don't use... For S3 Definition...
 #' @examples
+#' 
 #' # formula
 #' amBoxplot(count ~ spray, data = InsectSprays)
 #' 
@@ -49,14 +50,16 @@
 #' @rdname amBoxplot
 #' @export
 #' 
-amBoxplot <- function(x, ...) UseMethod("amBoxplot")
+amBoxplot <- function(object, ...) UseMethod("amBoxplot")
 
 
 #' @rdname amBoxplot
+#' 
 #' @export
-amBoxplot.default <- function(x, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL,
-                              names = NULL, col = NULL, horizontal = FALSE){
+amBoxplot.default <- function(object, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL,
+                              names = NULL, col = NULL, horizontal = FALSE, ...){
   
+  x <- object
   value <- x
   
   if(is.null(names(x))){
@@ -82,9 +85,10 @@ amBoxplot.default <- function(x, main = NULL, xlab = NULL, ylab = NULL, ylim = N
 
 #' @rdname amBoxplot
 #' @export
-amBoxplot.data.frame <- function(x, main = NULL, id = NULL, xlab = NULL, ylab = NULL, 
-                                 ylim = NULL, col = NULL, horizontal = FALSE){
+amBoxplot.data.frame <- function(object, main = NULL, id = NULL, xlab = NULL, ylab = NULL, 
+                                 ylim = NULL, col = NULL, horizontal = FALSE, ...){
   
+  x <- object
   xx <- x[, colnames(x)[!colnames(x)%in%id], drop = FALSE]
   value <- do.call("c", xx)
   if(is.null(colnames(xx))){
@@ -110,8 +114,9 @@ amBoxplot.data.frame <- function(x, main = NULL, id = NULL, xlab = NULL, ylab = 
 
 #' @rdname amBoxplot
 #' @export
-amBoxplot.matrix <- function(x, use.cols = TRUE, main = NULL, xlab = NULL, ylab = NULL, 
-                             ylim = NULL, col = NULL, horizontal = FALSE){
+amBoxplot.matrix <- function(object, use.cols = TRUE, main = NULL, xlab = NULL, ylab = NULL, 
+                             ylim = NULL, col = NULL, horizontal = FALSE, ...){
+  x <- object
   if(use.cols){
     value <- as.vector(x)
     if(is.null(colnames(x))){
@@ -144,9 +149,10 @@ amBoxplot.matrix <- function(x, use.cols = TRUE, main = NULL, xlab = NULL, ylab 
 
 #' @rdname amBoxplot
 #' @export
-amBoxplot.formula <-function(formula, data = NULL, id = NULL, main = NULL, xlab = NULL, ylab = NULL, 
-                             ylim = NULL, col = NULL, horizontal = FALSE){
+amBoxplot.formula <-function(object, data = NULL, id = NULL, main = NULL, xlab = NULL, ylab = NULL, 
+                             ylim = NULL, col = NULL, horizontal = FALSE, ...){
   
+  formula <- object
   if(missing(formula) || (length(formula) != 3L))
     stop("'formula' missing or incorrect")
   
@@ -227,7 +233,7 @@ plotAmBoxplot <- function(dp, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL
     graph <- setCategoryAxis(graph, title = xlab)
   }
   
-  plot(graph)
+  graph
 }
 
 dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
