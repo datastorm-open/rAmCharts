@@ -1,6 +1,10 @@
 rAmCharts 1.1
 --------------------------------------------------------------------------------
   
+  * Create a generic method for renderAmCharts (shiny use)
+  * Create a show method for class AmChart (now plot the object if type is set)
+  * fix bug in dependencies for html_document
+  * Clean import when creating widget (plot method)
   * fix bug using renderAmChart with input/reactive values
   * rename renderAmChart -> renderAmCharts
   * rename amChartOutput -> amChartsOutput
