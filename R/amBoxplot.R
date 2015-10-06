@@ -52,14 +52,13 @@
 amBoxplot <- function(x, ...) UseMethod("amBoxplot")
 
 
-#' @noRd
 #' @rdname amBoxplot
 #' @export
 amBoxplot.default <- function(x, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL,
-                             names = NULL, col = NULL, horizontal = FALSE){
+                              names = NULL, col = NULL, horizontal = FALSE){
   
   value <- x
-
+  
   if(is.null(names(x))){
     id <- 1:length(x)
   }else{
@@ -81,7 +80,6 @@ amBoxplot.default <- function(x, main = NULL, xlab = NULL, ylab = NULL, ylim = N
                 ylab = ylab, ylim = ylim, horizontal = horizontal)
 }
 
-#' @noRd
 #' @rdname amBoxplot
 #' @export
 amBoxplot.data.frame <- function(x, main = NULL, id = NULL, xlab = NULL, ylab = NULL, 
@@ -110,7 +108,6 @@ amBoxplot.data.frame <- function(x, main = NULL, id = NULL, xlab = NULL, ylab = 
                 ylab = ylab, ylim = ylim, horizontal = horizontal)
 }
 
-#' @noRd
 #' @rdname amBoxplot
 #' @export
 amBoxplot.matrix <- function(x, use.cols = TRUE, main = NULL, xlab = NULL, ylab = NULL, 
@@ -135,7 +132,7 @@ amBoxplot.matrix <- function(x, use.cols = TRUE, main = NULL, xlab = NULL, ylab 
   
   data <- data.table(value, group, id)
   
-
+  
   res <- data[, .(dtBoxplotStat(list(value, id))), by = group]
   
   final.outliers <- finalDataBoxplot(res, col = col)
@@ -145,7 +142,6 @@ amBoxplot.matrix <- function(x, use.cols = TRUE, main = NULL, xlab = NULL, ylab 
   
 }
 
-#' @noRd
 #' @rdname amBoxplot
 #' @export
 amBoxplot.formula <-function(formula, data = NULL, id = NULL, main = NULL, xlab = NULL, ylab = NULL, 
@@ -182,24 +178,26 @@ plotAmBoxplot <- function(dp, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL
     stop ("Please install the package pipeR for running this function")
   } else {}
   
-  graph <- amSerialChart(categoryField = "cat", theme = "light", rotate = horizontal) %>>% 
-    setDataProvider(dp, keepNA = FALSE) %>>%
+  graph <- pipeR::pipeline(
+    amSerialChart(categoryField = "cat", theme = "light", rotate = horizontal),
+    setDataProvider(dp, keepNA = FALSE),
     addGraph(id = "g1", type = "candlestick",
              balloonText = "Low = <b>[[low_outlier]]</b><br/>1st quart. = <b>[[open]]</b><br/>Median = <b>[[median]]</b><br/>3rd quart. = <b>[[close]]</b><br/>High = <b>[[high_outlier]]</b><br/>",
              closeField = "close", fillColorsField = "color", highField = "high",
              lineColor = "#7f8da9", lineAlpha = 1, lowField = "low",
              fillAlphas = "0.9", negativeLineColor = "#7f8da9",
-             openField = "open", title = "Price:", valueField = "close") %>>% 
+             openField = "open", title = "Price:", valueField = "close"),
     addGraph(id = "g2", type = "step", valueField = "median",lineColor = "black",
-             noStepRisers = TRUE, balloonText = "", periodSpan = 0.80, lineThickness = 3) %>>% 
+             noStepRisers = TRUE, balloonText = "", periodSpan = 0.80, lineThickness = 3),
     addGraph(id = "g3", type = "step", valueField = "low_outlier",lineColor = "black",
-             noStepRisers = TRUE, balloonText = "", periodSpan = 0.5) %>>% 
+             noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
     addGraph(id = "g4", type = "step", valueField = "high_outlier",lineColor = "black",
-             noStepRisers = TRUE, balloonText = "", periodSpan = 0.5) %>>%
+             noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
     addGraph(id = "g5", type = "line", valueField = "real_outlier",lineColor = "black",
-             lineAlpha = 0, bullet = "round", noStepRisers = TRUE, balloonText = "", periodSpan = 0.5) %>>%
-    setChartCursor(oneBalloonOnly = TRUE)  %>>% 
+             lineAlpha = 0, bullet = "round", noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
+    setChartCursor(oneBalloonOnly = TRUE),
     setExport(position = "top-right") 
+  )
   
   if(ncol(dp) > 8){
     for(i in 1:(ncol(dp)-8)){

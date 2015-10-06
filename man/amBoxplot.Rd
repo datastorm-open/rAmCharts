@@ -2,18 +2,29 @@
 % Please edit documentation in R/amBoxplot.R
 \name{amBoxplot}
 \alias{amBoxplot}
+\alias{amBoxplot.data.frame}
+\alias{amBoxplot.default}
+\alias{amBoxplot.formula}
+\alias{amBoxplot.matrix}
 \title{Plotting boxplot using rAmCharts}
 \usage{
 amBoxplot(x, ...)
+
+\method{amBoxplot}{default}(x, main = NULL, xlab = NULL, ylab = NULL,
+  ylim = NULL, names = NULL, col = NULL, horizontal = FALSE)
+
+\method{amBoxplot}{data.frame}(x, main = NULL, id = NULL, xlab = NULL,
+  ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE)
+
+\method{amBoxplot}{matrix}(x, use.cols = TRUE, main = NULL, xlab = NULL,
+  ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE)
+
+\method{amBoxplot}{formula}(formula, data = NULL, id = NULL, main = NULL,
+  xlab = NULL, ylab = NULL, ylim = NULL, col = NULL,
+  horizontal = FALSE)
 }
 \arguments{
 \item{x}{a vector, data.frame, or a matrix}
-
-\item{formula}{a formula, such as y ~ grp, where y is a numeric vector of data values to be split into groups according to the grouping variable grp (usually a factor).}
-
-\item{data}{a data.frame from which the variables in formula should be taken}
-
-\item{use.cols}{for matrix only. Boxplot on columns or rows ?}
 
 \item{main}{\code{character}, title of the graph.}
 
@@ -28,6 +39,12 @@ amBoxplot(x, ...)
 \item{horizontal}{Boolean. Rotate boxplot ?}
 
 \item{id}{in case of using a data.frame, column name of id for identify outliers}
+
+\item{use.cols}{for matrix only. Boxplot on columns or rows ?}
+
+\item{formula}{a formula, such as y ~ grp, where y is a numeric vector of data values to be split into groups according to the grouping variable grp (usually a factor).}
+
+\item{data}{a data.frame from which the variables in formula should be taken}
 }
 \description{
 amBoxplot computes a boxplot of the given data values.
