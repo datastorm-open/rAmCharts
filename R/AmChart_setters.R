@@ -263,7 +263,7 @@ setMethod(f = "setChartCursor", signature = c("AmChart", "ChartCursorOrMissing")
               chartCursor <- chartCursor(...)
             } else if (is.null(chartCursor) && missing(...)) {
               chartCursor <- chartCursor()
-              message("default 'chartCursor' added")
+              # message("default 'chartCursor' added")
             } else {}
             
             .Object@chartCursor <- listProperties(chartCursor)
@@ -295,7 +295,7 @@ setMethod(f = "setChartScrollbar", signature = c("AmChart", "ChartScrollbarOrMis
               chartScrollbar <- chartScrollbar(...)
             } else if (is.null(chartScrollbar) && missing(...)) {
               chartScrollbar <- chartScrollbar()
-              message("default 'chartScrollbar' added")
+              # message("default 'chartScrollbar' added")
             } else {}
             
             .Object@chartScrollbar <- listProperties(chartScrollbar)
