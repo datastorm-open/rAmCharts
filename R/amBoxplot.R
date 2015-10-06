@@ -231,7 +231,6 @@ plotAmBoxplot <- function(dp, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL
 }
 
 dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
-  saveRDS(data, file = "test.RDS")
   xx <- data.table(x = data[[1]], id = data[[2]])[!is.na(x)]
   setkey(xx, x)
   
