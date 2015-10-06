@@ -1,5 +1,5 @@
-#' @title Histograms
-#' @description  amhist computes a histogram of the given data values.
+#' @title Plotting histogram using rAmCharts
+#' @description  amHist computes a histogram of the given data values.
 #' If \code{plot = TRUE}, the resulting object of class \code{"histogram"} before it is returned.
 #' @param x a vector of values for which the histogram is desired.
 #' @param main \code{character}, title of the graph.

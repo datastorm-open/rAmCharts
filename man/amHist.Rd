@@ -2,7 +2,7 @@
 % Please edit documentation in R/amHist.R
 \name{amHist}
 \alias{amHist}
-\title{Histograms}
+\title{Plotting histogram using rAmCharts}
 \usage{
 amHist(x, main = "Histogram", freq = TRUE, xlab = NULL, ylab = NULL,
   ylim = NULL, plot = TRUE, col = NULL, labels = TRUE, ...)
@@ -36,7 +36,7 @@ if labels is a \code{character}, draw itself.}
 \item{...}{further arguments and graphical parameters passed to plot.histogram}
 }
 \description{
-amhist computes a histogram of the given data values.
+amHist computes a histogram of the given data values.
 If \code{plot = TRUE}, the resulting object of class \code{"histogram"} before it is returned.
 }
 \examples{
