@@ -1,17 +1,16 @@
 output$radar1 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
-    amRadarChart(startDuration = 1, categoryField = 'country', dataProvider = data_gdp),
+    amRadarChart(startDuration = 0, categoryField = 'country', dataProvider = data_gdp),
     addGraph(balloonText = '[[category]]: [[value]]', valueField = 'gdp',
              title = 'GDP 2015', bullet = 'round'),
-    setExport(),
-    plot()
+    setExport()
   )
 })
 
 output$code_radar1 <- renderText({
   "
   pipeR::pipeline(
-    amRadarChart(startDuration = 1, categoryField = 'country', dataProvider = data_gdp),
+    amRadarChart(categoryField = 'country', dataProvider = data_gdp),
     addGraph(balloonText = '[[category]]: [[value]]', valueField = 'gdp',
              title = 'GDP 2015', bullet = 'round'),
     setExport(),
@@ -22,7 +21,7 @@ output$code_radar1 <- renderText({
 
 output$radar2 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
-    amRadarChart(theme  =  'light',  startDuration  =  1, categoryField  =  'direction'),
+    amRadarChart(theme = 'light', startDuration = 0, categoryField  =  'direction'),
     setDataProvider(data.frame(direction  =  c('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'),
                                value  =  c(10, 7, 8, 9, 5, 4, 6, 9))),
     setValueAxes(list(valueAxis(gridType = 'circles', minimum = 0, autoGridCount = FALSE,
@@ -43,7 +42,7 @@ output$radar2 <- rAmCharts::renderAmCharts({
 output$code_radar2 <- renderText({
   "
   pipeR::pipeline(
-    amRadarChart(theme  =  'light',  startDuration  =  1, categoryField  =  'direction'),
+    amRadarChart(theme  =  'light', categoryField  =  'direction'),
     setDataProvider(data.frame(direction  =  c('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'),
                                value  =  c(10, 7, 8, 9, 5, 4, 6, 9))),
     setValueAxes(list(valueAxis(gridType = 'circles', minimum = 0, autoGridCount = FALSE,

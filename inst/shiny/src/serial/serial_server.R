@@ -1,6 +1,6 @@
 output$serial1 <- renderAmCharts({
   pipeR::pipeline(
-    amSerialChart(categoryField = 'country', creditsPosition = 'top-right'),
+    amSerialChart(categoryField = 'country', startDuration = 0, creditsPosition = 'top-right'),
     setDataProvider(data.frame(country = c('FR', 'US'), visits = 1:2)),
     addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
              valueField = 'visits', fillAlphas = .8, lineAlpha = .2),
@@ -33,7 +33,7 @@ output$serial2 <- renderAmCharts({
     amSerialChart(addClassNames = TRUE, theme = 'chalk', autoMargins = FALSE,
                   marginLeft = 30, marginRight = 8, marginTop = 10,
                   marginBottom = 26, startDuration = 1,
-                  categoryField = 'year'),
+                  categoryField = 'year', startDuration = 0),
     setDataProvider(data.frame(year  =  c(2010, 2011, 2012, 2013, 2014), income  =  c(20.4, 20.6, 24.3, 21.5, 22.3), 
                                expenses  =  c(31.5, 32.4, 25.6, 22.6, 24.9),
                                dashLengthColumn = c(NA, NA, NA, NA, 5), 
@@ -88,7 +88,7 @@ output$code_serial2 <- renderText({
 
 output$serial3 <- renderAmCharts({
   pipeR::pipeline(
-    amSerialChart(startDuration = 2, categoryField = 'country', depth3D = 40, angle = 30),
+    amSerialChart(categoryField = 'country', depth3D = 40, angle = 30),
     setDataProvider(data.table(
       country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France', 'India', 'Spain', 'Netherlands', 'Russia'), 
       visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580), 
@@ -104,7 +104,7 @@ output$serial3 <- renderAmCharts({
 output$code_serial3 <- renderText({
   "
   pipeR::pipeline(
-    amSerialChart(startDuration = 2, categoryField = 'country', depth3D = 40, angle = 30),
+    amSerialChart(categoryField = 'country', depth3D = 40, angle = 30),
     setDataProvider(data.table(
       country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France', 'India', 'Spain', 'Netherlands', 'Russia'), 
       visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580), 
@@ -121,7 +121,7 @@ output$code_serial3 <- renderText({
 output$serial4 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
     amSerialChart(theme = 'light', marginRight = 30, plotAreaBorderAlpha = 0,
-                  categoryField = 'year'),
+                  categoryField = 'year', startDuration = 0),
     setDataProvider(data.frame(
       year = 1994:2012, 
       cars = c(15, 13, 14, 15, 16, 18, 19, 22, 24, 20, 24, 25, 26, 35, 36, 37, 38, 39, 40), 
@@ -185,7 +185,7 @@ output$code_serial4 <- renderText({
 output$serial5 <- renderAmCharts({
   pipeR::pipeline(
     amSerialChart(theme = 'light', marginTop = 0, marginRight = 80, dataDateFormat = 'YYYY',
-                  categoryField = 'year'),
+                  categoryField = 'year', startDuration = 0),
     setDataProvider(data.frame(year = 1950:2015, value = runif(length(1950:2015), -1, 1))),
     addValueAxes(axisAlpha = 0, position = 'left'),
     addGraph(id = 'g1', balloonText =  '[[category]]<br><b><span style="font-size = 14px;">[[value]]</span></b>',

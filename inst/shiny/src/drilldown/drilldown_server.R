@@ -1,6 +1,6 @@
 output$drillColumnChart1 <-rAmCharts::renderAmCharts({
   pipeR::pipeline(
-    rAmCharts::amSerialChart(categoryField = 'name'),
+    rAmCharts::amSerialChart(categoryField = 'name', startDuration = 0),
     setDataProvider(data.frame(name = c('data', 'Brand', 'singleness'), start = c(8,10,6),
                                end = c(11,13,10), color = c('#007FFF', '#007FFF', '#003FFF'),
                                description = c('click to drill-down','',''))),

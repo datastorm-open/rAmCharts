@@ -1,7 +1,7 @@
 output$funnel1 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
     amFunnelChart(theme = "patterns", neckHeight = '30%', neckWidth = '40%', titleField = 'title',
-                  valueField = 'value', creditsPosition = 'bottom-left'),
+                  valueField = 'value', creditsPosition = 'bottom-left', startDuration = 0),
     setDataProvider(data.table(title = c('Website visits', 'nb. vistors',  'Downloads'),
                                value = c(300, 200, 123))),
     plot()
