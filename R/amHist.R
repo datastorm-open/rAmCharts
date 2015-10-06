@@ -21,7 +21,15 @@
 #' @param ... further arguments and graphical parameters passed to plot.histogram
 #' @examples
 #' x <- rnorm(100)
+#' 
+#' # Default method
 #' (object <- amHist(x = x))
+#' print(object)
+#' 
+#' # Without plot
+#' amHist(x = x, plot = FALSE)
+#' 
+#' # Specific options
 #' amHist(x = x, freq = FALSE)
 #' amHist(x = x, breaks = "Scott")
 #' amHist(x = x, breaks = "Scott", labels = TRUE)
@@ -30,6 +38,7 @@
 #'        ylab = "y-axis", xlab = "x-axis", ylim = c(10, 15))
 #' amHist(rnorm(100), breaks = "Scott", main = "Histogram", 
 #'        ylab = "y-axis", xlab = "x-axis")
+#'        
 #' @import data.table
 #' @export
 amHist <- function(x, main = "Histogram",
@@ -40,7 +49,7 @@ amHist <- function(x, main = "Histogram",
   if (!requireNamespace(package = "pipeR")) {
     stop ("Please install the package pipeR for running this function")
   } else {}
-  
+
   if (!missing(...)) {
     resHist <- graphics::hist(x = x, plot = FALSE, ...)
   } else {
@@ -69,21 +78,25 @@ amHist <- function(x, main = "Histogram",
       xlab <- "x"
     } else {}
     
-    pipeR::pipeline(
-      amSerialChart(theme = "light", categoryField = "x", creditsPosition = "top-right",
-                    columnSpacing = 0, columnWidth = 1, fillAlphas = 1, lineAlpha = 0),
-      setDataProvider(data.table(x = resHist$mids, y = y, 
-                                 cut = paste0("(", paste(resHist$breaks[-length(resHist$breaks)],
-                                                         resHist$breaks[-1], sep = ", "), ")"))),
-      addGraph(balloonText = "[[cut]]: <b>[[value]]</b>", type = "column",
-               valueField = "y", fillAlphas = .8, lineAlpha = .2, fillColors = col,
-               labelText = amLabels, showAllValueLabels = TRUE),
-      addGraph(valueField = "y", type = "smoothedLine", lineColor = "black"),
-      addValueAxes(title = ylab, minimum = ylim[1], maximum = ylim[2]),
-      setCategoryAxis(title = xlab),
-      addTitle(text = main, size = 18),
-      setExport(position = "top-right"),
-      setChartCursor()
-    )
+    plotAmHist(resHist, amLabels, y, ylim, main, ylab, xlab, col)
   }
+}
+
+plotAmHist <- function(resHist, amLabels, y, ylim, main, ylab, xlab, col) {
+  pipeR::pipeline(
+    amSerialChart(theme = "light", categoryField = "x", creditsPosition = "top-right",
+                  columnSpacing = 0, columnWidth = 1, fillAlphas = 1, lineAlpha = 0),
+    setDataProvider(data.table(x = resHist$mids, y = y, 
+                               cut = paste0("(", paste(resHist$breaks[-length(resHist$breaks)],
+                                                       resHist$breaks[-1], sep = ", "), ")"))),
+    addGraph(balloonText = "[[cut]]: <b>[[value]]</b>", type = "column",
+             valueField = "y", fillAlphas = .8, lineAlpha = .2, fillColors = col,
+             labelText = amLabels, showAllValueLabels = TRUE),
+    addGraph(valueField = "y", type = "smoothedLine", lineColor = "black"),
+    addValueAxes(title = ylab, minimum = ylim[1], maximum = ylim[2]),
+    setCategoryAxis(title = xlab),
+    addTitle(text = main, size = 18),
+    setExport(position = "top-right"),
+    setChartCursor()
+  )
 }
