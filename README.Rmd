@@ -25,14 +25,14 @@ devtools::install_github("dataKnowledge/rAmCharts")
 
 ## New statistical features !
 
-### Histogram same use as `hist`:
+### Histogram: same use as `hist`:
 ```{r}
 library(rAmCharts)
 data(iris)
-amHist(iris$Sepal.Length)
+amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray")
 ```
 
-### Boxplot same use as `boxplot`:
+### Boxplot: same use as `boxplot`:
 
 ```{r}
 library(rAmCharts)

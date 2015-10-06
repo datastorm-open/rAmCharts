@@ -77,20 +77,18 @@ amHist <- function(x, main = "Histogram",
     if (is.null(xlab)) {
       xlab <- "x"
     } else {}
-    
-    plotAmHist(resHist, amLabels, y, ylim, main, ylab, xlab, col)
+    dp <- dataAmHist(resHist, y, col)
+    plotAmHist(dp, amLabels, ylim, main, ylab, xlab)
   }
 }
 
-plotAmHist <- function(resHist, amLabels, y, ylim, main, ylab, xlab, col) {
+plotAmHist <- function(dp, amLabels, ylim, main, ylab, xlab) {
   pipeR::pipeline(
     amSerialChart(theme = "light", categoryField = "x", creditsPosition = "top-right",
-                  columnSpacing = 0, columnWidth = 1, fillAlphas = 1, lineAlpha = 0),
-    setDataProvider(data.table(x = resHist$mids, y = y, 
-                               cut = paste0("(", paste(resHist$breaks[-length(resHist$breaks)],
-                                                       resHist$breaks[-1], sep = ", "), ")"))),
+                  columnSpacing = 0, columnWidth = 1, fillAlphas = 1, lineAlpha = 1,
+                  dataProvider = dp),
     addGraph(balloonText = "[[cut]]: <b>[[value]]</b>", type = "column",
-             valueField = "y", fillAlphas = .8, lineAlpha = .2, fillColors = col,
+             valueField = "y", fillAlphas = .8, lineAlpha = 0, fillColorsField = "color",
              labelText = amLabels, showAllValueLabels = TRUE),
     addGraph(valueField = "y", type = "smoothedLine", lineColor = "black"),
     addValueAxes(title = ylab, minimum = ylim[1], maximum = ylim[2]),
@@ -99,4 +97,15 @@ plotAmHist <- function(resHist, amLabels, y, ylim, main, ylab, xlab, col) {
     setExport(position = "top-right"),
     setChartCursor()
   )
+}
+
+dataAmHist <- function (resHist, y, col)
+{
+  if (is.null(col)) {
+    col <- "gray"
+  } else {}
+  data_DT <- data.table(x = resHist$mids, y = y, 
+                        cut = paste0("(", paste(resHist$breaks[-length(resHist$breaks)],
+                                                resHist$breaks[-1], sep = ", "), ")"))
+  data_DT[, color:=col]
 }
