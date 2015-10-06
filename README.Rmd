@@ -21,8 +21,24 @@ devtools::install_github("dataKnowledge/rAmCharts")
 
 ## See some examples by runnig `rAmCharts::runShinyExamples()`
 
-
 ---
+
+## New statistical features !
+
+### Histogram same use as `hist`:
+```{r}
+library(rAmCharts)
+data(iris)
+amHist(iris$Sepal.Length)
+```
+
+### Boxplot same use as `boxplot`:
+
+```{r}
+library(rAmCharts)
+data(iris)
+amBoxplot(Sepal.Length~Species, data = iris, col = c("darkblue", "darkred", "lightblue"))
+```
 
 [url_amcharts]: http://www.amcharts.com
 [url_htmlwidgets]: http://www.htmlwidgets.org
