@@ -170,3 +170,17 @@ setMethod(f = "listProperties", signature = "AmStockChart",
             } else {}
             return(ls)
           })
+
+#' @title Visualize AmStockChart with show
+#' @param object \linkS4class{AmStockChart}
+#' @family Visualizations
+#' @export
+setMethod(f = "show", signature = "AmStockChart",
+          definition = function(object)
+          {
+            if (length(object@type)) {
+              print(plot(object))
+            } else {
+              print(object)
+            }
+          })
