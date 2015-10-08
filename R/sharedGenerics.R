@@ -54,9 +54,3 @@ setGeneric(name = "setText", def = function(.Object, text){ standardGeneric("set
 #' @export
 setGeneric(name = "setValueAxis",
            def = function(.Object, valueAxis = NULL, ...){ standardGeneric("setValueAxis") } )
-
-#' @details addValueAxis(...) is shared by TrendLine and Guide
-#' @rdname shared-generics
-#' @export
-setGeneric( name = "addValueAxis",
-            def = function(.Object, valueAxis = NULL, ... ) { standardGeneric("addValueAxis") } )

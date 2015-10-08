@@ -21,6 +21,8 @@
 \alias{addTrendLine,AmChart,TrendLineOrMissing-method}
 \alias{addValueAxes}
 \alias{addValueAxes,AmChart,ValueAxisOrMissing-method}
+\alias{addValueAxis}
+\alias{addValueAxis,AmChart,ValueAxisOrMissing-method}
 \alias{amAngularGaugeChart}
 \alias{amChart}
 \alias{amFunnelChart}
@@ -211,6 +213,11 @@ setValueAxes(.Object, valueAxes)
 addValueAxes(.Object, valueAxis = NULL, ...)
 
 \S4method{addValueAxes}{AmChart,ValueAxisOrMissing}(.Object, valueAxis = NULL,
+  ...)
+
+addValueAxis(.Object, valueAxis = NULL, ...)
+
+\S4method{addValueAxis}{AmChart,ValueAxisOrMissing}(.Object, valueAxis = NULL,
   ...)
 
 \S4method{setValueAxis}{AmChart,ValueAxisOrMissing}(.Object, valueAxis = NULL,
@@ -604,6 +611,7 @@ setValueAxes(.Object = amSerialChart(), valueAxes = valueAxes)
 amSerialChart(valueAxes = valueAxes)
 # ---
 addValueAxes(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10)
+addValueAxis(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10)
 # equivalent to:
 valueAxis_obj <- valueAxis(axisTitleOffset = 12, tickLength = 10)
 addValueAxes(.Object = amSerialChart(), valueAxis = valueAxis_obj)

@@ -771,9 +771,25 @@ setMethod(f = "setValueAxes", signature = c("AmChart", "list"),
             return(.Object)
           })
 
+# ---
+
+addValueAxes_def <- function(.Object, valueAxis = NULL, ...)
+{
+  if (is.null(valueAxis) && !missing(...)) {
+    valueAxis <- valueAxis(...)
+  } else if (is.null(valueAxis) && missing(...)) {
+    stop("You must provide argument 'valueAxis' or its properties")
+  } else {}
+  
+  .Object@valueAxes <- rlist::list.append(.Object@valueAxes, listProperties(valueAxis))
+  validObject(.Object)
+  return(.Object)
+}
+
 #' @details For method \code{addValueAxes}: valueAxis is optional.
 #' @examples
 #' addValueAxes(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10)
+#' addValueAxis(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10)
 #' # equivalent to:
 #' valueAxis_obj <- valueAxis(axisTitleOffset = 12, tickLength = 10)
 #' addValueAxes(.Object = amSerialChart(), valueAxis = valueAxis_obj)
@@ -784,18 +800,14 @@ setGeneric(name = "addValueAxes",
             def = function(.Object, valueAxis = NULL, ... ) {standardGeneric("addValueAxes")})
 #' @rdname initialize-AmChart
 setMethod(f = "addValueAxes", signature = c("AmChart", "ValueAxisOrMissing"),
-          definition = function(.Object, valueAxis = NULL, ...)
-          {
-            if (is.null(valueAxis) && !missing(...)) {
-              valueAxis <- valueAxis(...)
-            } else if (is.null(valueAxis) && missing(...)) {
-              stop("You must provide argument 'valueAxis' or its properties")
-            } else {}
-            
-            .Object@valueAxes <- rlist::list.append(.Object@valueAxes, listProperties(valueAxis))
-            validObject(.Object)
-            return(.Object)
-          })
+          definition = addValueAxes_def)
+#' @rdname initialize-AmChart
+#' @export
+setGeneric(name = "addValueAxis",
+            def = function(.Object, valueAxis = NULL, ... ) { standardGeneric("addValueAxis") } )
+#' @rdname initialize-AmChart
+setMethod(f = "addValueAxis", signature = c("AmChart", "ValueAxisOrMissing"),
+          definition = addValueAxes_def)
 
 #' @details Method \code{setValueAxis} is only valid for Gantt charts.
 #' @examples

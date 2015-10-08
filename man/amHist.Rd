@@ -4,13 +4,18 @@
 \alias{amHist}
 \title{Plotting histogram using rAmCharts}
 \usage{
-amHist(x, main = "Histogram", freq = TRUE, xlab = NULL, ylab = NULL,
-  ylim = NULL, plot = TRUE, col = NULL, labels = TRUE, ...)
+amHist(x, main = "Histogram", col = "grey", border = "grey",
+  freq = TRUE, xlab = NULL, ylab = NULL, ylim = NULL, plot = TRUE,
+  labels = TRUE, ...)
 }
 \arguments{
 \item{x}{a vector of values for which the histogram is desired.}
 
 \item{main}{\code{character}, title of the graph.}
+
+\item{col}{a colour to be used to fill the bars.}
+
+\item{border}{a colour for the borders.}
 
 \item{freq}{\code{logical}; if \code{TRUE}, the histogram graphic is a representation of frequencies,
 the counts component of the result; if FALSE, probability densities,
@@ -25,8 +30,6 @@ Defaults to TRUE if and only if breaks are equidistant (and probability is not s
 an histogram is plotted, otherwise a list of breaks and counts is returned.
 In the latter case, a warning is used if (typically graphical)
 arguments are specified that only apply to the \code{plot = TRUE} case.}
-
-\item{col}{a colour to be used to fill the bars. The default of NULL yields unfilled bars.}
 
 \item{labels}{logical or character.
 Additionally draw labels on top of bars, if not \code{FALSE};
@@ -50,6 +53,10 @@ print(object)
 amHist(x = x, plot = FALSE)
 
 # Specific options
+amHist(x = x, border = "blue")
+amHist(x = x, col = "lightblue")
+amHist(x = x, col = "grey")
+amHist(x = x, col = "gray")
 amHist(x = x, freq = FALSE)
 amHist(x = x, breaks = "Scott")
 amHist(x = x, breaks = "Scott", labels = TRUE)

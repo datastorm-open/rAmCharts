@@ -4,7 +4,7 @@ shiny::tabPanel(
     column(
       width = 12,
       h2("Basic example"),
-      selectInput("theme_radar1", label = "theme", choices = c("light", "default", "patterns")),
+      selectInput("theme_radar1", label = "theme", choices = c("default", "light", "patterns", "dark", "chalk")),
       br(),
       rAmCharts::amChartsOutput("radar1", type = "radar"),
       verbatimTextOutput("code_radar1"),

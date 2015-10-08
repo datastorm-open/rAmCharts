@@ -43,29 +43,35 @@ setMethod(f = "amChartsOutput", signature = c("character", "character"),
   }
 )
 
+#' @title Test the class of an exepression
+#' @description Only used in the package in 'renderAmCharts'.
+#' @param x expression passed to 'renderAmCharts'.
+#' Either an expression that generates an HTML widget.
+#' Or an expression that generates an AmChart.
+controlShinyPlot <- function(x) {
+  if (!"htmlwidget" %in% class(x)) {
+    plot(x)
+  } else {
+    x
+  }
+}
+
 #' @title SHINY
 #' @description Widget output function for use in Shiny
-#' @param amChart: an \code{\linkS4class{AmChart}} object
+#' @param expr an expression that generates an HTML widget.
+#' @param env the environment in which to evaluate expr.
+#' @param quoted is expr a quoted expression (with quote())?
+#' This is useful if you want to save an expression in a variable.
 #' @name renderAmCharts
 #' @rdname renderAmCharts
 #' @export
 renderAmCharts <- function(expr, env, quoted){
-  if(missing(env)){
+  if (missing(env)) {
     env <- parent.frame()
-  }else{}
-  if(missing(quoted)){
+  } else {}
+  if (missing(quoted)) {
     quoted <- FALSE
   }
   if (!quoted) { expr <- substitute(rAmCharts:::controlShinyPlot(expr)) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, amChartsOutput, env, quoted = TRUE)
-}
-
-
-
-controlShinyPlot <- function(x){
-  if(!"htmlwidget"%in%class(x)){
-    plot(x)
-  }else{
-    x
-  }
 }

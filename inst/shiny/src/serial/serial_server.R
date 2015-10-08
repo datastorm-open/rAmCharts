@@ -1,29 +1,47 @@
 output$serial1 <- renderAmCharts({
+  # prepare data
+  data <- as.data.table(get('Titanic', 'package:datasets'))
+  data <- data[, .(freq = sum(N)), by = list(Sex, Survived)]
+  (data <- split(data, f = data$Survived))
+  setkey(data$Yes, Sex)
+  setkey(data$No, Sex)
+  (dp <- data$Yes[data$No])
+  
+  # build the chart
   pipeR::pipeline(
-    amSerialChart(categoryField = 'country', startDuration = 0, creditsPosition = 'top-right'),
-    setDataProvider(data.frame(country = c('FR', 'US'), visits = 1:2)),
+    amSerialChart(categoryField = 'Sex', startDuration = 0,
+                  dataProvider = dp),
     addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
-             valueField = 'visits', fillAlphas = .8, lineAlpha = .2),
-    addListener('clickGraphItem' , 'function(event) {alert(\"ok !\");}'), 
-    setExport(position = 'bottom-right'),
-    setChartCursor(),
-    setChartScrollbar(),
-    plot()
+             valueField = 'freq', fillAlphas = .8, lineAlpha = .2, title = 'Yes'),
+    addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
+             valueField = 'i.freq', fillAlphas = .8, lineAlpha = .2, title = 'No'),
+    addValueAxis(stackType = '100%'),
+    addTitle(text = 'Survivors to Titanic'),
+    setLegend(useGraphSettings = TRUE)
   )
 })
 
 output$code_serial1 <- renderText({
   "
+  # prepare data
+  data <- as.data.table(get('Titanic', 'package:datasets'))
+  data <- data[, .(freq = sum(N)), by = list(Survived, Sex)]
+  (data <- split(data, f = data$Sex))
+  setkey(data$Male, Survived)
+  setkey(data$Female, Survived)
+  (dp <- data$Male[data$Female])
+  
+  # build the chart
   pipeR::pipeline(
-    amSerialChart(categoryField = 'country', creditsPosition = 'top-right'),
-    setDataProvider(data.frame(country = c('FR', 'US'), visits = 1:2)),
+    amSerialChart(categoryField = 'Survived', startDuration = 0,
+                  dataProvider = dp),
     addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
-             valueField = 'visits', fillAlphas = .8, lineAlpha = .2),
-    addListener('clickGraphItem' , 'function(event) {alert(\"ok !\");}'), 
-    setExport(position = 'bottom-right'),
-    setChartCursor(),
-    setChartScrollbar(),
-    plot()
+             valueField = 'freq', fillAlphas = .8, lineAlpha = .2, title = 'Male'),
+    addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
+             valueField = 'i.freq', fillAlphas = .8, lineAlpha = .2, title = 'Female'),
+    addValueAxis(stackType = '100%'),
+    setTitle(text = 'Survivors to Titanic'),
+    setLegend(useGraphSettings = TRUE)
   )
   "
 })

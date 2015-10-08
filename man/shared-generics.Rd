@@ -2,7 +2,6 @@
 % Please edit documentation in R/sharedGenerics.R
 \name{setBalloon}
 \alias{addGuide}
-\alias{addValueAxis}
 \alias{setBalloon}
 \alias{setDataProvider}
 \alias{setGraph}
@@ -27,8 +26,6 @@ addGuide(.Object, guide = NULL, ...)
 setText(.Object, text)
 
 setValueAxis(.Object, valueAxis = NULL, ...)
-
-addValueAxis(.Object, valueAxis = NULL, ...)
 }
 \arguments{
 \item{.Object}{\linkS4class{AmObject}.}
@@ -73,7 +70,5 @@ addGuide(...) is shared by AxisBase and AmChart
 setText(...) is shared by Title and Label
 
 setValueAxis(...) is shared by AmChart(type = "gantt"), TrendLine and Guide
-
-addValueAxis(...) is shared by TrendLine and Guide
 }
 
