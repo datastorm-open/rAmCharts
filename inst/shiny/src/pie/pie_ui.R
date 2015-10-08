@@ -12,6 +12,8 @@ shiny::tabPanel(
       verbatimTextOutput("code_pie01"),
       
       h2("Choose a theme among: light, dark, chalk"),
+      selectInput("theme_pie", label = "Theme:", choices = c("light", "default", "patterns", "dark", "chalk")),
+      br(),
       rAmCharts::amChartsOutput("pie02", type = "pie"),
       verbatimTextOutput("code_pie02"),
       

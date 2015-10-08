@@ -1,20 +1,27 @@
 output$radar1 <- rAmCharts::renderAmCharts({
+  data('HairEyeColor')
+  HairEyeColor_DT <- as.data.table(HairEyeColor)
+  (dp <- HairEyeColor_DT[, .(freq = sum(N)), by = Eye])
   pipeR::pipeline(
-    amRadarChart(startDuration = 0, categoryField = 'country', dataProvider = data_gdp),
-    addGraph(balloonText = '[[category]]: [[value]]', valueField = 'gdp',
-             title = 'GDP 2015', bullet = 'round'),
-    setExport()
+    amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp),
+    addGraph(balloonText = '[[category]]: [[value]]', valueField = 'freq',
+             title = 'Frequency', bullet = 'round'),
+    setExport(),
+    setProperties(theme = input$theme_radar1)
   )
 })
 
 output$code_radar1 <- renderText({
   "
+  data('HairEyeColor')
+  HairEyeColor_DT <- as.data.table(HairEyeColor)
+  (dp <- HairEyeColor_DT[, .(freq = sum(N)), by = Eye])
   pipeR::pipeline(
-    amRadarChart(categoryField = 'country', dataProvider = data_gdp),
-    addGraph(balloonText = '[[category]]: [[value]]', valueField = 'gdp',
-             title = 'GDP 2015', bullet = 'round'),
+    amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp),
+    addGraph(balloonText = '[[category]]: [[value]]', valueField = 'freq',
+             title = 'Frequency', bullet = 'round'),
     setExport(),
-    plot()
+    setProperties(theme = input$theme_radar1)
   )
   "
 })

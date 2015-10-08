@@ -18,8 +18,9 @@ setMethod(f = "plot", signature = "AmCharts",
           definition = function(x, y, width = "100%", height = "500px",
                                 background = "#ffffff",...)
           {
-            if (length(x@theme)) {
-              background <- switch(x@theme,
+            theme <- listProperties(x)$theme
+            if (length(theme)) {
+              background <- switch(theme,
                                    "light" = "#ffffff",
                                    "patterns" = "#ffffff",
                                    "default" = "#ffffff",
@@ -87,7 +88,7 @@ setMethod(f = "plot", signature = "AmCharts",
                 name = paste0("amcharts_themes_", x@theme),
                 version = "3",
                 src = c(file = system.file("htmlwidgets/lib/themes", package = "rAmCharts")),
-                script = switch(x@theme,
+                script = switch(theme,
                                 "light" = "light.js",
                                 "patterns" = "patterns.js",
                                 "default" = "",
