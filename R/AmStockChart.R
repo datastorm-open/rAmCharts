@@ -160,7 +160,7 @@ setMethod(f = "listProperties", signature = "AmStockChart",
               ls <- rlist::list.append(ls, panels = .Object@panels)
             } else {}
             if (length(.Object@periodSelector)) {
-              ls <- rlist::list.append(ls, panelsSettings = .Object@periodSelector)
+              ls <- rlist::list.append(ls, periodSelector = .Object@periodSelector)
             } else {}
             if (length(.Object@type)) {
               ls <- rlist::list.append(ls, type = .Object@type)
