@@ -10,7 +10,7 @@ This package is also available on CRAN. However several improvements and bug fix
 Run the following code lines to install **rAmCharts**:
 
 ```{r, eval = FALSE}
-if (require(devtools)) {
+if (!require(devtools)) {
   install.packages("devtools")
 } else {}
 
