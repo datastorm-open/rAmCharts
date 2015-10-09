@@ -48,6 +48,7 @@ setMethod(f = "amChartsOutput", signature = c("character", "character"),
 #' @param x expression passed to 'renderAmCharts'.
 #' Either an expression that generates an HTML widget.
 #' Or an expression that generates an AmChart.
+#' @noRd
 controlShinyPlot <- function(x) {
   if (!"htmlwidget" %in% class(x) && (is(x, "AmChart") || is(x, "AmStockChart"))) {
     plot(x)
