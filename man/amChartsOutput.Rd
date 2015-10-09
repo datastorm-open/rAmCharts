@@ -3,12 +3,13 @@
 \docType{methods}
 \name{amChartsOutput}
 \alias{amChartsOutput}
-\alias{amChartsOutput,character,character-method}
+\alias{amChartsOutput,character,characterOrMissing-method}
 \title{SHINY}
 \usage{
-amChartsOutput(outputId, type, width, height)
+amChartsOutput(outputId, type = NULL, width, height)
 
-\S4method{amChartsOutput}{character,character}(outputId, type, width, height)
+\S4method{amChartsOutput}{character,characterOrMissing}(outputId, type = NULL,
+  width, height)
 }
 \arguments{
 \item{outputId}{\code{character}.}

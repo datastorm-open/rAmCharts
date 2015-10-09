@@ -43,7 +43,13 @@ amHist computes a histogram of the given data values.
 If \code{plot = TRUE}, the resulting object of class \code{"histogram"} before it is returned.
 }
 \examples{
-x <- rnorm(100)
+x <- replicate(1000, {
+  if (round(runif(1))) {
+    rnorm(1)
+  } else {
+    rnorm(1, mean = 5)
+  }
+})
 
 # Default method
 (object <- amHist(x = x))
@@ -52,10 +58,10 @@ print(object)
 # Without plot
 amHist(x = x, plot = FALSE)
 
-# Specific options
+# With options
 amHist(x = x, border = "blue")
-amHist(x = x, col = "lightblue")
-amHist(x = x, col = "grey")
+amHist(x = x, col = "lightblue", breaks = 100)
+amHist(x = x, col = "grey", breaks = 100)
 amHist(x = x, col = "gray")
 amHist(x = x, freq = FALSE)
 amHist(x = x, breaks = "Scott")

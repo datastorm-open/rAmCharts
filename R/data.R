@@ -5,6 +5,7 @@
 #' data_stock1 <- generate_data_stock1()
 #' devtools::use_data(data_stock1)
 #' }
+#' @import data.table
 #' @noRd
 generate_data_stock1 <- function()
 {

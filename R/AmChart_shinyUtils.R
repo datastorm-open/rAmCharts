@@ -1,7 +1,7 @@
 #' @rdname amChartsOutput
 #' @export
 setGeneric( name = "amChartsOutput",
-            def = function(outputId, type, width, height) {standardGeneric("amChartsOutput")})
+            def = function(outputId, type = NULL, width, height) {standardGeneric("amChartsOutput")})
 #' @title SHINY
 #' @description Widget output function for use in Shiny
 #' @param outputId \code{character}.
@@ -10,8 +10,8 @@ setGeneric( name = "amChartsOutput",
 #' @param width \code{character}.
 #' @param height \code{character}.
 #' @rdname amChartsOutput
-setMethod(f = "amChartsOutput", signature = c("character", "character"),
-  definition = function(outputId, type, width, height)
+setMethod(f = "amChartsOutput", signature = c("character", "characterOrMissing"),
+  definition = function(outputId, type = NULL, width, height)
   {
     if (missing(width)) {
       width <- "100%"
@@ -20,18 +20,9 @@ setMethod(f = "amChartsOutput", signature = c("character", "character"),
       height <- "400px"
     } else {}
     
-    jsFile <- switch(type,
-                     "funnel" = "amFunnelChart",
-                     "gantt" = "amGanttChart",
-                     "gauge" = "amAngularGauge",
-                     "pie" = "amPieChart",
-                     "radar" = "amRadarChart",
-                     "serial" = "amSerialChart",
-                     "stock" = "amStockChart",
-                     "xy" = "amXYChart",
-                     "drill" = "amDrillChart",
-                     stop("type error")
-    )
+    jsFile <- ifelse(test = !is.null(type) && type == "drill",
+                     yes = "amDrillChart",
+                     no = "ramcharts_base") 
     
     htmlwidgets::shinyWidgetOutput(
       outputId = outputId,     

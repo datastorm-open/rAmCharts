@@ -14,7 +14,7 @@ Description: API for using 'AmCharts' Library. Based on the 'htmlwidgets'
     licence, and thus support its creators and get a period of Priority Support.
     See also <http://www.amcharts.com/about/> for more information about
     'AmCharts' company.
-Version: 1.1.1
+Version: 1.1.2
 Authors@R: c(
     person(given = "Jeffery", family = "Petit", email = "jeff@datak.fr", role = c("aut", "cre")),
     person(given = "Antanas", family = " Marcelionis", role = c("aut", "cph"),
@@ -78,10 +78,11 @@ Collate:
 Imports:
     methods,
     htmlwidgets,
+    htmltools,
     rlist,
     data.table,
     graphics,
-    utils,
+    utils
 Suggests:
     pipeR,
     shiny,

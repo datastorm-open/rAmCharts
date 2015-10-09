@@ -34,9 +34,9 @@
 #' print(object)
 #' 
 #' # Without plot
-#' amHist(x = x, plot = FALSE
+#' amHist(x = x, plot = FALSE)
 #' 
-#' # Specific options
+#' # With options
 #' amHist(x = x, border = "blue")
 #' amHist(x = x, col = "lightblue", breaks = 100)
 #' amHist(x = x, col = "grey", breaks = 100)
