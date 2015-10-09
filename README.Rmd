@@ -32,10 +32,7 @@ devtools::install_github("dataKnowledge/rAmCharts")
 ```{r}
 library(rAmCharts)
 data(iris)
-pipeR::pipeline(
-  amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray"),
-  setProperties(path = system.file("htmlwidgets/lib/images", package = "rAmCharts"))
-)
+amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray")
 ```
 
 ### Boxplot: same use as `boxplot`:
