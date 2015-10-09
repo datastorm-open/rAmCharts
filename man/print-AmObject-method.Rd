@@ -23,6 +23,7 @@ print(new("AmChart", categoryField = "variables", type = "serial"), withDetail =
 }
 \seealso{
 Other Visualizations: \code{\link{show,AmChart-method}};
-  \code{\link{show,AmObject-method}}
+  \code{\link{show,AmObject-method}};
+  \code{\link{show,AmStockChart-method}}
 }
 

@@ -23,6 +23,7 @@ pipeR::pipeline(
 }
 \seealso{
 Other Visualizations: \code{\link{print,AmObject-method}};
-  \code{\link{show,AmChart-method}}
+  \code{\link{show,AmChart-method}};
+  \code{\link{show,AmStockChart-method}}
 }
 
