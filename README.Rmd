@@ -1,3 +1,6 @@
+# Version 1.1.2 (based on [AmCharts][url_amcharts] 3.17.2)
+___
+
 This package allows to draw interactive charts from the *JavaScript* library [AmCharts][url_amcharts] using [Hmlwidgets][url_htmlwidgets].
 Since it is still in developpment, some functionnalities might have an unexpected behavior. If you encounter the problem, do not hesitate to contact.
 
@@ -29,15 +32,33 @@ devtools::install_github("dataKnowledge/rAmCharts")
 ```{r}
 library(rAmCharts)
 data(iris)
-amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray")
+pipeR::pipeline(
+  amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray"),
+  setProperties(path = system.file("htmlwidgets/lib/images", package = "rAmCharts"))
+)
 ```
 
 ### Boxplot: same use as `boxplot`:
 
-```{r}
+```{r, eval = FALSE}
 library(rAmCharts)
 data(iris)
 amBoxplot(Sepal.Length~Species, data = iris, col = c("darkblue", "darkred", "lightblue"))
+```
+
+## Known issues
+
+* Use in R Markown needs an url path "http://www.amcharts.com/lib/3" to find images
+* Use in R Markown needs a call to the method `plot`
+
+```{r, eval = FALSE}
+library(rAmCharts)
+data(iris)
+pipeR::pipeline(
+  amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray"),
+  setProperties(path = "http://www.amcharts.com/lib/3"),
+  plot()
+)
 ```
 
 [url_amcharts]: http://www.amcharts.com
