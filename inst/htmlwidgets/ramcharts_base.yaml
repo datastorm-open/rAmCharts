@@ -1,19 +1,13 @@
 dependencies:
   - name: amcharts
-    version: 3
+    version: 3.17.2
     src: htmlwidgets/lib
     script:
       - amcharts.js
       
-  - name: amcharts_serial
-    version: 3
-    src: htmlwidgets/lib
-    script:
-      - serial.js
-
   - name: amcharts_style
-    version: 3
+    version: 3.17.2
     src: htmlwidgets
     stylesheet:
-    - style.css
-
+      - style.css
+      
