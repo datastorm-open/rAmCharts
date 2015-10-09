@@ -106,7 +106,6 @@ dependency_chartType <- function(widget, data, type)
   type_dep <- htmltools::htmlDependency(
     name = paste0("amcharts_type", type),
     version = "3.17.2",
-    stylesheet = "style.css",
     src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
     script = jsFiles
   )
@@ -116,6 +115,15 @@ dependency_chartType <- function(widget, data, type)
   } else {}
   
   widget$dependencies[[length(widget$dependencies)+1]] <- type_dep
+  
+  style_dep <- htmltools::htmlDependency(
+    name = "amcharts_style",
+    version = "3.17.2",
+    src = c(file = system.file("htmlwidgets", package = "rAmCharts")),
+    stylesheet = "style.css"
+  )
+  
+  widget$dependencies[[length(widget$dependencies)+1]] <- style_dep
   
   widget
 }
