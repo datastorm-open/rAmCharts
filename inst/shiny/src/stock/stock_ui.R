@@ -3,7 +3,9 @@ shiny::tabPanel(
   fluidRow(
     column(
       width = 12,
-      rAmCharts::amChartsOutput("stock1", type = "stock"),
+      selectInput("theme_stock", label = "Theme:", choices = c("default", "light", "patterns", "dark", "chalk")),
+      br(),
+      rAmCharts::amChartsOutput("stock1"),
       verbatimTextOutput("code_stock1")
     )
   )

@@ -1,10 +1,10 @@
 output$funnel1 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
-    amFunnelChart(theme = "patterns", neckHeight = '30%', neckWidth = '40%', titleField = 'title',
-                  valueField = 'value', creditsPosition = 'bottom-left', startDuration = 0),
-    setDataProvider(data.table(title = c('Website visits', 'nb. vistors',  'Downloads'),
-                               value = c(300, 200, 123))),
-    plot()
+    amFunnelChart(theme = input$theme_funnel, neckHeight = '30%', neckWidth = '40%',
+                  titleField = 'title', valueField = 'value',
+                  creditsPosition = 'bottom-left', startDuration = 0),
+    setDataProvider(data.table(title = c('Website visits', 'nb. vistors', 'Downloads', 'buy'),
+                               value = c(300, 200, 123, 50)))
   )
 })
 
@@ -13,9 +13,8 @@ output$code_funnel1 <- renderText({
   pipeR::pipeline(
     amFunnelChart(neckHeight = '30%', neckWidth = '40%', titleField = 'title',
                   valueField = 'value', creditsPosition = 'bottom-left'),
-    setDataProvider(data.table(title = c('Website visits', 'nb. vistors',  'Downloads'),
-                               value = c(300, 200, 123))),
-    plot()
+    setDataProvider(data.table(title = c('Website visits', 'nb. vistors', 'Downloads', 'buy'),
+                               value = c(300, 200, 123, 50)))
   )
   "
 })

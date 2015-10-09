@@ -1,6 +1,7 @@
 output$stock1 <- renderAmCharts({
+  data('data_stock1')
   pipeR::pipeline(
-    amStockChart(theme = 'light', startDuration = 0),
+    amStockChart(theme = input$theme_stock, startDuration = 0),
     addDataSet(dataSet(title = 'first data set', categoryField = 'date',
                        dataProvider = data_stock1$chartData1) %>>%
                  addFieldMapping(fromField = 'value', toField = 'value') %>>%
@@ -17,8 +18,7 @@ output$stock1 <- renderAmCharts({
                        dataProvider = data_stock1$chartData4) %>>%
                  addFieldMapping(fromField = 'value', toField = 'value') %>>%
                  addFieldMapping(fromField = 'volume', toField = 'volume')),
-    addPanel(stockPanel(showCategoryAxis = FALSE, title = 'Value',
-                        percentHeight = 70) %>>%
+    addPanel(stockPanel(showCategoryAxis = FALSE, title = 'Value', percentHeight = 70) %>>%
                addStockGraph(id = 'g1', valueField = 'value', comparable = TRUE,
                              compareField = 'value', balloonText = '[[title]] =<b>[[value]]</b>',
                              compareGraphBalloonText = '[[title]] =<b>[[value]]</b>') %>>%
@@ -35,8 +35,7 @@ output$stock1 <- renderAmCharts({
                         addPeriod(period = 'MM', selected = TRUE, count = 1, label = '1 month') %>>%
                         addPeriod(period = 'MAX', label = 'MAX')),
     setDataSetSelector(position = 'left'),
-    setPanelsSettings(recalculateToPercents = FALSE),
-    plot()
+    setPanelsSettings(recalculateToPercents = FALSE)
   )
 })
 
@@ -44,7 +43,7 @@ output$code_stock1 <- renderText({
   "
   data('data_stock1')
   pipeR::pipeline(
-    amStockChart(theme = 'light'),
+    amStockChart(theme = input$theme_stock, startDuration = 0),
     addDataSet(dataSet(title = 'first data set', categoryField = 'date',
                        dataProvider = data_stock1$chartData1) %>>%
                  addFieldMapping(fromField = 'value', toField = 'value') %>>%
@@ -61,8 +60,7 @@ output$code_stock1 <- renderText({
                        dataProvider = data_stock1$chartData4) %>>%
                  addFieldMapping(fromField = 'value', toField = 'value') %>>%
                  addFieldMapping(fromField = 'volume', toField = 'volume')),
-    addPanel(stockPanel(showCategoryAxis = FALSE, title = 'Value',
-                        percentHeight = 70) %>>%
+    addPanel(stockPanel(showCategoryAxis = FALSE, title = 'Value', percentHeight = 70) %>>%
                addStockGraph(id = 'g1', valueField = 'value', comparable = TRUE,
                              compareField = 'value', balloonText = '[[title]] =<b>[[value]]</b>',
                              compareGraphBalloonText = '[[title]] =<b>[[value]]</b>') %>>%
@@ -79,8 +77,7 @@ output$code_stock1 <- renderText({
                         addPeriod(period = 'MM', selected = TRUE, count = 1, label = '1 month') %>>%
                         addPeriod(period = 'MAX', label = 'MAX')),
     setDataSetSelector(position = 'left'),
-    setPanelsSettings(recalculateToPercents = FALSE),
-    plot()
+    setPanelsSettings(recalculateToPercents = FALSE)
   )
   "
 })

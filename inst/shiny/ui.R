@@ -14,9 +14,12 @@ shiny::shinyUI(shiny::navbarPage(
   source("./src/radar/radar_ui.R", local = TRUE)$value,
   source("./src/serial/serial_ui.R", local = TRUE)$value,
   source("./src/xy/xy_ui.R", local = TRUE)$value,
-  source("./src/gauge/gauge_ui.R", local = TRUE)$value,
-  source("./src/funnel/funnel_ui.R", local = TRUE)$value,
   source("./src/stock/stock_ui.R", local = TRUE)$value,
-  source("./src/drilldown/drilldown_ui.R", local = TRUE)$value
+  navbarMenu(
+    title = "More",
+    source("./src/gauge/gauge_ui.R", local = TRUE)$value,
+    source("./src/funnel/funnel_ui.R", local = TRUE)$value,
+    source("./src/drilldown/drilldown_ui.R", local = TRUE)$value
+  )
   
 ))
