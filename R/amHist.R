@@ -21,19 +21,25 @@
 #' if labels is a \code{character}, draw itself.
 #' @param ... further arguments and graphical parameters passed to plot.histogram
 #' @examples
-#' x <- rnorm(100)
+#' x <- replicate(1000, {
+#'   if (round(runif(1))) {
+#'     rnorm(1)
+#'   } else {
+#'     rnorm(1, mean = 5)
+#'   }
+#' })
 #' 
 #' # Default method
 #' (object <- amHist(x = x))
 #' print(object)
 #' 
 #' # Without plot
-#' amHist(x = x, plot = FALSE)
+#' amHist(x = x, plot = FALSE
 #' 
 #' # Specific options
 #' amHist(x = x, border = "blue")
-#' amHist(x = x, col = "lightblue")
-#' amHist(x = x, col = "grey")
+#' amHist(x = x, col = "lightblue", breaks = 100)
+#' amHist(x = x, col = "grey", breaks = 100)
 #' amHist(x = x, col = "gray")
 #' amHist(x = x, freq = FALSE)
 #' amHist(x = x, breaks = "Scott")
@@ -88,17 +94,22 @@ amHist <- function(x, main = "Histogram", col = "grey", border = "grey",
 
 plotAmHist <- function(dp, amLabels, ylim, main, ylab, xlab, border) {
   pipeR::pipeline(
-    amSerialChart(theme = "light", categoryField = "x", creditsPosition = "top-right",
+    amSerialChart(theme = "light", categoryField = "x", creditsPosition = "bottom-right",
                   columnSpacing = 0, columnWidth = 1, fillAlphas = 1, lineAlpha = 1,
                   dataProvider = dp),
     addGraph(balloonText = "<b>[[value]]</b> <br/> [[cut]] ", type = "column",
              valueField = "y", fillAlphas = .8, lineAlpha = 1, fillColorsField = "color",
-             labelText = amLabels, showAllValueLabels = TRUE, lineColor = border),
+             lineColor = border),
     addGraph(valueField = "y", type = "smoothedLine", lineColor = "black",
-             balloonText = ""),
+             balloonText = "", id = "graph-line"),
     addValueAxes(title = ylab, minimum = ylim[1], maximum = ylim[2]),
     setCategoryAxis(title = xlab),
     addTitle(text = main, size = 18),
+    setChartScrollbar(graph = "graph-line", scrollbarHeight = 30, backgroundAlpha = 0,
+                      offset = 60, autoGridCount = TRUE,
+                      dragIcon = "dragIconRectSmallBlack", oppositeAxis = FALSE, color = '#888888', backgroundAlpha = 0,
+                      selectedBackgroundAlpha = 0.1, selectedBackgroundColor = '#888888', graphFillAlpha = 0,
+                      selectedGraphFillAlpha = 0, graphLineAlpha = 0.8, selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1),
     setExport(position = "top-right"),
     setChartCursor()
   )
@@ -106,7 +117,7 @@ plotAmHist <- function(dp, amLabels, ylim, main, ylab, xlab, border) {
 
 dataAmHist <- function (resHist, y, col)
 {
-  data_DT <- data.table(x = round(resHist$mids), y = y, 
+  data_DT <- data.table(x = round(resHist$mids, 1), y = y, 
                         cut = paste0("(from ", round(resHist$breaks[-length(resHist$breaks)], 2),
                                      " to ", round(resHist$breaks[-1], 2), ")"))
   data_DT[, color:=col]
