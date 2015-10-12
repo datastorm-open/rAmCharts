@@ -271,8 +271,6 @@ setMethod(f = "setChartCursor", signature = c("AmChart", "ChartCursorOrMissing")
             return(.Object)
           })
 
-# > @chartScrollbar : setters ####
-
 #' @examples
 #' # Add the default scrollbar
 #' print(setChartScrollbar(.Object = amSerialChart()))
@@ -319,6 +317,25 @@ setMethod(f = "setCreditsPosition", signature = c("AmChart", "character"),
           definition = function(.Object, creditsPosition)
           {
             .Object@creditsPosition <- creditsPosition
+            validObject(.Object)
+            return(.Object)
+          })
+
+#' @param url \code{character}.
+#' @param format \code{character}.
+#' @examples
+#' print(setDataLoader(.Object = amSerialChart(), url = "data.json", format = "json"))
+#' # ---
+#' @rdname initialize-AmChart
+#' @export
+setGeneric(name = "setDataLoader",
+           def = function(.Object, url, format, ...) {standardGeneric("setDataLoader")})
+#' @rdname initialize-AmChart
+setMethod(f = "setDataLoader", signature = c("AmChart", "character", "character"),
+          definition = function(.Object, url, format, ...)
+          {
+            .Object <- setProperties(.Object = .Object,
+                                     dataLoader = list(url = url, format = format,...))
             validObject(.Object)
             return(.Object)
           })
@@ -501,6 +518,22 @@ setMethod(f = "setLegend", signature = c("AmChart", "AmLegendOrMissing"),
             } else {}
             
             .Object@legend <- listProperties(amLegend)
+            validObject(.Object)
+            return(.Object)
+          })
+
+#' @examples
+#' print(setResponsive(.Object = amSerialChart(), enabled = FALSE))
+#' # ---
+#' @rdname initialize-AmChart
+#' @export
+setGeneric(name = "setResponsive",
+           def = function(.Object, enabled = TRUE, ...) {standardGeneric("setResponsive")})
+#' @rdname initialize-AmChart
+setMethod(f = "setResponsive", signature = c("AmChart", "logicalOrMissing"),
+          definition = function(.Object, enabled = TRUE, ...)
+          {
+            .Object <- setProperties(.Object = .Object, responsive = list(enabled = enabled, ...))
             validObject(.Object)
             return(.Object)
           })

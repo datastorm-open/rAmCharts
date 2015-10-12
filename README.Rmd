@@ -26,27 +26,30 @@ devtools::install_github("dataKnowledge/rAmCharts")
 
 ---
 
-## New statistical features !
+## Statistical features
 
-### Histogram: same use as `hist`:
-```{r}
-library(rAmCharts)
-data(iris)
-amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray")
-```
-
-### Boxplot: same use as `boxplot`:
+### Histogram:
 
 ```{r, eval = FALSE}
 library(rAmCharts)
 data(iris)
-amBoxplot(Sepal.Length~Species, data = iris, col = c("darkblue", "darkred", "lightblue"))
+amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray")
 ```
+![histogram][path_histogram]
+
+
+### Boxplot:
+
+```{r, eval = FALSE}
+library(rAmCharts)
+data(iris)
+amBoxplot(Sepal.Length~Species, data = iris, col = c("blue", "red", "yellow"))
+```
+![boxplot][path_boxplot]
 
 ## Known issues
 
-* Use in R Markown needs an url path "http://www.amcharts.com/lib/3" to find images
-* Use in R Markown needs a call to the method `plot`
+* Use in R Markown needs either an url path "http://www.amcharts.com/lib/3" to find images or a local path e.g. `system.file("htmlwidgets/lib", package = "rAmCharts")`. HTML reports also need a call to the method `plot`.
 
 ```{r, eval = FALSE}
 library(rAmCharts)
@@ -54,9 +57,14 @@ data(iris)
 pipeR::pipeline(
   amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray"),
   setProperties(path = "http://www.amcharts.com/lib/3"),
+  # setProperties(path = system.file("htmlwidgets/lib", package = "rAmCharts"))
   plot()
 )
 ```
 
+* Usual R colors work (for instance, light or dark prefixes), however the 'export' feature needs valid CSS colors. To be sure, prefer HTML for exporting option.
+
 [url_amcharts]: http://www.amcharts.com
 [url_htmlwidgets]: http://www.htmlwidgets.org
+[path_histogram]: ./img/histogram.png
+[path_boxplot]: ./img/boxplot.png

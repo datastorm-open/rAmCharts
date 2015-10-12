@@ -11,9 +11,6 @@ setClassUnion(name = "AmGraphOrCharacterOrMissing", members = c("AmGraph", "char
 setClassUnion(name = "AmLegendOrMissing", members = c("AmLegend", "missing"))
 
 #' @include ChartCursor.R
-setClassUnion("characterOrMissing", c("character", "missing"))
-
-#' @include ChartCursor.R
 setClassUnion("ChartCursorOrMissing", c("ChartCursor", "missing"))
 
 #' @include ChartScrollbar.R
@@ -39,8 +36,6 @@ setClassUnion(name = "GuideOrMissing", members = c("Guide", "missing"))
 
 #' @include Label.R
 setClassUnion(name = "LabelOrMissing", members = c("Label", "missing"))
-
-setClassUnion("logicalOrMissing", c("logical", "missing"))
 
 #' @include PeriodSelector.R
 setClassUnion(name = "PeriodSelectorOrMissing", members = c("PeriodSelector", "missing"))

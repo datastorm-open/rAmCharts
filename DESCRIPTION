@@ -36,7 +36,7 @@ Collate:
     'sharedGenerics.R'
     'AxisBase.R'
     'ValueAxis.R'
-    'ListOrCharacter.R'
+    'basicClassUnions.R'
     'TrendLine.R'
     'Title.R'
     'StockPanel.R'

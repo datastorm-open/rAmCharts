@@ -202,8 +202,7 @@ plotAmBoxplot <- function(dp, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL
              noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
     addGraph(id = "g5", type = "line", valueField = "real_outlier",lineColor = "black",
              lineAlpha = 0, bullet = "round", noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
-    setChartCursor(oneBalloonOnly = TRUE),
-    setExport(position = "top-right") 
+    setChartCursor(oneBalloonOnly = TRUE)
   )
   
   if(ncol(dp) > 8){

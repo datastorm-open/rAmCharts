@@ -1,1 +1,0 @@
-setClassUnion(name = "listOrCharacter", members = c("list", "character"))

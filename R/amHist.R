@@ -52,14 +52,14 @@
 #'        
 #' @import data.table
 #' @export
-amHist <- function(x, main = "Histogram", col = "grey", border = "grey",
+amHist <- function(x, main = "Histogram", col = "gray", border = "gray",
                    freq = TRUE, xlab = NULL, ylab = NULL, ylim = NULL,
                    plot = TRUE, labels = TRUE, ...)
 {
   if (!requireNamespace(package = "pipeR")) {
     stop ("Please install the package pipeR for running this function")
   } else {}
-
+  
   if (!missing(...)) {
     resHist <- graphics::hist(x = x, plot = FALSE, ...)
   } else {
@@ -92,6 +92,13 @@ amHist <- function(x, main = "Histogram", col = "grey", border = "grey",
   }
 }
 
+
+#' @examples
+#' pipeR::pipeline(
+#' amHist(iris$Sepal.Length),
+#' setExport()
+#' )
+#' @noRd
 plotAmHist <- function(dp, amLabels, ylim, main, ylab, xlab, border) {
   pipeR::pipeline(
     amSerialChart(theme = "light", categoryField = "x", creditsPosition = "bottom-right",
@@ -107,10 +114,11 @@ plotAmHist <- function(dp, amLabels, ylim, main, ylab, xlab, border) {
     addTitle(text = main, size = 18),
     setChartScrollbar(graph = "graph-line", scrollbarHeight = 30, backgroundAlpha = 0,
                       offset = 60, autoGridCount = TRUE,
-                      dragIcon = "dragIconRectSmallBlack", oppositeAxis = FALSE, color = '#888888', backgroundAlpha = 0,
-                      selectedBackgroundAlpha = 0.1, selectedBackgroundColor = '#888888', graphFillAlpha = 0,
-                      selectedGraphFillAlpha = 0, graphLineAlpha = 0.8, selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1),
-    setExport(position = "top-right"),
+                      dragIcon = "dragIconRectBigBlack", oppositeAxis = FALSE, color = '#888888',
+                      backgroundAlpha = 0, selectedBackgroundAlpha = 0.1,
+                      selectedBackgroundColor = '#888888', graphFillAlpha = 0,
+                      selectedGraphFillAlpha = 0, graphLineAlpha = 0.8,
+                      selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1),
     setChartCursor()
   )
 }

@@ -49,6 +49,8 @@
 \alias{setChartScrollbar,AmChart,ChartScrollbarOrMissing-method}
 \alias{setCreditsPosition}
 \alias{setCreditsPosition,AmChart,character-method}
+\alias{setDataLoader}
+\alias{setDataLoader,AmChart,character,character-method}
 \alias{setDataProvider,AmChart,data.frame,logicalOrMissing-method}
 \alias{setExport}
 \alias{setExport,AmChart-method}
@@ -59,6 +61,8 @@
 \alias{setGuides,AmChart,list-method}
 \alias{setLegend}
 \alias{setLegend,AmChart,AmLegendOrMissing-method}
+\alias{setResponsive}
+\alias{setResponsive,AmChart,logicalOrMissing-method}
 \alias{setSubChartProperties}
 \alias{setSubChartProperties,AmChart-method}
 \alias{setTitles}
@@ -148,6 +152,10 @@ setCreditsPosition(.Object, creditsPosition)
 
 \S4method{setCreditsPosition}{AmChart,character}(.Object, creditsPosition)
 
+setDataLoader(.Object, url, format, ...)
+
+\S4method{setDataLoader}{AmChart,character,character}(.Object, url, format, ...)
+
 \S4method{setDataProvider}{AmChart,data.frame,logicalOrMissing}(.Object,
   dataProvider, keepNA = TRUE)
 
@@ -174,6 +182,11 @@ setGuides(.Object, guides)
 setLegend(.Object, amLegend = NULL, ...)
 
 \S4method{setLegend}{AmChart,AmLegendOrMissing}(.Object, amLegend = NULL, ...)
+
+setResponsive(.Object, enabled = TRUE, ...)
+
+\S4method{setResponsive}{AmChart,logicalOrMissing}(.Object, enabled = TRUE,
+  ...)
 
 addSegment(.Object, categoryIDs, sgts)
 
@@ -334,6 +347,10 @@ Argument of method \code{addArrow}.}
 Argument of method \code{addAxe}.}
 
 \item{amBalloon}{\linkS4class{AmBalloon}, argument of method 'setBalloon'.}
+
+\item{url}{\code{character}.}
+
+\item{format}{\code{character}.}
 
 \item{keepNA}{object of class \code{logical}, default \code{TRUE}.
 Indicates if \code{NULL} values have to be kept or ignored.}
@@ -524,6 +541,8 @@ Error use case:
 setCreditsPosition(.Object = amPieChart(), creditsPosition = "top-center")
 }
 # ---
+print(setDataLoader(.Object = amSerialChart(), url = "data.json", format = "json"))
+# ---
 dataProvider_obj <- data.frame(key = c("FR", "US", "GER", "ENG", "IT" ),
                                value = round(runif(5, max = 100)))
 print(setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj))
@@ -560,6 +579,8 @@ print(addGuide(.Object = amSerialChart(), guide = guide_obj))
 print(setLegend(.Object = amChart(), amLegend = amLegend(useGraphSettings = TRUE)))
 # equivalent to:
 print(setLegend(.Object = amChart(), useGraphSettings = TRUE))
+# ---
+print(setResponsive(.Object = amSerialChart(), enabled = FALSE))
 # ---
 pipeR::pipeline(
   amGanttChart(segmentsField = "segments"),

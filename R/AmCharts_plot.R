@@ -80,6 +80,8 @@ setMethod(f = "plot", signature = "AmCharts",
             widget <- dependency_chartType(widget, data, x@type)
             widget <- dependency_addExport(widget, data)
             widget <- dependency_addTheme(widget, data, theme)
+            widget <- dependency_addDataLoader(widget, data)
+            widget <- dependency_addResponsive(widget, data)
             
             widget
           })
@@ -89,20 +91,20 @@ setMethod(f = "plot", signature = "AmCharts",
 dependency_chartType <- function(widget, data, type)
 {
   jsFiles <- switch(type,
-                   "funnel" = "funnel.js",
-                   "gantt" = "gantt.js",
-                   "gauge" = "gauge.js",
-                   "pie" = "pie.js",
-                   "radar" = "radar.js",
-                   "serial" = "serial.js",
-                   "stock" = "amstock.js",
-                   "xy" = "xy.js",
-                   stop("type error"))
+                    "funnel" = "funnel.js",
+                    "gantt" = "gantt.js",
+                    "gauge" = "gauge.js",
+                    "pie" = "pie.js",
+                    "radar" = "radar.js",
+                    "serial" = "serial.js",
+                    "stock" = "amstock.js",
+                    "xy" = "xy.js",
+                    stop("type error"))
   
   if (type %in% c("gantt", "stock")) {
     jsFiles <- c("serial.js", jsFiles)
   } else {}
-
+  
   type_dep <- htmltools::htmlDependency(
     name = paste0("amcharts_type", type),
     version = "3.17.2",
@@ -142,10 +144,7 @@ dependency_addExport <- function(widget, data)
       version = "3.17.2",
       src = c(file = system.file("htmlwidgets/lib/plugins/export", package = "rAmCharts")),
       stylesheet = "export.css",
-      script = c("export.min.js", "libs/blob.js/blob.js", "libs/fabric.js/fabric.min.js",
-                 "libs/FileSaver.js/FileSaver.min.js", "libs/jszip/jszip.min.js",
-                 "libs/pdfmake/pdfmake.min.js", "libs/pdfmake/vfs_fonts.js",
-                 "libs/xlsx/xlsx.min.js")
+      script = "export.min.js"
     )
     
     if (length(widget$dependencies) == 0) {
@@ -186,6 +185,58 @@ dependency_addTheme <- function(widget, data, theme)
     } else {}
     
     widget$dependencies[[length(widget$dependencies) + 1]] <- theme_dep
+    
+  } else {}
+  
+  widget
+}
+
+#' Add dataloader feature
+#' @noRd
+dependency_addDataLoader <- function(widget, data)
+{
+  cond <- exists("chartData", where = data) &&
+    exists("dataLoader", where = data$chartData)
+  
+  if (cond) {
+    dataloader_dep <- htmltools::htmlDependency(
+      name = "amcharts_dataloader",
+      version = "3.17.2",
+      src = c(file = system.file("htmlwidgets/lib/plugins/dataloader", package = "rAmCharts")),
+      script = "dataloader.min.js"
+    )
+    
+    if (length(widget$dependencies) == 0) {
+      widget$dependencies <- list()
+    } else {}
+    
+    widget$dependencies[[length(widget$dependencies) + 1]] <- dataloader_dep
+    
+  } else {}
+  
+  widget
+}
+
+#' Add responsive feature
+#' @noRd
+dependency_addResponsive <- function(widget, data)
+{
+  cond <- exists("chartData", where = data) &&
+    exists("responsive", where = data$chartData)
+  
+  if (cond) {
+    responsive_dep <- htmltools::htmlDependency(
+      name = "amcharts_responsive",
+      version = "3.17.2",
+      src = c(file = system.file("htmlwidgets/lib/plugins/responsive", package = "rAmCharts")),
+      script = "responsive.min.js"
+    )
+    
+    if (length(widget$dependencies) == 0) {
+      widget$dependencies <- list()
+    } else {}
+    
+    widget$dependencies[[length(widget$dependencies) + 1]] <- responsive_dep
     
   } else {}
   

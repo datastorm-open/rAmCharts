@@ -1,3 +1,4 @@
+require(data.table)
 #' @title Generate random data for 'stock1' example
 #' @examples 
 #' \dontshow{

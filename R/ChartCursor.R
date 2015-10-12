@@ -1,4 +1,4 @@
-#' @include AmObject.R ListOrCharacter.R
+#' @include AmObject.R basicClassUnions.R
 NULL
 
 #' @title ChartCursor class

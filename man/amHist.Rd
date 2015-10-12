@@ -4,7 +4,7 @@
 \alias{amHist}
 \title{Plotting histogram using rAmCharts}
 \usage{
-amHist(x, main = "Histogram", col = "grey", border = "grey",
+amHist(x, main = "Histogram", col = "gray", border = "gray",
   freq = TRUE, xlab = NULL, ylab = NULL, ylim = NULL, plot = TRUE,
   labels = TRUE, ...)
 }

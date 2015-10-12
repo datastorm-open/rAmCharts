@@ -1,4 +1,4 @@
-#' @include AmChart.R ListOrCharacter.R
+#' @include AmChart.R basicClassUnions.R
 NULL
 
 #' @title StockPanel class
