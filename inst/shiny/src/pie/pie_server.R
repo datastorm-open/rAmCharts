@@ -103,9 +103,9 @@ output$code_pie05 <- renderText({
 
 output$pie06 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
-    amPieChart(valueField = 'gdp', titleField = 'country',
-               dataProvider = data_gdp, startDuration = 0,
-               theme = 'default', outlineAlpha = .4, depth3D = 15, angle = 30),
+    amPieChart(valueField = 'gdp', titleField = 'country', angle = input$angle_pie,
+               dataProvider = data_gdp, startDuration = 0, innerRadius = input$innerRadius_pie,
+               theme = 'default', outlineAlpha = .4, depth3D = input$depth_pie, angle = 30),
     addTitle(text = '10 Richest Countries in the World by 2015 GDP'),
     addTitle(text = 'data from http://www.insidermonkey.com', size = 10, color = 'blue'),
     setLegend(markerType = 'circle', position = 'right', marginRight = 80, autoMargins = FALSE)

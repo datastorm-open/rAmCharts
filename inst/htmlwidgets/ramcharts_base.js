@@ -11,6 +11,7 @@ HTMLWidgets.widget({
   renderValue: function(el, x, instance) {
     var chartDiv = document.getElementById(el.id);
     chartDiv.style.background = x.background;
+    chartDiv.style.fontSize = '11px';
     instance.amchart = AmCharts.makeChart(chartDiv, x.chartData);
     
     // add listeners for chart listeners

@@ -27,6 +27,17 @@ shiny::tabPanel(
       
       h2("Add perspective"),
       rAmCharts::amChartsOutput("pie06"),
+      fluidRow(
+        column(width = 4,
+               align = "center",
+               sliderInput("angle_pie", label = "Angle", min = 0, max = 60, value = 30)),
+        column(width = 4,
+               align = "center",
+               sliderInput("depth_pie", label = "Depth", min = 1, max = 25, value = 10)),
+        column(width = 4,
+               align = "center",
+               sliderInput("innerRadius_pie", label = "Inner-Radius", min = 0, max = 80, value = 0))
+      ),
       verbatimTextOutput("code_pie06"),
       
       h2("Transform a pie into donut"),
