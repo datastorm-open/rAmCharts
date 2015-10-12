@@ -87,7 +87,7 @@ amChart(allLabels, arrows, axes, balloon, categoryAxis, categoryField,
 
 amAngularGaugeChart(arrows, titles, axes, ...)
 
-amFunnelChart(dataProvider, ...)
+amFunnelChart(dataProvider, marginLeft = 10, marginRight = 10, ...)
 
 amRadarChart(allLabels, balloon, categoryField, creditsPosition, dataProvider,
   graphs, guides, legend, titles, valueAxes, ...)
@@ -336,6 +336,10 @@ Dots represent other properties to set to the \linkS4class{AmChart} object.
 See \url{http://docs.amcharts.com/3/javascriptstockchart/AmChart}.
 In case of setters, dots represent properties of the object to add.
 See examples.}
+
+\item{marginLeft}{\code{character}, left margin of the chart.}
+
+\item{marginRight}{\code{character}, right margin of the chart.}
 
 \item{label}{(optional) \linkS4class{Label}.
 Argument of method \code{addLabel}.}

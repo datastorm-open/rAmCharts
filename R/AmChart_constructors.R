@@ -91,13 +91,15 @@ amAngularGaugeChart <- function(arrows, titles, axes, ...)
 
 #' @details amFunnelChart is a shortcut
 #' for instantiating AmChart of type \code{funnel}
+#' @param marginLeft \code{character}, left margin of the chart.
+#' @param marginRight \code{character}, right margin of the chart.
 #' @examples
 #' amFunnelChart(marginLeft = 15)
 #' @describeIn initialize-AmChart
 #' @export
-amFunnelChart <- function(dataProvider, ...)
+amFunnelChart <- function(dataProvider, marginLeft = 10, marginRight = 10,...)
 {
-  object <- amChart(dataProvider = dataProvider, marginLeft = 10, marginRight = 10,
+  object <- amChart(dataProvider = dataProvider, marginLeft = marginLeft, marginRight = marginRight,
                     type = "funnel", ...)
   validObject(object)
   return(object)

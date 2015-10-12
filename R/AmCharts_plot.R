@@ -163,7 +163,8 @@ dependency_addExport <- function(widget, data)
 dependency_addTheme <- function(widget, data, theme)
 {
   cond <- exists("chartData", where = data) &&
-    exists("theme", where = data$chartData)
+    exists("theme", where = data$chartData) &&
+    (data$chartData$theme != "default")
   
   if (cond) {
     theme_dep <- htmltools::htmlDependency(
