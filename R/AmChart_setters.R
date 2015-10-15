@@ -111,6 +111,8 @@ setMethod(f = "addArrow", signature = c("AmChart", "GaugeArrowOrMissing"),
              return(.Object)
            })
 
+# ---
+
 #' @examples
 #' axes_ls <- list(gaugeAxis(value = 130), gaugeAxis(value = 150))
 #' setAxes(.Object = amAngularGaugeChart(), axes = axes_ls)
@@ -133,19 +135,9 @@ setMethod(f = "setAxes", signature = c("AmChart", "list"),
             return(.Object)
           })
 
+
 #' @param axe (optional) \linkS4class{GaugeAxis}.
-#' Argument of method \code{addAxe}.
-#' @examples
-#' print(addAxe(.Object = amAngularGaugeChart(), startValue = 0, enValue = 100, valueInterval = 10))
-#' # equivalent to:
-#' gaugeAxis_obj <- gaugeAxis(startValue = 0, enValue = 100, valueInterval = 10)
-#' print(addAxe(.Object = amAngularGaugeChart(), axe = gaugeAxis_obj))
-#' \dontrun{
-#' # Error use cases: 
-#' addAxe(.Object = amAngularGaugeChart())
-#' addAxe(.Object = amAngularGaugeChart(), axe = "error")
-#' }
-#' # ---
+#' Argument of deprecated method \code{addAxe}.
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addAxe",
@@ -157,7 +149,7 @@ setMethod(f = "addAxe", signature = c("AmChart", "GaugeAxisOrMissing"),
             if (is.null(axe) && !missing(...)) {
               axe <- gaugeAxis(...)
             } else if (is.null(axe) && missing(...)) {
-              stop("You must either give 'axe' argement or its properties")
+              stop("You must either give 'axis' argement or its properties")
             } else {}
             
             .Object@axes <- rlist::list.append(.Object@axes, listProperties(axe))
@@ -165,10 +157,50 @@ setMethod(f = "addAxe", signature = c("AmChart", "GaugeAxisOrMissing"),
             return(.Object)
           })
 
+addAxis_def <- function(.Object, axis = NULL, ...)
+{
+  if (is.null(axis) && !missing(...)) {
+    axis <- gaugeAxis(...)
+  } else if (is.null(axis) && missing(...)) {
+    stop("You must either give 'axe' argement or its properties")
+  } else {}
+  
+  .Object@axes <- rlist::list.append(.Object@axes, listProperties(axis))
+  validObject(.Object)
+  return(.Object)
+}
+
+#' @param axis (optional) \linkS4class{GaugeAxis}.
+#' same as axe.
+#' @details 
+#' Method 'addAxe' is deprecated, use 'addAxis'.
+#' @examples
+#' addAxis(.Object = amAngularGaugeChart(), startValue = 0, endValue = 100, valueInterval = 10)
+#' 
+#' # equivalent to:
+#' 
+#' gaugeAxis_obj <- gaugeAxis(startValue = 0, enValue = 100, valueInterval = 10)
+#' addAxis(.Object = amAngularGaugeChart(), axe = gaugeAxis_obj)
+#' 
+#' \dontrun{
+#' # Error use cases: 
+#' addAxis(.Object = amAngularGaugeChart())
+#' addAxis(.Object = amAngularGaugeChart(), axis = "error")
+#' }
+#' 
+#' # ---
+#' @rdname initialize-AmChart
+#' @export
+setGeneric(name = "addAxis",
+           def = function(.Object, axis = NULL, ...) {standardGeneric("addAxis")})
+#' @rdname initialize-AmChart
+setMethod(f = "addAxis", signature = c("AmChart", "GaugeAxisOrMissing"),
+          definition = addAxis_def)
+
 #' @param amBalloon \linkS4class{AmBalloon}, argument of method 'setBalloon'.
 #' @examples
-#' print(setBalloon(.Object = amSerialChart(), adjustBorderColor = TRUE, fillColor = "#FFFFFF",
-#'                  color = "#000000", cornerRadius = 5))
+#' setBalloon(.Object = amSerialChart(), adjustBorderColor = TRUE, fillColor = "#FFFFFF",
+#'            color = "#000000", cornerRadius = 5)
 #' # equivalent to:
 #' amBalloon_obj <- amBalloon(adjustBorderColor = TRUE, fillColor = "#FFFFFF",
 #'                            color = "#000000", cornerRadius = 5)

@@ -44,29 +44,79 @@ setMethod(f = "plot", signature = "AmCharts",
               listeners <- NULL
             }
             
+            # listeners on axes (GaugeAxis class)
+            ls_temp <- substituteMultiListeners(chart_ls, "axes")
+            chart_ls <- ls_temp$chart
+            axes_listeners <- ls_temp$listeners_ls
+            axes_listenersIndices <- ls_temp$indices
+            
+            # listeners on categoryAxis
+            ls_temp <- substituteListener(chart_ls, "categoryAxis")
+            chart_ls <- ls_temp$chart
+            categoryAxis_listeners <- ls_temp$listeners
+            
+            # listeners on chartCursor
+            ls_temp <- substituteListener(chart_ls, "chartCursor")
+            chart_ls <- ls_temp$chart
+            chartCursor_listeners <- ls_temp$listeners
+            
+            # listeners on dataSetSelector
+            ls_temp <- substituteListener(chart_ls, "dataSetSelector")
+            chart_ls <- ls_temp$chart
+            dataSetSelector_listeners <- ls_temp$listeners
+            
             # listeners on legend
-            if (exists("legend", where = chart_ls) &&
-                exists("listeners", where = chart_ls$legend)) {
-              legend_ls <- chart_ls$legend
-              legend_listeners <- legend_ls$listeners
-              chart_ls$legend <- rlist::list.remove(legend_ls, "listeners")
-            } else {
-              legend_listeners <- NULL
-            }
+            ls_temp <- substituteListener(chart_ls, "legend")
+            chart_ls <- ls_temp$chart
+            legend_listeners <- ls_temp$listeners
+            
+            # listeners on panels
+            ls_temp <- substituteMultiListeners(chart_ls, "panels")
+            chart_ls <- ls_temp$chart
+            panels_listeners <- ls_temp$listeners_ls
+            panels_listenersIndices <- ls_temp$indices
+            
+            # listeners on periodSelector
+            ls_temp <- substituteListener(chart_ls, "periodSelector")
+            chart_ls <- ls_temp$chart
+            periodSelector_listeners <- ls_temp$listeners
+            
+            # listeners on valueAxis
+            ls_temp <- substituteMultiListeners(chart_ls, "valueAxes")
+            chart_ls <- ls_temp$chart
+            valueAxes_listeners <- ls_temp$listeners_ls
+            valueAxes_listenersIndices <- ls_temp$indices
+            
             
             # case for drilldown chart
             if (exists("subChartProperties", where = chart_ls)) {
+              
               jsFile <- "amDrillChart"
               chart_ls <- rlist::list.remove(chart_ls, "subChartProperties")
               data <- list(main = chart_ls,
                            subProperties = x@subChartProperties,
                            background = background)
+              
             } else {
+              
               jsFile <- "ramcharts_base"
               data <- list(chartData = chart_ls,
                            background = background,
+                           # listeners on chart
                            listeners = listeners,
-                           legend_listeners = legend_listeners)
+                           #listeners on properties
+                           axes_listeners = axes_listeners,
+                           axes_listenersIndices = axes_listenersIndices,
+                           categoryAxis_listeners = categoryAxis_listeners,
+                           chartCursor_listeners = chartCursor_listeners,
+                           dataSetSelector_listeners = dataSetSelector_listeners, 
+                           legend_listeners = legend_listeners,
+                           panels_listeners = panels_listeners,
+                           panels_listenersIndices = panels_listenersIndices,
+                           periodSelector_listeners = periodSelector_listeners,
+                           valueAxes_listeners = valueAxes_listeners,
+                           valueAxes_listenersIndices = valueAxes_listenersIndices)
+              
             }
             
             widget <- htmlwidgets::createWidget(
@@ -242,4 +292,70 @@ dependency_addResponsive <- function(widget, data)
   } else {}
   
   widget
+}
+
+#' Substitue listeners from a single chart object
+#' @param chart \code{list} of chart properties.
+#' @param obj \code{character} naming the object.
+#' @noRd
+substituteListener <- function(chart, obj)
+{
+  if (exists(obj, where = chart) &&
+      exists("listeners", where = chart[[eval(obj)]])) {
+    chart_obj <- chart[[eval(obj)]]
+    listeners <- chart_obj[["listeners"]]
+    chart[[eval(obj)]] <- rlist::list.remove(chart_obj, "listeners")
+  } else {
+    listeners <- NULL
+  }
+  return(list(chart = chart, listeners = listeners))
+}
+
+#' Substitue listeners from a multiple chart object
+#' @param chart \code{list} of chart properties.
+#' @param obj \code{character} naming the object.
+#' @examples
+#' x <- list(valueAxes = list(list(title = "tata"), 
+#'                            list(title = "titi"),
+#'                            list(title = "tata", listeners = "tocnzj")))
+#' 
+#' substituteMultiListeners(x, "valueAxes")
+#' 
+#' #---
+#' x <- list(valueAxes = list(list(title = "tata"), 
+#'                            list(title = "titi"),
+#'                            list(title = "tata")))
+#' 
+#' substituteMultiListeners(x, "valueAxes")
+#' @noRd
+substituteMultiListeners <- function(chart, obj)
+{
+  indices <- NULL
+  listeners_ls <- NULL
+  if (exists(obj, where = chart)) {
+    
+    # which element has listener(s) ?
+    (cond <- lapply(chart[[eval(obj)]], function(x) "listeners" %in% names(x)))
+    indices <- which(unlist(cond))
+    
+    if (length(indices)) {
+      
+      # for element that have listener(s)
+      listeners_ls <- lapply(indices, function(i) {
+        chart_obji <- chart[[eval(obj)]][[i]]
+        listeners <- chart_obji[["listeners"]]
+        chart[[eval(obj)]][[i]] <<- rlist::list.remove(chart_obji, "listeners")
+        return(listeners)
+      })
+      
+      # reformat data for JavaScript
+      if (length(indices) == 1) {
+        indices <- list(indices)
+      } else {}
+      
+    } else {}
+    
+  } else {}
+  
+  return(list(chart = chart, listeners_ls = listeners_ls, indices = indices))
 }

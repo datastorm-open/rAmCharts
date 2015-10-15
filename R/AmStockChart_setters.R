@@ -184,15 +184,26 @@ setMethod(f = "addDataSet", signature = c("AmStockChart", "DataSetOrMissing"),
 #' @details You can add it if you have more than one data set and want users
 #' to be able to select/compare them.
 #' @examples
-#' setDataSetSelector(.Object = amStockChart(), width = 180)
+#' print(setDataSetSelector(.Object = amStockChart(), width = 180))
+#' 
+#' # equivalent to:
+#' dataSetSelector_obj <- dataSetSelector(width = 180)
+#' print(setDataSetSelector(.Object = amStockChart(),
+#'                          dataSetSelector = dataSetSelector_obj))
+#' 
 #' @rdname initialize-AmStockChart
 #' @export
-setGeneric(name = "setDataSetSelector", def = function(.Object, ...) {standardGeneric("setDataSetSelector")})
+setGeneric(name = "setDataSetSelector", def = function(.Object, dataSetSelector = NULL, ...) {standardGeneric("setDataSetSelector")})
 #' @rdname initialize-AmStockChart
 setMethod(f = "setDataSetSelector", signature = c("AmStockChart"),
-          definition = function(.Object, ...)
+          definition = function(.Object, dataSetSelector = NULL, ...)
           {
-            .Object <- setProperties(.Object = .Object, dataSetSelector = list(...))
+            if (is.null(dataSetSelector) && !missing(...)) {
+              dataSetSelector <- dataSetSelector(...)
+            } else if (is.null(dataSetSelector) && !missing(...)) {
+              stop("You must either give argument 'dataSetSelector' or its properties")
+            } else {}
+            .Object@dataSetSelector <- listProperties(dataSetSelector)
             validObject(.Object)
             return(.Object)
           })

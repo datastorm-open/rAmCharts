@@ -10,7 +10,7 @@ runShinyExamples()
 Launch a shiny app with amChart examples
 }
 \examples{
-\donttest{
+\dontrun{
 runShinyExamples()
 }
 }

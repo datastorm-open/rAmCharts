@@ -8,7 +8,10 @@ NULL
 #' @slot comparedDataSets \code{list} of \linkS4class{DataSet}.
 #' Properties of data sets selected for comparing.
 #' @slot dataSets \code{list} of \linkS4class{DataSet}.
-#' Each element must a list of DataSet properties. 
+#' Each element must a list of DataSet properties.
+#' @slot dataSetSelector \code{list} of \linkS4class{DataSetSelector}.
+#' You can add it if you have more than one data set and want users
+#' to be able to select/compare them.
 #' @slot mainDataSet \linkS4class{DataSet}.
 #' Data set selected as main.
 #' @slot panels \code{list} of \linkS4class{StockPanel}.
@@ -31,6 +34,7 @@ setClass("AmStockChart", contains = "AmObject",
            balloon = "list",
            comparedDataSets = "list",
            dataSets = "list",
+           dataSetSelector = "list",
            mainDataSet = "list",
            panels = "list",
            periodSelector = "list",
@@ -54,7 +58,10 @@ setClass("AmStockChart", contains = "AmObject",
 #' @param comparedDataSets \code{list} of \linkS4class{DataSet}.
 #' Properties of data sets selected for comparing.
 #' @param dataSets \code{list} of \linkS4class{DataSet}.
-#' Each element must a list of DataSet properties. 
+#' Each element must a list of DataSet properties.
+#' @param dataSetSelector \code{list} of \linkS4class{DataSetSelector}.
+#' You can add it if you have more than one data set and want users
+#' to be able to select/compare them.
 #' @param mainDataSet \linkS4class{DataSet}.
 #' Data set selected as main.
 #' @param panels \code{list} of \linkS4class{StockPanel}.
@@ -69,7 +76,8 @@ setClass("AmStockChart", contains = "AmObject",
 #' @rdname initialize-AmStockChart
 #' @export
 setMethod(f = "initialize", signature = "AmStockChart",
-          definition = function(.Object, balloon, comparedDataSets, dataSets, mainDataSet,
+          definition = function(.Object, balloon, comparedDataSets, dataSets,
+                                dataSetSelector, mainDataSet,
                                 panels, periodSelector, theme, ...)
           {
             .Object@type = "stock"
@@ -81,6 +89,9 @@ setMethod(f = "initialize", signature = "AmStockChart",
             } else {}
             if (!missing(dataSets)) {
               .Object <- setDataSets(.Object = .Object, dataSets = dataSets)
+            } else {}
+            if (!missing(dataSetSelector)) {
+              .Object <- setDataSetSelector(.Object = .Object, dataSetSelector = dataSetSelector)
             } else {}
             if (!missing(mainDataSet)) {
               .Object <- setMainDataSet(.Object = .Object, mainDataSet = mainDataSet)
@@ -106,7 +117,8 @@ setMethod(f = "initialize", signature = "AmStockChart",
 #' # ---
 #' @describeIn initialize-AmStockChart
 #' @export
-amStockChart <- function(balloon, comparedDataSets, dataSets, mainDataSet,
+amStockChart <- function(balloon, comparedDataSets, dataSets,
+                         dataSetSelector, mainDataSet,
                          panels, periodSelector, theme, ...)
 {
   .Object = new("AmStockChart", type = "stock")
@@ -118,6 +130,9 @@ amStockChart <- function(balloon, comparedDataSets, dataSets, mainDataSet,
   } else {}
   if (!missing(dataSets)) {
     .Object <- setDataSets(.Object = .Object, dataSets = dataSets)
+  } else {}
+  if (!missing(dataSetSelector)) {
+    .Object <- setDataSetSelector(.Object = .Object, dataSetSelector = dataSetSelector)
   } else {}
   if (!missing(mainDataSet)) {
     .Object <- setMainDataSet(.Object = .Object, mainDataSet = mainDataSet)
@@ -152,6 +167,9 @@ setMethod(f = "listProperties", signature = "AmStockChart",
             } else {}
             if (length(.Object@dataSets)) {
               ls <- rlist::list.append(ls, dataSets = .Object@dataSets)
+            } else {}
+            if (length(.Object@dataSetSelector)) {
+              ls <- rlist::list.append(ls, dataSetSelector = .Object@dataSetSelector)
             } else {}
             if (length(.Object@mainDataSet)) {
               ls <- rlist::list.append(ls, mainDataSet = .Object@mainDataSet)

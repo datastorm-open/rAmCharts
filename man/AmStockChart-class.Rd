@@ -18,6 +18,10 @@ Properties of data sets selected for comparing.}
 \item{\code{dataSets}}{\code{list} of \linkS4class{DataSet}.
 Each element must a list of DataSet properties.}
 
+\item{\code{dataSetSelector}}{\code{list} of \linkS4class{DataSetSelector}.
+You can add it if you have more than one data set and want users
+to be able to select/compare them.}
+
 \item{\code{mainDataSet}}{\linkS4class{DataSet}.
 Data set selected as main.}
 

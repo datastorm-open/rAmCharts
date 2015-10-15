@@ -40,10 +40,10 @@
 \title{Initialize an AmStockChart}
 \usage{
 \S4method{initialize}{AmStockChart}(.Object, balloon, comparedDataSets,
-  dataSets, mainDataSet, panels, periodSelector, theme, ...)
+  dataSets, dataSetSelector, mainDataSet, panels, periodSelector, theme, ...)
 
-amStockChart(balloon, comparedDataSets, dataSets, mainDataSet, panels,
-  periodSelector, theme, ...)
+amStockChart(balloon, comparedDataSets, dataSets, dataSetSelector, mainDataSet,
+  panels, periodSelector, theme, ...)
 
 \S4method{setBalloon}{AmStockChart,AmBalloonOrMissing}(.Object,
   amBalloon = NULL, ...)
@@ -80,9 +80,10 @@ addDataSet(.Object, dataSet = NULL, ...)
 \S4method{addDataSet}{AmStockChart,DataSetOrMissing}(.Object, dataSet = NULL,
   ...)
 
-setDataSetSelector(.Object, ...)
+setDataSetSelector(.Object, dataSetSelector = NULL, ...)
 
-\S4method{setDataSetSelector}{AmStockChart}(.Object, ...)
+\S4method{setDataSetSelector}{AmStockChart}(.Object, dataSetSelector = NULL,
+  ...)
 
 setLegendSettings(.Object, ...)
 
@@ -129,6 +130,10 @@ Properties of data sets selected for comparing.}
 
 \item{dataSets}{\code{list} of \linkS4class{DataSet}.
 Each element must a list of DataSet properties.}
+
+\item{dataSetSelector}{\code{list} of \linkS4class{DataSetSelector}.
+You can add it if you have more than one data set and want users
+to be able to select/compare them.}
 
 \item{mainDataSet}{\linkS4class{DataSet}.
 Data set selected as main.}
@@ -211,7 +216,12 @@ addDataSet(.Object = amStockChart(), compared = FALSE)
 dataSet_obj <- dataSet(compared = FALSE)
 addDataSet(.Object = amStockChart(), dataSet = dataSet_obj)
 # ---
-setDataSetSelector(.Object = amStockChart(), width = 180)
+print(setDataSetSelector(.Object = amStockChart(), width = 180))
+
+# equivalent to:
+dataSetSelector_obj <- dataSetSelector(width = 180)
+print(setDataSetSelector(.Object = amStockChart(),
+                         dataSetSelector = dataSetSelector_obj))
 setLegendSettings(.Object = amStockChart(), equalWidths = TRUE)
 setMainDataSet(.Object = amStockChart(), showInCompare = TRUE)
 panels_ls <- list(stockPanel(compared = TRUE), stockPanel(compared = TRUE))

@@ -6,6 +6,8 @@
 \alias{addArrow,AmChart,GaugeArrowOrMissing-method}
 \alias{addAxe}
 \alias{addAxe,AmChart,GaugeAxisOrMissing-method}
+\alias{addAxis}
+\alias{addAxis,AmChart,GaugeAxisOrMissing-method}
 \alias{addGraph}
 \alias{addGraph,AmChart,AmGraphOrMissing-method}
 \alias{addGuide,AmChart,GuideOrMissing-method}
@@ -126,6 +128,10 @@ setAxes(.Object, axes, ...)
 addAxe(.Object, axe = NULL, ...)
 
 \S4method{addAxe}{AmChart,GaugeAxisOrMissing}(.Object, axe = NULL, ...)
+
+addAxis(.Object, axis = NULL, ...)
+
+\S4method{addAxis}{AmChart,GaugeAxisOrMissing}(.Object, axis = NULL, ...)
 
 \S4method{setBalloon}{AmChart,AmBalloonOrMissing}(.Object, amBalloon = NULL,
   ...)
@@ -348,7 +354,10 @@ Argument of method \code{addLabel}.}
 Argument of method \code{addArrow}.}
 
 \item{axe}{(optional) \linkS4class{GaugeAxis}.
-Argument of method \code{addAxe}.}
+Argument of deprecated method \code{addAxe}.}
+
+\item{axis}{(optional) \linkS4class{GaugeAxis}.
+same as axe.}
 
 \item{amBalloon}{\linkS4class{AmBalloon}, argument of method 'setBalloon'.}
 
@@ -412,6 +421,8 @@ for instantiating AmChart of type \code{gantt}
 
 amXYChart is a shortcut constructor
 for instantiating AmChart of type \code{xy}
+
+Method 'addAxe' is deprecated, use 'addAxis'.
 
 Method \code{setGraph} is only valid for Gantt Charts.
 
@@ -486,18 +497,22 @@ setAxes(.Object = amAngularGaugeChart(), axes = axes_ls)
 # equivalent to:
 amChart(axes = axes_ls)
 # ---
-print(addAxe(.Object = amAngularGaugeChart(), startValue = 0, enValue = 100, valueInterval = 10))
+addAxis(.Object = amAngularGaugeChart(), startValue = 0, endValue = 100, valueInterval = 10)
+
 # equivalent to:
+
 gaugeAxis_obj <- gaugeAxis(startValue = 0, enValue = 100, valueInterval = 10)
-print(addAxe(.Object = amAngularGaugeChart(), axe = gaugeAxis_obj))
+addAxis(.Object = amAngularGaugeChart(), axe = gaugeAxis_obj)
+
 \dontrun{
 # Error use cases:
-addAxe(.Object = amAngularGaugeChart())
-addAxe(.Object = amAngularGaugeChart(), axe = "error")
+addAxis(.Object = amAngularGaugeChart())
+addAxis(.Object = amAngularGaugeChart(), axis = "error")
 }
+
 # ---
-print(setBalloon(.Object = amSerialChart(), adjustBorderColor = TRUE, fillColor = "#FFFFFF",
-                 color = "#000000", cornerRadius = 5))
+setBalloon(.Object = amSerialChart(), adjustBorderColor = TRUE, fillColor = "#FFFFFF",
+           color = "#000000", cornerRadius = 5)
 # equivalent to:
 amBalloon_obj <- amBalloon(adjustBorderColor = TRUE, fillColor = "#FFFFFF",
                            color = "#000000", cornerRadius = 5)

@@ -1,7 +1,7 @@
 #' @title Few shiny examples
 #' @description Launch a shiny app with amChart examples
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' runShinyExamples()
 #' }
 #' @import data.table

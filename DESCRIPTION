@@ -62,6 +62,7 @@ Collate:
     'AxisBase_setters.R'
     'ChartCursor_setters.R'
     'ChartScrollbar_setters.R'
+    'DataSetSelector.R'
     'DataSet_setters.R'
     'GaugeArrow_setters.R'
     'GaugeAxis_setters.R'
