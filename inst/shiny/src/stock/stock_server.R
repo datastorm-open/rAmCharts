@@ -1,7 +1,7 @@
 output$stock1 <- renderAmCharts({
   data('data_stock1')
   pipeR::pipeline(
-    amStockChart(theme = input$theme_stock, startDuration = 0),
+    amStockChart(startDuration = 0, theme = input$theme_stock),
     addDataSet(dataSet(title = 'first data set', categoryField = 'date',
                        dataProvider = data_stock1$chartData1) %>>%
                  addFieldMapping(fromField = 'value', toField = 'value') %>>%
@@ -23,7 +23,8 @@ output$stock1 <- renderAmCharts({
                              compareField = 'value', balloonText = '[[title]] =<b>[[value]]</b>',
                              compareGraphBalloonText = '[[title]] =<b>[[value]]</b>') %>>%
                setStockLegend(periodValueTextComparing = '[[percents.value.close]]%',
-                              periodValueTextRegular = '[[value.close]]')),
+                              periodValueTextRegular = '[[value.close]]') %>>%
+               addListener('zoomed', 'function(event) {alert(\'zoomed\')}')),
     addPanel(stockPanel(title = 'Volume', percentHeight = 30) %>>%
                addStockGraph(valueField = 'volume', type = 'column', fillAlphas = 1) %>>%
                setStockLegend(periodValueTextRegular = '[[value.close]]')),
@@ -32,9 +33,11 @@ output$stock1 <- renderAmCharts({
                            cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
                            valueLineEnabled = TRUE, valueLineAlpha = 0.5),
     setPeriodSelector(periodSelector(position = 'left') %>>%
-                        addPeriod(period = 'MM', selected = TRUE, count = 1, label = '1 month') %>>%
-                        addPeriod(period = 'MAX', label = 'MAX')),
-    setDataSetSelector(position = 'left'),
+                        addPeriod(period = 'DD', selected = TRUE, count = 7, label = '1 week') %>>%
+                        addPeriod(period = 'MAX', label = 'MAX') %>>%
+                        addListener('changed', 'function(event) {alert(\'changed\')}')),
+    setDataSetSelector(dataSetSelector(position = 'left') %>>%
+                         addListener('dataSetCompared', 'function(event) {alert(\'dataSetCompared\')}')),
     setPanelsSettings(recalculateToPercents = FALSE)
   )
 })
@@ -43,7 +46,7 @@ output$code_stock1 <- renderText({
   "
   data('data_stock1')
   pipeR::pipeline(
-    amStockChart(theme = input$theme_stock, startDuration = 0),
+    amStockChart(startDuration = 0, theme = input$theme_stock),
     addDataSet(dataSet(title = 'first data set', categoryField = 'date',
                        dataProvider = data_stock1$chartData1) %>>%
                  addFieldMapping(fromField = 'value', toField = 'value') %>>%
@@ -65,7 +68,8 @@ output$code_stock1 <- renderText({
                              compareField = 'value', balloonText = '[[title]] =<b>[[value]]</b>',
                              compareGraphBalloonText = '[[title]] =<b>[[value]]</b>') %>>%
                setStockLegend(periodValueTextComparing = '[[percents.value.close]]%',
-                              periodValueTextRegular = '[[value.close]]')),
+                              periodValueTextRegular = '[[value.close]]') %>>%
+               addListener('zoomed', 'function(event) {alert(\'zoomed\')}')),
     addPanel(stockPanel(title = 'Volume', percentHeight = 30) %>>%
                addStockGraph(valueField = 'volume', type = 'column', fillAlphas = 1) %>>%
                setStockLegend(periodValueTextRegular = '[[value.close]]')),
@@ -74,9 +78,11 @@ output$code_stock1 <- renderText({
                            cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
                            valueLineEnabled = TRUE, valueLineAlpha = 0.5),
     setPeriodSelector(periodSelector(position = 'left') %>>%
-                        addPeriod(period = 'MM', selected = TRUE, count = 1, label = '1 month') %>>%
-                        addPeriod(period = 'MAX', label = 'MAX')),
-    setDataSetSelector(position = 'left'),
+                        addPeriod(period = 'DD', selected = TRUE, count = 7, label = '1 week') %>>%
+                        addPeriod(period = 'MAX', label = 'MAX') %>>%
+                        addListener('changed', 'function(event) {alert(\'changed\')}')),
+    setDataSetSelector(dataSetSelector(position = 'left') %>>%
+                         addListener('dataSetCompared', 'function(event) {alert(\'dataSetCompared\')}')),
     setPanelsSettings(recalculateToPercents = FALSE)
   )
   "

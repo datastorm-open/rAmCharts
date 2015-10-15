@@ -380,3 +380,184 @@ output$code_serial6 <- renderText({
   )
   "
 })
+
+output$serial7 <- renderAmCharts({
+  # prepare data
+  data <- as.data.table(get('Titanic', 'package:datasets'))
+  data <- data[, .(freq = sum(N)), by = list(Sex, Survived)]
+  (data <- split(data, f = data$Survived))
+  setkey(data$Yes, Sex)
+  setkey(data$No, Sex)
+  (dp <- data$Yes[data$No])
+  catAxis <- pipeR::pipeline(
+    categoryAxis(gridPosition = 'start'),
+    addListener('clickItem', 'function(event) {alert(\'Click on category axis\')}')
+  )
+  
+  # build the chart
+  pipeR::pipeline(
+    amSerialChart(categoryField = 'Sex', startDuration = 0,
+                  dataProvider = dp, categoryAxis = catAxis),
+    addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
+             valueField = 'freq', fillAlphas = .8, lineAlpha = .2, title = 'Yes'),
+    addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
+             valueField = 'i.freq', fillAlphas = .8, lineAlpha = .2, title = 'No'),
+    addValueAxis(stackType = '100%'),
+    addTitle(text = 'Survivors to Titanic'),
+    setLegend(useGraphSettings = TRUE)
+  )
+})
+
+output$code_serial7 <- renderText({
+  "
+  # prepare data
+  data <- as.data.table(get('Titanic', 'package:datasets'))
+  data <- data[, .(freq = sum(N)), by = list(Sex, Survived)]
+  (data <- split(data, f = data$Survived))
+  setkey(data$Yes, Sex)
+  setkey(data$No, Sex)
+  (dp <- data$Yes[data$No])
+  catAxis <- pipeR::pipeline(
+    categoryAxis(gridPosition = 'start'),
+    addListener('clickItem', 'function(event) {alert(\'Click on category axis\')}')
+  )
+  
+  # build the chart
+  pipeR::pipeline(
+    amSerialChart(categoryField = 'Sex', startDuration = 0,
+                  dataProvider = dp, categoryAxis = catAxis),
+    addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
+             valueField = 'freq', fillAlphas = .8, lineAlpha = .2, title = 'Yes'),
+    addGraph(balloonText = '[[category]]: <b>[[value]]</b>', type = 'column',
+             valueField = 'i.freq', fillAlphas = .8, lineAlpha = .2, title = 'No'),
+    addValueAxis(stackType = '100%'),
+    addTitle(text = 'Survivors to Titanic'),
+    setLegend(useGraphSettings = TRUE)
+  )
+  "
+})
+
+output$serial8 <- renderAmCharts({
+  # prepare data
+  dp <- data.table(
+    country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France',
+                'India', 'Spain', 'Netherlands', 'Russia'), 
+    visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580), 
+    color = c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202', '#F8FF01',
+              '#B0DE09', '#04D215', '#0D8ECF', '#0D52D1', '#2A0CD0')
+  )
+  chartCursor_obj <- pipeR::pipeline(
+    chartCursor(categoryBalloonEnabled = FALSE, cursorAlpha = 0),
+    addListener('zoomed', 'function(event) {alert(\'Zoom to some period\')}')
+  )
+  
+  # build the chart
+  pipeR::pipeline(
+    amSerialChart(categoryField = 'country', dataProvider = dp,
+                  chartCursor = chartCursor_obj),
+    addGraph(balloonText = '<b>[[category]]: [[value]]</b>', fillColorsField = 'color', 
+             fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = 'visits'),
+    setCategoryAxis(gridPosition = 'start', axisAlpha = 0, gridAlpha = 0)
+  )
+})
+
+output$code_serial8 <- renderText({
+  "
+  # prepare data
+  dp <- data.table(
+    country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France',
+                'India', 'Spain', 'Netherlands', 'Russia'), 
+    visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580), 
+    color = c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202', '#F8FF01',
+              '#B0DE09', '#04D215', '#0D8ECF', '#0D52D1', '#2A0CD0')
+  )
+  chartCursor_obj <- pipeR::pipeline(
+    chartCursor(categoryBalloonEnabled = FALSE, cursorAlpha = 0),
+    addListener('zoomed', 'function(event) {alert(\'Zoom to some period\')}')
+  )
+  
+  # build the chart
+  pipeR::pipeline(
+    amSerialChart(categoryField = 'country', dataProvider = dp,
+                  chartCursor = chartCursor_obj),
+    addGraph(balloonText = '<b>[[category]]: [[value]]</b>', fillColorsField = 'color', 
+             fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = 'visits'),
+    setCategoryAxis(gridPosition = 'start', axisAlpha = 0, gridAlpha = 0)
+  )
+  "
+})
+
+output$serial9 <- renderAmCharts({
+  # prepare data
+  dp <- data.table(
+    country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France',
+                'India', 'Spain', 'Netherlands', 'Russia'), 
+    visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580),
+    random = rnorm(10, mean = 2000, sd = 1000),
+    color = c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202', '#F8FF01',
+              '#B0DE09', '#04D215', '#0D8ECF', '#0D52D1', '#2A0CD0')
+  )
+  
+  # prepare value axes
+  valueAxis_obj1 <- pipeR::pipeline(
+    valueAxis(id = 'v1', title = 'valueAxis 1', position = 'left'),
+    addListener('clickItem', 'function(event) {alert(\'Click on valueAxis 1\')}')
+  )
+  
+  valueAxis_obj2 <- pipeR::pipeline(
+    valueAxis(id = 'v2', title = 'valueAxis 2', position = 'right'),
+    addListener('clickItem', 'function(event) {alert(\'Click on valueAxis 2\')}')
+  )
+  
+  # build the chart
+  pipeR::pipeline(
+    amSerialChart(categoryField = 'country', dataProvider = dp),
+    addGraph(balloonText = '<b>[[category]]: [[value]]</b>', fillColorsField = 'color', valueAxis = 'v1',
+             fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = 'visits'),
+    addGraph(balloonText = '<b>[[category]]: [[value]]</b>', valueAxis = 'v2', fillAlphas = 0,
+             fillAlphas = 0.85, lineAlpha = 0.1, bullet = 'round', valueField = 'random',
+             lineColor = '#FF6600', lineThickness = 5),
+    setCategoryAxis(gridPosition = 'start', axisAlpha = 0, gridAlpha = 0),
+    addValueAxis(valueAxis_obj1),
+    addValueAxis(valueAxis_obj2)
+  )
+})
+
+output$code_serial9 <- renderText({
+  "
+  # prepare data
+  dp <- data.table(
+    country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France',
+                'India', 'Spain', 'Netherlands', 'Russia'), 
+    visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580),
+    random = rnorm(10, mean = 2000, sd = 1000),
+    color = c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202', '#F8FF01',
+              '#B0DE09', '#04D215', '#0D8ECF', '#0D52D1', '#2A0CD0')
+  )
+
+  # prepare value axes
+  valueAxis_obj1 <- pipeR::pipeline(
+    valueAxis(id = 'v1', title = 'valueAxis 1', position = 'left'),
+    addListener('clickItem', 'function(event) {alert(\'Click on valueAxis 1\')}')
+  )
+  
+  valueAxis_obj2 <- pipeR::pipeline(
+    valueAxis(id = 'v2', title = 'valueAxis 2', position = 'right'),
+    addListener('clickItem', 'function(event) {alert(\'Click on valueAxis 2\')}')
+  )
+  
+  # build the chart
+  pipeR::pipeline(
+    amSerialChart(categoryField = 'country', dataProvider = dp),
+    addGraph(balloonText = '<b>[[category]]: [[value]]</b>', fillColorsField = 'color', valueAxis = 'v1',
+             fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = 'visits'),
+    addGraph(balloonText = '<b>[[category]]: [[value]]</b>', valueAxis = 'v2', fillAlphas = 0,
+             fillAlphas = 0.85, lineAlpha = 0.1, bullet = 'round', valueField = 'random',
+             lineColor = '#FF6600', lineThickness = 5),
+    setCategoryAxis(gridPosition = 'start', axisAlpha = 0, gridAlpha = 0),
+    addValueAxis(valueAxis_obj1),
+    addValueAxis(valueAxis_obj2)
+  )
+  "
+})
+

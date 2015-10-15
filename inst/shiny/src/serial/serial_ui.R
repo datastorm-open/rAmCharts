@@ -3,25 +3,51 @@ shiny::tabPanel(
   fluidRow(
     column(
       width = 12,
+      h2("Theme setter"),
       selectInput("theme_serial", label = "Theme:", choices = c("default", "light", "patterns", "dark", "chalk")),
       br(),
-      rAmCharts::amChartsOutput("serial1", type = "serial"),
+      rAmCharts::amChartsOutput("serial1"),
       verbatimTextOutput("code_serial1"),
+      br(), hr(), br(),
       
-      rAmCharts::amChartsOutput("serial3", type = "serial"),
+      h2("3D column chart"),
+      rAmCharts::amChartsOutput("serial3"),
       verbatimTextOutput("code_serial3"),
+      br(), hr(), br(),
       
-      rAmCharts::amChartsOutput("serial2", type = "serial"),
+      h2("Column and line mix"),
+      rAmCharts::amChartsOutput("serial2"),
       verbatimTextOutput("code_serial2"),
+      br(), hr(), br(),
       
-      rAmCharts::amChartsOutput("serial4", type = "serial"),
+      h2("Stacked area"),
+      rAmCharts::amChartsOutput("serial4"),
       verbatimTextOutput("code_serial4"),
+      br(), hr(), br(),
       
-      rAmCharts::amChartsOutput("serial5", type = "serial"),
+      h2("Bi-color smoothed line"),
+      rAmCharts::amChartsOutput("serial5"),
       verbatimTextOutput("code_serial5"),
+      br(), hr(), br(),
       
-      rAmCharts::amChartsOutput("serial6", type = "serial"),
-      verbatimTextOutput("code_serial6")
+      h2("Listener on 'legend'"),
+      rAmCharts::amChartsOutput("serial6"),
+      verbatimTextOutput("code_serial6"),
+      br(), hr(), br(),
+      
+      h2("Listener on 'categoryAxis'"),
+      rAmCharts::amChartsOutput("serial7"),
+      verbatimTextOutput("code_serial7"),
+      br(), hr(), br(),
+      
+      h2("Listener on 'chartCursor'"),
+      rAmCharts::amChartsOutput("serial8"),
+      verbatimTextOutput("code_serial8"),
+      br(), hr(), br(),
+      
+      h2("Listener on 'valueAxes'"),
+      rAmCharts::amChartsOutput("serial9"),
+      verbatimTextOutput("code_serial9")
     )
   )
 )
