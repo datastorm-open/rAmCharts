@@ -39,9 +39,11 @@ setMethod(f = "amChartsOutput", signature = c("character", "characterOrMissing")
 #' @param x expression passed to 'renderAmCharts'.
 #' Either an expression that generates an HTML widget.
 #' Or an expression that generates an AmChart.
-#' @noRd
+#' @details This function has only an internal purpose. Never use it.
+#' @export
 controlShinyPlot <- function(x) {
-  if (!"htmlwidget" %in% class(x) && (is(x, "AmChart") || is(x, "AmStockChart"))) {
+  if (!"htmlwidget" %in% class(x) &&
+      (is(x, "AmChart") || is(x, "AmStockChart"))) {
     plot(x)
   } else {
     x
@@ -58,12 +60,18 @@ controlShinyPlot <- function(x) {
 #' @rdname renderAmCharts
 #' @export
 renderAmCharts <- function(expr, env, quoted){
+  
   if (missing(env)) {
     env <- parent.frame()
   } else {}
+  
   if (missing(quoted)) {
     quoted <- FALSE
-  }
-  if (!quoted) { expr <- substitute(rAmCharts:::controlShinyPlot(expr)) } # force quoted
+  } else {}
+  
+  if (!quoted) {
+    expr <- substitute(controlShinyPlot(expr))
+  } # force quoted
+  
   htmlwidgets::shinyRenderWidget(expr, amChartsOutput, env, quoted = TRUE)
 }
