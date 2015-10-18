@@ -22,7 +22,7 @@ Authors@R: c(
     person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datak.fr", role = c("aut", "ctb")),
     person(family = "DataKnowledge", role = c("ctb"),
             comment = "See official web site at http://www.datak.fr"))
-Date: 2015-09-15
+Date: 2015-10-18 
 License: GPL (>= 2)
 URL: http://dataknowledge.github.io/rAmCharts/
 BugReports: https://github.com/DataKnowledge/rAmCharts/issues/
