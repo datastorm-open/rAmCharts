@@ -128,5 +128,5 @@ dataAmHist <- function (resHist, y, col)
   data_DT <- data.table(x = round(resHist$mids, 1), y = y, 
                         cut = paste0("(from ", round(resHist$breaks[-length(resHist$breaks)], 2),
                                      " to ", round(resHist$breaks[-1], 2), ")"))
-  data_DT[, color:=col]
+  data_DT[, eval(parse(text = "color:=col"))]
 }

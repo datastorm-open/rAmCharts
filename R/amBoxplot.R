@@ -76,7 +76,7 @@ amBoxplot.default <- function(object, main = NULL, xlab = NULL, ylab = NULL, yli
   }
   data <- data.table(value, id, group = names)
   
-  res <- data[, .(dtBoxplotStat(list(value, id))), by = group]
+  res <- data[, list(dtBoxplotStat(list(value, id))), by = "group"]
   
   final.outliers <- finalDataBoxplot(res, col = col)
   
@@ -105,7 +105,7 @@ amBoxplot.data.frame <- function(object, main = NULL, id = NULL, xlab = NULL, yl
   
   data <- data.table(value, group, id)
   
-  res <- data[, .(dtBoxplotStat(list(value, id))), by = group]
+  res <- data[, list(dtBoxplotStat(list(value, id))), by = group]
   
   final.outliers <- finalDataBoxplot(res, col = col)
   
@@ -139,7 +139,7 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, main = NULL, xlab = NULL, 
   data <- data.table(value, group, id)
   
   
-  res <- data[, .(dtBoxplotStat(list(value, id))), by = group]
+  res <- data[, list(dtBoxplotStat(list(value, id))), by = group]
   
   final.outliers <- finalDataBoxplot(res, col = col)
   
@@ -171,7 +171,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, main = NULL, xlab =
   x <- as.character(formula)[2]
   y <- as.character(formula)[3]
   
-  res <- data[, .(dtBoxplotStat(list(eval(parse(text = x)), id))), by = y]
+  res <- data[, list(dtBoxplotStat(list(eval(parse(text = x)), id))), by = y]
   
   final.outliers <- finalDataBoxplot(res, col = col)
   
@@ -237,10 +237,10 @@ plotAmBoxplot <- function(dp, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL
 }
 
 dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
-  xx <- data.table(x = data[[1]], id = data[[2]])[!is.na(x)]
-  setkey(xx, x)
+  xx <- data.table(x = data[[1]], id = data[[2]])[eval(parse(text = "!is.na(x)"))]
+  setkeyv(xx, "x")
   
-  n <- xx[,sum(x)]
+  n <- xx[, eval(parse(text = "sum(x)"))]
   stats <- dtFivenum(xx, na.rm = TRUE)
   
   iqr <- diff(stats[c(2, 4)])
@@ -248,15 +248,15 @@ dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
     do.out <- FALSE
   }else{
     out <- if (!is.na(iqr)) {
-      xx[x < (stats[2L] - coef * iqr) | x > (stats[4L] + coef * 
-                                               iqr), .(x, id)]
+      xx[eval(parse(text = "x < (stats[2L] - coef * iqr) | x > (stats[4L] + coef * 
+                                               iqr)")), eval(parse(text = "list(x, id)"))]
       
     }else{
       data.table()
     }
     if (nrow(out) > 0){
-      stats[1] <- xx[!id%in%out[,id]][, min(x)]
-      stats[5] <- xx[!id%in%out[,id]][, max(x)]
+      stats[1] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "min(x)"))]
+      stats[5] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "max(x)"))]
     }
   }
   
@@ -272,14 +272,14 @@ dtFivenum <- function (xx, na.rm = TRUE) {
   }else {
     n4 <- floor((n + 3)/2)/2
     d <- c(1, n4, (n + 1)/2, n + 1 - n4, n)
-    0.5 * (xx[floor(d), x] + xx[ceiling(d), x])
+    0.5 * (xx[floor(d), eval(parse(text = "x"))] + xx[ceiling(d), eval(parse(text = "x"))])
   }
 }
 
 finalDataBoxplot <- function(res, col = NULL){
   
   dp <- data.table(cat = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[1]))]), 
-                   round(t(data.frame(res[seq(1, nrow(res), by = 2), V1]))[, c(1,1:5, 5), drop = FALSE], 2))
+                   round(t(data.frame(res[seq(1, nrow(res), by = 2), eval(parse(text = "V1"))]))[, c(1,1:5, 5), drop = FALSE], 2))
   
   
   setnames(dp,  c("cat", "low_outlier", "low", "open", "median", "close", "high", "high_outlier"))
@@ -300,7 +300,7 @@ finalDataBoxplot <- function(res, col = NULL){
   outliers <- do.call("rbind", outliers[[2]])
   
   if(nrow(outliers) > 0){
-    outliers[, x := round(x, 2)]
+    outliers[, eval(parse(text = "x := list(round(x, 2))"))]
     
     split.outliers <- split(outliers, outliers$cat)
     
@@ -327,7 +327,7 @@ formatOutlier <- function(data){
   if(is.list(data) & !"data.table"%in%class(data)){
     data <- data.frame(rev(data))
   }else{
-    data <- data.frame(t(c(data[, unique(cat)],data[,x],data[,id])))
+    data <- data.frame(t(c(data[, unique(cat)],data[, eval(parse(text = "x"))],data[, eval(parse(text = "id"))])))
   }
   
   
