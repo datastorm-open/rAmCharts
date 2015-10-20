@@ -506,7 +506,7 @@ output$serial9 <- renderAmCharts({
   
   valueAxis_obj2 <- pipeR::pipeline(
     valueAxis(id = 'v2', title = 'valueAxis 2', position = 'right'),
-    addListener('clickItem', 'function(event) {alert(\'Click on valueAxis 2\')}')
+    addListener('clickItem', 'function(event) {Shiny.onInputChange(\'mydata\', event.value);}')
   )
   
   # build the chart
@@ -534,7 +534,7 @@ output$code_serial9 <- renderText({
     color = c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202', '#F8FF01',
               '#B0DE09', '#04D215', '#0D8ECF', '#0D52D1', '#2A0CD0')
   )
-
+  
   # prepare value axes
   valueAxis_obj1 <- pipeR::pipeline(
     valueAxis(id = 'v1', title = 'valueAxis 1', position = 'left'),
@@ -543,8 +543,8 @@ output$code_serial9 <- renderText({
   
   valueAxis_obj2 <- pipeR::pipeline(
     valueAxis(id = 'v2', title = 'valueAxis 2', position = 'right'),
-    addListener('clickItem', 'function(event) {alert(\'Click on valueAxis 2\')}')
-  )
+    addListener('clickItem', 'function(event) {Shiny.onInputChange(\'mydata\', event.value);}')
+    )
   
   # build the chart
   pipeR::pipeline(
@@ -559,5 +559,59 @@ output$code_serial9 <- renderText({
     addValueAxis(valueAxis_obj2)
   )
   "
+})
+
+output$results <- renderPrint({
+  input$mydata
+})
+
+# ---
+# Candle stick with chartScrollbar zoom
+# ---
+output$serial10 <- renderAmCharts({
+  start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
+  end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
+  date <- seq.POSIXt(from = start, to = end, by = 'day')
+  date <- format(date, '%m-%d-%Y')
+  low <- c() ; open <- c() ; close <- c() ; high <- c() ; median <- c()
+  
+  n <- 100
+  invisible(
+    sapply(1:length(date), function(i)
+    {
+      sample <- rnorm(n, mean = sample(1:10, 1), sd = sample(1:10/10, 1))
+      quant <- boxplot(sample, plot = FALSE)$stats
+      low <<- c(low, quant[1])
+      open <<- c(open, quant[2])
+      median <<- c(median, quant[3])
+      close <<- c(close, quant[4])
+      high <<- c(high, quant[5])
+    })
+  )
+  dp <- data.table(date = date, low = round(low, 2), open = round(open, 2), 
+                   close = round(close, 2), high = round(high, 2), median = round(median, 2)) 
+  balloonText <- paste('Open:<b>[[open]]</b><br>',
+                       'Low:<b>[[low]]</b><br>',
+                       'High:<b>[[high]]</b><br>',
+                       'Close:<b>[[close]]</b><br>')
+  pipeline(
+    amSerialChart(categoryField = 'date', dataDateFormat = 'MM-DD-YYYY',
+                  dataProvider = dp, startDuration = 0),
+    setCategoryAxis(parseDates = TRUE),
+    addGraph(id = 'g1', type = 'candlestick', lineColor = '#7f8da9',
+             lowField = 'low', closeField = 'close',
+             highField = 'high', openField = 'open', valueField = 'median',
+             balloonText = balloonText,
+             lineColor = '#7f8da9', lineAlpha = 1, fillAlphas = 0.9, negativeBase = 5,
+             negativeFillColors = '#db4c3c', negativeLineColor = '#db4c3c',
+             title = 'Price: '),
+    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
+    setChartScrollbar(graph = 'g1', graphType = 'line'),
+    addListener("init", paste('function(event) {',
+                                  'alert(\'foo\');',
+                                  'var nbCandles = event.chart.dataProvider.length;',
+                                  'event.chart.zoomToIndexes(20, 100);',
+                                  ' }'))
+  )
 })
 

@@ -43,11 +43,21 @@ shiny::tabPanel(
       h2("Listener on 'chartCursor'"),
       rAmCharts::amChartsOutput("serial8"),
       verbatimTextOutput("code_serial8"),
+      # a shiny element to display unformatted text
       br(), hr(), br(),
       
       h2("Listener on 'valueAxes'"),
       rAmCharts::amChartsOutput("serial9"),
-      verbatimTextOutput("code_serial9")
+      fluidRow(
+        column(width = 3, strong("Value clicked on the right axis: ")),
+        column(width = 3, verbatimTextOutput("results"))
+      ),
+      verbatimTextOutput("code_serial9"),
+      br(), hr(), br(),
+      
+      h2("Candle stick with chartScrollbar zoom"),
+      rAmCharts::amChartsOutput("serial10")
+
     )
   )
 )
