@@ -14,7 +14,7 @@ Description: API for using 'AmCharts' Library. Based on the 'htmlwidgets'
     licence, and thus support its creators and get a period of Priority Support.
     See also <http://www.amcharts.com/about/> for more information about
     'AmCharts' company.
-Version: 1.1.2
+Version: 1.1.3
 Authors@R: c(
     person(given = "Jeffery", family = "Petit", email = "jeff@datak.fr", role = c("aut", "cre")),
     person(given = "Antanas", family = " Marcelionis", role = c("aut", "cph"),
@@ -22,7 +22,7 @@ Authors@R: c(
     person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datak.fr", role = c("aut", "ctb")),
     person(family = "DataKnowledge", role = c("ctb"),
             comment = "See official web site at http://www.datak.fr"))
-Date: 2015-10-18 
+Date: 2015-10-18
 License: GPL (>= 2)
 URL: http://dataknowledge.github.io/rAmCharts/
 BugReports: https://github.com/DataKnowledge/rAmCharts/issues/
