@@ -9,9 +9,6 @@ HTMLWidgets.widget({
   },
   
   resize: function(el, width, height, instance) {
-    if (instance.amchart) {
-      instance.amchart.resize();
-    } else {}
   },
   
   renderValue: function(el, x, instance) {
@@ -24,7 +21,7 @@ HTMLWidgets.widget({
     for (var key in x.listeners) {
       instance.amchart.addListener(key, x.listeners[key]);
     }
-    
+
     if (window.Shiny) {
       handleInit();
     } else {
