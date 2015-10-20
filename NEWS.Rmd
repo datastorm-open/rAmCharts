@@ -1,6 +1,9 @@
-# LOG CHANGE
+## LOG CHANGE
 
-## rAmCharts 1.1.2 (based on [amcharts][amcharts_url] version **3.17.2**)
+### rAmCharts 1.1.3 (based on [amcharts][amcharts_url] version **3.17.3**)
+
+
+### rAmCharts 1.1.2 (based on [amcharts][amcharts_url] version **3.17.2**)
   
   * argument type in `amChartsOutput` is required only when `type = drill`
   * call to `plot` in shiny no longer necessary
@@ -11,7 +14,7 @@
 ---
 ---
 
-## rAmCharts 1.1.1
+### rAmCharts 1.1.1
   
   * Create a generic method for renderAmCharts (shiny use)
   * Create a show method for class AmChart (now plot the object if type is set)
