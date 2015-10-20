@@ -1,6 +1,6 @@
 This package allows to draw interactive charts from the *JavaScript* library [AmCharts][url_amcharts] using [Hmlwidgets][url_htmlwidgets].
 
-Currently available chart types: funnel, gantt, gauge, pie, radar, serial, stock.
+Currently available chart types: funnel, gantt, gauge, pie, radar, serial, stock, xy.
 
 **See some examples by runnig `rAmCharts::runShinyExamples()`**.
 
