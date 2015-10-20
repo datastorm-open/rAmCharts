@@ -127,18 +127,19 @@ setMethod(f = "plot", signature = "AmCharts",
               package = 'rAmCharts'
             )
             
-            widget <- dependency_chartType(widget, data, x@type)
-            widget <- dependency_addExport(widget, data)
-            widget <- dependency_addTheme(widget, data, theme)
-            widget <- dependency_addDataLoader(widget, data)
-            widget <- dependency_addResponsive(widget, data)
+            version <- "3.17.3"
+            widget <- dependency_chartType(widget, data, x@type, version)
+            widget <- dependency_addExport(widget, data, version)
+            widget <- dependency_addTheme(widget, data, theme, version)
+            widget <- dependency_addDataLoader(widget, data, version)
+            widget <- dependency_addResponsive(widget, data, version)
             
             widget
           })
 
 #' Add dependency for chart type
 #' @noRd
-dependency_chartType <- function(widget, data, type)
+dependency_chartType <- function(widget, data, type, version)
 {
   jsFiles <- switch(type,
                     "funnel" = "funnel.js",
@@ -157,7 +158,7 @@ dependency_chartType <- function(widget, data, type)
   
   type_dep <- htmltools::htmlDependency(
     name = paste0("amcharts_type", type),
-    version = "3.17.2",
+    version = version,
     src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
     script = jsFiles
   )
@@ -170,7 +171,7 @@ dependency_chartType <- function(widget, data, type)
   
   style_dep <- htmltools::htmlDependency(
     name = "amcharts_style",
-    version = "3.17.2",
+    version = version,
     src = c(file = system.file("htmlwidgets", package = "rAmCharts")),
     stylesheet = "style.css"
   )
@@ -182,7 +183,7 @@ dependency_chartType <- function(widget, data, type)
 
 #' Add dependency for eport
 #' @noRd
-dependency_addExport <- function(widget, data)
+dependency_addExport <- function(widget, data, version)
 {
   cond <- exists("chartData", where = data) &&
     exists("export", where = data$chartData) &&
@@ -191,7 +192,7 @@ dependency_addExport <- function(widget, data)
   if (cond) {
     export_dep <- htmltools::htmlDependency(
       name = "amcharts_plugins_export",
-      version = "3.17.2",
+      version = version,
       src = c(file = system.file("htmlwidgets/lib/plugins/export", package = "rAmCharts")),
       stylesheet = "export.css",
       script = "export.min.js"
@@ -210,7 +211,7 @@ dependency_addExport <- function(widget, data)
 
 #' Add theme
 #' @noRd
-dependency_addTheme <- function(widget, data, theme)
+dependency_addTheme <- function(widget, data, theme, version)
 {
   cond <- exists("chartData", where = data) &&
     exists("theme", where = data$chartData) &&
@@ -219,7 +220,7 @@ dependency_addTheme <- function(widget, data, theme)
   if (cond) {
     theme_dep <- htmltools::htmlDependency(
       name = paste0("amcharts_themes_", theme),
-      version = "3.17.2",
+      version = version,
       src = c(file = system.file("htmlwidgets/lib/themes", package = "rAmCharts")),
       script = switch(theme,
                       "light" = "light.js",
@@ -244,7 +245,7 @@ dependency_addTheme <- function(widget, data, theme)
 
 #' Add dataloader feature
 #' @noRd
-dependency_addDataLoader <- function(widget, data)
+dependency_addDataLoader <- function(widget, data, version)
 {
   cond <- exists("chartData", where = data) &&
     exists("dataLoader", where = data$chartData)
@@ -252,7 +253,7 @@ dependency_addDataLoader <- function(widget, data)
   if (cond) {
     dataloader_dep <- htmltools::htmlDependency(
       name = "amcharts_dataloader",
-      version = "3.17.2",
+      version = version,
       src = c(file = system.file("htmlwidgets/lib/plugins/dataloader", package = "rAmCharts")),
       script = "dataloader.min.js"
     )
@@ -270,7 +271,7 @@ dependency_addDataLoader <- function(widget, data)
 
 #' Add responsive feature
 #' @noRd
-dependency_addResponsive <- function(widget, data)
+dependency_addResponsive <- function(widget, data, version)
 {
   cond <- exists("chartData", where = data) &&
     exists("responsive", where = data$chartData)
@@ -278,7 +279,7 @@ dependency_addResponsive <- function(widget, data)
   if (cond) {
     responsive_dep <- htmltools::htmlDependency(
       name = "amcharts_responsive",
-      version = "3.17.2",
+      version = version,
       src = c(file = system.file("htmlwidgets/lib/plugins/responsive", package = "rAmCharts")),
       script = "responsive.min.js"
     )
