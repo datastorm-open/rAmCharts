@@ -8,18 +8,21 @@ HTMLWidgets.widget({
     return {};
   },
   
+  resize: function(el, width, height, instance) {
+    if (instance.amchart) {
+      instance.amchart.resize();
+    } else {}
+  },
+  
   renderValue: function(el, x, instance) {
     var chartDiv = document.getElementById(el.id);
     chartDiv.style.background = x.background;
     chartDiv.style.fontSize = '11px';
     instance.amchart = AmCharts.makeChart(chartDiv, x.chartData);
-    var key;
     
-    // add listeners for chart listeners
-    if (x.listeners) {
-      for (key in x.listeners) {
-        instance.amchart.addListener(key, x.listeners[key]);
-      }
+    // add chart listeners
+    for (var key in x.listeners) {
+      instance.amchart.addListener(key, x.listeners[key]);
     }
     
     if (window.Shiny) {
@@ -77,60 +80,7 @@ HTMLWidgets.widget({
       }
     }
     
-  },
-  
-  resize: function(el, width, height, instance) {}
+  }
   
 });
 
-    /*
-    // Add categoryAxis listeners
-    // the chart must be initialized before
-    if(x.categoryAxis_listeners !== undefined) {
-      if (window.Shiny) {
-        for (key in x.categoryAxis_listeners) {
-          instance.amchart.categoryAxis.addListener(key, x.categoryAxis_listeners[key]);
-        }
-      } else {
-        instance.amchart.addListener("init", handleInit);
-      }
-    }
-    
-    // Add chartCursor listeners
-    // the chart must be initialized before
-    if(x.chartCursor_listeners !== undefined) {
-      if (window.Shiny) {
-        for (key in x.chartCursor_listeners) {
-          instance.amchart.chartCursor.addListener(key, x.chartCursor_listeners[key]);
-        }
-      } else {
-        instance.amchart.addListener("init", handleInit);
-      }
-    }
-    
-    // Add legend listeners
-    // the chart must be initialized before
-    if(x.legend_listeners !== undefined) {
-      if (window.Shiny) {
-        for (key in x.legend_listeners) {
-          instance.amchart.legend.addListener(key, x.legend_listeners[key]);
-        }
-      } else {
-        instance.amchart.addListener("init", handleInit);
-      }
-    }
-    
-    // Add valueAxes listeners
-    // the chart must be initialized before
-    if (x.valueAxes_listeners !== undefined && x.valueAxes_listenersI !== undefined) {
-      if (window.Shiny) {
-        for (keyI in x.valueAxes_listenersIndices) {
-          for (key in x.valueAxes_listeners[keyI]) {
-            instance.amchart.valueAxes[keyI].addListener(key, x.valueAxes_listeners[keyI][key]);
-          }
-        }
-      } else {
-        instance.amchart.addListener("init", handleInit);
-      }
-    } else {}
-    */
