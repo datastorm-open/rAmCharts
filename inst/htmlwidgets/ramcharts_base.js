@@ -28,6 +28,7 @@ HTMLWidgets.widget({
       instance.amchart.addListener("init", handleInit);
     }
     
+
     function handleInit() {
       var key_handle;
       var indice;
@@ -55,7 +56,7 @@ HTMLWidgets.widget({
       for (key_handle in x.legend_listeners) {
         instance.amchart.legend.addListener(key_handle, x.legend_listeners[key_handle]);
       }
-      
+
       for (indice in x.panels_listenersIndices) {
         // JavaScript reduces indices by 1
         // so, no need to do indice = indice -1
@@ -77,6 +78,16 @@ HTMLWidgets.widget({
       }
     }
     
+    if (window.Shiny) {
+      if(instance.amchart.events.init[0] !== undefined){
+        var myevent = {type : "Init", chart : instance.amchart};
+        instance.amchart.events.init[0].handler(myevent);
+      }
+      if(instance.amchart.events.rendered[0] !== undefined){
+        var myevent = {type : "rendered", chart : instance.amchart};
+        instance.amchart.events.rendered[0].handler(myevent);
+      }
+    }
   }
   
 });
