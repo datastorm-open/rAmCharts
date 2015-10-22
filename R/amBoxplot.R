@@ -182,7 +182,8 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, main = NULL, xlab =
 plotAmBoxplot <- function(dp, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL, horizontal = FALSE){
   
   if (!requireNamespace(package = "pipeR")) {
-    stop ("Please install the package pipeR for running this function")
+    warning("Please install the package pipeR for running this function")
+    return (NULL)
   } else {}
   
   graph <- pipeR::pipeline(
