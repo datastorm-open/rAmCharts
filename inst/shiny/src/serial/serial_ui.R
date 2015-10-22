@@ -55,9 +55,15 @@ shiny::tabPanel(
       verbatimTextOutput("code_serial9"),
       br(), hr(), br(),
       
-      h2("Candle stick with chartScrollbar zoom"),
+      h2("Candle stick with chartScrollbar zoom ('init' listener)"),
       amChartsOutput("serial10"),
-      verbatimTextOutput("code_serial10")
+      verbatimTextOutput("code_serial10"),
+      br(), hr(), br(),
+      
+      h2("Stack bar with negative values (with JS label functions and chart labels)"),
+      amChartsOutput("serial11"),
+      br(),
+      verbatimTextOutput("code_serial11")
     )
   )
 )

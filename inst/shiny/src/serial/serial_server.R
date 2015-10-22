@@ -609,9 +609,9 @@ output$serial10 <- renderAmCharts({
     setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
     setChartScrollbar(graph = 'g1', graphType = 'line'),
     addListener("init", paste('function(event) {',
-                                  'var nbCandles = event.chart.dataProvider.length;',
-                                  'event.chart.zoomToIndexes(20, 100);',
-                                  ' }'))
+                              'var nbCandles = event.chart.dataProvider.length;',
+                              'event.chart.zoomToIndexes(20, 100);',
+                              ' }'))
   )
 })
 
@@ -672,11 +672,11 @@ output$serial11 <- renderAmCharts({
   n <- 15
   (male <- round(sort(runif(n)), 1))
   (female <- -round(sort(runif(n)), 1))
-  (category <- factor(paste("cat.", 1:15)))
+  (category <- factor(paste('cat.', 1:15)))
   dataProvider <- data.table(male, female, category)
   labelFunction1 <- htmlwidgets::JS('function(item) {',
-                                   'return Math.abs(item.values.value);',
-                                   '}')
+                                    'return Math.abs(item.values.value);',
+                                    '}')
   balloonFunction <- htmlwidgets::JS('function(item) {',
                                      'return item.category + \': \' + Math.abs(item.values.value) + \'%\';',
                                      '}')
@@ -684,25 +684,68 @@ output$serial11 <- renderAmCharts({
                                     'return Math.abs(value) + \'%\';',
                                     '}')
   
-  valueAxis_obj <- valueAxis(gridAlpha = 0, ignoreAxisWidth = TRUE, id = "axis1",
+  valueAxis_obj <- valueAxis(gridAlpha = 0, ignoreAxisWidth = TRUE, id = 'axis1',
                              labelFunction = labelFunction2)
   
   # draw chart
-  pipeR::pipeline(
-  amSerialChart(startDuration = 0, rotate = TRUE, marginBottom = 50,
-                categoryField = "category"),
-    addGraph(fillAlphas = .8, lineAlpha = .2, type = "column", valueField = "male",
-             title = "Male", clustered = FALSE, labelFunction = labelFunction1,
+  pipeline(
+    amSerialChart(startDuration = 0, rotate = TRUE, marginBottom = 50,
+                  categoryField = 'category'),
+    addGraph(fillAlphas = .8, lineAlpha = .2, type = 'column', valueField = 'male',
+             title = 'Male', clustered = FALSE, labelFunction = labelFunction1,
              balloonFunction = balloonFunction),
-    addGraph(fillAlphas = .8, lineAlpha = .2, type = "column", valueField = "female",
-             title = "Female", clustered = FALSE, labelFunction = labelFunction1,
+    addGraph(fillAlphas = .8, lineAlpha = .2, type = 'column', valueField = 'female',
+             title = 'Female', clustered = FALSE, labelFunction = labelFunction1,
              balloonFunction = balloonFunction),
-    setCategoryAxis(gridPosition = "start", gridAlpha = .2, axisAlpha = 0),
+    setCategoryAxis(gridPosition = 'start', gridAlpha = .2, axisAlpha = 0),
     setBalloon(fixedPosition = TRUE),
     setChartCursor(valueBalloonEnabled = FALSE, cursorAlpha = .05, fullWidth = TRUE),
-    addLabel(text = "Male", x = "28%", y = "97%", bold = TRUE, align = "middle"),
-    addLabel(text = "Male", x = "75%", y = "97%", bold = TRUE, align = "middle"),
-    addGuide(value = 0, lineAlpha = .2, valueAxis = "axis1"),
+    addLabel(text = 'Male', x = '28%', y = '97%', bold = TRUE, align = 'middle'),
+    addLabel(text = 'Female', x = '75%', y = '97%', bold = TRUE, align = 'middle'),
+    addGuide(value = 0, lineAlpha = .2, valueAxis = 'axis1'),
     setDataProvider(dataProvider = dataProvider)
   )
+  
+})
+
+output$code_serial11 <- renderText({
+  "
+  # prepare data
+  n <- 15
+  (male <- round(sort(runif(n)), 1))
+  (female <- -round(sort(runif(n)), 1))
+  (category <- factor(paste('cat.', 1:15)))
+  dataProvider <- data.table(male, female, category)
+  labelFunction1 <- htmlwidgets::JS('function(item) {',
+                                    'return Math.abs(item.values.value);',
+                                    '}')
+  balloonFunction <- htmlwidgets::JS('function(item) {',
+                                     'return item.category + \': \' + Math.abs(item.values.value) + \'%\';',
+                                     '}')
+  labelFunction2 <- htmlwidgets::JS('function(value) {',
+                                    'return Math.abs(value) + \'%\';',
+                                    '}')
+  
+  valueAxis_obj <- valueAxis(gridAlpha = 0, ignoreAxisWidth = TRUE, id = 'axis1',
+                             labelFunction = labelFunction2)
+  
+  # draw chart
+  pipeline(
+    amSerialChart(startDuration = 0, rotate = TRUE, marginBottom = 50,
+                  categoryField = 'category'),
+    addGraph(fillAlphas = .8, lineAlpha = .2, type = 'column', valueField = 'male',
+             title = 'Male', clustered = FALSE, labelFunction = labelFunction1,
+             balloonFunction = balloonFunction),
+    addGraph(fillAlphas = .8, lineAlpha = .2, type = 'column', valueField = 'female',
+             title = 'Female', clustered = FALSE, labelFunction = labelFunction1,
+             balloonFunction = balloonFunction),
+    setCategoryAxis(gridPosition = 'start', gridAlpha = .2, axisAlpha = 0),
+    setBalloon(fixedPosition = TRUE),
+    setChartCursor(valueBalloonEnabled = FALSE, cursorAlpha = .05, fullWidth = TRUE),
+    addLabel(text = 'Male', x = '28%', y = '97%', bold = TRUE, align = 'middle'),
+    addLabel(text = 'Male', x = '75%', y = '97%', bold = TRUE, align = 'middle'),
+    addGuide(value = 0, lineAlpha = .2, valueAxis = 'axis1'),
+    setDataProvider(dataProvider = dataProvider)
+  )
+  "
 })
