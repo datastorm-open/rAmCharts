@@ -8,9 +8,9 @@
 \alias{setBold,Label,logical-method}
 \alias{setText,Label,character-method}
 \alias{setX}
-\alias{setX,Label,numeric-method}
+\alias{setX,Label,numericOrCharacter-method}
 \alias{setY}
-\alias{setY,Label,numeric-method}
+\alias{setY,Label,numericOrCharacter-method}
 \title{Initialize}
 \usage{
 \S4method{initialize}{Label}(.Object, text, bold, x, y, ...)
@@ -25,11 +25,11 @@ setBold(.Object, bold)
 
 setX(.Object, x)
 
-\S4method{setX}{Label,numeric}(.Object, x)
+\S4method{setX}{Label,numericOrCharacter}(.Object, x)
 
 setY(.Object, y)
 
-\S4method{setY}{Label,numeric}(.Object, y)
+\S4method{setY}{Label,numericOrCharacter}(.Object, y)
 }
 \arguments{
 \item{.Object}{\linkS4class{Label}.}
@@ -61,6 +61,7 @@ Initialize
 \examples{
 new("Label", x = 10)
 label(text = "bonjour")
+label(text = "Male", x = "28\%", y = "97\%")
 setBold(.Object = label(), bold = TRUE)
 setText(.Object = label(), text = "Bonjour")
 setX(.Object = label(), x = 16)

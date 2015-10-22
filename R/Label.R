@@ -23,8 +23,8 @@ setClass(Class = "Label", contains = "AmObject",
          representation = representation(
            text = "character",
            bold = "logical",
-           x = "numeric",
-           y = "numeric"))
+           x = "numericOrCharacter",
+           y = "numericOrCharacter"))
 
 #' @title Initialize
 #' @param .Object \linkS4class{Label}.
@@ -66,6 +66,7 @@ setMethod(f = "initialize", signature = "Label",
 #' @describeIn  initialize-Label
 #' @examples
 #' label(text = "bonjour")
+#' label(text = "Male", x = "28%", y = "97%")
 #' @export
 label <- function(text, bold, x, y, ...){
   .Object <- new("Label")
@@ -123,7 +124,7 @@ setGeneric(name = "setX", def = function(.Object, x){ standardGeneric("setX") } 
 #' @examples
 #' setX(.Object = label(), x = 16)
 #' @rdname initialize-Label
-setMethod(f = "setX", signature = c("Label", "numeric"),
+setMethod(f = "setX", signature = c("Label", "numericOrCharacter"),
           definition = function(.Object, x)
           {
             .Object@x <- x
@@ -139,7 +140,7 @@ setGeneric(name = "setY", def = function(.Object, y){ standardGeneric("setY") } 
 #' @examples
 #' setY(.Object = label(), y = 16)
 #' @rdname initialize-Label
-setMethod(f = "setY", signature = c("Label", "numeric"),
+setMethod(f = "setY", signature = c("Label", "numericOrCharacter"),
           definition = function(.Object, y)
           {
             .Object@y <- y
