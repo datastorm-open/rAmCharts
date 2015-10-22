@@ -569,6 +569,8 @@ output$results <- renderPrint({
 # Candle stick with chartScrollbar zoom
 # ---
 output$serial10 <- renderAmCharts({
+  
+  # prepare data
   start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
   end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
   date <- seq.POSIXt(from = start, to = end, by = 'day')
@@ -594,24 +596,113 @@ output$serial10 <- renderAmCharts({
                        'Low:<b>[[low]]</b><br>',
                        'High:<b>[[high]]</b><br>',
                        'Close:<b>[[close]]</b><br>')
+  # draw chart
   pipeline(
     amSerialChart(categoryField = 'date', dataDateFormat = 'MM-DD-YYYY',
                   dataProvider = dp, startDuration = 0),
     setCategoryAxis(parseDates = TRUE),
-    addGraph(id = 'g1', type = 'candlestick', lineColor = '#7f8da9',
-             lowField = 'low', closeField = 'close',
-             highField = 'high', openField = 'open', valueField = 'median',
-             balloonText = balloonText,
+    addGraph(id = 'g1', type = 'candlestick', lineColor = '#7f8da9', lowField = 'low',
+             closeField = 'close', highField = 'high', openField = 'open',
+             valueField = 'median', balloonText = balloonText, title = 'Price: ',
              lineColor = '#7f8da9', lineAlpha = 1, fillAlphas = 0.9, negativeBase = 5,
-             negativeFillColors = '#db4c3c', negativeLineColor = '#db4c3c',
-             title = 'Price: '),
+             negativeFillColors = '#db4c3c', negativeLineColor = '#db4c3c'),
     setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
     setChartScrollbar(graph = 'g1', graphType = 'line'),
     addListener("init", paste('function(event) {',
-                                  'alert(\'foo\');',
                                   'var nbCandles = event.chart.dataProvider.length;',
                                   'event.chart.zoomToIndexes(20, 100);',
                                   ' }'))
   )
 })
 
+output$code_serial10 <- renderText({
+  "
+  # prepare data
+  start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
+  end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
+  date <- seq.POSIXt(from = start, to = end, by = 'day')
+  date <- format(date, '%m-%d-%Y')
+  low <- c() ; open <- c() ; close <- c() ; high <- c() ; median <- c()
+  
+  n <- 100
+  invisible(
+    sapply(1:length(date), function(i)
+    {
+      sample <- rnorm(n, mean = sample(1:10, 1), sd = sample(1:10/10, 1))
+      quant <- boxplot(sample, plot = FALSE)$stats
+      low <<- c(low, quant[1])
+      open <<- c(open, quant[2])
+      median <<- c(median, quant[3])
+      close <<- c(close, quant[4])
+      high <<- c(high, quant[5])
+    })
+  )
+  dp <- data.table(date = date, low = round(low, 2), open = round(open, 2), 
+                   close = round(close, 2), high = round(high, 2), median = round(median, 2)) 
+  balloonText <- paste('Open:<b>[[open]]</b><br>',
+                       'Low:<b>[[low]]</b><br>',
+                       'High:<b>[[high]]</b><br>',
+                       'Close:<b>[[close]]</b><br>')
+  # draw chart
+  pipeline(
+    amSerialChart(categoryField = 'date', dataDateFormat = 'MM-DD-YYYY',
+                  dataProvider = dp, startDuration = 0),
+    setCategoryAxis(parseDates = TRUE),
+    addGraph(id = 'g1', type = 'candlestick', lineColor = '#7f8da9', lowField = 'low',
+             closeField = 'close', highField = 'high', openField = 'open',
+             valueField = 'median', balloonText = balloonText, title = 'Price: ',
+             lineColor = '#7f8da9', lineAlpha = 1, fillAlphas = 0.9, negativeBase = 5,
+             negativeFillColors = '#db4c3c', negativeLineColor = '#db4c3c'),
+    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
+    setChartScrollbar(graph = 'g1', graphType = 'line'),
+    addListener('init', paste('function(event) {',
+                              'var nbCandles = event.chart.dataProvider.length;',
+                              'event.chart.zoomToIndexes(20, 100);',
+                              ' }'))
+  )
+  "
+})
+
+# ---
+# Stack bar with negative values
+# ---
+output$serial11 <- renderAmCharts({
+  
+  # prepare data
+  n <- 15
+  (male <- round(sort(runif(n)), 1))
+  (female <- -round(sort(runif(n)), 1))
+  (category <- factor(paste("cat.", 1:15)))
+  dataProvider <- data.table(male, female, category)
+  labelFunction1 <- htmlwidgets::JS('function(item) {',
+                                   'return Math.abs(item.values.value);',
+                                   '}')
+  balloonFunction <- htmlwidgets::JS('function(item) {',
+                                     'return item.category + \': \' + Math.abs(item.values.value) + \'%\';',
+                                     '}')
+  labelFunction2 <- htmlwidgets::JS('function(value) {',
+                                    'return Math.abs(value) + \'%\';',
+                                    '}')
+  
+  valueAxis_obj <- valueAxis(gridAlpha = 0, ignoreAxisWidth = TRUE, id = "axis1",
+                             labelFunction = labelFunction2)
+  
+  # draw chart
+  pipeR::pipeline(
+  amSerialChart(startDuration = 0, rotate = TRUE, marginBottom = 50,
+                categoryField = "category"),
+    addGraph(fillAlphas = .8, lineAlpha = .2, type = "column", valueField = "male",
+             title = "Male", clustered = FALSE, labelFunction = labelFunction1,
+             balloonFunction = balloonFunction),
+    addGraph(fillAlphas = .8, lineAlpha = .2, type = "column", valueField = "female",
+             title = "Female", clustered = FALSE, labelFunction = labelFunction1,
+             balloonFunction = balloonFunction),
+    setCategoryAxis(gridPosition = "start", gridAlpha = .2, axisAlpha = 0),
+    setBalloon(fixedPosition = TRUE),
+    setChartCursor(valueBalloonEnabled = FALSE, cursorAlpha = .05, fullWidth = TRUE),
+    addLabel(text = "Male", x = "28%", y = "97%", bold = TRUE, align = "middle"),
+    addLabel(text = "Male", x = "75%", y = "97%", bold = TRUE, align = "middle"),
+    addGuide(value = 0, lineAlpha = .2, valueAxis = "axis1"),
+    setDataProvider(dataProvider = dataProvider)
+  )
+})

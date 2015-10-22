@@ -31,17 +31,17 @@ shiny::tabPanel(
       br(), hr(), br(),
       
       h2("Listener on 'legend'"),
-      rAmCharts::amChartsOutput("serial6"),
+      amChartsOutput("serial6"),
       verbatimTextOutput("code_serial6"),
       br(), hr(), br(),
       
       h2("Listener on 'categoryAxis'"),
-      rAmCharts::amChartsOutput("serial7"),
+      amChartsOutput("serial7"),
       verbatimTextOutput("code_serial7"),
       br(), hr(), br(),
       
       h2("Listener on 'chartCursor'"),
-      rAmCharts::amChartsOutput("serial8"),
+      amChartsOutput("serial8"),
       verbatimTextOutput("code_serial8"),
       # a shiny element to display unformatted text
       br(), hr(), br(),
@@ -56,8 +56,8 @@ shiny::tabPanel(
       br(), hr(), br(),
       
       h2("Candle stick with chartScrollbar zoom"),
-      rAmCharts::amChartsOutput("serial10")
-
+      amChartsOutput("serial10"),
+      verbatimTextOutput("code_serial10")
     )
   )
 )
