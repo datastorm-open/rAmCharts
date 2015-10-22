@@ -35,17 +35,17 @@ devtools::install_github("dataKnowledge/rAmCharts")
 
 #### Histogram:
 
-```{r, eval = FALSE}
+```{r}
 library(rAmCharts)
 data(iris)
-amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray")
+amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "#3c8dbc")
 ```
 ![histogram][path_histogram]
 
 
 #### Boxplot:
 
-```{r, eval = FALSE}
+```{r}
 library(rAmCharts)
 data(iris)
 amBoxplot(Sepal.Length~Species, data = iris, col = c("blue", "red", "yellow"))
