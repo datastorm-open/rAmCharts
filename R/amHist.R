@@ -21,6 +21,7 @@
 #' if labels is a \code{character}, draw itself.
 #' @param ... further arguments and graphical parameters passed to plot.histogram
 #' @examples
+#' 
 #' x <- replicate(1000, {
 #'   if (round(runif(1))) {
 #'     rnorm(1)
@@ -57,7 +58,8 @@ amHist <- function(x, main = "Histogram", col = "gray", border = "gray",
                    plot = TRUE, labels = TRUE, ...)
 {
   if (!requireNamespace(package = "pipeR")) {
-    stop ("Please install the package pipeR for running this function")
+    stop ("Please install the package 'pipeR' for running this function")
+    return (NULL)
   } else {}
   
   if (!missing(...)) {
@@ -99,26 +101,27 @@ amHist <- function(x, main = "Histogram", col = "gray", border = "gray",
 #' setExport()
 #' )
 #' @noRd
-plotAmHist <- function(dp, amLabels, ylim, main, ylab, xlab, border) {
+plotAmHist <- function(dp, amLabels, ylim, main, ylab, xlab, border)
+{
   pipeR::pipeline(
-    amSerialChart(theme = "light", categoryField = "x", creditsPosition = "bottom-right",
-                  columnSpacing = 0, columnWidth = 1, fillAlphas = 1, lineAlpha = 1,
-                  dataProvider = dp),
+    amSerialChart(theme = "light", categoryField = "x", columnSpacing = 0, 
+                  creditsPosition = "bottom-right", dataProvider = dp,
+                  columnWidth = 1, fillAlphas = 1, lineAlpha = 1),
     addGraph(balloonText = "<b>[[value]]</b> <br/> [[cut]] ", type = "column",
-             valueField = "y", fillAlphas = .8, lineAlpha = 1, fillColorsField = "color",
-             lineColor = border),
+             valueField = "y", fillAlphas = .8, lineAlpha = 1,
+             fillColorsField = "color", lineColor = border),
     addGraph(valueField = "y", type = "smoothedLine", lineColor = "black",
              balloonText = "", id = "graph-line"),
     addValueAxes(title = ylab, minimum = ylim[1], maximum = ylim[2]),
-    setCategoryAxis(title = xlab),
-    addTitle(text = main, size = 18),
     setChartScrollbar(graph = "graph-line", scrollbarHeight = 30, backgroundAlpha = 0,
-                      offset = 60, autoGridCount = TRUE,
-                      dragIcon = "dragIconRectBigBlack", oppositeAxis = FALSE, color = '#888888',
+                      offset = 60, autoGridCount = TRUE, color = '#888888',
+                      dragIcon = "dragIconRectBigBlack", oppositeAxis = FALSE, 
                       backgroundAlpha = 0, selectedBackgroundAlpha = 0.1,
                       selectedBackgroundColor = '#888888', graphFillAlpha = 0,
                       selectedGraphFillAlpha = 0, graphLineAlpha = 0.8,
                       selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1),
+    setCategoryAxis(title = xlab),
+    addTitle(text = main, size = 18),
     setChartCursor()
   )
 }

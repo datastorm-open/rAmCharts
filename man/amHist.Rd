@@ -43,6 +43,8 @@ amHist computes a histogram of the given data values.
 If \code{plot = TRUE}, the resulting object of class \code{"histogram"} before it is returned.
 }
 \examples{
+library(magrittr)
+
 x <- replicate(1000, {
   if (round(runif(1))) {
     rnorm(1)
