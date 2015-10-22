@@ -69,8 +69,6 @@ pipeR::pipeline(
 
 * Usual R colors work (for instance, light or dark prefixes), however the 'export' feature needs valid CSS colors. To be sure, prefer HTML for exporting option.
 
-* Listeners "init" and "rendered" works in viewer but are not called in Shiny.
-
 [url_amcharts]: http://www.amcharts.com
 [url_htmlwidgets]: http://www.htmlwidgets.org
 [path_histogram]: ./img/histogram.png
