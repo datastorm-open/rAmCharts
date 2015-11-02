@@ -2,16 +2,19 @@
 % Please edit documentation in R/amHist.R
 \name{amHist}
 \alias{amHist}
+\alias{amHist.numeric}
 \title{Plotting histogram using rAmCharts}
 \usage{
-amHist(x, main = "Histogram", col = "gray", border = "gray",
-  freq = TRUE, xlab = NULL, ylab = NULL, ylim = NULL, plot = TRUE,
-  labels = TRUE, ...)
+amHist(x, ...)
+
+\method{amHist}{numeric}(x, col = "gray", border = "gray", freq = TRUE,
+  plot = TRUE, labels = TRUE, xlab, ylab, main, ylim, scrollbar, cursor,
+  ...)
 }
 \arguments{
 \item{x}{a vector of values for which the histogram is desired.}
 
-\item{main}{\code{character}, title of the graph.}
+\item{...}{further arguments and graphical parameters passed to plot.histogram}
 
 \item{col}{a colour to be used to fill the bars.}
 
@@ -21,10 +24,6 @@ amHist(x, main = "Histogram", col = "gray", border = "gray",
 the counts component of the result; if FALSE, probability densities,
 component density, are plotted (so that the histogram has a total area of one).
 Defaults to TRUE if and only if breaks are equidistant (and probability is not specified).}
-
-\item{xlab,ylab}{\code{character}, labels of the axis.}
-
-\item{ylim}{the range of y values with sensible defaults.}
 
 \item{plot}{logical. If \code{TRUE} (default),
 an histogram is plotted, otherwise a list of breaks and counts is returned.
@@ -36,7 +35,15 @@ Additionally draw labels on top of bars, if not \code{FALSE};
 if \code{TRUE}, draw the counts or rounded densities;
 if labels is a \code{character}, draw itself.}
 
-\item{...}{further arguments and graphical parameters passed to plot.histogram}
+\item{xlab,ylab}{\code{character}, labels of the axis.}
+
+\item{main}{\code{character}, title of the graph.}
+
+\item{ylim}{the range of y values with sensible defaults.}
+
+\item{scrollbar}{Allow scrollbar ? (default FALSE)}
+
+\item{scrollbar}{Allow cursor ? (default TRUE)}
 }
 \description{
 amHist computes a histogram of the given data values.

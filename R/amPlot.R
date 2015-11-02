@@ -3,8 +3,8 @@
 #' @description  amPlot computes a plot of the given data values.
 #' Can be a vector, a data.frame, or a formula
 #' 
-#' @param object generic parameter, don't use it (only for S3 definition).
-#' @param x the coordinates of points in the plot.
+#' @param x the coordinates of points in the plot numeric,
+#' data.frame, formula.
 #' @param y the y coordinates of points in the plot,
 #' optional if x is an appropriate structure.
 #' @param xlab a title for the x axis, default NULL
@@ -20,13 +20,20 @@
 #' @param cursor default TRUE
 #' @param scrollbar default TRUE
 #' @param error only when type is "xError" "yError" default NULL,
-#' @param xlim
-#' @param ylim
+#' @param xlim range of x
+#' @param ylim range of y
 #' @param cex bullet size
 #' @param lty line type (dashes)
 #' @param lwd line width 
-#' 
+#' @param hideXScrollbar (\code{FALSE} by default)
+#' optionnal for xy charts when scrollbar is enabled.
+#' Specifies if Scrollbar of X axis (horizontal) should be hidden.
+#' @param hideYScrollbar (\code{TRUE} by default)
+#' optionnal for xy charts when scrollbar is enabled.
+#' Specifies if Scrollbar of Y axis (vertical) should be hidden.
 #' @param ... Don't use... For S3 Definition...
+#' 
+#' @example examples/amPlot_examples.R
 #' 
 #' @import data.table
 #' @rdname amPlot
@@ -40,106 +47,17 @@ amPlot <- function(x, ...) UseMethod("amPlot")
 amPlot.default <- function(x, ...) "Wrong class"
 
 #' @rdname amPlot
-#' @examples 
-#' 
-#' library(magrittr)
-#' library(rAmCharts)
-#' 
-#' # ---
-#' # x, y plot
-#' # ---
-#' 
-#' x <- sort(rnorm(100))
-#' y <- rnorm(100, sd = 10)
-#' 
-#' # change type
-#' amPlot(x = x, y = y) # default type = "p"
-#' amPlot(x = x, y = y, type = "sl")
-#' amPlot(x = x, y = y, type = "l")
-#' 
-#' # change lty
-#' amPlot(x = x, y = y, type = "l", lty = 1)
-#' 
-#' # add weight
-#' weights <- rnorm(100, sd = 5)
-#' amPlot(x = x, y = y, type = "p", weights = weights)
-#' 
-#' # change cex
-#' amPlot(x = x, y = y, type = "p", cex = 1)
-#' amPlot(x = x, y = y, type = "p", cex = 50)
-#' 
-#' # add title
-#' amPlot(x = rnorm(100), y = rnorm(100), main = "title")
-#' 
-#' # ---
-#' # x plot
-#' # ---
-#' 
-#' amPlot(x = rnorm(100))
-#' 
-#' # add title
-#' amPlot(x = rnorm(100), main = "Title")
-#' 
-#' # set a title
-#' amPlot(x = rnorm(100), main = "Title")
-#' 
-#' # provide only x
-#' amPlot(x = rnorm(100))
-#' 
-#' # change type (set to "l" by default)
-#' x <- rnorm(100)
-#' amPlot(x = rnorm(100, mean = 10))
-#' amPlot(x = x, type = "sl")
-#' amPlot(x = x, type = "st")
-#' amPlot(x = x, type = "p")
-#' amPlot(x = x, type = "b")
-#' 
-#' # change color
-#' amPlot(x = rnorm(100), col = "lightblue")
-#' 
-#' # disable the cursor
-#' amPlot(x = rnorm(100), cursor = FALSE)
-#' 
-#' # allow scrollbar
-#' amPlot(x = rnorm(100), scrollbar = TRUE)
-#' 
-#' # change bullets
-#' x <- rnorm(100)
-#' amPlot(x = x, bullet = "diamond")
-#' amPlot(x = x, bullet = "square")
-#' amPlot(x = x, bullet = "triangleUp")
-#' amPlot(x = x, bullet = "triangleDown")
-#' amPlot(x = x, bullet = "triangleLeft")
-#' amPlot(x = x, bullet = "triangleRight")
-#' amPlot(x = x, bullet = "bubble")
-#' amPlot(x = x, bullet = "yError", error = sample(100))
-#' amPlot(x = x, bullet = "xError", error = sample(100))
-#' 
-#' # change lty
-#' x <- rnorm(100)
-#' amPlot(x = x, type = "b", lty = 1)
-#' amPlot(x = x, type = "b", lty = 6)
-#' 
-#' # change cex
-#' x <- rnorm(100)
-#' amPlot(x = x, cex = 1)
-#' amPlot(x = x, cex = 10)
-#' 
-#' # change lwd
-#' x <- rnorm(100)
-#' amPlot(x = x, type = "st", lwd = 1)
-#' amPlot(x = x, type = "st", lwd = 2)
+#' @example examples/amPlot_examples.R
 #' 
 #' @export
 #' 
-amPlot.numeric <- function(x, y, bullet = "round", export = FALSE, type = "p",
-                           col = "gray", id, weights = NULL, scrollbar = FALSE,
-                           precision = 2, cursor = TRUE, error,
-                           xlab, ylab, main, lty, cex, lwd,
-                           xlim, ylim, ...)
+amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray", 
+                           export = FALSE, weights = NULL, scrollbar = FALSE,
+                           precision = 2, cursor = TRUE, id, error, xlab, ylab,
+                           main, lty, cex, lwd, xlim, ylim, hideYScrollbar, hideXScrollbar,...)
 {
-  if (!requireNamespace(package = "magrittr")) {
-    warning("Please install the package pipeR for running this function")
+  if (!requireNamespace(package = "pipeR")) {
+    warning("Please install and load the package pipeR before running this function")
     return (NULL)
   } else {}
   
@@ -185,11 +103,12 @@ amPlot.numeric <- function(x, y, bullet = "round", export = FALSE, type = "p",
     }
     
     # finally build the chart
-    chart <- amSerialChart(categoryField = "cat", precision = precision) %>%
-      setCategoryAxis(title = xlab, position = "bottom", id = "x") %>%
-      addGraph(amGraph = graph_obj) %>%
-      setCategoryAxis(categoryAxis = categoryAxis_obj) %>%
-      setDataProvider(dataProvider = dt)
+    amSerialChart(categoryField = "cat", precision = precision) %>>%
+      setCategoryAxis(title = xlab, position = "bottom", id = "x") %>>%
+      addGraph(amGraph = graph_obj) %>>%
+      setCategoryAxis(categoryAxis = categoryAxis_obj) %>>%
+      setDataProvider(dataProvider = dt) %>>%
+      (~ chart )
     
   } else {
     # the user plot an XY chart
@@ -234,11 +153,11 @@ amPlot.numeric <- function(x, y, bullet = "round", export = FALSE, type = "p",
     balloonText <- paste0(labelId, "<br>",
                           "x:<b>[[x]]</b> <br> y:<b>[[y]]</b><br>",
                           labelWeights, "<br>")
-  
+    
     graph_obj <- getGraphXY(type = type, col = col, bullet = bullet, cex = cex,
                             lwd = lwd, lty = lty, bulletAlpha = bulletAlpha,
                             balloonText = balloonText)
-
+    
     # Add common valueAxis
     valueAxis_bottom <- if (!missing(xlim)) {
       stopifnot(is.numeric(xlim) && length(xlim) == 2)
@@ -248,10 +167,18 @@ amPlot.numeric <- function(x, y, bullet = "round", export = FALSE, type = "p",
       valueAxis(title = xlab, position = "bottom", axisAlpha = 0)
     }
     
-    chart <- amXYChart(precision = precision) %>%
-      addGraph(amGraph = graph_obj) %>%
-      addValueAxis(valueAxis = valueAxis_bottom) %>%
-      setDataProvider(dataProvider = dt)
+    # scrollbar conditions
+    if (missing(hideYScrollbar)) hideYScrollbar <- TRUE
+    if (missing(hideXScrollbar)) hideXScrollbar <- FALSE
+    
+    
+    amXYChart(precision = precision) %>>%
+      setProperties(hideYScrollbar = hideYScrollbar) %>>%
+      setProperties(hideXScrollbar = hideXScrollbar) %>>%
+      addGraph(amGraph = graph_obj) %>>%
+      addValueAxis(valueAxis = valueAxis_bottom) %>>%
+      setDataProvider(dataProvider = dt) %>>%
+      (~ chart)
     
   }
   
@@ -271,15 +198,7 @@ amPlot.numeric <- function(x, y, bullet = "round", export = FALSE, type = "p",
                export = export, scrollbar = scrollbar)
 }
 
-#' 
 #' @examples
-#' 
-#' library(data.table)
-#' (iris <- data.table(get("iris", "package:datasets")))
-#' amPlot(iris, col = "Sepal.Length")
-#' 
-#' amPlot(iris, col = colnames(iris)[1:4], type = c("l", "sl", "l", "st"))
-#' 
 #' \dontrun{
 #' amPlot(iris)
 #' }
@@ -287,25 +206,24 @@ amPlot.numeric <- function(x, y, bullet = "round", export = FALSE, type = "p",
 #' @rdname amPlot
 #' @export
 #' 
-amPlot.data.frame <- function(x, col, type = "l", xlab, ylab, main,
-                              cursor, export, precision = 2, ...)
+amPlot.data.frame <- function(x, columns, type = "l", cursor = TRUE, scrollbar = FALSE,
+                              export = FALSE, legend = TRUE, precision = 2, xlab, ylab, main, ...)
 {
+  if (missing(main)) main <- "amPlot.data.frame"
+  if (missing(ylab)) ylab <- deparse(substitute(x))
+  if (missing(xlab)) xlab <- "index"
   
-  ylab <- if (missing(ylab)) deparse(substitute(x))
-  xlab <- if (missing(xlab)) "index"
-  
-  if (!missing(col)) {
-    if (is.character(col)) col <- which(col %in% colnames(x))
-    x <- x[, eval(col), with = FALSE]
+  if (missing(columns)) {
+    columns <- sapply(x, is.numeric)
+    columns <- names(columns)[columns]
   } else {}
+  
+  if (is.character(columns)) columns <- which(colnames(x) %in% columns)
+  x <- x[, eval(columns), with = FALSE]
   
   if (ncol(x) == 1) x <- x[[1]]
   
   if (is.data.frame(x)) {
-    
-    stopifnot(all(sapply(x, class) %in% "numeric"))
-    
-    col <- RColorBrewer::brewer.pal(11,"RdYlBu")[ncol(x)]
     names <- colnames(x)
     
     # check the type
@@ -316,42 +234,43 @@ amPlot.data.frame <- function(x, col, type = "l", xlab, ylab, main,
     
     if (length(type) == 1) type <- rep(type, ncol(x))
     
+    # if type has been created from sapply, it is a named vector
     names(type) <- NULL
     
     graphs_ls <- lapply(1:ncol(x), FUN = function (i) {
       graph(balloonText = "value: <b>[[value]]</b>",
-            valueField = names[i], lineAlpha = 1,
-            lineColor = col[i], type = type[i])
+            title = names[i], valueField = names[i],
+            lineAlpha = 1, type = type[i])
     })
     
     x <- cbind(x, amCategory = paste("Obs.", 1:nrow(x)))
     
-    chart <- pipeR::pipeline(
-      amSerialChart(dataProvider = x, categoryField = "amCategory",
-                    precision = precision, graphs = graphs_ls),
-      setCategoryAxis(title = xlab, position = "bottom", id = "x"),
-      addValueAxis(title = ylab, position = "left", id = "y")
-    )
+    amSerialChart(precision = precision) %>>%
+      setCategoryField(categoryField = "amCategory") %>>%
+      setCategoryAxis(title = xlab, position = "bottom", id = "x") %>>%
+      addValueAxis(title = ylab, position = "left", id = "y") %>>%
+      setGraphs(graphs = graphs_ls) %>>%
+      setLegend(useGraphSettings = TRUE) %>>%
+      setDataProvider(dataProvider = x) %>>%
+      (~ chart)
     
   } else {
     stopifnot(is.numeric(x))
     chart <- amPlot(x = x, type = type)
   }
   
-  if (missing(cursor)) cursor <- TRUE
-  if (missing(export)) export <- TRUE
-  if (missing(main)) main <- "amPlot.data.frame"
-  
-  amRenderPlot(chart = chart, main = main, cursor = cursor, export = export)
+  amRenderPlot(chart = chart, main = main, cursor = cursor,
+               export = export, scrollbar = scrollbar)
 }
 
 amRenderPlot <- function (chart, main, cursor, export, scrollbar)
 {
-  chart %>%
-    addTitle(text = main) %>%
-    setChartCursor(enabled = cursor) %>%
-    setChartScrollbar(enabled = scrollbar) %>%
-    setExport(enabled = export)
+  addTitle(.Object = chart, text = main) %>>%
+    setBalloon(borderAlpha = .5, borderThickness = 1, cornerRadius = 5) %>>%
+    setChartCursor(enabled = cursor, cursorColor = "black") %>>%
+    setChartScrollbar(enabled = scrollbar, oppositeAxis = FALSE, offset = 10) %>>%
+    setExport(enabled = export) %>>%
+    setProperties(theme = "light")
 }
 
 amCheck_type <- function(type, valid = c("l", "sl", "st", "p", "b"))
@@ -373,7 +292,7 @@ amCheck_bullet <- function (bullet)
                     "xError", "round", "triangleLeft", "triangleRight",
                     "triangleUp", "triangleDown")
   if (!(bullet %in% validBullets)) stop("Invalid bullet name")
-
+  
   bullet
 }
 
@@ -394,7 +313,7 @@ getGraph <- function (type, col, bullet, cex, lwd, lty)
   else
     graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
           lineAlpha = 1, dashLength = lty, lineThickness = lwd,
-          lineColor = col, type = type, )
+          lineColor = col, type = type)
 }
 
 getGraphXY <- function (type, col, bullet, cex, lwd, lty, bulletAlpha, balloonText)
@@ -402,7 +321,7 @@ getGraphXY <- function (type, col, bullet, cex, lwd, lty, bulletAlpha, balloonTe
   switch (type,
           "points" = {
             graph(balloonText = balloonText, valueField = "weights",
-                  xField = "x", yField = "y", lineAlpha = 0,
+                  xField = "x", yField = "y", lineAlpha = 0, lineColor = col,
                   bulletColor = col, bullet = bullet, maxBulletSize = cex)
           },
           "smoothedLine" = {
