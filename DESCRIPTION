@@ -84,9 +84,9 @@ Imports:
     rlist,
     data.table,
     graphics,
-    utils
+    utils,
+    pipeR
 Suggests:
-    pipeR,
     magrittr,
     shiny,
     testthat
