@@ -13,7 +13,7 @@
 #' @param bullet default "round"
 #' @param export default FALSE
 #' @param type what type of plot should be drawn, default "p".
-#' @param col default "gray"
+#' @param col either a factor or a \code{character} default "gray"
 #' @param weights for x/y charts only, default rep(1, x)
 #' @param id for x/y charts only, default 1:length(x),
 #' @param precision default 2
@@ -49,6 +49,8 @@ amPlot.default <- function(x, ...) "Wrong class"
 #' @rdname amPlot
 #' @example examples/amPlot_examples.R
 #' 
+#' @import data.table
+#' @import pipeR
 #' @export
 #' 
 amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray", 
@@ -56,16 +58,21 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
                            precision = 2, cursor = TRUE, id, error, xlab, ylab,
                            main, lty, cex, lwd, xlim, ylim, hideYScrollbar, hideXScrollbar,...)
 {
-  if (!requireNamespace(package = "pipeR")) {
-    warning("Please install and load the package pipeR before running this function")
-    return (NULL)
-  } else {}
-  
   # check arguments validity
   # ---
   bullet <- amCheck_bullet(bullet)
   if (missing(lty)) lty <- 0
   if (missing(lwd)) lwd <- 1
+  
+  col <- as.factor(col)
+  # check the color
+  if (length(col) == 1) {
+    col <- rep(col, times = length(x))
+  } else {
+    stopifnot(length(col) == length(x))
+    levels(col) <- grDevices::topo.colors(nlevels(col))
+    levels(col) <- substr(levels(col), 1, 7)
+  }
   
   if (missing(y)) {
     # the user plot a simple line or point chart
@@ -81,6 +88,8 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     } else {
       dt <- data.table(x = x, cat = paste("obs.", 1:length(x)))
     }
+    
+    dt <- cbind(dt, col = col)
     
     # define width of bullet
     if (missing(cex)) cex <- 1
@@ -116,7 +125,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     if (length(x) != length(y)) stop("'x' and 'y' lengths differ")
     
     # check (and convert) the type 
-    type <- amCheck_type(type, valid = c("p", "l", "sl"))
+    type <- amCheck_type(type, valid = c("p", "l"))
     
     # axes label
     xlab <- if (missing(xlab)) deparse(substitute(x))
@@ -131,32 +140,28 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     
     # initialize dataProvider
     if (!missing(id)) {
-      dt <- data.table(x = x, y = y, id = id)
+      dt <- data.table(x = x, y = y, id = id, col = col)
       labelId  <- "Obs. <b>[[id]]</b>"
     } else {
-      dt <- data.table(x = x, y = y)
+      dt <- data.table(x = x, y = y, col = col)
       labelId  <- ""
     }
     
     if (!missing(weights)) {
       stopifnot(length(weights) == length(x))
-      # max width of bullets
-      if (missing(cex)) cex <- max(weights)
       # width of bullets
       weights <- round(weights, precision)
       dt <- cbind(dt, weights = weights)
+      weighted <- TRUE
       labelWeights <- "weights:<b>[[weights]]</b>"
     } else {
+      weighted <- FALSE
       labelWeights <- NULL
     }
     
     balloonText <- paste0(labelId, "<br>",
                           "x:<b>[[x]]</b> <br> y:<b>[[y]]</b><br>",
                           labelWeights, "<br>")
-    
-    graph_obj <- getGraphXY(type = type, col = col, bullet = bullet, cex = cex,
-                            lwd = lwd, lty = lty, bulletAlpha = bulletAlpha,
-                            balloonText = balloonText)
     
     # Add common valueAxis
     valueAxis_bottom <- if (!missing(xlim)) {
@@ -171,6 +176,9 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     if (missing(hideYScrollbar)) hideYScrollbar <- TRUE
     if (missing(hideXScrollbar)) hideXScrollbar <- FALSE
     
+    graph_obj <- getGraphXY(type = type, bullet = bullet, cex = cex,
+                            lwd = lwd, lty = lty, bulletAlpha = bulletAlpha,
+                            balloonText = balloonText, weighted = weighted)
     
     amXYChart(precision = precision) %>>%
       setProperties(hideYScrollbar = hideYScrollbar) %>>%
@@ -198,10 +206,14 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
                export = export, scrollbar = scrollbar)
 }
 
-#' @examples
-#' \dontrun{
-#' amPlot(iris)
-#' }
+#'
+#' @param columns (optional) either a vector of \code{character} containing
+#' the names of the series to draw, or a \code{numeric} vector of indices.
+#' By default all numeric columns will be drawn.
+#' @param legend enable legend ? (default \code{TRUE})
+#' 
+#' @import pipeR
+#' @import data.table
 #' 
 #' @rdname amPlot
 #' @export
@@ -263,6 +275,8 @@ amPlot.data.frame <- function(x, columns, type = "l", cursor = TRUE, scrollbar =
                export = export, scrollbar = scrollbar)
 }
 
+#' @import pipeR
+#' 
 amRenderPlot <- function (chart, main, cursor, export, scrollbar)
 {
   addTitle(.Object = chart, text = main) %>>%
@@ -299,40 +313,120 @@ amCheck_bullet <- function (bullet)
 getGraph <- function (type, col, bullet, cex, lwd, lty)
 {
   if (type == "points" && bullet %in% c("xError", "yError"))
-    graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
-          lineAlpha = 0, lineColor = col, errorField = "error",
-          bulletAxis = "y", bullet = bullet, bulletSize = cex)
-  else if (type == "points" && !(bullet %in% c("xError", "yError")))
-    graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
-          lineAlpha = 0, lineColor = col,bullet = bullet, bulletSize = cex)
+    graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
+                       lineAlpha = 0, errorField = "error",
+                       bulletAxis = "y", bullet = bullet, bulletSize = cex)
+  else if (type == "points")
+    graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
+                       lineAlpha = 0, bullet = bullet, bulletSize = cex)
   else if (type == "both")
-    graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
-          lineAlpha = 1, lineColor = col,
-          lineThickness = lwd, dashLength = lty,
-          bullet = bullet, bulletSize = cex, type = "smoothedLine")
+    graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
+                       lineAlpha = 1, lineThickness = lwd,
+                       dashLength = lty, bullet = bullet, bulletSize = cex, type = "smoothedLine")
   else
-    graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
-          lineAlpha = 1, dashLength = lty, lineThickness = lwd,
-          lineColor = col, type = type)
+    graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
+                       lineAlpha = 1, dashLength = lty, lineThickness = lwd, type = type)
+  
+  if (nlevels(col) == 1) 
+    setProperties(.Object = graph_obj, lineColor = levels(col))
+  else
+    setProperties(.Object = graph_obj, lineColorField = "col")
 }
 
-getGraphXY <- function (type, col, bullet, cex, lwd, lty, bulletAlpha, balloonText)
+getGraphXY <- function (type, colorField, bullet, cex, lwd, lty,
+                        bulletAlpha, balloonText, weighted)
 {
-  switch (type,
-          "points" = {
-            graph(balloonText = balloonText, valueField = "weights",
-                  xField = "x", yField = "y", lineAlpha = 0, lineColor = col,
-                  bulletColor = col, bullet = bullet, maxBulletSize = cex)
-          },
-          "smoothedLine" = {
-            graph(balloonText = balloonText, valueField = "weights", lineColor = col,
-                  xField = "x", yField = "y", bullet = bullet, maxBulletSize = cex,
-                  lineThickness = lwd, dashLength = lty, bulletAlpha = bulletAlpha)
-          },
-          "line" = {
-            graph(balloonText = balloonText, valueField = "weights", lineColor = col,
-                  xField = "x", yField = "y", bullet = bullet, maxBulletSize = cex,
-                  lineThickness = lwd, dashLength = lty, bulletAlpha = bulletAlpha)
-          })
+  graph_obj <- switch (type,
+                       "points" = {
+                         graph(balloonText = balloonText, valueField = "weights",
+                               xField = "x", yField = "y", lineAlpha = 0,
+                               lineColorField = "col", bullet = bullet)
+                       },
+                       "smoothedLine" = {
+                         graph(balloonText = balloonText, valueField = "weights",
+                               lineColorField = "col",
+                               xField = "x", yField = "y", bullet = bullet,
+                               lineThickness = lwd, dashLength = lty, bulletAlpha = bulletAlpha)
+                       },
+                       "line" = {
+                         graph(balloonText = balloonText, valueField = "weights",
+                               lineColorField = "col",
+                               xField = "x", yField = "y", bullet = bullet,
+                               lineThickness = lwd, dashLength = lty, bulletAlpha = bulletAlpha)
+                       })
+  
+  if (weighted) setProperties(graph_obj, maxBulletSize = cex)
+  else setProperties(graph_obj, bulletSize = cex)
 }
+
+#' @title Add chart graph.
+#'
+#' @param chart \linkS4class{AmChart}.
+#' @param x \code{numeric}.
+#' @param type (optionnal) \code{character}.
+#' @param col \code{character}, color of teh new serie.
+#' 
+#' @example examples/amPlot_examples.R
+#' 
+#' @rdname amLines
+#' @export
+#' 
+amLines <- function(chart, x, type, col)
+{
+  # check the arguments
+  stopifnot(is(chart, "AmChart"))
+  stopifnot(is.numeric(x))
+  
+  type <- if (missing(type)) "line"
+  else amCheck_type(type = type, valid = c("l", "p", "sl"))
+  
+  lineAlpha <- ifelse(type == "points", yes = 0, no = 1)
+  
+  if (!missing(col))
+    stopifnot(is.character(col) && length(col) == 1)
+  else
+    col <- ""
+
+    # test the length of the vector
+    dataProvider <- chart@dataProvider
+    l <- length(dataProvider)
+    stopifnot(length(x) == l)
+    
+    # define the new name for the serie
+    # here we suppose that each element of the list have the same names
+    # consequently this method won't work if the dataProvider has been set
+    # with NA values for the first line
+    names <- names(dataProvider[[1]])
+    i <- 1
+    repeat {
+      name <- paste0("amLines", i)
+      if (!(name %in% names)) break
+      else i <- i + 1
+    }
+    
+    # append the new element to the dataProvider
+    chart@dataProvider <- lapply(1:l, function(i) {
+      dataProvider[[i]][[name]] <- x[i]
+      dataProvider[[i]]
+    })
+    
+    # initialize the graph object
+    graph_obj <- graph(valueField = name, lineAlpha = lineAlpha, lineColor = col)
+    
+    # the field where to find the new values depend on the chart type
+    if (chart@type == "serial")
+      graph_obj <- setProperties(.Object = graph_obj, valueField = name)
+    else
+      graph_obj <- setProperties(.Object = graph_obj, xField = "x", yField = name)
+      
+    if (type == "points")
+      graph_obj <- setProperties(.Object = graph_obj, bullet = "round", maxBulletSize = 5)
+    # set the type if necessary
+    if (type == "smoothedLine")
+      graph_obj <- setProperties(.Object = graph_obj, type = "smoothedLine")
+    
+    # add the graph
+    addGraph(.Object = chart, amGraph = graph_obj)
+}
+
 

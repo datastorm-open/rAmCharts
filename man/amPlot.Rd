@@ -33,7 +33,7 @@ optional if x is an appropriate structure.}
 
 \item{type}{what type of plot should be drawn, default "p".}
 
-\item{col}{default "gray"}
+\item{col}{either a factor or a \code{character} default "gray"}
 
 \item{export}{default FALSE}
 
@@ -72,14 +72,23 @@ Specifies if Scrollbar of Y axis (vertical) should be hidden.}
 \item{hideXScrollbar}{(\code{FALSE} by default)
 optionnal for xy charts when scrollbar is enabled.
 Specifies if Scrollbar of X axis (horizontal) should be hidden.}
+
+\item{columns}{(optional) either a vector of \code{character} containing
+the names of the series to draw, or a \code{numeric} vector of indices.
+By default all numeric columns will be drawn.}
+
+\item{legend}{enable legend ? (default \code{TRUE})}
 }
 \description{
 amPlot computes a plot of the given data values.
 Can be a vector, a data.frame, or a formula
+
+
 }
 \examples{
 library(pipeR)
 library(rAmCharts)
+library(data.table)
 
 # ----------------
 # EXAMPLES NUMERIC
@@ -94,7 +103,6 @@ y <- rnorm(100, sd = 10)
 
 # change type
 amPlot(x = x, y = y) # default type = "p"
-amPlot(x = x, y = y, type = "sl")
 amPlot(x = x, y = y, type = "l")
 
 # add a scrollbar
@@ -102,7 +110,7 @@ amPlot(x = x, y = y, scrollbar = TRUE)
 amPlot(x = x, y = y, scrollbar = TRUE, hideYScrollbar = FALSE)
 
 # change lty
-amPlot(x = x, y = y, type = "l", lty = 1)
+amPlot(x = x, y = y, type = "l", lty = 2)
 
 # add weight
 weights <- rnorm(100, sd = 5)
@@ -110,29 +118,33 @@ amPlot(x = x, y = y, type = "p", weights = weights)
 
 # change cex
 amPlot(x = x, y = y, type = "p", cex = 1)
-amPlot(x = x, y = y, type = "p", cex = 50)
+amPlot(x = x, y = y, type = "p", cex = 10)
 
 # add title
-amPlot(x = rnorm(100), y = rnorm(100), main = "title")
+amPlot(x = x, y = y, main = "title")
+
+# change color
+amPlot(x = x, y = y, col = "blue")
+
+col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
+amPlot(x = x, y = y, col = col)
 
 # ---
 # x plot
 # ---
+x <- rnorm(100)
 
-amPlot(x = rnorm(100))
+# simple scatter plot
+amPlot(x = x)
 
 # add title
-amPlot(x = rnorm(100), main = "Title")
+amPlot(x = x, main = "Title")
 
 # set a title
-amPlot(x = rnorm(100), main = "Title")
+amPlot(x = x, main = "Title")
 
-# provide only x
-amPlot(x = rnorm(100))
-
-# change type (set to "l" by default)
-x <- rnorm(100)
-amPlot(x = rnorm(100, mean = 10))
+# change type (set to "p" by default)
+amPlot(x = x, type = "l")
 amPlot(x = x, type = "sl")
 amPlot(x = x, type = "st")
 amPlot(x = x, type = "p")
@@ -186,8 +198,32 @@ amPlot(iris)
 
 co2 <- data.table(get("CO2", "package:datasets"))
 amPlot(co2)
+
+# -------------------
+# ADD OTHER SERIE(S)
+# -------------------
+
+# For a simple chart
+amPlot(x = rnorm(100), type = 'sl') \%>>\%
+  amLines(x = rnorm(100), type = "p")
+
+amPlot(x = rnorm(100), type = 'sl') \%>>\%
+  amLines(x = rnorm(100), col = "blue") \%>>\%
+  amLines(x = rnorm(100), type = "sl") \%>>\%
+  amLines(x = rnorm(100), type = "p")
+
+# For an XY chart
+x <- sort(rnorm(100))
+y1 <- rnorm(100, sd = 10)
+y2 <- rnorm(100, sd = 10)
+y3 <- rnorm(100, sd = 10)
+amPlot(x = x, y = y1) \%>>\%
+  amLines(x = y2, col = "blue") \%>>\%
+  amLines(x = y3, type = "p")
+
 library(pipeR)
 library(rAmCharts)
+library(data.table)
 
 # ----------------
 # EXAMPLES NUMERIC
@@ -202,7 +238,6 @@ y <- rnorm(100, sd = 10)
 
 # change type
 amPlot(x = x, y = y) # default type = "p"
-amPlot(x = x, y = y, type = "sl")
 amPlot(x = x, y = y, type = "l")
 
 # add a scrollbar
@@ -210,7 +245,7 @@ amPlot(x = x, y = y, scrollbar = TRUE)
 amPlot(x = x, y = y, scrollbar = TRUE, hideYScrollbar = FALSE)
 
 # change lty
-amPlot(x = x, y = y, type = "l", lty = 1)
+amPlot(x = x, y = y, type = "l", lty = 2)
 
 # add weight
 weights <- rnorm(100, sd = 5)
@@ -218,29 +253,33 @@ amPlot(x = x, y = y, type = "p", weights = weights)
 
 # change cex
 amPlot(x = x, y = y, type = "p", cex = 1)
-amPlot(x = x, y = y, type = "p", cex = 50)
+amPlot(x = x, y = y, type = "p", cex = 10)
 
 # add title
-amPlot(x = rnorm(100), y = rnorm(100), main = "title")
+amPlot(x = x, y = y, main = "title")
+
+# change color
+amPlot(x = x, y = y, col = "blue")
+
+col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
+amPlot(x = x, y = y, col = col)
 
 # ---
 # x plot
 # ---
+x <- rnorm(100)
 
-amPlot(x = rnorm(100))
+# simple scatter plot
+amPlot(x = x)
 
 # add title
-amPlot(x = rnorm(100), main = "Title")
+amPlot(x = x, main = "Title")
 
 # set a title
-amPlot(x = rnorm(100), main = "Title")
+amPlot(x = x, main = "Title")
 
-# provide only x
-amPlot(x = rnorm(100))
-
-# change type (set to "l" by default)
-x <- rnorm(100)
-amPlot(x = rnorm(100, mean = 10))
+# change type (set to "p" by default)
+amPlot(x = x, type = "l")
 amPlot(x = x, type = "sl")
 amPlot(x = x, type = "st")
 amPlot(x = x, type = "p")
@@ -294,8 +333,28 @@ amPlot(iris)
 
 co2 <- data.table(get("CO2", "package:datasets"))
 amPlot(co2)
-\dontrun{
-amPlot(iris)
-}
+
+# -------------------
+# ADD OTHER SERIE(S)
+# -------------------
+
+# For a simple chart
+amPlot(x = rnorm(100), type = 'sl') \%>>\%
+  amLines(x = rnorm(100), type = "p")
+
+amPlot(x = rnorm(100), type = 'sl') \%>>\%
+  amLines(x = rnorm(100), col = "blue") \%>>\%
+  amLines(x = rnorm(100), type = "sl") \%>>\%
+  amLines(x = rnorm(100), type = "p")
+
+# For an XY chart
+x <- sort(rnorm(100))
+y1 <- rnorm(100, sd = 10)
+y2 <- rnorm(100, sd = 10)
+y3 <- rnorm(100, sd = 10)
+amPlot(x = x, y = y1) \%>>\%
+  amLines(x = y2, col = "blue") \%>>\%
+  amLines(x = y3, type = "p")
+
 }
 

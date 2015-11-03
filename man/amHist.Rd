@@ -43,7 +43,7 @@ if labels is a \code{character}, draw itself.}
 
 \item{scrollbar}{Allow scrollbar ? (default FALSE)}
 
-\item{scrollbar}{Allow cursor ? (default TRUE)}
+\item{cursor}{Allow cursor ? (default TRUE)}
 }
 \description{
 amHist computes a histogram of the given data values.
@@ -74,9 +74,11 @@ amHist(x = x, freq = FALSE)
 amHist(x = x, breaks = "Scott")
 amHist(x = x, breaks = "Scott", labels = TRUE)
 amHist(x = x, breaks = "Scott", main = "Histogram", ylab = "y-axis", xlab = "x-axis", col = "red")
-amHist(x = x, breaks = "Scott", main = "Histogram",
+amHist(x = x, breaks = "Scott", main = "Histogram", 
        ylab = "y-axis", xlab = "x-axis", ylim = c(10, 15))
-amHist(rnorm(100), breaks = "Scott", main = "Histogram",
+
+amHist(rnorm(100), breaks = "Scott", main = "Histogram", 
        ylab = "y-axis", xlab = "x-axis")
+
 }
 
