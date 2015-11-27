@@ -4,7 +4,7 @@
 \alias{amLines}
 \title{Add chart graph.}
 \usage{
-amLines(chart, x, type, col)
+amLines(chart, x, type, col, title)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
@@ -14,6 +14,8 @@ amLines(chart, x, type, col)
 \item{type}{(optionnal) \code{character}.}
 
 \item{col}{\code{character}, color of teh new serie.}
+
+\item{title}{\code{character} used when legend is enabled.}
 }
 \description{
 Add chart graph.
@@ -37,6 +39,11 @@ y <- rnorm(100, sd = 10)
 # change type
 amPlot(x = x, y = y) # default type = "p"
 amPlot(x = x, y = y, type = "l")
+
+# add a legend
+library(pipeR)
+amPlot(x = x, y = y, type = "l") \%>>\%
+  setLegend(useGraphSettings = TRUE)
 
 # add a scrollbar
 amPlot(x = x, y = y, scrollbar = TRUE)
@@ -124,9 +131,19 @@ amPlot(x = x, type = "st", lwd = 2)
 # -------------------
 
 iris <- data.table(get("iris", "package:datasets"))
-amPlot(iris, columns = "Sepal.Length")
 
+# select the column to plot with a character or a numeric
+amPlot(iris, columns = "Sepal.Length")
+amPlot(iris, columns = 1)
+
+# select several columns
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"))
+
+# add a legend 
+library(pipeR)
+amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
+  setLegend(useGraphSettings = TRUE)
+
 amPlot(iris)
 
 co2 <- data.table(get("CO2", "package:datasets"))
@@ -154,5 +171,15 @@ amPlot(x = x, y = y1) \%>>\%
   amLines(x = y2, col = "blue") \%>>\%
   amLines(x = y3, type = "p")
 
+
+# -------------------
+# FORMULA
+# -------------------
+iris <- data.table(get("iris", "package:datasets"))
+
+amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
+amPlot(Sepal.Length~Sepal.Width, data = iris)
+amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
+  setLegend(useGraphSettings = TRUE)
 }
 

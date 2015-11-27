@@ -4,6 +4,7 @@
 \alias{amPlot}
 \alias{amPlot.data.frame}
 \alias{amPlot.default}
+\alias{amPlot.formula}
 \alias{amPlot.numeric}
 \title{Plot data using rAmCharts}
 \usage{
@@ -19,6 +20,8 @@ amPlot(x, ...)
 \method{amPlot}{data.frame}(x, columns, type = "l", cursor = TRUE,
   scrollbar = FALSE, export = FALSE, legend = TRUE, precision = 2, xlab,
   ylab, main, ...)
+
+\method{amPlot}{formula}(x, data, ...)
 }
 \arguments{
 \item{x}{the coordinates of points in the plot numeric,
@@ -78,10 +81,14 @@ the names of the series to draw, or a \code{numeric} vector of indices.
 By default all numeric columns will be drawn.}
 
 \item{legend}{enable legend ? (default \code{TRUE})}
+
+\item{data}{enable legend ? (default \code{TRUE})}
 }
 \description{
 amPlot computes a plot of the given data values.
 Can be a vector, a data.frame, or a formula
+
+
 
 
 }
@@ -105,6 +112,11 @@ y <- rnorm(100, sd = 10)
 amPlot(x = x, y = y) # default type = "p"
 amPlot(x = x, y = y, type = "l")
 
+# add a legend
+library(pipeR)
+amPlot(x = x, y = y, type = "l") \%>>\%
+  setLegend(useGraphSettings = TRUE)
+
 # add a scrollbar
 amPlot(x = x, y = y, scrollbar = TRUE)
 amPlot(x = x, y = y, scrollbar = TRUE, hideYScrollbar = FALSE)
@@ -191,9 +203,19 @@ amPlot(x = x, type = "st", lwd = 2)
 # -------------------
 
 iris <- data.table(get("iris", "package:datasets"))
-amPlot(iris, columns = "Sepal.Length")
 
+# select the column to plot with a character or a numeric
+amPlot(iris, columns = "Sepal.Length")
+amPlot(iris, columns = 1)
+
+# select several columns
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"))
+
+# add a legend 
+library(pipeR)
+amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
+  setLegend(useGraphSettings = TRUE)
+
 amPlot(iris)
 
 co2 <- data.table(get("CO2", "package:datasets"))
@@ -221,6 +243,16 @@ amPlot(x = x, y = y1) \%>>\%
   amLines(x = y2, col = "blue") \%>>\%
   amLines(x = y3, type = "p")
 
+
+# -------------------
+# FORMULA
+# -------------------
+iris <- data.table(get("iris", "package:datasets"))
+
+amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
+amPlot(Sepal.Length~Sepal.Width, data = iris)
+amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
+  setLegend(useGraphSettings = TRUE)
 library(pipeR)
 library(rAmCharts)
 library(data.table)
@@ -240,6 +272,11 @@ y <- rnorm(100, sd = 10)
 amPlot(x = x, y = y) # default type = "p"
 amPlot(x = x, y = y, type = "l")
 
+# add a legend
+library(pipeR)
+amPlot(x = x, y = y, type = "l") \%>>\%
+  setLegend(useGraphSettings = TRUE)
+
 # add a scrollbar
 amPlot(x = x, y = y, scrollbar = TRUE)
 amPlot(x = x, y = y, scrollbar = TRUE, hideYScrollbar = FALSE)
@@ -326,9 +363,19 @@ amPlot(x = x, type = "st", lwd = 2)
 # -------------------
 
 iris <- data.table(get("iris", "package:datasets"))
-amPlot(iris, columns = "Sepal.Length")
 
+# select the column to plot with a character or a numeric
+amPlot(iris, columns = "Sepal.Length")
+amPlot(iris, columns = 1)
+
+# select several columns
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"))
+
+# add a legend 
+library(pipeR)
+amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
+  setLegend(useGraphSettings = TRUE)
+
 amPlot(iris)
 
 co2 <- data.table(get("CO2", "package:datasets"))
@@ -356,5 +403,15 @@ amPlot(x = x, y = y1) \%>>\%
   amLines(x = y2, col = "blue") \%>>\%
   amLines(x = y3, type = "p")
 
+
+# -------------------
+# FORMULA
+# -------------------
+iris <- data.table(get("iris", "package:datasets"))
+
+amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
+amPlot(Sepal.Length~Sepal.Width, data = iris)
+amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
+  setLegend(useGraphSettings = TRUE)
 }
 
