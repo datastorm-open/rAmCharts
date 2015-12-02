@@ -190,7 +190,7 @@ plotAmBoxplot <- function(dp, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL
     amSerialChart(categoryField = "cat", theme = "light", rotate = horizontal),
     setDataProvider(dp, keepNA = FALSE),
     addGraph(id = "g1", type = "candlestick",
-             balloonText = "Low = <b>[[low_outlier]]</b><br/>1st quart. = <b>[[open]]</b><br/>Median = <b>[[median]]</b><br/>3rd quart. = <b>[[close]]</b><br/>High = <b>[[high_outlier]]</b><br/>",
+             balloonText = "High = <b>[[high_outlier]]</b><br/>3rd quart. = <b>[[close]]</b><br/>Median = <b>[[median]]</b><br/>1st quart. = <b>[[open]]</b><br/>Low = <b>[[low_outlier]]</b><br/>",
              closeField = "close", fillColorsField = "color", highField = "high",
              lineColor = "#7f8da9", lineAlpha = 1, lowField = "low",
              fillAlphas = "0.9", negativeLineColor = "#7f8da9",
