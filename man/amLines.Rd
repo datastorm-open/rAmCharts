@@ -41,7 +41,6 @@ amPlot(x = x, y = y) # default type = "p"
 amPlot(x = x, y = y, type = "l")
 
 # add a legend
-library(pipeR)
 amPlot(x = x, y = y, type = "l") \%>>\%
   setLegend(useGraphSettings = TRUE)
 
@@ -130,7 +129,7 @@ amPlot(x = x, type = "st", lwd = 2)
 # EXAMPLES DATA.FRAME
 # -------------------
 
-iris <- data.table(get("iris", "package:datasets"))
+iris <- get("iris", "package:datasets")
 
 # select the column to plot with a character or a numeric
 amPlot(iris, columns = "Sepal.Length")
@@ -139,12 +138,12 @@ amPlot(iris, columns = 1)
 # select several columns
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"))
 
+# select all numeric columns
+amPlot(iris)
+
 # add a legend 
-library(pipeR)
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
   setLegend(useGraphSettings = TRUE)
-
-amPlot(iris)
 
 co2 <- data.table(get("CO2", "package:datasets"))
 amPlot(co2)

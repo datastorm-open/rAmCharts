@@ -18,7 +18,6 @@ amPlot(x = x, y = y) # default type = "p"
 amPlot(x = x, y = y, type = "l")
 
 # add a legend
-library(pipeR)
 amPlot(x = x, y = y, type = "l") %>>%
   setLegend(useGraphSettings = TRUE)
 
