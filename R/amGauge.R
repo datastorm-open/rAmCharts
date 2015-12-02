@@ -21,37 +21,125 @@
 #' @examples
 #' amAngularGauge(x = 25, start = 0, end = 100, step = 20, 
 #'                bands = data.frame(start = c(0, 40, 60), end = c(40, 60, 100), 
-#'                                   color = c("#00CC00", "#ffac29", "#ea3838")),
+#'                                   color = c("#00CC00", "#ffac29", "#ea3838"),
+#'                                   stringsAsFactors = FALSE),
 #'                main = "Angular gauge", mainSize = 15, legend = "km/h", legendSize = 25)
 #' amAngularGauge(x = 25, start = 0, end = 100, step = 20, 
 #'                bands = data.frame(start = c(0, 40, 60), end = c(40, 60, 100), 
 #'                                   color = c("#00CC00", "#ffac29", "#ea3838"),
-#'                                   width = c(10, 15, 20)),
+#'                                   width = c(10, 15, 20),
+#'                                   stringsAsFactors = FALSE),
 #'                main = "Angular gauge", mainSize = 15, legend = "km/h",
 #'                secondAxe = TRUE, start2 = 100, end2 = 200, step2 = 10,
 #'                bands2 = data.frame(start = c(100, 130, 170), end = c(130, 170, 200), 
-#'                color = c("#00CC00", "#ffac29", "#ea3838")))
+#'                color = c("#00CC00", "#ffac29", "#ea3838"), stringsAsFactors = FALSE))
 #' @export
 #' 
 amAngularGauge <- function(x, start = 0, end = 100, step = 20, 
                            bands = data.frame(start = numeric(), end = numeric(),
-                                                   color = character(), width = numeric()), 
+                                                   color = character(), width = numeric(),
+                                              stringsAsFactors = FALSE), 
                            main = "", mainSize = 15, legend = "", 
                            legendSize = 25, secondAxe = FALSE, start2 = 0, 
                            end2 = 100, step2 = 20, 
                            bands2 = data.frame(start = numeric(), end = numeric(),
-                                                    color = character())) {
+                                                    color = character(),
+                                               stringsAsFactors = FALSE)) {
   
   if (!requireNamespace(package = "pipeR")) {
     stop ("Please install the package pipeR for running this function")
   } else {}
   
+  if(!is.numeric(x)) {
+    stop("x must be numeric")
+  } else {}
+  
+  if(!is.numeric(start)) {
+    stop("start must be numeric")
+  } else {}
+  
+  if(!is.numeric(end)) {
+    stop("end must be numeric")
+  } else {}
+  
+  if(!is.numeric(step)) {
+    stop("step must be numeric")
+  }
+  
+  if(!is.data.frame(bands) | !any(c("start", "end", "color") %in% colnames(bands))) {
+    stop ("bands must be a data frame which at least the columns 'start' (numeric),
+          'end' (numeric), and 'color' (chararcter, color in hexadecimal)")
+  } else {}
+  
+  if(!is.numeric(bands$start)) {
+    stop("column 'start' of the dataframe bands must be numeric")
+  } else {}
+  
+  if(!is.numeric(bands$end)) {
+    stop("column 'end' of the dataframe bands must be numeric")
+  } else {}
+  
+  if(!is.character(bands$color)) {
+    stop("column 'color' of the dataframe bands must be character (color in hexadecimal)")
+  } else {}
+  
+  main <- as.character(main)
+  
+  if(!is.numeric(mainSize)) {
+    stop("mainSize must be numeric")
+  } else {}
+  
+  legend <- as.character(legend)
+  
+  if(!is.numeric(legendSize)) {
+    stop("legendSize must be numeric")
+  } else {}
+  
+  if(!is.logical(secondAxe)) {
+    stop("secondAxe must be logical")
+  }
+  
+  if(!is.numeric(start2)) {
+    stop("start2 must be numeric")
+  } else {}
+  
+  if(!is.numeric(end2)) {
+    stop("end2 must be numeric")
+  } else {}
+  
+  if(!is.numeric(step2)) {
+    stop("step2 must be numeric")
+  }
+  
+  if(!is.data.frame(bands2) | !any(c("start", "end", "color") %in% colnames(bands2))) {
+    stop ("bands2 must be a data frame which at least the columns 'start' (numeric),
+          'end' (numeric), and 'color' (chararcter, color in hexadecimal)")
+  } else {}
+  
+  if(!is.numeric(bands2$start)) {
+    stop("column 'start' of the dataframe bands2 must be numeric")
+  } else {}
+  
+  if(!is.numeric(bands2$end)) {
+    stop("column 'end' of the dataframe bands2 must be numeric")
+  } else {}
+  
+  if(!is.character(bands2$color)) {
+    stop("column 'color' of the dataframe bands2 must be character (color in hexadecimal)")
+  } else {}
+  
+  
   bands_1 <- list()
+  
   if(nrow(bands) > 0) {
     sapply(1:nrow(bands), FUN = function(i) {
       if("width" %in% colnames(bands)) {
-        if(bands$width[i] < 100 & bands$width[i] > 0) {
-          innerRadius <- paste0(100-bands$width[i], "%")
+        if(is.numeric(bands$width)) {
+          if(bands$width[i] < 100 & bands$width[i] > 0) {
+            innerRadius <- paste0(100-bands$width[i], "%")
+          } else {
+            innerRadius <- "97%"
+          }
         } else {
           innerRadius <- "97%"
         }
@@ -126,6 +214,42 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
   
   if (!requireNamespace(package = "pipeR")) {
     stop ("Please install the package pipeR for running this function")
+  } else {}
+  
+  if(!is.numeric(x)) {
+    stop("x must be numeric")
+  } else {}
+  
+  if(!is.numeric(min)) {
+    stop("min must be numeric")
+  } else {}
+  
+  if(!is.numeric(max)) {
+    stop("max must be numeric")
+  } else {}
+  
+  if(!is.character(type) | !type %in% c("full", "semi")) {
+    stop("type must be a character, 'full' or 'semi'")
+  } else {}
+  
+  if(!is.numeric(width)) {
+    stop("width must be numeric")
+  } else {}
+  
+  main = as.character(main)
+  
+  if(!is.numeric(mainSize)) {
+    stop("mainSize must be numeric")
+  } else {}
+  
+  if(!is.character(color)) {
+    stop("color must be a character (color in hexadecimal)")
+  } else {}
+  
+  legend = as.character(legend)
+  
+  if(!is.numeric(legendSize)) {
+    stop("legendSize must be numeric")
   } else {}
   
   if(width < 100 & width > 0) {
