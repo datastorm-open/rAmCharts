@@ -233,6 +233,7 @@ amPlot.data.frame <- function(x, columns, type = "l", cursor = TRUE, scrollbar =
   } else {}
   
   if (is.character(columns)) columns <- which(colnames(x) %in% columns)
+  if (!is.data.table(x)) x <- as.data.table(x)
   x <- x[, eval(columns), with = FALSE]
   
   if (ncol(x) == 1) x <- x[[1]]
