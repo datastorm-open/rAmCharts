@@ -33,6 +33,8 @@
 #'                secondAxe = TRUE, start2 = 100, end2 = 200, step2 = 10,
 #'                bands2 = data.frame(start = c(100, 130, 170), end = c(130, 170, 200), 
 #'                color = c("#00CC00", "#ffac29", "#ea3838"), stringsAsFactors = FALSE))
+#' 
+#' @import pipeR
 #' @export
 #' 
 amAngularGauge <- function(x, start = 0, end = 100, step = 20, 
@@ -45,10 +47,6 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
                            bands2 = data.frame(start = numeric(), end = numeric(),
                                                     color = character(),
                                                stringsAsFactors = FALSE)) {
-  
-  if (!requireNamespace(package = "pipeR")) {
-    stop ("Please install the package pipeR for running this function")
-  } else {}
   
   if(!is.numeric(x)) {
     stop("x must be numeric")
@@ -128,6 +126,17 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
     stop("column 'color' of the dataframe bands2 must be character (color in hexadecimal)")
   } else {}
   
+  if(start > end) {
+    stop("start as to be inferior to end")
+  } else {}
+  
+  if(start2 > end2) {
+    stop("start2 as to be inferior to end2")
+  } else {}
+  
+  if(x < start | x > end) {
+    stop("x must be between start and end")
+  }
   
   bands_1 <- list()
   
@@ -182,7 +191,12 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
     res <- addAxis(res, startValue = start2, endValue = end2, valueInterval = step2,
                    bands = bands_2, inside = FALSE, gridInside = FALSE, radius = "100%")
   }
-  res
+  
+  if (isTRUE(getOption('knitr.in.progress'))) {
+    return(plot(res))
+  } else {
+    return(res)
+  }
 }
 
 
@@ -252,6 +266,15 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
     stop("legendSize must be numeric")
   } else {}
   
+  
+  if(min > max) {
+    stop("min as to be inferior to max")
+  } else {}
+  
+  if(x < min | x > max) {
+    stop("x must be between min and max")
+  }
+  
   if(width < 100 & width > 0) {
     innerRadius <- paste0(100-width, "%")
   } else {
@@ -284,7 +307,7 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
   bands[[1]] <- gaugeBand(startValue = 0, endValue = max, color = "#e0eeee", innerRadius = innerRadius)
   bands[[2]] <- gaugeBand(startValue = 0, endValue = x, color = col, innerRadius = innerRadius)
   
-  pipeR::pipeline(
+  res <- pipeR::pipeline(
     amAngularGaugeChart(startValue = min, endValue = max, valueInterval = max,
                         labelsEnabled = FALSE),
     addTitle(text = main, size = mainSize),
@@ -293,5 +316,11 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
             bottomText = paste(x, legend), bottomTextYOffset = bottomTextYOffset, bottomTextFontSize = legendSize,
             tickAlpha = 0, axisColor= "#c1cdcd", labelsEnabled = FALSE)
   )
+  
+  if (isTRUE(getOption('knitr.in.progress'))) {
+    return(plot(res))
+  } else {
+    return(res)
+  }
 }
 

@@ -1,6 +1,6 @@
 #' @title Plotting bullet chart using rAmCharts
 #' 
-#' @description  bulletChart computes a bullet chart of the given value.
+#' @description  amBullet computes a bullet chart of the given value.
 #' 
 #' @param value \code{numeric}
 #' @param min \code{numeric} minimum value allowed
@@ -21,10 +21,10 @@
 #' 
 #' ### basic example
 #' # keep the default parameter values: 
-#' bulletChart(value = 65)
+#' amBullet(value = 65)
 #' 
 #' # equivalent to:
-#' bulletChart(value = 65, min = 0, max = 100, val_color = "#000000",
+#' amBullet(value = 65, min = 0, max = 100, val_color = "#000000",
 #'              limit = 85, limit_color = "#000000", 
 #'              steps = TRUE, main = "Bullet chart", mainSize = 15, 
 #'              legend = "", horiz = TRUE,
@@ -36,28 +36,30 @@
 #'                                 stringsAsFactors = FALSE))
 #'                                           
 #' ### Remove steps for background:
-#' bulletChart(value = 65, steps = FALSE)
+#' amBullet(value = 65, steps = FALSE)
 #' 
 #' ### Tune the colors with name or HTML code:
-#' bulletChart(value = 65, val_color = "purple", limit_color = "#3c8dbc")
+#' amBullet(value = 65, val_color = "purple", limit_color = "#3c8dbc")
 #' 
 #' ### Change the orientation:
-#' bulletChart(value = 65, steps = FALSE, horiz = FALSE)
+#' amBullet(value = 65, steps = FALSE, horiz = FALSE)
 #'              
 #' ### Add title and legend:
-#' bulletChart(value = 65, legend = "Evaluation",
+#' amBullet(value = 65, legend = "Evaluation",
 #'             main = "Bullet chart 1", mainSize = 15)
 #' 
 #' ### Change min and max values:   
-#' bulletChart(value = 65, min = 20, max = 90)
-#' 
+#' amBullet(value = 65, min = 20, max = 90)
+#'
+#' @import pipeR 
 #' @export
 #'
 
-bulletChart <- function(value, min = 0, max = 100, val_color = "#000000",
+amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
                         limit = 85, limit_color = "#000000", 
                         steps = TRUE, main = "", mainSize = 15, 
                         legend = "", horiz = TRUE, rates) {
+  
   if (missing(rates))
     rates <- data.frame(name = c("excelent", "good", "average", "poor", "bad"),
                         min = c(0, 20, 40, 60, 80),
@@ -66,7 +68,7 @@ bulletChart <- function(value, min = 0, max = 100, val_color = "#000000",
                                   "#f6d32b", "#fb7116"),
                         stringsAsFactors = FALSE)
   
-  if(!is.data.frame(rates) | !any(c("name", "min", "max", "color") %in% colnames(bands))) {
+  if(!is.data.frame(rates) | !any(c("name", "min", "max", "color") %in% colnames(rates))) {
     stop ("rates must be a data frame which at least the columns 'name' (numeric),
           'min' (numeric), 'max' (numeric) and 'color' (chararcter, color in hexadecimal)")
   } else {}
@@ -162,5 +164,9 @@ bulletChart <- function(value, min = 0, max = 100, val_color = "#000000",
   chart <- addGraph(chart, type = "column", valueField = "bullet", columnWidth = 0.3, fillAlphas = 1, 
                   lineColor = val_color, clustered = FALSE, stackable = FALSE)
   
-  chart
+  if (isTRUE(getOption('knitr.in.progress'))) {
+    return(plot(chart))
+  } else {
+    return(chart)
+  }
 }

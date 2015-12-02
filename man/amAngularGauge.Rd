@@ -6,10 +6,10 @@
 \usage{
 amAngularGauge(x, start = 0, end = 100, step = 20,
   bands = data.frame(start = numeric(), end = numeric(), color = character(),
-  width = numeric()), main = "", mainSize = 15, legend = "",
-  legendSize = 25, secondAxe = FALSE, start2 = 0, end2 = 100,
-  step2 = 20, bands2 = data.frame(start = numeric(), end = numeric(), color
-  = character()))
+  width = numeric(), stringsAsFactors = FALSE), main = "", mainSize = 15,
+  legend = "", legendSize = 25, secondAxe = FALSE, start2 = 0,
+  end2 = 100, step2 = 20, bands2 = data.frame(start = numeric(), end =
+  numeric(), color = character(), stringsAsFactors = FALSE))
 }
 \arguments{
 \item{x}{an integer of the value for which the angular gauge is desired.}
@@ -50,15 +50,17 @@ amAngularGauge computes a gauge of the given value.
 \examples{
 amAngularGauge(x = 25, start = 0, end = 100, step = 20,
                bands = data.frame(start = c(0, 40, 60), end = c(40, 60, 100),
-                                  color = c("#00CC00", "#ffac29", "#ea3838")),
+                                  color = c("#00CC00", "#ffac29", "#ea3838"),
+                                  stringsAsFactors = FALSE),
                main = "Angular gauge", mainSize = 15, legend = "km/h", legendSize = 25)
 amAngularGauge(x = 25, start = 0, end = 100, step = 20,
                bands = data.frame(start = c(0, 40, 60), end = c(40, 60, 100),
                                   color = c("#00CC00", "#ffac29", "#ea3838"),
-                                  width = c(10, 15, 20)),
+                                  width = c(10, 15, 20),
+                                  stringsAsFactors = FALSE),
                main = "Angular gauge", mainSize = 15, legend = "km/h",
                secondAxe = TRUE, start2 = 100, end2 = 200, step2 = 10,
                bands2 = data.frame(start = c(100, 130, 170), end = c(130, 170, 200),
-               color = c("#00CC00", "#ffac29", "#ea3838")))
+               color = c("#00CC00", "#ffac29", "#ea3838"), stringsAsFactors = FALSE))
 }
 

@@ -76,6 +76,7 @@ Collate:
     'amGauge.R'
     'amHist.R'
     'amPlot.R'
+    'amWaterfall.R'
     'data.R'
     'shinyExamples.R'
     'startupMessage.R'
