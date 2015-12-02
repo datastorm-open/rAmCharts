@@ -32,7 +32,8 @@
 #'                                 min = c(0, 20, 40, 60, 80),
 #'                                 max = c(20, 40, 60, 80, 100),
 #'                                 color = c("#fb7116", "#b4dd1e", "#f4fb16",
-#'                                           "#19d228", "#f6d32b")))
+#'                                           "#19d228", "#f6d32b"),
+#'                                 stringsAsFactors = FALSE))
 #'                                           
 #' ### Remove steps for background:
 #' bulletChart(value = 65, steps = FALSE)
@@ -52,18 +53,81 @@
 #' 
 #' @export
 #'
-#'
+
 bulletChart <- function(value, min = 0, max = 100, val_color = "#000000",
                         limit = 85, limit_color = "#000000", 
-                        steps = TRUE, main = "Bullet Chart", mainSize = 15, 
-                        legend = "", horiz = TRUE, rates)
-{
+                        steps = TRUE, main = "", mainSize = 15, 
+                        legend = "", horiz = TRUE, rates) {
   if (missing(rates))
     rates <- data.frame(name = c("excelent", "good", "average", "poor", "bad"),
                         min = c(0, 20, 40, 60, 80),
                         max = c(20, 40, 60, 80, 100),
                         color = c("#19d228", "#b4dd1e", "#f4fb16",
-                                  "#f6d32b", "#fb7116"))
+                                  "#f6d32b", "#fb7116"),
+                        stringsAsFactors = FALSE)
+  
+  if(!is.data.frame(rates) | !any(c("name", "min", "max", "color") %in% colnames(bands))) {
+    stop ("rates must be a data frame which at least the columns 'name' (numeric),
+          'min' (numeric), 'max' (numeric) and 'color' (chararcter, color in hexadecimal)")
+  } else {}
+  
+  if(!is.character(rates$name)) {
+    stop("column 'name' of the dataframe rates must be character")
+  } else {}
+  
+  if(!is.numeric(rates$min)) {
+    stop("column 'min' of the dataframe rates must be numeric")
+  } else {}
+  
+  if(!is.numeric(rates$max)) {
+    stop("column 'max' of the dataframe rates must be numeric")
+  } else {}
+  
+  if(!is.character(rates$color)) {
+    stop("column 'color' of the dataframe rates must be character
+         (color in hexadecimal)")
+  } else {}
+  
+  if(!is.numeric(value)) {
+    stop("value must be numeric")
+  } else {}
+  
+  if(!is.numeric(min)) {
+    stop("min must be numeric")
+  } else {}
+  
+  if(!is.numeric(max)) {
+    stop("max must be numeric")
+  } else {}
+  
+  if(!is.character(val_color)) {
+    stop("val_color must be a character")
+  } else {}
+  
+  if(!is.numeric(limit)) {
+    stop("limit must be numeric")
+  } else {}
+  
+  if(!is.character(limit_color)) {
+    stop("limit_color must be a character")
+  } else {}
+  
+  if(!is.logical(steps)) {
+    stop("steps must be logical")
+  } else {}
+  
+  main <- as.character(main)
+  
+  if(!is.numeric(mainSize)) {
+    stop("mainSize must be numeric")
+  } else {}
+  
+  legend <- as.character(legend)
+  
+  if(!is.logical(horiz)) {
+    stop("horiz must be logical")
+  } else {}
+  
   val_color <- tolower(val_color)
   limit_color <- tolower(limit_color)
   rates$color <- tolower(rates$color)
