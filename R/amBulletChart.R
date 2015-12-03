@@ -164,9 +164,11 @@ amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
   chart <- addGraph(chart, type = "column", valueField = "bullet", columnWidth = 0.3, fillAlphas = 1, 
                   lineColor = val_color, clustered = FALSE, stackable = FALSE)
   
-  if (isTRUE(getOption('knitr.in.progress'))) {
-    return(plot(chart))
-  } else {
-    return(chart)
-  }
+#   if (isTRUE(getOption('knitr.in.progress'))) {
+#     return(plot(chart))
+#   } else {
+#     return(chart)
+#   }
+  
+  chart
 }

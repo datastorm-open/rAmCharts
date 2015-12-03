@@ -208,6 +208,19 @@ setMethod(f = "setDataSetSelector", signature = c("AmStockChart"),
             return(.Object)
           })
 
+
+#' @examples
+#' print(setExport(.Object = amStockChart()))
+#' @rdname initialize-AmChart
+#' 
+setMethod(f = "setExport", signature = c("AmStockChart"),
+          definition = function(.Object, enabled = TRUE, ...)
+          {
+            .Object <- setProperties( .Object, export = list(enabled = enabled, ...) )
+            validObject(.Object)
+            return(.Object)
+          })
+
 #' @examples
 #' setLegendSettings(.Object = amStockChart(), equalWidths = TRUE)
 #' @rdname initialize-AmStockChart

@@ -139,9 +139,5 @@ amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE
     
   })
   
-  if (isTRUE(getOption('knitr.in.progress'))) {
-    return(plot(res))
-  } else {
-    return(res)
-  }
+  res
 }

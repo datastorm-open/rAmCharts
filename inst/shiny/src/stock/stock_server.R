@@ -38,7 +38,8 @@ output$stock1 <- renderAmCharts({
                         addListener('changed', 'function(event) {alert(\'changed\')}')),
     setDataSetSelector(dataSetSelector(position = 'left') %>>%
                          addListener('dataSetCompared', 'function(event) {alert(\'dataSetCompared\')}')),
-    setPanelsSettings(recalculateToPercents = FALSE)
+    setPanelsSettings(recalculateToPercents = FALSE),
+    setExport()
   )
 })
 

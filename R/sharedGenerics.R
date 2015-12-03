@@ -15,11 +15,21 @@ setGeneric(name = "setBalloon", def = function(.Object, amBalloon = NULL, ...) {
 setGeneric(name = "setDataProvider",
            def = function(.Object, dataProvider, keepNA = TRUE) { standardGeneric("setDataProvider") } )
 
+
+#' @details setExport(...) is Shared by AmChart and AmStockChart
+#' @param enabled \code{logical}, default \code{TRUE}.
+#' Should the export button be shown ?
+#' @rdname shared-generics
+#' @export
+#' 
+setGeneric(name = "setExport",
+           def = function(.Object, enabled = TRUE, ...) {standardGeneric("setExport")})
+
 #' @details setTitle(...) is Shared by AmGraph and ValueAxis
 #' @param title \code{character}.
 #' @rdname shared-generics
 #' @export
-setGeneric( name = "setTitle", def = function(.Object, title){ standardGeneric("setTitle") } )
+setGeneric(name = "setTitle", def = function(.Object, title){ standardGeneric("setTitle") } )
 
 #' @details setType(...) is shared by AmGraph and AmChart
 #' @param type \code{character}.

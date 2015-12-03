@@ -192,11 +192,13 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
                    bands = bands_2, inside = FALSE, gridInside = FALSE, radius = "100%")
   }
   
-  if (isTRUE(getOption('knitr.in.progress'))) {
-    return(plot(res))
-  } else {
-    return(res)
-  }
+#   if (isTRUE(getOption('knitr.in.progress'))) {
+#     return(plot(res))
+#   } else {
+#     return(res)
+#   }
+  
+  res
 }
 
 
@@ -317,10 +319,12 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
             tickAlpha = 0, axisColor= "#c1cdcd", labelsEnabled = FALSE)
   )
   
-  if (isTRUE(getOption('knitr.in.progress'))) {
-    return(plot(res))
-  } else {
-    return(res)
-  }
+#   if (isTRUE(getOption('knitr.in.progress'))) {
+#     return(plot(res))
+#   } else {
+#     return(res)
+#   }
+  
+  res
 }
 

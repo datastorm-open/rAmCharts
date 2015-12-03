@@ -390,17 +390,10 @@ setMethod(f = "setDataProvider", signature = c("AmChart", "data.frame", "logical
              return(.Object)
            })
 
-
-#' @param enabled \code{logical}, default \code{TRUE}.
-#' Should the export button be shown ?
-#' @examples
+#' @examples 
 #' print(setExport(.Object = amSerialChart()))
-#' # ---
 #' @rdname initialize-AmChart
-#' @export
-setGeneric(name = "setExport",
-            def = function(.Object, enabled = TRUE, ...) { standardGeneric("setExport") } )
-#' @rdname initialize-AmChart
+#' 
 setMethod(f = "setExport", signature = c("AmChart"),
            definition = function(.Object, enabled = TRUE, ...)
            {
@@ -554,6 +547,7 @@ setMethod(f = "setLegend", signature = c("AmChart", "AmLegendOrMissing"),
             return(.Object)
           })
 
+#' @param enabled \code{logical}, default \code{TRUE}.
 #' @examples
 #' print(setResponsive(.Object = amSerialChart(), enabled = FALSE))
 #' # ---

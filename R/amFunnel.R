@@ -150,9 +150,11 @@ amFunnel <- function(data, main = "Funnel Chart", mainSize = 15, inverse = FALSE
     }
   }
   
-  if (isTRUE(getOption('knitr.in.progress'))) {
-    return(plot(res))
-  } else {
-    return(res)
-  }
+#   if (isTRUE(getOption('knitr.in.progress'))) {
+#     return(plot(res))
+#   } else {
+#     return(res)
+#   }
+  
+  res
 }
