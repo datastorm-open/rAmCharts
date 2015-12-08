@@ -5,7 +5,8 @@
 \title{Plotting pie chart using rAmCharts}
 \usage{
 amPie(data, main = "", mainSize = 15, legend = FALSE,
-  legend_side = NULL, show_values = TRUE)
+  legend_side = NULL, show_values = TRUE, third_dim = FALSE,
+  inner_radius = 0)
 }
 \arguments{
 \item{data}{\code{data.frame} dataframe with at least 2 columns :
@@ -21,6 +22,10 @@ Your can add a third column "color" (character, colors in hexadecimal).}
 \item{legend_side}{\code{character} either "left" or "right" if legend is set to TRUE}
 
 \item{show_values}{\code{boolean} TRUE to display values.}
+
+\item{third_dim}{\code{boolean} if TRUE, chart is displayed in 3D}
+
+\item{inner_radius}{\code{numeric} value between 0 and 100}
 }
 \description{
 amPie computes a pie chart of the given value.
@@ -30,6 +35,6 @@ amPie(data = data.frame(label = c("Facebook", "Twitter", "LinkedIn", "Google+",
                                        "Pinterest"),
                               value = c(38, 25, 15, 14, 8),
                               stringsAsFactors = FALSE),
-            main = "Favourite social media", show_values = TRUE)
+            main = "Favourite social media", inner_radius = 20)
 }
 
