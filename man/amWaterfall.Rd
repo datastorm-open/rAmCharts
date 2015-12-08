@@ -4,7 +4,8 @@
 \alias{amWaterfall}
 \title{Plotting waterfall chart using rAmCharts}
 \usage{
-amWaterfall(data, start = 0, main = "", mainSize = 15, horiz = FALSE)
+amWaterfall(data, start = 0, main = "", mainSize = 15, horiz = FALSE,
+  show_values = FALSE)
 }
 \arguments{
 \item{data}{\code{data.frame} dataframe with at least 3 columns :
@@ -18,6 +19,8 @@ Your can add a third column "color" (character, colors in hexadecimal).}
 \item{mainSize}{\code{numeric}, size of the title of the graph.}
 
 \item{horiz}{\code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one}
+
+\item{show_values}{\code{boolean} TRUE to display values on the chart.}
 }
 \description{
 amWaterfall computes a waterfall chart of the given value.
@@ -33,6 +36,6 @@ amWaterfall(data = data.frame(label = c("Income 1", "Income 2", "Income 3", "Tot
                                             "total", "plus", "minus", rep("plus", 2),
                                             "total", rep("minus", 2), "total"),
                                             stringsAsFactors = FALSE),
-            start = 0, main = "Waterfall Example", mainSize = 15, horiz = FALSE)
+            main = "Waterfall Example", show_values = TRUE)
 }
 

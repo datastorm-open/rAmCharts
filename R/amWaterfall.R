@@ -7,6 +7,7 @@
 #' @param main \code{character}, title of the graph
 #' @param mainSize \code{numeric}, size of the title of the graph.
 #' @param horiz \code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one
+#' @param show_values \code{boolean} TRUE to display values on the chart.
 #' @examples
 #' amWaterfall(data = data.frame(label = c("Income 1", "Income 2", "Income 3", "Total 1", 
 #'                                        "Expenses 1", "Expenses 2", "Total 2", "Income 4", 
@@ -18,10 +19,11 @@
 #'                                             "total", "plus", "minus", rep("plus", 2), 
 #'                                             "total", rep("minus", 2), "total"), 
 #'                                             stringsAsFactors = FALSE),
-#'             start = 0, main = "Waterfall Example", mainSize = 15, horiz = FALSE)
+#'             main = "Waterfall Example", show_values = TRUE)
 #' @export
 
-amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE) {
+amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE,
+                        show_values = FALSE) {
   
   if(!is.data.frame(data) | !any(c("label", "value", "operation") %in% colnames(data))) {
     stop ("data must be a data frame which at least the columns 'label' (character),
@@ -57,6 +59,10 @@ amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE
   
   if(!is.logical(horiz)) {
     stop("horiz must be logical")
+  } else {}
+  
+  if(!is.logical(show_values)) {
+    stop("show_values must be logical")
   } else {}
   
   if(!"color" %in% colnames(data)) {
@@ -113,15 +119,24 @@ amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE
       }
     }
   })
+  data$val <- data$value
   
   res <- pipeR::pipeline(
-    amSerialChart(dataProvider = data, categoryField = "label", balloonValue = "value",
+    amSerialChart(dataProvider = data, categoryField = "label", balloonValue = "val",
                   rotate = horiz),
-    addTitle(text = main, size = mainSize),
-    addGraph(openField = "open", valueField = "close", colorField = "color",
-             type = "column", lineColor = "#BBBBBB", fillAlphas = 0.8,
-             balloonText =  "<span style='color:[[color]]'>[[label]]</span><br><b>[[value]]</b>")
+    addTitle(text = main, size = mainSize)
   )
+  
+  if(show_values) {
+    res <- addGraph(res, openField = "open", valueField = "close", colorField = "color",
+                    type = "column", lineColor = "#BBBBBB", fillAlphas = 0.8,
+                    balloonText =  "<span style='color:[[color]]'>[[label]]</span><br><b>[[val]]</b>",
+                    labelText = "[[val]]")
+  } else {
+    res <- addGraph(res, openField = "open", valueField = "close", colorField = "color",
+                    type = "column", lineColor = "#BBBBBB", fillAlphas = 0.8,
+                    balloonText =  "<span style='color:[[color]]'>[[label]]</span><br><b>[[val]]</b>")
+  }
   
   sapply(2:nrow(data), FUN = function(i) {
     
