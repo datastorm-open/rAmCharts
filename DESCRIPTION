@@ -75,6 +75,7 @@ Collate:
     'amFunnel.R'
     'amGauge.R'
     'amHist.R'
+    'amPie.R'
     'amPlot.R'
     'amWaterfall.R'
     'data.R'
