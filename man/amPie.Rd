@@ -31,10 +31,23 @@ Your can add a third column "color" (character, colors in hexadecimal).}
 amPie computes a pie chart of the given value.
 }
 \examples{
-amPie(data = data.frame(label = c("Facebook", "Twitter", "LinkedIn", "Google+",
-                                       "Pinterest"),
-                              value = c(38, 25, 15, 14, 8),
-                              stringsAsFactors = FALSE),
-            main = "Favourite social media")
+#Basic example
+data_pie <- data.frame(label = c("Facebook", "Twitter", "LinkedIn", "Google+",
+                                  "Pinterest"),
+                       value = c(38, 25, 15, 14, 8), stringsAsFactors = FALSE)
+
+amPie(data = data_pie)
+
+#add legend
+amPie(data = data_pie, legend = TRUE)
+
+#don't display values
+amPie(data = data_pie, show_values = FALSE)
+
+#3D pie
+amPie(data = data_pie, third_dim = TRUE)
+
+#donut chart
+amPie(data = data_pie, inner_radius = 50)
 }
 

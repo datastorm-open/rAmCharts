@@ -11,11 +11,26 @@
 #' @param third_dim \code{boolean} if TRUE, chart is displayed in 3D
 #' @param inner_radius \code{numeric} value between 0 and 100
 #' @examples
-#' amPie(data = data.frame(label = c("Facebook", "Twitter", "LinkedIn", "Google+", 
-#'                                        "Pinterest"),
-#'                               value = c(38, 25, 15, 14, 8), 
-#'                               stringsAsFactors = FALSE),
-#'             main = "Favourite social media")
+#' 
+#' #Basic example
+#' data_pie <- data.frame(label = c("Facebook", "Twitter", "LinkedIn", "Google+", 
+#'                                   "Pinterest"),
+#'                        value = c(38, 25, 15, 14, 8), stringsAsFactors = FALSE)
+#'                        
+#' amPie(data = data_pie)
+#' 
+#' #add legend
+#' amPie(data = data_pie, legend = TRUE)
+#' 
+#' #don't display values
+#' amPie(data = data_pie, show_values = FALSE)
+#' 
+#' #3D pie
+#' amPie(data = data_pie, third_dim = TRUE)
+#' 
+#' #donut chart
+#' amPie(data = data_pie, inner_radius = 50)
+#' 
 #' @export
 
 amPie <- function(data, main = "", mainSize = 15, legend = FALSE, legend_side = NULL,

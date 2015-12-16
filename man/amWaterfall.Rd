@@ -28,7 +28,7 @@ display when mouse is on the graphic ('<br>' for a new line).}
 amWaterfall computes a waterfall chart of the given value.
 }
 \examples{
-# Simple example
+# Basic example
 data_waterfall <- data.frame(label = c("Income 1", "Income 2", "Income 3", "Total 1",
                                        "Expenses 1", "Expenses 2", "Total 2", "Income 4",
                                        "Income 5", "Income 6", "Expenses 3","Total 3",
@@ -46,5 +46,8 @@ amWaterfall(data = data_waterfall, main = "Waterfall Example", show_values = TRU
 data_waterfall$description <- paste("The value for", data_waterfall$label, "is :<br>",
                                     data_waterfall$value)
 amWaterfall(data = data_waterfall, main = "Waterfall Example", show_values = TRUE)
+
+#change the orientation :
+amWaterfall(data = data_waterfall, horiz = TRUE)
 }
 

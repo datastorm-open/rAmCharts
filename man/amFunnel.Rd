@@ -4,7 +4,7 @@
 \alias{amFunnel}
 \title{Plotting funnel chart using rAmCharts}
 \usage{
-amFunnel(data, main = "Funnel Chart", mainSize = 15, inverse = FALSE,
+amFunnel(data, main = "", mainSize = 15, inverse = FALSE,
   neck_height = NULL, neck_width = NULL, third_dim = FALSE,
   label_side = "right", margin_right = 160, margin_left = 15)
 }
@@ -38,54 +38,25 @@ pyramid chart (without a bottleneck)}
 amFunnel computes a funnel chart of the given value.
 }
 \examples{
-amFunnel(data = data.frame(description = c("Website visits", "Downloads",
-                                                 "Requested price list",
-                                                 "Contaced for more info",
-                                                 "Purchased", "Contacted for support",
-                                                 "Purchased additional products"),
-                                value = c(300, 123, 98, 72, 80, 15, 8),
-                                stringsAsFactors = FALSE),
-               main = "Pyramid", mainSize = 15, inverse = TRUE)
+#Basic example : pyramid
+data_funnel <- data.frame(description = c("Website visits", "Downloads",
+                                          "Requested price list",
+                                          "Contaced for more info",
+                                          "Purchased", "Contacted for support",
+                                          "Purchased additional products"),
+                          value = c(300, 123, 98, 72, 80, 15, 8),
+                          stringsAsFactors = FALSE)
 
-amFunnel(data = data.frame(description = c("Website visits", "Downloads",
-                                                 "Requested price list",
-                                                 "Contaced for more info",
-                                                 "Purchased", "Contacted for support",
-                                                 "Purchased additional products"),
-                                value = c(300, 123, 98, 72, 80, 15, 8),
-                                stringsAsFactors = FALSE),
-               main = "Reversed Pyramid", mainSize = 15, inverse = FALSE,
+amFunnel(data = data_funnel, inverse = TRUE)
+
+#Change the orientation and legend side
+amFunnel(data = data_funnel, main = "Reversed Pyramid", inverse = FALSE,
                label_side = "left", margin_right = 15, margin_left = 160)
 
-amFunnel(data = data.frame(description = c("Website visits", "Downloads",
-                                                 "Requested price list",
-                                                 "Contaced for more info",
-                                                 "Purchased", "Contacted for support",
-                                                 "Purchased additional products"),
-                                value = c(300, 123, 98, 72, 80, 15, 8),
-                                stringsAsFactors = FALSE),
-               neck_height = 30, neck_width = 40,
-               main = "Funnel", mainSize = 15, inverse = FALSE)
+#Basic example : Funnel chart
+amFunnel(data = data_funnel, neck_height = 30, neck_width = 40)
 
-amFunnel(data = data.frame(description = c("Website visits", "Downloads",
-                                                 "Requested price list",
-                                                 "Contaced for more info",
-                                                 "Purchased", "Contacted for support",
-                                                 "Purchased additional products"),
-                                value = c(300, 123, 98, 72, 80, 15, 8),
-                                stringsAsFactors = FALSE),
-               neck_height = 30, neck_width = 40,
-               main = "Reversed Funnel", mainSize = 15, inverse = TRUE,
-               label_side = "left", margin_right = 15, margin_left = 160)
-
-amFunnel(data = data.frame(description = c("Website visits", "Downloads",
-                                                 "Requested price list",
-                                                 "Contaced for more info",
-                                                 "Purchased", "Contacted for support",
-                                                 "Purchased additional products"),
-                                value = c(300, 123, 98, 72, 80, 15, 8),
-                                stringsAsFactors = FALSE),
-               third_dim = TRUE,
-               main = "Pyramid", mainSize = 15, inverse = TRUE)
+#3D pyramid
+amFunnel(data = data_funnel, third_dim = TRUE, inverse = TRUE)
 }
 
