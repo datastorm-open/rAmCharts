@@ -70,6 +70,7 @@ Collate:
     'StockEvent_setters.R'
     'StockPanel_setters.R'
     'TrendLine_setters.R'
+    'amBar.R'
     'amBoxplot.R'
     'amBulletChart.R'
     'amFunnel.R'
