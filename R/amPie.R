@@ -2,7 +2,7 @@
 #' @description  amPie computes a pie chart of the given value.
 #' @param data \code{data.frame} dataframe with at least 2 columns : 
 #' label (character), value (numeric).
-#' Your can add a third column "color" (character, colors in hexadecimal).
+#' You can add a third column "color" (character, colors in hexadecimal).
 #' @param main \code{character}, title of the graph.
 #' @param mainSize \code{numeric}, size of the title of the graph.
 #' @param legend \code{boolean} TRUE to display legend.

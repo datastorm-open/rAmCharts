@@ -2,13 +2,13 @@
 #' @description  amWaterfall computes a waterfall chart of the given value.
 #' @param data \code{data.frame} dataframe with at least 3 columns : 
 #' label (character), value (numeric), operation (character : "plus", "minus", "total").
-#' Your can add a third column "color" (character, colors in hexadecimal). You can
+#' You can add a third column "color" (character, colors in hexadecimal). You can
 #' also add a column "description" (character) containing the text you want to
 #' display when mouse is on the graphic ('<br>' for a new line). 
 #' @param start \code{numeric} value from which to start
 #' @param main \code{character}, title of the graph
 #' @param mainSize \code{numeric}, size of the title of the graph.
-#' @param horiz \code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one
+#' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 #' @param show_values \code{boolean} TRUE to display values on the chart.
 #' @examples
 #' 

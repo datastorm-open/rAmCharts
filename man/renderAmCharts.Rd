@@ -4,7 +4,7 @@
 \alias{renderAmCharts}
 \title{SHINY}
 \usage{
-renderAmCharts(expr, env, quoted)
+renderAmCharts(expr, env = parent.frame(), quoted = FALSE)
 }
 \arguments{
 \item{expr}{an expression that generates an HTML widget.}

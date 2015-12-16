@@ -10,7 +10,7 @@ amFunnel(data, main = "", mainSize = 15, inverse = FALSE,
 }
 \arguments{
 \item{data}{a data frame of at least 2 columns : value (numeric, positive),
-and description (character). Your can add a third column "color" (character,
+and description (character). You can add a third column "color" (character,
 colors in hexadecimal)}
 
 \item{main}{\code{character}, title of the graph.}

@@ -11,7 +11,7 @@ amPie(data, main = "", mainSize = 15, legend = FALSE,
 \arguments{
 \item{data}{\code{data.frame} dataframe with at least 2 columns :
 label (character), value (numeric).
-Your can add a third column "color" (character, colors in hexadecimal).}
+You can add a third column "color" (character, colors in hexadecimal).}
 
 \item{main}{\code{character}, title of the graph.}
 
