@@ -1,38 +1,29 @@
-#' @rdname amChartsOutput
-#' @export
-setGeneric( name = "amChartsOutput",
-            def = function(outputId, type = NULL, width, height) {standardGeneric("amChartsOutput")})
 #' @title SHINY
+#' 
 #' @description Widget output function for use in Shiny
 #' @param outputId \code{character}.
 #' @param type \code{character}
 #' indicating the chart type.
 #' @param width \code{character}.
 #' @param height \code{character}.
+#' 
+#' @export
 #' @rdname amChartsOutput
-setMethod(f = "amChartsOutput", signature = c("character", "characterOrMissing"),
-  definition = function(outputId, type = NULL, width, height)
-  {
-    if (missing(width)) {
-      width <- "100%"
-    } else {}
-    if (missing(height)) {
-      height <- "400px"
-    } else {}
-    
-    jsFile <- ifelse(test = !is.null(type) && type == "drill",
-                     yes = "amDrillChart",
-                     no = "ramcharts_base") 
-    
-    htmlwidgets::shinyWidgetOutput(
-      outputId = outputId,     
-      name = eval(jsFile),   
-      width = width,
-      height = height,
-      package = 'rAmCharts'
-    )
-  }
-)
+#' 
+amChartsOutput <- function(outputId, type = NULL, width = "100%", height = "400px")
+{
+  jsFile <- ifelse(test = !is.null(type) && type == "drill",
+                   yes = "amDrillChart",
+                   no = "ramcharts_base") 
+  
+  htmlwidgets::shinyWidgetOutput(
+    outputId = outputId,     
+    name = eval(jsFile),   
+    width = width,
+    height = height,
+    package = 'rAmCharts'
+  )
+}
 
 #' @title Test the class of an exepression
 #' @description Only used in the package in 'renderAmCharts'.
@@ -59,16 +50,8 @@ controlShinyPlot <- function(x) {
 #' @name renderAmCharts
 #' @rdname renderAmCharts
 #' @export
-renderAmCharts <- function(expr, env, quoted){
-  
-  if (missing(env)) {
-    env <- parent.frame()
-  } else {}
-  
-  if (missing(quoted)) {
-    quoted <- FALSE
-  } else {}
-  
+renderAmCharts <- function(expr, env = parent.frame(), quoted = FALSE)
+{
   if (!quoted) {
     expr <- substitute(controlShinyPlot(expr))
   } # force quoted
