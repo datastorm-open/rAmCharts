@@ -2,24 +2,35 @@
 #' @description  amWaterfall computes a waterfall chart of the given value.
 #' @param data \code{data.frame} dataframe with at least 3 columns : 
 #' label (character), value (numeric), operation (character : "plus", "minus", "total").
-#' Your can add a third column "color" (character, colors in hexadecimal).
+#' Your can add a third column "color" (character, colors in hexadecimal). You can
+#' also add a column "description" (character) containing the text you want to
+#' display when mouse is on the graphic ('<br>' for a new line). 
 #' @param start \code{numeric} value from which to start
 #' @param main \code{character}, title of the graph
 #' @param mainSize \code{numeric}, size of the title of the graph.
 #' @param horiz \code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one
 #' @param show_values \code{boolean} TRUE to display values on the chart.
 #' @examples
-#' amWaterfall(data = data.frame(label = c("Income 1", "Income 2", "Income 3", "Total 1", 
+#' 
+#' # Simple example
+#' data_waterfall <- data.frame(label = c("Income 1", "Income 2", "Income 3", "Total 1", 
 #'                                        "Expenses 1", "Expenses 2", "Total 2", "Income 4", 
 #'                                        "Income 5", "Income 6", "Expenses 3","Total 3", 
 #'                                        "Expenses 4", "Expenses 5", "Total 4"),
-#'                               value = c(5, 10, 15, 30, 10, 5, 15, 50, 10, 35, 10, 100, 
+#'                              value = c(5, 10, 15, 30, 10, 5, 15, 50, 10, 35, 10, 100, 
 #'                                         15, 60, 25),
-#'                               operation = c(rep("plus", 3), "total", rep("minus", 2),
+#'                              operation = c(rep("plus", 3), "total", rep("minus", 2),
 #'                                             "total", "plus", "minus", rep("plus", 2), 
 #'                                             "total", rep("minus", 2), "total"), 
-#'                                             stringsAsFactors = FALSE),
-#'             main = "Waterfall Example", show_values = TRUE)
+#'                                             stringsAsFactors = FALSE)
+#' 
+#' amWaterfall(data = data_waterfall, main = "Waterfall Example", show_values = TRUE)
+#' 
+#' #example with description : 
+#' data_waterfall$description <- paste("The value for", data_waterfall$label, "is :<br>",
+#'                                     data_waterfall$value)
+#' amWaterfall(data = data_waterfall, main = "Waterfall Example", show_values = TRUE)                                   
+#' 
 #' @export
 
 amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE,
@@ -119,7 +130,13 @@ amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE
       }
     }
   })
-  data$val <- data$value
+  
+  if("description" %in% colnames(data)) {
+    data$val <- data$description
+  } else {
+    data$val <- data$value
+  }
+  data$val2 <- data$value
   
   res <- pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = "label", balloonValue = "val",
@@ -131,7 +148,7 @@ amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE
     res <- addGraph(res, openField = "open", valueField = "close", colorField = "color",
                     type = "column", lineColor = "#BBBBBB", fillAlphas = 0.8,
                     balloonText =  "<span style='color:[[color]]'>[[label]]</span><br><b>[[val]]</b>",
-                    labelText = "[[val]]")
+                    labelText = "[[val2]]")
   } else {
     res <- addGraph(res, openField = "open", valueField = "close", colorField = "color",
                     type = "column", lineColor = "#BBBBBB", fillAlphas = 0.8,
