@@ -127,7 +127,7 @@ setMethod(f = "plot", signature = "AmCharts",
               package = 'rAmCharts'
             )
             
-            version <- "3.17.3"
+            version <- "3.18.2"
             widget <- dependency_chartType(widget, data, x@type, version)
             widget <- dependency_addExport(widget, data, version)
             widget <- dependency_addTheme(widget, data, theme, version)
@@ -169,14 +169,14 @@ dependency_chartType <- function(widget, data, type, version)
   
   widget$dependencies[[length(widget$dependencies)+1]] <- type_dep
   
-  style_dep <- htmltools::htmlDependency(
-    name = "amcharts_style",
-    version = version,
-    src = c(file = system.file("htmlwidgets", package = "rAmCharts")),
-    stylesheet = "style.css"
-  )
+  #   style_dep <- htmltools::htmlDependency(
+  #     name = "amcharts_style",
+  #     version = version,
+  #     src = c(file = system.file("htmlwidgets", package = "rAmCharts")),
+  #     stylesheet = "style.css"
+  #   )
   
-  widget$dependencies[[length(widget$dependencies)+1]] <- style_dep
+  # widget$dependencies[[length(widget$dependencies)+1]] <- style_dep
   
   widget
 }
