@@ -8,14 +8,10 @@ HTMLWidgets.widget({
     return {};
   },
   
-  resize: function(el, width, height, instance) {
-  },
-  
   renderValue: function(el, x, instance) {
-    var chartDiv = document.getElementById(el.id);
-    chartDiv.style.background = x.background;
-    chartDiv.style.fontSize = '11px';
-    instance.amchart = AmCharts.makeChart(chartDiv, x.chartData);
+    document.getElementById(el.id).style.background = x.background;
+    document.getElementById(el.id).style.fontSize = '11px';
+    instance.amchart = AmCharts.makeChart(el, x.chartData);
     
     // add chart listeners
     for (var key in x.listeners) {
@@ -79,16 +75,21 @@ HTMLWidgets.widget({
     }
     
     if (window.Shiny) {
+      var myevent;
       if(instance.amchart.events.init[0] !== undefined){
-        var myevent = {type : "Init", chart : instance.amchart};
+        myevent = {type : "init", chart : instance.amchart};
         instance.amchart.events.init[0].handler(myevent);
       }
       if(instance.amchart.events.rendered[0] !== undefined){
-        var myevent = {type : "rendered", chart : instance.amchart};
+        myevent = {type : "rendered", chart : instance.amchart};
         instance.amchart.events.rendered[0].handler(myevent);
       }
     }
-  }
+  },
   
+  resize: function(el, width, height, instance) {
+    if (instance.amchart)
+      instance.amchart.handleResize();
+  },
 });
 
