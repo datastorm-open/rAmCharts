@@ -4,8 +4,8 @@ NULL
 #' @title DataSet class
 #' @author DataKnowledge
 #' 
-#' @description DataSet is objects which holds all information about data.
-#' @details Run \code{api("DataSet")} for mor information.
+#' @description DataSet is an object which holds all information about data for \linkS4class{AmStockChart}
+#' @details Run \code{api("DataSet")} for more information.
 #' 
 #' @slot dataProvider \code{list}. The data set data.
 #' Important: the data sets need to come pre-ordered in ascending order.
@@ -25,6 +25,7 @@ NULL
 #' @slot value \code{numeric}.
 #' 
 #' @export
+#' 
 setClass(Class = "DataSet", contains = "AmObject",
           representation = representation(
             dataProvider = "list",
@@ -32,7 +33,11 @@ setClass(Class = "DataSet", contains = "AmObject",
             stockEvents = "list"
           ))
 
-#' @title Initialize a DataSet
+
+#' @title Create or update a DataSet
+#' @description Use the constructors to create the object with its properties
+#' or update an existing one with the setters.
+#' 
 #' @param .Object \linkS4class{DataSet}.
 #' @param compared \code{logical}.
 #' @param dataProvider \code{data.frame}. The data set data.
@@ -46,11 +51,15 @@ setClass(Class = "DataSet", contains = "AmObject",
 #' Example: list(fromField = "val1", toField ="value").
 #' @param stockEvents \linkS4class{StockEvent}.
 #' @param ... Other properties.
+#' 
 #' @return (updated) \linkS4class{DataSet} object
+#' 
 #' @examples
 #' new("DataSet")
-#' @rdname initialize-DataSet
+#' 
+#' @rdname DataSet
 #' @export
+#' 
 setMethod(f = "initialize", signature = "DataSet",
           definition = function(.Object, compared = FALSE, dataProvider, fieldMappings, stockEvents, ...)
           { 
@@ -70,10 +79,13 @@ setMethod(f = "initialize", signature = "DataSet",
 
 # CONSTRUCTOR ####
 
-#' @rdname initialize-DataSet
+#' @rdname DataSet
+#' 
 #' @examples
 #' dataSet(categoryField = "categoryField")
+#' 
 #' @export
+#' 
 dataSet <- function(compared = FALSE, dataProvider, fieldMappings, stockEvents,...){
   .Object <- new( "DataSet", compared = compared )
   if (!missing(dataProvider)) {

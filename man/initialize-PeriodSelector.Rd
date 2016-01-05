@@ -32,6 +32,10 @@ which specifies if this button is selected when chart is initialized or not.}
 \value{
 (updated) .Object of class \linkS4class{PeriodSelector}.
 }
+\description{
+Use the constructors to create the object with its properties
+or update an existing one with the setters.
+}
 \examples{
 new( "PeriodSelector")
 periodSelector(fillAlpha = .4, value = 1)

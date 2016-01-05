@@ -13,7 +13,7 @@
 \alias{setFieldMappings,DataSet,list-method}
 \alias{setStockEvents}
 \alias{setStockEvents,DataSet,list-method}
-\title{Initialize a DataSet}
+\title{Create or update a DataSet}
 \usage{
 \S4method{initialize}{DataSet}(.Object, compared = FALSE, dataProvider,
   fieldMappings, stockEvents, ...)
@@ -69,10 +69,17 @@ Argument for method \code{addStockEvent}.}
 \value{
 (updated) \linkS4class{DataSet} object
 }
+\description{
+Use the constructors to create the object with its properties
+or update an existing one with the setters.
+}
 \examples{
 new("DataSet")
+
 dataSet(categoryField = "categoryField")
+
 setDataProvider(.Object = dataSet(), data.frame(key = c("FR", "US"), value = c(20,10)))
+
 addFieldMapping(.Object = dataSet(), fieldMappings = list(fromField ="val1", toField ="value"))
 addFieldMapping(.Object = dataSet(), fromField ="val1", toField ="value")
 addStockEvent(.Object = dataSet(), backgroundAlpha = 1, backgroundColor = "#DADADA")

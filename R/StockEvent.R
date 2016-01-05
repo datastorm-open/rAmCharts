@@ -25,12 +25,16 @@ setClass(Class = "StockEvent", contains = "AmObject",
           representation = representation(stockGraph = "listOrCharacter"))
 
 #' @title Initialize a StockEvent
+#' @description Use the constructor to create the object
+#' or update an existing one with the setters.
+#' 
 #' @param .Object \linkS4class{StockEvent}.
 #' @param backgroundAlpha \code{numeric}.
 #' @param stockGraph \linkS4class{AmGraph} created with stockGraph(*).
 #' This is the graph on which event will be displayed.
 #' You can use a reference to the stock graph object or id of the graph.
 #' @param ... Other properties.
+#' 
 #' @return (updated) argument .Object of class \linkS4class{StockEvent}.
 #' @rdname initialize-StockEvent
 #' @examples

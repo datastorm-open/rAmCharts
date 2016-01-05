@@ -10,16 +10,15 @@
 \arguments{
 \item{object}{\linkS4class{AmChart}}
 }
+\description{
+Display the object in the console
+}
 \examples{
 pipeR::pipeline(
-  rAmCharts::amPieChart(valueField = "value", titleField = "key"),
-  rAmCharts::setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
-  rAmCharts::setExport(position = "bottom-left")
+  amPieChart(valueField = "value", titleField = "key"),
+  setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
+  setExport(position = "bottom-left")
 )
-}
-\seealso{
-Other Visualizations: \code{\link{print,AmObject-method}},
-  \code{\link{show,AmObject-method}},
-  \code{\link{show,AmStockChart-method}}
+
 }
 

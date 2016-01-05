@@ -38,15 +38,14 @@ setClass(Class = "TrendLine", contains = "AmObject",
          ))
 
 #' @title Initialize a TrendLine
+#' @description Use the constructor to create the object
+#' or update an existing one with the setters.
+#' 
 #' @param .Object \linkS4class{TrendLine}.
-#' @param finalValue \code{numeric}.
-#' Value at which trend line should end.
-#' @param finalXValue \code{numeric}.
-#' Used by XY chart only. X value at which trend line should end.
-#' @param initialValue \code{numeric}.
-#' Value from which trend line should start.
-#' @param initialXValue \code{numeric}.
-#' Used by XY chart only. X value from which trend line should start.
+#' @param finalValue \code{numeric}. Value at which trend line should end.
+#' @param finalXValue \code{numeric}. Used by XY chart only. X value at which trend line should end.
+#' @param initialValue \code{numeric}. Value from which trend line should start.
+#' @param initialXValue \code{numeric}. Used by XY chart only. X value from which trend line should start.
 #' @param valueAxis \linkS4class{ValueAxis}.
 #' Value axis of the trend line. Will use first value axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
@@ -55,13 +54,17 @@ setClass(Class = "TrendLine", contains = "AmObject",
 #' Will use first X axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
 #' @param ... Other properties.
+#' 
+#' @return (possibly updated) .Object of class \linkS4class{TrendLine}.
+#' 
 #' @examples
 #' new("TrendLine", initialValue = 1, finalValue = 11)
 #' 
 #' # Other example
 #' valueAxis <- valueAxis(title = "Hello !", axisTitleOffset = 12)
 #' new("TrendLine", valueAxis = valueAxis)
-#' @rdname initialize-TrendLine
+#' 
+#' @rdname TrendLine
 #' @export
 setMethod(f = "initialize", signature = "TrendLine",
           definition = function(.Object,
@@ -94,7 +97,7 @@ setMethod(f = "initialize", signature = "TrendLine",
 
 # CONSTRUCTOR ####
 
-#' @rdname initialize-TrendLine
+#' @rdname TrendLine
 #' @examples
 #' trendLine(initialValue = 1, finalValue = 11)
 #' @export

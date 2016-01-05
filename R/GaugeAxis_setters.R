@@ -1,15 +1,17 @@
 #' @include classUnion.R
 NULL
 
-#' @rdname initialize-GaugeAxis
+#' @rdname GaugeAxis
 #' @export
+#' 
 setGeneric(name = "setBands", def = function(.Object, bands){standardGeneric("setBands")})
+#' @rdname GaugeAxis
 #' @examples
+#' # -- update 'bands' at once
 #' bands <- list(gaugeBand(startValue = 70, endValue = 90),
 #'               gaugeBand(startValue = 40, endValue = 60))
 #' gaugeAxis(bands = bands)
-#' # ---
-#' @rdname initialize-GaugeAxis
+#' 
 setMethod(f = "setBands", signature = c("GaugeAxis", "list"),
           definition = function(.Object, bands)
           {
@@ -22,18 +24,22 @@ setMethod(f = "setBands", signature = c("GaugeAxis", "list"),
             return(.Object)
           })
 
+#' @rdname GaugeAxis
+#' 
 #' @param band \linkS4class{GaugeBand}.
 #' Argument for method \code{addBand}.
-#' @rdname initialize-GaugeAxis
+#' 
 #' @export
+#' 
 setGeneric(name = "addBand", def = function(.Object, band = NULL, ...) {standardGeneric("addBand")} )
+#' @rdname GaugeAxis
 #' @examples
+#' # --- add 'band' one by one one
 #' addBand(.Object = gaugeAxis(), startValue = 0, endValue = 100)
 #' # equivalent to
 #' gaugeBand_obj <- gaugeBand(startValue = 0, endValue = 100)
 #' addBand(.Object = gaugeAxis(), band = gaugeBand_obj)
-#' # ---
-#' @rdname initialize-GaugeAxis
+#' 
 setMethod(f = "addBand", signature = c("GaugeAxis", "GaugeBandOrMissing"),
           definition = function(.Object, band = NULL, ...)
           {

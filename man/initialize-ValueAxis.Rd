@@ -14,15 +14,22 @@ valueAxis(title, ...)
 \S4method{setTitle}{ValueAxis,character}(.Object, title)
 }
 \arguments{
-\item{.Object}{\code{\linkS4class{ValueAxis}}.}
+\item{.Object}{\linkS4class{ValueAxis}.}
 
 \item{title}{\code{character}.}
 
-\item{guides}{\code{list} of \code{\linkS4class{Guide}}.}
+\item{guides}{\code{list} of \linkS4class{Guide}.}
 
 \item{...}{Other properties (depend of call function)}
 }
+\description{
+Creates a ValuesAxis or update its properties.
+}
 \examples{
+
+guides <- list(guide(fillAlpha = .4), guide(fillAlpha = .5))
+new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)
+
 \dontrun{
 new("ValueAxis", title = "Hello !", 1) # 1 is not take into account
 
@@ -31,9 +38,9 @@ guides <- list(guide(fillAlpha = .4), b = 1)
 new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)
 }
 
-guides <- list(guide(fillAlpha = .4), guide(fillAlpha = .5))
-new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)
 valueAxis(title = "Hello !", axisTitleOffset = 12)
+
 setTitle(.Object = valueAxis(), title = "Hello !")
+
 }
 

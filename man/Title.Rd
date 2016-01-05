@@ -20,18 +20,20 @@ setSize(.Object, size)
 \S4method{setSize}{Title,numeric}(.Object, size)
 }
 \arguments{
-\item{.Object}{\code{\linkS4class{Title}}}
+\item{.Object}{\linkS4class{Title}}
 
-\item{text}{\code{character}.
-Text of a title.}
+\item{text}{\code{character}. Text of a title.}
 
-\item{size}{\code{numeric}.
-Text size of a title.}
+\item{size}{\code{numeric}. Text size of a title.}
 
 \item{...}{Other properties.}
 }
 \value{
-(updated) \code{\linkS4class{Title}}
+(updated) \linkS4class{Title}
+}
+\description{
+Use the constructor to create the object
+or update an existing one with the setters.
 }
 \examples{
 new("Title", size = 10)

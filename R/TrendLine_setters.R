@@ -3,11 +3,11 @@ NULL
 
 #' @examples
 #' setInitialValue(.Object = trendLine(), initialValue = 16)
-#' @rdname initialize-TrendLine
+#' @rdname TrendLine
 #' @export
 setGeneric(name = "setInitialValue",
            def = function(.Object, initialValue) { standardGeneric("setInitialValue") })
-#' @rdname initialize-TrendLine
+#' @rdname TrendLine
 setMethod(f = "setInitialValue", signature = c("TrendLine", "numeric"),
           definition = function(.Object, initialValue)
           {
@@ -18,11 +18,11 @@ setMethod(f = "setInitialValue", signature = c("TrendLine", "numeric"),
 
 #' @examples
 #' setInitialXValue(.Object = trendLine(), initialXValue = 16)
-#' @rdname initialize-TrendLine
+#' @rdname TrendLine
 #' @export
 setGeneric(name = "setInitialXValue",
            def = function(.Object, initialXValue) { standardGeneric("setInitialXValue") })
-#' @rdname initialize-TrendLine
+#' @rdname TrendLine
 setMethod(f = "setInitialXValue", signature = c("TrendLine", "numeric"),
           definition = function(.Object, initialXValue)
           {
@@ -33,11 +33,11 @@ setMethod(f = "setInitialXValue", signature = c("TrendLine", "numeric"),
 
 #' @examples
 #' setFinalValue(.Object = trendLine(), finalValue = 16)
-#' @rdname initialize-TrendLine
+#' @rdname TrendLine
 #' @export
 setGeneric(name = "setFinalValue",
            def = function(.Object, finalValue) { standardGeneric("setFinalValue") })
-#' @rdname initialize-TrendLine
+#' @rdname TrendLine
 setMethod(f = "setFinalValue", signature = c("TrendLine", "numeric"),
           definition = function(.Object, finalValue)
           {
@@ -48,11 +48,11 @@ setMethod(f = "setFinalValue", signature = c("TrendLine", "numeric"),
 
 #' @examples
 #' setFinalXValue(.Object = trendLine(), finalXValue = 16)
-#' @rdname initialize-TrendLine
+#' @rdname TrendLine
 #' @export
 setGeneric(name = "setFinalXValue",
            def = function(.Object, finalXValue) { standardGeneric("setFinalXValue") })
-#' @rdname initialize-TrendLine
+#' @rdname TrendLine
 setMethod(f = "setFinalXValue", signature = c("TrendLine", "numeric"),
           definition = function(.Object, finalXValue)
           {
@@ -70,8 +70,9 @@ setMethod(f = "setFinalXValue", signature = c("TrendLine", "numeric"),
 #' # or...
 #' trendLine(valueAxis = "valueAxis-1")
 #' # valid if and only if 'valueAxis_obj' has already been added to the chart
-#' # ---
-#' @rdname initialize-TrendLine
+#' 
+#' @rdname TrendLine
+#' 
 setMethod(f = "setValueAxis", signature = c("TrendLine", "ValueAxisOrCharacterOrMissing"),
           definition = function(.Object, valueAxis = NULL, ...)
           {
@@ -102,12 +103,12 @@ setMethod(f = "setValueAxis", signature = c("TrendLine", "ValueAxisOrCharacterOr
 #' # or...
 #' trendLine(valueAxisX = "valueAxisX-1")
 #' # valid if and only if 'valueAxisX_obj' has already been added to the chart
-#' # ---
-#' @rdname initialize-TrendLine
+#' 
+#' @rdname TrendLine
 #' @export
 setGeneric(name = "setValueAxisX",
            def = function(.Object, valueAxisX = NULL, ...) {standardGeneric("setValueAxisX")})
-#' @rdname initialize-TrendLine
+#' @rdname TrendLine
 setMethod(f = "setValueAxisX", signature = c("TrendLine", "ValueAxisOrCharacterOrMissing"),
           definition = function(.Object, valueAxisX = NULL, ...)
           {

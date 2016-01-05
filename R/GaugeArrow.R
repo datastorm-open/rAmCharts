@@ -21,17 +21,25 @@ setClass(Class = "GaugeArrow", contains = "AmObject",
          representation = representation(axis = "listOrCharacter"))
 
 #' @title Initialize a GaugeArrow
+#' @description Use the constructor to create the object with its properties
+#' or update an existing one with the setters.
+#' 
 #' @param .Object \linkS4class{GaugeArrow}.
 #' @param alpha \code{numeric}.
 #' @param axis \linkS4class{GaugeAxis}.
 #' Axis of the arrow. You can use reference to the axis or id of the axis.
 #' If you don't set any axis, the first axis of a chart will be used.
 #' @param ... Other properties.
+#' 
 #' @return (updated) .Object of class \linkS4class{GaugeArrow}.
+#' 
 #' @examples
-#' new("GaugeArrow")
-#' @rdname initialize-GaugeArrow
+#' # --- method initialize
+#' new("GaugeArrow", alpha = 2)
+#' 
+#' @rdname GaugeArrow
 #' @export
+#' 
 setMethod(f = "initialize", signature = c("GaugeArrow"),
           definition = function(.Object, alpha = 1, axis, ...)
           {            
@@ -43,12 +51,13 @@ setMethod(f = "initialize", signature = c("GaugeArrow"),
             return(.Object)
           })
 
-# CONSTRUCTOR ####
-
-#' @rdname initialize-GaugeArrow
+#' @rdname GaugeArrow
 #' @examples
+#' # --- constructor
 #' gaugeArrow(value = 10)
+#' 
 #' @export
+#' 
 gaugeArrow <- function(alpha = 1,  axis, ...){
   .Object <- new("GaugeArrow", alpha = alpha)
   if (!missing(axis)) {

@@ -5,10 +5,10 @@
 \alias{DataSet-class}
 \title{DataSet class}
 \description{
-DataSet is objects which holds all information about data.
+DataSet is an object which holds all information about data for \linkS4class{AmStockChart}
 }
 \details{
-Run \code{api("DataSet")} for mor information.
+Run \code{api("DataSet")} for more information.
 }
 \section{Slots}{
 

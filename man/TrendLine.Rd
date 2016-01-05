@@ -50,17 +50,13 @@ setValueAxisX(.Object, valueAxisX = NULL, ...)
 \arguments{
 \item{.Object}{\linkS4class{TrendLine}.}
 
-\item{initialValue}{\code{numeric}.
-Value from which trend line should start.}
+\item{initialValue}{\code{numeric}. Value from which trend line should start.}
 
-\item{initialXValue}{\code{numeric}.
-Used by XY chart only. X value from which trend line should start.}
+\item{initialXValue}{\code{numeric}. Used by XY chart only. X value from which trend line should start.}
 
-\item{finalValue}{\code{numeric}.
-Value at which trend line should end.}
+\item{finalValue}{\code{numeric}. Value at which trend line should end.}
 
-\item{finalXValue}{\code{numeric}.
-Used by XY chart only. X value at which trend line should end.}
+\item{finalXValue}{\code{numeric}. Used by XY chart only. X value at which trend line should end.}
 
 \item{valueAxis}{\linkS4class{ValueAxis}.
 Value axis of the trend line. Will use first value axis of the chart if not set any.
@@ -73,12 +69,20 @@ You can use a reference to the value axis object or id of value axis.}
 
 \item{...}{Other properties.}
 }
+\value{
+(possibly updated) .Object of class \linkS4class{TrendLine}.
+}
+\description{
+Use the constructor to create the object
+or update an existing one with the setters.
+}
 \examples{
 new("TrendLine", initialValue = 1, finalValue = 11)
 
 # Other example
 valueAxis <- valueAxis(title = "Hello !", axisTitleOffset = 12)
 new("TrendLine", valueAxis = valueAxis)
+
 trendLine(initialValue = 1, finalValue = 11)
 setInitialValue(.Object = trendLine(), initialValue = 16)
 setInitialXValue(.Object = trendLine(), initialXValue = 16)
@@ -92,7 +96,7 @@ trendLine(valueAxis = valueAxis_obj)
 # or...
 trendLine(valueAxis = "valueAxis-1")
 # valid if and only if 'valueAxis_obj' has already been added to the chart
-# ---
+
 setValueAxisX(.Object = trendLine(), id = "valueAxisX-1",
               title = "Hello !", axisTitleOffset = 12)
 # equival to:
@@ -101,6 +105,6 @@ trendLine(valueAxisX = valueAxisX_obj)
 # or...
 trendLine(valueAxisX = "valueAxisX-1")
 # valid if and only if 'valueAxisX_obj' has already been added to the chart
-# ---
+
 }
 

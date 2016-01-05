@@ -6,7 +6,7 @@
 \alias{initialize,DataSetSelector-method}
 \alias{setPosition}
 \alias{setPosition,DataSetSelector,character-method}
-\title{Initialize  DataSetSelector}
+\title{Creat or update a DataSetSelector}
 \usage{
 \S4method{initialize}{DataSetSelector}(.Object, position, ...)
 
@@ -29,10 +29,15 @@ only one data set can be selected for comparing.}
 \value{
 (updated) \linkS4class{DataSetSelector}
 }
+\description{
+Use the constructors to create the object with its properties
+or update an existing one with the setters.
+}
 \examples{
 new("DataSetSelector", size = 10)
+
 dataSetSelector(position = "left")
 setPosition(.Object = dataSetSelector(), position = "left")
-setPosition(.Object = dataSetSelector(), position = "left")
+
 }
 

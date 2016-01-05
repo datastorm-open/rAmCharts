@@ -28,8 +28,6 @@ See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}.}
 }
 \description{
 Constructor for an AmLegend.
-
-Setter for useGraphSettings.
 }
 \examples{
 new("AmLegend", useGraphSettings = TRUE)

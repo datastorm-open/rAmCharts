@@ -32,14 +32,14 @@ Only if "adjustBorderColor" is "true" this color will be used.}
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must a character string.
 See examples for details.
-Inherited from \code{\linkS4class{AmObject}}.}
+Inherited from \linkS4class{AmObject}.}
 
 \item{\code{otherProperties}}{\code{list},
 containing other avalaible properties non coded in the package yet.
-Inherited from \code{\linkS4class{AmObject}}.}
+Inherited from \linkS4class{AmObject}.}
 
 \item{\code{value}}{\code{numeric}.
-Inherited from \code{\linkS4class{AmObject}}.}
+Inherited from \linkS4class{AmObject}.}
 }}
 \author{
 DataKnowledge

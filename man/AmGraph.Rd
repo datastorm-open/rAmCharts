@@ -59,28 +59,29 @@ An object of class \linkS4class{AmGraph} with the properties given.
 To create an AmGraph, you can use the usual methode
 Initialize or the constructor.
 You can update properties with setters.
-
-Constructor
-
-Constructor (shortcut)
-
-Setter for balloonText.
-
-Setter for title.
-
-Setter for type.
-
-Setter for valueField
 }
 \examples{
+# --- method 'initialize'
 new("AmGraph", valueField = "value")
+
+# constructor
 amGraph(balloonText = "balloonText", "type" = "column",
         valueField = "value", animationPlayed = TRUE)
+# --- shortcut constructor
 graph(balloonText = "balloonText", "type" = "column",
       valueField = "value", animationPlayed = TRUE)
+      
+# --- update 'balloonText'
 setBalloonText(.Object = amGraph(), balloonText = "performance")
+
+# --- update 'title'
 setTitle(.Object = amGraph(), title = "Power")
+
+# --- update 'type'
 setType(.Object = amGraph(), type = "type")
+
+# --- update valueField
 setValueField(.Object = amGraph(), valueField = "score")
+
 }
 

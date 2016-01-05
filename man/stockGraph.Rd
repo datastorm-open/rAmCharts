@@ -25,10 +25,15 @@ Name of the value field in your dataProvider.}
 \item{...}{Other properties}
 }
 \value{
-An object of class \code{\linkS4class{AmGraph}}.
+An object of class \linkS4class{AmGraph}.
+}
+\description{
+Constructor used for \linkS4class{AmStockChart}
 }
 \examples{
+# --- constructor
 stockGraph(balloonText = "balloonText", "type" = "column",
            valueField = "value", animationPlayed = TRUE)
+           
 }
 

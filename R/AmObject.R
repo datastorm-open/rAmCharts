@@ -16,6 +16,7 @@ setClass(Class = "AmObject",
            otherProperties = "list", "VIRTUAL"))
 
 #' @title Visualize with show
+#' @description Display the object in the console.
 #' @param object \linkS4class{AmObject}
 #' @examples
 #' pipeR::pipeline(
@@ -24,7 +25,6 @@ setClass(Class = "AmObject",
 #'   rAmCharts::setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
 #'   rAmCharts::setExport(position = "bottom-left")
 #' )
-#' @family Visualizations
 #' @export
 setMethod(f = "show", signature = "AmObject",
           definition = function(object)
@@ -35,13 +35,14 @@ setMethod(f = "show", signature = "AmObject",
           })
 
 #' @title Visualize with print
+#' @description Display the object in the console.
 #' @param x \linkS4class{AmChart}.
 #' @param withDetail \code{logical}. Should the detail be printed ?
 #' @param ... Other properties.
 #' @examples
 #' print(new("AmChart", categoryField = "variables", type = "serial"))
 #' print(new("AmChart", categoryField = "variables", type = "serial"), withDetail = FALSE)
-#' @family Visualizations
+#' @details The method 'print' can also plot the object of class \linkS4class{AmChart}.
 #' @export
 setMethod(f = "print", signature = "AmObject",
           definition = function(x, withDetail = TRUE,...) {
@@ -64,10 +65,13 @@ setMethod(f = "print", signature = "AmObject",
 # > @listeners: setters ####
 
 #' @title Methods of AmObject
+#' @description Methods for inherited classes.
+#' 
 #' @param .Object \code{\linkS4class{AmObject}}.
 #' @param name \code{character} containing the name of the listener.
 #' @param expression \code{character} containing the associated function event.
-#' @return The updated object of class \code{\linkS4class{AmChart}}.
+#' 
+#' @return The updated object.
 #' @examples
 #' addListener(.Object = amPieChart(),
 #'             name = "clickSlice" ,
@@ -119,7 +123,8 @@ setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
 
 # > listProperties ####
 
-#' @title List attributes of an S4 object
+#' @title List properties of an S4 object
+#' @description Each S4 class implement the method to list its properties (usefull for update complex properties).
 #' @param .Object any class object of the package
 #' @examples
 #' amChart(type = "serial")

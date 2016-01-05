@@ -1,8 +1,9 @@
 #' @include AmObject.R
 NULL
 
-#' @title PeriodSelector class
-#' @author DataKnowledge
+#' @title PeriodSelector
+#' @author Dataknowledge
+#' @description Define the PeriodSelector properties.
 #' 
 #' @slot periods \code{list}.
 #' Period object has 4 properties - period, count, label and selected.
@@ -27,6 +28,9 @@ setClass(Class = "PeriodSelector", contains = "AmObject",
          representation = representation(periods = "list"))
 
 #' @title Initialize a PeriodSelector
+#' @description Use the constructors to create the object with its properties
+#' or update an existing one with the setters.
+#' 
 #' @param .Object \linkS4class{PeriodSelector}.
 #' @param periods \code{list}.
 #' Period object has 4 properties - period, count, label and selected.

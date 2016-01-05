@@ -56,14 +56,25 @@ Only if "adjustBorderColor" is "true" this color will be used.}
 See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.}
 }
 \value{
-An object of class \code{\linkS4class{AmBalloon}}.
+An object, possibly updated,  of class \linkS4class{AmBalloon}.
+}
+\description{
+Initialize or update an object \linkS4class{AmBalloon}.
 }
 \examples{
+
 new("AmBalloon", cornerRadius = 10)
+
+
 amBalloon(adjustBorderColor = TRUE, color = "#000000")
+
 setAdjustBorderColor(.Object = amBalloon(), adjustBorderColor = TRUE)
+
 setColor(.Object = amBalloon(), color = "#000000")
+
 setCornerRadius(.Object = amBalloon(), cornerRadius = 5)
+
 setFillColor(.Object = amBalloon(), fillColor = "#FFFFFF")
+
 }
 

@@ -36,7 +36,4 @@ containing other avalaible properties non coded in the package yet}
 
 \item{\code{value}}{\code{numeric}.}
 }}
-\author{
-DataKnowledge
-}
 

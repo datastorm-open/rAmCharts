@@ -1,11 +1,14 @@
 #' @include sharedGenerics.R classUnion.R
 NULL
 
+#' @rdname DataSet
+#' 
 #' @param keepNA \code{logical}.
 #' Should the missing values appear in the list ?
+#' 
 #' @examples
 #' setDataProvider(.Object = dataSet(), data.frame(key = c("FR", "US"), value = c(20,10)))
-#' @rdname initialize-DataSet
+#' 
 setMethod(f = "setDataProvider", signature = c("DataSet", "data.frame"),
           definition = function(.Object, dataProvider, keepNA = TRUE)
           {
@@ -16,12 +19,12 @@ setMethod(f = "setDataProvider", signature = c("DataSet", "data.frame"),
 
 # > @fieldMapping : setters ####
 
-#' @rdname initialize-DataSet
+#' @rdname DataSet
 #' @export
 setGeneric(name = "setFieldMappings", def = function(.Object, fieldMappings) {standardGeneric("setFieldMappings")})
 #' @examples
 #' addFieldMapping(.Object = dataSet(), fieldMappings = list(fromField ="val1", toField ="value"))
-#' @rdname initialize-DataSet
+#' @rdname DataSet
 setMethod(f = "setFieldMappings", signature = c("DataSet", "list"),
           definition = function(.Object, fieldMappings)
           {
@@ -30,12 +33,12 @@ setMethod(f = "setFieldMappings", signature = c("DataSet", "list"),
             return(.Object)
           })
 
-#' @rdname initialize-DataSet
+#' @rdname DataSet
 #' @export
 setGeneric(name = "addFieldMapping", def = function(.Object, ...) {standardGeneric("addFieldMapping")})
 #' @examples
 #' addFieldMapping(.Object = dataSet(), fromField ="val1", toField ="value")
-#' @rdname initialize-DataSet
+#' @rdname DataSet
 setMethod(f = "addFieldMapping", signature = c("DataSet"),
           definition = function(.Object, ...)
           {
@@ -46,10 +49,10 @@ setMethod(f = "addFieldMapping", signature = c("DataSet"),
 
 # > @stockEvents : setters ####
 
-#' @rdname initialize-DataSet
+#' @rdname DataSet
 #' @export
 setGeneric(name = "setStockEvents", def = function(.Object, stockEvents) {standardGeneric("setStockEvents")})
-#' @rdname initialize-DataSet
+#' @rdname DataSet
 setMethod(f = "setStockEvents", signature = c("DataSet", "list"),
           definition = function(.Object, stockEvents)
           {
@@ -69,10 +72,10 @@ setMethod(f = "setStockEvents", signature = c("DataSet", "list"),
 #' # equivalent to:
 #' stockEvent_obj <- stockEvent(backgroundAlpha = 1, backgroundColor = "#DADADA")
 #' addStockEvent(.Object = dataSet(), stockEvent = stockEvent_obj)
-#' @rdname initialize-DataSet
+#' @rdname DataSet
 #' @export
 setGeneric(name = "addStockEvent", def = function(.Object, stockEvent = NULL, ...) {standardGeneric("addStockEvent")})
-#' @rdname initialize-DataSet
+#' @rdname DataSet
 setMethod(f = "addStockEvent", signature = c("DataSet", "StockEventOrMissing"),
           definition = function(.Object, stockEvent = NULL, ...)
           {

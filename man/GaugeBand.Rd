@@ -28,9 +28,19 @@ setID(.Object, id)
 \value{
 (updated) .Object of class \linkS4class{GaugeBand}.
 }
+\description{
+Use the constructor to create the object
+or update an existing one with the setters.
+}
 \examples{
+# --- method 'initialize'
 new("GaugeBand")
-gaugeBand()
+
+# --- constructor
+gaugeBand(alpha = 2, id = "band2")
+
+# --- set the 'id'
 setID(.Object = gaugeBand(), id = "1")
+
 }
 

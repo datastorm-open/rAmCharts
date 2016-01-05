@@ -60,6 +60,8 @@ amLegend <- function(useGraphSettings, ...) {
 }
 
 #' @title Constructor for StockLegend.
+#' @description This method is used for \linkS4class{AmStockChart}.
+#' 
 #' @param useGraphSettings
 #' Legend markers can mirror graph's settings,
 #' displaying a line and a real bullet as in the graph itself.
@@ -68,9 +70,12 @@ amLegend <- function(useGraphSettings, ...) {
 #' @param ...
 #' Properties of AmLegend.
 #' See \url{http://docs.amcharts.com/3/javascriptstockchart/StockLegend}
-#' @return An \code{\linkS4class{AmLegend}} object
+#' 
+#' @return An \linkS4class{AmLegend} object
+#' 
 #' @examples
 #' stockLegend(useGraphSettings = TRUE)
+#' 
 #' @export
 stockLegend <- function(useGraphSettings, valueTextComparing = "[[percents.value]]%", ...) {
   amLegend(useGraphSettings = useGraphSettings, valueTextComparing = valueTextComparing, ...)
@@ -78,13 +83,12 @@ stockLegend <- function(useGraphSettings, valueTextComparing = "[[percents.value
 
 # > @useGraphSettings : setters ####
 
-#' @description Setter for useGraphSettings.
-#' @examples
-#' setUseGraphSettings(.Object = amLegend(), useGraphSettings = TRUE)
 #' @rdname initialize-AmLegend
 #' @export
 setGeneric(name = "setUseGraphSettings", def = function(.Object, useGraphSettings) { standardGeneric("setUseGraphSettings") })
 #' @rdname initialize-AmLegend
+#' @examples
+#' setUseGraphSettings(.Object = amLegend(), useGraphSettings = TRUE)
 setMethod(f = "setUseGraphSettings", signature = c("AmLegend", "logical"),
           definition = function(.Object, useGraphSettings)
           {
@@ -93,10 +97,11 @@ setMethod(f = "setUseGraphSettings", signature = c("AmLegend", "logical"),
             return(.Object)
           })
 
-#' @description Attributes of an AmLegend object.
-#' @examples
-#' listProperties(amLegend(useGraphSettings = TRUE))
 #' @rdname listProperties-AmObject
+#' @examples
+#' # --- signature 'AmLegend'
+#' listProperties(amLegend(useGraphSettings = TRUE))
+#' 
 setMethod(f = "listProperties", signature = "AmLegend",
            definition = function(.Object)
            { 

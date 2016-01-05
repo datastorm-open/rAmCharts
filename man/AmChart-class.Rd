@@ -5,7 +5,7 @@
 \alias{AmChart-class}
 \title{AmChart}
 \description{
-This class allow to define the amCharts parameters
+Define the AmChart properties.
 }
 \details{
 API for plotting AmChart with R.
@@ -125,6 +125,8 @@ showMethods(class="AmChart")
 }
 }
 \author{
+Dataknowledge
+
 Dataknowledge
 }
 \seealso{

@@ -15,11 +15,17 @@
 \item{...}{properties of \linkS4class{Guide}
 Argument for method \code{addGuide}.}
 }
+\value{
+(possibly updated) .Object of class \linkS4class{AxisBase}.
+}
+\description{
+Update an of object of inherited class \linkS4class{AxisBase}.
+}
 \examples{
 addGuide(.Object = valueAxis(), fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
 # equivalent to:
 guide_obj <- guide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
 addGuide(.Object = valueAxis(), guide = guide_obj)
-# ---
+
 }
 

@@ -2,10 +2,9 @@
 NULL
 
 #' @title AmGraph class
-#' @author DataKnowledge
 #' @description Creates the visualization of the data in following types:
 #' line, column, step line, smoothed line, olhc and candlestick.
-#' @details Run \code{api("AmGraph")} for more details and all avalaible properties.
+#' 
 #' @slot balloonText  \code{character}.
 #' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
 #' or any other field name from your data provider. HTML tags can also be used.
@@ -21,7 +20,11 @@ NULL
 #' @slot otherProperties \code{"list"},
 #' containing other avalaible properties non coded in the package yet
 #' @slot value \code{numeric}.
+#' 
+#' @details Run \code{api("AmGraph")} for more details and all avalaible properties.
+#' 
 #' @export
+#' 
 setClass (Class = "AmGraph", contains = "AmObject",
   representation = representation(
     balloonText = "character",
@@ -62,11 +65,16 @@ setClass (Class = "AmGraph", contains = "AmObject",
 #' @param valueField \code{character}.
 #' Name of the value field in your dataProvider.
 #' @param ... Other properties.
+#' 
 #' @return An object of class \linkS4class{AmGraph} with the properties given.
+#' 
 #' @examples
+#' # --- method 'initialize'
 #' new("AmGraph", valueField = "value")
-#' @rdname initialize-AmGraph
+#' 
+#' @rdname AmGraph
 #' @export
+#' 
 setMethod(f = "initialize", signature = "AmGraph",
           definition = function(.Object, animationPlayed = FALSE, balloonText,
                                 title, type, valueField, ...)
@@ -88,12 +96,14 @@ setMethod(f = "initialize", signature = "AmGraph",
             return(.Object)
           })
 
-#' @description Constructor
+#' @rdname AmGraph
+#' 
 #' @examples
+#' # constructor
 #' amGraph(balloonText = "balloonText", "type" = "column",
 #'         valueField = "value", animationPlayed = TRUE)
-#' @rdname initialize-AmGraph
 #' @export
+#' 
 amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 {
   .Object <- new(Class="AmGraph", animationPlayed = animationPlayed)
@@ -114,12 +124,14 @@ amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueFiel
   return(.Object)
 }
 
-#' @description Constructor (shortcut)
+#' @rdname AmGraph
 #' @examples
+#' # --- shortcut constructor
 #' graph(balloonText = "balloonText", "type" = "column",
 #'       valueField = "value", animationPlayed = TRUE)
-#' @rdname initialize-AmGraph
+#'       
 #' @export
+#' 
 graph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 {
   .Object <- new(Class="AmGraph", animationPlayed = animationPlayed)
@@ -141,6 +153,8 @@ graph <- function(animationPlayed = FALSE, balloonText, title, type, valueField,
 }
 
 #' @title Constructor for a stockGraph (class AmGraph)
+#' @description Constructor used for \linkS4class{AmStockChart}
+#' 
 #' @param animationPlayed \code{logical}.
 #' @param balloonText \code{character}.
 #' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
@@ -152,10 +166,14 @@ graph <- function(animationPlayed = FALSE, balloonText, title, type, valueField,
 #' @param valueField \code{character}.
 #' Name of the value field in your dataProvider.
 #' @param ... Other properties
+#' 
+#' @return An object of class \linkS4class{AmGraph}.
+#' 
 #' @examples
+#' # --- constructor
 #' stockGraph(balloonText = "balloonText", "type" = "column",
 #'            valueField = "value", animationPlayed = TRUE)
-#' @return An object of class \code{\linkS4class{AmGraph}}.
+#'            
 #' @export 
 stockGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 {
@@ -164,13 +182,15 @@ stockGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueF
 
 # > @balloonText ####
 
-#' @description Setter for balloonText.
-#' @examples
-#' setBalloonText(.Object = amGraph(), balloonText = "performance")
-#' @rdname initialize-AmGraph
+#' @rdname AmGraph
 #' @export
+#' 
 setGeneric(name = "setBalloonText", def = function(.Object, balloonText) {standardGeneric("setBalloonText")})
-#' @rdname initialize-AmGraph
+#' @rdname AmGraph
+#' @examples
+#' # --- update 'balloonText'
+#' setBalloonText(.Object = amGraph(), balloonText = "performance")
+#' 
 setMethod(f = "setBalloonText", signature = c("AmGraph", "character"),
           definition = function(.Object, balloonText)
           {
@@ -181,10 +201,11 @@ setMethod(f = "setBalloonText", signature = c("AmGraph", "character"),
 
 # > @title ####
 
-#' @description Setter for title.
+#' @rdname AmGraph
 #' @examples
+#' # --- update 'title'
 #' setTitle(.Object = amGraph(), title = "Power")
-#' @rdname initialize-AmGraph
+#'
 setMethod(f = "setTitle", signature = c("AmGraph", "character"),
           definition = function(.Object, title)
           {
@@ -193,10 +214,11 @@ setMethod(f = "setTitle", signature = c("AmGraph", "character"),
             return(.Object)
           })
 
-#' @description Setter for type.
 #' @examples
+#' # --- update 'type'
 #' setType(.Object = amGraph(), type = "type")
-#' @rdname initialize-AmGraph
+#' 
+#' @rdname AmGraph
 setMethod(f = "setType", signature = c("AmGraph", "character"),
           definition = function(.Object, type)
           {
@@ -207,13 +229,15 @@ setMethod(f = "setType", signature = c("AmGraph", "character"),
 
 # > @valueField ####
 
-#' @description Setter for valueField
-#' @examples
-#' setValueField(.Object = amGraph(), valueField = "score")
-#' @rdname initialize-AmGraph
+#' @rdname AmGraph
 #' @export
+#' 
 setGeneric(name = "setValueField", def = function(.Object, valueField) {standardGeneric("setValueField")})
-#' @rdname initialize-AmGraph
+#' @rdname AmGraph
+#' @examples
+#' # --- update valueField
+#' setValueField(.Object = amGraph(), valueField = "score")
+#' 
 setMethod(f = "setValueField", signature = c("AmGraph", "character"),
           definition = function(.Object, valueField)
           {
@@ -225,11 +249,13 @@ setMethod(f = "setValueField", signature = c("AmGraph", "character"),
 # > METHODS ###
 
 # listProperties ####
-#' @description Attributes of an AmGraph object.
+
+#' @rdname listProperties-AmObject
 #' @examples
+#' # --- signature 'AmGraph'
 #' listProperties(amGraph(balloonText = "toto", type = "type", valueField = "valueField"))
 #' listProperties(amGraph(balloonText = "toto", type = "type"))
-#' @rdname listProperties-AmObject
+#' 
 setMethod(f = "listProperties", signature = "AmGraph",
           definition = function(.Object)
           {

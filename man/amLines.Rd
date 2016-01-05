@@ -17,6 +17,9 @@ amLines(chart, x, type, col, title)
 
 \item{title}{\code{character} used when legend is enabled.}
 }
+\description{
+Add a new data to an existing serial chart.
+}
 \examples{
 library(pipeR)
 library(rAmCharts)

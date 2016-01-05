@@ -10,9 +10,7 @@
 \arguments{
 \item{object}{\linkS4class{AmStockChart}}
 }
-\seealso{
-Other Visualizations: \code{\link{print,AmObject-method}},
-  \code{\link{show,AmChart-method}},
-  \code{\link{show,AmObject-method}}
+\description{
+Display the object in the console
 }
 

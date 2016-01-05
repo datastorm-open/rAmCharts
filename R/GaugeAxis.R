@@ -20,15 +20,22 @@ setClass(Class = "GaugeAxis", contains = "AmObject",
          representation = representation(bands = "list" ))
 
 #' @title Initialize a GaugeAxis
+#' @description Use the constructor to create the object
+#' or update an existing one with the setters.
+#' 
 #' @param .Object \linkS4class{GaugeAxis}.
 #' @param axisAlpha \code{numeric}.
 #' @param bands \code{list} of \linkS4class{GaugeBand}.
 #' Bands are used to draw color fills between specified values.
 #' @param ... other properties.
+#' 
 #' @examples
+#' # --- method initialize
 #' new("GaugeAxis", alpha = 1)
-#' @rdname initialize-GaugeAxis
+#' 
+#' @rdname GaugeAxis
 #' @export
+#' 
 setMethod(f = "initialize", signature = c("GaugeAxis"),
           definition = function(.Object, axisAlpha = 1, bands, ...)
           {
@@ -44,9 +51,12 @@ setMethod(f = "initialize", signature = c("GaugeAxis"),
 
 # CONSTRUCTOR ####
 
-#' @rdname initialize-GaugeAxis
+#' @rdname GaugeAxis
+#' 
 #' @examples
+#' # -- constructor
 #' gaugeAxis()
+#' 
 #' @export
 gaugeAxis <- function(axisAlpha = 1, bands, ...) {
   .Object <- new(Class="GaugeAxis", axisAlpha = axisAlpha)

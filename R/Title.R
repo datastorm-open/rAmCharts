@@ -22,16 +22,19 @@ setClass(Class = "Title", contains = "AmObject",
            representation(text = "character", size = "numeric"))
 
 #' @title Initialize A Title
-#' @param .Object \code{\linkS4class{Title}}
-#' @param text \code{character}.
-#' Text of a title.
-#' @param size \code{numeric}.
-#' Text size of a title.
+#' @description Use the constructor to create the object
+#' or update an existing one with the setters.
+#' 
+#' @param .Object \linkS4class{Title}
+#' @param text \code{character}. Text of a title.
+#' @param size \code{numeric}. Text size of a title.
 #' @param ... Other properties.
-#' @return (updated) \code{\linkS4class{Title}}
+#' 
+#' @return (updated) \linkS4class{Title}
+#' 
 #' @examples
 #' new("Title", size = 10)
-#' @rdname initialize-Title
+#' @rdname Title
 #' @export
 setMethod(f = "initialize", signature = "Title",
           definition = function(.Object, text, size, ...)
@@ -48,7 +51,7 @@ setMethod(f = "initialize", signature = "Title",
           })
 
 # CONSTRUCTOR ####
-#' @rdname initialize-Title
+#' @rdname Title
 #' @examples
 #' title(text = "bonjour")
 #' @export
@@ -69,7 +72,7 @@ title <- function(text, size, ...) {
 
 #' @examples
 #' setText(.Object = title(), text = "Bonjour")
-#' @rdname initialize-Title
+#' @rdname Title
 setMethod(f = "setText", signature = c("Title", "character"),
           definition = function(.Object, text)
           {
@@ -80,13 +83,13 @@ setMethod(f = "setText", signature = c("Title", "character"),
 
 # > @size : setters ####
 
-#' @rdname initialize-Title
+#' @rdname Title
 #' @export
 setGeneric(name = "setSize", def = function(.Object, size) { standardGeneric("setSize") })
 #' @examples
 #' library(pipeR)
 #' title() %>>% setSize(16)
-#' @rdname initialize-Title
+#' @rdname Title
 setMethod(f = "setSize", signature = c("Title", "numeric"),
           definition = function(.Object, size)
           {

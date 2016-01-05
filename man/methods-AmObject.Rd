@@ -29,7 +29,10 @@ The former properties will be overwritten.}
 \item{...}{Other properties}
 }
 \value{
-The updated object of class \code{\linkS4class{AmChart}}.
+The updated object.
+}
+\description{
+Methods for inherited classes.
 }
 \details{
 If the property is a class property, it will be overwritten if the attribute is non NULL

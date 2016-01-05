@@ -3,30 +3,41 @@ NULL
 
 #' @title AmBalloon class
 #' @author DataKnowledge
+#' 
 #' @description Creates the balloons (tooltips) of the chart.
 #' It follows the mouse cursor when you roll-over the data items.
 #' The framework generates the instances automatically you only need to adjust the appearance to your needs.
 #' @details Run \code{api("AmBalloon")} for more information and all avalaible properties.
+#' 
+#' 
 #' @slot adjustBorderColor \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
 #' user rolls-over the slice, graph, etc.
+#' 
 #' @slot color \code{character}.
 #' Color of text in the balloon.
+#' 
 #' @slot cornerRadius \code{numeric}.
 #' Balloon corner radius.
+#' 
 #' @slot fillColor \code{character}.
 #' Balloon background color. Usually balloon background color is set by the chart.
 #' Only if "adjustBorderColor" is "true" this color will be used.
+#' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must a character string.
 #' See examples for details.
-#' Inherited from \code{\linkS4class{AmObject}}.
+#' Inherited from \linkS4class{AmObject}.
+#' 
 #' @slot otherProperties \code{list},
 #' containing other avalaible properties non coded in the package yet.
-#' Inherited from \code{\linkS4class{AmObject}}.
+#' Inherited from \linkS4class{AmObject}.
+#' 
 #' @slot value \code{numeric}.
-#' Inherited from \code{\linkS4class{AmObject}}.
+#' Inherited from \linkS4class{AmObject}.
+#' 
 #' @export
+#' 
 setClass(Class = "AmBalloon", contains = "AmObject",
          representation = representation(
            adjustBorderColor = "logical",
@@ -36,6 +47,8 @@ setClass(Class = "AmBalloon", contains = "AmObject",
          ))
 
 #' @title Initialize an AmBalloon
+#' @description Initialize or update an object \linkS4class{AmBalloon}.
+#' 
 #' @param .Object \linkS4class{AmBalloon}.
 #' @param adjustBorderColor \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
@@ -50,11 +63,16 @@ setClass(Class = "AmBalloon", contains = "AmObject",
 #' @param ...
 #' Other properties of AmBalloon.
 #' See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.
-#' @return An object of class \code{\linkS4class{AmBalloon}}.
+#' 
+#' @return An object, possibly updated,  of class \linkS4class{AmBalloon}.
+#' 
 #' @examples
+#' 
 #' new("AmBalloon", cornerRadius = 10)
-#' @rdname initialize-AmBalloon
+#' 
+#' @rdname AmBalloon
 #' @export
+#' 
 setMethod(f = "initialize", signature = "AmBalloon",
           definition = function(.Object, adjustBorderColor, color, cornerRadius, fillColor, ...)
           {  
@@ -77,9 +95,12 @@ setMethod(f = "initialize", signature = "AmBalloon",
 
 # CONSTRUCTOR ####
 
+#' @rdname AmBalloon
+#' 
 #' @examples
+#' 
 #' amBalloon(adjustBorderColor = TRUE, color = "#000000")
-#' @rdname initialize-AmBalloon
+#' 
 #' @export
 amBalloon <- function(adjustBorderColor, color, cornerRadius, fillColor, ...) {
   .Object <- new("AmBalloon")
@@ -102,13 +123,16 @@ amBalloon <- function(adjustBorderColor, color, cornerRadius, fillColor, ...) {
 
 # > @adjustBorderColor : setters ####
 
-#' @title Setter for adjustBorderColor
+
+#' @rdname AmBalloon
+#' 
 #' @examples
 #' setAdjustBorderColor(.Object = amBalloon(), adjustBorderColor = TRUE)
-#' @rdname initialize-AmBalloon
+#' 
 #' @export
+#' 
 setGeneric(name = "setAdjustBorderColor", def = function(.Object, adjustBorderColor) { standardGeneric("setAdjustBorderColor") } )
-#' @rdname initialize-AmBalloon
+#' @rdname AmBalloon
 setMethod(f = "setAdjustBorderColor", signature = c("AmBalloon", "logical"),
           definition = function(.Object, adjustBorderColor)
           {
@@ -119,13 +143,15 @@ setMethod(f = "setAdjustBorderColor", signature = c("AmBalloon", "logical"),
 
 # > @color : setters ####
 
-#' @title Setter for color
+#' @rdname AmBalloon
+#' 
 #' @examples
 #' setColor(.Object = amBalloon(), color = "#000000")
-#' @rdname initialize-AmBalloon
+#' 
 #' @export
+#' 
 setGeneric(name = "setColor", def = function(.Object, color) { standardGeneric("setColor") } )
-#' @rdname initialize-AmBalloon
+#' @rdname AmBalloon
 setMethod(f = "setColor", signature = c("AmBalloon", "character"),
           definition = function(.Object, color)
           {
@@ -136,13 +162,15 @@ setMethod(f = "setColor", signature = c("AmBalloon", "character"),
 
 # > @cornerRadius : setters ####
 
-#' @title Setter for corner radius
+#' @rdname AmBalloon
+#' 
 #' @examples
 #' setCornerRadius(.Object = amBalloon(), cornerRadius = 5)
-#' @rdname initialize-AmBalloon
+#' 
 #' @export
+#' 
 setGeneric(name = "setCornerRadius", def = function(.Object, cornerRadius) {standardGeneric("setCornerRadius")})
-#' @rdname initialize-AmBalloon
+#' @rdname AmBalloon
 setMethod(f = "setCornerRadius", signature = c("AmBalloon", "numeric"),
           definition = function(.Object, cornerRadius)
           {
@@ -153,13 +181,15 @@ setMethod(f = "setCornerRadius", signature = c("AmBalloon", "numeric"),
 
 # > @fillColor : setters ####
 
-#' @title Setter for fillColor
+#' @rdname AmBalloon
+#' 
 #' @examples
 #' setFillColor(.Object = amBalloon(), fillColor = "#FFFFFF")
-#' @rdname initialize-AmBalloon
+#' 
 #' @export
+#' 
 setGeneric(name = "setFillColor", def = function(.Object, fillColor) {standardGeneric("setFillColor")})
-#' @rdname initialize-AmBalloon
+#' @rdname AmBalloon
 setMethod(f = "setFillColor", signature = c("AmBalloon", "character"),
           definition = function(.Object, fillColor)
           {
@@ -171,6 +201,7 @@ setMethod(f = "setFillColor", signature = c("AmBalloon", "character"),
 # listProperties ####
 
 #' @rdname listProperties-AmObject
+#' 
 #' @examples
 #' amBalloon(adjustBorderColor = TRUE)
 setMethod(f = "listProperties", signature = "AmBalloon",

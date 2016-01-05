@@ -27,21 +27,25 @@ setClass(Class = "Label", contains = "AmObject",
            y = "numericOrCharacter"))
 
 #' @title Initialize
+#' @description Use the constructor to create the object
+#' or update an existing one with the setters.
+#' 
 #' @param .Object \linkS4class{Label}.
-#' @param bold \code{character}.
-#' Specifies if label is bold or not.
-#' @param text \code{character}.
-#' Text of a title.
-#' @param x \code{numeric}.
-#' X position of a label.
-#' @param y \code{numeric}.
-#' Y position of a label.
+#' @param bold \code{character}. Specifies if label is bold or not.
+#' @param text \code{character}. Text of a title.
+#' @param x \code{numeric}. X position of a label.
+#' @param y \code{numeric}. Y position of a label.
 #' @param ... Other properties.
+#' 
 #' @return (updated) .Object of class \linkS4class{Label}.
-#' @rdname initialize-Label
+#' 
 #' @examples
+#' # --- method initialize
 #' new("Label", x = 10)
+#' 
 #' @export
+#' @rdname Label
+#' 
 setMethod(f = "initialize", signature = "Label",
           definition = function(.Object, text, bold, x, y, ...)
           {  
@@ -62,12 +66,15 @@ setMethod(f = "initialize", signature = "Label",
             return(.Object)
           })
 
-# CONSTRUCTOR ####
-#' @rdname  initialize-Label
+#' @rdname  Label
+#' 
 #' @examples
+#' # --- constructor
 #' label(text = "bonjour")
 #' label(text = "Male", x = "28%", y = "97%")
+#' 
 #' @export
+#' 
 label <- function(text, bold, x, y, ...){
   .Object <- new("Label")
   if (!missing(text)) {
@@ -89,12 +96,14 @@ label <- function(text, bold, x, y, ...){
 
 # > @bold : setters ####
 
-#' @rdname initialize-Label
+#' @rdname Label
 #' @export
 setGeneric(name = "setBold", def = function(.Object, bold){ standardGeneric("setBold") } )
 #' @examples
+#' # --- update property 'bold'
 #' setBold(.Object = label(), bold = TRUE)
-#' @rdname initialize-Label
+#' 
+#' @rdname Label
 setMethod(f = "setBold", signature = c("Label", "logical"),
           definition = function(.Object, bold)
           {
@@ -106,8 +115,10 @@ setMethod(f = "setBold", signature = c("Label", "logical"),
 # > @text : setters ####
 
 #' @examples
+#' # --- update 'text'
 #' setText(.Object = label(), text = "Bonjour")
-#' @rdname initialize-Label
+#' 
+#' @rdname Label
 setMethod(f = "setText", signature = c("Label", "character"),
           definition = function(.Object, text)
           {
@@ -118,12 +129,15 @@ setMethod(f = "setText", signature = c("Label", "character"),
 
 # > @x : setters ####
 
-#' @rdname initialize-Label
+#' @rdname Label
 #' @export
 setGeneric(name = "setX", def = function(.Object, x){ standardGeneric("setX") } )
 #' @examples
+#' # --- update 'x'
 #' setX(.Object = label(), x = 16)
-#' @rdname initialize-Label
+#' 
+#' @rdname Label
+#' 
 setMethod(f = "setX", signature = c("Label", "numericOrCharacter"),
           definition = function(.Object, x)
           {
@@ -134,12 +148,15 @@ setMethod(f = "setX", signature = c("Label", "numericOrCharacter"),
 
 # > @y : setters ####
 
-#' @rdname initialize-Label
+#' @rdname Label
 #' @export
 setGeneric(name = "setY", def = function(.Object, y){ standardGeneric("setY") } )
 #' @examples
+#' # --- update 'y'
 #' setY(.Object = label(), y = 16)
-#' @rdname initialize-Label
+#' 
+#' @rdname Label
+#' 
 setMethod(f = "setY", signature = c("Label", "numericOrCharacter"),
           definition = function(.Object, y)
           {

@@ -34,30 +34,42 @@ setY(.Object, y)
 \arguments{
 \item{.Object}{\linkS4class{Label}.}
 
-\item{text}{\code{character}.
-Text of a title.}
+\item{text}{\code{character}. Text of a title.}
 
-\item{bold}{\code{character}.
-Specifies if label is bold or not.}
+\item{bold}{\code{character}. Specifies if label is bold or not.}
 
-\item{x}{\code{numeric}.
-X position of a label.}
+\item{x}{\code{numeric}. X position of a label.}
 
-\item{y}{\code{numeric}.
-Y position of a label.}
+\item{y}{\code{numeric}. Y position of a label.}
 
 \item{...}{Other properties.}
 }
 \value{
 (updated) .Object of class \linkS4class{Label}.
 }
+\description{
+Use the constructor to create the object
+or update an existing one with the setters.
+}
 \examples{
+# --- method initialize
 new("Label", x = 10)
+
+# --- constructor
 label(text = "bonjour")
 label(text = "Male", x = "28\%", y = "97\%")
+
+# --- update property 'bold'
 setBold(.Object = label(), bold = TRUE)
+
+# --- update 'text'
 setText(.Object = label(), text = "Bonjour")
+
+# --- update 'x'
 setX(.Object = label(), x = 16)
+
+# --- update 'y'
 setY(.Object = label(), y = 16)
+
 }
 

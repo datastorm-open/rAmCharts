@@ -57,6 +57,9 @@ Should the export button be shown ?}
 
 \item{valueAxis}{\linkS4class{ValueAxis}.}
 }
+\description{
+These methods are shared by at least two different classes
+}
 \details{
 \code{setBalloon} is shared by AmChart and AmStockChart
 

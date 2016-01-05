@@ -43,10 +43,15 @@ See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}}
 \value{
 (updated) .Object of class \linkS4class{ChartCursor}.
 }
+\description{
+Initialize or update a \linkS4class{ChartCursor}.
+}
 \examples{
 new("ChartCursor", oneBalloonOnly = TRUE)
+
 chartCursor()
 chartCursor(oneBalloonOnly = TRUE)
+
 setOneBalloonOnly(.Object = chartCursor(), oneBalloonOnly = TRUE)
 setValueLineAxis(.Object = chartCursor(), id = "valueAxis1",
                  title = "Hello !", axisTitleOffset = 12)

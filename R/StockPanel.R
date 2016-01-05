@@ -109,6 +109,9 @@ setClass(Class = "StockPanel", contains = "AmChart",
          ))
 
 #' @title Initialize a StockPanel
+#' @description Use the constructor to create the object
+#' or update an existing one with the setters.
+#' 
 #' @param .Object \linkS4class{StockPanel}.
 #' @param drawOnAxis \linkS4class{ValueAxis}.
 #' Specifies on which value axis user can draw trend lines.
@@ -120,7 +123,9 @@ setClass(Class = "StockPanel", contains = "AmChart",
 #' @param stockLegend \code{list} of \linkS4class{AmLegend}.
 #' Each element must be have been created with stockLegend(*)
 #' @param ... Other properties...
+#' 
 #' @return (updated) \linkS4class{StockPanel} with given properties.
+#' 
 #' @examples
 #' new("StockPanel")
 #' @rdname initialize-StockPanel

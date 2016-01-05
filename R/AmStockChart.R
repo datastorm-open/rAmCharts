@@ -54,6 +54,7 @@ setClass("AmStockChart", contains = "AmObject",
 
 #' @title Initialize an AmStockChart
 #' @description Method for initializing any S4 class provided by the package.
+#' 
 #' @param .Object \linkS4class{AmStockChart}.
 #' @param balloon \linkS4class{AmBalloon}.
 #' @param comparedDataSets \code{list} of \linkS4class{DataSet}.
@@ -71,11 +72,17 @@ setClass("AmStockChart", contains = "AmObject",
 #' date ranges or zoom chart with predefined period buttons.
 #' @param theme \code{character}.
 #' @param ... Other properties...
+#' 
 #' @return An object of class \linkS4class{AmStockChart}.
+#' 
 #' @examples
+#' # --- method 'initialize'
 #' new("AmStockChart", theme = "dark")
-#' @rdname initialize-AmStockChart
+#' 
+#' @rdname AmStockChart
+#' 
 #' @export
+#' 
 setMethod(f = "initialize", signature = "AmStockChart",
           definition = function(.Object, balloon, comparedDataSets, dataSets,
                                 dataSetSelector, mainDataSet,
@@ -111,13 +118,13 @@ setMethod(f = "initialize", signature = "AmStockChart",
             return(.Object)
           })
 
-#' @description amStockChart is a shortcut constructor 
-#' for instantiating AmChart of type \code{stock}
+#' @rdname AmStockChart
 #' @examples
+#' # --- constructor
 #' amStockChart()
-#' # ---
-#' @rdname initialize-AmStockChart
+#' 
 #' @export
+#' 
 amStockChart <- function(balloon, comparedDataSets, dataSets,
                          dataSetSelector, mainDataSet,
                          panels, periodSelector, theme, ...)
@@ -152,10 +159,11 @@ amStockChart <- function(balloon, comparedDataSets, dataSets,
   return(.Object)
 }
 
-#' @examples
-#' listProperties(amStockChart(test = 1))
-#' # ---
 #' @rdname listProperties-AmObject
+#' @examples
+#' # --- signature 'AmStockChart'
+#' listProperties(amStockChart(test = 1))
+#' 
 setMethod(f = "listProperties", signature = "AmStockChart",
           definition = function(.Object)
           {
@@ -191,9 +199,12 @@ setMethod(f = "listProperties", signature = "AmStockChart",
           })
 
 #' @title Visualize AmStockChart with show
+#' @description Display the object in the console
+#' 
 #' @param object \linkS4class{AmStockChart}
-#' @family Visualizations
+#' 
 #' @export
+#' 
 setMethod(f = "show", signature = "AmStockChart",
           definition = function(object)
           {

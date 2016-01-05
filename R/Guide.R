@@ -27,6 +27,9 @@ setClass(Class = "Guide", contains = "AmObject",
          representation = representation(fillAlpha = "numeric", valueAxis = "listOrCharacter"))
 
 #' @title Initialize a Guide
+#' @description Use the constructor to create the object
+#' or update an existing one with the setters.
+#' 
 #' @param .Object \linkS4class{Guide}
 #' @param fillAlpha \code{numeric}.
 #' Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
@@ -37,10 +40,14 @@ setClass(Class = "Guide", contains = "AmObject",
 #' which value axis should be used.
 #' @param value \code{numeric}.
 #' @param ... Other properties.
+#' 
 #' @examples
+#' # --- method initialize
 #' new("Guide", fillAlpha = 0.1, gridThickness = 1, value = 1)
-#' @rdname initialize-Guide
+#' 
 #' @export
+#' @rdname initialize-Guide
+#' 
 setMethod(f = "initialize", signature = c("Guide"),
           definition = function(.Object, fillAlpha, valueAxis, value, ...)
           {            
@@ -62,9 +69,12 @@ setMethod(f = "initialize", signature = c("Guide"),
 # CONSTRUCTOR ####
 
 #' @rdname initialize-Guide
+#' 
 #' @examples
+#' # --- constructor
 #' guide(fillAlpha = .4, value = 1)
 #' guide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
+#' 
 #' @export
 #' 
 guide <- function(fillAlpha, valueAxis, value, ...) {
@@ -85,6 +95,7 @@ guide <- function(fillAlpha, valueAxis, value, ...) {
 }
 
 #' @examples
+#' # --- signature 'Guide'
 #' lapply(list(guide(fillAlpha = .4, value = 1), guide(fillAlpha = .5)), listProperties)
 #' @rdname listProperties-AmObject
 #' 

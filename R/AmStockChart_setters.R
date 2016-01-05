@@ -6,7 +6,7 @@ NULL
 #' @examples
 #' setBalloon(.Object = amStockChart(), gridPosition = "start")
 #' # ---
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setBalloon", signature = c("AmStockChart", "AmBalloonOrMissing"),
           definition = function(.Object, amBalloon = NULL, ...)
           {
@@ -29,10 +29,10 @@ setMethod(f = "setBalloon", signature = c("AmStockChart", "AmBalloonOrMissing"),
 #' @examples
 #' setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")
 #' # ---
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setCategoryAxesSettings", def = function(.Object, ...) {standardGeneric("setCategoryAxesSettings")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setCategoryAxesSettings", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {
@@ -48,10 +48,10 @@ setMethod(f = "setCategoryAxesSettings", signature = c("AmStockChart"),
 #' @examples
 #' setChartCursorSettings(.Object = amStockChart(), oneBallOnly = TRUE)
 #' # ---
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setChartCursorSettings", def = function(.Object, ...) {standardGeneric("setChartCursorSettings")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setChartCursorSettings", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {
@@ -71,10 +71,10 @@ setMethod(f = "setChartCursorSettings", signature = c("AmStockChart"),
 #' setChartScrollbarSettings(.Object = amStockChart(),
 #'                           chartScrollbarSettings = chartScrollbarSettings_obj)
 #' # ---
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setChartScrollbarSettings", def = function(.Object, chartScrollbarSettings = NULL, ...) {standardGeneric("setChartScrollbarSettings")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setChartScrollbarSettings", signature = c("AmStockChart", "ChartScrollbarOrMissing"),
           definition = function(.Object, chartScrollbarSettings = NULL, ...)
           {
@@ -95,10 +95,10 @@ setMethod(f = "setChartScrollbarSettings", signature = c("AmStockChart", "ChartS
 #' @examples
 #' comparedDataSets_ls <- list(dataSet(compared = TRUE), dataSet(compared = TRUE))
 #' setComparedDataSets(.Object = amStockChart(), comparedDataSets = comparedDataSets_ls)
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setComparedDataSets", def = function(.Object, comparedDataSets) {standardGeneric("setComparedDataSets")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setComparedDataSets", signature = c("AmStockChart"),
           definition = function(.Object, comparedDataSets)
           {
@@ -116,10 +116,10 @@ setMethod(f = "setComparedDataSets", signature = c("AmStockChart"),
 #' @examples
 #' addComparedDataSet(.Object = amStockChart(), compared = TRUE)
 #' # ---
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "addComparedDataSet", def = function(.Object, dataSet = NULL, ...) {standardGeneric("addComparedDataSet")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "addComparedDataSet", signature = c("AmStockChart", "DataSetOrMissing"),
           definition = function(.Object, dataSet = NULL, ...)
           {
@@ -139,10 +139,10 @@ setMethod(f = "addComparedDataSet", signature = c("AmStockChart", "DataSetOrMiss
 #' dataSets_ls <- list(dataSet(compared = FALSE), dataSet(compared = FALSE))
 #' setDataSets(.Object = amStockChart(), dataSets = dataSets_ls)
 #' # ---
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setDataSets", def = function(.Object, dataSets) {standardGeneric("setDataSets")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setDataSets", signature = c("AmStockChart"),
           definition = function(.Object, dataSets)
           {
@@ -162,10 +162,10 @@ setMethod(f = "setDataSets", signature = c("AmStockChart"),
 #' dataSet_obj <- dataSet(compared = FALSE)
 #' addDataSet(.Object = amStockChart(), dataSet = dataSet_obj)
 #' # ---
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "addDataSet", def = function(.Object, dataSet = NULL, ...) {standardGeneric("addDataSet")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "addDataSet", signature = c("AmStockChart", "DataSetOrMissing"),
           definition = function(.Object, dataSet = NULL, ...)
           {
@@ -191,10 +191,10 @@ setMethod(f = "addDataSet", signature = c("AmStockChart", "DataSetOrMissing"),
 #' print(setDataSetSelector(.Object = amStockChart(),
 #'                          dataSetSelector = dataSetSelector_obj))
 #' 
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setDataSetSelector", def = function(.Object, dataSetSelector = NULL, ...) {standardGeneric("setDataSetSelector")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setDataSetSelector", signature = c("AmStockChart"),
           definition = function(.Object, dataSetSelector = NULL, ...)
           {
@@ -223,10 +223,10 @@ setMethod(f = "setExport", signature = c("AmStockChart"),
 
 #' @examples
 #' setLegendSettings(.Object = amStockChart(), equalWidths = TRUE)
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setLegendSettings", def = function(.Object, ...) {standardGeneric("setLegendSettings")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setLegendSettings", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {
@@ -237,10 +237,10 @@ setMethod(f = "setLegendSettings", signature = c("AmStockChart"),
 
 #' @examples
 #' setMainDataSet(.Object = amStockChart(), showInCompare = TRUE)
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setMainDataSet", def = function(.Object, dataSet = NULL, ...) {standardGeneric("setMainDataSet")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setMainDataSet", signature = c("AmStockChart", "DataSetOrMissing"),
           definition = function(.Object, dataSet = NULL, ...)
           {
@@ -258,10 +258,10 @@ setMethod(f = "setMainDataSet", signature = c("AmStockChart", "DataSetOrMissing"
 #' @examples
 #' panels_ls <- list(stockPanel(compared = TRUE), stockPanel(compared = TRUE))
 #' setPanels(.Object = amStockChart(), panels = panels_ls)
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setPanels", def = function(.Object, panels) {standardGeneric("setPanels")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setPanels", signature = c("AmStockChart", "list"),
           definition = function(.Object, panels)
           {
@@ -280,10 +280,10 @@ setMethod(f = "setPanels", signature = c("AmStockChart", "list"),
 #' # equivalent to:
 #' panel_obj <- panel(allowTurningOff = TRUE)
 #' addPanel(.Object = amStockChart(), panel = panel_obj)
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "addPanel", def = function(.Object, panel = NULL, ...) {standardGeneric("addPanel")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "addPanel", signature = c("AmStockChart", "StockPanelOrMissing"),
           definition = function(.Object, panel = NULL, ...)
           {
@@ -299,10 +299,10 @@ setMethod(f = "addPanel", signature = c("AmStockChart", "StockPanelOrMissing"),
 
 #' @examples
 #' setPanelsSettings(.Object = amStockChart(), backgroundAlpha = 0)
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setPanelsSettings", def = function(.Object, ...) {standardGeneric("setPanelsSettings")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setPanelsSettings", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {
@@ -313,10 +313,10 @@ setMethod(f = "setPanelsSettings", signature = c("AmStockChart"),
 
 #' @examples
 #' setPeriodSelector(.Object = amStockChart(), dateFormat = "DD-MM-YYYY")
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setPeriodSelector", def = function(.Object, periodSelector = NULL, ...) {standardGeneric("setPeriodSelector")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setPeriodSelector", signature = c("AmStockChart", "PeriodSelectorOrMissing"),
           definition = function(.Object, periodSelector = NULL, ...)
           {
@@ -332,10 +332,10 @@ setMethod(f = "setPeriodSelector", signature = c("AmStockChart", "PeriodSelector
 
 #' @examples
 #' setStockEventsSettings(.Object = amStockChart(), backgroundAlpha = 1)
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setStockEventsSettings", def = function(.Object, ...) {standardGeneric("setStockEventsSettings")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setStockEventsSettings", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {
@@ -346,10 +346,10 @@ setMethod(f = "setStockEventsSettings", signature = c("AmStockChart"),
 
 #' @examples
 #' setValueAxesSettings(.Object = amStockChart(), autoGridCount = "TRUE")
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 #' @export
 setGeneric(name = "setValueAxesSettings", def = function(.Object, ...) {standardGeneric("setValueAxesSettings")})
-#' @rdname initialize-AmStockChart
+#' @rdname AmStockChart
 setMethod(f = "setValueAxesSettings", signature = c("AmStockChart"),
           definition = function(.Object, ...)
           {

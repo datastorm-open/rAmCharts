@@ -165,9 +165,6 @@ An object of class \linkS4class{AmStockChart}.
 }
 \description{
 Method for initializing any S4 class provided by the package.
-
-amStockChart is a shortcut constructor 
-for instantiating AmChart of type \code{stock}
 }
 \details{
 CategoryAxesSettings set's settings common for all CategoryAxes of StockPanels.
@@ -185,9 +182,12 @@ You can add it if you have more than one data set and want users
 to be able to select/compare them.
 }
 \examples{
+# --- method 'initialize'
 new("AmStockChart", theme = "dark")
+
+# --- constructor
 amStockChart()
-# ---
+
 setBalloon(.Object = amStockChart(), gridPosition = "start")
 # ---
 setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")

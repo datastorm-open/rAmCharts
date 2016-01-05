@@ -3,7 +3,10 @@
 \docType{class}
 \name{PeriodSelector-class}
 \alias{PeriodSelector-class}
-\title{PeriodSelector class}
+\title{PeriodSelector}
+\description{
+Define the PeriodSelector properties.
+}
 \section{Slots}{
 
 \describe{
@@ -25,6 +28,6 @@ containing other avalaible properties non coded in the package yet.}
 \item{\code{value}}{Object of class \code{numeric}.}
 }}
 \author{
-DataKnowledge
+Dataknowledge
 }
 

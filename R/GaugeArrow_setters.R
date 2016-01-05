@@ -1,10 +1,12 @@
 #' @include classUnion.R
 NULL
 
-#' @rdname initialize-GaugeArrow
+#' @rdname GaugeArrow
 #' @export
+#' 
 setGeneric(name = "setAxis", def = function(.Object, axis = NULL, ...) {standardGeneric("setAxis")})
 #' @examples
+#' # -- update 'axis' property
 #' setAxis(.Object = gaugeArrow(), id = "axis1", startValue = 0,
 #'         endValue = 100, valueInterval = 10)
 #' # equivalent to:
@@ -12,8 +14,8 @@ setGeneric(name = "setAxis", def = function(.Object, axis = NULL, ...) {standard
 #' setAxis(.Object = gaugeArrow(), axis = axis_obj)
 #' # or, iff, 'axis_obj' has already been added to the chart
 #' setAxis(.Object = gaugeArrow(), axis = "axis1")
-#' # ---
-#' @rdname initialize-GaugeArrow
+#' 
+#' @rdname GaugeArrow
 setMethod(f = "setAxis", signature = c("GaugeArrow", "GaugeAxisOrCharacterOrMissing"),
           definition = function(.Object, axis = NULL, ...)
           {

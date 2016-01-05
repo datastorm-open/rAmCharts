@@ -23,6 +23,7 @@ NULL
 #' @slot value \code{numeric}.
 #' 
 #' @export
+#' 
 setClass(Class = "ChartCursor", contains = "AmObject",
          representation = representation(
            oneBalloonOnly = "logical",
@@ -30,6 +31,8 @@ setClass(Class = "ChartCursor", contains = "AmObject",
          ))
 
 #' @title Initialize a ChartCursor
+#' @description Initialize or update a \linkS4class{ChartCursor}.
+#' 
 #' @param .Object \linkS4class{ChartCursor}.
 #' @param oneBalloonOnly \code{logical}.
 #' If this is set to TRUE, border color instead of background color will be changed when
@@ -40,11 +43,15 @@ setClass(Class = "ChartCursor", contains = "AmObject",
 #' to indicate which axis should display balloon.
 #' @param ... other properties.
 #' See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}
+#' 
 #' @return (updated) .Object of class \linkS4class{ChartCursor}.
+#' 
 #' @examples
 #' new("ChartCursor", oneBalloonOnly = TRUE)
+#' 
 #' @rdname initialize-ChartCursor
 #' @export
+#' 
 setMethod(f = "initialize", signature = "ChartCursor",
           definition = function(.Object, oneBalloonOnly, valueLineAxis,...)
           {  
@@ -62,11 +69,15 @@ setMethod(f = "initialize", signature = "ChartCursor",
 # CONSTRUCTOR ####
 
 #' @rdname initialize-ChartCursor
+#' 
 #' @param animationDuration \code{numeric}, duration of animation of a line, in seconds.
+#' 
 #' @examples
 #' chartCursor()
 #' chartCursor(oneBalloonOnly = TRUE)
+#' 
 #' @export
+#' 
 chartCursor <- function(animationDuration = .3, oneBalloonOnly, valueLineAxis,...) {
   .Object <- new("ChartCursor", animationDuration = animationDuration)
   if (!missing(oneBalloonOnly)) {
@@ -81,8 +92,10 @@ chartCursor <- function(animationDuration = .3, oneBalloonOnly, valueLineAxis,..
 }
 
 #' @rdname listProperties-AmObject
+#' 
 #' @examples
 #' new("ChartCursor", oneBalloonOnly = TRUE)
+#' 
 setMethod(f = "listProperties", signature = "ChartCursor",
           definition = function(.Object)
           { 

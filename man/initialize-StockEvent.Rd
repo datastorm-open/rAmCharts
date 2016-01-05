@@ -32,6 +32,10 @@ You can use a reference to the stock graph object or id of the graph.}
 \value{
 (updated) argument .Object of class \linkS4class{StockEvent}.
 }
+\description{
+Use the constructor to create the object
+or update an existing one with the setters.
+}
 \examples{
 new("StockEvent")
 stockEvent()

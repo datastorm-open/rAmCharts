@@ -67,6 +67,10 @@ Argument for method \code{addStockGraph}.}
 \value{
 (updated) \linkS4class{StockPanel} with given properties.
 }
+\description{
+Use the constructor to create the object
+or update an existing one with the setters.
+}
 \examples{
 new("StockPanel")
 stockPanel()

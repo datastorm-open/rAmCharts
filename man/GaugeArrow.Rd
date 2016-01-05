@@ -31,9 +31,18 @@ If you don't set any axis, the first axis of a chart will be used.}
 \value{
 (updated) .Object of class \linkS4class{GaugeArrow}.
 }
+\description{
+Use the constructor to create the object with its properties
+or update an existing one with the setters.
+}
 \examples{
-new("GaugeArrow")
+# --- method initialize
+new("GaugeArrow", alpha = 2)
+
+# --- constructor
 gaugeArrow(value = 10)
+
+# -- update 'axis' property
 setAxis(.Object = gaugeArrow(), id = "axis1", startValue = 0,
         endValue = 100, valueInterval = 10)
 # equivalent to:
@@ -41,6 +50,6 @@ axis_obj <- gaugeAxis(id = "axis1", startValue = 0, endValue = 100, valueInterva
 setAxis(.Object = gaugeArrow(), axis = axis_obj)
 # or, iff, 'axis_obj' has already been added to the chart
 setAxis(.Object = gaugeArrow(), axis = "axis1")
-# ---
+
 }
 

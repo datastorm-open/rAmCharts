@@ -18,9 +18,13 @@ Set this property to true if you want to enable this feature.}
 See \url{http://docs.amcharts.com/3/javascriptstockchart/StockLegend}}
 }
 \value{
-An \code{\linkS4class{AmLegend}} object
+An \linkS4class{AmLegend} object
+}
+\description{
+This method is used for \linkS4class{AmStockChart}.
 }
 \examples{
 stockLegend(useGraphSettings = TRUE)
+
 }
 

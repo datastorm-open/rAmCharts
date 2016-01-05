@@ -2,7 +2,8 @@
 NULL
 
 #' @title AmChart
-#' @description This class allow to define the amCharts parameters
+#' @author Dataknowledge
+#' @description Define the AmChart properties.
 #' 
 #' @field allLabels \code{list} of \linkS4class{Label}.
 #' Example of label object, with all possible properties:
@@ -339,15 +340,17 @@ setMethod(f = "initialize", signature = "AmChart",
           })
 
 #' @title Visualize AmChart with show
+#' @description Display the object in the console
 #' @param object \linkS4class{AmChart}
 #' @examples
 #' pipeR::pipeline(
-#'   rAmCharts::amPieChart(valueField = "value", titleField = "key"),
-#'   rAmCharts::setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
-#'   rAmCharts::setExport(position = "bottom-left")
+#'   amPieChart(valueField = "value", titleField = "key"),
+#'   setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
+#'   setExport(position = "bottom-left")
 #' )
-#' @family Visualizations
+#' 
 #' @export
+#' 
 setMethod(f = "show", signature = "AmChart",
           definition = function(object)
           {
@@ -359,12 +362,11 @@ setMethod(f = "show", signature = "AmChart",
             }
           })
 
-#' @title List attributes of an AmChart
-#' @description This method lists attributes of an AmChart to fit the API
-#' @param .Object  \code{\linkS4class{AmChart}}
-#' @details For certain attributes we do not verify if they are NULL, see constructor.
+#' @rdname listProperties-AmObject
 #' @examples
-#' print(amChart(test = 1))
+#' # --- signature 'AmChart'
+#' listProperties(amChart(test = 1))
+#' 
 setMethod(f = "listProperties", signature = "AmChart",
           definition = function(.Object)
           {

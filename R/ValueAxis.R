@@ -21,15 +21,23 @@ NULL
 #' Guides belonging to this axis. Use addGuide method
 #' 
 #' @export
+#' 
 setClass(Class = "ValueAxis", contains = "AxisBase",
          representation = representation(title = "character"))
 
 #' @title Initialize
-#' @param .Object \code{\linkS4class{ValueAxis}}.
+#' @description Creates a ValuesAxis or update its properties.
+#' 
+#' @param .Object \linkS4class{ValueAxis}.
 #' @param title \code{character}.
-#' @param guides \code{list} of \code{\linkS4class{Guide}}.
+#' @param guides \code{list} of \linkS4class{Guide}.
 #' @param ... Other properties (depend of call function)
+#' 
 #' @examples
+#' 
+#' guides <- list(guide(fillAlpha = .4), guide(fillAlpha = .5))
+#' new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)
+#' 
 #' \dontrun{
 #' new("ValueAxis", title = "Hello !", 1) # 1 is not take into account
 #' 
@@ -38,10 +46,9 @@ setClass(Class = "ValueAxis", contains = "AxisBase",
 #' new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)
 #' }
 #' 
-#' guides <- list(guide(fillAlpha = .4), guide(fillAlpha = .5))
-#' new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)
 #' @rdname initialize-ValueAxis
 #' @export
+#' 
 setMethod(f = "initialize", signature = c("ValueAxis"),
           definition = function(.Object, title, guides, ...)
           {            
@@ -58,10 +65,13 @@ setMethod(f = "initialize", signature = c("ValueAxis"),
 
 # CONSTRUCTOR ####
 
+#' @rdname initialize-ValueAxis
+#' 
 #' @examples
 #' valueAxis(title = "Hello !", axisTitleOffset = 12)
-#' @rdname initialize-ValueAxis
+#' 
 #' @export
+#' 
 valueAxis <- function(title, ...) {
   .Object <- new(Class="ValueAxis")
   if (!missing(title)) {
@@ -71,9 +81,13 @@ valueAxis <- function(title, ...) {
   return(.Object)
 }
 
+#' @rdname initialize-ValueAxis
+#' 
 #' @examples
 #' setTitle(.Object = valueAxis(), title = "Hello !")
-#' @rdname initialize-ValueAxis
+#' 
+#' @export
+#' 
 setMethod(f = "setTitle", signature = c("ValueAxis", "character"),
           definition = function(.Object, title)
           { 
@@ -82,6 +96,8 @@ setMethod(f = "setTitle", signature = c("ValueAxis", "character"),
             return(.Object)
           })
 
+#' @rdname listProperties-AmObject
+#' 
 #' @examples
 #' library(pipeR)
 #' \dontshow{
@@ -89,7 +105,9 @@ setMethod(f = "setTitle", signature = c("ValueAxis", "character"),
 #' }
 #' valueAxis(axisTitleOffset = 12, tickLength = 10, axisTitleOffset = 12) %>>%
 #' addGuide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1) %>>% listProperties
-#' @rdname listProperties-AmObject
+#' 
+#' @export
+#' 
 setMethod(f = "listProperties", signature = "ValueAxis",
           definition = function(.Object)
           { 

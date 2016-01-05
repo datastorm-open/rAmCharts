@@ -389,6 +389,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty,
 }
 
 #' @title Add chart graph.
+#' @description Add a new data to an existing serial chart.
 #'
 #' @param chart \linkS4class{AmChart}.
 #' @param x \code{numeric}.

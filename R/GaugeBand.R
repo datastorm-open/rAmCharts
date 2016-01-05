@@ -21,15 +21,22 @@ setClass(Class = "GaugeBand", contains = "AmObject",
 )
 
 #' @title Initialize a GaugeBand
+#' @description Use the constructor to create the object
+#' or update an existing one with the setters.
+#' 
 #' @param .Object \linkS4class{GaugeBand} (or "GaugeBand" for initialize).
 #' @param alpha \code{numeric}.
 #' @param id \code{character}.
 #' @param ... other properties.
 #' @return (updated) .Object of class \linkS4class{GaugeBand}.
-#' @rdname initialize-GaugeBand
+#' 
 #' @examples
+#' # --- method 'initialize'
 #' new("GaugeBand")
+#' 
 #' @export
+#' @rdname GaugeBand
+#' 
 setMethod(f = "initialize", signature = c("GaugeBand"),
           definition = function(.Object, alpha = 1, id, ...)
           {            
@@ -43,9 +50,11 @@ setMethod(f = "initialize", signature = c("GaugeBand"),
 
 # CONSTRUCTOR ####
 
-#' @rdname initialize-GaugeBand
+#' @rdname GaugeBand
 #' @examples
-#' gaugeBand()
+#' # --- constructor
+#' gaugeBand(alpha = 2, id = "band2")
+#' 
 #' @export
 gaugeBand <- function (alpha = 1, id, ...)
 {
@@ -57,12 +66,14 @@ gaugeBand <- function (alpha = 1, id, ...)
   return( .Object )
 }
 
-#' @rdname initialize-GaugeBand
+#' @rdname GaugeBand
 #' @export
-setGeneric(name = "setID", def = function(.Object, id){ standardGeneric( "setID" ) } )
+setGeneric(name = "setID", def = function(.Object, id) {standardGeneric("setID")})
+#' @rdname GaugeBand
 #' @examples
+#' # --- set the 'id'
 #' setID(.Object = gaugeBand(), id = "1")
-#' @rdname initialize-GaugeBand
+#' 
 setMethod(f = "setID", signature = "GaugeBand",
   definition = function(.Object, id)
   {
@@ -73,7 +84,9 @@ setMethod(f = "setID", signature = "GaugeBand",
 
 #' @rdname listProperties-AmObject
 #' @examples
+#' # --- signature 'GaugeBand'
 #' lapply(list(gaugeBand(fillAlpha = .4, value = 1), gaugeBand(fillAlpha = .5)), listProperties)
+#' 
 setMethod(f = "listProperties", signature = "GaugeBand",
            definition = function(.Object)
            { 
