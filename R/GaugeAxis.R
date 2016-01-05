@@ -43,7 +43,8 @@ setMethod(f = "initialize", signature = c("GaugeAxis"),
           })
 
 # CONSTRUCTOR ####
-#' @describeIn initialize-GaugeAxis
+
+#' @rdname initialize-GaugeAxis
 #' @examples
 #' gaugeAxis()
 #' @export

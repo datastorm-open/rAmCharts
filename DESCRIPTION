@@ -33,8 +33,9 @@ Collate:
     'AmBalloon.R'
     'AmChart.R'
     'AmChart_constructors.R'
-    'sharedGenerics.R'
     'AxisBase.R'
+    'CategoryAxis.R'
+    'sharedGenerics.R'
     'ValueAxis.R'
     'basicClassUnions.R'
     'TrendLine.R'
@@ -53,7 +54,6 @@ Collate:
     'AmLegend.R'
     'AmGraph.R'
     'classUnion.R'
-    'CategoryAxis.R'
     'AmChart_setters.R'
     'AmChart_shinyUtils.R'
     'AmStockChart.R'
@@ -96,3 +96,4 @@ Suggests:
     magrittr,
     shiny,
     testthat
+RoxygenNote: 5.0.1

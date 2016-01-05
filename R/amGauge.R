@@ -37,7 +37,7 @@
 #'                    color = c("#00CC00", "#ffac29", "#ea3838"),
 #'                    stringsAsFactors = FALSE)
 #' amAngularGauge(x = 25, start = 0, end = 100, bands = bands,
-#'                secondAxe = T, start2 = 100, end2 = 200, bands2 = bands2)
+#'                secondAxe = TRUE, start2 = 100, end2 = 200, bands2 = bands2)
 #' 
 #' @import pipeR
 #' @export

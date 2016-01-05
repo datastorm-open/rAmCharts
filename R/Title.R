@@ -48,7 +48,7 @@ setMethod(f = "initialize", signature = "Title",
           })
 
 # CONSTRUCTOR ####
-#' @describeIn initialize-Title
+#' @rdname initialize-Title
 #' @examples
 #' title(text = "bonjour")
 #' @export

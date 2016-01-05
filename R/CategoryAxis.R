@@ -1,3 +1,6 @@
+#' @include AxisBase.R
+NULL
+
 #' @title CategoryAxis class
 #' @author DataKnowledge
 #' @description Children class of AxisBase.
@@ -51,7 +54,7 @@ setMethod(f = "initialize", signature = c("CategoryAxis"),
 
 # CONSTRUCTOR ####
 
-#' @describeIn initialize-CategoryAxis
+#' @rdname initialize-CategoryAxis
 #' @examples
 #' categoryAxis(gridPosition = "start", adjustBorderColor = TRUE)
 #' @export

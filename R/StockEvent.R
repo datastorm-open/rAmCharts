@@ -48,7 +48,7 @@ setMethod(f = "initialize", signature = "StockEvent",
           })
 
 # CONSTRUCTOR ####
-#' @describeIn initialize-StockEvent
+#' @rdname initialize-StockEvent
 #' @examples
 #' stockEvent()
 #' @export

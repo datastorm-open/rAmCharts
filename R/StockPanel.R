@@ -144,7 +144,7 @@ setMethod(f = "initialize", signature = "StockPanel",
 
 # CONSTRUCTOR ####
 
-#' @describeIn initialize-StockPanel
+#' @rdname initialize-StockPanel
 #' @examples
 #' stockPanel()
 #' @export
@@ -164,7 +164,7 @@ stockPanel <- function(drawOnAxis, stockGraphs, stockLegend, ...){
   return(.Object)
 }
 
-#' @describeIn initialize-StockPanel
+#' @rdname initialize-StockPanel
 #' @examples
 #' panel()
 #' @export

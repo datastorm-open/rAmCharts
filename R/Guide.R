@@ -61,11 +61,12 @@ setMethod(f = "initialize", signature = c("Guide"),
 
 # CONSTRUCTOR ####
 
-#' @describeIn initialize-Guide
+#' @rdname initialize-Guide
 #' @examples
 #' guide(fillAlpha = .4, value = 1)
 #' guide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
 #' @export
+#' 
 guide <- function(fillAlpha, valueAxis, value, ...) {
   .Object <- new(Class="Guide")
   if (!missing(fillAlpha)) {
@@ -86,6 +87,7 @@ guide <- function(fillAlpha, valueAxis, value, ...) {
 #' @examples
 #' lapply(list(guide(fillAlpha = .4, value = 1), guide(fillAlpha = .5)), listProperties)
 #' @rdname listProperties-AmObject
+#' 
 setMethod(f = "listProperties", signature = "Guide",
           definition = function(.Object)
           { 

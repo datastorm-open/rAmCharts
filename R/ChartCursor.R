@@ -61,7 +61,7 @@ setMethod(f = "initialize", signature = "ChartCursor",
 
 # CONSTRUCTOR ####
 
-#' @describeIn initialize-ChartCursor
+#' @rdname initialize-ChartCursor
 #' @param animationDuration \code{numeric}, duration of animation of a line, in seconds.
 #' @examples
 #' chartCursor()

@@ -3,6 +3,7 @@ NULL
 
 #' @title AmStockChart
 #' @author Dataknowledge
+#' @description Class to draw stock charts
 #' 
 #' @slot balloon \linkS4class{AmBalloon}.
 #' @slot comparedDataSets \code{list} of \linkS4class{DataSet}.
@@ -115,7 +116,7 @@ setMethod(f = "initialize", signature = "AmStockChart",
 #' @examples
 #' amStockChart()
 #' # ---
-#' @describeIn initialize-AmStockChart
+#' @rdname initialize-AmStockChart
 #' @export
 amStockChart <- function(balloon, comparedDataSets, dataSets,
                          dataSetSelector, mainDataSet,

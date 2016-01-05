@@ -45,7 +45,7 @@ setMethod(f = "initialize", signature = c("GaugeArrow"),
 
 # CONSTRUCTOR ####
 
-#' @describeIn initialize-GaugeArrow
+#' @rdname initialize-GaugeArrow
 #' @examples
 #' gaugeArrow(value = 10)
 #' @export

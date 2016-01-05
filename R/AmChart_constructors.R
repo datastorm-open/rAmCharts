@@ -1,6 +1,6 @@
 #' @examples
 #' amChart(type = "pie")
-#' @describeIn initialize-AmChart
+#' @rdname initialize-AmChart
 #' @export
 amChart <- function(allLabels, arrows, axes, balloon, categoryAxis, categoryField,
                     chartCursor, chartScrollbar, creditsPosition, dataProvider,
@@ -80,7 +80,7 @@ amChart <- function(allLabels, arrows, axes, balloon, categoryAxis, categoryFiel
 #' @details amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}
 #' @examples
 #' amAngularGaugeChart()
-#' @describeIn initialize-AmChart
+#' @rdname initialize-AmChart
 #' @export
 amAngularGaugeChart <- function(arrows, titles, axes, ...)
 {
@@ -95,7 +95,7 @@ amAngularGaugeChart <- function(arrows, titles, axes, ...)
 #' @param marginRight \code{character}, right margin of the chart.
 #' @examples
 #' amFunnelChart(marginLeft = 15)
-#' @describeIn initialize-AmChart
+#' @rdname initialize-AmChart
 #' @export
 amFunnelChart <- function(dataProvider, marginLeft = 10, marginRight = 10,...)
 {
@@ -109,7 +109,7 @@ amFunnelChart <- function(dataProvider, marginLeft = 10, marginRight = 10,...)
 #' for instantiating AmChart of type \code{radar}
 #' @examples
 #' amRadarChart()
-#' @describeIn initialize-AmChart
+#' @rdname initialize-AmChart
 #' @export
 amRadarChart <- function(allLabels,
                          balloon,
@@ -134,7 +134,7 @@ amRadarChart <- function(allLabels,
 #' for instantiating AmChart of type \code{serial}
 #' @examples
 #' amSerialChart(creditsPostion = "top-right")
-#' @describeIn initialize-AmChart
+#' @rdname initialize-AmChart
 #' @export
 amSerialChart <- function(allLabels, balloon, categoryAxis, categoryField, chartCursor,
                           chartScrollbar, creditsPosition, dataProvider, graphs, guides,
@@ -154,7 +154,7 @@ amSerialChart <- function(allLabels, balloon, categoryAxis, categoryField, chart
 #' for instantiating AmChart of type \code{pie}
 #' @examples
 #' amPieChart()
-#' @describeIn initialize-AmChart
+#' @rdname initialize-AmChart
 #' @export
 amPieChart <- function(allLabels,
                        balloon,
@@ -174,7 +174,7 @@ amPieChart <- function(allLabels,
 #' for instantiating AmChart of type \code{gantt}
 #' @examples
 #' amGanttChart(segmentsField = "segments")
-#' @describeIn initialize-AmChart
+#' @rdname initialize-AmChart
 #' @export
 amGanttChart <- function(categoryField,
                          dataProvider,
@@ -193,7 +193,7 @@ amGanttChart <- function(categoryField,
 #' for instantiating AmChart of type \code{xy}
 #' @examples
 #' amXYChart()
-#' @describeIn initialize-AmChart
+#' @rdname initialize-AmChart
 #' @export
 amXYChart <- function(creditsPosition, dataProvider, graphs, ...)
 {

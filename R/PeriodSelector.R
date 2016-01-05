@@ -53,7 +53,7 @@ setMethod(f = "initialize", signature = c("PeriodSelector"),
           })
 
 # CONSTRUCTOR ####
-#' @describeIn  initialize-PeriodSelector
+#' @rdname  initialize-PeriodSelector
 #' @examples
 #' periodSelector(fillAlpha = .4, value = 1)
 #' periodSelector(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)

@@ -1,5 +1,4 @@
-#' @title Plotting histogram using rAmCharts
-#' 
+#' @title Plot an histogram
 #' @description  amHist computes a histogram of the given data values.
 #' If \code{plot = TRUE}, the resulting object of class \code{"histogram"} before it is returned.
 #' 
@@ -32,6 +31,7 @@
 #' @export
 #' 
 amHist <- function(x, ...) UseMethod("amHist")
+
 
 #' @rdname amHist
 #' @export
@@ -80,14 +80,13 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
   }
 }
 
-
-#'
 #' @examples
 #' pipeR::pipeline(
 #' amHist(iris$Sepal.Length),
 #' setExport()
 #' )
 #' @noRd
+#' 
 plotAmHist <- function(dp, amLabels, ylim, main, ylab, xlab, border, cursor, scrollbar)
 {
   pipeR::pipeline(

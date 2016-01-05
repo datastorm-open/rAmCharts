@@ -48,7 +48,7 @@ setMethod(f = "initialize", signature = "DataSetSelector",
           })
 
 # CONSTRUCTOR ####
-#' @describeIn initialize-DataSetSelector
+#' @rdname initialize-DataSetSelector
 #' @examples
 #' dataSetSelector(position = "left")
 #' @export

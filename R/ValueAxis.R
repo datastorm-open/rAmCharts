@@ -60,7 +60,7 @@ setMethod(f = "initialize", signature = c("ValueAxis"),
 
 #' @examples
 #' valueAxis(title = "Hello !", axisTitleOffset = 12)
-#' @describeIn initialize-ValueAxis
+#' @rdname initialize-ValueAxis
 #' @export
 valueAxis <- function(title, ...) {
   .Object <- new(Class="ValueAxis")

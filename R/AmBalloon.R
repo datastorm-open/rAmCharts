@@ -79,7 +79,7 @@ setMethod(f = "initialize", signature = "AmBalloon",
 
 #' @examples
 #' amBalloon(adjustBorderColor = TRUE, color = "#000000")
-#' @describeIn initialize-AmBalloon
+#' @rdname initialize-AmBalloon
 #' @export
 amBalloon <- function(adjustBorderColor, color, cornerRadius, fillColor, ...) {
   .Object <- new("AmBalloon")

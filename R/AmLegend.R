@@ -47,7 +47,7 @@ setMethod(f = "initialize", signature = "AmLegend",
 #' @description Constructor for an AmLegend.
 #' @examples 
 #' amLegend(useGraphSettings = FALSE)
-#' @describeIn initialize-AmLegend
+#' @rdname initialize-AmLegend
 #' @export
 amLegend <- function(useGraphSettings, ...) {
   .Object <- new("AmLegend")

@@ -1,4 +1,4 @@
-#' @title Plot data using rAmCharts
+#' @title Plot serial data
 #' 
 #' @description  amPlot computes a plot of the given data values.
 #' Can be a vector, a data.frame, or a formula
@@ -208,7 +208,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
                export = export, scrollbar = scrollbar)
 }
 
-#'
+#' @rdname amPlot
 #' @param columns (optional) either a vector of \code{character} containing
 #' the names of the series to draw, or a \code{numeric} vector of indices.
 #' By default all numeric columns will be drawn.
@@ -216,8 +216,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
 #' 
 #' @import pipeR
 #' @import data.table
-#' 
-#' @rdname amPlot
+#'
 #' @export
 #' 
 amPlot.data.frame <- function(x, columns, type = "l", cursor = TRUE, scrollbar = FALSE,
@@ -277,12 +276,10 @@ amPlot.data.frame <- function(x, columns, type = "l", cursor = TRUE, scrollbar =
                export = export, scrollbar = scrollbar)
 }
 
-#'
+#' @rdname amPlot
 #' @param data enable legend ? (default \code{TRUE})
 #' 
 #' @import pipeR
-#' 
-#' @rdname amPlot
 #' @export
 #' 
 amPlot.formula <- function (x, data, ...)
@@ -306,7 +303,6 @@ amPlot.formula <- function (x, data, ...)
   chart
 }
 
-#'
 #' @import pipeR
 #' @noRd
 #' 

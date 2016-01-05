@@ -54,7 +54,7 @@ setMethod(f = "initialize", signature = "ChartScrollbar",
             return(.Object)
           })
 
-#' @describeIn initialize-ChartScrollbar
+#' @rdname initialize-ChartScrollbar
 #' @examples
 #' chartScrollbar()
 #' chartScrollbar(enabled = TRUE)
@@ -69,7 +69,7 @@ chartScrollbar <- function(graph, enabled = TRUE,...){
   return( .Object )
 }
 
-#' @describeIn initialize-ChartScrollbar
+#' @rdname initialize-ChartScrollbar
 #' @description ChartScrollbarSettings settings set's settings for chart scrollbar.
 #' If you change a property after the chart is initialized,
 #' you should call stockChart.validateNow() method in order for it to work.

@@ -92,7 +92,7 @@ setMethod(f = "initialize", signature = "AmGraph",
 #' @examples
 #' amGraph(balloonText = "balloonText", "type" = "column",
 #'         valueField = "value", animationPlayed = TRUE)
-#' @describeIn initialize-AmGraph
+#' @rdname initialize-AmGraph
 #' @export
 amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 {
@@ -118,7 +118,7 @@ amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueFiel
 #' @examples
 #' graph(balloonText = "balloonText", "type" = "column",
 #'       valueField = "value", animationPlayed = TRUE)
-#' @describeIn initialize-AmGraph
+#' @rdname initialize-AmGraph
 #' @export
 graph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 {

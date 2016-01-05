@@ -42,7 +42,8 @@ setMethod(f = "initialize", signature = c("GaugeBand"),
           })
 
 # CONSTRUCTOR ####
-#' @describeIn initialize-GaugeBand
+
+#' @rdname initialize-GaugeBand
 #' @examples
 #' gaugeBand()
 #' @export

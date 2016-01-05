@@ -94,7 +94,7 @@ setMethod(f = "initialize", signature = "TrendLine",
 
 # CONSTRUCTOR ####
 
-#' @describeIn initialize-TrendLine
+#' @rdname initialize-TrendLine
 #' @examples
 #' trendLine(initialValue = 1, finalValue = 11)
 #' @export

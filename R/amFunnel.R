@@ -39,7 +39,7 @@
 #' amFunnel(data = data_funnel, third_dim = TRUE, inverse = TRUE)
 #'
 #' @export
-
+#' 
 amFunnel <- function(data, main = "", mainSize = 15, inverse = FALSE, 
                      neck_height = NULL, neck_width = NULL, third_dim = FALSE,
                      label_side = "right", margin_right = 160, margin_left = 15) {
