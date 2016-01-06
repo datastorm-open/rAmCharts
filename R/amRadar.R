@@ -22,7 +22,7 @@
 #' @import data.table
 #' @rdname amRadar
 #' @export
-amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend = TRUE, export = FALSE, type = "circles", mainSize = 15, pch = "round") {
+amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend = TRUE, export = FALSE, type = "polygons", mainSize = 15, pch = "round") {
   
   if(!is.data.frame(data)){
     stop ("data must be a data frame")
