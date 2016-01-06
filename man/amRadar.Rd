@@ -5,7 +5,7 @@
 \title{Plotting radar using rAmCharts}
 \usage{
 amRadar(data, col = NULL, backTransparency = 0.5, main = "",
-  legend = TRUE, export = FALSE, type = "circles", mainSize = 15,
+  legend = TRUE, export = FALSE, type = "polygons", mainSize = 15,
   pch = "round")
 }
 \arguments{
@@ -29,5 +29,14 @@ amRadar(data, col = NULL, backTransparency = 0.5, main = "",
 }
 \description{
 radar computes a radarplot of the given data values.
+}
+\examples{
+require(pipeR)
+data <- data.frame(label = c("A", "Z", "E", "R", "T"), Product1 = c(1, 2, 3, 4, 2), 
+                   Product2 = c(2, 8, 1, 1, 0),Product3 = c(1,1,2,2,4))
+amRadar(data)
+amRadar(data, main = "My title", export = TRUE, col = c("#0000FF","#00FF00","#FF0000"), 
+        backTransparency = c(0,0.4),
+type = c("polygons"),pch="triangleRight")
 }
 
