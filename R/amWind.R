@@ -1,4 +1,8 @@
-
+#' @title Plotting wind using rAmCharts
+#' 
+#' @description  wind computes a windplot of the given data values.
+#' 
+#' 
 #' @param data : columns are series of values, from week wind (first column) to strong wind (last column)
 #' @param col : color of series
 #' @param backTransparency : background transparency
@@ -8,16 +12,20 @@
 #' @param fontSize : font size
 #' @param pch : symbols
 #' 
+#' 
+#' @seealso \code{\link{amRadar}}
+#' 
 #' @exemple
 #' require(pipeR)
-data <- data.frame(Faible = c(1, 2, 3, 4,1, 2,1, 2), Moyen = c(2, 8, 1, 1,2, 8,1, 2),Fort = c(1, 1, 2, 2,1, 1 ,1, 2))
-amWind(data, main = "Ma rose des vents", export = TRUE, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = 1 ,pch="round")
-
-
+#' data <- data.frame(Week = c(1, 2, 3, 4,1, 2,1, 2), Middle = c(2, 8, 1, 1,2, 8,1, 2),Strong = c(1, 1, 2, 2,1, 1 ,1, 2))
+#' amWind(data, main = "", export = TRUE, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = 1 ,pch="round")
+#' @import data.table
+#' @rdname amWind
+#' @export
 amWind <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend = TRUE, export = FALSE, fontSize = 15, pch = "round") {
   
   databullet <- apply( rbind(names(data),data),2,function(x){paste0("<b>", as.numeric(x[-1]),
-                                                                    " </b>Observations <br><b>",round(as.numeric(x[-1])/sum(as.numeric(x[-1]))*100,2), "%</b> des vents <b>",x[1],"</b>")})
+                                                                    " </b>Observations <br><b>",round(as.numeric(x[-1])/sum(as.numeric(x[-1]))*100,2), "%</b> of wind <b>",x[1],"</b>")})
   colnames(databullet) <- paste0(  colnames(databullet),"lab")
   
   data <- data.frame(t(apply(data, 1, cumsum)))
