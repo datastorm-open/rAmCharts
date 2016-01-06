@@ -14,13 +14,18 @@
 #' 
 #' 
 #' @examples
-#' require(pipeR)
-#' data <- data.frame(label = c("A", "Z", "E", "R", "T"), Product1 = c(1, 2, 3, 4, 2), 
-#'                    Product2 = c(2, 8, 1, 1, 0),Product3 = c(1,1,2,2,4))
+#' data <- data.frame(label = c("A", "Z", "E", "R", "T"),
+#'                    Product1 = c(1, 2, 3, 4, 2), 
+#'                    Product2 = c(2, 8, 1, 1, 0),
+#'                    Product3 = c(1,1,2,2,4))
 #' amRadar(data)
-#' amRadar(data, main = "My title", export = TRUE, col = c("#0000FF","#00FF00","#FF0000"), 
+#' amRadar(data, main = "My title", export = TRUE,
+#'         col = c("#0000FF","#00FF00","#FF0000"), 
 #'         backTransparency = c(0,0.4),
-#' type = c("polygons"),pch="triangleRight")
+#'         type = c("polygons"),
+#'         pch = "triangleRight")
+#' 
+#' @import pipeR
 #' @import data.table
 #' @rdname amRadar
 #' @export

@@ -28,9 +28,14 @@ amWind(data, col = NULL, backTransparency = 0.5, main = "",
 wind computes a windplot of the given data values.
 }
 \examples{
-require(pipeR)
-data <- data.frame(Week = c(1, 2, 3, 4,1, 2,1, 2), Middle = c(2, 8, 1, 1,2, 8,1, 2),Strong = c(1, 1, 2, 2,1, 1 ,1, 2))
-amWind(data, main = "", export = TRUE, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = 1 ,pch="round")
+
+data <- data.frame(Week = c(1, 2, 3, 4,1, 2,1, 2),
+                   Middle = c(2, 8, 1, 1,2, 8,1, 2),
+                   Strong = c(1, 1, 2, 2,1, 1 ,1, 2))
+amWind(data, main = "", export = TRUE,
+       col = c("#0404B4","#01DF01","#FFBF00"),
+       backTransparency = 1, pch="round")
+       
 }
 \seealso{
 \code{\link{amRadar}}
