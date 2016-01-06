@@ -43,14 +43,15 @@ to "none".}
 
 \item{legend}{\code{boolean} TRUE to display legend.}
 
-\item{legend_side}{\code{character} either "left" or "right" if legend is set to TRUE.}
+\item{legend_side}{\code{character} either "bottom", "top", "left" or "right" if 
+legend is set to TRUE.}
 
 \item{show_values}{\code{boolean} TRUE to display values.}
 
 \item{third_dim}{\code{boolean} if TRUE, chart is displayed in 3D}
 }
 \description{
-amBar computes a pie chart of the given value.
+amBar computes a bar chart of the given values.
 }
 \examples{
 

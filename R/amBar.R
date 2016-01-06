@@ -1,5 +1,5 @@
 #' @title Plotting bar chart using rAmCharts
-#' @description  amBar computes a pie chart of the given value.
+#' @description  amBar computes a bar chart of the given values.
 #' @param x \code{character} column name for x-axis or \code{numeric} 
 #' the number of the corresponding column.
 #' @param y \code{character} column name for y-axis or \code{numeric} 
@@ -21,7 +21,8 @@
 #' @param layered \code{boolean} TRUE for layered. If TRUE, stack_type must be set
 #' to "none".
 #' @param legend \code{boolean} TRUE to display legend.
-#' @param legend_side \code{character} either "left" or "right" if legend is set to TRUE.
+#' @param legend_side \code{character} either "bottom", "top", "left" or "right" if 
+#' legend is set to TRUE.
 #' @param show_values \code{boolean} TRUE to display values.
 #' @param third_dim \code{boolean} if TRUE, chart is displayed in 3D
 #' @examples
@@ -83,7 +84,7 @@ amBar <- function(x, y, data, main = "", mainSize = 15, xlab = "",
                   legend = FALSE, legend_side = "right", show_values = FALSE,
                   third_dim = FALSE) {
   
-  if(!is.data.frame(data) | !any(c(x, y) %in% colnames(data))) {
+  if(!is.data.frame(data) | (!any(c(x, y) %in% colnames(data)) & is.character(x) & is.character(y))) {
     stop("data must be a data frame")
   } else {}
   
@@ -139,8 +140,8 @@ amBar <- function(x, y, data, main = "", mainSize = 15, xlab = "",
   } else {}
   
   if(!is.null(legend_side)) {
-    if(!is.character(legend_side) | !legend_side %in% c("left", "right")) {
-      stop("legend side must be character, either 'left' or 'right'")
+    if(!is.character(legend_side) | !legend_side %in% c("bottom", "top", "left", "right")) {
+      stop("legend side must be character, either 'bottom', 'top', 'left' or 'right'")
     } 
   }
   
@@ -183,7 +184,7 @@ amBar <- function(x, y, data, main = "", mainSize = 15, xlab = "",
   }
   
   if(show_values) {
-    label_text <- paste0('[[', y, ']]')
+    label_text <- "[[value]]"
   } else {
     label_text <- ""
   }

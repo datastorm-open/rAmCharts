@@ -13,16 +13,19 @@
 #' @param pch : symbols
 #' 
 #' 
-#' @example
+#' @examples
 #' require(pipeR)
-#' data <- data.frame(label = c("A", "Z", "E", "R", "T"), Product1 = c(1, 2, 3, 4, 2), Product2 = c(2, 8, 1, 1, 0),Product3 = c(1,1,2,2,4))
+#' data <- data.frame(label = c("A", "Z", "E", "R", "T"), Product1 = c(1, 2, 3, 4, 2), 
+#'                    Product2 = c(2, 8, 1, 1, 0),Product3 = c(1,1,2,2,4))
 #' amRadar(data)
-#' amRadar(data, main = "My title", export = TRUE, col = c("#0000FF","#00FF00","#FF0000"), backTransparency = c(0,0.4),
+#' amRadar(data, main = "My title", export = TRUE, col = c("#0000FF","#00FF00","#FF0000"), 
+#'         backTransparency = c(0,0.4),
 #' type = c("polygons"),pch="triangleRight")
 #' @import data.table
 #' @rdname amRadar
 #' @export
-amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend = TRUE, export = FALSE, type = "polygons", mainSize = 15, pch = "round") {
+amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend = TRUE, export = FALSE, 
+                    type = "polygons", mainSize = 15, pch = "round") {
   
   if(!is.data.frame(data)){
     stop ("data must be a data frame")
@@ -83,9 +86,11 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend
   
   for(i in 1:length(pch))
   {
-    if(!pch[i]%in% c( "none", "round", "square", "triangleUp", "triangleDown", "triangleLeft", "triangleRight", "bubble", "diamond", "xError", "yError"))
+    if(!pch[i]%in% c( "none", "round", "square", "triangleUp", "triangleDown", "triangleLeft", 
+                      "triangleRight", "bubble", "diamond", "xError", "yError"))
     {
-      stop ("pch must be in : none, round, square, triangleUp, triangleDown, triangleLeft, triangleRight, bubble, diamond, xError, yError")
+      stop ("pch must be in : none, round, square, triangleUp, triangleDown, triangleLeft, 
+            triangleRight, bubble, diamond, xError, yError")
     }
   }
   
@@ -95,7 +100,7 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend
   {
     if(!class(datavalue[,i]) == "numeric")
     {
-      stop ("All column of data exept label must be numeric")
+      stop ("All column of data except label must be numeric")
     }
   }
   
@@ -105,12 +110,14 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend
   constructGraph <- cbind(names(datavalue),col, backTransparency, pch)
   options(warn = oldw)
   graphs <- apply(constructGraph, 1, function(x) {
-    amGraph(title = as.character(x[1]), balloonText = "<b>[[title]]</b><br>[[category]] : <b>[[value]]</b>", lineColor =  as.character(x[2]), fillAlphas = as.numeric(x[3]), valueField =  as.character(x[1]), bullet = as.character(x[4]))
+    amGraph(title = as.character(x[1]), balloonText = "<b>[[title]]</b><br>[[category]] : <b>[[value]]</b>", 
+            lineColor =  as.character(x[2]), fillAlphas = as.numeric(x[3]), valueField =  as.character(x[1]), 
+            bullet = as.character(x[4]))
   })
   
   amRadarChart(export = list(enabled = export),fontSize=mainSize) %>>% 
     setDataProvider(data) %>>% 
-    setProperties(type = "radar", theme = "light", startDuration = 1, categoryField = "label") %>>% 
+    setProperties(type = "radar", theme = "light", categoryField = "label") %>>% 
     setGraphs(graphs) %>>% 
     addTitle(text = main) %>>%
     setLegend(amLegend(useGraphSettings = TRUE, labelText = "[[title]]")) %>>% 
