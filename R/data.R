@@ -71,3 +71,31 @@ data_gdp <- data.table(country = c('China', 'United States', 'India', 'Japan', '
 #' }
 #' @source \url{http://www.insidermonkey.com/blog/10-richest-countries-in-the-world-by-2015-gdp-344692/}
 "data_gdp"
+
+
+
+load("data/AirP.rda")
+#' @title Air passengers for exemple
+#' @description 2 column, date and numeric
+#' @format 2 column, date and numeric
+#'
+"AirP"
+
+
+#' @title Generate random data for 'stock1' example
+#' @examples 
+#' \dontshow{
+#' # Generate and save data
+#' AirP <- generate_data_AirP()
+#' devtools::use_data(AirP)
+#' }
+#' @import data.table
+#' @noRd
+generate_data_AirP <- function()
+{
+  data("AirPassengers")
+  AirP <- data.frame(AirPassengers)
+  AirP$Period <- paste0(rep(c("01","02","03","04","05","06","07","08","09","10","11","12"),12),"/",rep(1949:1960,each=12))
+}
+
+
