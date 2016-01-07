@@ -9,23 +9,23 @@ amRadar(data, col = NULL, backTransparency = 0.5, main = "",
   pch = "round")
 }
 \arguments{
-\item{data}{: first column is names "label", other columns are series of values}
+\item{data}{first column is names "label", other columns are series of values}
 
-\item{col}{: color of series}
+\item{col}{color of series}
 
-\item{backTransparency}{: background transparency}
+\item{backTransparency}{background transparency}
 
-\item{main}{: title of graph}
+\item{main}{title of graph}
 
-\item{legend}{: add legend, TRUE or FALSE}
+\item{legend}{add legend, TRUE or FALSE}
 
-\item{export}{: add export, TRUE or FALSE}
+\item{export}{add export, TRUE or FALSE}
 
-\item{type}{: "polygons" or "circle", type of radar}
+\item{type}{"polygons" or "circle", type of radar}
 
-\item{mainSize}{: font size}
+\item{mainSize}{font size}
 
-\item{pch}{: symbols}
+\item{pch}{symbols}
 }
 \description{
 radar computes a radarplot of the given data values.

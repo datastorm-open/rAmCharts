@@ -2,15 +2,15 @@
 #' 
 #' @description  radar computes a radarplot of the given data values.
 #' 
-#' @param data: first column is names "label", other columns are series of values
-#' @param col: color of series
-#' @param backTransparency : background transparency
-#' @param main: title of graph
-#' @param legend: add legend, TRUE or FALSE
-#' @param export: add export, TRUE or FALSE
-#' @param type: "polygons" or "circle", type of radar
-#' @param mainSize: font size
-#' @param pch: symbols
+#' @param data first column is names "label", other columns are series of values
+#' @param col color of series
+#' @param backTransparency background transparency
+#' @param main title of graph
+#' @param legend add legend, TRUE or FALSE
+#' @param export add export, TRUE or FALSE
+#' @param type "polygons" or "circle", type of radar
+#' @param mainSize font size
+#' @param pch symbols
 #' 
 #' 
 #' @examples
