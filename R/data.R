@@ -89,13 +89,13 @@ load("data/AirP.rda")
 #' AirP <- generate_data_AirP()
 #' devtools::use_data(AirP)
 #' }
+#' @import datasets
 #' @import data.table
 #' @noRd
 generate_data_AirP <- function()
 {
-  data("AirPassengers")
-  AirP <- data.frame(AirPassengers)
-  AirP$Period <- paste0(rep(c("01","02","03","04","05","06","07","08","09","10","11","12"),12),"/",rep(1949:1960,each=12))
+  airP <- data.frame(get("AirPassengers", "package:datasets"))
+  airP$Period <- paste0(rep(c("01","02","03","04","05","06","07","08","09","10","11","12"),12),"/",rep(1949:1960,each=12))
 }
 
 
