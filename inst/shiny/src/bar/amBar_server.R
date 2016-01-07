@@ -2,7 +2,8 @@
 output$amBar0 <- rAmCharts::renderAmCharts({
   ##Data
   data_bar <- data.frame(
-    country = c('USA', 'China', 'Japan', 'Germany','UK', 'France', 'India', 'Spain','Netherlands', 'Russia', 'South Korea','Canada'),
+    country = c('USA', 'China', 'Japan', 'Germany','UK', 'France', 'India',
+                'Spain','Netherlands', 'Russia', 'South Korea','Canada'),
     visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580, 443, 441),
     stringsAsFactors = FALSE
     )
