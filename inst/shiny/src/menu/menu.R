@@ -26,13 +26,27 @@ shinydashboard::sidebarMenu(id = "tabs",
             
             
             
-            menuItem("XY",tabName = "XY",icon = icon("line-chart")),
-            menuItem("Stock",tabName = "stock",icon = icon("sliders")),
-            menuItem(text = "More",
-                     menuSubItem(text = "Gauge", tabName = "gauge"),
-                     menuSubItem(text = "Funnel", tabName = "funnel"),
-                     menuSubItem(text = "Drilldown", tabName = "drilldown")
-            ),
-            tags$li(  selectInput("theme", label = "Theme:", choices = c("default", "light", "patterns", "dark", "chalk")))
+            ##Lines
+            menuItem(text ="XY",icon = icon("soundcloud"),
+                     menuSubItem(text = "Simple Function", tabName = "amxy"),
+                     menuSubItem(text = "Complexe Function", tabName = "xy")),
+            
+            
+            
+            
+            ##Stock
+            menuItem(text ="Stock",icon = icon("sliders"),
+                     menuSubItem(text = "Simple Function", tabName = "amstock"),
+                     menuSubItem(text = "Complexe Function", tabName = "stock")),
+            
+            ##Funnel
+            menuItem(text ="Funnel",icon = icon("sort-desc"),
+                     menuSubItem(text = "Simple Function", tabName = "amfunnel"),
+                     menuSubItem(text = "Complexe Function", tabName = "funnel")),
+            
+            ##Gauge
+            menuItem(text ="Gauge",icon = icon("repeat"),
+                     menuSubItem(text = "Simple Function", tabName = "amgauge"),
+                     menuSubItem(text = "Complexe Function", tabName = "gauge"))
 )
 )

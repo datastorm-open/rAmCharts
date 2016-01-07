@@ -1,7 +1,7 @@
 output$stock1 <- renderAmCharts({
   data('data_stock1')
   pipeR::pipeline(
-    amStockChart(startDuration = 0, theme = input$theme),
+    amStockChart(startDuration = 0),
     addDataSet(dataSet(title = 'first data set', categoryField = 'date',
                        dataProvider = data_stock1$chartData1) %>>%
                  addFieldMapping(fromField = 'value', toField = 'value') %>>%
@@ -47,7 +47,7 @@ output$code_stock1 <- renderText({
   "
   data('data_stock1')
   pipeR::pipeline(
-    amStockChart(startDuration = 0, theme = input$theme),
+    amStockChart(startDuration = 0),
     addDataSet(dataSet(title = 'first data set', categoryField = 'date',
                        dataProvider = data_stock1$chartData1) %>>%
                  addFieldMapping(fromField = 'value', toField = 'value') %>>%
@@ -89,3 +89,89 @@ output$code_stock1 <- renderText({
   "
 })
 
+
+
+
+
+
+output$stock2 <- renderAmCharts({
+##Data
+Tims <- as.POSIXct(seq(-60*60*24*50, 0, by=3600),origin = Sys.time(), tz= 'UTC')
+Tims <- round(Tims,'hours')
+
+Tims <- data.frame(Tims)
+Tims$Mesure <- 1:length(Tims$Tims) +   cos(seq(-pi,pi,length.out = 60*6))*500 + runif(length(Tims$Tims)) * 50
+
+mycategoryBalloonDateFormat <- list(list(period='YYYY', format='YYYY'), list(period='MM', format='YYYY-MM'), 
+                                    list(period='WW', format='YYYY-MM-DD'), list(period='DD', format='YYYY-MM-DD'), 
+                                    list(period='hh', format='YYYY-MM-DD JJ:NN'), list(period='mm', format='YYYY-MM-DD JJ:NN'), 
+                                    list(period='ss', format='YYYY-MM-DD JJ:NN:ss'), list(period='fff', format='YYYY-MM-DD JJ:NN:ss'))
+
+##Graph
+  pipeR::pipeline(
+    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss') ,
+    setProperties(list(enabled=TRUE)) ,
+    addDataSet(pipeR::pipeline(
+      dataSet(title = 'first data set', categoryField = 'Tims') ,
+      setDataProvider(Tims,keepNA=FALSE),
+      addFieldMapping(fromField = 'Mesure', toField = 'Mesure')
+    )) , addPanel(pipeR::pipeline(
+      stockPanel(showCategoryAxis = TRUE, title = 'Value') ,
+      addStockGraph(id = 'g1',connect=FALSE, valueField = 'Mesure', comparable = TRUE,periodValue = 'Average',
+                    compareField = 'Mesure', balloonText = 'Value : <b>[[value]] Unit</b>', precision = 0,
+                    compareGraphBalloonText = '[[title]] =<b>[[value]]</b>'
+      ))) , setChartScrollbarSettings( graph = 'g1'
+      ) , setChartCursorSettings( valueBalloonsEnabled = TRUE, fullWidth = TRUE,
+                                  cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
+                                  valueLineEnabled = TRUE, valueLineAlpha = 0.5, categoryBalloonDateFormats = mycategoryBalloonDateFormat
+      ) , setPeriodSelector(pipeR::pipeline( periodSelector( position = 'bottom' ,inputFieldsEnabled=FALSE) ,
+                                             addPeriod( period = 'DD', selected = TRUE, count = 1, label = '1 day' ) ,
+                                             addPeriod( period = 'WW', count = 1, label = '1 week' ) ,
+                                             addPeriod( period = 'MAX', label = 'All' )
+      )) , setCategoryAxesSettings(parseDates = TRUE, minPeriod = '1hh', groupToPeriods = c('hh','3hh', '12hh','1DD'), maxSeries = 50
+      ) , setPanelsSettings(recalculateToPercents = 'never', creditsPosition='top-left')
+  )
+})
+
+
+
+output$code_stock2 <- renderText({
+  "
+  ##Data
+  Tims <- as.POSIXct(seq(-60*60*24*50, 0, by=3600),origin = Sys.time(), tz= 'UTC')
+  Tims <- round(Tims,'hours')
+  
+  Tims <- data.frame(Tims)
+  Tims$Mesure <- 1:length(Tims$Tims) / 500 +   cos(seq(-pi,pi,length.out = 60*6))*500 + runif(length(Tims$Tims)) * 50
+  
+  mycategoryBalloonDateFormat <- list(list(period='YYYY', format='YYYY'), list(period='MM', format='YYYY-MM'), 
+    list(period='WW', format='YYYY-MM-DD'), list(period='DD', format='YYYY-MM-DD'), 
+    list(period='hh', format='YYYY-MM-DD JJ:NN'), list(period='mm', format='YYYY-MM-DD JJ:NN'), 
+    list(period='ss', format='YYYY-MM-DD JJ:NN:ss'), list(period='fff', format='YYYY-MM-DD JJ:NN:ss'))
+    
+  ##Graph
+  pipeR::pipeline(
+    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss') ,
+    setProperties(list(enabled=TRUE)) ,
+    addDataSet(pipeR::pipeline(
+      dataSet(title = 'first data set', categoryField = 'Tims') ,
+      setDataProvider(Tims,keepNA=FALSE),
+      addFieldMapping(fromField = 'Mesure', toField = 'Mesure')
+    )) , addPanel(pipeR::pipeline(
+    stockPanel(showCategoryAxis = TRUE, title = 'Value') ,
+      addStockGraph(id = 'g1',connect=FALSE, valueField = 'Mesure', comparable = TRUE,periodValue = 'Average',
+      compareField = 'Mesure', balloonText = 'Value : <b>[[value]] Unit</b>', precision = 0,
+      compareGraphBalloonText = '[[title]] =<b>[[value]]</b>'
+    ))) , setChartScrollbarSettings( graph = 'g1'
+    ) , setChartCursorSettings( valueBalloonsEnabled = TRUE, fullWidth = TRUE,
+      cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
+      valueLineEnabled = TRUE, valueLineAlpha = 0.5, categoryBalloonDateFormats = mycategoryBalloonDateFormat
+      ) , setPeriodSelector(pipeR::pipeline( periodSelector( position = 'bottom' ,inputFieldsEnabled=FALSE) ,
+      addPeriod( period = 'DD', selected = TRUE, count = 1, label = '1 day' ) ,
+      addPeriod( period = 'WW', count = 1, label = '1 week' ) ,
+      addPeriod( period = 'MAX', label = 'All' )
+    )) , setCategoryAxesSettings(parseDates = TRUE, minPeriod = '1hh', groupToPeriods = c('hh','3hh', '12hh','1DD'), maxSeries = 50
+    ) , setPanelsSettings(recalculateToPercents = 'never', creditsPosition='top-left')
+  )
+  "
+})

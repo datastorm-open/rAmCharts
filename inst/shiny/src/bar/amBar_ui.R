@@ -7,7 +7,6 @@ shinydashboard::tabItem(
       width = 12,
       
       br(),
-      br(),
       
       tabBox(width=12,height=550,
              

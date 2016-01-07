@@ -93,9 +93,12 @@ load("data/AirP.rda")
 #' @noRd
 generate_data_AirP <- function()
 {
-  data("AirPassengers")
-  AirP <- data.frame(AirPassengers)
-  AirP$Period <- paste0(rep(c("01","02","03","04","05","06","07","08","09","10","11","12"),12),"/",rep(1949:1960,each=12))
+  e <- new.env(parent = emptyenv())
+  data("AirPassengers", envir = e )
+  e$AirP <- data.frame(e$AirPassengers)
+  e$AirP$AirPassengers <- as.numeric(e$AirP$AirPassengers)
+  e$AirP$Period <- paste0(rep(c("01", "02", "03", "04", "05", "06", "07", 
+                              "08", "09", "10", "11", "12"), 12) ,"/" ,rep(1949 : 1960, each = 12))
 }
 
 

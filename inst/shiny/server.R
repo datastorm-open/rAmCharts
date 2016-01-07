@@ -39,9 +39,16 @@ shinyServer(function(input, output) {
   
   # source("./src/serial/serial_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/xy/xy_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/xy/amxy_server.R", local = TRUE, encoding = "UTF-8")
+  
   source("./src/stock/stock_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/gauge/gauge_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/stock/amstock_server.R", local = TRUE, encoding = "UTF-8")
+  
   source("./src/funnel/funnel_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/funnel/amfunnel_server.R", local = TRUE, encoding = "UTF-8")
+  
+  source("./src/gauge/gauge_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/gauge/amgauge_server.R", local = TRUE, encoding = "UTF-8")
+  # source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
 
 })
