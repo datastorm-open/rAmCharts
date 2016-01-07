@@ -10,7 +10,7 @@ library(shinydashboard)
 shinydashboard::dashboardPage(
   
  
-    shinydashboard::dashboardHeader(),
+    shinydashboard::dashboardHeader(title="rAmCharts"),
  
   source("./src/menu/menu.R", local = TRUE, encoding = "UTF-8")$value,
   
