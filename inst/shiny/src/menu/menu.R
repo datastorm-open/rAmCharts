@@ -47,6 +47,11 @@ shinydashboard::sidebarMenu(id = "tabs",
             ##Gauge
             menuItem(text ="Gauge",icon = icon("repeat"),
                      menuSubItem(text = "Simple Function", tabName = "amgauge"),
-                     menuSubItem(text = "Complexe Function", tabName = "gauge"))
+                     menuSubItem(text = "Complexe Function", tabName = "gauge")),
+            
+            ##Candlesticks
+            menuItem(text ="Candlesticks",icon = icon("repeat"),
+                     menuSubItem(text = "Simple Function", tabName = "amcandlesticks"),
+                     menuSubItem(text = "Complexe Function", tabName = "candlesticks"))
 )
 )

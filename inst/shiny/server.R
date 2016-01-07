@@ -50,5 +50,9 @@ shinyServer(function(input, output) {
   source("./src/gauge/gauge_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/gauge/amgauge_server.R", local = TRUE, encoding = "UTF-8")
   # source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
+  
+  source("./src/Candlesticks/candlesticks_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/Candlesticks/amcandlesticks_server.R", local = TRUE, encoding = "UTF-8")
+  # source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
 
 })
