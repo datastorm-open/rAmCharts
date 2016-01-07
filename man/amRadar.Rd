@@ -9,34 +9,38 @@ amRadar(data, col = NULL, backTransparency = 0.5, main = "",
   pch = "round")
 }
 \arguments{
-\item{data}{: first column is names "label", other columns are series of values}
+\item{data}{first column is names "label", other columns are series of values}
 
-\item{col}{: color of series}
+\item{col}{color of series}
 
-\item{backTransparency}{: background transparency}
+\item{backTransparency}{background transparency}
 
-\item{main}{: title of graph}
+\item{main}{title of graph}
 
-\item{legend}{: add legend, TRUE or FALSE}
+\item{legend}{add legend, TRUE or FALSE}
 
-\item{export}{: add export, TRUE or FALSE}
+\item{export}{add export, TRUE or FALSE}
 
-\item{type}{: "polygons" or "circle", type of radar}
+\item{type}{"polygons" or "circle", type of radar}
 
-\item{mainSize}{: font size}
+\item{mainSize}{font size}
 
-\item{pch}{: symbols}
+\item{pch}{symbols}
 }
 \description{
 radar computes a radarplot of the given data values.
 }
 \examples{
-require(pipeR)
-data <- data.frame(label = c("A", "Z", "E", "R", "T"), Product1 = c(1, 2, 3, 4, 2), 
-                   Product2 = c(2, 8, 1, 1, 0),Product3 = c(1,1,2,2,4))
+data <- data.frame(label = c("A", "Z", "E", "R", "T"),
+                   Product1 = c(1, 2, 3, 4, 2), 
+                   Product2 = c(2, 8, 1, 1, 0),
+                   Product3 = c(1,1,2,2,4))
 amRadar(data)
-amRadar(data, main = "My title", export = TRUE, col = c("#0000FF","#00FF00","#FF0000"), 
+amRadar(data, main = "My title", export = TRUE,
+        col = c("#0000FF","#00FF00","#FF0000"), 
         backTransparency = c(0,0.4),
-type = c("polygons"),pch="triangleRight")
+        type = c("polygons"),
+        pch = "triangleRight")
+
 }
 

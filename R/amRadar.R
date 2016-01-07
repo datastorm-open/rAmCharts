@@ -2,25 +2,30 @@
 #' 
 #' @description  radar computes a radarplot of the given data values.
 #' 
-#' @param data : first column is names "label", other columns are series of values
-#' @param col : color of series
-#' @param backTransparency : background transparency
-#' @param main : title of graph
-#' @param legend : add legend, TRUE or FALSE
-#' @param export : add export, TRUE or FALSE
-#' @param type : "polygons" or "circle", type of radar
-#' @param mainSize : font size
-#' @param pch : symbols
+#' @param data first column is names "label", other columns are series of values
+#' @param col color of series
+#' @param backTransparency background transparency
+#' @param main title of graph
+#' @param legend add legend, TRUE or FALSE
+#' @param export add export, TRUE or FALSE
+#' @param type "polygons" or "circle", type of radar
+#' @param mainSize font size
+#' @param pch symbols
 #' 
 #' 
 #' @examples
-#' require(pipeR)
-#' data <- data.frame(label = c("A", "Z", "E", "R", "T"), Product1 = c(1, 2, 3, 4, 2), 
-#'                    Product2 = c(2, 8, 1, 1, 0),Product3 = c(1,1,2,2,4))
+#' data <- data.frame(label = c("A", "Z", "E", "R", "T"),
+#'                    Product1 = c(1, 2, 3, 4, 2), 
+#'                    Product2 = c(2, 8, 1, 1, 0),
+#'                    Product3 = c(1,1,2,2,4))
 #' amRadar(data)
-#' amRadar(data, main = "My title", export = TRUE, col = c("#0000FF","#00FF00","#FF0000"), 
+#' amRadar(data, main = "My title", export = TRUE,
+#'         col = c("#0000FF","#00FF00","#FF0000"), 
 #'         backTransparency = c(0,0.4),
-#' type = c("polygons"),pch="triangleRight")
+#'         type = c("polygons"),
+#'         pch = "triangleRight")
+#' 
+#' @import pipeR
 #' @import data.table
 #' @rdname amRadar
 #' @export
