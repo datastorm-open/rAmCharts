@@ -1,5 +1,5 @@
-shiny::tabPanel(
-  title = "Drilldown",
+shinydashboard::tabItem(
+  tabName = "drilldown",
   fluidRow(
     column(
       width = 12,

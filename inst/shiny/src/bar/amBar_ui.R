@@ -1,11 +1,13 @@
 shinydashboard::tabItem(
-  tabName = "radar",
+  tabName = "amBar",
+  
+  
   fluidRow(
     column(
       width = 12,
-  
+      
       br(),
- 
+      br(),
       
       tabBox(width=12,height=550,
              
@@ -15,7 +17,7 @@ shinydashboard::tabItem(
                  h2("Simple example", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("radar1"), type = "radar")
+                   rAmCharts::amChartsOutput("amBar0"))
                  
                )),
              tabPanel(
@@ -25,58 +27,77 @@ shinydashboard::tabItem(
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_radar1"))
+                   verbatimTextOutput("code_amBar0"))
                )
              )
       ),
-      
-      
       tabBox(width=12,height=550,
              
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Add legend, title, font area color, bullets ....", align="center"),
+                 h2("Color and horizontal", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("radar3"), type = "radar")
+                   rAmCharts::amChartsOutput("amBar1"))
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Add legend, title, font area color, bullets ....", align="center"),
+                 h2("Color and horizontal", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_radar3"))
+                   verbatimTextOutput("code_amBar1"))
                )
              )
       ),
-      
-      
       tabBox(width=12,height=550,
              
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Wind, add guides", align="center"),
+                 h2("Group and label", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("radar2"), type = "radar")
+                   rAmCharts::amChartsOutput("amBar2"))
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Wind, add guides", align="center"),
+                 h2("Group and label", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_radar2"))
+                   verbatimTextOutput("code_amBar2"))
+               )
+             )
+      ),
+      tabBox(width=12,height=550,
+             
+             tabPanel(
+               title = "Graphic",
+               fluidRow(
+                 h2("Stack and legend", align="center"),
+                 column(
+                   width = 12,
+                   rAmCharts::amChartsOutput("amBar3"))
+                 
+               )),
+             tabPanel(
+               title = "Code",
+               fluidRow(
+                 h2("Stack and legend", align="center"),
+                 column(
+                   width = 12,
+                   
+                   verbatimTextOutput("code_amBar3"))
                )
              )
       )
+      
     )
   )
 )

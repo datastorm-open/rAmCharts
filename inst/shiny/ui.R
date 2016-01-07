@@ -6,20 +6,45 @@
 
 library(shiny)
 library(rAmCharts)
-
-shiny::shinyUI(shiny::navbarPage(
-  title = "Examples",
+library(shinydashboard)
+shinydashboard::dashboardPage(
   
+ 
+    shinydashboard::dashboardHeader(),
+ 
+  source("./src/menu/menu.R", local = TRUE, encoding = "UTF-8")$value,
+  
+  shinydashboard::dashboardBody(
+    
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "style.css")),
+
+             
+  shinydashboard::tabItems(
+  source("./src/Information/information_ui.R", local = TRUE)$value,
   source("./src/pie/pie_ui.R", local = TRUE)$value,
+  source("./src/pie/amPie_ui.R", local = TRUE)$value,
   source("./src/radar/radar_ui.R", local = TRUE)$value,
-  source("./src/serial/serial_ui.R", local = TRUE)$value,
+  source("./src/radar/amRadar_ui.R", local = TRUE)$value,
+  
+  source("./src/lines/lines_ui.R", local = TRUE)$value,
+  source("./src/lines/amLines_ui.R", local = TRUE)$value,
+
+  
+  source("./src/bar/bar_ui.R", local = TRUE)$value,
+  source("./src/bar/amBar_ui.R", local = TRUE)$value,
+  
+  
+  
+  # source("./src/serial/serial_ui.R", local = TRUE)$value,
   source("./src/xy/xy_ui.R", local = TRUE)$value,
   source("./src/stock/stock_ui.R", local = TRUE)$value,
-  navbarMenu(
-    title = "More",
+
     source("./src/gauge/gauge_ui.R", local = TRUE)$value,
     source("./src/funnel/funnel_ui.R", local = TRUE)$value,
     source("./src/drilldown/drilldown_ui.R", local = TRUE)$value
+
   )
-  
-))
+  )
+)
+
+

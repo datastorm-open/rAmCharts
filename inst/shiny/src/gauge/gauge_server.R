@@ -1,6 +1,6 @@
 output$gauge1 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
-    amAngularGaugeChart(startDuration = 0, theme = input$theme_gauge),
+    amAngularGaugeChart(startDuration = 0, theme = input$theme),
     addArrow(value = 100),
     addAxis(gaugeAxis(bottomText = '100 km/h', endValue = 220, valueInterval = 10) %>>%
              addBand(color = '#00CC00', endValue = 90, startValue = 0) %>>%
@@ -12,7 +12,7 @@ output$gauge1 <- rAmCharts::renderAmCharts({
 output$code_gauge1 <- renderText({
   "
   pipeR::pipeline(
-    amAngularGaugeChart(startDuration = 0, theme = input$theme_gauge),
+    amAngularGaugeChart(startDuration = 0, theme = input$theme),
     addArrow(value = 100),
     addAxis(gaugeAxis(bottomText = '100 km/h', endValue = 220, valueInterval = 10) %>>%
               addBand(color = '#00CC00', endValue = 90, startValue = 0) %>>%

@@ -1,7 +1,7 @@
 output$stock1 <- renderAmCharts({
   data('data_stock1')
   pipeR::pipeline(
-    amStockChart(startDuration = 0, theme = input$theme_stock),
+    amStockChart(startDuration = 0, theme = input$theme),
     addDataSet(dataSet(title = 'first data set', categoryField = 'date',
                        dataProvider = data_stock1$chartData1) %>>%
                  addFieldMapping(fromField = 'value', toField = 'value') %>>%
@@ -47,7 +47,7 @@ output$code_stock1 <- renderText({
   "
   data('data_stock1')
   pipeR::pipeline(
-    amStockChart(startDuration = 0, theme = input$theme_stock),
+    amStockChart(startDuration = 0, theme = input$theme),
     addDataSet(dataSet(title = 'first data set', categoryField = 'date',
                        dataProvider = data_stock1$chartData1) %>>%
                  addFieldMapping(fromField = 'value', toField = 'value') %>>%

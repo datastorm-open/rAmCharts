@@ -1,11 +1,11 @@
 shinydashboard::tabItem(
-  tabName = "radar",
+  tabName = "amPie",
   fluidRow(
     column(
       width = 12,
-  
+      
+      
       br(),
- 
       
       tabBox(width=12,height=550,
              
@@ -15,7 +15,7 @@ shinydashboard::tabItem(
                  h2("Simple example", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("radar1"), type = "radar")
+                   rAmCharts::amChartsOutput("ampie0"))
                  
                )),
              tabPanel(
@@ -25,10 +25,57 @@ shinydashboard::tabItem(
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_radar1"))
+                   verbatimTextOutput("code_ampie0"))
                )
              )
       ),
+      
+      tabBox(width=12,height=550,
+             
+             tabPanel(
+               title = "Graphic",
+               fluidRow(
+                 h2("Change Color", align="center"),
+                 column(
+                   width = 12,
+                   rAmCharts::amChartsOutput("ampie1"))
+                 
+               )),
+             tabPanel(
+               title = "Code",
+               fluidRow(
+                 h2("Change Color", align="center"),
+                 column(
+                   width = 12,
+                   
+                   verbatimTextOutput("code_ampie1"))
+               )
+             )
+      ),
+      
+      tabBox(width=12,height=550,
+             
+             tabPanel(
+               title = "Graphic",
+               fluidRow(
+                 h2("Add legend", align="center"),
+                 column(
+                   width = 12,
+                   rAmCharts::amChartsOutput("ampie2"))
+                 
+               )),
+             tabPanel(
+               title = "Code",
+               fluidRow(
+                 h2("Add legend", align="center"),
+                 column(
+                   width = 12,
+                   
+                   verbatimTextOutput("code_ampie2"))
+               )
+             )
+      ),
+      
       
       
       tabBox(width=12,height=550,
@@ -36,47 +83,26 @@ shinydashboard::tabItem(
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Add legend, title, font area color, bullets ....", align="center"),
+                 h2("And more (3D, donut, hide value ...)", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("radar3"), type = "radar")
+                   rAmCharts::amChartsOutput("ampie3"))
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Add legend, title, font area color, bullets ....", align="center"),
+                 h2("And more (3D, donut, hide value ...)", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_radar3"))
-               )
-             )
-      ),
-      
-      
-      tabBox(width=12,height=550,
-             
-             tabPanel(
-               title = "Graphic",
-               fluidRow(
-                 h2("Wind, add guides", align="center"),
-                 column(
-                   width = 12,
-                   rAmCharts::amChartsOutput("radar2"), type = "radar")
-                 
-               )),
-             tabPanel(
-               title = "Code",
-               fluidRow(
-                 h2("Wind, add guides", align="center"),
-                 column(
-                   width = 12,
-                   
-                   verbatimTextOutput("code_radar2"))
+                   verbatimTextOutput("code_ampie3"))
                )
              )
       )
+      
+      
+      
     )
   )
 )

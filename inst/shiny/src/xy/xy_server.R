@@ -10,7 +10,7 @@ output$xy1 <- rAmCharts::renderAmCharts({
   # build the chart
   pipeR::pipeline(
     amXYChart(startDuration = 0, dataProvider = dp,
-              theme = input$theme_xy,
+              theme = input$theme,
               marginLeft = 46, marginBottom = 35),
     addValueAxis(position = 'bottom', axisAlpha = 0),
     addValueAxis(minMaxMultiplier = 1.2, position = 'left', axisAlpha = 0),
@@ -38,7 +38,7 @@ output$code_xy1 <- renderText({
   # build the chart
   pipeR::pipeline(
     amXYChart(startDuration = 0, dataProvider = dp,
-              theme = input$theme_xy,
+              theme = input$theme,
               marginLeft = 46, marginBottom = 35),
     addValueAxis(position = 'bottom', axisAlpha = 0),
     addValueAxis(minMaxMultiplier = 1.2, position = 'left', axisAlpha = 0),

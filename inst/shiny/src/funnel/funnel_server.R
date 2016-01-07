@@ -8,7 +8,7 @@ output$funnel1 <- rAmCharts::renderAmCharts({
   
   # build chart
   pipeR::pipeline(
-    amFunnelChart(theme = input$theme_funnel, dataProvider = dp,
+    amFunnelChart(theme = input$theme, dataProvider = dp,
                   neckHeight = '20%', neckWidth = '40%',
                   titleField = 'title', valueField = 'value', labelPosition = 'right',
                   creditsPosition = 'bottom-left', marginLeft = 15, marginRight = 200,
@@ -27,7 +27,7 @@ output$code_funnel1 <- renderText({
   
   # build chart
   pipeR::pipeline(
-    amFunnelChart(theme = input$theme_funnel, dataProvider = dp,
+    amFunnelChart(theme = input$theme, dataProvider = dp,
                   neckHeight = '20%', neckWidth = '40%',
                   titleField = 'title', valueField = 'value', labelPosition = 'right',
                   creditsPosition = 'bottom-left', marginLeft = 15, marginRight = 200,

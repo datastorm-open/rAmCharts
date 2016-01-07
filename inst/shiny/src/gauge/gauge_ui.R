@@ -1,10 +1,10 @@
-shiny::tabPanel(
-  title = "Gauge",
+shinydashboard::tabItem(
+  tabName = "gauge",
   fluidRow(
     column(
       width = 12,
       h2("Theme setter"),
-      selectInput("theme_gauge", label = "Theme:", choices = c("default", "light", "patterns", "dark", "chalk")),
+   
       br(),
       rAmCharts::amChartsOutput("gauge1"),
       verbatimTextOutput("code_gauge1"),
