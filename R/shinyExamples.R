@@ -14,7 +14,9 @@ runShinyExamples <- function()
   if (!requireNamespace("shiny")) {
     stop("Please install shiny for running this function")
   } else {}
-  
+  if (!requireNamespace("shinydashboard")) {
+    stop("Please install shinydashboard for running this function")
+  } else {}
   appDir <- system.file("shiny", package = "rAmCharts")
   if (appDir == "") {
     stop("Could not find example directory. Try re-installing `mypackage`.", call. = FALSE)
