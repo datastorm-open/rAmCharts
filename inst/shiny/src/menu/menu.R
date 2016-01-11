@@ -5,23 +5,23 @@ shinydashboard::sidebarMenu(id = "tabs",
             ##Pie
             menuItem(text ="Pie",icon = icon("pie-chart"),
                      menuSubItem(text = "Simple Function", tabName = "amPie"),
-                     menuSubItem(text = "Complexe Function", tabName = "pie")),
+                     menuSubItem(text = "Complex Function", tabName = "pie")),
             
             
             ##Radar
             menuItem(text ="Radar",icon = icon("circle"),
                      menuSubItem(text = "Simple Function", tabName = "amRadar"),
-                     menuSubItem(text = "Complexe Function", tabName = "radar")),
+                     menuSubItem(text = "Complex Function", tabName = "radar")),
             
             ##Bar plot
             menuItem(text ="Bar",icon = icon("bar-chart"),
                      menuSubItem(text = "Simple Function", tabName = "amBar"),
-                     menuSubItem(text = "Complexe Function", tabName = "bar")),
+                     menuSubItem(text = "Complex Function", tabName = "bar")),
             
             ##Lines
             menuItem(text ="Lines",icon = icon("line-chart"),
                      menuSubItem(text = "Simple Function", tabName = "amLines"),
-                     menuSubItem(text = "Complexe Function", tabName = "lines")),
+                     menuSubItem(text = "Complex Function", tabName = "lines")),
             
             
             
@@ -29,7 +29,7 @@ shinydashboard::sidebarMenu(id = "tabs",
             ##Lines
             menuItem(text ="XY",icon = icon("soundcloud"),
                      menuSubItem(text = "Simple Function", tabName = "amxy"),
-                     menuSubItem(text = "Complexe Function", tabName = "xy")),
+                     menuSubItem(text = "Complex Function", tabName = "xy")),
             
             
             
@@ -37,31 +37,31 @@ shinydashboard::sidebarMenu(id = "tabs",
             ##Stock
             menuItem(text ="Stock",icon = icon("sliders"),
                      menuSubItem(text = "Simple Function", tabName = "amstock"),
-                     menuSubItem(text = "Complexe Function", tabName = "stock")),
+                     menuSubItem(text = "Complex Function", tabName = "stock")),
             
             ##Funnel
             menuItem(text ="Funnel",icon = icon("sort-desc"),
                      menuSubItem(text = "Simple Function", tabName = "amfunnel"),
-                     menuSubItem(text = "Complexe Function", tabName = "funnel")),
+                     menuSubItem(text = "Complex Function", tabName = "funnel")),
             
             ##Gauge
             menuItem(text ="Gauge",icon = icon("repeat"),
                      menuSubItem(text = "Simple Function", tabName = "amgauge"),
-                     menuSubItem(text = "Complexe Function", tabName = "gauge")),
+                     menuSubItem(text = "Complex Function", tabName = "gauge")),
             
             ##Candlesticks
             menuItem(text ="Candlesticks",icon = icon("arrows-h"),
                      menuSubItem(text = "Simple Function", tabName = "amcandlesticks"),
-                     menuSubItem(text = "Complexe Function", tabName = "candlesticks")),
+                     menuSubItem(text = "Complex Function", tabName = "candlesticks")),
             
             
             ##Bullet
             menuItem(text ="Bullet",icon = icon("ticket"),
                      menuSubItem(text = "Simple Function", tabName = "amBullet"),
-                     menuSubItem(text = "Complexe Function", tabName = "Bullet")),
+                     menuSubItem(text = "Complex Function", tabName = "Bullet")),
             ##Mekko
             menuItem(text ="Mekko",icon = icon("square"),
                      menuSubItem(text = "Simple Function", tabName = "ammekko"),
-                     menuSubItem(text = "Complexe Function", tabName = "mekko"))
+                     menuSubItem(text = "Complex Function", tabName = "mekko"))
 )
 )
