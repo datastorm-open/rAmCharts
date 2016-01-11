@@ -111,11 +111,12 @@ output$code_stock1 <- renderText({
 
 output$stock2 <- renderAmCharts({
 ##Data
-Tims <- as.POSIXct(seq(-60*60*24*50, 0, by=3600),origin = Sys.time(), tz= 'UTC')
+Tims <- as.POSIXct(seq(-60*60*24*50+1, 0, by=3600),origin = Sys.time(), tz= 'UTC')
 Tims <- round(Tims,'hours')
 
 Tims <- data.frame(Tims)
-Tims$Mesure <- 1:length(Tims$Tims) +   cos(seq(-pi,pi,length.out = 60*6))*500 + runif(length(Tims$Tims)) * 50
+
+Tims$Mesure <- 1:length(Tims$Tims) +   rep(cos(seq(-pi,pi,length.out = 100)),12)*500 + runif(length(Tims$Tims)) * 200
 
 mycategoryBalloonDateFormat <- list(list(period='YYYY', format='YYYY'), list(period='MM', format='YYYY-MM'), 
                                     list(period='WW', format='YYYY-MM-DD'), list(period='DD', format='YYYY-MM-DD'), 
