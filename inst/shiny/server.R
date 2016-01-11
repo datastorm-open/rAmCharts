@@ -20,22 +20,17 @@ shinyServer(function(input, output) {
   data('data_gdp')
   setnames(data_gdp,"country","label")
   setnames(data_gdp,"gdp","value")
+  
   source("./src/pie/pie_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/pie/AmPie_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/radar/radar_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/radar/amRadar_server.R", local = TRUE, encoding = "UTF-8")
-  
-  
+
   source("./src/bar/bar_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/bar/amBar_server.R", local = TRUE, encoding = "UTF-8")
-  
-  
-  
+
   source("./src/lines/lines_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/lines/amLines_server.R", local = TRUE, encoding = "UTF-8")
-  
-  
-  
   
   # source("./src/serial/serial_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/xy/xy_server.R", local = TRUE, encoding = "UTF-8")
