@@ -1,9 +1,10 @@
 #' @title Plotting bar chart using rAmCharts
-#' @description  amBar computes a bar chart of the given values.
-#' @param x \code{character} column name for x-axis or \code{numeric} 
-#' the number of the corresponding column.
-#' @param y \code{character} column name for y-axis or \code{numeric} 
-#' the number of the corresponding column. If you want to display a grouped barchart
+#' @description  amBarplot computes a bar chart of the given values.
+#' 
+#' @param x \code{character}, column name for x-axis or \code{numeric} value of the corresponding column.
+#' It is optional if argument \code{data} has row names.
+#' @param y \code{character}, column name for y-axis or \code{numeric}  vector
+#' of the corresponding column. If you want to display a grouped barchart
 #' or a stacked barchart, y is a vector of characters or numerics. 
 #' @param data \code{data.frame} dataframe with values to display.
 #' You can add a column "color" (character, colors in hexadecimal). You can
@@ -25,87 +26,56 @@
 #' legend is set to TRUE.
 #' @param show_values \code{boolean} TRUE to display values.
 #' @param third_dim \code{boolean} if TRUE, chart is displayed in 3D
-#' @examples
 #' 
-#' 
-#' #Basic Example : column chart
-#' data_bar <- data.frame(country = c("USA", "China", "Japan", "Germany", 
-#'                                     "UK", "France", "India", "Spain",
-#'                                     "Netherlands", "Russia", "South Korea",
-#'                                     "Canada"),
-#'                         visits = c(3025, 1882, 1809, 1322, 1122, 1114, 
-#'                                    984, 711, 665, 580, 443, 441),
-#'                         color = c("#FF0F00", "#FF6600", "#FF9E01", "#FCD202",
-#'                                   "#F8FF01", "#B0DE09", "#04D215", "#0D8ECF",
-#'                                   "#0D52D1", "#2A0CD0", "#8A0CCF", "#CD0D74"),
-#'                         stringsAsFactors = FALSE)
-#' amBar(x = "country", y = "visits", data = data_bar)
-#' 
-#' #horizontal bar
-#' amBar(x = "country", y = "visits", data = data_bar, horiz = TRUE)
-#' 
-#' #3D bar
-#' amBar(x = "country", y = "visits", data = data_bar, third_dim = TRUE)
-#' 
-#' #display values
-#' amBar(x = "country", y = "visits", data = data_bar, show_values = TRUE)
-#'
-#' #grouped columns
-#' data_gbar <- data.frame(year = c("2005", "2006", "2007", "2008", "2009"),
-#'                         income = c(23.5, 26.2, 30.1, 29.5, 24.6),
-#'                         expenses = c(18.1, 22.8, 23.9, 25.1, 25),
-#'                         stringsAsFactors = FALSE)
-#' 
-#' amBar(x = "year", y = c("income", "expenses"), data = data_gbar)
-#' 
-#' #add legend
-#' amBar(x = "year", y = c("income", "expenses"), data = data_gbar, legend = TRUE)
-#' 
-#' #change groups colors
-#' amBar(x = "year", y = c("income", "expenses"), data = data_gbar, 
-#'       groups_color = c("#87cefa", "#c7158"), legend = TRUE)
-#' 
-#' #stacked bars
-#' amBar(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "regular")
-#' 
-#' #100% stacked bars
-#' amBar(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "100")
-#' 
-#' #layered bars
-#' amBar(x = "year", y = c("income", "expenses"), data = data_gbar, layered = TRUE)
-#' 
+#' @example ./examples/amBarplot_examples.R
 #' 
 #' @export
-
-
-amBar <- function(x, y, data, main = "", mainSize = 15, xlab = "", 
-                  ylab = "", groups_color = NULL, horiz = FALSE, stack_type = "none",
-                  layered = FALSE,
-                  legend = FALSE, legend_side = "right", show_values = FALSE,
-                  third_dim = FALSE) {
+#' 
+amBarplot <- function(x, y, data, main = "", mainSize = 15, xlab = "", 
+                      ylab = "", groups_color = NULL, horiz = FALSE,
+                      stack_type = "none", layered = FALSE,
+                      legend = FALSE, legend_side = "right",
+                      show_values = FALSE, third_dim = FALSE)
+{
   
-  if(!is.data.frame(data) | (!any(c(x, y) %in% colnames(data)) & is.character(x) & is.character(y))) {
+  if(!is.data.frame(data)) {
     stop("data must be a data frame")
   } else {}
   
-  if(!is.character(data[,x])) {
-    stop(paste("The column ", x, " of the dataframe must be character."))
+  
+  # check argument x
+  if (missing(x) && !length(rownames(data))) {
+    stop("Argument x is not provided and the data.frame does not have row names")
+  } else if (missing(x) && length(rownames(data))){
+    x <- "xcat_"
+    data$xcat_ <- rownames(data)
+  } else if (is.character(x) && !(x %in% colnames(data))) {
+    stop("Argument x does not correspond to a column name")
+  } else if (is.numeric(x) && x > ncol(data)) {
+    stop("Error in argument x")
   } else {}
   
-  if(is.numeric(x)) {
-    x <- colnames(data)[x]
-  }
+  # convert x into character if necessary
+  if (is.numeric(x)) x <- colnames(data)[x]
+  # check if the column is compatible
+  if (!is.character(data[,x]))
+    stop(paste("The column ", x, " of the dataframe must be character."))
+  
+  # check argument y
+  if (is.character(y) && !all(y %in% colnames(data)))
+    stop(paste("Cannot extract column(s)", y, "from data"))
   
   sapply(1:length(y), FUN = function(i) {
-    if(!is.numeric(data[,y[i]])) {
-      stop(paste("The column ", y[i], "of the dataframe must be numeric."))
-    }
-  })
-  
-  sapply(1:length(y), FUN = function(i) {
-    if(is.numeric(y[i])) {
+    if (is.numeric(y[i])) {
+      if (y[i] > ncol(data)) stop("Error in argument x")
+      # convert y into character if necessary
       y[i] <<- colnames(data)[y[i]]
-    }
+    } else if(is.character(y) && !all(y %in% colnames(data))) {
+      stop(paste("Cannot extract column(s)", y, "from data"))
+    } else {}
+    # check if the column is compatible
+    if (!is.numeric(data[,y[i]]))
+      stop(paste("The column ", y[i], "of the dataframe must be numeric."))
   })
   
   main <- as.character(main)
@@ -195,7 +165,8 @@ amBar <- function(x, y, data, main = "", mainSize = 15, xlab = "",
     addValueAxis(title = ylab, position = 'left', stackType = stack_type),
     setChartCursor(categoryBalloonEnabled = FALSE, cursorAlpha = 0),
     setCategoryAxis(title = xlab, gridPosition = 'start', labelRotation = 45, 
-                    axisAlpha = 0, gridAlpha = 0)
+                    axisAlpha = 0, gridAlpha = 0),
+    setChartCursor()
   )
   
   if(length(y) == 1) {
@@ -257,10 +228,9 @@ amBar <- function(x, y, data, main = "", mainSize = 15, xlab = "",
     }
   }
   
-  if(legend) {
+  if (legend)
     res <- setLegend(res, position = ifelse(is.null(legend_side), 'right',legend_side))
-  }
-
+  
   res
   
 }
