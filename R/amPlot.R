@@ -524,7 +524,8 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty,
 #' @description Add a new data to an existing serial chart.
 #'
 #' @param chart \linkS4class{AmChart}.
-#' @param x \code{numeric}.
+#' @param x \code{numeric} equivalent to y, deprecated.
+#' @param y \code{numeric}.
 #' @param type (optionnal) \code{character}.
 #' @param col \code{character}, color of teh new serie.
 #' @param title \code{character} used when legend is enabled.
@@ -534,11 +535,33 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty,
 #' @rdname amLines
 #' @export
 #' 
-amLines <- function(chart, x, type, col, title)
+amLines <- function(chart, x = NULL, y = NULL, type, col, title)
 {
+
+  
+  if(!is.null(x) && !is.null(y))
+  {
+    stop("Please use only y, x is deprecated.")
+  }
+      
+      
+  if(is.null(x))
+  {
+    if(is.null(y))
+    {
+      stop("y is necessary")
+    }else{
+      if (missing(title)) title <- deparse(substitute(y))
+      x <- y
+    }
+  }else{
+  
+  if (missing(title)) title <- deparse(substitute(x))
+  }
   # check the arguments
   stopifnot(is(chart, "AmChart"))
   stopifnot(is.numeric(x))
+
   
   type <- if (missing(type)) "line"
   else amCheck_type(type = type, valid = c("l", "p", "sl"))
@@ -554,7 +577,7 @@ amLines <- function(chart, x, type, col, title)
   dataProvider <- chart@dataProvider
   l <- length(dataProvider)
   stopifnot(length(x) == l)
-  
+
   # define the new name for the serie
   # here we suppose that each element of the list have the same names
   # consequently this method won't work if the dataProvider has been set
@@ -572,8 +595,6 @@ amLines <- function(chart, x, type, col, title)
     dataProvider[[i]][[name]] <- x[i]
     dataProvider[[i]]
   })
-  
-  if (missing(title)) title <- deparse(substitute(x))
   
   # initialize the graph object
   graph_obj <- graph(title = title, valueField = name, lineAlpha = lineAlpha, lineColor = col)
