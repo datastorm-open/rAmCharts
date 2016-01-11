@@ -4,12 +4,14 @@
 \alias{amLines}
 \title{Add chart graph.}
 \usage{
-amLines(chart, x, type, col, title)
+amLines(chart, x = NULL, y = NULL, type, col, title)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
 
-\item{x}{\code{numeric}.}
+\item{x}{\code{numeric} equivalent to y, deprecated.}
+
+\item{y}{\code{numeric}.}
 
 \item{type}{(optionnal) \code{character}.}
 

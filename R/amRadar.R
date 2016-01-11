@@ -33,6 +33,8 @@
 amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend = TRUE, export = FALSE, 
                     type = "polygons", mainSize = 15, pch = "round") {
   
+  
+  data <- as.data.frame(data)
   if(!is.data.frame(data)){
     stop ("data must be a data frame")
   }
@@ -87,7 +89,7 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend
   
   if(!class(mainSize)%in% c("numeric"))
   {
-    stop ("mainSize must be a numeric")
+    stop ("mainSize must be a numeric or double")
   }
   
   for(i in 1:length(pch))
@@ -104,7 +106,7 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend
   
   for(i in 1:ncol(datavalue))
   {
-    if(!class(datavalue[,i]) == "numeric")
+    if(!class(datavalue[,i]) %in%c("numeric","double"))
     {
       stop ("All column of data except label must be numeric")
     }
