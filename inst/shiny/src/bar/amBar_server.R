@@ -8,7 +8,7 @@ output$amBar0 <- rAmCharts::renderAmCharts({
     stringsAsFactors = FALSE
     )
   ##Plot
-  amBar(x = 'country', y = 'visits', data = data_bar)
+  amBarplot(x = 'country', y = 'visits', data = data_bar)
 })
 
 
@@ -22,7 +22,7 @@ output$code_amBar0 <- renderText({
     stringsAsFactors = FALSE
   )
   ##Plot
-  amBar(x = 'country', y = 'visits', data = data_bar)
+  amBarplot(x = 'country', y = 'visits', data = data_bar)
   "
 })
 
@@ -42,7 +42,7 @@ output$amBar1 <- rAmCharts::renderAmCharts({
     stringsAsFactors = FALSE
   )
   ##Plot
-  amBar(x = 'country', y = 'visits', data = data_bar, horiz = TRUE)
+  amBarplot(x = 'country', y = 'visits', data = data_bar, horiz = TRUE)
 })
 
 
@@ -59,7 +59,7 @@ output$code_amBar1 <- renderText({
     stringsAsFactors = FALSE
   )
   ##Plot
-  amBar(x = 'country', y = 'visits', data = data_bar, horiz = TRUE)
+  amBarplot(x = 'country', y = 'visits', data = data_bar, horiz = TRUE)
   "
 })
 
@@ -71,7 +71,7 @@ output$amBar2 <- rAmCharts::renderAmCharts({
                         stringsAsFactors = FALSE)
 
   ##Plot
-  amBar(x = 'year', y = c('income', 'expenses'), data = data_gbar, layered = TRUE, show_values = TRUE)
+  amBarplot(x = 'year', y = c('income', 'expenses'), data = data_gbar, layered = TRUE, show_values = TRUE)
 })
 
 
@@ -88,7 +88,7 @@ output$code_amBar2 <- renderText({
   )
   
   ##Plot
-  amBar(x = 'year', y = c('income', 'expenses'), data = data_gbar, layered = TRUE, show_values = TRUE)
+  amBarplot(x = 'year', y = c('income', 'expenses'), data = data_gbar, layered = TRUE, show_values = TRUE)
   "
 })
 
@@ -101,7 +101,7 @@ output$amBar3 <- rAmCharts::renderAmCharts({
                           stringsAsFactors = FALSE)
   
   ##Plot
-  amBar(x = 'year', y = c('income', 'expenses'), data = data_gbar, stack_type = '100', legend = TRUE, legend_side = 'left')
+  amBarplot(x = 'year', y = c('income', 'expenses'), data = data_gbar, stack_type = '100', legend = TRUE, legend_side = 'left')
 })
 
 
@@ -116,7 +116,7 @@ output$code_amBar3 <- renderText({
   )
   
   ##Plot
-  amBar(x = 'year', y = c('income', 'expenses'), data = data_gbar, stack_type = '100', legend = TRUE, legend_side = 'left')
+  amBarplot(x = 'year', y = c('income', 'expenses'), data = data_gbar, stack_type = '100', legend = TRUE, legend_side = 'left')
   "
 })
 
@@ -125,21 +125,21 @@ output$code_amBar3 <- renderText({
 
 
 # 
-# amBar(x = "country", y = "visits", data = data_bar, show_values = TRUE)
+# amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE)
 
 
 
 # 
-# amBar(x = "country", y = "visits", data = data_bar)
+# amBarplot(x = "country", y = "visits", data = data_bar)
 # 
 # #horizontal bar
-# amBar(x = "country", y = "visits", data = data_bar, horiz = TRUE)
+# amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE)
 # 
 # #3D bar
-# amBar(x = "country", y = "visits", data = data_bar, third_dim = TRUE)
+# amBarplot(x = "country", y = "visits", data = data_bar, third_dim = TRUE)
 # 
 # #display values
-# amBar(x = "country", y = "visits", data = data_bar, show_values = TRUE)
+# amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE)
 # 
 # #grouped columns
 # data_gbar <- data.frame(year = c("2005", "2006", "2007", "2008", "2009"),
@@ -147,23 +147,23 @@ output$code_amBar3 <- renderText({
 #                         expenses = c(18.1, 22.8, 23.9, 25.1, 25),
 #                         stringsAsFactors = FALSE)
 # 
-# amBar(x = "year", y = c("income", "expenses"), data = data_gbar)
+# amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
 # 
 # #add legend
-# amBar(x = "year", y = c("income", "expenses"), data = data_gbar, legend = TRUE)
+# amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, legend = TRUE)
 # 
 # #change groups colors
-# amBar(x = "year", y = c("income", "expenses"), data = data_gbar, 
+# amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, 
 #       groups_color = c("#87cefa", "#c7158"), legend = TRUE)
 # 
 # #stacked bars
-# amBar(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "regular")
+# amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "regular")
 # 
 # #100% stacked bars
-# amBar(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "100")
+# amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "100")
 # 
 # #layered bars
-# amBar(x = "year", y = c("income", "expenses"), data = data_gbar, layered = TRUE, show_values = TRUE)
+# amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, layered = TRUE, show_values = TRUE)
 # 
 
 

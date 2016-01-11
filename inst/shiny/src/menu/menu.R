@@ -15,7 +15,7 @@ shinydashboard::sidebarMenu(id = "tabs",
             
             ##Bar plot
             menuItem(text ="Bar",icon = icon("bar-chart"),
-                     menuSubItem(text = "Simple Function", tabName = "amBar"),
+                     menuSubItem(text = "Simple Function", tabName = "amBarplot"),
                      menuSubItem(text = "Complex Function", tabName = "bar")),
             
             ##Lines

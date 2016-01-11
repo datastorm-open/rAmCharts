@@ -1,5 +1,5 @@
 shinydashboard::tabItem(
-  tabName = "amBar",
+  tabName = "amBarplot",
   
   
   fluidRow(
