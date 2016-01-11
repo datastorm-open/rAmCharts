@@ -3,7 +3,7 @@ require(data.table)
 #' @examples 
 #' \dontshow{
 #' # Generate and save data
-#' data_stock1 <- generate_data_stock1()
+#' data_stock1 <- .generate_data_stock1()
 #' devtools::use_data(data_stock1)
 #' }
 #' @import data.table
@@ -86,7 +86,7 @@ load("data/AirP.rda")
 #' @examples 
 #' \dontshow{
 #' # Generate and save data
-#' AirP <- generate_data_AirP()
+#' (AirP <- .generate_data_AirP())
 #' devtools::use_data(AirP, overwrite = TRUE)
 #' }
 #' @import data.table
@@ -98,6 +98,7 @@ load("data/AirP.rda")
   airP$AirPassengers <- as.numeric(airP$AirPassengers)
   airP$Period <- paste0(rep(c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"), 12),
                         "/" , rep(1949 : 1960, each = 12))
+  airP
 }
 
 
