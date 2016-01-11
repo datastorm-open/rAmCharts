@@ -1,5 +1,5 @@
 shinydashboard::tabItem(
-  tabName = "xy",
+  tabName = "amcandlesticks",
   
   
   fluidRow(
@@ -16,7 +16,7 @@ shinydashboard::tabItem(
                  h2("Simple example", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy0"))
+                   rAmCharts::amChartsOutput("cds0"))
                  
                )),
              tabPanel(
@@ -26,30 +26,31 @@ shinydashboard::tabItem(
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy0"))
+                   verbatimTextOutput("code_cds0"))
                )
              )
       ),
+      
       
       tabBox(width=12,height=550,
              
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Two series, custom size bullet, legend", align="center"),
+                 h2("scrollbar and horizontal", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy1"))
+                   rAmCharts::amChartsOutput("cds1"))
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Two series, custom size bullet, legend", align="center"),
+                 h2("scrollbar and horizontal", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy1"))
+                   verbatimTextOutput("code_cds1"))
                )
              )
       ),
@@ -58,20 +59,20 @@ shinydashboard::tabItem(
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Error chart", align="center"),
+                 h2("By month", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy2"))
+                   rAmCharts::amChartsOutput("cds2"))
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Error chart", align="center"),
+                 h2("By month", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy2"))
+                   verbatimTextOutput("code_cds2"))
                )
              )
       )

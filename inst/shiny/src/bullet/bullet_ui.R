@@ -1,5 +1,6 @@
 shinydashboard::tabItem(
-  tabName = "gauge",
+  tabName = "Bullet",
+  
   
   fluidRow(
     column(
@@ -15,7 +16,7 @@ shinydashboard::tabItem(
                  h2("Simple example", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("gauge1"))
+                   rAmCharts::amChartsOutput("Bullet0"))
                  
                )),
              tabPanel(
@@ -25,7 +26,7 @@ shinydashboard::tabItem(
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_gauge1"))
+                   verbatimTextOutput("code_Bullet0"))
                )
              )
       )

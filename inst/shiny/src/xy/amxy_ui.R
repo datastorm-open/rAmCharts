@@ -1,5 +1,5 @@
 shinydashboard::tabItem(
-  tabName = "xy",
+  tabName = "amxy",
   
   
   fluidRow(
@@ -16,7 +16,7 @@ shinydashboard::tabItem(
                  h2("Simple example", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy0"))
+                   rAmCharts::amChartsOutput("amxy0"))
                  
                )),
              tabPanel(
@@ -26,7 +26,55 @@ shinydashboard::tabItem(
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy0"))
+                   verbatimTextOutput("code_amxy0"))
+               )
+             )
+      ),
+      
+      
+      tabBox(width=12,height=550,
+             
+             tabPanel(
+               title = "Graphic",
+               fluidRow(
+                 h2("Scrollbar and zoom", align="center"),
+                 column(
+                   width = 12,
+                   rAmCharts::amChartsOutput("amxy1"))
+                 
+               )),
+             tabPanel(
+               title = "Code",
+               fluidRow(
+                 h2("Scrollbar and zoom", align="center"),
+                 column(
+                   width = 12,
+                   
+                   verbatimTextOutput("code_amxy1"))
+               )
+             )
+      ),
+      
+      
+      tabBox(width=12,height=550,
+             
+             tabPanel(
+               title = "Graphic",
+               fluidRow(
+                 h2("Weights, main and color", align="center"),
+                 column(
+                   width = 12,
+                   rAmCharts::amChartsOutput("amxy2"))
+                 
+               )),
+             tabPanel(
+               title = "Code",
+               fluidRow(
+                 h2("Weights, main and color", align="center"),
+                 column(
+                   width = 12,
+                   
+                   verbatimTextOutput("code_amxy2"))
                )
              )
       ),
@@ -36,45 +84,25 @@ shinydashboard::tabItem(
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Two series, custom size bullet, legend", align="center"),
+                 h2("add others series", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy1"))
+                   rAmCharts::amChartsOutput("amxy3"))
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Two series, custom size bullet, legend", align="center"),
+                 h2("add others series", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy1"))
-               )
-             )
-      ),
-      tabBox(width=12,height=550,
-             
-             tabPanel(
-               title = "Graphic",
-               fluidRow(
-                 h2("Error chart", align="center"),
-                 column(
-                   width = 12,
-                   rAmCharts::amChartsOutput("xy2"))
-                 
-               )),
-             tabPanel(
-               title = "Code",
-               fluidRow(
-                 h2("Error chart", align="center"),
-                 column(
-                   width = 12,
-                   
-                   verbatimTextOutput("code_xy2"))
+                   verbatimTextOutput("code_amxy3"))
                )
              )
       )
+      
+      
     )
   )
 )

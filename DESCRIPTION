@@ -99,5 +99,6 @@ Imports:
 Suggests:
     magrittr,
     shiny,
-    testthat
+    testthat,
+    shinydashboard
 RoxygenNote: 5.0.1

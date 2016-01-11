@@ -1,6 +1,6 @@
 shinydashboard::tabItem(
-  tabName = "xy",
-  
+  tabName = "amRadar",
+ 
   
   fluidRow(
     column(
@@ -8,6 +8,7 @@ shinydashboard::tabItem(
       
       br(),
       
+      
       tabBox(width=12,height=550,
              
              tabPanel(
@@ -16,7 +17,7 @@ shinydashboard::tabItem(
                  h2("Simple example", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy0"))
+                   rAmCharts::amChartsOutput("amRadar0"), type = "radar")
                  
                )),
              tabPanel(
@@ -26,7 +27,7 @@ shinydashboard::tabItem(
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy0"))
+                   verbatimTextOutput("code_amRadar0"))
                )
              )
       ),
@@ -36,45 +37,51 @@ shinydashboard::tabItem(
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Two series, custom size bullet, legend", align="center"),
+                 h2("Add title, legend, export, pch ...", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy1"))
+                   rAmCharts::amChartsOutput("amRadar1"), type = "radar")
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Two series, custom size bullet, legend", align="center"),
+                 h2("Add title, legend, export, pch ...", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy1"))
+                   verbatimTextOutput("code_amRadar1"))
                )
              )
       ),
+      
+      
+      
       tabBox(width=12,height=550,
              
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Error chart", align="center"),
+                 h2("Wind plot, (amWind function)", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy2"))
+                   rAmCharts::amChartsOutput("amWind"), type = "radar")
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Error chart", align="center"),
+                 h2("ind plot, (amWind function)", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy2"))
+                   verbatimTextOutput("code_amWind"))
                )
              )
       )
+      
+      
+      
     )
   )
 )

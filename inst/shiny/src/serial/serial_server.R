@@ -18,7 +18,7 @@ output$serial1 <- renderAmCharts({
     addValueAxis(stackType = '100%'),
     addTitle(text = 'Survivors to Titanic'),
     setLegend(useGraphSettings = TRUE),
-    setProperties(theme = input$theme_serial)
+    setProperties(theme = input$theme)
   )
 })
 

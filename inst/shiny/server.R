@@ -9,7 +9,7 @@ library(shiny)
 library(rAmCharts)
 library(pipeR)
 library(data.table)
-
+library(shinydashboard)
 shinyServer(function(input, output) {
   
   category <- reactive({
@@ -18,14 +18,45 @@ shinyServer(function(input, output) {
   
   data('data_stock1')
   data('data_gdp')
-  
+  setnames(data_gdp,"country","label")
+  setnames(data_gdp,"gdp","value")
   source("./src/pie/pie_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/pie/AmPie_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/radar/radar_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/serial/serial_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/radar/amRadar_server.R", local = TRUE, encoding = "UTF-8")
+  
+  
+  source("./src/bar/bar_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/bar/amBar_server.R", local = TRUE, encoding = "UTF-8")
+  
+  
+  
+  source("./src/lines/lines_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/lines/amLines_server.R", local = TRUE, encoding = "UTF-8")
+  
+  
+  
+  
+  # source("./src/serial/serial_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/xy/xy_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/xy/amxy_server.R", local = TRUE, encoding = "UTF-8")
+  
   source("./src/stock/stock_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/gauge/gauge_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/stock/amstock_server.R", local = TRUE, encoding = "UTF-8")
+  
   source("./src/funnel/funnel_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
-
+  source("./src/funnel/amfunnel_server.R", local = TRUE, encoding = "UTF-8")
+  
+  source("./src/gauge/gauge_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/gauge/amgauge_server.R", local = TRUE, encoding = "UTF-8")
+  # source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
+  
+  source("./src/Candlesticks/candlesticks_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/Candlesticks/amcandlesticks_server.R", local = TRUE, encoding = "UTF-8")
+  # source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/bullet/bullet_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/bullet/ambullet_server.R", local = TRUE, encoding = "UTF-8")
+  
+  source("./src/mekko/mekko_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/mekko/ammekko_server.R", local = TRUE, encoding = "UTF-8")
 })

@@ -1,0 +1,18 @@
+.nav-tabs {
+  background-color: #01A9DB;
+}
+
+.nav-tabs-custom .nav-tabs li.active:hover a, .nav-tabs-custom .nav-tabs li.active a {
+background-color: #58D3F7;
+border-color: transparent;
+}
+
+.nav-tabs-custom .nav-tabs li.active {
+    border-top-color: #58D3F7;
+ 
+    font-weight: bold;
+}
+
+.nav-tabs-custom .nav-tabs li:hover a, .nav-tabs-custom .nav-tabs li.active:hover a{
+  color:#FFF;
+}

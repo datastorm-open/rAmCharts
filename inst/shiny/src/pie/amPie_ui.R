@@ -1,10 +1,9 @@
 shinydashboard::tabItem(
-  tabName = "xy",
-  
-  
+  tabName = "amPie",
   fluidRow(
     column(
       width = 12,
+      
       
       br(),
       
@@ -16,7 +15,7 @@ shinydashboard::tabItem(
                  h2("Simple example", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy0"))
+                   rAmCharts::amChartsOutput("ampie0"))
                  
                )),
              tabPanel(
@@ -26,7 +25,7 @@ shinydashboard::tabItem(
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy0"))
+                   verbatimTextOutput("code_ampie0"))
                )
              )
       ),
@@ -36,45 +35,74 @@ shinydashboard::tabItem(
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Two series, custom size bullet, legend", align="center"),
+                 h2("Change Color", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy1"))
+                   rAmCharts::amChartsOutput("ampie1"))
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Two series, custom size bullet, legend", align="center"),
+                 h2("Change Color", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy1"))
+                   verbatimTextOutput("code_ampie1"))
                )
              )
       ),
+      
       tabBox(width=12,height=550,
              
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Error chart", align="center"),
+                 h2("Add legend", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy2"))
+                   rAmCharts::amChartsOutput("ampie2"))
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Error chart", align="center"),
+                 h2("Add legend", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy2"))
+                   verbatimTextOutput("code_ampie2"))
+               )
+             )
+      ),
+      
+      
+      
+      tabBox(width=12,height=550,
+             
+             tabPanel(
+               title = "Graphic",
+               fluidRow(
+                 h2("And more (3D, donut, hide value ...)", align="center"),
+                 column(
+                   width = 12,
+                   rAmCharts::amChartsOutput("ampie3"))
+                 
+               )),
+             tabPanel(
+               title = "Code",
+               fluidRow(
+                 h2("And more (3D, donut, hide value ...)", align="center"),
+                 column(
+                   width = 12,
+                   
+                   verbatimTextOutput("code_ampie3"))
                )
              )
       )
+      
+      
+      
     )
   )
 )

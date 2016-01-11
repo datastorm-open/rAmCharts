@@ -1,46 +1,76 @@
 output$radar1 <- rAmCharts::renderAmCharts({
   # prepare data
-  HairEyeColor_DT <- as.data.table(get('HairEyeColor', 'package:datasets'))
-  (dp <- HairEyeColor_DT[, .(freq = sum(N)), by = list(Eye, Sex)])
-  (dp <- split(dp, f = dp$Sex))
-  setkey(dp$Male, Eye)
-  setkey(dp$Female, Eye)
-  (dp <- dp$Male[dp$Female])
-  
+  dp <- data.frame(Eye=c("Blue","Brown","Green","Hazel"),Male=c(101,98,33,47),Female = c(114, 122, 31, 46))
   # build the chart
   pipeR::pipeline(
     amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp),
-    addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'freq',
+    addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'Male',
              title = 'Male', bullet = 'round'),
-    addGraph(balloonText = '(female) [[category]]: [[value]]', valueField = 'i.freq',
+    addGraph(balloonText = '(female) [[category]]: [[value]]', valueField = 'Female',
              title = 'Female', bullet = 'round'),
-    addValueAxis(gridType = 'circles'),
-    setProperties(theme = input$theme_radar1)
+    addValueAxis(gridType = 'circles')
   )
 })
 
 output$code_radar1 <- renderText({
   "
-  # prepare data
-  HairEyeColor_DT <- as.data.table(get('Titanic', 'package:datasets'))
-  (dp <- HairEyeColor_DT[, .(freq = sum(N)), by = list(Eye, Sex)])
-  (dp <- split(dp, f = dp$Sex))
-  setkey(dp$Male, Eye)
-  setkey(dp$Female, Eye)
-  (dp <- dp$Male[dp$Female])
+ # prepare data
+  dp <- data.frame(Eye=c('Blue','Brown','Green','Hazel'),Male=c(101,98,33,47),Female = c(114, 122, 31, 46))
+  # build the chart
   
+   # build the chart
+  pipeR::pipeline(
+  amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp),
+  addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'Male',
+  title = 'Male', bullet = 'round'),
+  addGraph(balloonText = '(female) [[category]]: [[value]]', valueField = 'Female',
+  title = 'Female', bullet = 'round'),
+  addValueAxis(gridType = 'circles')
+)
+  "
+})
+
+
+
+output$radar3 <- rAmCharts::renderAmCharts({
+  # prepare data
+  dp <- data.frame(Eye=c('Blue' ,'Brown' , 'Green', 'Hazel'), Male = c(101, 98, 33, 47), Female = c(114, 122, 31, 46))
   # build the chart
   pipeR::pipeline(
-    amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp),
-    addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'freq',
-             title = 'Male', bullet = 'round'),
-    addGraph(balloonText = '(female) [[category]]: [[value]]', valueField = 'i.freq',
+    amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp, export=list(enabled = TRUE)),
+    addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'Male',
+             title = 'Male',fillAlphas=0.5,bullet='xError'),
+    addGraph(balloonText = '(female) [[category]]: [[value]]', valueField = 'Female',
              title = 'Female', bullet = 'round'),
-    addValueAxis(gridType = 'circles'),
-    setProperties(theme = input$theme_radar1)
+    setLegend(position = 'right'),
+    addTitle(text='Title exemple')
+  )
+})
+
+output$code_radar3 <- renderText({
+  "
+  # prepare data
+  dp <- data.frame(Eye=c('Blue' ,'Brown' , 'Green', 'Hazel'), Male = c(101, 98, 33, 47), Female = c(114, 122, 31, 46))
+  # build the chart
+  pipeR::pipeline(
+  amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp, export=list(enabled = TRUE)),
+  addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'Male',
+  title = 'Male',fillAlphas=0.5,bullet='xError'),
+  addGraph(balloonText = '(female) [[category]]: [[value]]', valueField = 'Female',
+  title = 'Female', bullet = 'round'),
+  setLegend(position = 'right'),
+  addTitle(text='Title exemple')
   )
   "
 })
+
+
+
+
+
+
+
+
 
 output$radar2 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(

@@ -1,6 +1,5 @@
 shinydashboard::tabItem(
-  tabName = "xy",
-  
+  tabName = "amfunnel",
   
   fluidRow(
     column(
@@ -8,6 +7,10 @@ shinydashboard::tabItem(
       
       br(),
       
+      
+      
+      
+      
       tabBox(width=12,height=550,
              
              tabPanel(
@@ -16,7 +19,7 @@ shinydashboard::tabItem(
                  h2("Simple example", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy0"))
+                   rAmCharts::amChartsOutput("amfunnel1"))
                  
                )),
              tabPanel(
@@ -26,7 +29,33 @@ shinydashboard::tabItem(
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy0"))
+                   verbatimTextOutput("code_amfunnel1"))
+               )
+             )
+      ),
+      
+      
+      
+      
+      tabBox(width=12,height=550,
+             
+             tabPanel(
+               title = "Graphic",
+               fluidRow(
+                 h2("Orientation labels, titles", align="center"),
+                 column(
+                   width = 12,
+                   rAmCharts::amChartsOutput("amfunnel2"))
+                 
+               )),
+             tabPanel(
+               title = "Code",
+               fluidRow(
+                 h2("Orientation labels, titles", align="center"),
+                 column(
+                   width = 12,
+                   
+                   verbatimTextOutput("code_amfunnel2"))
                )
              )
       ),
@@ -36,42 +65,45 @@ shinydashboard::tabItem(
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Two series, custom size bullet, legend", align="center"),
+                 h2("Style", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy1"))
+                   rAmCharts::amChartsOutput("amfunnel3"))
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Two series, custom size bullet, legend", align="center"),
+                 h2("Style", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy1"))
+                   verbatimTextOutput("code_amfunnel3"))
                )
              )
       ),
+      
+      
+      
       tabBox(width=12,height=550,
              
              tabPanel(
                title = "Graphic",
                fluidRow(
-                 h2("Error chart", align="center"),
+                 h2("3D", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("xy2"))
+                   rAmCharts::amChartsOutput("amfunnel4"))
                  
                )),
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Error chart", align="center"),
+                 h2("3D", align="center"),
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_xy2"))
+                   verbatimTextOutput("code_amfunnel4"))
                )
              )
       )
