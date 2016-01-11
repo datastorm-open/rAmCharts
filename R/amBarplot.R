@@ -171,9 +171,9 @@ amBarplot <- function(x, y, data, main = "", mainSize = 15, xlab = "",
   
   if(length(y) == 1) {
     if("description" %in% colnames(data)) {
-      tooltip <- '<b>[[category]]: [[description]]</b>'
+      tooltip <- '<b>[[description]]</b>'
     } else {
-      tooltip <- '<b>[[category]]: [[value]]</b>'
+      tooltip <- '<b>[[value]]</b>'
     }
     res <- addGraph(res, balloonText = tooltip, fillColorsField = 'color', 
                     fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y,
@@ -203,9 +203,9 @@ amBarplot <- function(x, y, data, main = "", mainSize = 15, xlab = "",
       col_height[1] <- 0.9
       sapply(1:length(y), FUN = function(i) {
         if("description" %in% colnames(data)) {
-          tooltip2 <- '<b>[[category]]: [[description]]</b>'
+          tooltip2 <- '<b>[[description]]</b>'
         } else {
-          tooltip2 <- paste0("<b>[[category]]</b> : <br>", as.character(y[i])," : [[value]]")
+          tooltip2 <- paste0(as.character(y[i])," : [[value]]")
         }
         res <<- addGraph(res, id = paste0("AmGraph-",i),
                          balloonText = tooltip2, fillColors = v_col[i], legendColor = v_col[i],
@@ -216,9 +216,9 @@ amBarplot <- function(x, y, data, main = "", mainSize = 15, xlab = "",
     } else {
       sapply(1:length(y), FUN = function(i) {
         if("description" %in% colnames(data)) {
-          tooltip2 <- '<b>[[category]]: [[description]]</b>'
+          tooltip2 <- '<b>[[description]]</b>'
         } else {
-          tooltip2 <- paste0("<b>[[category]]</b> : <br>", as.character(y[i])," : [[value]]")
+          tooltip2 <- paste0(as.character(y[i])," : [[value]]")
         }
         res <<- addGraph(res, id = paste0("AmGraph-",i),
                          balloonText = tooltip2, fillColors = v_col[i], legendColor = v_col[i],
