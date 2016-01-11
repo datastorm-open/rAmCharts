@@ -7,7 +7,37 @@ library(data.table)
 # ----------------
 
 # ---
-# x, y plot
+# x, y plot if x is a factor or a character
+# ---
+
+xc <- paste("cat.", 1:100)
+xf <- factor(xc)
+y <- rnorm(length(xc))
+
+# change type
+amPlot(x = xc, y = y, type = 'l')
+amPlot(x = xf, y = y, type = 'l') # x can be either a character or a factor
+amPlot(x = xc, y = y, type = "sl")
+amPlot(x = xc, y = y, type = "st")
+amPlot(x = xc, y = y, type = "p")
+amPlot(x = xc, y = y,type = "b")
+
+# ---
+# x, y plot if x is a date (character)
+# ---
+start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
+end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
+date <- seq.POSIXt(from = start, to = end, by = 'day')
+date <- format(date, '%m-%d-%Y')
+
+y <- rnorm(length(date))
+amPlot(x = date, y = y, type = 'l') # default parseDates = FALSE
+
+amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
+
+
+# ---
+# x, y plot if both x, y are numeric
 # ---
 
 x <- sort(rnorm(100))

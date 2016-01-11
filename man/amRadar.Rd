@@ -36,6 +36,7 @@ data <- data.frame(label = c("A", "Z", "E", "R", "T"),
                    Product2 = c(2, 8, 1, 1, 0),
                    Product3 = c(1,1,2,2,4))
 amRadar(data)
+
 amRadar(data, main = "My title", export = TRUE,
         col = c("#0000FF","#00FF00","#FF0000"), 
         backTransparency = c(0,0.4),

@@ -1,3 +1,6 @@
+#' @include AmBalloon.R
+setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
+
 #' @title Plot serial data
 #' 
 #' @description  amPlot computes a plot of the given data values.
@@ -17,6 +20,10 @@
 #' @param weights for x/y charts only, default rep(1, x)
 #' @param id for x/y charts only, default 1:length(x),
 #' @param precision default 2
+#' @param dataDateFormat Even if your chart parses dates, you can pass them as strings in your data,
+#' all you need to do is to set data date format and the chart will parse dates to date objects.
+#' See available format at https://www.amcharts.com/tutorials/formatting-dates/.
+#' @param parseDates default FALSE, if TRUE argument \code{dataDateFormat} has to be provided.
 #' @param cursor default TRUE
 #' @param scrollbar default TRUE
 #' @param error only when type is "xError" "yError" default NULL,
@@ -120,7 +127,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
       setDataProvider(dataProvider = dt) %>>%
       (~ chart )
     
-  } else {
+  } else if (is.numeric(y)) {
     # the user plot an XY chart
     
     if (length(x) != length(y)) stop("'x' and 'y' lengths differ")
@@ -190,6 +197,8 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
       setDataProvider(dataProvider = dt) %>>%
       (~ chart)
     
+  } else {
+    stop("Error in arguments x or y")
   }
   
   # Add common valueAxis at the left
@@ -206,6 +215,129 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
   if (missing(main)) main <- ""
   amRenderPlot(chart = chart, main = main, cursor = cursor,
                export = export, scrollbar = scrollbar)
+}
+
+#' @rdname amPlot
+#' @example examples/amPlot_examples.R
+#' 
+#' @import data.table
+#' @import pipeR
+#' @export
+#' 
+amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray", 
+                             export = FALSE, weights = NULL, scrollbar = FALSE,
+                             precision = 2, cursor = TRUE,
+                             parseDates = FALSE, dataDateFormat,
+                             id, error, xlab, ylab,
+                             main, lty, cex, lwd, xlim, ylim, hideYScrollbar, hideXScrollbar,...)
+{
+  # check arguments validity
+  # ---
+  bullet <- amCheck_bullet(bullet)
+  if (missing(lty)) lty <- 0
+  if (missing(lwd)) lwd <- 1
+  
+  col <- as.factor(col)
+  # check the color
+  if (length(col) == 1) {
+    col <- rep(col, times = length(x))
+  } else {
+    stopifnot(length(col) == length(x))
+    levels(col) <- grDevices::topo.colors(nlevels(col))
+    levels(col) <- substr(levels(col), 1, 7)
+  }
+  
+  if (is.numeric(y)) {
+    # the user plot a simple line or point chart by referencing x axis
+    
+    if (length(x) != length(y)) stop("'x' and 'y' lengths differ")
+    
+    # check (and convert) the type 
+    type <- amCheck_type(type)
+    
+    # define the dataProvider
+    if (type == "points" && bullet %in% c("xError", "yError")) {
+      if (missing(error)) error <- rep(1, length(x))
+      stopifnot(is.numeric(error) && length(error) == length(x))
+      dt <- data.table(x = y, cat = x, error = error)
+    } else {
+      dt <- data.table(x = y, cat = x)
+    }
+    
+    dt <- cbind(dt, col = col)
+    
+    # define width of bullet
+    if (missing(cex)) cex <- 1
+    
+    # define the graph object depending on the type
+    graph_obj <- getGraph(type = type, col = col, bullet = bullet,
+                          title = deparse(substitute(x)),
+                          cex = cex, lwd = lwd, lty = lty)
+    
+    # define axes label
+    if (missing(xlab)) xlab <- "index"
+    if (missing(ylab)) ylab <- deparse(substitute(x))
+    
+    if (parseDates) {
+      stopifnot(!missing(dataDateFormat) && is.character(dataDateFormat))
+      amSerialChart(categoryField = "cat", precision = precision, dataDateFormat = dataDateFormat) %>>%
+        (~ chart )
+    } else {
+      amSerialChart(categoryField = "cat", precision = precision) %>>%
+        (~ chart )
+    }
+    
+    
+    # finally build the chart
+    chart %>>%
+      addGraph(amGraph = graph_obj) %>>%
+      setCategoryAxis(title = xlab, position = "bottom", id = "x", parseDates = parseDates) %>>%
+      setDataProvider(dataProvider = dt) %>>%
+      (~ chart )
+    
+  } else {
+    stop("Error of argument y")
+  }
+  
+  # Add common valueAxis at the left
+  valueAxis_left <- if (!missing(ylim)) {
+    stopifnot(is.numeric(ylim) && length(ylim) == 2)
+    valueAxis(title = ylab, position = "left", axisAlpha = 0,
+              minimum = ylim[1], maximum = ylim[2], id = "y")
+  } else {
+    valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y")
+  }
+  chart <- addValueAxis(.Object = chart, valueAxis = valueAxis_left)
+  
+  # return the object
+  if (missing(main)) main <- ""
+  amRenderPlot(chart = chart, main = main, cursor = cursor,
+               export = export, scrollbar = scrollbar)
+}
+
+
+#' @rdname amPlot
+#' @example examples/amPlot_examples.R
+#' 
+#' @import data.table
+#' @import pipeR
+#' @export
+#' 
+amPlot.factor <- function(x, y, bullet = "round", type = "p", col = "gray", 
+                          export = FALSE, weights = NULL, scrollbar = FALSE,
+                          precision = 2, cursor = TRUE,
+                          parseDates = FALSE, dataDateFormat = NULL,
+                          id, error, xlab, ylab,
+                          main, lty, cex, lwd, xlim, ylim, hideYScrollbar, hideXScrollbar,...)
+{
+  amPlot.character(x = as.character(x), y = y, bullet = bullet, type = type, col = col, 
+                   export = export, weights = weights, scrollbar = scrollbar,
+                   precision = precision, cursor = cursor,
+                   parseDates = parseDates, dataDateFormat = dataDateFormat,
+                   id = id, error = error, xlab = xlab, ylab = ylab,
+                   main = main, lty = lty, cex = cex, lwd = lwd,
+                   xlim = xlim, ylim = xlim, hideYScrollbar = hideYScrollbar,
+                   hideXScrollbar = hideXScrollbar,...)
 }
 
 #' @rdname amPlot
@@ -417,49 +549,49 @@ amLines <- function(chart, x, type, col, title)
     stopifnot(is.character(col) && length(col) == 1)
   else
     col <- ""
-
-    # test the length of the vector
-    dataProvider <- chart@dataProvider
-    l <- length(dataProvider)
-    stopifnot(length(x) == l)
-    
-    # define the new name for the serie
-    # here we suppose that each element of the list have the same names
-    # consequently this method won't work if the dataProvider has been set
-    # with NA values for the first line
-    names <- names(dataProvider[[1]])
-    i <- 1
-    repeat {
-      name <- paste0("amLines", i)
-      if (!(name %in% names)) break
-      else i <- i + 1
-    }
-    
-    # append the new element to the dataProvider
-    chart@dataProvider <- lapply(1:l, function(i) {
-      dataProvider[[i]][[name]] <- x[i]
-      dataProvider[[i]]
-    })
-    
-    if (missing(title)) title <- deparse(substitute(x))
-    
-    # initialize the graph object
-    graph_obj <- graph(title = title, valueField = name, lineAlpha = lineAlpha, lineColor = col)
-    
-    # the field where to find the new values depend on the chart type
-    if (chart@type == "serial")
-      graph_obj <- setProperties(.Object = graph_obj, valueField = name)
-    else
-      graph_obj <- setProperties(.Object = graph_obj, xField = "x", yField = name)
-      
-    if (type == "points")
-      graph_obj <- setProperties(.Object = graph_obj, bullet = "round", maxBulletSize = 5)
-    # set the type if necessary
-    if (type == "smoothedLine")
-      graph_obj <- setProperties(.Object = graph_obj, type = "smoothedLine")
-    
-    # add the graph
-    addGraph(.Object = chart, amGraph = graph_obj)
+  
+  # test the length of the vector
+  dataProvider <- chart@dataProvider
+  l <- length(dataProvider)
+  stopifnot(length(x) == l)
+  
+  # define the new name for the serie
+  # here we suppose that each element of the list have the same names
+  # consequently this method won't work if the dataProvider has been set
+  # with NA values for the first line
+  names <- names(dataProvider[[1]])
+  i <- 1
+  repeat {
+    name <- paste0("amLines", i)
+    if (!(name %in% names)) break
+    else i <- i + 1
+  }
+  
+  # append the new element to the dataProvider
+  chart@dataProvider <- lapply(1:l, function(i) {
+    dataProvider[[i]][[name]] <- x[i]
+    dataProvider[[i]]
+  })
+  
+  if (missing(title)) title <- deparse(substitute(x))
+  
+  # initialize the graph object
+  graph_obj <- graph(title = title, valueField = name, lineAlpha = lineAlpha, lineColor = col)
+  
+  # the field where to find the new values depend on the chart type
+  if (chart@type == "serial")
+    graph_obj <- setProperties(.Object = graph_obj, valueField = name)
+  else
+    graph_obj <- setProperties(.Object = graph_obj, xField = "x", yField = name)
+  
+  if (type == "points")
+    graph_obj <- setProperties(.Object = graph_obj, bullet = "round", maxBulletSize = 5)
+  # set the type if necessary
+  if (type == "smoothedLine")
+    graph_obj <- setProperties(.Object = graph_obj, type = "smoothedLine")
+  
+  # add the graph
+  addGraph(.Object = chart, amGraph = graph_obj)
 }
 
 
