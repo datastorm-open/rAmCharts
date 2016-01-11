@@ -1,5 +1,5 @@
 shinydashboard::tabItem(
-  tabName = "candlesticks",
+  tabName = "mekko",
   
   
   fluidRow(
@@ -16,7 +16,7 @@ shinydashboard::tabItem(
                  h2("Simple example", align="center"),
                  column(
                    width = 12,
-                   rAmCharts::amChartsOutput("candl0"))
+                   rAmCharts::amChartsOutput("mekko0"))
                  
                )),
              tabPanel(
@@ -26,7 +26,7 @@ shinydashboard::tabItem(
                  column(
                    width = 12,
                    
-                   verbatimTextOutput("code_candl0"))
+                   verbatimTextOutput("code_mekko0"))
                )
              )
       )

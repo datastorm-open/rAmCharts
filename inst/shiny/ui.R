@@ -48,13 +48,19 @@ shinydashboard::dashboardPage(
   source("./src/funnel/funnel_ui.R", local = TRUE)$value,
   source("./src/funnel/amfunnel_ui.R", local = TRUE)$value,
   
-    source("./src/gauge/gauge_ui.R", local = TRUE)$value,
+  source("./src/gauge/gauge_ui.R", local = TRUE)$value,
   source("./src/gauge/amgauge_ui.R", local = TRUE)$value,
   
   source("./src/Candlesticks/candlesticks_ui.R", local = TRUE)$value,
-  source("./src/Candlesticks/amcandlesticks_ui.R", local = TRUE)$value
+  source("./src/Candlesticks/amcandlesticks_ui.R", local = TRUE)$value,
     # source("./src/drilldown/drilldown_ui.R", local = TRUE)$value
 
+  source("./src/bullet/bullet_ui.R", local = TRUE)$value,
+  source("./src/bullet/ambullet_ui.R", local = TRUE)$value,
+  
+  source("./src/mekko/mekko_ui.R", local = TRUE)$value,
+  source("./src/mekko/ammekko_ui.R", local = TRUE)$value
+  
   )
   )
 )

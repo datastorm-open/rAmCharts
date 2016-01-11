@@ -39,9 +39,11 @@ output$code_bar0 <- renderText({
 output$bar1 <- rAmCharts::renderAmCharts({
   ##Data
   data_bar <- data.frame(
-    country = c('USA', 'China', 'Japan', 'Germany','UK', 'France', 'India', 'Spain','Netherlands', 'Russia', 'South Korea','Canada'),
+    country = c('USA', 'China', 'Japan', 'Germany','UK',
+                'France', 'India', 'Spain','Netherlands', 'Russia', 'South Korea','Canada'),
     visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580, 443, 441),
-    color =c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202','#F8FF01', '#B0DE09', '#04D215', '#0D8ECF','#0D52D1', '#2A0CD0', '#8A0CCF', '#CD0D74'),
+    color =c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202','#F8FF01', '#B0DE09',
+             '#04D215', '#0D8ECF','#0D52D1', '#2A0CD0', '#8A0CCF', '#CD0D74'),
     stringsAsFactors = FALSE)
   ##Plot
   pipeR::pipeline(
@@ -91,8 +93,10 @@ output$bar2 <- rAmCharts::renderAmCharts({
     amSerialChart(),
     setDataProvider(data_gbar),
     setProperties(type='serial', categoryField='year'),
-    addGraph(balloonText='<b>[[category]]: [[value]]</b>',type='column',valueField='income', fillAlphas = 1, lineAlpha=0),
-    addGraph(balloonText='<b>[[category]]: [[value]]</b>',type='column',valueField='expenses', fillAlphas = 1, lineAlpha=0)
+    addGraph(balloonText='<b>[[category]]: [[value]]</b>',
+             type='column',valueField='income', fillAlphas = 1, lineAlpha=0),
+    addGraph(balloonText='<b>[[category]]: [[value]]</b>',
+             type='column',valueField='expenses', fillAlphas = 1, lineAlpha=0)
   )
 })
 
@@ -128,8 +132,10 @@ output$bar3 <- rAmCharts::renderAmCharts({
     amSerialChart(),
     setDataProvider(data_gbar),
     setProperties(type='serial', categoryField='year'),
-    addGraph(balloonText='<b>[[category]]: [[value]]</b>',type='column',valueField='income', fillAlphas = 1, lineAlpha=0, title = 'income'),
-    addGraph(balloonText='<b>[[category]]: [[value]]</b>',type='column',valueField='expenses', fillAlphas = 1, lineAlpha=0, title = 'expenses'),
+    addGraph(balloonText='<b>[[category]]: [[value]]</b>',type='column',
+             valueField='income', fillAlphas = 1, lineAlpha=0, title = 'income'),
+    addGraph(balloonText='<b>[[category]]: [[value]]</b>',type='column',
+             valueField='expenses', fillAlphas = 1, lineAlpha=0, title = 'expenses'),
     addValueAxes(stackType = 'regular'),
     setChartCursor(),
     setLegend(position = 'bottom' ,useGraphSettings = TRUE, periodValueText = 'total: [[value.sum]]', valueWidth = 100)
@@ -173,9 +179,12 @@ output$bar5 <- rAmCharts::renderAmCharts({
   pipeR::pipeline(
     amSerialChart(),
     setDataProvider(data_gbar),
-    setProperties(type='serial', categoryField='year', depth3D = 60, angle = 30, export = list(enabled = TRUE)),
-    addGraph(balloonText='<b>[[category]]: [[value]]</b>',type='column',valueField='expenses', fillAlphas = 1, lineAlpha=0, title = 'expenses'),
-    addGraph(balloonText='<b>[[category]]: [[value]]</b>',type='column',valueField='income', fillAlphas = 1, lineAlpha=0, title = 'income'),
+    setProperties(type='serial', categoryField='year', 
+                  depth3D = 60, angle = 30, export = list(enabled = TRUE)),
+    addGraph(balloonText='<b>[[category]]: [[value]]</b>',
+             type='column',valueField='expenses', fillAlphas = 1, lineAlpha=0, title = 'expenses'),
+    addGraph(balloonText='<b>[[category]]: [[value]]</b>',
+             type='column',valueField='income', fillAlphas = 1, lineAlpha=0, title = 'income'),
     setChartCursor(),
     setLegend(position = 'bottom' ,useGraphSettings = TRUE, periodValueText = 'total: [[value.sum]]', valueWidth = 100),
  addValueAxes(stackType = '3d')
@@ -237,12 +246,18 @@ output$bar4 <- rAmCharts::renderAmCharts({
     setProperties(theme='light',type='serial',startDuration=1,columnWidth=0.6,categoryField='name'),
     addValueAxis(axisAlpha=0,gridAlpha=0.1,position='left'),
     addGraph(balloonText='[[category]]</span><br><b>$[[balloonValue]] Mln</b>',
-             colorField='color',fillAlphas=0.8,labelText='$[[balloonValue]]',lineColor='#BBBBBB',openField='open',type='column',valueField='close'),
-    addTrendLine(dashLength=3,finalCategory='Income B',finalValue=11.13,initialCategory='Income A',initialValue=11.13,lineColor='#888888'),
-    addTrendLine(dashLength=3,finalCategory='Expenses A',finalValue=15.81,initialCategory='Income B',initialValue=15.81,lineColor='#888888'),
-    addTrendLine(dashLength=3,finalCategory='Expenses A',finalValue=15.81,initialCategory='Income B',initialValue=15.81,lineColor='#888888'),
-    addTrendLine(dashLength=3,finalCategory='Expenses B',finalValue=12.92,initialCategory='Expenses A',initialValue=12.92,lineColor='#888888'),
-    addTrendLine(dashLength=3,finalCategory='Revenue',finalValue=8.64,initialCategory='Expenses B',initialValue=8.64,lineColor='#888888'),
+             colorField='color',fillAlphas=0.8,
+             labelText='$[[balloonValue]]',lineColor='#BBBBBB',openField='open',type='column',valueField='close'),
+    addTrendLine(dashLength=3,finalCategory='Income B',
+                 finalValue=11.13,initialCategory='Income A',initialValue=11.13,lineColor='#888888'),
+    addTrendLine(dashLength=3,finalCategory='Expenses A',
+                 finalValue=15.81,initialCategory='Income B',initialValue=15.81,lineColor='#888888'),
+    addTrendLine(dashLength=3,finalCategory='Expenses A',
+                 finalValue=15.81,initialCategory='Income B',initialValue=15.81,lineColor='#888888'),
+    addTrendLine(dashLength=3,finalCategory='Expenses B',
+                 finalValue=12.92,initialCategory='Expenses A',initialValue=12.92,lineColor='#888888'),
+    addTrendLine(dashLength=3,finalCategory='Revenue',
+                 finalValue=8.64,initialCategory='Expenses B',initialValue=8.64,lineColor='#888888'),
     setCategoryAxis(gridPosition='start',axisAlpha=0,gridAlpha=0.1)
   )
 })

@@ -54,5 +54,9 @@ shinyServer(function(input, output) {
   source("./src/Candlesticks/candlesticks_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/Candlesticks/amcandlesticks_server.R", local = TRUE, encoding = "UTF-8")
   # source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
-
+  source("./src/bullet/bullet_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/bullet/ambullet_server.R", local = TRUE, encoding = "UTF-8")
+  
+  source("./src/mekko/mekko_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/mekko/ammekko_server.R", local = TRUE, encoding = "UTF-8")
 })

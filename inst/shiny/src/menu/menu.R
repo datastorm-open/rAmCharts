@@ -50,8 +50,18 @@ shinydashboard::sidebarMenu(id = "tabs",
                      menuSubItem(text = "Complexe Function", tabName = "gauge")),
             
             ##Candlesticks
-            menuItem(text ="Candlesticks",icon = icon("repeat"),
+            menuItem(text ="Candlesticks",icon = icon("arrows-h"),
                      menuSubItem(text = "Simple Function", tabName = "amcandlesticks"),
-                     menuSubItem(text = "Complexe Function", tabName = "candlesticks"))
+                     menuSubItem(text = "Complexe Function", tabName = "candlesticks")),
+            
+            
+            ##Bullet
+            menuItem(text ="Bullet",icon = icon("ticket"),
+                     menuSubItem(text = "Simple Function", tabName = "amBullet"),
+                     menuSubItem(text = "Complexe Function", tabName = "Bullet")),
+            ##Mekko
+            menuItem(text ="Mekko",icon = icon("square"),
+                     menuSubItem(text = "Simple Function", tabName = "ammekko"),
+                     menuSubItem(text = "Complexe Function", tabName = "mekko"))
 )
 )

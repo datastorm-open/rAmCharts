@@ -1,7 +1,8 @@
 shinydashboard::tabItem(
   tabName = "information",
   h1("rAmCharts"),
-  p(strong("rAmChart "),"is a graphic package. It is based on the javascript library", a("amcharts",href='https://www.amcharts.com/amCharts'), "."),
+  p(strong("rAmChart "),"is a graphic package. It is based on the javascript library", 
+    a("amcharts",href='https://www.amcharts.com/amCharts'), "."),
   p("Development is done in two steps :"),
   
   tags$ul(
