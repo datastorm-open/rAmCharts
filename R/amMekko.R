@@ -36,8 +36,7 @@
 #' amMekko(x = "var1", y = "var2", data = data_mekko, legend = TRUE)
 #' 
 #' @export
-
-
+#' 
 amMekko <- function(x, y, data, main = "", mainSize = 15, xlab = "", 
                     ylab = "", groups_color = NULL, horiz = FALSE,
                     legend = FALSE, legend_side = "right", show_values = FALSE) {

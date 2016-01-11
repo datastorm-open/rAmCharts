@@ -88,9 +88,9 @@ amPie <- function(data, main = "", mainSize = 15, legend = FALSE, legend_side = 
   }
   
   if(third_dim) {
-    res <- amPieChart(dataProvider = data, valueField = "value", titleField = "label",
-               colorField = "color", labelsEnabled = show_values, depth3D = 10,
-               angle = 15, innerRadius = paste(inner_radius,"%"))
+    res <- amPieChart(dataProvider = data, valueField = "value", titleField = "label", startDuration = 0,
+                      colorField = "color", labelsEnabled = show_values, depth3D = 10,
+                      angle = 15, innerRadius = paste(inner_radius,"%"))
   } else {
     res <- amPieChart(dataProvider = data, valueField = "value", titleField = "label",
                       colorField = "color", labelsEnabled = show_values,
