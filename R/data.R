@@ -8,7 +8,7 @@ require(data.table)
 #' }
 #' @import data.table
 #' @noRd
-generate_data_stock1 <- function()
+.generate_data_stock1 <- function()
 {
   firstDate <- Sys.Date()
   chartData1 <- as.data.table(t(sapply(0:20, FUN = function(i)
@@ -87,18 +87,17 @@ load("data/AirP.rda")
 #' \dontshow{
 #' # Generate and save data
 #' AirP <- generate_data_AirP()
-#' devtools::use_data(AirP)
+#' devtools::use_data(AirP, overwrite = TRUE)
 #' }
 #' @import data.table
 #' @noRd
-generate_data_AirP <- function()
+.generate_data_AirP <- function()
 {
-  e <- new.env(parent = emptyenv())
-  data("AirPassengers", envir = e )
-  e$AirP <- data.frame(e$AirPassengers)
-  e$AirP$AirPassengers <- as.numeric(e$AirP$AirPassengers)
-  e$AirP$Period <- paste0(rep(c("01", "02", "03", "04", "05", "06", "07", 
-                              "08", "09", "10", "11", "12"), 12) ,"/" ,rep(1949 : 1960, each = 12))
+  airP <- as.data.frame(get(x = "AirPassengers", pos = "package:datasets"))
+  setnames(airP, "x", "AirPassengers")
+  airP$AirPassengers <- as.numeric(airP$AirPassengers)
+  airP$Period <- paste0(rep(c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"), 12),
+                        "/" , rep(1949 : 1960, each = 12))
 }
 
 
