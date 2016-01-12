@@ -87,7 +87,7 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend
     }
   }
   
-  if(!class(mainSize)%in% c("numeric"))
+  if(!class(mainSize)%in% c("numeric","double","integer"))
   {
     stop ("mainSize must be a numeric or double")
   }
@@ -106,7 +106,7 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend
   
   for(i in 1:ncol(datavalue))
   {
-    if(!class(datavalue[,i]) %in%c("numeric","double"))
+    if(!class(datavalue[,i]) %in%c("numeric","double","integer"))
     {
       stop ("All column of data except label must be numeric")
     }
