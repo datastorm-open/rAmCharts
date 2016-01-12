@@ -202,6 +202,7 @@ output$code_lines4 <- renderText({
   AirP$Binf2 <- AirP$Binf / 4
   
   ##addListener on legend, gestion of show/ unshow of confidence range
+  ##Plot
   pipeR::pipeline(
     amLegend(equalWidths=FALSE, position='bottom', valueAlign='left', valueWidth=100),
     addListener('hideItem' , paste0('function(event) {
@@ -289,11 +290,12 @@ output$lines5 <- rAmCharts::renderAmCharts({
 
 output$code_lines5 <- renderText({
   "
-# prepare data
-dp <- data.table(year = 1994:2012, 
-  cars = rnorm(length(1994:2012), mean = 10), 
-  motorcycles = rnorm(length(1994:2012), mean = 15), 
-  bicycles = rnorm(length(1994:2012), mean = 20))
+  ##Data
+  dp <- data.table(year = 1994:2012, 
+    cars = rnorm(length(1994:2012), mean = 10), 
+    motorcycles = rnorm(length(1994:2012), mean = 15), 
+    bicycles = rnorm(length(1994:2012), mean = 20)
+  )
   dp <- round(dp)
   
   url_car <- 'http://www.amcharts.com/lib/3/images/car.png'
@@ -305,7 +307,7 @@ dp <- data.table(year = 1994:2012,
   '<span style = \'font-size:14px; color:#000000;\'>',
   '<b>[[value]]</b></span>')
   
-  # build the chart
+  ##Plot
   pipeR::pipeline(
     amSerialChart(marginRight = 30, plotAreaBorderAlpha = 0, categoryField = 'year',
                   startDuration = 0, dataProvider = dp, theme = 'light'),

@@ -1,7 +1,7 @@
 output$amlines0 <- rAmCharts::renderAmCharts({
 ##Data
 data('AirP')
-##Graph
+##Plot
 amPlot(x = AirP$Period, y = AirP$AirPassengers, type='l')
 })
 
@@ -9,7 +9,7 @@ output$code_amlines0 <- renderText({
   "
   ##Data
   data('AirP')
-  ##Graph
+  ##Plot
   amPlot(x = AirP$Period, y = AirP$AirPassengers, type='l')
   "
 })
@@ -64,7 +64,7 @@ output$code_amlines2 <- renderText({
   end <- as.POSIXct('11-04-2015', format = '%d-%m-%Y')
   date <- seq.POSIXt(from = start, to = end, by = 'day')
   date <- format(date, '%m-%d-%Y')
-  ##Graph
+  ##Plot
   pipeR::pipeline(
     amPlot(y = rnorm(100), type = 'sl', x = date, parseDates = TRUE, dataDateFormat = 'MM-DD-YYYY'),
     amLines(y = rnorm(100), type = 'p'),

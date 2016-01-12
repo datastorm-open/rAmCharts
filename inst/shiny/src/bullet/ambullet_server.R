@@ -25,11 +25,13 @@ output$code_amBullet0 <- renderText({
 })
 
 output$amBullet1 <- rAmCharts::renderAmCharts({
+  ##Plot
 amBullet(value = 65, val_color = "purple", limit_color = "#3c8dbc", step=FALSE, limit=66)
 })
 
 output$code_amBullet1 <- renderText({
   "
+  ##Plot
   amBullet(value = 65, val_color = 'purple', limit_color = '#3c8dbc', step=FALSE, limit=66)
   "
 })
@@ -37,6 +39,7 @@ output$code_amBullet1 <- renderText({
 
 
 output$amBullet2 <- rAmCharts::renderAmCharts({
+  ##Plot
   amBullet(value = 65, legend = 'Evaluation',
            main = 'Bullet chart 1', mainSize = 15)
   
@@ -44,7 +47,8 @@ output$amBullet2 <- rAmCharts::renderAmCharts({
 
 output$code_amBullet2 <- renderText({
   "
-   amBullet(value = 65, legend = 'Evaluation',
+  ##Plot
+  amBullet(value = 65, legend = 'Evaluation',
            main = 'Bullet chart 1', mainSize = 15)
   "
 })

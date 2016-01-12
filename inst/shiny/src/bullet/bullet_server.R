@@ -14,7 +14,7 @@ dataProvider$limit <- 90
 dataProvider$full <- 100
 dataProvider$bullet <- 85
 
-##Graoh
+##Plot
 chart <-   sapply(1:nrow(rates), FUN = function(rt) {
 amGraph(type = 'column', valueField = as.character(rates$name[rt]), fillAlphas = 0.8,
                      lineColor = rates$color[rt], showBalloon = FALSE, columnWidth = 1)
@@ -47,7 +47,7 @@ output$code_Bullet0 <- renderText({
   dataProvider$full <- 100
   dataProvider$bullet <- 85
   
-  ##Graoh
+  ##Plot
   chart <-   sapply(1:nrow(rates), FUN = function(rt) {
     amGraph(type = 'column', valueField = as.character(rates$name[rt]), fillAlphas = 0.8,
     lineColor = rates$color[rt], showBalloon = FALSE, columnWidth = 1)

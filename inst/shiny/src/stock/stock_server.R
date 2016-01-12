@@ -60,7 +60,9 @@ output$stock1 <- renderAmCharts({
 
 output$code_stock1 <- renderText({
   "
+  ##Data
   data('data_stock1')
+  ##Plot
   pipeR::pipeline(
     amStockChart(startDuration = 0),
     addDataSet(dataSet(title = 'first data set', categoryField = 'date',
@@ -165,7 +167,7 @@ output$code_stock2 <- renderText({
     list(period='hh', format='YYYY-MM-DD JJ:NN'), list(period='mm', format='YYYY-MM-DD JJ:NN'), 
     list(period='ss', format='YYYY-MM-DD JJ:NN:ss'), list(period='fff', format='YYYY-MM-DD JJ:NN:ss'))
     
-  ##Graph
+  ##Plot
   pipeR::pipeline(
     amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss') ,
     setProperties(list(enabled=TRUE)) ,

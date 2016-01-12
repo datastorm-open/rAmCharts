@@ -8,7 +8,7 @@ shinydashboard::tabItem(
       
       br(),
       
-      tabBox(width=12,height=550,
+      tabBox(width=12,
              
              tabPanel(
                title = "Graphic",

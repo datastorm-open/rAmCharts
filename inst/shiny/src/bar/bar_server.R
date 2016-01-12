@@ -18,6 +18,7 @@ output$bar0 <- rAmCharts::renderAmCharts({
 
 output$code_bar0 <- renderText({
   "
+  ##Data
   data_bar <- data.frame(
     country = c('USA', 'China', 'Japan', 'Germany','UK', 'France', 'India', 'Spain','Netherlands', 'Russia', 'South Korea','Canada'),
     visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580, 443, 441)
@@ -360,7 +361,7 @@ output$code_bar6 <- renderText({
   valueAxis_obj <- valueAxis(gridAlpha = 0, ignoreAxisWidth = TRUE, id = 'axis1',
   labelFunction = labelFunction2)
   
-  ##Graph
+  ##Plot
   pipeline(
     amSerialChart(startDuration = 0, rotate = TRUE, marginBottom = 50,
     categoryField = 'category'),

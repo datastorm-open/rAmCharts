@@ -87,6 +87,7 @@ output$code_cds1 <- renderText({
 
 
 output$cds2 <- rAmCharts::renderAmCharts({
+  ##Data
   data_candle <- data.frame(date = c('2015-01-01', '2015-02-01', '2015-03-01',
     '2015-04-01', '2015-05-01', '2015-06-01',
     '2015-07-01', '2015-08-01', '2015-09-01',
@@ -101,11 +102,13 @@ output$cds2 <- rAmCharts::renderAmCharts({
     127.75, 129.35, 128.30, 124.86, 118.50, 123.50), 
     stringsAsFactors = FALSE
   )
-amCandlestick(data = data_candle, period_type = 'month')
+  ##Plot
+  amCandlestick(data = data_candle, period_type = 'month')
 })
 
 output$code_cds2 <- renderText({
   "
+  ##Data
   data_candle <- data.frame(date = c('2015-01-01', '2015-02-01', '2015-03-01',
     '2015-04-01', '2015-05-01', '2015-06-01',
     '2015-07-01', '2015-08-01', '2015-09-01',
@@ -120,6 +123,7 @@ output$code_cds2 <- renderText({
     127.75, 129.35, 128.30, 124.86, 118.50, 123.50), 
     stringsAsFactors = FALSE
   )
+  ##Plot
   amCandlestick(data = data_candle, period_type = 'month')
   "
 })

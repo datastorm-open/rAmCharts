@@ -1,4 +1,5 @@
 output$candl0 <- rAmCharts::renderAmCharts({
+  ##Data
   data_candle <- data.frame(date = c('2015-01-01', '2015-01-02', '2015-01-03',
                                      '2015-01-04', '2015-01-05', '2015-01-06',
                                      '2015-01-07', '2015-01-08', '2015-01-09',
@@ -12,6 +13,7 @@ output$candl0 <- rAmCharts::renderAmCharts({
                             high = c(136.96, 135.95, 135.27, 137.24, 136.86, 133.00,
                                      127.75, 129.35, 128.30, 124.86, 118.50, 123.50), 
                             stringsAsFactors = FALSE)
+  ##Plot
   pipeR::pipeline(
     amSerialChart(dataProvider = data_candle, categoryField = "date", dataDateFormat = "YYYY-MM-DD"),
   addTitle(text = "Candle"),
@@ -28,7 +30,7 @@ output$candl0 <- rAmCharts::renderAmCharts({
 
 output$code_candl0 <- renderText({
   "
-  #Data
+  ##Data
    data_candle0 <- data.frame(date = c('2015-01-01', '2015-01-02', '2015-01-03',
     '2015-01-04', '2015-01-05', '2015-01-06',
     '2015-01-07', '2015-01-08', '2015-01-09',
@@ -43,7 +45,7 @@ output$code_candl0 <- renderText({
     127.75, 129.35, 128.30, 124.86, 118.50, 123.50), 
     stringsAsFactors = FALSE
   )
-  #Graph
+  ##Plot
   pipeR::pipeline(
     amSerialChart(dataProvider = data_candle, categoryField = 'date', dataDateFormat = 'YYYY-MM-DD'),
     addTitle(text = 'Candle'),

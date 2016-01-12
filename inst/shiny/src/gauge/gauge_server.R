@@ -1,4 +1,5 @@
 output$gauge1 <- rAmCharts::renderAmCharts({
+  ##Plot
   pipeR::pipeline(
     amAngularGaugeChart(startDuration = 0),
     addArrow(value = 100),
@@ -11,6 +12,7 @@ output$gauge1 <- rAmCharts::renderAmCharts({
 
 output$code_gauge1 <- renderText({
   "
+  ##Plot
   pipeR::pipeline(
     amAngularGaugeChart(startDuration = 0),
     addArrow(value = 100),

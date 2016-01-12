@@ -58,7 +58,7 @@ output$xy1 <- rAmCharts::renderAmCharts({
 
 output$code_xy1 <- renderText({
   "
-  # prepare data
+  ##Data
   dp <- data.table(y = c(10,5,-10,-6,15,13,1),
     x = c(14,3,8,5,-4,1,6),
     value = c(59,50,19,65,92,8,16),
@@ -67,7 +67,7 @@ output$code_xy1 <- renderText({
     value2 = c(44,12,35,168,102,41,16)
   )
   
-  # build the chart
+  ##Plot
   pipeR::pipeline(
     amXYChart(startDuration = 0, dataProvider = dp,
       marginLeft = 46, marginBottom = 35),
@@ -116,13 +116,13 @@ output$xy2 <- rAmCharts::renderAmCharts({
 
 output$code_xy2 <- renderText({
   "
-  # prepare data
+  ##Data
   dp <- data.table(y = c(1, -4, 5, 9),
     x = c(-10, 5, 14, 8),
     errorY = c(1,2,3,1),
     errorX = c( 2, 3, 1, 10)
   )
-  # build the chart
+  ##Plot
   pipeR::pipeline(
     amXYChart(dataProvider = dp),
     addValueAxis(position = 'bottom', id = 'X1'),

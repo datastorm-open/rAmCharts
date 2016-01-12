@@ -15,14 +15,15 @@ output$funnel1 <- rAmCharts::renderAmCharts({
 
 output$code_funnel1 <- renderText({
   "
- # prepare data
+  ##Data
   dp <- data.table(title = c('Website visits', 'Downloads',
-  'Requested prices', 'contacted',
-  'Prurchased', 'Asked for support',
-  'Purchased more'),
-  value = c(300, 123, 98, 72, 35, 25, 18))
+    'Requested prices', 'contacted',
+    'Prurchased', 'Asked for support',
+    'Purchased more'),
+    value = c(300, 123, 98, 72, 35, 25, 18)
+  )
   
-  # build chart
+  ##Plot
   pipeR::pipeline(
   amFunnelChart( dataProvider = dp,
     titleField = 'title', valueField = 'value')
@@ -31,14 +32,14 @@ output$code_funnel1 <- renderText({
 })
 
 output$funnel2 <- rAmCharts::renderAmCharts({
-  # prepare data
+  ##Data
   dp <- data.table(title = c('Website visits', 'Downloads',
                              'Requested prices', 'contacted',
                              'Prurchased', 'Asked for support',
                              'Purchased more'),
                    value = c(300, 123, 98, 72, 35, 25, 18))
   
-  # build chart
+  ##Plot
   pipeR::pipeline(
     amFunnelChart(dataProvider = dp, startX = -500, depth3D = 50,
                   angle = 60, outlineColor = '#FFFFFF', outLineThickness = 2,
@@ -50,14 +51,14 @@ output$funnel2 <- rAmCharts::renderAmCharts({
 
 output$code_funnel2 <- renderText({
   "
-  # prepare data
+  ##Data
   dp <- data.table(title = c('Website visits', 'Downloads',
     'Requested prices', 'contacted',
     'Prurchased', 'Asked for support',
     'Purchased more'),
     value = c(300, 123, 98, 72, 35, 25, 18))
   
-  # build chart
+  ##Plot
   pipeR::pipeline(
     amFunnelChart(dataProvider = dp, startX = -500, depth3D = 50,
     angle = 60, outlineColor = '#FFFFFF', outLineThickness = 2,
@@ -69,14 +70,14 @@ output$code_funnel2 <- renderText({
 })
 
 output$funnel3 <- rAmCharts::renderAmCharts({
-  # prepare data
+  ##Data
   dp <- data.table(title = c('Website visits', 'Downloads',
                              'Requested prices', 'contacted',
                              'Prurchased', 'Asked for support',
                              'Purchased more'),
                    value = c(300, 123, 98, 72, 35, 25, 18))
   
-  # build chart
+  ##Plot
   pipeR::pipeline(
     amFunnelChart(dataProvider = dp, startX = -500, titleField = 'title',
                   valueField = 'value', labelPosition = 'right',
@@ -87,14 +88,14 @@ output$funnel3 <- rAmCharts::renderAmCharts({
 
 output$code_funnel3 <- renderText({
   "
-  # prepare data
+  ##Data
   dp <- data.table(title = c('Website visits', 'Downloads',
     'Requested prices', 'contacted',
     'Prurchased', 'Asked for support',
     'Purchased more'),
   value = c(300, 123, 98, 72, 35, 25, 18))
   
-  # build chart
+  ##Plot
   pipeR::pipeline(
     amFunnelChart(dataProvider = dp, startX = -500, titleField = 'title',
     valueField = 'value', labelPosition = 'right',

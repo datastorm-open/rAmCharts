@@ -14,11 +14,10 @@ output$radar1 <- rAmCharts::renderAmCharts({
 
 output$code_radar1 <- renderText({
   "
- # prepare data
+  ##Data
   dp <- data.frame(Eye=c('Blue','Brown','Green','Hazel'),Male=c(101,98,33,47),Female = c(114, 122, 31, 46))
-  # build the chart
   
-   # build the chart
+  ##Plot
   pipeR::pipeline(
   amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp),
   addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'Male',
@@ -33,9 +32,9 @@ output$code_radar1 <- renderText({
 
 
 output$radar3 <- rAmCharts::renderAmCharts({
-  # prepare data
+  ##Data
   dp <- data.frame(Eye=c('Blue' ,'Brown' , 'Green', 'Hazel'), Male = c(101, 98, 33, 47), Female = c(114, 122, 31, 46))
-  # build the chart
+  #Plot
   pipeR::pipeline(
     amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp, export=list(enabled = TRUE)),
     addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'Male',
@@ -49,9 +48,9 @@ output$radar3 <- rAmCharts::renderAmCharts({
 
 output$code_radar3 <- renderText({
   "
-  # prepare data
+  ##Data
   dp <- data.frame(Eye=c('Blue' ,'Brown' , 'Green', 'Hazel'), Male = c(101, 98, 33, 47), Female = c(114, 122, 31, 46))
-  # build the chart
+  ##Plot
   pipeR::pipeline(
   amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp, export=list(enabled = TRUE)),
   addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'Male',
@@ -73,10 +72,13 @@ output$code_radar3 <- renderText({
 
 
 output$radar2 <- rAmCharts::renderAmCharts({
+  ##Data
+  datawind <- data.frame(direction  =  c('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'),
+                         value  =  c(10, 7, 8, 9, 5, 4, 6, 9))
+  ##Plot
   pipeR::pipeline(
     amRadarChart(theme = 'light', startDuration = 0, categoryField  =  'direction'),
-    setDataProvider(data.frame(direction  =  c('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'),
-                               value  =  c(10, 7, 8, 9, 5, 4, 6, 9))),
+    setDataProvider(datawind),
     addValueAxis(gridType = 'circles', minimum = 0, autoGridCount = FALSE,
                  axisAlpha = 0.2, fillAlpha = 0.05, fillColor = '#FFFFFF',
                  gridAlpha = 0.08, position = 'left'),
@@ -93,10 +95,13 @@ output$radar2 <- rAmCharts::renderAmCharts({
 
 output$code_radar2 <- renderText({
   "
+  ##Data
+  datawind <- data.frame(direction  =  c('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'),
+                               value  =  c(10, 7, 8, 9, 5, 4, 6, 9))
+  ##Plot
   pipeR::pipeline(
     amRadarChart(theme = 'light', startDuration = 0, categoryField  =  'direction'),
-    setDataProvider(data.frame(direction  =  c('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'),
-                               value  =  c(10, 7, 8, 9, 5, 4, 6, 9))),
+    setDataProvider(datawind),
     addValueAxis(gridType = 'circles', minimum = 0, autoGridCount = FALSE,
                  axisAlpha = 0.2, fillAlpha = 0.05, fillColor = '#FFFFFF',
                  gridAlpha = 0.08, position = 'left'),
