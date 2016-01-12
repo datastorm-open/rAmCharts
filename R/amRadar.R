@@ -122,7 +122,10 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend
             lineColor =  as.character(x[2]), fillAlphas = as.numeric(x[3]), valueField =  as.character(x[1]), 
             bullet = as.character(x[4]))
   })
+
   
+  if(legend)
+  {
   amRadarChart(export = list(enabled = export),fontSize=mainSize) %>>% 
     setDataProvider(data) %>>% 
     setProperties(type = "radar", theme = "light", categoryField = "label") %>>% 
@@ -130,4 +133,16 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend
     addTitle(text = main) %>>%
     setLegend(amLegend(useGraphSettings = TRUE, labelText = "[[title]]")) %>>% 
     addValueAxes(gridType = type)
+
+  }else{
+    amRadarChart(export = list(enabled = export),fontSize=mainSize) %>>% 
+      setDataProvider(data) %>>% 
+      setProperties(type = "radar", theme = "light", categoryField = "label") %>>% 
+      setGraphs(graphs) %>>% 
+      addTitle(text = main) %>>%
+      addValueAxes(gridType = type)
+  }
+  
+  
+  
 }

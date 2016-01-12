@@ -24,8 +24,8 @@ shinydashboard::tabItem(
                  h2("Stock example", align="center"),
                  column(
                    width = 12,
-                   
-                   verbatimTextOutput("code_stock1"))
+                   verbatimTextOutput("code_stock1")
+                 )
                )
              )
       ),
