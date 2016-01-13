@@ -92,7 +92,7 @@
 
 
 #Test logical and length 1
-.testestLogicalLength1 <- function(logi){
+.testLogicalLength1 <- function(logi){
   arg <- substitute(logi)
   .testLength(param = logi, len = 1, arg = arg)
   .testLogical(logi = logi, arg = arg)
