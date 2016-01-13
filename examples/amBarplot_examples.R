@@ -1,3 +1,5 @@
+stopifnot(require(pipeR))
+
 #Basic Example : column chart
 data_bar <- data.frame(country = c("USA", "China", "Japan", "Germany", 
                                    "UK", "France", "India", "Spain",
@@ -10,31 +12,57 @@ data_bar <- data.frame(country = c("USA", "China", "Japan", "Germany",
                                  "#0D52D1", "#2A0CD0", "#8A0CCF", "#CD0D74"),
                        stringsAsFactors = FALSE)
 
-amBarplot(x = "country", y = "visits", data = data_bar)
+# test with label rotation
+amBarplot(x = "country", y = "visits", data = data_bar, labelRotation = -90)
 
 #horizontal bar
-amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE)
+amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -90)
 
 #3D bar
-amBarplot(x = "country", y = "visits", data = data_bar, third_dim = TRUE)
+amBarplot(x = "country", y = "visits", data = data_bar, third_dim = TRUE, labelRotation = -90)
 
 #display values
-amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE)
+amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -90)
 
 #grouped columns
 data_gbar <- data.frame(year = c("2005", "2006", "2007", "2008", "2009"),
+                        day = c("01/06/2005", "02/06/2005", "03/06/2005",
+                                "04/06/2005", "05/06/2005"),
+                        month = c("06/2005", "07/2005", "08/2005",
+                                  "09/2005", "10/2005"),
                         income = c(23.5, 26.2, 30.1, 29.5, 24.6),
                         expenses = c(18.1, 22.8, 23.9, 25.1, 25),
                         stringsAsFactors = FALSE)
 
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
 
+# Parse dates
+
+# default label: firt day of each year
+pipeR::pipeline(
+  amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar,
+            dataDateFormat = "YYYY", minPeriod = "YYYY"),
+  setChartCursor()
+)
+
+# default label: first day of each month
+pipeR::pipeline(
+  amBarplot(x = "month", y = c("income", "expenses"), data = data_gbar,
+            dataDateFormat = "MM/YYYY", minPeriod = "MM"),
+  setChartCursor()
+)
+
+pipeR::pipeline(
+  amBarplot(x = "day", y = c("income", "expenses"), data = data_gbar,
+            dataDateFormat = "DD/MM/YYYY"),
+  setChartCursor()
+)
+
 #add legend
-amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, legend = TRUE)
 
 #change groups colors
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, 
-      groups_color = c("#87cefa", "#c7158"), legend = TRUE)
+      groups_color = c("#87cefa", "#c7158"))
 
 #stacked bars
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "regular")
