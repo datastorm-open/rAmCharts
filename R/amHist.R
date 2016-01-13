@@ -3,7 +3,6 @@
 #' If \code{plot = TRUE}, the resulting object of class \code{"histogram"} before it is returned.
 #' 
 #' @param x a vector of values for which the histogram is desired.
-#' @param main \code{character}, title of the graph.
 #' @param freq \code{logical}; if \code{TRUE}, the histogram graphic is a representation of frequencies,
 #' the counts component of the result; if FALSE, probability densities,
 #' component density, are plotted (so that the histogram has a total area of one).
@@ -20,9 +19,9 @@
 #' Additionally draw labels on top of bars, if not \code{FALSE};
 #' if \code{TRUE}, draw the counts or rounded densities;
 #' if labels is a \code{character}, draw itself.
-#' @param scrollbar Allow scrollbar ? (default FALSE)
-#' @param cursor Allow cursor ? (default TRUE)
 #' @param ... further arguments and graphical parameters passed to plot.histogram
+#' 
+#' @return An object of class \linkS4class{AmChart}.
 #' 
 #' @example examples/amHist_examples.R
 #'        
@@ -38,8 +37,7 @@ amHist <- function(x, ...) UseMethod("amHist")
 #' 
 amHist.numeric <- function(x, col = "gray", border = "gray",
                            freq = TRUE, plot = TRUE, labels = TRUE,
-                           xlab, ylab, main, ylim,
-                           scrollbar, cursor, ...)
+                           xlab, ylab, ylim, ...)
 {
   if (!requireNamespace(package = "pipeR")) {
     stop ("Please install the package 'pipeR' for running this function")
@@ -69,14 +67,8 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
     
     if (missing(xlab)) xlab <- deparse(substitute(x))
     
-    if (missing(main)) main <- paste("Histogram of", deparse(substitute(x)))
-    
-    if (missing(scrollbar)) scrollbar <- FALSE
-    
-    if (missing(cursor)) cursor <- TRUE
-    
     dp <- dataAmHist(resHist, y, col)
-    plotAmHist(dp, amLabels, ylim, main, ylab, xlab, border, cursor, scrollbar)
+    plotAmHist(dp = dp, amLabels = amLabels, ylim = ylim, ylab = ylab, xlab = xlab, border = border)
   }
 }
 
@@ -87,7 +79,7 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
 #' )
 #' @noRd
 #' 
-plotAmHist <- function(dp, amLabels, ylim, main, ylab, xlab, border, cursor, scrollbar)
+plotAmHist <- function(dp, amLabels, ylim, ylab, xlab, border)
 {
   pipeR::pipeline(
     amSerialChart(theme = "light", categoryField = "x", columnSpacing = 0, 
@@ -99,23 +91,18 @@ plotAmHist <- function(dp, amLabels, ylim, main, ylab, xlab, border, cursor, scr
     addGraph(valueField = "y", type = "smoothedLine", lineColor = "black",
              balloonText = "", id = "graph-line"),
     addValueAxes(title = ylab, minimum = ylim[1], maximum = ylim[2]),
-    setCategoryAxis(title = xlab),
-    addTitle(text = main, size = 18),
-    (~ chart)
+    setCategoryAxis(title = xlab)
   )
   
-  if (cursor) chart <- setChartCursor(.Object = chart)
   
-  if (scrollbar)
-    chart <- setChartScrollbar(.Object = chart, graph = "graph-line", scrollbarHeight = 30,
-                               backgroundAlpha = 0, offset = 60, autoGridCount = TRUE,
-                               color = '#888888', dragIcon = "dragIconRectBigBlack",
-                               oppositeAxis = FALSE, backgroundAlpha = 0, 
-                               selectedBackgroundAlpha = 0.1, selectedBackgroundColor = '#888888',
-                               graphFillAlpha = 0, selectedGraphFillAlpha = 0, graphLineAlpha = 0.8,
-                               selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1)
-  
-  chart
+  #   if (scrollbar)
+  #     chart <- setChartScrollbar(.Object = chart, graph = "graph-line", scrollbarHeight = 30,
+  #                                backgroundAlpha = 0, offset = 60, autoGridCount = TRUE,
+  #                                color = '#888888', dragIcon = "dragIconRectBigBlack",
+  #                                oppositeAxis = FALSE, backgroundAlpha = 0, 
+  #                                selectedBackgroundAlpha = 0.1, selectedBackgroundColor = '#888888',
+  #                                graphFillAlpha = 0, selectedGraphFillAlpha = 0, graphLineAlpha = 0.8,
+  #                                selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1)
 }
 
 dataAmHist <- function (resHist, y, col)

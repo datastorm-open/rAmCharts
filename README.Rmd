@@ -2,8 +2,6 @@ This package allows to draw interactive charts from the *JavaScript* library [Am
 
 Currently available chart types: funnel, gantt, gauge, pie, radar, serial, stock, xy.
 
-**See some examples by runnig `rAmCharts::runShinyExamples()`**.
-
 Since it is still in developpment, some functionnalities might have an unexpected behavior. If you encounter the problem, do not hesitate to contact.
 
 ---
@@ -30,27 +28,6 @@ devtools::install_github("dataKnowledge/rAmCharts")
 
 * Version 1.1.2 is based on [AmCharts][url_amcharts] v3.17.2
 * Version 1.1.3 is based on [AmCharts][url_amcharts] v3.18.2
-
-### Statistical features
-
-#### Histogram:
-
-```{r}
-library(rAmCharts)
-data(iris)
-amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "#3c8dbc")
-```
-![histogram][path_histogram]
-
-
-#### Boxplot:
-
-```{r}
-library(rAmCharts)
-data(iris)
-amBoxplot(Sepal.Length~Species, data = iris, col = c("blue", "red", "yellow"))
-```
-![boxplot][path_boxplot]
 
 ### Known issues
 

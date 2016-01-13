@@ -6,7 +6,6 @@
 #' @param object a vector, data.frame, a matrix, or a formula !
 #' @param data a data.frame from which the variables in formula should be taken
 #' @param use.cols for matrix only. Boxplot on columns or rows ?
-#' @param main \code{character}, title of the graph.
 #' @param xlab,ylab \code{character}, labels of the axis.
 #' @param ylim the range of y values with sensible defaults.
 #' @param names in case of vector, name on x-axis
@@ -14,38 +13,10 @@
 #' @param horizontal Boolean. Rotate boxplot ?
 #' @param id in case of using a data.frame, column name of id for identify outliers
 #' @param ... Don't use... For S3 Definition...
-#' @examples
 #' 
-#' # formula
-#' (obj <- amBoxplot(count ~ spray, data = InsectSprays))
-#' print(obj)
+#' @return An object of class \linkS4class{AmChart}.
 #' 
-#' # adding parameters
-#' amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50),
-#'  main = "Boxplot", xlab = "spray", col = c("darkblue", "gray"))
-#'  
-#' # transpose
-#' amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50),
-#'  main = "Boxplot", xlab = "spray", horizontal = TRUE)
-#'  
-#' # using a custom colum to identify outliers
-#' InsectSprays$id <- paste0("ID : ", 1:nrow(InsectSprays))
-#' amBoxplot(count ~ spray, data = InsectSprays, id = "id")
-#' 
-#' # data.frame
-#' don <- data.frame(a = 1:10, b = 1:5)
-#' amBoxplot(don, ylim = c(0,15))
-#' 
-#' # matrix
-#' x = matrix(nrow = 10, ncol = 5, rnorm(50))
-#' 
-#' amBoxplot(x) # on columns
-#' colnames(x) <- LETTERS[1:5]
-#' amBoxplot(x) # with names
-#' amBoxplot(x, use.cols = FALSE, col = c("blue", "red"))
-#' 
-#' # vector
-#' amBoxplot(rnorm(100))
+#' @example examples/amBoxplot_examples.R
 #' 
 #' @import data.table
 #' @rdname amBoxplot
@@ -57,7 +28,7 @@ amBoxplot <- function(object, ...) UseMethod("amBoxplot")
 #' @rdname amBoxplot
 #' 
 #' @export
-amBoxplot.default <- function(object, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL,
+amBoxplot.default <- function(object,xlab = NULL, ylab = NULL, ylim = NULL,
                               names = NULL, col = NULL, horizontal = FALSE, ...){
   
   x <- object
@@ -80,13 +51,13 @@ amBoxplot.default <- function(object, main = NULL, xlab = NULL, ylab = NULL, yli
   
   final.outliers <- finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(final.outliers, main =  main, xlab = xlab, 
+  plotAmBoxplot(final.outliers, xlab = xlab, 
                 ylab = ylab, ylim = ylim, horizontal = horizontal)
 }
 
 #' @rdname amBoxplot
 #' @export
-amBoxplot.data.frame <- function(object, main = NULL, id = NULL, xlab = NULL, ylab = NULL, 
+amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL, 
                                  ylim = NULL, col = NULL, horizontal = FALSE, ...){
   
   x <- object
@@ -109,13 +80,12 @@ amBoxplot.data.frame <- function(object, main = NULL, id = NULL, xlab = NULL, yl
   
   final.outliers <- finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(final.outliers, main =  main, xlab = xlab, 
-                ylab = ylab, ylim = ylim, horizontal = horizontal)
+  plotAmBoxplot(dp = final.outliers, xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
 }
 
 #' @rdname amBoxplot
 #' @export
-amBoxplot.matrix <- function(object, use.cols = TRUE, main = NULL, xlab = NULL, ylab = NULL, 
+amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL, 
                              ylim = NULL, col = NULL, horizontal = FALSE, ...){
   x <- object
   if(use.cols){
@@ -143,14 +113,13 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, main = NULL, xlab = NULL, 
   
   final.outliers <- finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(final.outliers, main =  main, xlab = xlab, 
-                ylab = ylab, ylim = ylim, horizontal = horizontal)
+  plotAmBoxplot(dp = final.outliers,xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
   
 }
 
 #' @rdname amBoxplot
 #' @export
-amBoxplot.formula <-function(object, data = NULL, id = NULL, main = NULL, xlab = NULL, ylab = NULL, 
+amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab = NULL, 
                              ylim = NULL, col = NULL, horizontal = FALSE, ...){
   
   formula <- object
@@ -175,11 +144,11 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, main = NULL, xlab =
   
   final.outliers <- finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(final.outliers, main =  main, xlab = xlab, 
+  plotAmBoxplot(dp = final.outliers, xlab = xlab, 
                 ylab = ylab, ylim = ylim, horizontal = horizontal)
 }
 
-plotAmBoxplot <- function(dp, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL, horizontal = FALSE){
+plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horizontal = FALSE){
   
   if (!requireNamespace(package = "pipeR")) {
     warning("Please install the package pipeR for running this function")
@@ -213,11 +182,7 @@ plotAmBoxplot <- function(dp, main = NULL, xlab = NULL, ylab = NULL, ylim = NULL
                         balloonText = paste0("<b> Individual </b>: [[individual_",i,"]]<br/><b> Value </b>: [[real_outlier_",i,"]]"))
     }
   }
-  
-  if(!is.null(main)){
-    graph <- addTitle(graph, text = main, size = 18)
-  }
-  
+
   if(!is.null(ylab) & !is.null(ylim)){
     graph <- addValueAxes(graph, title = ylab, minimum = ylim[1], maximum = ylim[length(ylim)])
   }
@@ -340,43 +305,40 @@ formatOutlier <- function(data){
   data
 }
 
-
-# # vector
-# set.seed(144)
-# amBoxplot(c(rnorm(20), 50),names = "A", col = "red")
-# amBoxplot(rnorm(10),names = "A", ylab = "y-axis", xlab = "x-axis", main = "boxplot", ylim = c(-5,5))
-# 
-# # data.frame
-# don <- data.frame(a = c(rnorm(10),5), b = c(4,rnorm(10)))
-# boxplot(don)
-# amBoxplot(don)
-# 
-# # matrix
-# m =  matrix(ncol = 2, nrow = 6, c(5,rnorm(10),5))
-# amBoxplot(m)
-
-# nb = 100000
-# data <- data.table(a = c(rnorm(nb),5), b = c(4,rnorm(nb)), c = LETTERS[1:5])
-# formula <-as.formula("a ~ c")
-# 
-# boxplot(a ~ c, data = data, xlab = "re")
-# amBoxplot(a ~ c, data = data, xlab = "re")
-# x = matrix(nrow = 10, ncol = 5, rnorm(50))
-# colnames(x) <- LETTERS[1:5]
-# main = NULL
-# xlab = NULL
-# ylab = NULL
-# ylim = NULL
-# col = NULL
-# use.cols = TRUE
-# amBoxplot(x, use.cols = TRUE, main = "re", xlab = "re")
-# use.cols = TRUE
-# 
-# formula <- as.formula("count ~ spray")
-# data =  InsectSprays
-# id = NULL
-# main = NULL
-# xlab = NULL
-# ylab = NULL
-# ylim = NULL
-# col = NULL
+#  # vector
+#  set.seed(144)
+#  amBoxplot(c(rnorm(20), 50),names = "A", col = "red")
+#  amBoxplot(rnorm(10),names = "A", ylab = "y-axis", xlab = "x-axis", ylim = c(-5,5))
+#  
+#  # data.frame
+#  don <- data.frame(a = c(rnorm(10),5), b = c(4,rnorm(10)))
+#  boxplot(don)
+#  amBoxplot(don)
+#  
+#  # matrix
+#  m =  matrix(ncol = 2, nrow = 6, c(5,rnorm(10),5))
+#  amBoxplot(m)
+#  
+#  nb = 100000
+#  data <- data.table(a = c(rnorm(nb),5), b = c(4,rnorm(nb)), c = LETTERS[1:5])
+#  formula <-as.formula("a ~ c")
+#  
+#  boxplot(a ~ c, data = data, xlab = "re")
+#  amBoxplot(a ~ c, data = data, xlab = "re")
+#  x = matrix(nrow = 10, ncol = 5, rnorm(50))
+#  colnames(x) <- LETTERS[1:5]
+#  xlab = NULL
+#  ylab = NULL
+#  ylim = NULL
+#  col = NULL
+#  use.cols = TRUE
+#  amBoxplot(x, use.cols = TRUE, xlab = "re")
+#  use.cols = TRUE
+#  
+#  formula <- as.formula("count ~ spray")
+#  data =  InsectSprays
+#  id = NULL
+#  xlab = NULL
+#  ylab = NULL
+#  ylim = NULL
+#  col = NULL

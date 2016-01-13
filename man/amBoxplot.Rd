@@ -10,27 +10,22 @@
 \usage{
 amBoxplot(object, ...)
 
-\method{amBoxplot}{default}(object, main = NULL, xlab = NULL, ylab = NULL,
-  ylim = NULL, names = NULL, col = NULL, horizontal = FALSE, ...)
+\method{amBoxplot}{default}(object, xlab = NULL, ylab = NULL, ylim = NULL,
+  names = NULL, col = NULL, horizontal = FALSE, ...)
 
-\method{amBoxplot}{data.frame}(object, main = NULL, id = NULL,
-  xlab = NULL, ylab = NULL, ylim = NULL, col = NULL,
-  horizontal = FALSE, ...)
+\method{amBoxplot}{data.frame}(object, id = NULL, xlab = NULL,
+  ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE, ...)
 
-\method{amBoxplot}{matrix}(object, use.cols = TRUE, main = NULL,
-  xlab = NULL, ylab = NULL, ylim = NULL, col = NULL,
-  horizontal = FALSE, ...)
+\method{amBoxplot}{matrix}(object, use.cols = TRUE, xlab = NULL,
+  ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE, ...)
 
-\method{amBoxplot}{formula}(object, data = NULL, id = NULL, main = NULL,
-  xlab = NULL, ylab = NULL, ylim = NULL, col = NULL,
-  horizontal = FALSE, ...)
+\method{amBoxplot}{formula}(object, data = NULL, id = NULL, xlab = NULL,
+  ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE, ...)
 }
 \arguments{
 \item{object}{a vector, data.frame, a matrix, or a formula !}
 
 \item{...}{Don't use... For S3 Definition...}
-
-\item{main}{\code{character}, title of the graph.}
 
 \item{xlab, ylab}{\code{character}, labels of the axis.}
 
@@ -48,24 +43,25 @@ amBoxplot(object, ...)
 
 \item{data}{a data.frame from which the variables in formula should be taken}
 }
+\value{
+An object of class \linkS4class{AmChart}.
+}
 \description{
 amBoxplot computes a boxplot of the given data values.
 Can be a vector, a data.frame, or a matrix
 }
 \examples{
-
 # formula
 (obj <- amBoxplot(count ~ spray, data = InsectSprays))
 print(obj)
 
 # adding parameters
 amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50),
- main = "Boxplot", xlab = "spray", col = c("darkblue", "gray"))
- 
+          xlab = "spray", col = c("darkblue", "gray"))
+
 # transpose
-amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50),
- main = "Boxplot", xlab = "spray", horizontal = TRUE)
- 
+amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50), xlab = "spray", horizontal = TRUE)
+
 # using a custom colum to identify outliers
 InsectSprays$id <- paste0("ID : ", 1:nrow(InsectSprays))
 amBoxplot(count ~ spray, data = InsectSprays, id = "id")
@@ -84,6 +80,5 @@ amBoxplot(x, use.cols = FALSE, col = c("blue", "red"))
 
 # vector
 amBoxplot(rnorm(100))
-
 }
 

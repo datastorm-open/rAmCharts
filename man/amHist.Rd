@@ -8,8 +8,7 @@
 amHist(x, ...)
 
 \method{amHist}{numeric}(x, col = "gray", border = "gray", freq = TRUE,
-  plot = TRUE, labels = TRUE, xlab, ylab, main, ylim, scrollbar, cursor,
-  ...)
+  plot = TRUE, labels = TRUE, xlab, ylab, ylim, ...)
 }
 \arguments{
 \item{x}{a vector of values for which the histogram is desired.}
@@ -37,13 +36,10 @@ if labels is a \code{character}, draw itself.}
 
 \item{xlab, ylab}{\code{character}, labels of the axis.}
 
-\item{main}{\code{character}, title of the graph.}
-
 \item{ylim}{the range of y values with sensible defaults.}
-
-\item{scrollbar}{Allow scrollbar ? (default FALSE)}
-
-\item{cursor}{Allow cursor ? (default TRUE)}
+}
+\value{
+An object of class \linkS4class{AmChart}.
 }
 \description{
 amHist computes a histogram of the given data values.
