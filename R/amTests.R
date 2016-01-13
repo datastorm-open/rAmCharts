@@ -103,7 +103,7 @@
 .testIn <- function(vect,control = NULL){
   if (!is.null(control))
   {
-    arg <- substitute(control)
+    arg <- substitute(vect)
     
     if(length(which(vect %in% control)) != length(vect))
     {
