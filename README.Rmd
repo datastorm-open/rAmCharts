@@ -1,18 +1,10 @@
-This package allows to draw interactive charts from the *JavaScript* library [AmCharts][url_amcharts] using [Hmlwidgets][url_htmlwidgets].
+## Warning !
 
-Currently available chart types: funnel, gantt, gauge, pie, radar, serial, stock, xy.
-
-Since it is still in developpment, some functionnalities might have an unexpected behavior. If you encounter the problem, do not hesitate to contact.
+This branch is dedicated to develop the functions am**. Be cautious if you want to use it since we improve or change the code very often. Once they are stable, we will merge them to the master.
 
 ---
 
-## Installation
-
-The version 1.1.2 is available on CRAN:
-
-```{r, eval=FALSE}
-install.packages("rAmCharts")
-```
+### Installation
 
 To install the "dev version" (v1.1.3), run the following code lines:
 
