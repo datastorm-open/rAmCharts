@@ -28,11 +28,17 @@ amBoxplot <- function(object, ...) UseMethod("amBoxplot")
 #' @rdname amBoxplot
 #' 
 #' @export
-amBoxplot.default <- function(object,xlab = NULL, ylab = NULL, ylim = NULL,
+amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
                               names = NULL, col = NULL, horizontal = FALSE, ...){
   
   x <- object
   value <- x
+  
+  if (!is.null(xlab))
+  .testCharacterLength1(char = xlab)
+  
+  if (!is.null(ylab))
+  .testCharacterLength1(char = ylab)
   
   if(is.null(names(x))){
     id <- 1:length(x)
@@ -47,11 +53,11 @@ amBoxplot.default <- function(object,xlab = NULL, ylab = NULL, ylim = NULL,
   }
   data <- data.table(value, id, group = names)
   
-  res <- data[, list(dtBoxplotStat(list(value, id))), by = "group"]
+  res <- data[, list(.dtBoxplotStat(list(value, id))), by = "group"]
   
-  final.outliers <- finalDataBoxplot(res, col = col)
+  final.outliers <- .finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(final.outliers, xlab = xlab, 
+  .plotAmBoxplot(final.outliers, xlab = xlab, 
                 ylab = ylab, ylim = ylim, horizontal = horizontal)
 }
 
@@ -76,11 +82,11 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
   
   data <- data.table(value, group, id)
   
-  res <- data[, list(dtBoxplotStat(list(value, id))), by = group]
+  res <- data[, list(.dtBoxplotStat(list(value, id))), by = group]
   
-  final.outliers <- finalDataBoxplot(res, col = col)
+  final.outliers <- .finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(dp = final.outliers, xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
+  .plotAmBoxplot(dp = final.outliers, xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
 }
 
 #' @rdname amBoxplot
@@ -109,11 +115,11 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL,
   data <- data.table(value, group, id)
   
   
-  res <- data[, list(dtBoxplotStat(list(value, id))), by = group]
+  res <- data[, list(.dtBoxplotStat(list(value, id))), by = group]
   
-  final.outliers <- finalDataBoxplot(res, col = col)
+  final.outliers <- .finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(dp = final.outliers,xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
+  .plotAmBoxplot(dp = final.outliers,xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
   
 }
 
@@ -140,15 +146,15 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   x <- as.character(formula)[2]
   y <- as.character(formula)[3]
   
-  res <- data[, list(dtBoxplotStat(list(eval(parse(text = x)), id))), by = y]
+  res <- data[, list(.dtBoxplotStat(list(eval(parse(text = x)), id))), by = y]
   
-  final.outliers <- finalDataBoxplot(res, col = col)
+  final.outliers <- .finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(dp = final.outliers, xlab = xlab, 
+  .plotAmBoxplot(dp = final.outliers, xlab = xlab, 
                 ylab = ylab, ylim = ylim, horizontal = horizontal)
 }
 
-plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horizontal = FALSE){
+.plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horizontal = FALSE){
   
   if (!requireNamespace(package = "pipeR")) {
     warning("Please install the package pipeR for running this function")
@@ -202,12 +208,12 @@ plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horizontal 
   graph
 }
 
-dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
+.dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
   xx <- data.table(x = data[[1]], id = data[[2]])[eval(parse(text = "!is.na(x)"))]
   setkeyv(xx, "x")
   
   n <- xx[, eval(parse(text = "sum(x)"))]
-  stats <- dtFivenum(xx, na.rm = TRUE)
+  stats <- .dtFivenum(xx, na.rm = TRUE)
   
   iqr <- diff(stats[c(2, 4)])
   if (coef == 0){
@@ -229,7 +235,7 @@ dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
   list(stats = stats, out = out)
 }
 
-dtFivenum <- function (xx, na.rm = TRUE) {
+.dtFivenum <- function (xx, na.rm = TRUE) {
   
   n <- nrow(xx)
   
@@ -242,7 +248,7 @@ dtFivenum <- function (xx, na.rm = TRUE) {
   }
 }
 
-finalDataBoxplot <- function(res, col = NULL){
+.finalDataBoxplot <- function(res, col = NULL){
   
   dp <- data.table(cat = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[1]))]), 
                    round(t(data.frame(res[seq(1, nrow(res), by = 2), eval(parse(text = "V1"))]))[, c(1,1:5, 5), drop = FALSE], 2))
@@ -272,7 +278,7 @@ finalDataBoxplot <- function(res, col = NULL){
     
     final.outliers <- NULL
     ctrl <- lapply(split.outliers, function(x){
-      inter <- formatOutlier(x)
+      inter <- .formatOutlier(x)
       if(is.null(final.outliers)){
         final.outliers <<- inter
       }else{
@@ -288,7 +294,7 @@ finalDataBoxplot <- function(res, col = NULL){
   final.outliers
 }
 
-formatOutlier <- function(data){
+.formatOutlier <- function(data){
   
   if(is.list(data) & !"data.table"%in%class(data)){
     data <- data.frame(rev(data))
