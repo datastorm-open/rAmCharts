@@ -71,7 +71,7 @@
   if (!is.null(len)){
     if (!length(param) %in% len){
       stop(paste0("length of ", arg, " must be", ifelse(length(len)==1, " ", " in "),
-                  sprintf(as.character(len)), " currently ", length(param)))
+                  paste(len, collapse = ", "), " currently ", length(param)))
     }
   }
 }
@@ -107,7 +107,7 @@
     
     if(length(which(vect %in% control)) != length(vect))
     {
-      stop(paste0("Element(s) of ", arg," are not in ",sprintf(as.character(control))))
+      stop(paste0("Element(s) of ", arg," are not in ",paste(control, collapse = ", ")))
     }
   }
 }
