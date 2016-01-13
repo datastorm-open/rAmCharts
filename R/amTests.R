@@ -1,67 +1,74 @@
 #Test if num is not numeric  or integer
 .testNumeric <- function (num, arg = NULL)
 {
-  if(is.null(arg))
+  if (is.null(arg)) {
     arg <- substitute(num)
+  } else {}
   
-  if (!class(num) %in% c("numeric","integer"))
+  if (!class(num) %in% c("numeric","integer")) {
     stop(paste0(arg," must be numeric, instead of ", class(num)))
+  } else {}
 }
 
 #Test if num is not logical 
 .testLogical <- function (logi, arg = NULL)
 {
-  if(is.null(arg))
+  if (is.null(arg)) {
     arg <- substitute(logi)
-  
-  if (!class(logi) %in% c("logical"))
+  } else {}
+  if (!class(logi) %in% c("logical")) {
     stop(paste0(arg," must be logical, instead of ", class(logi)))
+  } else {}
 }
 
 
 
 .testCharacter <- function(char, arg = NULL)
 {
-  if(is.null(arg))
+  if(is.null(arg)) {
     arg <- substitute(char)
+  } else {}
   
-  if (!class(char) %in% c("character","factor"))
+  if (!class(char) %in% c("character","factor")) {
     stop(paste0(arg," must be character, instead of ", class(char)))
+  } else {}
 }
 
 
 #Test if num<binf or/and num>bsup
 .testInterval <- function(num, binf = NULL, bsup = NULL, arg = NULL)
 {
-  if(is.null(arg))
+  if (is.null(arg)) {
     arg <- substitute(num)
+  } else {}
   
-  if (!is.null(binf))
-  {
-    if (num < binf)
+  if (!is.null(binf)) {
+    if (num < binf) {
       stop(paste0(arg, " < ",binf, " must be upper"))
-  }
+    } else {}
+  } else {}
   
-  if (!is.null(bsup))
-  {
-    if (num > bsup)
+  if (!is.null(bsup)) {
+    if (num > bsup) {
       stop(paste0(arg, " > ", bsup, " must be lower"))
-  }
+    } else {}
+  } else {}
 }
 
 
 #Test if length(param)%in%len
 .testLength <- function (param, len = NULL, arg = NULL)
 {
-  if(is.null(arg))
+  if (is.null(arg)) {
     arg <- substitute(param)
+  } else {}
   
-  if (!is.null(len))
-  {
-    if (!length(param) %in% len)
+  if (!is.null(len)) {
+    if (!length(param) %in% len) {
       stop(paste0("length of ", arg, " must be", ifelse(length(len)==1, " ", " in "),
                   paste(len, collapse = ", "), " currently ", length(param)))
-  }
+    } else {}
+  } else {}
 }
 
 #Test numeric and length 1
@@ -93,12 +100,12 @@
 ##Test if all elemnt of vect are in control
 .testIn <- function (vect,control = NULL)
 {
-  if (!is.null(control))
-  {
+  if (!is.null(control)) {
     arg <- substitute(vect)
     
-    if (length(which(vect %in% control)) != length(vect))
+    if (length(which(vect %in% control)) != length(vect)) {
       stop(paste0("Element(s) of ", arg," are not in ",paste(control, collapse = ", ")))
-  }
+    } else {}
+  } else {}
 }
 

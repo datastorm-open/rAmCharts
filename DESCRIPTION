@@ -72,6 +72,7 @@ Collate:
     'TrendLine_setters.R'
     'amBarplot.R'
     'amBoxplot.R'
+    'amCandlestick.R'
     'amHist.R'
     'amTests.R'
     'data.R'
