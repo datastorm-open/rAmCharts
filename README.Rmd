@@ -29,6 +29,12 @@ devtools::install_github("dataKnowledge/rAmCharts")
 * Version 1.1.2 is based on [AmCharts][url_amcharts] v3.17.2
 * Version 1.1.3 is based on [AmCharts][url_amcharts] v3.18.2
 
+## Important
+
+We have temporarily move the 'am' functions to the dev directory.
+Please refer to the branch **amFunctions** if you want to use one of these features during their development. We are improving the source code - they will be added to the R directory one by one as soon they are enough stable.
+Once they are all ready, we merge them to the master.
+
 ### Known issues
 
 * Problem in Shiny with Firefox (works with Chrome or Safari), the function `renderAmcharts({NULL})` does not clear the chart, use conditionalPanel instead.
