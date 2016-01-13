@@ -33,26 +33,38 @@ amHist <- function(x, ...) UseMethod("amHist")
 
 
 #' @rdname amHist
+#' @import pipeR
+#' @import data.table
 #' @export
 #' 
 amHist.numeric <- function(x, col = "gray", border = "gray",
                            freq = TRUE, plot = TRUE, labels = TRUE,
                            xlab, ylab, ylim, ...)
 {
-  if (!requireNamespace(package = "pipeR")) {
-    stop ("Please install the package 'pipeR' for running this function")
-    return (NULL)
-  } else {}
+  .testNumeric(num = x)
   
   if (!missing(...)) {
     resHist <- graphics::hist(x = x, plot = FALSE, ...)
   } else {
     resHist <- graphics::hist(x = x, plot = FALSE)
   }
+  .testestLogicalLength1(logi = plot)
   
   if (!plot) {
     return (resHist)
   } else {
+    # check parameters
+    .testCharacterLength1(char = border)
+    .testCharacterLength1(char = col)
+    .testestLogicalLength1(logi = labels)
+    .testestLogicalLength1(logi = freq)
+    
+    if (!missing(xlab))
+      .testCharacterLength1(char = xlab)
+    
+    if (!missing(ylab))
+      .testCharacterLength1(char = ylab)
+    
     amLabels <- ifelse(labels, "[[value]]", "")
     y <- if (freq) {
       resHist$counts
@@ -60,26 +72,25 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
       round(x = resHist$density, digits = 3)
     }
     
-    if (missing(ylim)) ylim <- range(y*1.05, 0)
+    if (!missing(ylim)) {
+      .testLength(param = ylim, len = 2)
+      .testNumeric(num = ylim)
+    } else {
+      ylim <- range(y*1.05, 0)
+    }
+    
     
     if (missing(ylab))
       ylab <- ifelse(test = !freq, yes = "Density", no = "Frequency")
     
     if (missing(xlab)) xlab <- deparse(substitute(x))
     
-    dp <- dataAmHist(resHist, y, col)
-    plotAmHist(dp = dp, amLabels = amLabels, ylim = ylim, ylab = ylab, xlab = xlab, border = border)
+    dp <- .dataAmHist(resHist, y, col)
+    .plotAmHist(dp = dp, amLabels = amLabels, ylim = ylim, ylab = ylab, xlab = xlab, border = border)
   }
 }
 
-#' @examples
-#' pipeR::pipeline(
-#' amHist(iris$Sepal.Length),
-#' setExport()
-#' )
-#' @noRd
-#' 
-plotAmHist <- function(dp, amLabels, ylim, ylab, xlab, border)
+.plotAmHist <- function(dp, amLabels, ylim, ylab, xlab, border)
 {
   pipeR::pipeline(
     amSerialChart(theme = "light", categoryField = "x", columnSpacing = 0, 
@@ -105,7 +116,7 @@ plotAmHist <- function(dp, amLabels, ylim, ylab, xlab, border)
   #                                selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1)
 }
 
-dataAmHist <- function (resHist, y, col)
+.dataAmHist <- function (resHist, y, col)
 {
   data_DT <- data.table(x = round(resHist$mids, 1), y = y, 
                         cut = paste0("(from ", round(resHist$breaks[-length(resHist$breaks)], 2),
