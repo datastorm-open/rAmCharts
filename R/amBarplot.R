@@ -57,8 +57,7 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   if(!is.data.frame(data)) {
     stop("data must be a data frame")
   } else {}
-  
-  
+
   # check argument x
   if (missing(x) && !length(rownames(data))) {
     stop("Argument x is not provided and the data.frame does not have row names")
@@ -94,39 +93,23 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
       stop(paste("The column ", y[i], "of the dataframe must be numeric."))
   })
   
-  if(!is.character(xlab)) {
-    stop("xlab must be character.")
-  } else {}
+  .testCharacterLength1(char = xlab)
+  .testCharacterLength1(char = ylab)
+  .testLogicalLength1(logi = layered)
   
-  if(!is.character(ylab)) {
-    stop("ylab must be character.")
-  } else {}
-  
-  if(!is.logical(layered)) {
-    stop("layered must be logical.")
-  } else {}
-  
-  if(layered & stack_type != "none") {
+  if(layered && stack_type != "none") {
     stop("You have to choose : layered or stacked. If layered
          is set to TRUE, stack_type must be equal to 'none'")
   }
   
-  if(!is.logical(horiz)) {
-    stop("horiz must be logical.")
-  } else {}
-
-  if(!is.logical(show_values)) {
-    stop("show_values must be logical")
-  } else {}
+  .testLogicalLength1(logi = horiz)
+  .testLogicalLength1(logi = show_values)
+  .testLogicalLength1(logi = third_dim)
   
-  if(!is.logical(third_dim)) {
-    stop("third_dim must be logical")
-  } else {}
   
   if(!is.null(stack_type)) {
-    if(!is.character(stack_type) | !stack_type %in% c("regular", "100", "none")) {
-      stop("stack_type must be a character, either 'regular', '100' or 'none'")
-    }
+    .testCharacter(char = stack_type)
+    .testIn(vect = stack_type, control = c("regular", "100", "none"))
   }
   
   if(stack_type == "100") stack_type = "100%"
