@@ -48,7 +48,7 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
   } else {
     resHist <- graphics::hist(x = x, plot = FALSE)
   }
-  .testestLogicalLength1(logi = plot)
+  .testLogicalLength1(logi = plot)
   
   if (!plot) {
     return (resHist)
@@ -56,8 +56,8 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
     # check parameters
     .testCharacterLength1(char = border)
     .testCharacterLength1(char = col)
-    .testestLogicalLength1(logi = labels)
-    .testestLogicalLength1(logi = freq)
+    .testLogicalLength1(logi = labels)
+    .testLogicalLength1(logi = freq)
     
     if (!missing(xlab))
       .testCharacterLength1(char = xlab)
