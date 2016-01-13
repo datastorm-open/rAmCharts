@@ -1,3 +1,11 @@
+## Important
+
+We have temporarily removed the 'am' functions.
+Please refer to the branch **amFunctions** if you want to use one of these features during their development.
+Once they are all ready, we will merge them to the master.
+
+## Introduction
+
 This package allows to draw interactive charts from the *JavaScript* library [AmCharts][url_amcharts] using [Hmlwidgets][url_htmlwidgets].
 
 Currently available chart types: funnel, gantt, gauge, pie, radar, serial, stock, xy.
@@ -28,12 +36,6 @@ devtools::install_github("dataKnowledge/rAmCharts")
 
 * Version 1.1.2 is based on [AmCharts][url_amcharts] v3.17.2
 * Version 1.1.3 is based on [AmCharts][url_amcharts] v3.18.2
-
-## Important
-
-We have temporarily move the 'am' functions to the dev directory.
-Please refer to the branch **amFunctions** if you want to use one of these features during their development. We are improving the source code - they will be added to the R directory one by one as soon they are enough stable.
-Once they are all ready, we merge them to the master.
 
 ### Known issues
 
