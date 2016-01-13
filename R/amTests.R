@@ -99,4 +99,16 @@
 }
 
 
+##Test if all elemnt of vect are in control
+.testIn <- function(vect,control = NULL){
+  if (!is.null(control))
+  {
+    arg <- substitute(control)
+    
+    if(length(which(vect %in% control)) != length(vect))
+    {
+      stop(paste0("Element(s) of ", arg," are not in ",sprintf(as.character(control))))
+    }
+  }
+}
 
