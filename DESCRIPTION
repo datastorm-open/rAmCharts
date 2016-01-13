@@ -78,6 +78,7 @@ Collate:
     'amGauge.R'
     'amHist.R'
     'amMekko.R'
+    'amOptions.R'
     'amPie.R'
     'amPlot.R'
     'amRadar.R'
