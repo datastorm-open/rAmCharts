@@ -6,23 +6,12 @@
 #' @param data : columns are series of values, from week wind (first column) to strong wind (last column)
 #' @param col : color of series
 #' @param backTransparency : background transparency
-#' @param main : title of graph
-#' @param legend : add legend, TRUE or FALSE
-#' @param export : add export, TRUE or FALSE
-#' @param fontSize : font size
-#' @param pch : symbols
 #' 
 #' 
 #' @seealso \code{\link{amRadar}}
 #' 
-#' @examples
+#' @examples ./examples/amWind_examples.R
 #' 
-#' data <- data.frame(Week = c(1, 2, 3, 4,1, 2,1, 2),
-#'                    Middle = c(2, 8, 1, 1,2, 8,1, 2),
-#'                    Strong = c(1, 1, 2, 2,1, 1 ,1, 2))
-#' amWind(data, main = "", export = TRUE,
-#'        col = c("#0404B4","#01DF01","#FFBF00"),
-#'        backTransparency = 1, pch="round")
 #'        
 #' @import data.table
 #' @import pipeR
@@ -30,10 +19,34 @@
 #' @rdname amWind
 #' @export
 #' 
-amWind <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend = TRUE, export = FALSE, fontSize = 15, pch = "round") {
+amWind <- function(data, col = NULL,  backTransparency = 0.5) {
+  
+  
+  #backTransparency
+  .testNumeric(backTransparency)
+  .testLength(backTransparency, c(1, ncol(data)))
+  sapply(backTransparency, function(X){.testInterval(X,binf = 0, bsup = 1, arg = "backTransparency")})
+  
+  
+  
+  #col
+  if(!is.null(col))
+  {
+    .testCharacter(col)
+    .testLength(col, c(1, ncol(data)))
+  }
+  
+  
+  ##Test data numeric
+  dt <- as.character(substitute(data))  
+  apply(data, 2, function(X){.testNumeric(X, arg = dt)})
+  
+  
   
   databullet <- apply( rbind(names(data),data),2,function(x){paste0("<b>", as.numeric(x[-1]),
-                                                                    " </b>Observations <br><b>",round(as.numeric(x[-1])/sum(as.numeric(x[-1]))*100,2), "%</b> of wind <b>",x[1],"</b>")})
+                    " </b>Observations <br><b>",round(as.numeric(x[-1])/sum(as.numeric(x[-1]))*100,2),
+                    "%</b> of wind <b>",x[1],"</b>")})
+  
   colnames(databullet) <- paste0(  colnames(databullet),"lab")
   
   data <- data.frame(t(apply(data, 1, cumsum)))
@@ -63,15 +76,15 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, main = "", legend 
                            fillColors =  as.character(constructGraph[i,2]), 
                            fillAlphas = as.numeric(constructGraph[i,3]), 
                            valueField =  as.character(constructGraph[i,1]), 
-                           bullet = as.character(constructGraph[i,4]),bulletAlpha = 0, legendColor = as.character(constructGraph[i,2]))
+                           bullet = as.character(constructGraph[i,4]),bulletAlpha = 0,
+                           legendColor = as.character(constructGraph[i,2]))
   }
   
   data <- cbind(data,databullet)
-  amRadarChart(export = list(enabled = export),fontSize=fontSize) %>>% 
+  amRadarChart() %>>% 
     setDataProvider(data) %>>% 
     setProperties(type = "radar", theme = "light", startDuration = 1, categoryField = "labels") %>>% 
     setGraphs(graphs) %>>% 
-    addTitle(text = main) %>>%
     setLegend(amLegend( labelText = "[[title]]",switchable = FALSE, align="right",markerBorderColor = "#000000")) %>>% 
     addValueAxes(gridType = "circle")
 }

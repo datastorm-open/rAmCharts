@@ -9,25 +9,7 @@
 #' @param pch symbols
 #' 
 #' 
-#' @examples
-#' data <- data.frame(label = c("A", "Z", "E", "R", "T"),
-#'                    Product1 = c(1, 2, 3, 4, 2), 
-#'                    Product2 = c(2, 8, 1, 1, 0),
-#'                    Product3 = c(1,1,2,2,4))
-#' amRadar(data)
-#' 
-#' amRadar(data, col = c("#0000FF", "#00FF00", "#FF0000"), 
-#'         backTransparency = c(0, 0.4, 0.6),
-#'         type = c("polygons"),
-#'         pch = "triangleRight")
-#' 
-#' amRadar(data,backTransparency = c(0,0.4,0.6),
-#'         type = c("circles"), pch = "triangleLeft" )%>>% amOptions(legend = TRUE)
-#' 
-#' 
-#' amRadar(data,backTransparency = c(0,0.4,0.6),
-#'         type = c("circles"), pch = "triangleLeft" ) %>>% 
-#'   amOptions(legend = TRUE, legendPosision = "bottom", export = TRUE, main = "My radar")
+#' @examples ./examples/amRadar_examples.R
 #' 
 #' @import pipeR
 #' @import data.table
@@ -37,18 +19,19 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
   
   #data
   data <- as.data.frame(data)
-  if(!"label"%in%colnames(data)){
-    stop ("One column of data must be named 'label'")
-  }
+  
+  .testIn("label", colnames(data))
 
+  #Test Numeric data
   datavalue <- data[, -which(colnames(data)=="label"), drop = FALSE]
   invisible(sapply(names(datavalue),function(X){
     .testNumeric(datavalue[,X], arg = X)
   }))
   
   #Test
-  #col
   .testCharacter(data$label)
+  
+  #col
   if(!is.null(col))
   {
     .testCharacter(col)
@@ -58,22 +41,17 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
   #backTransparency
   .testNumeric(backTransparency)
   .testLength(backTransparency, c(1, ncol(data) - 1))
-  sapply(backTransparency, function(X){.testInterval(X, arg = "backTransparency")})
+  sapply(backTransparency, function(X){.testInterval(X,binf = 0, bsup = 1, arg = "backTransparency")})
 
 
   #type
   .testIn(type,c("polygons", "circles"))
   
   #pch
+  .testCharacter(pch)
   .testIn(pch, c( "none", "round", "square", "triangleUp", "triangleDown", "triangleLeft", 
                   "triangleRight", "bubble", "diamond", "xError", "yError"))
   .testLength(pch, c(1, ncol(data) - 1))
-  
-
-  
-  
-  
-  
   
   if(is.null(col)){col <- ""}
 
@@ -91,5 +69,4 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
     setProperties(type = "radar", theme = "light", categoryField = "label") %>>% 
     setGraphs(graphs) %>>% 
     addValueAxes(gridType = type)
-  
 }
