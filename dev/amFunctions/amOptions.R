@@ -75,7 +75,6 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right",
   
   #legendPosision
   .testCharacter(legendPosision)
-  
   .testIn(legendPosision, c("left", "right", "top", "bottom"))
   
   #Export
