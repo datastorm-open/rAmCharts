@@ -65,64 +65,65 @@
 #' 
 #' @rdname amOptions
 #' @export
-amOptions <- function(chart,legend = FALSE,legendPosision = "right", 
-                      export = FALSE, creditsPosition = "top-left",theme = "none",main = "",mainColor = "#000000", mainSize = 15,  ...) {
-  ###Legend
+amOptions <- function(chart, legend = FALSE,legendPosision = "right", 
+                      export = FALSE, creditsPosition = "top-left", theme = "none",
+                      main = "", mainColor = "#000000", mainSize = 15,  ...) {
+  #Control
   
-  #Controle if userinput are available
-  if(!legend%in%c(TRUE, FALSE))
-  {
-    stop("legend must be TRUE or FALSE")
-  }
+  #Legend
+  .testestLogicalLength1(legend)
   
-  if(!legendPosision%in%c("left", "right", "top", "bottom"))
-  {
-    stop('legendPosision must be "left", "right", "top" or "bottom"')
-  }
-
+  #legendPosision
+  .testCharacter(legendPosision)
+  
+  .testIn(legendPosision, c("left", "right", "top", "bottom"))
+  
+  #Export
+  .testestLogicalLength1(export)
+  
+  #creditsPosition
+  .testIn(creditsPosition %in% c("top-left", "top-right", "bottom-left", "bottom-right"))
+  
+  #theme
+  .testIn(theme %in% c("none", "light", "dark", "patterns", "chalk")) 
+  
+  #main
+  .testCharacterLength1(main)
+  
+  #mainColor
+  .testCharacterLength1(mainColor)
+  
+  #mainsize
+  .testNumericLength1(mainSize)
+  
   #Set legend to graph, usage of useGraphSettings argument depend of graph type
-  if(legend == TRUE)
+  if (legend == TRUE)
   {
     if(chart@type%in%c("radar","serial","xy"))
     {
-    chart <- chart %>>% setLegend(position = legendPosision, useGraphSettings = TRUE)
+      chart <- chart %>>% setLegend(position = legendPosision, useGraphSettings = TRUE)
     }else{
-    chart <- chart %>>% setLegend(position = legendPosision)
+      chart <- chart %>>% setLegend(position = legendPosision)
     }
   }
   
   ###Export
-  #Controle if userinput are available
-  if(!export%in%c(TRUE, FALSE))
-  {
-    stop("export must be TRUE or FALSE")
-  }
+  
   #Set export
-  if(export == TRUE)
+  if (export == TRUE)
   {
-  
+    
     chart <- chart %>>% setProperties(export = list(enabled = TRUE))
-  }
-  
-  
-  ###creditsPosition
-  if(!creditsPosition%in%c("top-left", "top-right", "bottom-left", "bottom-right"))
-  {
-    stop('creditsPosition must be "top-left", "top-right", "bottom-left" or "bottom-right"')
   }
   
   chart <- chart %>>% setProperties(creditsPosition =  creditsPosition)
   
-  ###Theme
-  if(!theme%in%c("none","light","dark","patterns","chalk"))
-  {
-    stop('theme must be "none","light","dark","patterns","chalk"')
-  }
+  
   
   ##Set theme
   if(theme != "none")
   {
-  chart <- chart %>>% setProperties(theme =  theme)
+    chart <- chart %>>% setProperties(theme =  theme)
   }
   
   main <- as.character(main)
