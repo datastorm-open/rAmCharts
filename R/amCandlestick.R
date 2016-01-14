@@ -34,25 +34,24 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, labelRotati
                           dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""))
 {
   
-  if (!is.data.frame(data) | !any(c("date", "open", "close", "low", "high") %in% colnames(data))) {
-    stop ("data must be a data frame which at least the columns 'date' (character),
-          'open' (numeric), 'close' (numeric), 'low' (numeric) and 'high' (numeric).")
-  } else {}
-  if (!is.character(data$category)) {
-    stop("column 'category' of the dataframe data must be character")
-  } else {}
-  if (!is.numeric(data$open)) {
-    stop("column 'open' of the dataframe data must be numeric")
-  } else {}
-  if (!is.numeric(data$close)) {
-    stop("column 'close' of the dataframe data must be numeric")
-  } else {}
-  if (!is.numeric(data$low)) {
-    stop("column 'low' of the dataframe data must be numeric")
-  } else {}
-  if (!is.numeric(data$high)) {
-    stop("column 'high' of the dataframe data must be numeric")
-  } else {}
+  #data format
+  data$category <- as.character(data$category)
+  .testIn("category", colnames(data))
+  .testCharacter(data$category, arg = "data$category")
+  
+  .testIn("open", colnames(data))
+  .testNumeric(data$open, arg = "data$open")
+  
+  .testIn("close", colnames(data))
+  .testNumeric(data$close, arg = "data$close")
+  
+  
+  .testIn("low", colnames(data))
+  .testNumeric(data$low, arg = "data$low")
+  
+  .testIn("high", colnames(data))
+  .testNumeric(data$high, arg = "data$high")
+
   if (!is.null(dataDateFormat)) {
     .testCharacterLength1(char = dataDateFormat)
   } else {}
