@@ -6,19 +6,24 @@
   } else {}
   
   if (!class(num) %in% c("numeric","integer")) {
-    stop(paste0(arg," must be numeric, instead of ", class(num)))
+    stop(paste0(arg," must be of class 'numeric' instead of '", class(num), "'"))
   } else {}
+  
+  TRUE
 }
 
-#Test if num is not logical 
+#Test if num is not logical
 .testLogical <- function (logi, arg = NULL)
 {
   if (is.null(arg)) {
     arg <- substitute(logi)
   } else {}
+  
   if (!class(logi) %in% c("logical")) {
-    stop(paste0(arg," must be logical, instead of ", class(logi)))
+    stop(paste0(arg," must be of class 'logical' instead of '", class(logi), "'"))
   } else {}
+  
+  TRUE
 }
 
 
@@ -30,8 +35,10 @@
   } else {}
   
   if (!class(char) %in% c("character","factor")) {
-    stop(paste0(arg," must be character, instead of ", class(char)))
+    stop(paste0(arg," must be of class 'character', instead of '", class(char), "'"))
   } else {}
+  
+  TRUE
 }
 
 
@@ -53,6 +60,8 @@
       stop(paste0(arg, " > ", bsup, " must be lower"))
     } else {}
   } else {}
+  
+  TRUE
 }
 
 
@@ -69,6 +78,8 @@
                   paste(len, collapse = ", "), " currently ", length(param)))
     } else {}
   } else {}
+  
+  TRUE
 }
 
 #Test numeric and length 1
@@ -77,6 +88,8 @@
   arg <- substitute(num)
   .testLength(param = num, len = 1, arg = arg)
   .testNumeric(num = num, arg = arg)
+  
+  TRUE
 }
 
 #Test character and length 1
@@ -85,6 +98,8 @@
   arg <- substitute(char)
   .testLength(param = char, len = 1, arg = arg)
   .testCharacter(char = char, arg = arg)
+  
+  TRUE
 }
 
 
@@ -94,6 +109,8 @@
   arg <- substitute(logi)
   .testLength(param = logi, len = 1, arg = arg)
   .testLogical(logi = logi, arg = arg)
+  
+  TRUE
 }
 
 
@@ -107,5 +124,7 @@
       stop(paste0("Element(s) of ", arg," are not in ",paste(control, collapse = ", ")))
     } else {}
   } else {}
+  
+  TRUE
 }
 
