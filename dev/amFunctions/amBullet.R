@@ -16,45 +16,10 @@
 #' @param legend \code{character} text lengend
 #' @param horiz \code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one
 #' 
-#' 
-#' @examples
-#' 
-#' ### basic example
-#' # keep the default parameter values: 
-#' amBullet(value = 65)
-#' 
-#' # equivalent to:
-#' amBullet(value = 65, min = 0, max = 100, val_color = "#000000",
-#'              limit = 85, limit_color = "#000000", 
-#'              steps = TRUE, main = "Bullet chart", mainSize = 15, 
-#'              legend = "", horiz = TRUE,
-#'              rates = data.frame(name = c("excelent", "good", "average", "poor", "bad"),
-#'                                 min = c(0, 20, 40, 60, 80),
-#'                                 max = c(20, 40, 60, 80, 100),
-#'                                 color = c("#fb7116", "#b4dd1e", "#f4fb16",
-#'                                           "#19d228", "#f6d32b"),
-#'                                 stringsAsFactors = FALSE))
-#'                                           
-#' ### Remove steps for background:
-#' amBullet(value = 65, steps = FALSE)
-#' 
-#' ### Tune the colors with name or HTML code:
-#' amBullet(value = 65, val_color = "purple", limit_color = "#3c8dbc")
-#' 
-#' ### Change the orientation:
-#' amBullet(value = 65, steps = FALSE, horiz = FALSE)
-#'              
-#' ### Add title and legend:
-#' amBullet(value = 65, legend = "Evaluation",
-#'             main = "Bullet chart 1", mainSize = 15)
-#' 
-#' ### Change min and max values:   
-#' amBullet(value = 65, min = 20, max = 90)
 #'
 #' @import pipeR 
 #' @export
 #'
-
 amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
                         limit = 85, limit_color = "#000000", 
                         steps = TRUE, main = "", mainSize = 15, 
