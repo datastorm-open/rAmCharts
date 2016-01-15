@@ -14,7 +14,7 @@
 #' @param text \code{character} text
 #' @param horiz \code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one
 #' 
-#' @exemples ./examples/amBullet_examples.R
+#' @example examples/amBullet_examples.R
 #'
 #' @import pipeR 
 #' @export

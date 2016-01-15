@@ -11,9 +11,8 @@ amBullet(value = 65, val_color = "purple", limit_color = "#3c8dbc")
 ### Change the orientation:
 amBullet(value = 65, steps = FALSE, horiz = FALSE)
 
-### Add title and legend:
-amBullet(value = 65, legend = "Evaluation",
-         main = "Bullet chart 1", mainSize = 15)
+### Add text :
+amBullet(value = 65, text = "Evaluation")
 
 ### Change min and max values:   
 amBullet(value = 65, min = 20, max = 90)

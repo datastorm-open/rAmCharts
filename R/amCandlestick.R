@@ -24,7 +24,7 @@
 #' @param labelRotation \code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
 #' If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.
 #' 
-#' @example ./examples/amCandlestick_examples.R
+#' @example examples/amCandlestick_examples.R
 #' 
 #' @export
 

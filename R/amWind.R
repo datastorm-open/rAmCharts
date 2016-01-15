@@ -10,7 +10,7 @@
 #' 
 #' @seealso \code{\link{amRadar}}
 #' 
-#' @examples ./examples/amWind_examples.R
+#' @example examples/amWind_examples.R
 #' 
 #'        
 #' @import data.table
@@ -64,7 +64,7 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5) {
   if(is.null(col)){col <- ""}
   oldw <- getOption("warn")
   options(warn = -1)
-  constructGraph <- cbind(names(datavalue),col, backTransparency, pch)
+  constructGraph <- cbind(names(datavalue),col, backTransparency)
   options(warn = oldw)
   graphs <- list()
   
@@ -76,7 +76,7 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5) {
                            fillColors =  as.character(constructGraph[i,2]), 
                            fillAlphas = as.numeric(constructGraph[i,3]), 
                            valueField =  as.character(constructGraph[i,1]), 
-                           bullet = as.character(constructGraph[i,4]),bulletAlpha = 0,
+                           bulletAlpha = 0,
                            legendColor = as.character(constructGraph[i,2]))
   }
   

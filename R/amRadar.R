@@ -9,7 +9,7 @@
 #' @param pch symbols
 #' 
 #' 
-#' @examples ./examples/amRadar_examples.R
+#' @example examples/amRadar_examples.R
 #' 
 #' @import pipeR
 #' @import data.table

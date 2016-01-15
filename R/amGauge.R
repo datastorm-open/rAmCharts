@@ -16,7 +16,7 @@
 #' @param step2 \code{numeric} intervals size for the second axe if secondAxe is TRUE.
 #' @param bands2 a list containing lists with bands informations for the second axe, named : bandStartValue (numeric),
 #' bandEndValue (numeric), bandColor (hexadecimal color value)
-#' @examples ./examples/amGauge_examples.R
+#' @example examples/amGauge_examples.R
 #' 
 #' @import pipeR
 #' @export
@@ -159,7 +159,7 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
 #' @param color \code{character} hexadecimal color value or a vector of colors
 #' @param text \code{character} text
 #' @param textSize \code{numeric} text size
-#' @examples ./examples/amSolidGauge_examples.R
+#' @example examples/amSolidGauge_examples.R
 #' @import data.table
 #' @export
 #' 
