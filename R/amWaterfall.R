@@ -6,78 +6,44 @@
 #' also add a column "description" (character) containing the text you want to
 #' display when mouse is on the graphic ('<br>' for a new line). 
 #' @param start \code{numeric} value from which to start
-#' @param main \code{character}, title of the graph
-#' @param mainSize \code{numeric}, size of the title of the graph.
 #' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 #' @param show_values \code{boolean} TRUE to display values on the chart.
-#' @examples
-#' 
-#' # Basic example
-#' data_waterfall <- data.frame(label = c("Income 1", "Income 2", "Income 3", "Total 1", 
-#'                                        "Expenses 1", "Expenses 2", "Total 2", "Income 4", 
-#'                                        "Income 5", "Income 6", "Expenses 3","Total 3", 
-#'                                        "Expenses 4", "Expenses 5", "Total 4"),
-#'                              value = c(5, 10, 15, 30, 10, 5, 15, 50, 10, 35, 10, 100, 
-#'                                         15, 60, 25),
-#'                              operation = c(rep("plus", 3), "total", rep("minus", 2),
-#'                                             "total", "plus", "minus", rep("plus", 2), 
-#'                                             "total", rep("minus", 2), "total"), 
-#'                                             stringsAsFactors = FALSE)
-#' 
-#' amWaterfall(data = data_waterfall, main = "Waterfall Example", show_values = TRUE)
-#' 
-#' #example with description : 
-#' data_waterfall$description <- paste("The value for", data_waterfall$label, "is :<br>",
-#'                                     data_waterfall$value)
-#' amWaterfall(data = data_waterfall, main = "Waterfall Example", show_values = TRUE) 
-#' 
-#' #change the orientation :
-#' amWaterfall(data = data_waterfall, horiz = TRUE)                                  
+#' @example examples/amWaterfall_examples.R
 #' 
 #' @export
 
-amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE,
+amWaterfall <- function(data, start = 0, horiz = FALSE,
                         show_values = FALSE) {
   
-  if(!is.data.frame(data) | !any(c("label", "value", "operation") %in% colnames(data))) {
-    stop ("data must be a data frame which at least the columns 'label' (character),
-          'value' (numeric) and 'operation' (character)")
-  } else {}
   
-  if(!is.character(data$label)) {
-    stop("column 'label' of the dataframe data must be character")
-  } else {}
   
-  if(!is.numeric(data$value)) {
-    stop("column 'value' of the dataframe data must be numeric")
-  } else {}
+  ##Test
+  #data
+  #label
+  .testIn("label", colnames(data))
+  .testCharacter(data$label, arg = "data$label")
+
+  #value
+  .testIn("value", colnames(data))
+  .testNumeric(data$value, arg = "data$value")
   
-  if(!is.character(data$operation)) {
-    stop("column 'operation' of the dataframe data must be character")
-  } else {}
   
-  if(!any(data$operation %in% c("plus", "minus", "total"))) {
-    stop("column 'operation' of the dataframe data must only contain
-          'plus', 'minus' and 'total'")
-  } else {}
+  #operation
+  .testIn("operation", colnames(data))
+  .testCharacter(data$operation, arg = "data$operation")
   
-  if(!is.numeric(start)) {
-    stop("start must be numeric")
-  } else {}
+
   
-  main <- as.character(main)
+  .testIn(data$operation,c("plus", "minus", "total"))
   
-  if(!is.numeric(mainSize)) {
-    stop("mainSize must be numeric")
-  } else {}
+  .testNumericLength1(start)
   
-  if(!is.logical(horiz)) {
-    stop("horiz must be logical")
-  } else {}
+  .testLogicalLength1(horiz)
+
   
-  if(!is.logical(show_values)) {
-    stop("show_values must be logical")
-  } else {}
+  .testLogicalLength1(show_values)
+  
+
   
   if(!"color" %in% colnames(data)) {
     data$color <- ""
@@ -92,6 +58,7 @@ amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE
     }
   }
   
+  .testCharacter(data$color)
   data$color <- toupper(data$color)
   
   data$open[1] <- start
@@ -135,6 +102,7 @@ amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE
   })
   
   if("description" %in% colnames(data)) {
+    .testCharacter(data$description)
     data$val <- data$description
   } else {
     data$val <- data$value
@@ -143,8 +111,7 @@ amWaterfall <- function(data, start = 0, main = "", mainSize = 15, horiz = FALSE
   
   res <- pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = "label", balloonValue = "val",
-                  rotate = horiz),
-    addTitle(text = main, size = mainSize)
+                  rotate = horiz)
   )
   
   if(show_values) {
