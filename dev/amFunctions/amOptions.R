@@ -71,14 +71,14 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right",
   #Control
   
   #Legend
-  .testestLogicalLength1(legend)
+  .testLogicalLength1(legend)
   
   #legendPosision
   .testCharacter(legendPosision)
   .testIn(legendPosision, c("left", "right", "top", "bottom"))
   
   #Export
-  .testestLogicalLength1(export)
+  .testLogicalLength1(export)
   
   #creditsPosition
   .testIn(creditsPosition %in% c("top-left", "top-right", "bottom-left", "bottom-right"))
