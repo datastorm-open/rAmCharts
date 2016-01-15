@@ -8,7 +8,7 @@ amCandlestick(data, xlab = "", ylab = "", horiz = FALSE,
   labelRotation = 45, positiveColor = "#7f8da9",
   negativeColor = "#db4c3c", names = c("low", "open", "close", "high"),
   dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD",
-  ""))
+  ""), ...)
 }
 \arguments{
 \item{data}{\code{data.frame} dataframe with at least 5 columns : 
@@ -43,6 +43,8 @@ Possible period values:
 fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 It's also possible to supply a number for increments, i.e. '15mm'
 which will instruct the chart that your data is supplied in 15 minute increments.}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \description{
 amCandlestick computes a candlestick chart of the given value.

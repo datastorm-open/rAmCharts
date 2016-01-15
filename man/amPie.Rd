@@ -4,7 +4,7 @@
 \alias{amPie}
 \title{Plotting pie chart using rAmCharts}
 \usage{
-amPie(data, show_values = TRUE, third_dim = FALSE, inner_radius = 0)
+amPie(data, show_values = TRUE, third_dim = FALSE, inner_radius = 0, ...)
 }
 \arguments{
 \item{data}{\code{data.frame} dataframe with at least 2 columns : 
@@ -16,6 +16,8 @@ You can add a third column "color" (character, colors in hexadecimal).}
 \item{third_dim}{\code{boolean} if TRUE, chart is displayed in 3D}
 
 \item{inner_radius}{\code{numeric} value between 0 and 100}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \description{
 amPie computes a pie chart of the given value.

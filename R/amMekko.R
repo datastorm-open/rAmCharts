@@ -9,13 +9,14 @@
 #' @param ylab \code{character} label for y-axis.
 #' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 #' @param show_values \code{boolean} TRUE to display values.
+#' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' @example examples/amMekko_examples.R
 #' 
 #' @export
 amMekko <- function(x, y, data, xlab = "", 
                     ylab = "", groups_color = NULL,
-                    horiz = FALSE, show_values = FALSE) {
+                    horiz = FALSE, show_values = FALSE, ...) {
   
   
   ##test
@@ -84,7 +85,7 @@ amMekko <- function(x, y, data, xlab = "",
                      title = valcol, labelText = label_text)
   })
 
+  res <- amOptions(res, ...)
   res
-  
 }
 

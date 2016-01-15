@@ -6,7 +6,7 @@
 \usage{
 amFunnel(data, inverse = FALSE, neck_height = NULL, neck_width = NULL,
   third_dim = FALSE, label_side = "right", margin_right = 160,
-  margin_left = 15)
+  margin_left = 15, ...)
 }
 \arguments{
 \item{data}{a data frame of at least 2 columns : value (numeric, positive), 
@@ -29,6 +29,8 @@ pyramid chart (without a bottleneck)}
 \item{margin_right}{\code{numeric} margin at the right side}
 
 \item{margin_left}{\code{numeric} margin at the left side}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \description{
 amFunnel computes a funnel chart of the given value.

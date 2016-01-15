@@ -8,12 +8,14 @@
 #' @param start \code{numeric} value from which to start
 #' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 #' @param show_values \code{boolean} TRUE to display values on the chart.
+#' @param ... see \code{\link{amOptions}} for more options
+#' 
 #' @example examples/amWaterfall_examples.R
 #' 
 #' @export
 
 amWaterfall <- function(data, start = 0, horiz = FALSE,
-                        show_values = FALSE) {
+                        show_values = FALSE, ...) {
   
   
   
@@ -141,5 +143,8 @@ amWaterfall <- function(data, start = 0, horiz = FALSE,
     
   })
   
+  
+  res <- amOptions(res, ...)
   res
+  
 }

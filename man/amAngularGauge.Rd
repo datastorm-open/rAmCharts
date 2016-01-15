@@ -9,7 +9,7 @@ amAngularGauge(x, start = 0, end = 100, step = 20,
   width = numeric(), stringsAsFactors = FALSE), text = "", textSize = 25,
   secondAxe = FALSE, start2 = 0, end2 = 100, step2 = 20,
   bands2 = data.frame(start = numeric(), end = numeric(), color = character(),
-  stringsAsFactors = FALSE))
+  stringsAsFactors = FALSE), ...)
 }
 \arguments{
 \item{x}{an integer of the value for which the angular gauge is desired.}
@@ -39,6 +39,8 @@ set to 10.}
 
 \item{bands2}{a list containing lists with bands informations for the second axe, named : bandStartValue (numeric),
 bandEndValue (numeric), bandColor (hexadecimal color value)}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \description{
 amAngularGauge computes a gauge of the given value.

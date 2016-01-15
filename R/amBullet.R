@@ -13,6 +13,7 @@
 #' @param steps \code{boolean} default set to TRUE
 #' @param text \code{character} text
 #' @param horiz \code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one
+#' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' @example examples/amBullet_examples.R
 #'
@@ -22,7 +23,7 @@
 amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
                         limit = 85, limit_color = "#000000", 
                         steps = TRUE, 
-                     text = "", horiz = TRUE, rates) {
+                     text = "", horiz = TRUE, rates, ...) {
 
   if (missing(rates))
     rates <- data.frame(name = c("excelent", "good", "average", "poor", "bad"),
@@ -102,5 +103,8 @@ amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
 #     return(chart)
 #   }
   
+  
+  
+  chart <- amOptions(chart, ...)
   chart
 }

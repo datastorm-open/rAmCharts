@@ -16,6 +16,8 @@
 #' @param step2 \code{numeric} intervals size for the second axe if secondAxe is TRUE.
 #' @param bands2 a list containing lists with bands informations for the second axe, named : bandStartValue (numeric),
 #' bandEndValue (numeric), bandColor (hexadecimal color value)
+#' @param ... see \code{\link{amOptions}} for more options
+#' 
 #' @example examples/amGauge_examples.R
 #' 
 #' @import pipeR
@@ -30,7 +32,7 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
                            end2 = 100, step2 = 20, 
                            bands2 = data.frame(start = numeric(), end = numeric(),
                                                     color = character(),
-                                               stringsAsFactors = FALSE)) {
+                                               stringsAsFactors = FALSE), ...) {
   ##Test
   #x
   .testNumericLength1(x)
@@ -145,6 +147,7 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
 #     return(res)
 #   }
   
+  res <- amOptions(res, ...)
   res
 }
 
@@ -159,13 +162,15 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
 #' @param color \code{character} hexadecimal color value or a vector of colors
 #' @param text \code{character} text
 #' @param textSize \code{numeric} text size
+#' @param ... see \code{\link{amOptions}} for more options
+#' 
 #' @example examples/amSolidGauge_examples.R
 #' @import data.table
 #' @export
 #' 
 amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
                          color = "", text = "",
-                         textSize = 20) {
+                         textSize = 20, ...) {
   
   if (!requireNamespace(package = "pipeR")) {
     stop ("Please install the package pipeR for running this function")
@@ -251,6 +256,8 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
 #     return(res)
 #   }
   
+  
+  res <- amOptions(res, ...)
   res
 }
 

@@ -8,7 +8,7 @@ amBarplot(x, y, data, xlab = "", ylab = "", groups_color = NULL,
   horiz = FALSE, labelRotation = 0, stack_type = "none",
   layered = FALSE, show_values = FALSE, third_dim = FALSE,
   dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD",
-  ""))
+  ""), ...)
 }
 \arguments{
 \item{x}{\code{character}, column name for x-axis or \code{numeric} value of the corresponding column.
@@ -57,6 +57,8 @@ Possible period values:
 fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 It's also possible to supply a number for increments, i.e. '15mm'
 which will instruct the chart that your data is supplied in 15 minute increments.}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \value{
 An object of class \linkS4class{AmChart}.

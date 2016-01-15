@@ -5,7 +5,8 @@
 \title{Plotting bullet chart using rAmCharts}
 \usage{
 amBullet(value, min = 0, max = 100, val_color = "#000000", limit = 85,
-  limit_color = "#000000", steps = TRUE, text = "", horiz = TRUE, rates)
+  limit_color = "#000000", steps = TRUE, text = "", horiz = TRUE, rates,
+  ...)
 }
 \arguments{
 \item{value}{\code{numeric}}
@@ -28,6 +29,8 @@ amBullet(value, min = 0, max = 100, val_color = "#000000", limit = 85,
 
 \item{rates}{a data frame with 4 columns : name (character), min (numeric), max (numeric), 
 and color (character, color in hexadecimal)}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \description{
 amBullet computes a bullet chart of the given value.

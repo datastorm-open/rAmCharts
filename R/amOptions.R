@@ -7,6 +7,8 @@
 #' @param legendPosision \code{character}, control legend position,
 #' can be "left", "right", "top" or "bottom", default "rigth". Only use if legend = TRUE.
 #' @param export \code{boolean}, TRUE or FALSE, default FALSE, display export if TRUE
+#' @param exportFormat \code{character} export format to keep, must be in   JPG, PNG ,SVG,
+#' CSV ,JSON, PDF, XLSX, PRINT
 #' @param creditsPosition \code{character},  control credits position,
 #' can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left
 #' @param theme \code{character}, control theme.Can be "none","light","dark","patterns","chalk",
@@ -66,7 +68,7 @@
 #' @rdname amOptions
 #' @export
 amOptions <- function(chart, legend = FALSE,legendPosision = "right", 
-                      export = FALSE, creditsPosition = "top-left", theme = "none",
+                      export = FALSE, exportFormat = NULL, creditsPosition = "top-left", theme = "none",
                       main = "", mainColor = "#000000", mainSize = 15,  ...) {
   #Control
   
@@ -79,6 +81,9 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right",
   
   #Export
   .testLogicalLength1(export)
+  
+  #ExportFormat
+  .testIn(exportFormat,c("JPG", "PNG" ,"SVG", "CSV" ,"JSON", "PDF", "XLSX", "PRINT"))
   
   #creditsPosition
   .testIn(creditsPosition %in% c("top-left", "top-right", "bottom-left", "bottom-right"))
@@ -111,8 +116,19 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right",
   #Set export
   if (export == TRUE)
   {
-    
+    if (is.null(exportFormat))
+    {
     chart <- chart %>>% setProperties(export = list(enabled = TRUE))
+    }else{
+      menuc <- sapply(exportFormat, function(X){
+        list(format = X, label = X)}, simplify = FALSE, USE.NAMES = FALSE)
+      if(length(exportFormat) == 1)
+      {
+      chart <- chart %>>% setProperties(export = list(enabled = TRUE, menu = menuc))
+      }else{
+        chart <- chart %>>% setProperties(export = list(enabled = TRUE, menu = list(list(class = "export-main" , menu = menuc))))
+      }
+    }
   }
   
   chart <- chart %>>% setProperties(creditsPosition =  creditsPosition)

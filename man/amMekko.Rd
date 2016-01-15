@@ -5,7 +5,7 @@
 \title{Plotting mekko chart (quali vs quali) using rAmCharts}
 \usage{
 amMekko(x, y, data, xlab = "", ylab = "", groups_color = NULL,
-  horiz = FALSE, show_values = FALSE)
+  horiz = FALSE, show_values = FALSE, ...)
 }
 \arguments{
 \item{x}{\code{character} column name for x-axis}
@@ -24,11 +24,14 @@ same length as the number of y modalities.}
 \item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
 
 \item{show_values}{\code{boolean} TRUE to display values.}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \description{
 amMekko computes a mekko chart of the given values.
 }
 \examples{
+library(pipeR)
 data_mekko <- data.frame(var1 = c(rep("A1", 150), rep("A2", 350), rep("A3", 500)),
                          var2 = sample(c("B1", "B2", "B3", "B4", "B5", "B6"), 
                                        1000, replace = TRUE))
@@ -39,7 +42,7 @@ amMekko(x = "var1", y = "var2", data = data_mekko)
 amMekko(x = "var1", y = "var2", data = data_mekko, horiz = TRUE)
 
 #display values :
-amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)
+amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)\%>>\%amOptions()
 
 }
 

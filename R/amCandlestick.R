@@ -23,6 +23,7 @@
 #' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 #' @param labelRotation \code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
 #' If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.
+#' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' @example examples/amCandlestick_examples.R
 #' 
@@ -31,7 +32,7 @@
 amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, labelRotation = 45,
                           positiveColor = "#7f8da9", negativeColor = "#db4c3c",
                           names = c("low", "open", "close", "high"),
-                          dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""))
+                          dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
   
   #data format
@@ -67,7 +68,7 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, labelRotati
   
   parseDates <- (!is.null(dataDateFormat))
   
-  pipeR::pipeline(
+  chart <- pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = "category", precision = 2,
                   dataDateFormat = dataDateFormat, rotate = horiz),
     addValueAxis(title = xlab, position = 'left', gridAlpha = 0.1),
@@ -82,5 +83,10 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, labelRotati
                                   names[2], "<b>[[open]]</b><br>",
                                   names[1], ":<b>[[low]]</b><br>"))
   )
+  
+  
+  
+  chart <- amOptions(chart, ...)
+  chart
   
 }

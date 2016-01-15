@@ -5,7 +5,7 @@
 \title{Plotting solid gauge using rAmCharts}
 \usage{
 amSolidGauge(x, min = 0, max = 100, type = "full", width = 20,
-  color = "", text = "", textSize = 20)
+  color = "", text = "", textSize = 20, ...)
 }
 \arguments{
 \item{x}{\code{integer} an integer of the value for which the solid gauge is desired.}
@@ -23,6 +23,8 @@ amSolidGauge(x, min = 0, max = 100, type = "full", width = 20,
 \item{text}{\code{character} text}
 
 \item{textSize}{\code{numeric} text size}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \description{
 amSolidGauge computes a gauge of the given value.

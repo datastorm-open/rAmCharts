@@ -6,6 +6,7 @@
 #' @param show_values \code{boolean} TRUE to display values.
 #' @param third_dim \code{boolean} if TRUE, chart is displayed in 3D
 #' @param inner_radius \code{numeric} value between 0 and 100
+#' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' @example examples/amPie_examples.R
 #' 
@@ -13,7 +14,7 @@
 #'     
 #' @export
 
-amPie <- function(data,show_values = TRUE, third_dim = FALSE, inner_radius = 0) {
+amPie <- function(data,show_values = TRUE, third_dim = FALSE, inner_radius = 0, ...) {
   
   
   ##Test
@@ -53,5 +54,7 @@ amPie <- function(data,show_values = TRUE, third_dim = FALSE, inner_radius = 0) 
                       innerRadius = paste(inner_radius,"%"))
   }
   
+  
+  res <- amOptions(res, ...)
   res
 }

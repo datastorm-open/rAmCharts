@@ -4,7 +4,7 @@
 \alias{amWind}
 \title{Plotting wind using rAmCharts}
 \usage{
-amWind(data, col = NULL, backTransparency = 0.5)
+amWind(data, col = NULL, backTransparency = 0.5, ...)
 }
 \arguments{
 \item{data}{: columns are series of values, from week wind (first column) to strong wind (last column)}
@@ -12,6 +12,8 @@ amWind(data, col = NULL, backTransparency = 0.5)
 \item{col}{: color of series}
 
 \item{backTransparency}{: background transparency}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \description{
 wind computes a windplot of the given data values.

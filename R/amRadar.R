@@ -7,6 +7,7 @@
 #' @param backTransparency background transparency
 #' @param type "polygons" or "circle", type of radar
 #' @param pch symbols
+#' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' 
 #' @example examples/amRadar_examples.R
@@ -15,7 +16,7 @@
 #' @import data.table
 #' @rdname amRadar
 #' @export
-amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons", pch = "round") {
+amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons", pch = "round", ...) {
   
   #data
   data <- as.data.frame(data)
@@ -64,9 +65,13 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
             bullet = as.character(x[4]))
   })
   
-  amRadarChart() %>>% 
+  res <- amRadarChart() %>>% 
     setDataProvider(data) %>>% 
     setProperties(type = "radar", theme = "light", categoryField = "label") %>>% 
     setGraphs(graphs) %>>% 
     addValueAxes(gridType = type)
+  
+  res <- amOptions(res, ...)
+  res
+  
 }

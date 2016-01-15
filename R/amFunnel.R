@@ -13,13 +13,15 @@
 #' @param label_side \code{character} label position : "right" or "left"
 #' @param margin_right \code{numeric} margin at the right side
 #' @param margin_left \code{numeric} margin at the left side
+#' @param ... see \code{\link{amOptions}} for more options
+#' 
 #' @example examples/amFunnel_examples.R
 #'
 #' @export
 #' 
 amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NULL, 
                      third_dim = FALSE,label_side = "right", margin_right = 160,
-                     margin_left = 15) {
+                     margin_left = 15, ...) {
   
   
   
@@ -95,5 +97,6 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
 #     return(res)
 #   }
   
+  res <- amOptions(res, ...)
   res
 }

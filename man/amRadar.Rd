@@ -5,7 +5,7 @@
 \title{Plotting radar using rAmCharts}
 \usage{
 amRadar(data, col = NULL, backTransparency = 0.5, type = "polygons",
-  pch = "round")
+  pch = "round", ...)
 }
 \arguments{
 \item{data}{first column is names "label", other columns are series of values}
@@ -17,6 +17,8 @@ amRadar(data, col = NULL, backTransparency = 0.5, type = "polygons",
 \item{type}{"polygons" or "circle", type of radar}
 
 \item{pch}{symbols}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \description{
 radar computes a radarplot of the given data values.

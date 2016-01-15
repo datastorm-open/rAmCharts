@@ -34,6 +34,7 @@
 #' fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
+#' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 
@@ -51,7 +52,7 @@
 #' 
 amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,horiz = FALSE, labelRotation = 0,
                       stack_type = "none", layered = FALSE, show_values = FALSE, third_dim = FALSE,
-                      dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""))
+                      dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
   
   if(!is.data.frame(data)) {
@@ -213,7 +214,7 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
     }
   }
   
+  res <- amOptions(res, ...)
   res
-  
 }
 

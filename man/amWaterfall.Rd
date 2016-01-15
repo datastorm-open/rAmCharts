@@ -4,7 +4,7 @@
 \alias{amWaterfall}
 \title{Plotting waterfall chart using rAmCharts}
 \usage{
-amWaterfall(data, start = 0, horiz = FALSE, show_values = FALSE)
+amWaterfall(data, start = 0, horiz = FALSE, show_values = FALSE, ...)
 }
 \arguments{
 \item{data}{\code{data.frame} dataframe with at least 3 columns : 
@@ -18,6 +18,8 @@ display when mouse is on the graphic ('<br>' for a new line).}
 \item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
 
 \item{show_values}{\code{boolean} TRUE to display values on the chart.}
+
+\item{...}{see \code{\link{amOptions}} for more options}
 }
 \description{
 amWaterfall computes a waterfall chart of the given value.

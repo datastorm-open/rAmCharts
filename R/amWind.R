@@ -6,6 +6,7 @@
 #' @param data : columns are series of values, from week wind (first column) to strong wind (last column)
 #' @param col : color of series
 #' @param backTransparency : background transparency
+#' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' 
 #' @seealso \code{\link{amRadar}}
@@ -19,7 +20,7 @@
 #' @rdname amWind
 #' @export
 #' 
-amWind <- function(data, col = NULL,  backTransparency = 0.5) {
+amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   
   
   #backTransparency
@@ -81,12 +82,15 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5) {
   }
   
   data <- cbind(data,databullet)
-  amRadarChart() %>>% 
+  res <- amRadarChart() %>>% 
     setDataProvider(data) %>>% 
     setProperties(type = "radar", theme = "light", startDuration = 1, categoryField = "labels") %>>% 
     setGraphs(graphs) %>>% 
-    setLegend(amLegend( labelText = "[[title]]",switchable = FALSE, align="right",markerBorderColor = "#000000")) %>>% 
     addValueAxes(gridType = "circle")
+  
+  
+  res <- amOptions(res, ...)
+  res
 }
 
 
