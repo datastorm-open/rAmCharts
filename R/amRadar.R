@@ -2,11 +2,13 @@
 #' 
 #' @description  radar computes a radarplot of the given data values.
 #' 
-#' @param data first column is names "label", other columns are series of values
-#' @param col color of series
-#' @param backTransparency background transparency
-#' @param type "polygons" or "circle", type of radar
-#' @param pch symbols
+#' @param data a data frame first column is named "label" (character), other columns are series of values
+#' @param col  \code{character} color(s) of serie(s) hexadecimal like "#00FF00"
+#' @param backTransparency \code{numeric} background transparency, between 0 and 1
+#' @param type \code{character} "polygons" or "circle", type of radar
+#' @param pch \code{character} symbols must be in "round", "square", "triangleUp", 
+#' "triangleDown", "triangleLeft", "triangleRight", "bubble", 
+#' "diamond", "xError", "yError" 
 #' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' 
@@ -67,7 +69,7 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
   
   res <- amRadarChart() %>>% 
     setDataProvider(data) %>>% 
-    setProperties(type = "radar", theme = "light", categoryField = "label") %>>% 
+    setProperties(type = "radar", categoryField = "label") %>>% 
     setGraphs(graphs) %>>% 
     addValueAxes(gridType = type)
   
