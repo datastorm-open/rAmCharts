@@ -80,7 +80,9 @@
 {
   if (is.null(arg)) {
     arg <- substitute(param)
-  } else {}
+  } else {
+    stopifnot(is.character(arg) && length(arg) == 1)
+  }
   
   stopifnot(is.numeric(len))
   
@@ -98,9 +100,11 @@
 ##Test if all elemnt of vect are in control
 .testIn <- function (vect, control, arg = NULL)
 {
-  if (!is.null(arg)) {
+  if (is.null(arg)) {
     arg <- substitute(vect)
-  } else {}
+  } else {
+    stopifnot(is.character(arg) && length(arg) == 1)
+  }
   
   if (!all(vect %in% control)) {
     stop(paste0("Element(s) of ", arg," are not in [",paste(control, collapse = ", "), "]"))
@@ -112,7 +116,7 @@
 #Test numeric and length 1
 .testNumericLength1 <- function (num)
 {
-  arg <- substitute(num)
+  arg <- as.character(substitute(num))
   .testLength(param = num, len = 1, arg = arg)
   .testNumeric(num = num, arg = arg)
   
@@ -122,7 +126,7 @@
 #Test character and length 1
 .testCharacterLength1 <- function (char)
 {
-  arg <- substitute(char)
+  arg <- as.character(substitute(char))
   .testLength(param = char, len = 1, arg = arg)
   .testCharacter(char = char, arg = arg)
   
@@ -133,7 +137,7 @@
 #Test logical and length 1
 .testLogicalLength1 <- function (logi)
 {
-  arg <- substitute(logi)
+  arg <- as.character(substitute(logi))
   .testLength(param = logi, len = 1, arg = arg)
   .testLogical(logi = logi, arg = arg)
   

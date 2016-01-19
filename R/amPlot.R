@@ -14,7 +14,6 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' @param ylab a title for the y axis, default NULL
 #' @param main an overall title for the plot, default ""
 #' @param bullet default "round"
-#' @param export default FALSE
 #' @param type what type of plot should be drawn, default "p".
 #' @param col either a factor or a \code{character} default "gray"
 #' @param weights for x/y charts only, default rep(1, x)
@@ -24,20 +23,12 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' all you need to do is to set data date format and the chart will parse dates to date objects.
 #' See available format at https://www.amcharts.com/tutorials/formatting-dates/.
 #' @param parseDates default FALSE, if TRUE argument \code{dataDateFormat} has to be provided.
-#' @param cursor default TRUE
-#' @param scrollbar default TRUE
 #' @param error only when type is "xError" "yError" default NULL,
 #' @param xlim range of x
 #' @param ylim range of y
 #' @param cex bullet size
 #' @param lty line type (dashes)
 #' @param lwd line width 
-#' @param hideXScrollbar (\code{FALSE} by default)
-#' optionnal for xy charts when scrollbar is enabled.
-#' Specifies if Scrollbar of X axis (horizontal) should be hidden.
-#' @param hideYScrollbar (\code{TRUE} by default)
-#' optionnal for xy charts when scrollbar is enabled.
-#' Specifies if Scrollbar of Y axis (vertical) should be hidden.
 #' @param ... Don't use... For S3 Definition...
 #' 
 #' @example examples/amPlot_examples.R
@@ -61,9 +52,8 @@ amPlot.default <- function(x, ...) "Wrong class"
 #' @export
 #' 
 amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray", 
-                           export = FALSE, weights = NULL, scrollbar = FALSE,
-                           precision = 2, cursor = TRUE, id, error, xlab, ylab,
-                           main, lty, cex, lwd, xlim, ylim, hideYScrollbar, hideXScrollbar,...)
+                           weights = NULL, precision = 2, id, error, xlab, ylab,
+                           main, lty, cex, lwd, xlim, ylim,...)
 {
   # check arguments validity
   # ---
@@ -181,17 +171,11 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
       valueAxis(title = xlab, position = "bottom", axisAlpha = 0)
     }
     
-    # scrollbar conditions
-    if (missing(hideYScrollbar)) hideYScrollbar <- TRUE
-    if (missing(hideXScrollbar)) hideXScrollbar <- FALSE
-    
     graph_obj <- getGraphXY(type = type, bullet = bullet, cex = cex, title = graphTitle,
                             lwd = lwd, lty = lty, bulletAlpha = bulletAlpha,
                             balloonText = balloonText, weighted = weighted)
     
     amXYChart(precision = precision) %>>%
-      setProperties(hideYScrollbar = hideYScrollbar) %>>%
-      setProperties(hideXScrollbar = hideXScrollbar) %>>%
       addGraph(amGraph = graph_obj) %>>%
       addValueAxis(valueAxis = valueAxis_bottom) %>>%
       setDataProvider(dataProvider = dt) %>>%
@@ -209,12 +193,11 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
   } else {
     valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y")
   }
+  
   chart <- addValueAxis(.Object = chart, valueAxis = valueAxis_left)
   
   # return the object
-  if (missing(main)) main <- ""
-  amRenderPlot(chart = chart, main = main, cursor = cursor,
-               export = export, scrollbar = scrollbar)
+  chart
 }
 
 #' @rdname amPlot
@@ -225,11 +208,10 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
 #' @export
 #' 
 amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray", 
-                             export = FALSE, weights = NULL, scrollbar = FALSE,
-                             precision = 2, cursor = TRUE,
+                            weights = NULL, precision = 2,
                              parseDates = FALSE, dataDateFormat,
                              id, error, xlab, ylab,
-                             main, lty, cex, lwd, xlim, ylim, hideYScrollbar, hideXScrollbar,...)
+                             main, lty, cex, lwd, xlim, ylim, ...)
 {
   # check arguments validity
   # ---
@@ -307,12 +289,11 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
   } else {
     valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y")
   }
+  
   chart <- addValueAxis(.Object = chart, valueAxis = valueAxis_left)
   
   # return the object
-  if (missing(main)) main <- ""
-  amRenderPlot(chart = chart, main = main, cursor = cursor,
-               export = export, scrollbar = scrollbar)
+  chart
 }
 
 
@@ -324,35 +305,30 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
 #' @export
 #' 
 amPlot.factor <- function(x, y, bullet = "round", type = "p", col = "gray", 
-                          export = FALSE, weights = NULL, scrollbar = FALSE,
-                          precision = 2, cursor = TRUE,
+                          weights = NULL, precision = 2, 
                           parseDates = FALSE, dataDateFormat = NULL,
                           id, error, xlab, ylab,
-                          main, lty, cex, lwd, xlim, ylim, hideYScrollbar, hideXScrollbar,...)
+                          main, lty, cex, lwd, xlim, ylim, ...)
 {
   amPlot.character(x = as.character(x), y = y, bullet = bullet, type = type, col = col, 
-                   export = export, weights = weights, scrollbar = scrollbar,
-                   precision = precision, cursor = cursor,
+                   weights = weights, precision = precision,
                    parseDates = parseDates, dataDateFormat = dataDateFormat,
                    id = id, error = error, xlab = xlab, ylab = ylab,
                    main = main, lty = lty, cex = cex, lwd = lwd,
-                   xlim = xlim, ylim = xlim, hideYScrollbar = hideYScrollbar,
-                   hideXScrollbar = hideXScrollbar,...)
+                   xlim = xlim, ylim = xlim, ...)
 }
 
 #' @rdname amPlot
 #' @param columns (optional) either a vector of \code{character} containing
 #' the names of the series to draw, or a \code{numeric} vector of indices.
 #' By default all numeric columns will be drawn.
-#' @param legend enable legend ? (default \code{TRUE})
 #' 
 #' @import pipeR
 #' @import data.table
 #'
 #' @export
 #' 
-amPlot.data.frame <- function(x, columns, type = "l", cursor = TRUE, scrollbar = FALSE,
-                              export = FALSE, legend = TRUE, precision = 2, xlab, ylab, main, ...)
+amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab, main, ...)
 {
   if (missing(main)) main <- "amPlot.data.frame"
   if (missing(ylab)) ylab <- deparse(substitute(x))
@@ -404,12 +380,11 @@ amPlot.data.frame <- function(x, columns, type = "l", cursor = TRUE, scrollbar =
     chart <- amPlot(x = x, type = type)
   }
   
-  amRenderPlot(chart = chart, main = main, cursor = cursor,
-               export = export, scrollbar = scrollbar)
+  chart
 }
 
 #' @rdname amPlot
-#' @param data enable legend ? (default \code{TRUE})
+#' @param data dataset
 #' 
 #' @import pipeR
 #' @export
@@ -433,19 +408,6 @@ amPlot.formula <- function (x, data, ...)
     }
   }
   chart
-}
-
-#' @import pipeR
-#' @noRd
-#' 
-amRenderPlot <- function (chart, main, cursor, export, scrollbar)
-{
-  addTitle(.Object = chart, text = main) %>>%
-    setBalloon(borderAlpha = .5, borderThickness = 1, cornerRadius = 5) %>>%
-    setChartCursor(enabled = cursor, cursorColor = "black") %>>%
-    setChartScrollbar(enabled = scrollbar, oppositeAxis = FALSE, offset = 10) %>>%
-    setExport(enabled = export) %>>%
-    setProperties(theme = "light")
 }
 
 amCheck_type <- function(type, valid = c("l", "sl", "st", "p", "b"))

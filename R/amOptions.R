@@ -73,32 +73,32 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right",
   #Control
   
   #Legend
-  .testLogicalLength1(legend)
+  .testLogicalLength1(logi = legend)
   
   #legendPosision
-  .testCharacter(legendPosision)
-  .testIn(legendPosision, c("left", "right", "top", "bottom"))
+  .testCharacter(char = legendPosision)
+  .testIn(vect = legendPosision, control = c("left", "right", "top", "bottom"))
   
   #Export
-  .testLogicalLength1(export)
+  .testLogicalLength1(logi = export)
   
   #ExportFormat
-  .testIn(exportFormat,c("JPG", "PNG" ,"SVG", "CSV" ,"JSON", "PDF", "XLSX", "PRINT"))
+  .testIn(vect = exportFormat, control = c("JPG", "PNG" ,"SVG", "CSV" ,"JSON", "PDF", "XLSX", "PRINT"))
   
   #creditsPosition
-  .testIn(creditsPosition %in% c("top-left", "top-right", "bottom-left", "bottom-right"))
+  .testIn(vect = creditsPosition, control = c("top-left", "top-right", "bottom-left", "bottom-right"))
   
   #theme
-  .testIn(theme %in% c("none", "light", "dark", "patterns", "chalk")) 
+  .testIn(vect = theme, control = c("none", "light", "dark", "patterns", "chalk")) 
   
   #main
-  .testCharacterLength1(main)
+  .testCharacterLength1(char = main)
   
   #mainColor
-  .testCharacterLength1(mainColor)
+  .testCharacterLength1(char = mainColor)
   
   #mainsize
-  .testNumericLength1(mainSize)
+  .testNumericLength1(num = mainSize)
   
   #Set legend to graph, usage of useGraphSettings argument depend of graph type
   if (legend == TRUE)

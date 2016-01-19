@@ -25,68 +25,67 @@
 #' 
 amAngularGauge <- function(x, start = 0, end = 100, step = 20, 
                            bands = data.frame(start = numeric(), end = numeric(),
-                                                   color = character(), width = numeric(),
+                                              color = character(), width = numeric(),
                                               stringsAsFactors = FALSE), 
-                          text = "", 
-                          textSize = 25, secondAxe = FALSE, start2 = 0, 
+                           text = "", textSize = 25, secondAxe = FALSE, start2 = 0, 
                            end2 = 100, step2 = 20, 
                            bands2 = data.frame(start = numeric(), end = numeric(),
-                                                    color = character(),
+                                               color = character(),
                                                stringsAsFactors = FALSE), ...) {
   ##Test
   #x
-  .testNumericLength1(x)
+  .testNumericLength1(num = x)
   
   #start
-  .testNumeric(start)
+  .testNumeric(num = start)
   
   #end
-  .testNumeric(end)
+  .testNumeric(num = end)
   
   #step
-  .testNumeric(step)
+  .testNumeric(num = step)
   
   #good colanmes(bands)
-  .testIn("start",  colnames(bands))
-  .testIn("end",  colnames(bands))
-  .testIn("color",  colnames(bands))
+  .testIn(vect = "start",  control = colnames(bands))
+  .testIn(vect = "end",  control = colnames(bands))
+  .testIn(vect = "color",  control = colnames(bands))
   
   
   #good format bands
-  .testNumeric(bands$start, arg = "bands$start")
-  .testNumeric(bands$end, arg = "bands$end")
-  .testCharacter(bands$color, arg = "bands$color")
+  .testNumeric(num = bands$start, arg = "bands$start")
+  .testNumeric(num = bands$end, arg = "bands$end")
+  .testCharacter(char = bands$color, arg = "bands$color")
   
   
- 
+  
   text <- as.character(text)
   
   #text size
-  .testNumeric(textSize)
-
-  .testLogicalLength1(secondAxe)
-
-  .testNumeric(start2)
-  .testNumeric(end2)
-  .testNumeric(step2)
-
+  .testNumeric(num = textSize)
+  
+  .testLogicalLength1(logi = secondAxe)
+  
+  .testNumeric(num = start2)
+  .testNumeric(num = end2)
+  .testNumeric(num = step2)
+  
   
   #good colanmes(bands)
-  .testIn("start",  colnames(bands2))
-  .testIn("end",  colnames(bands2))
-  .testIn("color",  colnames(bands2))
+  .testIn(vect = "start",  control = colnames(bands2))
+  .testIn(vect = "end",  control = colnames(bands2))
+  .testIn(vect = "color",  control = colnames(bands2))
   
   
   #good format bands
-  .testNumeric(bands2$start, arg = "bands2$start")
-  .testNumeric(bands2$end, arg = "bands2$end")
-  .testCharacter(bands2$color, arg = "bands2$color")
+  .testNumeric(num = bands2$start, arg = "bands2$start")
+  .testNumeric(num = bands2$end, arg = "bands2$end")
+  .testCharacter(char = bands2$color, arg = "bands2$color")
   
   
-  .testInterval(start, bsup = end)
-  .testInterval(start2, bsup = end2)
+  .testInterval(num = start, bsup = end)
+  .testInterval(num = start2, bsup = end2)
   
-  .testInterval(x,binf = start, bsup = end)
+  .testInterval(num = x, binf = start, bsup = end)
   
   bands_1 <- list()
   
@@ -106,8 +105,8 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
         innerRadius <- "97%"
       }
       bands_1[[i]] <<- gaugeBand(startValue = bands$start[i], 
-                               endValue = bands$end[i], 
-                               color = bands$color[i], innerRadius = innerRadius)
+                                 endValue = bands$end[i], 
+                                 color = bands$color[i], innerRadius = innerRadius)
     })
   } else {
     bands_1[[1]] <- gaugeBand()
@@ -119,8 +118,8 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
     if(nrow(bands2) > 0) {
       sapply(1:nrow(bands2), FUN = function(i) {
         bands_2[[i]] <<- gaugeBand(startValue = bands2$start[i], 
-                                  endValue = bands2$end[i], 
-                                  color = bands2$color[i], innerRadius = "100%")
+                                   endValue = bands2$end[i], 
+                                   color = bands2$color[i], innerRadius = "100%")
       })
     } else {
       bands_2[[1]] <- gaugeBand()
@@ -141,11 +140,11 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
                    bands = bands_2, inside = FALSE, gridInside = FALSE, radius = "100%")
   }
   
-#   if (isTRUE(getOption('knitr.in.progress'))) {
-#     return(plot(res))
-#   } else {
-#     return(res)
-#   }
+  #   if (isTRUE(getOption('knitr.in.progress'))) {
+  #     return(plot(res))
+  #   } else {
+  #     return(res)
+  #   }
   
   res <- amOptions(res, ...)
   res
@@ -178,36 +177,36 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
   
   
   #x
-  .testNumericLength1(x)
+  .testNumericLength1(num = x)
   
   #min
-  .testNumeric(min)
+  .testNumeric(num = min)
   
   #max
-  .testNumeric(max)
-
+  .testNumeric(num = max)
+  
   #type
-  .testCharacter(type)
-  .testIn(type, c("full", "semi"))
+  .testCharacter(char = type)
+  .testIn(vect = type, control = c("full", "semi"))
   
   #width
-  .testNumeric(width)
-
-  #color
-  .testCharacter(color)
-
-
+  .testNumeric(num = width)
   
-  text = as.character(text)
+  #color
+  .testCharacter(char = color)
+  
+  
+  
+  text <- as.character(text)
   
   #textSize
-  .testNumericLength1(textSize)
-
-  #min, max, x
-  .testInterval(min, bsup = max)
-  .testInterval(x, binf = min, bsup = max)
+  .testNumericLength1(num = textSize)
   
-
+  #min, max, x
+  .testInterval(num = min, bsup = max)
+  .testInterval(num = x, binf = min, bsup = max)
+  
+  
   
   if(width < 100 & width > 0) {
     innerRadius <- paste0(100-width, "%")
@@ -250,11 +249,11 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
             tickAlpha = 0, axisColor= "#c1cdcd", labelsEnabled = FALSE)
   )
   
-#   if (isTRUE(getOption('knitr.in.progress'))) {
-#     return(plot(res))
-#   } else {
-#     return(res)
-#   }
+  #   if (isTRUE(getOption('knitr.in.progress'))) {
+  #     return(plot(res))
+  #   } else {
+  #     return(res)
+  #   }
   
   
   res <- amOptions(res, ...)

@@ -8,15 +8,17 @@ amRadar(data, col = NULL, backTransparency = 0.5, type = "polygons",
   pch = "round", ...)
 }
 \arguments{
-\item{data}{first column is names "label", other columns are series of values}
+\item{data}{a data frame first column is named "label" (character), other columns are series of values}
 
-\item{col}{color of series}
+\item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00"}
 
-\item{backTransparency}{background transparency}
+\item{backTransparency}{\code{numeric} background transparency, between 0 and 1}
 
-\item{type}{"polygons" or "circle", type of radar}
+\item{type}{\code{character} "polygons" or "circle", type of radar}
 
-\item{pch}{symbols}
+\item{pch}{\code{character} symbols must be in "round", "square", "triangleUp", 
+"triangleDown", "triangleLeft", "triangleRight", "bubble", 
+"diamond", "xError", "yError"}
 
 \item{...}{see \code{\link{amOptions}} for more options}
 }
