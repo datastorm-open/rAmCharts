@@ -6,7 +6,7 @@
 \title{10 Richest Countries in the World by 2015 GDP}
 \format{Dataset of 2 columns and 10 rows
 \describe{
-  \item{country}{\code{chracter}}
+  \item{country}{\code{character}}
   \item{gdp}{\code{numeric}}
 }}
 \source{
