@@ -1,155 +1,140 @@
-
 output$lines0 <- rAmCharts::renderAmCharts({
-  ##Data
-  data('AirP')
-  ##Plot
+  # load data
+  data('data_AirPassengers')
+  
+  # plot
   pipeR::pipeline(
-    amSerialChart(dataProvider = AirP, theme='light', categoryField='Period'),
+    amSerialChart(dataProvider = data_AirPassengers, theme = 'light', categoryField = 'Period'),
     addGraph(valueField = 'AirPassengers')
   )
 })
-
-
 
 output$code_lines0 <- renderText({
   "
-  ##Data
-  data('AirP')
-  ##Plot
+  # load data
+  data('data_AirPassengers')
+
+  # plot
   pipeR::pipeline(
-    amSerialChart(dataProvider = AirP, theme='light', categoryField='Period'),
+    amSerialChart(dataProvider = data_AirPassengers, theme = 'light', categoryField = 'Period'),
     addGraph(valueField = 'AirPassengers')
   )
   "
 }) 
 
-
+# ---
 
 output$lines1 <- rAmCharts::renderAmCharts({
-  ##Data
-  data('AirP')
-  ##Plot
+  # load data
+  data('data_AirPassengers')
+  
+  # plot
   pipeR::pipeline(
-    amSerialChart(dataProvider = AirP, theme='light', categoryField='Period') ,
+    amSerialChart(dataProvider = data_AirPassengers, theme='light', categoryField='Period') ,
     addGraph(bullet = 'round', valueField = 'AirPassengers'),
-    setChartScrollbar(),
-    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE)
+    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
+    setChartScrollbar()
   )
 })
-
-
 
 output$code_lines1 <- renderText({
   "
-  ##Data
-  data('AirP')
-  ##Plot
+  # load data
+  data('data_AirPassengers')
+  
+  # plot
   pipeR::pipeline(
-    amSerialChart(dataProvider = AirP, theme='light', categoryField='Period') ,
+    amSerialChart(dataProvider = data_AirPassengers, theme='light', categoryField='Period') ,
     addGraph(bullet = 'round', valueField = 'AirPassengers'),
-    setChartScrollbar(),
-    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE)
+    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
+    setChartScrollbar()
   )
   "
 }) 
 
-
-
-
-
+# ---
 
 output$lines2 <- rAmCharts::renderAmCharts({
-  ##Data
-  data <- data.frame(Class = 1:20, value = rnorm(20))
-  ##Plot
+  # load data
+  data <- data.frame(class = 1:20, value = rnorm(20))
+  
+  # plot
   pipeR::pipeline(
-    amSerialChart(dataProvider = data, theme='light', categoryField='Class') ,
-    addGraph(valueField='value',type='smoothedLine', negativeLineColor =  '#637bb6', lineColor =  '#d1655d'),
-    setChartScrollbar(),
+    amSerialChart(dataProvider = data, theme = 'light', categoryField = 'class') ,
+    addGraph(valueField = 'value', type = 'smoothedLine', negativeLineColor =  '#637bb6', lineColor =  '#d1655d'),
     setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
-    addGuide(dashLength = 6, inside = TRUE , label = 'average', lineAlpha = 1, value = mean(data$value))
+    addGuide(dashLength = 6, inside = TRUE , label = 'average', lineAlpha = 1, value = mean(data$value)),
+    setChartScrollbar()
   )
 })
 
-
-
 output$code_lines2 <- renderText({
   "
-  ##Data
-  data <- data.frame(Class = 1:20, value = rnorm(20))
-  ##Plot
+  # load data
+  data <- data.frame(class = 1:20, value = rnorm(20))
+  
+  # plot
   pipeR::pipeline(
-  amSerialChart(dataProvider = data, theme='light', categoryField='Class') ,
-  addGraph(valueField='value',type='smoothedLine', negativeLineColor =  '#637bb6', lineColor =  '#d1655d'),
-  setChartScrollbar(),
-  setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
-  addGuide(dashLength = 6, inside = TRUE , label = 'average', lineAlpha = 1, value = mean(data$value))
+    amSerialChart(dataProvider = data, theme = 'light', categoryField = 'class') ,
+    addGraph(valueField = 'value', type = 'smoothedLine', negativeLineColor =  '#637bb6', lineColor =  '#d1655d'),
+    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
+    addGuide(dashLength = 6, inside = TRUE , label = 'average', lineAlpha = 1, value = mean(data$value)),
+    setChartScrollbar()
   )
   "
 }) 
 
-
-
-
-
-
+# ---
 
 output$lines3 <- rAmCharts::renderAmCharts({
-  ##Data
-  data('AirP')
-  AirP$Bsup <- AirP$AirPassengers + 1:length(AirP$AirPassengers) / 5 + AirP$AirPassengers / 10
-  AirP$Binf <- AirP$AirPassengers - 1:length(AirP$AirPassengers) / 5 - AirP$AirPassengers / 10
-  ##Plot
+  # load data
+  data('data_AirPassengers')
+  
+  # plot
   pipeR::pipeline(
     amSerialChart(dataProvider = AirP, theme = 'light', categoryField = 'Period') ,
     addGraph(id='curve',valueField='AirPassengers', 
-             balloonText ='AirPassengers : <b>[[AirPassengers]]</b>, [ [[Binf]],[[Bsup]] ]',
+             balloonText ='AirPassengers : <b>[[AirPassengers]]</b>, [[[Binf]], [[Bsup]]]',
              lineColor = '#FF0000'),
     addGraph(id='down',lineAlpha = 0, valueField = 'Binf',
              showBalloon = FALSE, hidden  = TRUE, visibleInLegend = FALSE),
     addGraph(id='up',lineAlpha = 0, valueField = 'Bsup',
              showBalloon = FALSE, visibleInLegend = FALSE, fillAlphas = 0.2,
              fillToGraph = 'down', fillColors = '#FF0000'),
-    setChartScrollbar(),
-    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE)
+    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
+    setChartScrollbar()
   )
-  
 })
 
 
 
 output$code_lines3 <- renderText({
   "
-  data('AirP')
-  AirP$Bsup <- AirP$AirPassengers + 1:length(AirP$AirPassengers) / 5 + AirP$AirPassengers / 10
-  AirP$Binf <- AirP$AirPassengers - 1:length(AirP$AirPassengers) / 5 - AirP$AirPassengers / 10
-  ##Plot
+  # load data
+  data('data_AirPassengers')
+  
+  # plot
   pipeR::pipeline(
     amSerialChart(dataProvider = AirP, theme = 'light', categoryField = 'Period') ,
     addGraph(id='curve',valueField='AirPassengers', 
-             balloonText ='AirPassengers : <b>[[AirPassengers]]</b>, [ [[Binf]],[[Bsup]] ]',
+             balloonText ='AirPassengers : <b>[[AirPassengers]]</b>, [[[Binf]], [[Bsup]]]',
              lineColor = '#FF0000'),
     addGraph(id='down',lineAlpha = 0, valueField = 'Binf',
              showBalloon = FALSE, hidden  = TRUE, visibleInLegend = FALSE),
     addGraph(id='up',lineAlpha = 0, valueField = 'Bsup',
              showBalloon = FALSE, visibleInLegend = FALSE, fillAlphas = 0.2,
              fillToGraph = 'down', fillColors = '#FF0000'),
-    setChartScrollbar(),
-    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE)
+    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
+    setChartScrollbar()
   )
   "
 })
 
 output$lines4 <- rAmCharts::renderAmCharts({
-  ##Data
-  data('AirP')
-  AirP$Bsup <- AirP$AirPassengers + 1:length(AirP$AirPassengers) / 5 + AirP$AirPassengers / 10
-  AirP$Binf <- AirP$AirPassengers - 1:length(AirP$AirPassengers) / 5 - AirP$AirPassengers / 10
-  AirP$AirPassengers2 <- AirP$AirPassengers / 4
-  AirP$Bsup2 <- AirP$Bsup / 4
-  AirP$Binf2 <- AirP$Binf / 4
+  # load data
+  data('data_AirPassengers')
   
-  ##addListener on legend, gestion of show/ unshow of confidence range
+  # prepare the custom legend object
   pipeR::pipeline(
     amLegend(equalWidths=FALSE, position='bottom', valueAlign='left', valueWidth=100),
     addListener('hideItem' , paste0('function(event) {
@@ -166,43 +151,36 @@ output$lines4 <- rAmCharts::renderAmCharts({
     invisible()
   )
   
+  # plot
   pipeR::pipeline(
-    amSerialChart(dataProvider = AirP, theme = 'light', categoryField = 'Period') ,
+    amSerialChart(dataProvider = data_AirPassengers, theme = 'light', categoryField = 'Period', legend = legend) ,
     addGraph(id='C1',valueField='AirPassengers',
-             balloonText ='AirPassengers : <b>[[AirPassengers]]</b>, [ [[Binf]],[[Bsup]] ]',
+             balloonText ='AirPassengers : <b>[[AirPassengers]]</b>, [[[Binf]], [[Bsup]]]',
              lineColor = '#FF0000', title='Air 1'),
     addGraph(id='C1down',lineAlpha = 0, valueField = 'Binf', 
              showBalloon = FALSE, hidden  = TRUE, visibleInLegend = FALSE),
     addGraph(id='C1up',lineAlpha = 0, valueField = 'Bsup',
              showBalloon = FALSE, visibleInLegend = FALSE, fillAlphas = 0.2,
              fillToGraph = 'C1down', fillColors = '#FF0000'),
-    addGraph(id='C2',valueField='AirPassengers2', balloonText ='AirPassengers2 : <b>[[AirPassengers2]]</b>, [ [[Binf2]],[[Bsup2]] ]',
+    addGraph(id='C2',valueField='AirPassengers2', balloonText ='AirPassengers2 : <b>[[AirPassengers2]]</b>, [[[Binf2]], [[Bsup2]]]',
              lineColor = '#00FF00', title='Air 2'),
     addGraph(id='C2down',lineAlpha = 0, valueField = 'Binf2', 
              showBalloon = FALSE, hidden  = TRUE, visibleInLegend = FALSE),
     addGraph(id='C2up',lineAlpha = 0, valueField = 'Bsup2', 
              showBalloon = FALSE, visibleInLegend = FALSE, fillAlphas = 0.2,
              fillToGraph = 'C2down', fillColors = '#00FF00'),
-    
-    setChartScrollbar(),
-    setLegend(legend),
-    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE)
+    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
+    setChartScrollbar()
   )
 })
 
 
 output$code_lines4 <- renderText({
   "
-  ##Data
-  data('AirP')
-  AirP$Bsup <- AirP$AirPassengers + 1:length(AirP$AirPassengers) / 5 + AirP$AirPassengers / 10
-  AirP$Binf <- AirP$AirPassengers - 1:length(AirP$AirPassengers) / 5 - AirP$AirPassengers / 10
-  AirP$AirPassengers2 <- AirP$AirPassengers / 4
-  AirP$Bsup2 <- AirP$Bsup / 4
-  AirP$Binf2 <- AirP$Binf / 4
+  # load data
+  data('data_AirPassengers')
   
-  ##addListener on legend, gestion of show/ unshow of confidence range
-  ##Plot
+  # prepare the custom legend object
   pipeR::pipeline(
     amLegend(equalWidths=FALSE, position='bottom', valueAlign='left', valueWidth=100),
     addListener('hideItem' , paste0('function(event) {
@@ -219,30 +197,31 @@ output$code_lines4 <- renderText({
     invisible()
     )
   
+  # plot
   pipeR::pipeline(
-    amSerialChart(dataProvider = AirP, theme = 'light', categoryField = 'Period') ,
+    amSerialChart(dataProvider = data_AirPassengers, theme = 'light', categoryField = 'Period', legend = legend) ,
     addGraph(id='C1',valueField='AirPassengers',
-             balloonText ='AirPassengers : <b>[[AirPassengers]]</b>, [ [[Binf]],[[Bsup]] ]',
+             balloonText ='AirPassengers : <b>[[AirPassengers]]</b>, [[[Binf]], [[Bsup]]]',
              lineColor = '#FF0000', title='Air 1'),
     addGraph(id='C1down',lineAlpha = 0, valueField = 'Binf', 
              showBalloon = FALSE, hidden  = TRUE, visibleInLegend = FALSE),
     addGraph(id='C1up',lineAlpha = 0, valueField = 'Bsup',
              showBalloon = FALSE, visibleInLegend = FALSE, fillAlphas = 0.2,
              fillToGraph = 'C1down', fillColors = '#FF0000'),
-    addGraph(id='C2',valueField='AirPassengers2', balloonText ='AirPassengers2 : <b>[[AirPassengers2]]</b>, [ [[Binf2]],[[Bsup2]] ]',
+    addGraph(id='C2',valueField='AirPassengers2', balloonText ='AirPassengers2 : <b>[[AirPassengers2]]</b>, [[[Binf2]], [[Bsup2]]]',
              lineColor = '#00FF00', title='Air 2'),
     addGraph(id='C2down',lineAlpha = 0, valueField = 'Binf2', 
              showBalloon = FALSE, hidden  = TRUE, visibleInLegend = FALSE),
     addGraph(id='C2up',lineAlpha = 0, valueField = 'Bsup2', 
              showBalloon = FALSE, visibleInLegend = FALSE, fillAlphas = 0.2,
              fillToGraph = 'C2down', fillColors = '#00FF00'),
-    
-    setChartScrollbar(),
-    setLegend(legend),
-    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE)
+    setChartCursor(valueLineEnabled = TRUE, valueLineBalloonEnabled = TRUE),
+    setChartScrollbar()
   )
   "
 })
+
+# ---
 
 output$lines5 <- rAmCharts::renderAmCharts({
   # prepare data
@@ -332,6 +311,5 @@ output$code_lines5 <- renderText({
     setChartScrollbar(oppositeAxis = FALSE, dragIcon = 'dragIconRectBigBlack'),
     setChartCursor(cursorAlpha = 0)
   )
-"
-  
+  "
 })
