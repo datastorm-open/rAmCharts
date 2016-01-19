@@ -1,6 +1,7 @@
 # -------------------------------------------------------------
 # Data for stock charts
 # -------------------------------------------------------------
+
 #' @title Random data for example
 #' @description A list containing 4 datasets
 #' @format Each datasetis a data.table with 21 rows and 4 variables:
@@ -89,3 +90,18 @@
 "data_waterfall"
 
 
+# -------------------------------------------------------------
+# Data for wind charts
+# -------------------------------------------------------------
+
+#' @title Random data for plotting candlestick chart examples
+#' @description This dataset is used in the examples,
+#' moreover it can be used as a reference if you notice a bug
+#' 
+#' @format Dataset of 3 columns and 8 rows
+#' \describe{
+#'   \item{weak}{\code{numeric}}
+#'   \item{middle}{\code{numeric}}
+#'   \item{strong}{\code{numeric}}
+#' }
+"data_wind"
