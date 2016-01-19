@@ -1,0 +1,9 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^README
+^dev
+^examples
+^NEWS
+^img
+^issues
