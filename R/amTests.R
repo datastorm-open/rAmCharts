@@ -86,7 +86,7 @@
   
   stopifnot(is.numeric(len))
   
-  if (!(length(param) %in% len)) {
+  if (length(param) < min(len) || length(param) > max(len)) {
     stop(paste0("length of ", arg, " must be ",
                 ifelse(length(len) == 1, "", "in ["),
                 paste(len, collapse = ", "),
