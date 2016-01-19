@@ -24,7 +24,7 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
   data <- as.data.frame(data)
   
   .testIn("label", colnames(data))
-
+  
   #Test Numeric data
   datavalue <- data[, -which(colnames(data)=="label"), drop = FALSE]
   invisible(sapply(names(datavalue),function(X){
@@ -38,28 +38,28 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
   if(!is.null(col))
   {
     .testCharacter(col)
-    .testLength(col, c(1, ncol(data) - 1))
+    .testLength(param = col, len = c(1, ncol(data) - 1))
   }
   
   #backTransparency
-  .testNumeric(backTransparency)
-  .testLength(backTransparency, c(1, ncol(data) - 1))
+  .testNumeric(num = backTransparency)
+  .testLength(param = backTransparency, len = c(1, ncol(data) - 1))
   sapply(backTransparency, function(X){.testInterval(X,binf = 0, bsup = 1, arg = "backTransparency")})
-
-
+  
+  
   #type
-  .testIn(type,c("polygons", "circles"))
+  .testIn(vect = type, control = c("polygons", "circles"))
   
   #pch
-  .testCharacter(pch)
-  .testIn(pch, c( "none", "round", "square", "triangleUp", "triangleDown", "triangleLeft", 
-                  "triangleRight", "bubble", "diamond", "xError", "yError"))
-  .testLength(pch, c(1, ncol(data) - 1))
+  .testCharacter(char = pch)
+  .testIn(vect = pch, control = c( "none", "round", "square", "triangleUp", "triangleDown", "triangleLeft", 
+                                   "triangleRight", "bubble", "diamond", "xError", "yError"))
+  .testLength(param = pch, len = c(1, ncol(data) - 1))
   
   if(is.null(col)){col <- ""}
-
+  
   constructGraph <- cbind(names(datavalue),col, backTransparency, pch)
-
+  
   
   graphs <- apply(constructGraph, 1, function(x) {
     amGraph(title = as.character(x[1]), balloonText = "<b>[[title]]</b><br>[[category]] : <b>[[value]]</b>", 
