@@ -64,6 +64,7 @@ testthat::test_that(".testLength", {
   testthat::expect_error(.testLength(param = "e", len = 2))
   testthat::expect_true(.testLength(param = vectNum, len = 4))
   testthat::expect_true(.testLength(param = vectLogical, len = 3))
+  testthat::expect_true(.testLength(param = vectLogical, len = 1:5))
   testthat::expect_error(.testLength(param = vectNum, len = 1:3))
   
   # message
