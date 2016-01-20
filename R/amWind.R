@@ -78,6 +78,7 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
                            fillColors =  as.character(constructGraph[i,2]), 
                            fillAlphas = as.numeric(constructGraph[i,3]), 
                            valueField =  as.character(constructGraph[i,1]), 
+                           bullet = "round",
                            bulletAlpha = 0,
                            legendColor = as.character(constructGraph[i,2]))
   }

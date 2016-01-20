@@ -63,7 +63,7 @@ amPie(data = data_pie)\%>>\%
 
 #Legend position
 amPie(data = data_pie)\%>>\%
-  amOptions(legend = TRUE, legendPosision = "bottom")
+  amOptions(legend = TRUE, legendPosition = "bottom")
 
 #credits Position
 amPie(data = data_pie)\%>>\%
@@ -85,7 +85,7 @@ amPie(data = data_pie)\%>>\%
 #custom exemple
 amPie(data = data_pie)\%>>\%
   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40,
-            theme = "dark", legend = TRUE, legendPosision = "bottom",
+            theme = "dark", legend = TRUE, legendPosition = "bottom",
              creditsPosition = "bottom-right" )
 }
 \author{
