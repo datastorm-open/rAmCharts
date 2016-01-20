@@ -4,7 +4,7 @@
 #' 
 #' @param chart \linkS4class{AmChart}.
 #' @param legend \code{boolean}, TRUE or FALSE, default FALSE, display legend if TRUE.
-#' @param legendPosision \code{character}, control legend position,
+#' @param legendPosition \code{character}, control legend position,
 #' can be "left", "right", "top" or "bottom", default "rigth". Only use if legend = TRUE.
 #' @param legendAlign \code{character} control legend align, must be "left","rigth" or "center",
 #' default "left". Only use if legend = TRUE.
@@ -30,7 +30,7 @@
 #' 
 #' @rdname amOptions
 #' @export
-amOptions <- function(chart, legend = FALSE,legendPosision = "right", legendAlign = "left",
+amOptions <- function(chart, legend = FALSE,legendPosition = "right", legendAlign = "left",
                       export = FALSE, exportFormat = NULL, creditsPosition = "top-left", theme = "none",
                       main = "", mainColor = "#000000", mainSize = 15, 
                       zoom = FALSE, scrollbar = FALSE, scrollbarHeight = 20,  ...) {
@@ -39,9 +39,9 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right", legendAlig
   #Legend
   .testLogicalLength1(logi = legend)
   
-  #legendPosision
-  .testCharacter(char = legendPosision)
-  .testIn(vect = legendPosision, control = c("left", "right", "top", "bottom"))
+  #legendPosition
+  .testCharacter(char = legendPosition)
+  .testIn(vect = legendPosition, control = c("left", "right", "top", "bottom"))
   
   #legendAlign
   .testCharacterLength1(char = legendAlign)
@@ -83,9 +83,9 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right", legendAlig
   {
     if(chart@type%in%c("radar","serial","xy"))
     {
-      chart <- chart %>>% setLegend(position = legendPosision, useGraphSettings = TRUE, align = legendAlign)
+      chart <- chart %>>% setLegend(position = legendPosition, useGraphSettings = TRUE, align = legendAlign)
     }else{
-      chart <- chart %>>% setLegend(position = legendPosision, align = legendAlign)
+      chart <- chart %>>% setLegend(position = legendPosition, align = legendAlign)
     }
   }
   

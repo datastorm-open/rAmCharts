@@ -1,8 +1,8 @@
 .testAmOptions <- function(chart){
   #test legend
   amOptions(chart, legend = TRUE)
-  amOptions(chart, legend = TRUE, legendPosision = "bottom")
-  amOptions(chart, legend = TRUE, legendPosision = "bottom", legendAlign = "center")
+  amOptions(chart, legend = TRUE, legendPosition = "bottom")
+  amOptions(chart, legend = TRUE, legendPosition = "bottom", legendAlign = "center")
   
   #Export
   amOptions(chart, export = TRUE)
