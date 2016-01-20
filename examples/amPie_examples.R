@@ -1,8 +1,7 @@
-#Basic example
-data_pie <- data.frame(label = c("Facebook", "Twitter", "LinkedIn", "Google+", 
-                                  "Pinterest"),
-                       value = c(38, 25, 15, 14, 8), stringsAsFactors = FALSE)
-                       
+#Data
+data("data_pie")
+
+#Basic example                 
 amPie(data = data_pie)
 
 

@@ -94,7 +94,7 @@
 # Data for wind charts
 # -------------------------------------------------------------
 
-#' @title Random data for plotting candlestick chart examples
+#' @title Random data for plotting wind chart examples
 #' @description This dataset is used in the examples,
 #' moreover it can be used as a reference if you notice a bug
 #' 
@@ -105,3 +105,29 @@
 #'   \item{strong}{\code{numeric}}
 #' }
 "data_wind"
+
+
+#' @title Random data for plotting radar chart examples
+#' @description This dataset is used in the examples,
+#' moreover it can be used as a reference if you notice a bug
+#' 
+#' @format Dataset of 4 columns and 5 rows
+#' \describe{
+#'   \item{label}{\code{character}}
+#'   \item{Product1}{\code{numeric}}
+#'   \item{Product2}{\code{numeric}}
+#'   \item{Product3}{\code{numeric}}
+#' }
+"data_radar"
+
+
+#' @title Random data for plotting pie chart examples
+#' @description This dataset is used in the examples,
+#' moreover it can be used as a reference if you notice a bug
+#' 
+#' @format Dataset of 2 columns and 5 rows
+#' \describe{
+#'   \item{label}{\code{character}}
+#'   \item{value}{\code{numeric}}
+#' }
+"data_pie"
