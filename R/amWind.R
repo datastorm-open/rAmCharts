@@ -4,8 +4,8 @@
 #' 
 #' 
 #' @param data : columns are series of values, from week wind (first column) to strong wind (last column)
-#' @param col : color of series
-#' @param backTransparency : background transparency
+#' @param col  \code{character} color(s) of serie(s) hexadecimal like "#00FF00"
+#' @param backTransparency \code{numeric} background transparency, between 0 and 1
 #' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' 
