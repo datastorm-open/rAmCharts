@@ -23,7 +23,8 @@ of the corresponding column.}
 \item{data}{\code{data.frame} dataframe with values to display.
 You can add a column "color" (character, colors in hexadecimal). You can
 also add a column "description" (character) containing the text you want to
-display when mouse is on the graphic ('<br>' for a new line).}
+display when mouse is on the graphic ('<br>' for a new line).
+See \code{\link{data_fbar}}}
 
 \item{xlab}{\code{character} label for x-axis.}
 
@@ -73,18 +74,7 @@ You can also add a cursor to your chart...
 stopifnot(require(pipeR))
 
 #Basic Example : column chart
-data_fbar <- data.frame(country = c("USA", "China", "Japan", "Germany", 
-                                   "UK", "France", "India", "Spain",
-                                   "Netherlands", "Russia", "South Korea",
-                                   "Canada"),
-                       visits_inf = c(3000, 1800, 1000, 1300, 1100, 1000, 
-                                  900, 0, 600, 0, 400, 0),
-                       visits_sup = c(3025, 1882, 1809, 1322, 1122, 1114, 
-                                  984, 711, 665, 580, 443, 441),
-                       color = c("#FF0F00", "#FF6600", "#FF9E01", "#FCD202",
-                                 "#F8FF01", "#B0DE09", "#04D215", "#0D8ECF",
-                                 "#0D52D1", "#2A0CD0", "#8A0CCF", "#CD0D74"),
-                       stringsAsFactors = FALSE)
+data(data_fbar)
 
 # test with label rotation
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup", data = data_fbar, labelRotation = -90)

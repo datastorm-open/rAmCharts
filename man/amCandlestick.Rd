@@ -13,7 +13,7 @@ amCandlestick(data, xlab = "", ylab = "", horiz = FALSE,
 \arguments{
 \item{data}{\code{data.frame} dataframe with at least 5 columns : 
 category, open (numeric), close (numeric), low (numeric),
-high (numeric).}
+high (numeric). See \code{\link{data_candleStick1}} and \code{\link{data_candleStick2}}}
 
 \item{xlab}{\code{character} label for x-axis.}
 
@@ -82,5 +82,8 @@ data_candleStick1$category <- c("2015-01-01", "2015-02-01", "2015-03-01",
 
 amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD", minPeriod = "MM")
 
+
+data(data_candleStick2)
+amCandlestick(data = data_candleStick2)
 }
 

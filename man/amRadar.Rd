@@ -8,7 +8,8 @@ amRadar(data, col = NULL, backTransparency = 0.5, type = "polygons",
   pch = "round", ...)
 }
 \arguments{
-\item{data}{a data frame first column is named "label" (character), other columns are series of values}
+\item{data}{a data frame first column is named "label" (character), other columns are series of values,
+see \code{\link{data_radar}}}
 
 \item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00"}
 
@@ -49,7 +50,6 @@ amRadar(data_radar, type = "circles")
 #pch
 amRadar(data_radar,  pch = "triangleRight")
 amRadar(data_radar,  pch = "triangleLeft")
-
 
 }
 

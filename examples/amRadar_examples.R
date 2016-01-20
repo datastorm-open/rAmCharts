@@ -22,4 +22,3 @@ amRadar(data_radar, type = "circles")
 amRadar(data_radar,  pch = "triangleRight")
 amRadar(data_radar,  pch = "triangleLeft")
 
-

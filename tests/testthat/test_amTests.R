@@ -86,3 +86,8 @@ testthat::test_that(".testIn", {
   testthat::expect_true(.testIn(vect = vectChar, control = controlChar1))
   testthat::expect_error(.testIn(vect = vectChar, control = controlChar2))
 })
+
+
+
+
+

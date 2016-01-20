@@ -21,7 +21,8 @@ or a stacked barchart, y is a vector of characters or numerics.}
 \item{data}{\code{data.frame} dataframe with values to display.
 You can add a column "color" (character, colors in hexadecimal). You can
 also add a column "description" (character) containing the text you want to
-display when mouse is on the graphic ('<br>' for a new line).}
+display when mouse is on the graphic ('<br>' for a new line). See \code{\link{data_bar}}
+and \code{\link{data_gbar}}.}
 
 \item{xlab}{\code{character} label for x-axis.}
 
@@ -76,20 +77,13 @@ You can also add a cursor to your chart...
 \examples{
 stopifnot(require(pipeR))
 
-#Basic Example : column chart
-data_bar <- data.frame(country = c("USA", "China", "Japan", "Germany", 
-                                   "UK", "France", "India", "Spain",
-                                   "Netherlands", "Russia", "South Korea",
-                                   "Canada"),
-                       visits = c(3025, 1882, 1809, 1322, 1122, 1114, 
-                                  984, 711, 665, 580, 443, 441),
-                       color = c("#FF0F00", "#FF6600", "#FF9E01", "#FCD202",
-                                 "#F8FF01", "#B0DE09", "#04D215", "#0D8ECF",
-                                 "#0D52D1", "#2A0CD0", "#8A0CCF", "#CD0D74"),
-                       stringsAsFactors = FALSE)
+#Data
+data(data_bar)
+
 
 # test with label rotation
-amBarplot(x = "country", y = "visits", data = data_bar, labelRotation = -90)
+amBarplot(x = "country", y = "visits", data = data_bar,
+          labelRotation = -90) \%>>\% amOptions(legend = TRUE)
 
 #horizontal bar
 amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -90)
@@ -101,14 +95,7 @@ amBarplot(x = "country", y = "visits", data = data_bar, depth = 15, labelRotatio
 amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -90)
 
 #grouped columns
-data_gbar <- data.frame(year = c("2005", "2006", "2007", "2008", "2009"),
-                        day = c("01/06/2005", "02/06/2005", "03/06/2005",
-                                "04/06/2005", "05/06/2005"),
-                        month = c("06/2005", "07/2005", "08/2005",
-                                  "09/2005", "10/2005"),
-                        income = c(23.5, 26.2, 30.1, 29.5, 24.6),
-                        expenses = c(18.1, 22.8, 23.9, 25.1, 25),
-                        stringsAsFactors = FALSE)
+data(data_gbar)
 
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
 

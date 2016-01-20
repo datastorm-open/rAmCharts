@@ -3,6 +3,7 @@
 #' @param x \code{character} column name for x-axis
 #' @param y \code{character} column name for y-axis
 #' @param data \code{data.frame} dataframe with values to display.
+#' See  see \code{\link{data_mekko}}
 #' @param groups_color \code{character} vector of colors in hexadecimal, 
 #' same length as the number of y modalities.
 #' @param xlab \code{character} label for x-axis.

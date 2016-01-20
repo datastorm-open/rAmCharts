@@ -11,7 +11,8 @@ amWaterfall(data, start = 0, horiz = FALSE, show_values = FALSE, ...)
 label (character), value (numeric), operation (character : "plus", "minus", "total").
 You can add a third column "color" (character, colors in hexadecimal). You can
 also add a column "description" (character) containing the text you want to
-display when mouse is on the graphic ('<br>' for a new line).}
+display when mouse is on the graphic ('<br>' for a new line).
+See \code{\link{data_waterfall}}.}
 
 \item{start}{\code{numeric} value from which to start}
 

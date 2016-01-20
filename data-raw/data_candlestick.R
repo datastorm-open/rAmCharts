@@ -9,7 +9,7 @@ category <- c("2015-01-01", "2015-01-02", "2015-01-03", "2015-01-04",
               "2015-01-09", "2015-01-10", "2015-01-11", "2015-01-12", "2015-01-20")
 low <- rnorm(n = length(category) - 1, mean = 130, sd = 10)
 open <- low + rnorm(n = length(category) - 1, mean = 4)
-close <- open + rnorm(n = length(category) - 1, mean = 2)
+close <- open + rnorm(n = length(category) - 1, mean = 0)
 high <- close + rnorm(n = length(category) - 1, mean = 4)
 
 data_candleStick1 <- data.frame(category = category,
