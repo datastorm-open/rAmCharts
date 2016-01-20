@@ -28,30 +28,31 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
   ##Test
   #data
   #description
-  .testIn("description", colnames(data))
-  .testCharacter(data$description, arg = "data$description")
+  .testIn(vect = "description", control = colnames(data))
+  .testCharacter(char = data$description, arg = "data$description")
   
   #
-  .testIn("value", colnames(data))
-  .testNumeric(data$value, arg = "data$value")
+  .testIn(vect = "value", control = colnames(data))
+  .testNumeric(num = data$value, arg = "data$value")
   
-  .testLogical(inverse)
+  .testLogical(logi = inverse)
   
   if(!is.null(neck_height)){
-    .testNumeric(neck_height)
+    .testNumeric(num = neck_height)
   }
+  
   
   if(!is.null(neck_width)){
-    .testNumeric(neck_width)
+  .testNumeric(num = neck_width)
   }
   
-  .testLogicalLength1(third_dim)
+  .testLogicalLength1(logi = third_dim)
 
-  .testNumericLength1(margin_right)
-  .testNumericLength1(margin_left)
+  .testNumericLength1(num = margin_right)
+  .testNumericLength1(num = margin_left)
   
   if("color" %in% colnames(data)) {
-    .testCharacter(data$color)
+    .testCharacter(char = data$color)
     vec_col <- data$color
     data <- data[,c("description", "value")]
   } else {

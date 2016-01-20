@@ -22,28 +22,28 @@ amWaterfall <- function(data, start = 0, horiz = FALSE,
   ##Test
   #data
   #label
-  .testIn("label", colnames(data))
-  .testCharacter(data$label, arg = "data$label")
+  .testIn(vect = "label", control = colnames(data))
+  .testCharacter(char = data$label, arg = "data$label")
 
   #value
-  .testIn("value", colnames(data))
-  .testNumeric(data$value, arg = "data$value")
+  .testIn(vect = "value", control = colnames(data))
+  .testNumeric(num = data$value, arg = "data$value")
   
   
   #operation
-  .testIn("operation", colnames(data))
-  .testCharacter(data$operation, arg = "data$operation")
+  .testIn(vect = "operation", control = colnames(data))
+  .testCharacter(char = data$operation, arg = "data$operation")
   
 
   
-  .testIn(data$operation,c("plus", "minus", "total"))
+  .testIn(vect = data$operation, control = c("plus", "minus", "total"))
   
-  .testNumericLength1(start)
+  .testNumericLength1(num = start)
   
-  .testLogicalLength1(horiz)
+  .testLogicalLength1(logi = horiz)
 
   
-  .testLogicalLength1(show_values)
+  .testLogicalLength1(logi = show_values)
   
 
   
@@ -60,7 +60,7 @@ amWaterfall <- function(data, start = 0, horiz = FALSE,
     }
   }
   
-  .testCharacter(data$color)
+  .testCharacter(char = data$color)
   data$color <- toupper(data$color)
   
   data$open[1] <- start

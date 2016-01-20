@@ -20,18 +20,18 @@ amPie <- function(data,show_values = TRUE, third_dim = FALSE, inner_radius = 0, 
   ##Test
   #data
   #label
-  .testIn("label", colnames(data))
-  .testCharacter(data$label, arg = "data$label")
+  .testIn(vect = "label", control = colnames(data))
+  .testCharacter(char = data$label, arg = "data$label")
   
   #label
-  .testIn("value", colnames(data))
-  .testNumeric(data$value, arg = "data$value")
+  .testIn(vect = "value", control = colnames(data))
+  .testNumeric(num = data$value, arg = "data$value")
   
-  .testLogicalLength1(show_values)
-  .testLogicalLength1(third_dim)
+  .testLogicalLength1(logi = show_values)
+  .testLogicalLength1(logi = third_dim)
 
-  .testNumericLength1(inner_radius)
-  .testInterval(inner_radius, binf = 0, bsup = 100)
+  .testNumericLength1(num = inner_radius)
+  .testInterval(num = inner_radius, binf = 0, bsup = 100)
   
   if(!"color" %in% colnames(data)) {
    
@@ -41,7 +41,7 @@ amPie <- function(data,show_values = TRUE, third_dim = FALSE, inner_radius = 0, 
                             nrow(data)))
     data$color <- vec_col
   }else{
-    .testCharacter(data$color)
+    .testCharacter(char = data$color)
   }
   
   if(third_dim) {

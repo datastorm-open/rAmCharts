@@ -35,31 +35,31 @@ amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
   
   ##Test
   #Test rates
-  .testIn("name", colnames(rates))
-  .testCharacter(rates$name, arg = "rates$name")
+  .testIn(vect = "name", control = colnames(rates))
+  .testCharacter(char = rates$name, arg = "rates$name")
   
-  .testIn("min", colnames(rates))
-  .testNumeric(rates$min, arg = "rates$min")
+  .testIn(vect = "min", control = colnames(rates))
+  .testNumeric(num = rates$min, arg = "rates$min")
   
-  .testIn("max", colnames(rates))
-  .testNumeric(rates$max, arg = "rates$max")
+  .testIn(vect = "max", control = colnames(rates))
+  .testNumeric(num = rates$max, arg = "rates$max")
   
-  .testIn("color", colnames(rates))
-  .testCharacter(rates$color, arg = "rates$color")
+  .testIn(vect = "color", control = colnames(rates))
+  .testCharacter(char = rates$color, arg = "rates$color")
   
-  .testNumeric(value)
+  .testNumeric(num = value)
   
-  .testNumeric(min)
-  .testNumeric(max)
+  .testNumeric(num = min)
+  .testNumeric(num = max)
 
-  .testCharacter(val_color)
-  .testNumeric(limit)
+  .testCharacter(char = val_color)
+  .testNumeric(num = limit)
   
-  .testCharacter(limit_color)
+  .testCharacter(char = limit_color)
   
-  .testLogical(steps)
+  .testLogical(logi = steps)
 
-  .testLogical(horiz)
+  .testLogical(logi = horiz)
  
   text <- as.character(text)
   

@@ -20,11 +20,11 @@ amMekko <- function(x, y, data, xlab = "",
   
   
   ##test
-  .testCharacterLength1(x)
-  .testCharacterLength1(y)
+  .testCharacterLength1(char = x)
+  .testCharacterLength1(char = y)
   
-  .testIn(x, colnames(data))
-  .testIn(y, colnames(data))
+  .testIn(vect = x, control = colnames(data))
+  .testIn(vect = y, control = colnames(data))
   #data
   
   
@@ -32,12 +32,12 @@ amMekko <- function(x, y, data, xlab = "",
   data[,x] <- as.factor(as.character(data[,x]))
   data[,y] <- as.factor(as.character(data[,y]))
   
-  .testCharacterLength1(xlab)
-  .testCharacterLength1(ylab)
-  .testLogicalLength1(horiz)
+  .testCharacterLength1(char = xlab)
+  .testCharacterLength1(char = ylab)
+  .testLogicalLength1(logi = horiz)
 
 
-  .testLogicalLength1(show_values)
+  .testLogicalLength1(logi = show_values)
   
   
   if(show_values) {
@@ -60,7 +60,7 @@ amMekko <- function(x, y, data, xlab = "",
   )
   
   if(!is.null(groups_color)) {
-    .testCharacter(groups_color)
+    .testCharacter(char = groups_color)
     if(length(groups_color) == length(y)) {
       v_col <- groups_color
     } else {

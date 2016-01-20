@@ -17,3 +17,4 @@ amPie(data = data_pie, inner_radius = 50)
 
 #all
 amPie(data = data_pie, inner_radius = 50, third_dim = TRUE, show_values = FALSE)
+
