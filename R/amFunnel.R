@@ -2,7 +2,7 @@
 #' @description  amFunnel computes a funnel chart of the given value.
 #' @param data a data frame of at least 2 columns : value (numeric, positive), 
 #' and description (character). You can add a third column "color" (character,
-#' colors in hexadecimal)
+#' colors in hexadecimal) see \code{\link{data_funnel}}
 #' @param neck_height \code{numeric} value between 0 and 100 : if a bottleneck
 #' is desired, this value determines its heigh. Default to NULL
 #' @param neck_width \code{numeric} value between 0 and 100 : if a bottleneck

@@ -1,6 +1,4 @@
-data_pie <- data.frame(label = c("Facebook", "Twitter", "LinkedIn", "Google+", 
-                                 "Pinterest"),
-                       value = c(38, 25, 15, 14, 8), stringsAsFactors = FALSE)
+data(data_pie) 
 
 library(pipeR)
 #Export                 

@@ -1,4 +1,4 @@
-data_waterfall <- data.frame(label = c("Income 1", "Income 2", "Income 3", "Total 1", 
+{data_waterfall <- data.frame(label = c("Income 1", "Income 2", "Income 3", "Total 1", 
                                        "Expenses 1", "Expenses 2", "Total 2", "Income 4", 
                                        "Income 5", "Income 6", "Expenses 3","Total 3", 
                                        "Expenses 4", "Expenses 5", "Total 4"),
@@ -10,3 +10,5 @@ data_waterfall <- data.frame(label = c("Income 1", "Income 2", "Income 3", "Tota
                              stringsAsFactors = FALSE)
 
 devtools::use_data(data_waterfall, overwrite = TRUE)
+rm(list = ls())
+}

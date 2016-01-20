@@ -8,7 +8,8 @@ amRadar(data, col = NULL, backTransparency = 0.5, type = "polygons",
   pch = "round", ...)
 }
 \arguments{
-\item{data}{a data frame first column is named "label" (character), other columns are series of values}
+\item{data}{a data frame first column is named "label" (character), other columns are series of values,
+see \code{\link{data_radar}}}
 
 \item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00"}
 
@@ -27,32 +28,28 @@ radar computes a radarplot of the given data values.
 }
 \examples{
 require(pipeR)
-
-data <- data.frame(label = c("A", "Z", "E", "R", "T"),
-                   Product1 = c(1, 2, 3, 4, 2), 
-                   Product2 = c(2, 8, 1, 1, 0),
-                   Product3 = c(1,1,2,2,4))
+#Data
+data("data_radar")
 
 #Basic
-amRadar(data)
+amRadar(data_radar)
 
 #col
-amRadar(data, col = "#FF0000")
-amRadar(data, col = c("#0000FF", "#00FF00", "#FF0000"))
+amRadar(data_radar, col = "#FF0000")
+amRadar(data_radar, col = c("#0000FF", "#00FF00", "#FF0000"))
 
 
 #backTransparency
-amRadar(data, backTransparency = 0.6)
-amRadar(data, backTransparency = c(0, 0.4, 0.6))
+amRadar(data_radar, backTransparency = 0.6)
+amRadar(data_radar, backTransparency = c(0, 0.4, 0.6))
 
 
 #type
-amRadar(data, type = "circles")
+amRadar(data_radar, type = "circles")
 
 #pch
-amRadar(data,  pch = "triangleRight")
-amRadar(data,  pch = "triangleLeft")
-
+amRadar(data_radar,  pch = "triangleRight")
+amRadar(data_radar,  pch = "triangleLeft")
 
 }
 

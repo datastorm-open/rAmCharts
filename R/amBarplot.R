@@ -9,7 +9,8 @@
 #' @param data \code{data.frame} dataframe with values to display.
 #' You can add a column "color" (character, colors in hexadecimal). You can
 #' also add a column "description" (character) containing the text you want to
-#' display when mouse is on the graphic ('<br>' for a new line). 
+#' display when mouse is on the graphic ('<br>' for a new line). See \code{\link{data_bar}}
+#' and \code{\link{data_gbar}}.
 #' @param groups_color \code{character} vector of colors in hexadecimal, 
 #' same length as y.
 #' @param xlab \code{character} label for x-axis.

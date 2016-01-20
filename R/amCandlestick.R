@@ -2,7 +2,7 @@
 #' @description  amCandlestick computes a candlestick chart of the given value.
 #' @param data \code{data.frame} dataframe with at least 5 columns : 
 #' category, open (numeric), close (numeric), low (numeric),
-#' high (numeric).
+#' high (numeric). See \code{\link{data_candleStick1}} and \code{\link{data_candleStick2}}
 #' @param dataDateFormat \code{character}, default 'NULL'. Even if your chart parses dates,
 #' you can pass them as strings in your data - 
 #' all you need to do is to set data date format and the chart will parse dates to date objects.

@@ -30,3 +30,6 @@ data_candleStick1$category <- c("2015-01-01", "2015-02-01", "2015-03-01",
 
 amCandlestick(data = data_candleStick1, dataDateFormat = "YYYY-MM-DD", minPeriod = "MM")
 
+
+data(data_candleStick2)
+amCandlestick(data = data_candleStick2)

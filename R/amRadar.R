@@ -2,7 +2,8 @@
 #' 
 #' @description  radar computes a radarplot of the given data values.
 #' 
-#' @param data a data frame first column is named "label" (character), other columns are series of values
+#' @param data a data frame first column is named "label" (character), other columns are series of values,
+#' see \code{\link{data_radar}}
 #' @param col  \code{character} color(s) of serie(s) hexadecimal like "#00FF00"
 #' @param backTransparency \code{numeric} background transparency, between 0 and 1
 #' @param type \code{character} "polygons" or "circle", type of radar
@@ -10,7 +11,6 @@
 #' "triangleDown", "triangleLeft", "triangleRight", "bubble", 
 #' "diamond", "xError", "yError" 
 #' @param ... see \code{\link{amOptions}} for more options
-#' 
 #' 
 #' @example examples/amRadar_examples.R
 #' 

@@ -1,12 +1,5 @@
 #Basic example : pyramid
-data_funnel <- data.frame(description = c("Website visits", "Downloads", 
-                                          "Requested price list", 
-                                          "Contaced for more info",
-                                          "Purchased", "Contacted for support",
-                                          "Purchased additional products"), 
-                          value = c(300, 123, 98, 72, 80, 15, 8),
-                          stringsAsFactors = FALSE)
-                          
+data(data_funnel)
 amFunnel(data = data_funnel, inverse = TRUE)
              
 #Change the orientation and legend side              

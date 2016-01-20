@@ -1,7 +1,7 @@
 #' @title Plotting pie chart using rAmCharts
 #' @description  amPie computes a pie chart of the given value.
 #' @param data \code{data.frame} dataframe with at least 2 columns : 
-#' label (character), value (numeric).
+#' label (character), value (numeric). See \code{\link{data_pie}}
 #' You can add a third column "color" (character, colors in hexadecimal).
 #' @param show_values \code{boolean} TRUE to display values.
 #' @param depth \code{numeric} if > 0, chart is displayed in 3D, value

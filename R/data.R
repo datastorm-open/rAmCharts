@@ -131,3 +131,55 @@
 #'   \item{value}{\code{numeric}}
 #' }
 "data_pie"
+
+
+#' @title Random data for plotting bar chart examples
+#' @description This dataset is used in the examples,
+#' moreover it can be used as a reference if you notice a bug
+#' 
+#' @format Dataset of 3 columns and 12 rows
+#' \describe{
+#'   \item{country}{\code{character}}
+#'   \item{visits}{\code{numeric}}
+#'   \item{color}{\code{character}}
+#' }
+"data_bar"
+
+
+#' @title Random data for plotting bar chart examples
+#' @description This dataset is used in the examples,
+#' moreover it can be used as a reference if you notice a bug
+#' 
+#' @format Dataset of 5 columns and 12 rows
+#' \describe{
+#'   \item{year}{\code{character}}
+#'   \item{day}{\code{character}}
+#'   \item{month}{\code{character}}
+#'   \item{income}{\code{numeric}}
+#'   \item{expenses}{\code{numeric}}
+#' }
+"data_gbar"
+
+
+
+#' @title Random data for plotting funnel chart examples
+#' @description This dataset is used in the examples,
+#' moreover it can be used as a reference if you notice a bug
+#' 
+#' @format Dataset of 2 columns and 7 rows
+#' \describe{
+#'   \item{description}{\code{character}}
+#'   \item{value}{\code{numeric}}
+#' }
+"data_funnel"
+
+#' @title Random data for plotting mekko chart examples
+#' @description This dataset is used in the examples,
+#' moreover it can be used as a reference if you notice a bug
+#' 
+#' @format Dataset of 2 columns and 1000 rows
+#' \describe{
+#'   \item{var1}{\code{character}}
+#'   \item{var2}{\code{numeric}}
+#' }
+"data_mekko"

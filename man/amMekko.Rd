@@ -12,7 +12,8 @@ amMekko(x, y, data, xlab = "", ylab = "", groups_color = NULL,
 
 \item{y}{\code{character} column name for y-axis}
 
-\item{data}{\code{data.frame} dataframe with values to display.}
+\item{data}{\code{data.frame} dataframe with values to display.
+See  see \code{\link{data_mekko}}}
 
 \item{xlab}{\code{character} label for x-axis.}
 
@@ -32,10 +33,7 @@ amMekko computes a mekko chart of the given values.
 }
 \examples{
 library(pipeR)
-data_mekko <- data.frame(var1 = c(rep("A1", 150), rep("A2", 350), rep("A3", 500)),
-                         var2 = sample(c("B1", "B2", "B3", "B4", "B5", "B6"), 
-                                       1000, replace = TRUE))
-                                       
+data(data_mekko)
 amMekko(x = "var1", y = "var2", data = data_mekko)
 
 #Horizontal :
