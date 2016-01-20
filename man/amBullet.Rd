@@ -5,8 +5,8 @@
 \title{Plotting bullet chart using rAmCharts}
 \usage{
 amBullet(value, min = 0, max = 100, val_color = "#000000", limit = 85,
-  limit_color = "#000000", steps = TRUE, text = "", horiz = TRUE, rates,
-  ...)
+  limit_color = "#000000", steps = TRUE, label = "", horiz = TRUE,
+  rates, ...)
 }
 \arguments{
 \item{value}{\code{numeric}}
@@ -23,7 +23,7 @@ amBullet(value, min = 0, max = 100, val_color = "#000000", limit = 85,
 
 \item{steps}{\code{boolean} default set to TRUE}
 
-\item{text}{\code{character} text}
+\item{label}{\code{character} label of the bullet}
 
 \item{horiz}{\code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one}
 

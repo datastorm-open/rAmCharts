@@ -7,8 +7,8 @@
 #' is desired, this value determines its heigh. Default to NULL
 #' @param neck_width \code{numeric} value between 0 and 100 : if a bottleneck
 #' is desired, this value determines its witdh. Default to NULL
-#' @param third_dim \code{boolean} if TRUE, chart is displayed in 3D, only for
-#' pyramid chart (without a bottleneck)
+#' @param depth \code{numeric} if > 0, chart is displayed in 3D, only for
+#' pyramid chart (without a bottleneck). Value between 0 and 100
 #' @param inverse \code{boolean}, if TRUE, the funnel chart will be inversed. 
 #' @param label_side \code{character} label position : "right" or "left"
 #' @param margin_right \code{numeric} margin at the right side
@@ -20,7 +20,7 @@
 #' @export
 #' 
 amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NULL, 
-                     third_dim = FALSE,label_side = "right", margin_right = 160,
+                     depth = 0, label_side = "right", margin_right = 160,
                      margin_left = 15, ...) {
   
   
@@ -46,7 +46,7 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
   .testNumeric(num = neck_width)
   }
   
-  .testLogicalLength1(logi = third_dim)
+  .testInterval(num = depth, binf = 0, bsup = 100)
 
   .testNumericLength1(num = margin_right)
   .testNumericLength1(num = margin_left)
@@ -74,12 +74,12 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
                     rotate = inverse)
     )
   } else {
-    if(third_dim) {
+    if(depth >0) {
       res <- pipeR::pipeline(
         amFunnelChart(dataProvider = data, titleField = "description", valueField = "value",
                       labelPosition = label_side, marginRight = margin_right, 
                       marginLeft = margin_left, colorField = "color",
-                      depth3D = 100, angle = 40,
+                      depth3D = depth, angle = 40,
                       rotate = inverse)
       )
     } else {

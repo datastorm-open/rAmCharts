@@ -22,7 +22,7 @@
 #' @param layered \code{boolean} TRUE for layered. If TRUE, stack_type must be set
 #' to "none".
 #' @param show_values \code{boolean} TRUE to display values.
-#' @param third_dim \code{boolean} if TRUE, chart is displayed in 3D
+#' @param depth \code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.
 #' @param dataDateFormat \code{character}, default 'NULL'. Even if your chart parses dates,
 #' you can pass them as strings in your data - 
 #' all you need to do is to set data date format and the chart will parse dates to date objects.
@@ -51,7 +51,7 @@
 #' @export
 #' 
 amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,horiz = FALSE, labelRotation = 0,
-                      stack_type = "none", layered = FALSE, show_values = FALSE, third_dim = FALSE,
+                      stack_type = "none", layered = FALSE, show_values = FALSE, depth = 0,
                       dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
   
@@ -105,7 +105,7 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   
   .testLogicalLength1(logi = horiz)
   .testLogicalLength1(logi = show_values)
-  .testLogicalLength1(logi = third_dim)
+  .testInterval(num = depth, binf = 0, bsup = 100)
   
   
   if(!is.null(stack_type)) {
@@ -129,8 +129,8 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
     } 
   }
   
-  if (third_dim) {
-    depth3D = 20
+  if (depth > 0) {
+    depth3D = depth
     angle = 30
   } else {
     depth3D = 0

@@ -11,7 +11,7 @@
 #' @param rates a data frame with 4 columns : name (character), min (numeric), max (numeric), 
 #' and color (character, color in hexadecimal)
 #' @param steps \code{boolean} default set to TRUE
-#' @param text \code{character} text
+#' @param label \code{character} label of the bullet
 #' @param horiz \code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one
 #' @param ... see \code{\link{amOptions}} for more options
 #' 
@@ -23,7 +23,7 @@
 amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
                         limit = 85, limit_color = "#000000", 
                         steps = TRUE, 
-                     text = "", horiz = TRUE, rates, ...) {
+                     label = "", horiz = TRUE, rates, ...) {
 
   if (missing(rates))
     rates <- data.frame(name = c("excelent", "good", "average", "poor", "bad"),
@@ -61,14 +61,14 @@ amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
 
   .testLogical(logi = horiz)
  
-  text <- as.character(text)
+  label <- as.character(label)
   
  
   val_color <- tolower(val_color)
   limit_color <- tolower(limit_color)
   rates$color <- tolower(rates$color)
   
-  dataProvider <- data.frame(category = text, t(rates$max - rates$min), stringsAsFactors = FALSE)
+  dataProvider <- data.frame(category = label, t(rates$max - rates$min), stringsAsFactors = FALSE)
   colnames(dataProvider)[-1] <- as.character(rates$name)
   dataProvider$limit <- limit
   dataProvider$full <- max

@@ -19,7 +19,7 @@ amBarplot(x = "country", y = "visits", data = data_bar, labelRotation = -90)
 amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -90)
 
 #3D bar
-amBarplot(x = "country", y = "visits", data = data_bar, third_dim = TRUE, labelRotation = -90)
+amBarplot(x = "country", y = "visits", data = data_bar, depth = 15, labelRotation = -90)
 
 #display values
 amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -90)
@@ -57,8 +57,6 @@ pipeR::pipeline(
             dataDateFormat = "DD/MM/YYYY"),
   setChartCursor()
 )
-
-#add legend
 
 #change groups colors
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, 

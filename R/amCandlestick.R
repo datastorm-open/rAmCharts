@@ -83,8 +83,6 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, labelRotati
                                   names[1], ":<b>[[low]]</b><br>"))
   )
   
-  
-  
   chart <- amOptions(chart, ...)
   chart
   

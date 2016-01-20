@@ -6,7 +6,7 @@
 \usage{
 amBarplot(x, y, data, xlab = "", ylab = "", groups_color = NULL,
   horiz = FALSE, labelRotation = 0, stack_type = "none",
-  layered = FALSE, show_values = FALSE, third_dim = FALSE,
+  layered = FALSE, show_values = FALSE, depth = 0,
   dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD",
   ""), ...)
 }
@@ -43,7 +43,7 @@ to "none".}
 
 \item{show_values}{\code{boolean} TRUE to display values.}
 
-\item{third_dim}{\code{boolean} if TRUE, chart is displayed in 3D}
+\item{depth}{\code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.}
 
 \item{dataDateFormat}{\code{character}, default 'NULL'. Even if your chart parses dates,
 you can pass them as strings in your data - 
@@ -95,7 +95,7 @@ amBarplot(x = "country", y = "visits", data = data_bar, labelRotation = -90)
 amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -90)
 
 #3D bar
-amBarplot(x = "country", y = "visits", data = data_bar, third_dim = TRUE, labelRotation = -90)
+amBarplot(x = "country", y = "visits", data = data_bar, depth = 15, labelRotation = -90)
 
 #display values
 amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -90)
@@ -133,8 +133,6 @@ pipeR::pipeline(
             dataDateFormat = "DD/MM/YYYY"),
   setChartCursor()
 )
-
-#add legend
 
 #change groups colors
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, 

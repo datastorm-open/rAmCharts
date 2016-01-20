@@ -5,8 +5,8 @@
 \title{Plotting funnel chart using rAmCharts}
 \usage{
 amFunnel(data, inverse = FALSE, neck_height = NULL, neck_width = NULL,
-  third_dim = FALSE, label_side = "right", margin_right = 160,
-  margin_left = 15, ...)
+  depth = 0, label_side = "right", margin_right = 160, margin_left = 15,
+  ...)
 }
 \arguments{
 \item{data}{a data frame of at least 2 columns : value (numeric, positive), 
@@ -21,8 +21,8 @@ is desired, this value determines its heigh. Default to NULL}
 \item{neck_width}{\code{numeric} value between 0 and 100 : if a bottleneck
 is desired, this value determines its witdh. Default to NULL}
 
-\item{third_dim}{\code{boolean} if TRUE, chart is displayed in 3D, only for
-pyramid chart (without a bottleneck)}
+\item{depth}{\code{numeric} if > 0, chart is displayed in 3D, only for
+pyramid chart (without a bottleneck). Value between 0 and 100}
 
 \item{label_side}{\code{character} label position : "right" or "left"}
 
@@ -55,6 +55,6 @@ amFunnel(data = data_funnel, inverse = FALSE,
 amFunnel(data = data_funnel, neck_height = 30, neck_width = 40)
                
 #3D pyramid
-amFunnel(data = data_funnel, third_dim = TRUE, inverse = TRUE)
+amFunnel(data = data_funnel, depth = 50, inverse = TRUE)
 }
 

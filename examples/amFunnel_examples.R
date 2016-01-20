@@ -17,4 +17,4 @@ amFunnel(data = data_funnel, inverse = FALSE,
 amFunnel(data = data_funnel, neck_height = 30, neck_width = 40)
                
 #3D pyramid
-amFunnel(data = data_funnel, third_dim = TRUE, inverse = TRUE)
+amFunnel(data = data_funnel, depth = 50, inverse = TRUE)

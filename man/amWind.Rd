@@ -9,9 +9,9 @@ amWind(data, col = NULL, backTransparency = 0.5, ...)
 \arguments{
 \item{data}{: columns are series of values, from week wind (first column) to strong wind (last column)}
 
-\item{col}{: color of series}
+\item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00"}
 
-\item{backTransparency}{: background transparency}
+\item{backTransparency}{\code{numeric} background transparency, between 0 and 1}
 
 \item{...}{see \code{\link{amOptions}} for more options}
 }

@@ -10,11 +10,11 @@ amPie(data = data_pie)
 amPie(data = data_pie, show_values = FALSE)
 
 #3D pie
-amPie(data = data_pie, third_dim = TRUE)
+amPie(data = data_pie, depth = 10)
 
 #donut chart
 amPie(data = data_pie, inner_radius = 50)
 
 #all
-amPie(data = data_pie, inner_radius = 50, third_dim = TRUE, show_values = FALSE)
+amPie(data = data_pie, inner_radius = 50, depth = 10, show_values = FALSE)
 

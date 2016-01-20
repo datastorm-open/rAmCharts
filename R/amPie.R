@@ -4,7 +4,8 @@
 #' label (character), value (numeric).
 #' You can add a third column "color" (character, colors in hexadecimal).
 #' @param show_values \code{boolean} TRUE to display values.
-#' @param third_dim \code{boolean} if TRUE, chart is displayed in 3D
+#' @param depth \code{numeric} if > 0, chart is displayed in 3D, value
+#' between 0 and 100
 #' @param inner_radius \code{numeric} value between 0 and 100
 #' @param ... see \code{\link{amOptions}} for more options
 #' 
@@ -14,8 +15,7 @@
 #'     
 #' @export
 
-amPie <- function(data,show_values = TRUE, third_dim = FALSE, inner_radius = 0, ...) {
-  
+amPie <- function(data,show_values = TRUE, depth = 0, inner_radius = 0, ...) {
   
   ##Test
   #data
@@ -28,7 +28,7 @@ amPie <- function(data,show_values = TRUE, third_dim = FALSE, inner_radius = 0, 
   .testNumeric(num = data$value, arg = "data$value")
   
   .testLogicalLength1(logi = show_values)
-  .testLogicalLength1(logi = third_dim)
+  .testInterval(num = depth, binf = 0, bsup = 100)
 
   .testNumericLength1(num = inner_radius)
   .testInterval(num = inner_radius, binf = 0, bsup = 100)
@@ -44,9 +44,9 @@ amPie <- function(data,show_values = TRUE, third_dim = FALSE, inner_radius = 0, 
     .testCharacter(char = data$color)
   }
   
-  if(third_dim) {
+  if(depth > 0) {
     res <- amPieChart(dataProvider = data, valueField = "value", titleField = "label", startDuration = 0,
-                      colorField = "color", labelsEnabled = show_values, depth3D = 10,
+                      colorField = "color", labelsEnabled = show_values, depth3D = depth,
                       angle = 15, innerRadius = paste(inner_radius,"%"))
   } else {
     res <- amPieChart(dataProvider = data, valueField = "value", titleField = "label", startDuration = 0,
