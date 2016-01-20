@@ -183,3 +183,17 @@
 #'   \item{var2}{\code{numeric}}
 #' }
 "data_mekko"
+
+
+#' @title Random data for plotting floating bar chart examples
+#' @description This dataset is used in the examples,
+#' moreover it can be used as a reference if you notice a bug
+#' 
+#' @format Dataset of 2 columns and 1000 rows
+#' \describe{
+#'   \item{country}{\code{character}}
+#'   \item{visits_inf}{\code{numeric}}
+#'   \item{visits_sup}{\code{numeric}}
+#'   \item{color}{\code{character}}
+#' }
+"data_fbar"
