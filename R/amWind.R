@@ -24,23 +24,23 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   
   
   #backTransparency
-  .testNumeric(backTransparency)
-  .testLength(backTransparency, c(1, ncol(data)))
-  sapply(backTransparency, function(X){.testInterval(X,binf = 0, bsup = 1, arg = "backTransparency")})
+  .testNumeric(num = backTransparency)
+  .testLength(param = backTransparency, len = c(1, ncol(data)))
+  sapply(backTransparency, function(X){.testInterval(num = X,binf = 0, bsup = 1, arg = "backTransparency")})
   
   
   
   #col
   if(!is.null(col))
   {
-    .testCharacter(col)
-    .testLength(col, c(1, ncol(data)))
+    .testCharacter(char = col)
+    .testLength(param = col, len = c(1, ncol(data)))
   }
   
   
   ##Test data numeric
   dt <- as.character(substitute(data))  
-  apply(data, 2, function(X){.testNumeric(X, arg = dt)})
+  apply(data, 2, function(X){.testNumeric(num = X, arg = dt)})
   
   
   
