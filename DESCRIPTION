@@ -74,6 +74,7 @@ Collate:
     'amBoxplot.R'
     'amBullet.R'
     'amCandlestick.R'
+    'amFloatingBar.R'
     'amFunnel.R'
     'amGauge.R'
     'amHist.R'
