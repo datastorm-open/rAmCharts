@@ -7,7 +7,8 @@
 amWind(data, col = NULL, backTransparency = 0.5, ...)
 }
 \arguments{
-\item{data}{: columns are series of values, from week wind (first column) to strong wind (last column)}
+\item{data}{: columns are series of values, from week wind (first column)
+to strong wind (last column). See See \code{\link{data_wind}}.}
 
 \item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00"}
 

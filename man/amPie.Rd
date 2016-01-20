@@ -8,7 +8,7 @@ amPie(data, show_values = TRUE, depth = 0, inner_radius = 0, ...)
 }
 \arguments{
 \item{data}{\code{data.frame} dataframe with at least 2 columns : 
-label (character), value (numeric).
+label (character), value (numeric). See \code{\link{data_pie}}
 You can add a third column "color" (character, colors in hexadecimal).}
 
 \item{show_values}{\code{boolean} TRUE to display values.}

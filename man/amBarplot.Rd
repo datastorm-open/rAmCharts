@@ -82,7 +82,8 @@ data(data_bar)
 
 
 # test with label rotation
-amBarplot(x = "country", y = "visits", data = data_bar, labelRotation = -90) \%>>\% amOptions(legend = TRUE)
+amBarplot(x = "country", y = "visits", data = data_bar,
+          labelRotation = -90) \%>>\% amOptions(legend = TRUE)
 
 #horizontal bar
 amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -90)

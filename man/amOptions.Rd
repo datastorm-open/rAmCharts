@@ -4,7 +4,7 @@
 \alias{amOptions}
 \title{amOptions}
 \usage{
-amOptions(chart, legend = FALSE, legendPosision = "right",
+amOptions(chart, legend = FALSE, legendPosition = "right",
   legendAlign = "left", export = FALSE, exportFormat = NULL,
   creditsPosition = "top-left", theme = "none", main = "",
   mainColor = "#000000", mainSize = 15, zoom = FALSE, scrollbar = FALSE,
@@ -15,7 +15,7 @@ amOptions(chart, legend = FALSE, legendPosision = "right",
 
 \item{legend}{\code{boolean}, TRUE or FALSE, default FALSE, display legend if TRUE.}
 
-\item{legendPosision}{\code{character}, control legend position,
+\item{legendPosition}{\code{character}, control legend position,
 can be "left", "right", "top" or "bottom", default "rigth". Only use if legend = TRUE.}
 
 \item{legendAlign}{\code{character} control legend align, must be "left","rigth" or "center",
