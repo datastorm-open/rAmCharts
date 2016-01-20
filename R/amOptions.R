@@ -6,8 +6,10 @@
 #' @param legend \code{boolean}, TRUE or FALSE, default FALSE, display legend if TRUE.
 #' @param legendPosision \code{character}, control legend position,
 #' can be "left", "right", "top" or "bottom", default "rigth". Only use if legend = TRUE.
+#' @param legendAlign \code{character} control legend align, must be "left","rigth" or "center",
+#' default "left". Only use if legend = TRUE.
 #' @param export \code{boolean}, TRUE or FALSE, default FALSE, display export if TRUE
-#' @param exportFormat \code{character} export format to keep, must be in   JPG, PNG ,SVG,
+#' @param exportFormat \code{character} export format to keep, must be in JPG, PNG ,SVG,
 #' CSV ,JSON, PDF, XLSX, PRINT
 #' @param creditsPosition \code{character},  control credits position,
 #' can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left
@@ -16,60 +18,22 @@
 #' @param main \code{character}, title of graphic, default ""
 #' @param mainColor \code{character}, color of title (html-color), default "#000000"
 #' @param mainSize \code{numeric}, color of title (html-color), default 15
+#' @param zoom \code{boolean}, activated zoom, default FALSE.
+#' @param scrollbar \code{boolean}, TRUE or FALSE, default FALSE, display Scrollbar if TRUE
+#' @param scrollbarHeight \code{numeric}, Height in px, must be >0
 #' @param ... Don't use...
 #' 
 #' @import pipeR
 #' 
-#' @examples
-#' 
-#' 
-#' data_pie <- data.frame(label = c("Facebook", "Twitter", "LinkedIn", "Google+", 
-#'                                  "Pinterest"),
-#'                        value = c(38, 25, 15, 14, 8), stringsAsFactors = FALSE)
-#' 
-#' library(pipeR)
-#' #Export                 
-#' amPie(data = data_pie)%>>%
-#'   amOptions(export = TRUE)
-
-#' #Legend
-#' amPie(data = data_pie)%>>%
-#'   amOptions(legend = TRUE)
-#' 
-#' #Legend position
-#' amPie(data = data_pie)%>>%
-#'   amOptions(legend = TRUE, legendPosision = "bottom")
-#' 
-#' #credits Position
-#' amPie(data = data_pie)%>>%
-#'   amOptions(creditsPosition = "bottom-right")
-#' 
-#' #credits Position
-#' amPie(data = data_pie)%>>%
-#'   amOptions(creditsPosition = "bottom-right")
-#' 
-#' #Theme
-#' amPie(data = data_pie)%>>%
-#'   amOptions(theme = "chalk")
-#' 
-#' #Title
-#' amPie(data = data_pie)%>>%
-#'   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40, theme = "chalk")
-#' 
-#' 
-#' #custom exemple
-#' amPie(data = data_pie)%>>%
-#'   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40,
-#'             theme = "dark", legend = TRUE, legendPosision = "bottom",
-#'              creditsPosition = "bottom-right" )
-#' 
+#' @example examples/amOptions_examples.R
 #' 
 #' 
 #' @rdname amOptions
 #' @export
-amOptions <- function(chart, legend = FALSE,legendPosision = "right", 
+amOptions <- function(chart, legend = FALSE,legendPosision = "right", legendAlign = "left",
                       export = FALSE, exportFormat = NULL, creditsPosition = "top-left", theme = "none",
-                      main = "", mainColor = "#000000", mainSize = 15,  ...) {
+                      main = "", mainColor = "#000000", mainSize = 15, 
+                      zoom = FALSE, scrollbar = FALSE, scrollbarHeight = 20,  ...) {
   #Control
   
   #Legend
@@ -78,6 +42,10 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right",
   #legendPosision
   .testCharacter(char = legendPosision)
   .testIn(vect = legendPosision, control = c("left", "right", "top", "bottom"))
+  
+  #legendAlign
+  .testCharacterLength1(char = legendAlign)
+  .testIn(vect = legendAlign, control = c("left", "rigth", "center"))
   
   #Export
   .testLogicalLength1(logi = export)
@@ -100,14 +68,24 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right",
   #mainsize
   .testNumericLength1(num = mainSize)
   
+  #zoom
+  .testLogicalLength1(logi = zoom)
+  
+  #scrollbar
+  .testLogicalLength1(logi = scrollbar)
+  
+  #scrollbarHeight
+  .testNumericLength1(num = scrollbarHeight)
+  .testInterval(num = scrollbarHeight, binf = 0)
+
   #Set legend to graph, usage of useGraphSettings argument depend of graph type
   if (legend == TRUE)
   {
     if(chart@type%in%c("radar","serial","xy"))
     {
-      chart <- chart %>>% setLegend(position = legendPosision, useGraphSettings = TRUE)
+      chart <- chart %>>% setLegend(position = legendPosision, useGraphSettings = TRUE, align = legendAlign)
     }else{
-      chart <- chart %>>% setLegend(position = legendPosision)
+      chart <- chart %>>% setLegend(position = legendPosision, align = legendAlign)
     }
   }
   
@@ -122,12 +100,8 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right",
     }else{
       menuc <- sapply(exportFormat, function(X){
         list(format = X, label = X)}, simplify = FALSE, USE.NAMES = FALSE)
-      if(length(exportFormat) == 1)
-      {
-      chart <- chart %>>% setProperties(export = list(enabled = TRUE, menu = menuc))
-      }else{
+
         chart <- chart %>>% setProperties(export = list(enabled = TRUE, menu = list(list(class = "export-main" , menu = menuc))))
-      }
     }
   }
   
@@ -145,6 +119,17 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right",
   if(main!="")
   {
     chart <- chart %>>% addTitle(text =  main, size = mainSize, color = mainColor)
+  }
+  
+  
+  if(zoom)
+  {
+    chart <- chart %>>% setChartCursor()
+  }
+  
+  if(scrollbar)
+  { 
+    chart <- chart %>>% setChartScrollbar(enabled = scrollbar, scrollbarHeight = scrollbarHeight)
   }
   
   chart
