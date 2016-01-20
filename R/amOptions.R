@@ -105,8 +105,10 @@ amOptions <- function(chart, legend = FALSE,legendPosision = "right", legendAlig
     }
   }
   
-  chart <- chart %>>% setProperties(creditsPosition =  creditsPosition)
-  
+  if(creditsPosition != "top-left")
+  {
+    chart <- chart %>>% setProperties(creditsPosition = creditsPosition)
+  }
   
   
   ##Set theme
