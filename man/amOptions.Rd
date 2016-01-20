@@ -4,9 +4,11 @@
 \alias{amOptions}
 \title{amOptions}
 \usage{
-amOptions(chart, legend = FALSE, legendPosision = "right", export = FALSE,
-  exportFormat = NULL, creditsPosition = "top-left", theme = "none",
-  main = "", mainColor = "#000000", mainSize = 15, ...)
+amOptions(chart, legend = FALSE, legendPosision = "right",
+  legendAlign = "left", export = FALSE, exportFormat = NULL,
+  creditsPosition = "top-left", theme = "none", main = "",
+  mainColor = "#000000", mainSize = 15, zoom = FALSE, scrollbar = FALSE,
+  scrollbarHeight = 20, ...)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
@@ -16,9 +18,12 @@ amOptions(chart, legend = FALSE, legendPosision = "right", export = FALSE,
 \item{legendPosision}{\code{character}, control legend position,
 can be "left", "right", "top" or "bottom", default "rigth". Only use if legend = TRUE.}
 
+\item{legendAlign}{\code{character} control legend align, must be "left","rigth" or "center",
+default "left". Only use if legend = TRUE.}
+
 \item{export}{\code{boolean}, TRUE or FALSE, default FALSE, display export if TRUE}
 
-\item{exportFormat}{\code{character} export format to keep, must be in   JPG, PNG ,SVG,
+\item{exportFormat}{\code{character} export format to keep, must be in JPG, PNG ,SVG,
 CSV ,JSON, PDF, XLSX, PRINT}
 
 \item{creditsPosition}{\code{character},  control credits position,
@@ -33,14 +38,18 @@ default "none}
 
 \item{mainSize}{\code{numeric}, color of title (html-color), default 15}
 
+\item{zoom}{\code{boolean}, activated zoom, default FALSE.}
+
+\item{scrollbar}{\code{boolean}, TRUE or FALSE, default FALSE, display Scrollbar if TRUE}
+
+\item{scrollbarHeight}{\code{numeric}, Height in px, must be >0}
+
 \item{...}{Don't use...}
 }
 \description{
 Most used options fot rAmCharts graphs customization
 }
 \examples{
-
-
 data_pie <- data.frame(label = c("Facebook", "Twitter", "LinkedIn", "Google+", 
                                  "Pinterest"),
                        value = c(38, 25, 15, 14, 8), stringsAsFactors = FALSE)
@@ -49,6 +58,7 @@ library(pipeR)
 #Export                 
 amPie(data = data_pie)\%>>\%
   amOptions(export = TRUE)
+
 #Legend
 amPie(data = data_pie)\%>>\%
   amOptions(legend = TRUE)
@@ -79,9 +89,6 @@ amPie(data = data_pie)\%>>\%
   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40,
             theme = "dark", legend = TRUE, legendPosision = "bottom",
              creditsPosition = "bottom-right" )
-
-
-
 }
 \author{
 DataKnowledge
