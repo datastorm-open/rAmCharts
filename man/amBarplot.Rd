@@ -5,10 +5,9 @@
 \title{Plotting bar chart using rAmCharts}
 \usage{
 amBarplot(x, y, data, xlab = "", ylab = "", groups_color = NULL,
-  horiz = FALSE, labelRotation = 0, stack_type = "none",
-  layered = FALSE, show_values = FALSE, depth = 0,
-  dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD",
-  ""), ...)
+  horiz = FALSE, stack_type = "none", layered = FALSE,
+  show_values = FALSE, depth = 0, dataDateFormat = NULL,
+  minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 }
 \arguments{
 \item{x}{\code{character}, column name for x-axis or \code{numeric} value of the corresponding column.
@@ -31,9 +30,7 @@ and \code{\link{data_gbar}}.}
 \item{groups_color}{\code{character} vector of colors in hexadecimal, 
 same length as y.}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
-
-\item{labelRotation}{\code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
+\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.}
 
 \item{stack_type}{\code{character}, "regular" if you wish stacked bars, "100" if

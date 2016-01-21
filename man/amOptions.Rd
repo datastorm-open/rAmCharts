@@ -8,7 +8,7 @@ amOptions(chart, legend = FALSE, legendPosition = "right",
   legendAlign = "left", export = FALSE, exportFormat = NULL,
   creditsPosition = "top-left", theme = "none", main = "",
   mainColor = "#000000", mainSize = 15, zoom = FALSE, scrollbar = FALSE,
-  scrollbarHeight = 20, ...)
+  scrollbarHeight = 20, labelRotation = 0, ...)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
@@ -43,6 +43,9 @@ default "none}
 \item{scrollbar}{\code{boolean}, TRUE or FALSE, default FALSE, display Scrollbar if TRUE}
 
 \item{scrollbarHeight}{\code{numeric}, Height in px, must be >0}
+
+\item{labelRotation}{\code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
+Must be between -90 and 90.}
 
 \item{...}{Don't use...}
 }

@@ -5,8 +5,8 @@
 \title{Plotting floating bar chart using rAmCharts}
 \usage{
 amFloatingBar(x, y_inf, y_sup, data, xlab = "", ylab = "",
-  groups_color = NULL, horiz = FALSE, labelRotation = 0,
-  stack_type = "none", layered = FALSE, show_values = FALSE, depth = 0,
+  groups_color = NULL, horiz = FALSE, stack_type = "none",
+  layered = FALSE, show_values = FALSE, depth = 0,
   dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD",
   ""), ...)
 }
@@ -33,14 +33,8 @@ See \code{\link{data_fbar}}}
 \item{groups_color}{\code{character} vector of colors in hexadecimal, 
 same length as y_inf or y_sup.}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
-
-\item{labelRotation}{\code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
+\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.}
-
-\item{stack_type}{...}
-
-\item{layered}{...}
 
 \item{show_values}{\code{boolean} TRUE to display values.}
 
@@ -71,7 +65,7 @@ amFloatingBar computes a floating bar chart of the given values.
 \strong{Notice about labels:}
 if the chart has many columns, several labels might be hidden.
 It depends on the width of the conatainer where the chart is displayed.
-Zoom on the chart to see if the chart can contain all labels. If not, use the parameter labelRotation.
+Zoom on the chart to see if the chart can contain all labels.
 You can also add a cursor to your chart...
 }
 \examples{

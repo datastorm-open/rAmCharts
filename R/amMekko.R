@@ -56,7 +56,7 @@ amMekko <- function(x, y, data, xlab = "",
                   columnWidth = 1),
     addValueAxis(title = ylab, position = 'left', stackType = "100% stacked",
                  unit = "%", axisAlpha = 0, gridAlpha = 0.1),
-    setCategoryAxis(title = xlab, gridPosition = 'start', labelRotation = 45, 
+    setCategoryAxis(title = xlab, gridPosition = 'start',
                     axisAlpha = 0, gridAlpha = 0, widthField = "total")
   )
   

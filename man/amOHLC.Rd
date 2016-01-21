@@ -4,7 +4,7 @@
 \alias{amOHLC}
 \title{Plotting OHLC chart using rAmCharts}
 \usage{
-amOHLC(data, xlab = "", ylab = "", horiz = FALSE, labelRotation = 45,
+amOHLC(data, xlab = "", ylab = "", horiz = FALSE,
   positiveColor = "#7f8da9", negativeColor = "#db4c3c", names = c("low",
   "open", "close", "high"), dataDateFormat = NULL,
   minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
@@ -18,9 +18,7 @@ high (numeric).}
 
 \item{ylab}{\code{character} label for y-axis.}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
-
-\item{labelRotation}{\code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
+\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.}
 
 \item{positiveColor}{\code{character} color for positive values. 

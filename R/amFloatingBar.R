@@ -17,7 +17,6 @@
 #' @param xlab \code{character} label for x-axis.
 #' @param ylab \code{character} label for y-axis.
 #' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-#' @param labelRotation \code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
 #' If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.
 #' @param show_values \code{boolean} TRUE to display values.
 #' @param depth \code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.
@@ -33,8 +32,6 @@
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
 #' @param ... see \code{\link{amOptions}} for more options
-#' @param stack_type ...
-#' @param layered ...
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 
@@ -42,7 +39,7 @@
 #' \strong{Notice about labels:}
 #' if the chart has many columns, several labels might be hidden.
 #' It depends on the width of the conatainer where the chart is displayed.
-#' Zoom on the chart to see if the chart can contain all labels. If not, use the parameter labelRotation.
+#' Zoom on the chart to see if the chart can contain all labels.
 #' You can also add a cursor to your chart...
 #' 
 #' 
@@ -50,7 +47,7 @@
 #' 
 #' @export
 #' 
-amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_color = NULL,horiz = FALSE, labelRotation = 0,
+amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_color = NULL,horiz = FALSE,
                           stack_type = "none", layered = FALSE, show_values = FALSE, depth = 0,
                           dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
@@ -169,7 +166,6 @@ amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_co
                   depth3D = depth3D, angle = angle, dataDateFormat = dataDateFormat),
     addValueAxis(title = ylab, position = 'left', stackType = stack_type),
     setCategoryAxis(title = xlab, gridPosition = 'start',
-                    labelRotation = labelRotation,
                     axisAlpha = 0, gridAlpha = 0,
                     parseDates = parseDates, minPeriod = minPeriod)
   )
