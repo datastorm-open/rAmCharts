@@ -135,7 +135,7 @@ amOptions <- function(chart, legend = FALSE,legendPosition = "right", legendAlig
   ##Set theme
   if(theme != "none")
   {
-    chart <- chart %>>% setProperties(theme =  theme)
+    chart <- chart %>>% setTheme(theme =  theme)
   }
   
   main <- as.character(main)
