@@ -13,7 +13,7 @@ amHist(x, ...)
 \arguments{
 \item{x}{a vector of values for which the histogram is desired.}
 
-\item{...}{further arguments and graphical parameters passed to plot.histogram}
+\item{...}{Other parameters for \link{amOptions}.}
 
 \item{col}{a colour to be used to fill the bars.}
 

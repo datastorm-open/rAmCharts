@@ -28,7 +28,7 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' @param cex bullet size
 #' @param lty line type (dashes)
 #' @param lwd line width 
-#' @param ... Don't use... For S3 Definition...
+#' @param ... Other parameters for \link{amOptions}.
 #' 
 #' @example examples/amPlot_examples.R
 #' 

@@ -20,7 +20,7 @@
 #' if \code{TRUE}, draw the counts or rounded densities;
 #' if labels is a \code{character}, draw itself.
 #' @param control_hist (optional) named \code{list()} containing parameters for computing the histogram.
-#' @param ... further arguments and graphical parameters passed to plot.histogram
+#' @param ... Other parameters for \link{amOptions}.
 #' 
 #' 
 #' @return An object of class \linkS4class{AmChart}.

@@ -36,7 +36,7 @@ amPlot(x, ...)
 \item{x}{the coordinates of points in the plot numeric,
 data.frame, formula.}
 
-\item{...}{Don't use... For S3 Definition...}
+\item{...}{Other parameters for \link{amOptions}.}
 
 \item{y}{the y coordinates of points in the plot,
 optional if x is an appropriate structure.}
