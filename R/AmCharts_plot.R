@@ -19,6 +19,8 @@ setMethod(f = "plot", signature = "AmCharts",
                                 background = "#ffffff",...)
           {
             chart_ls <- listProperties(x)
+            # remove temporary parameter
+            chart_ls["RType_"] <- NULL
             theme <- chart_ls$theme
             if (length(theme)) {
               background <- switch(theme,
