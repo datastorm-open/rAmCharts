@@ -93,9 +93,9 @@ amOptions <- function(chart, legend = FALSE,legendPosition = "right", legendAlig
     {
       warning("Legend argument is not logic for your type of graph, it is remove")
     }else{
-      if(length(test@otherProperties$RType_)>0)
+      if(length(chart@otherProperties$RType_)>0)
       {
-        if(chart@otherProperties$RType_ %in% c("waterfall", "boxplot"))
+        if(chart@otherProperties$RType_ %in% c("waterfall", "boxplot", "histogram"))
         {
           warning("Legend argument is not logic for your type of graph, it is remove")
         }

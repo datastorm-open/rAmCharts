@@ -102,7 +102,8 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
     addGraph(valueField = "y", type = "smoothedLine", lineColor = "black",
              balloonText = "", id = "graph-line"),
     addValueAxes(title = ylab, minimum = ylim[1], maximum = ylim[2]),
-    setCategoryAxis(title = xlab)
+    setCategoryAxis(title = xlab),
+    setProperties(RType_ = "histogram")
   )
   
   
