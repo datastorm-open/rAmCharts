@@ -4,6 +4,7 @@
 \name{initialize,AmLegend-method}
 \alias{amLegend}
 \alias{initialize,AmLegend-method}
+\alias{legend}
 \alias{setUseGraphSettings}
 \alias{setUseGraphSettings,AmLegend,logical-method}
 \title{Initialize}
@@ -11,6 +12,8 @@
 \S4method{initialize}{AmLegend}(.Object, useGraphSettings, ...)
 
 amLegend(useGraphSettings, ...)
+
+legend(useGraphSettings, ...)
 
 setUseGraphSettings(.Object, useGraphSettings)
 
@@ -28,10 +31,13 @@ See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}.}
 }
 \description{
 Constructor for an AmLegend.
+
+Constructor for an AmLegend.
 }
 \examples{
 new("AmLegend", useGraphSettings = TRUE)
 amLegend(useGraphSettings = FALSE)
+legend(useGraphSettings = FALSE)
 setUseGraphSettings(.Object = amLegend(), useGraphSettings = TRUE)
 }
 

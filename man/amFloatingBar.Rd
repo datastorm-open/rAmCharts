@@ -38,6 +38,10 @@ same length as y_inf or y_sup.}
 \item{labelRotation}{\code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
 If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.}
 
+\item{stack_type}{...}
+
+\item{layered}{...}
+
 \item{show_values}{\code{boolean} TRUE to display values.}
 
 \item{depth}{\code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.}
@@ -77,19 +81,20 @@ stopifnot(require(pipeR))
 data(data_fbar)
 
 # test with label rotation
-amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup", data = data_fbar, labelRotation = -90)
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -90)
 
-#horizontal bar
-amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup", data = data_fbar, labelRotation = -90,
-              horiz = TRUE)
+# horizontal bar
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -90, horiz = TRUE)
 
 #3D bar
-amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup", data = data_fbar, labelRotation = -90,
-              depth = 15)
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -90, depth = 15)
 
 #display values
-amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup", data = data_fbar, labelRotation = -90,
-              show_values = TRUE)
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -90, show_values = TRUE)
 
 #grouped columns
 data_gbar <- data.frame(year = c("2005", "2006", "2007", "2008", "2009"),
@@ -106,20 +111,20 @@ data_gbar <- data.frame(year = c("2005", "2006", "2007", "2008", "2009"),
 # default label: firt day of each year
 pipeR::pipeline(
   amFloatingBar(x = "year", y_inf = "expenses", y_sup = "income", data = data_gbar,
-            dataDateFormat = "YYYY", minPeriod = "YYYY"),
+                dataDateFormat = "YYYY", minPeriod = "YYYY"),
   setChartCursor()
 )
 
 # default label: first day of each month
 pipeR::pipeline(
   amFloatingBar(x = "month", y_inf = "expenses", y_sup = "income", data = data_gbar,
-            dataDateFormat = "MM/YYYY", minPeriod = "MM"),
+                dataDateFormat = "MM/YYYY", minPeriod = "MM"),
   setChartCursor()
 )
 
 pipeR::pipeline(
   amFloatingBar(x = "day", y_inf = "expenses", y_sup = "income", data = data_gbar,
-            dataDateFormat = "DD/MM/YYYY"),
+                dataDateFormat = "DD/MM/YYYY"),
   setChartCursor()
 )
 

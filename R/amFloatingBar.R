@@ -33,6 +33,8 @@
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
 #' @param ... see \code{\link{amOptions}} for more options
+#' @param stack_type ...
+#' @param layered ...
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 

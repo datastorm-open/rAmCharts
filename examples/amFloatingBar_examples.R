@@ -4,19 +4,20 @@ stopifnot(require(pipeR))
 data(data_fbar)
 
 # test with label rotation
-amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup", data = data_fbar, labelRotation = -90)
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -90)
 
-#horizontal bar
-amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup", data = data_fbar, labelRotation = -90,
-              horiz = TRUE)
+# horizontal bar
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -90, horiz = TRUE)
 
 #3D bar
-amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup", data = data_fbar, labelRotation = -90,
-              depth = 15)
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -90, depth = 15)
 
 #display values
-amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup", data = data_fbar, labelRotation = -90,
-              show_values = TRUE)
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -90, show_values = TRUE)
 
 #grouped columns
 data_gbar <- data.frame(year = c("2005", "2006", "2007", "2008", "2009"),
@@ -33,20 +34,20 @@ data_gbar <- data.frame(year = c("2005", "2006", "2007", "2008", "2009"),
 # default label: firt day of each year
 pipeR::pipeline(
   amFloatingBar(x = "year", y_inf = "expenses", y_sup = "income", data = data_gbar,
-            dataDateFormat = "YYYY", minPeriod = "YYYY"),
+                dataDateFormat = "YYYY", minPeriod = "YYYY"),
   setChartCursor()
 )
 
 # default label: first day of each month
 pipeR::pipeline(
   amFloatingBar(x = "month", y_inf = "expenses", y_sup = "income", data = data_gbar,
-            dataDateFormat = "MM/YYYY", minPeriod = "MM"),
+                dataDateFormat = "MM/YYYY", minPeriod = "MM"),
   setChartCursor()
 )
 
 pipeR::pipeline(
   amFloatingBar(x = "day", y_inf = "expenses", y_sup = "income", data = data_gbar,
-            dataDateFormat = "DD/MM/YYYY"),
+                dataDateFormat = "DD/MM/YYYY"),
   setChartCursor()
 )
 
