@@ -1,14 +1,10 @@
 output$funnel1 <- rAmCharts::renderAmCharts({
   # prepare data
-  dp <- data.table(title = c('Website visits', 'Downloads',
-                             'Requested prices', 'contacted',
-                             'Prurchased', 'Asked for support',
-                             'Purchased more'),
-                   value = c(300, 123, 98, 72, 35, 25, 18))
+  data('data_funnel')
   
   # build chart
   pipeR::pipeline(
-    amFunnelChart( dataProvider = dp,
+    amFunnelChart( dataProvider = data_funnel,
                   titleField = 'title', valueField = 'value')
   )
 })
@@ -16,16 +12,11 @@ output$funnel1 <- rAmCharts::renderAmCharts({
 output$code_funnel1 <- renderText({
   "
   ##Data
-  dp <- data.table(title = c('Website visits', 'Downloads',
-    'Requested prices', 'contacted',
-    'Prurchased', 'Asked for support',
-    'Purchased more'),
-    value = c(300, 123, 98, 72, 35, 25, 18)
-  )
+  data('data_funnel')
   
   ##Plot
   pipeR::pipeline(
-  amFunnelChart( dataProvider = dp,
+  amFunnelChart( dataProvider = data_funnel,
     titleField = 'title', valueField = 'value')
   )
   "
@@ -33,15 +24,11 @@ output$code_funnel1 <- renderText({
 
 output$funnel2 <- rAmCharts::renderAmCharts({
   ##Data
-  dp <- data.table(title = c('Website visits', 'Downloads',
-                             'Requested prices', 'contacted',
-                             'Prurchased', 'Asked for support',
-                             'Purchased more'),
-                   value = c(300, 123, 98, 72, 35, 25, 18))
+  data('data_funnel')
   
   ##Plot
   pipeR::pipeline(
-    amFunnelChart(dataProvider = dp, startX = -500, depth3D = 50,
+    amFunnelChart(dataProvider = data_funnel, startX = -500, depth3D = 50,
                   angle = 60, outlineColor = '#FFFFFF', outLineThickness = 2,
                   titleField = 'title', valueField = 'value', labelPosition = 'right',
                   marginLeft = 100, marginRight = 300,
@@ -52,15 +39,11 @@ output$funnel2 <- rAmCharts::renderAmCharts({
 output$code_funnel2 <- renderText({
   "
   ##Data
-  dp <- data.table(title = c('Website visits', 'Downloads',
-    'Requested prices', 'contacted',
-    'Prurchased', 'Asked for support',
-    'Purchased more'),
-    value = c(300, 123, 98, 72, 35, 25, 18))
+  data('data_funnel')
   
   ##Plot
   pipeR::pipeline(
-    amFunnelChart(dataProvider = dp, startX = -500, depth3D = 50,
+    amFunnelChart(dataProvider = data_funnel, startX = -500, depth3D = 50,
     angle = 60, outlineColor = '#FFFFFF', outLineThickness = 2,
     titleField = 'title', valueField = 'value', labelPosition = 'right',
     marginLeft = 100, marginRight = 300,
@@ -71,15 +54,11 @@ output$code_funnel2 <- renderText({
 
 output$funnel3 <- rAmCharts::renderAmCharts({
   ##Data
-  dp <- data.table(title = c('Website visits', 'Downloads',
-                             'Requested prices', 'contacted',
-                             'Prurchased', 'Asked for support',
-                             'Purchased more'),
-                   value = c(300, 123, 98, 72, 35, 25, 18))
+  data('data_funnel')
   
   ##Plot
   pipeR::pipeline(
-    amFunnelChart(dataProvider = dp, startX = -500, titleField = 'title',
+    amFunnelChart(dataProvider = data_funnel, startX = -500, titleField = 'title',
                   valueField = 'value', labelPosition = 'right',
                   marginLeft = 100, marginRight = 300, rotate = TRUE,
                   startDuration = 0)
@@ -89,15 +68,11 @@ output$funnel3 <- rAmCharts::renderAmCharts({
 output$code_funnel3 <- renderText({
   "
   ##Data
-  dp <- data.table(title = c('Website visits', 'Downloads',
-    'Requested prices', 'contacted',
-    'Prurchased', 'Asked for support',
-    'Purchased more'),
-  value = c(300, 123, 98, 72, 35, 25, 18))
+  data('data_funnel')
   
   ##Plot
   pipeR::pipeline(
-    amFunnelChart(dataProvider = dp, startX = -500, titleField = 'title',
+    amFunnelChart(dataProvider = data_funnel, startX = -500, titleField = 'title',
     valueField = 'value', labelPosition = 'right',
     marginLeft = 100, marginRight = 300, rotate = TRUE,
     startDuration = 0)

@@ -97,7 +97,7 @@ output$pie05 <- rAmCharts::renderAmCharts({
   data('data_gdp')
   pipeR::pipeline(
     amPieChart(valueField = 'gdp', titleField = 'country', startDuration = 0,
-               dataProvider = data_gdp, theme = 'patterns'),
+               dataProvider = data_gdp),
     addTitle(text = '10 Richest Countries in the World by 2015 GDP'),
     addTitle(text = 'data from http://www.insidermonkey.com', size = 10, color = 'blue'),
     setLegend(markerType = 'circle', position = 'right', marginRight = 80, autoMargins = FALSE),
@@ -109,7 +109,7 @@ output$code_pie05 <- renderText({
   "
   data('data_gdp')
   pipeR::pipeline(
-    amPieChart(valueField = 'gdp', titleField = 'country', dataProvider = data_gdp, theme = 'patterns'),
+    amPieChart(valueField = 'gdp', titleField = 'country', dataProvider = data_gdp),
     addTitle(text = '10 Richest Countries in the World by 2015 GDP'),
     addTitle(text = 'data from http://www.insidermonkey.com', size = 10, color = 'blue'),
     setLegend(markerType = 'circle', position = 'right', marginRight = 80, autoMargins = FALSE),
