@@ -12,7 +12,6 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' optional if x is an appropriate structure.
 #' @param xlab a title for the x axis, default NULL
 #' @param ylab a title for the y axis, default NULL
-#' @param main an overall title for the plot, default ""
 #' @param bullet default "round"
 #' @param type what type of plot should be drawn, default "p".
 #' @param col either a factor or a \code{character} default "gray"
@@ -53,7 +52,7 @@ amPlot.default <- function(x, ...) "Wrong class"
 #' 
 amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray", 
                            weights = NULL, precision = 2, id, error, xlab, ylab,
-                           main, lty, cex, lwd, xlim, ylim,...)
+                           lty, cex, lwd, xlim, ylim,...)
 {
   # check arguments validity
   # ---
@@ -197,7 +196,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
   chart <- addValueAxis(.Object = chart, valueAxis = valueAxis_left)
   
   # return the object
-  chart
+  amOptions(chart, ...)
 }
 
 #' @rdname amPlot
@@ -211,7 +210,7 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
                             weights = NULL, precision = 2,
                              parseDates = FALSE, dataDateFormat,
                              id, error, xlab, ylab,
-                             main, lty, cex, lwd, xlim, ylim, ...)
+                             lty, cex, lwd, xlim, ylim, ...)
 {
   # check arguments validity
   # ---
@@ -293,7 +292,7 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
   chart <- addValueAxis(.Object = chart, valueAxis = valueAxis_left)
   
   # return the object
-  chart
+  amOptions(chart, ...)
 }
 
 
@@ -308,13 +307,13 @@ amPlot.factor <- function(x, y, bullet = "round", type = "p", col = "gray",
                           weights = NULL, precision = 2, 
                           parseDates = FALSE, dataDateFormat = NULL,
                           id, error, xlab, ylab,
-                          main, lty, cex, lwd, xlim, ylim, ...)
+                          lty, cex, lwd, xlim, ylim, ...)
 {
   amPlot.character(x = as.character(x), y = y, bullet = bullet, type = type, col = col, 
                    weights = weights, precision = precision,
                    parseDates = parseDates, dataDateFormat = dataDateFormat,
                    id = id, error = error, xlab = xlab, ylab = ylab,
-                   main = main, lty = lty, cex = cex, lwd = lwd,
+                  lty = lty, cex = cex, lwd = lwd,
                    xlim = xlim, ylim = xlim, ...)
 }
 
@@ -328,9 +327,8 @@ amPlot.factor <- function(x, y, bullet = "round", type = "p", col = "gray",
 #'
 #' @export
 #' 
-amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab, main, ...)
+amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab, ...)
 {
-  if (missing(main)) main <- "amPlot.data.frame"
   if (missing(ylab)) ylab <- deparse(substitute(x))
   if (missing(xlab)) xlab <- "index"
   
@@ -380,7 +378,7 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
     chart <- amPlot(x = x, type = type)
   }
   
-  chart
+  amOptions(chart, ...)
 }
 
 #' @rdname amPlot
@@ -407,7 +405,7 @@ amPlot.formula <- function (x, data, ...)
       else i <- i + 1
     }
   }
-  chart
+  amOptions(chart, ...)
 }
 
 amCheck_type <- function(type, valid = c("l", "sl", "st", "p", "b"))

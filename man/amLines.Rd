@@ -24,7 +24,6 @@ Add a new data to an existing serial chart.
 }
 \examples{
 library(pipeR)
-library(rAmCharts)
 library(data.table)
 
 # ----------------
@@ -46,6 +45,9 @@ amPlot(x = xc, y = y, type = "sl")
 amPlot(x = xc, y = y, type = "st")
 amPlot(x = xc, y = y, type = "p")
 amPlot(x = xc, y = y,type = "b")
+
+# add parameter from amOptions
+amPlot(x = xc, y = y,type = "b", zoom = TRUE)
 
 # ---
 # x, y plot if x is a date (character)
@@ -157,6 +159,9 @@ x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
+# add parameter from amOptions
+amPlot(x = x, type = "st", lwd = 2, main = "My title")
+
 # -------------------
 # EXAMPLES DATA.FRAME
 # -------------------
@@ -177,8 +182,9 @@ amPlot(iris)
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
   setLegend(useGraphSettings = TRUE)
 
+# add parameter from amOptions
 co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2)
+amPlot(co2, zoom = TRUE)
 
 # -------------------
 # ADD OTHER SERIE(S)
@@ -212,5 +218,8 @@ amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
 amPlot(Sepal.Length~Sepal.Width, data = iris)
 amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
   setLegend(useGraphSettings = TRUE)
+
+# add parameter from amOptions
+amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
 }
 

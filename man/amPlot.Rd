@@ -15,20 +15,20 @@ amPlot(x, ...)
 \method{amPlot}{default}(x, ...)
 
 \method{amPlot}{numeric}(x, y, bullet = "round", type = "p", col = "gray",
-  weights = NULL, precision = 2, id, error, xlab, ylab, main, lty, cex, lwd,
-  xlim, ylim, ...)
+  weights = NULL, precision = 2, id, error, xlab, ylab, lty, cex, lwd, xlim,
+  ylim, ...)
 
 \method{amPlot}{character}(x, y, bullet = "round", type = "p",
   col = "gray", weights = NULL, precision = 2, parseDates = FALSE,
-  dataDateFormat, id, error, xlab, ylab, main, lty, cex, lwd, xlim, ylim, ...)
+  dataDateFormat, id, error, xlab, ylab, lty, cex, lwd, xlim, ylim, ...)
 
 \method{amPlot}{factor}(x, y, bullet = "round", type = "p", col = "gray",
   weights = NULL, precision = 2, parseDates = FALSE,
-  dataDateFormat = NULL, id, error, xlab, ylab, main, lty, cex, lwd, xlim,
-  ylim, ...)
+  dataDateFormat = NULL, id, error, xlab, ylab, lty, cex, lwd, xlim, ylim,
+  ...)
 
 \method{amPlot}{data.frame}(x, columns, type = "l", precision = 2, xlab,
-  ylab, main, ...)
+  ylab, ...)
 
 \method{amPlot}{formula}(x, data, ...)
 }
@@ -59,8 +59,6 @@ optional if x is an appropriate structure.}
 
 \item{ylab}{a title for the y axis, default NULL}
 
-\item{main}{an overall title for the plot, default ""}
-
 \item{lty}{line type (dashes)}
 
 \item{cex}{bullet size}
@@ -89,7 +87,6 @@ Can be a vector, a data.frame, or a formula
 }
 \examples{
 library(pipeR)
-library(rAmCharts)
 library(data.table)
 
 # ----------------
@@ -111,6 +108,9 @@ amPlot(x = xc, y = y, type = "sl")
 amPlot(x = xc, y = y, type = "st")
 amPlot(x = xc, y = y, type = "p")
 amPlot(x = xc, y = y,type = "b")
+
+# add parameter from amOptions
+amPlot(x = xc, y = y,type = "b", zoom = TRUE)
 
 # ---
 # x, y plot if x is a date (character)
@@ -222,6 +222,9 @@ x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
+# add parameter from amOptions
+amPlot(x = x, type = "st", lwd = 2, main = "My title")
+
 # -------------------
 # EXAMPLES DATA.FRAME
 # -------------------
@@ -242,8 +245,9 @@ amPlot(iris)
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
   setLegend(useGraphSettings = TRUE)
 
+# add parameter from amOptions
 co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2)
+amPlot(co2, zoom = TRUE)
 
 # -------------------
 # ADD OTHER SERIE(S)
@@ -277,8 +281,10 @@ amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
 amPlot(Sepal.Length~Sepal.Width, data = iris)
 amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
   setLegend(useGraphSettings = TRUE)
+
+# add parameter from amOptions
+amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
 library(pipeR)
-library(rAmCharts)
 library(data.table)
 
 # ----------------
@@ -300,6 +306,9 @@ amPlot(x = xc, y = y, type = "sl")
 amPlot(x = xc, y = y, type = "st")
 amPlot(x = xc, y = y, type = "p")
 amPlot(x = xc, y = y,type = "b")
+
+# add parameter from amOptions
+amPlot(x = xc, y = y,type = "b", zoom = TRUE)
 
 # ---
 # x, y plot if x is a date (character)
@@ -411,6 +420,9 @@ x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
+# add parameter from amOptions
+amPlot(x = x, type = "st", lwd = 2, main = "My title")
+
 # -------------------
 # EXAMPLES DATA.FRAME
 # -------------------
@@ -431,8 +443,9 @@ amPlot(iris)
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
   setLegend(useGraphSettings = TRUE)
 
+# add parameter from amOptions
 co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2)
+amPlot(co2, zoom = TRUE)
 
 # -------------------
 # ADD OTHER SERIE(S)
@@ -466,8 +479,10 @@ amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
 amPlot(Sepal.Length~Sepal.Width, data = iris)
 amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
   setLegend(useGraphSettings = TRUE)
+
+# add parameter from amOptions
+amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
 library(pipeR)
-library(rAmCharts)
 library(data.table)
 
 # ----------------
@@ -489,6 +504,9 @@ amPlot(x = xc, y = y, type = "sl")
 amPlot(x = xc, y = y, type = "st")
 amPlot(x = xc, y = y, type = "p")
 amPlot(x = xc, y = y,type = "b")
+
+# add parameter from amOptions
+amPlot(x = xc, y = y,type = "b", zoom = TRUE)
 
 # ---
 # x, y plot if x is a date (character)
@@ -600,6 +618,9 @@ x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
+# add parameter from amOptions
+amPlot(x = x, type = "st", lwd = 2, main = "My title")
+
 # -------------------
 # EXAMPLES DATA.FRAME
 # -------------------
@@ -620,8 +641,9 @@ amPlot(iris)
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
   setLegend(useGraphSettings = TRUE)
 
+# add parameter from amOptions
 co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2)
+amPlot(co2, zoom = TRUE)
 
 # -------------------
 # ADD OTHER SERIE(S)
@@ -655,8 +677,10 @@ amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
 amPlot(Sepal.Length~Sepal.Width, data = iris)
 amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
   setLegend(useGraphSettings = TRUE)
+
+# add parameter from amOptions
+amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
 library(pipeR)
-library(rAmCharts)
 library(data.table)
 
 # ----------------
@@ -678,6 +702,9 @@ amPlot(x = xc, y = y, type = "sl")
 amPlot(x = xc, y = y, type = "st")
 amPlot(x = xc, y = y, type = "p")
 amPlot(x = xc, y = y,type = "b")
+
+# add parameter from amOptions
+amPlot(x = xc, y = y,type = "b", zoom = TRUE)
 
 # ---
 # x, y plot if x is a date (character)
@@ -789,6 +816,9 @@ x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
+# add parameter from amOptions
+amPlot(x = x, type = "st", lwd = 2, main = "My title")
+
 # -------------------
 # EXAMPLES DATA.FRAME
 # -------------------
@@ -809,8 +839,9 @@ amPlot(iris)
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
   setLegend(useGraphSettings = TRUE)
 
+# add parameter from amOptions
 co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2)
+amPlot(co2, zoom = TRUE)
 
 # -------------------
 # ADD OTHER SERIE(S)
@@ -844,5 +875,8 @@ amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
 amPlot(Sepal.Length~Sepal.Width, data = iris)
 amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
   setLegend(useGraphSettings = TRUE)
+
+# add parameter from amOptions
+amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
 }
 

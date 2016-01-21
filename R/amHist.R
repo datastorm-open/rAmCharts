@@ -19,7 +19,9 @@
 #' Additionally draw labels on top of bars, if not \code{FALSE};
 #' if \code{TRUE}, draw the counts or rounded densities;
 #' if labels is a \code{character}, draw itself.
+#' @param control_hist (optional) named \code{list()} containing parameters for computing the histogram.
 #' @param ... further arguments and graphical parameters passed to plot.histogram
+#' 
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 
@@ -39,12 +41,12 @@ amHist <- function(x, ...) UseMethod("amHist")
 #' 
 amHist.numeric <- function(x, col = "gray", border = "gray",
                            freq = TRUE, plot = TRUE, labels = TRUE,
-                           xlab, ylab, ylim, ...)
+                           xlab, ylab, ylim, control_hist,...)
 {
   .testNumeric(num = x)
   
-  if (!missing(...)) {
-    resHist <- graphics::hist(x = x, plot = FALSE, ...)
+  if (!missing(control_hist)) {
+    resHist <- do.call(graphics::hist, c(list(x = x, plot = FALSE), control_hist))
   } else {
     resHist <- graphics::hist(x = x, plot = FALSE)
   }
@@ -86,7 +88,9 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
     if (missing(xlab)) xlab <- deparse(substitute(x))
     
     dp <- .dataAmHist(resHist, y, col)
-    .plotAmHist(dp = dp, amLabels = amLabels, ylim = ylim, ylab = ylab, xlab = xlab, border = border)
+    chart <- .plotAmHist(dp = dp, amLabels = amLabels, ylim = ylim,
+                         ylab = ylab, xlab = xlab, border = border)
+    amOptions(chart, ...)
   }
 }
 
@@ -117,6 +121,7 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
   #                                selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1)
 }
 
+#' @import data.table
 .dataAmHist <- function (resHist, y, col)
 {
   data_DT <- data.table(x = round(resHist$mids, 1), y = y, 
