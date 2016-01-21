@@ -14,7 +14,7 @@
 #' @param creditsPosition \code{character},  control credits position,
 #' can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left
 #' @param theme \code{character}, control theme.Can be "none","light","dark","patterns","chalk",
-#' default "none
+#' default "none"
 #' @param main \code{character}, title of graphic, default ""
 #' @param mainColor \code{character}, color of title (html-color), default "#000000"
 #' @param mainSize \code{numeric}, color of title (html-color), default 15
@@ -84,21 +84,30 @@ amOptions <- function(chart, legend = FALSE,legendPosition = "right", legendAlig
   #labelRotation
   .testNumericLength1(num = labelRotation)
   .testInterval(num = labelRotation,binf = -90, bsup = 90)
-
+  
   #Set legend to graph, usage of useGraphSettings argument depend of graph type
   if (legend == TRUE)
   {
     
     if(chart@type == "gauge")
     {
-      warning("Legend argument is not logic for a Gauge chart, it is remove")
+      warning("Legend argument is not logic for your type of graph, it is remove")
     }else{
-    if(chart@type%in%c("radar","serial","xy"))
-    {
-      chart <- chart %>>% setLegend(position = legendPosition, useGraphSettings = TRUE, align = legendAlign)
-    }else{
-      chart <- chart %>>% setLegend(position = legendPosition, align = legendAlign)
-    }}
+      if(length(test@otherProperties$RType_)>0)
+      {
+        if(chart@otherProperties$RType_ %in% c("waterfall", "boxplot"))
+        {
+          warning("Legend argument is not logic for your type of graph, it is remove")
+        }
+      }else{
+        if(chart@type%in%c("radar","serial","xy"))
+        {
+          chart <- chart %>>% setLegend(position = legendPosition, useGraphSettings = TRUE, align = legendAlign)
+        }else{
+          chart <- chart %>>% setLegend(position = legendPosition, align = legendAlign)
+        }
+      }
+    }
   }
   
   ###Export
@@ -108,18 +117,18 @@ amOptions <- function(chart, legend = FALSE,legendPosition = "right", legendAlig
   {
     if (is.null(exportFormat))
     {
-    chart <- chart %>>% setProperties(export = list(enabled = TRUE))
+      chart <- chart %>>% setExport(enabled = TRUE)
     }else{
       menuc <- sapply(exportFormat, function(X){
         list(format = X, label = X)}, simplify = FALSE, USE.NAMES = FALSE)
-
-        chart <- chart %>>% setProperties(export = list(enabled = TRUE, menu = list(list(class = "export-main" , menu = menuc))))
+      
+      chart <- chart %>>% setExport(enabled = TRUE, menu = list(list(class = "export-main" , menu = menuc)))
     }
   }
   
   if(creditsPosition != "top-left")
   {
-    chart <- chart %>>% setProperties(creditsPosition = creditsPosition)
+    chart <- chart %>>% setCreditsPosition(creditsPosition = creditsPosition)
   }
   
   

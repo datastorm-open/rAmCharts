@@ -30,7 +30,7 @@ CSV ,JSON, PDF, XLSX, PRINT}
 can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left}
 
 \item{theme}{\code{character}, control theme.Can be "none","light","dark","patterns","chalk",
-default "none}
+default "none"}
 
 \item{main}{\code{character}, title of graphic, default ""}
 
