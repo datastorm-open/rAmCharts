@@ -36,6 +36,10 @@ same length as y_inf or y_sup.}
 \item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.}
 
+\item{stack_type}{...}
+
+\item{layered}{...}
+
 \item{show_values}{\code{boolean} TRUE to display values.}
 
 \item{depth}{\code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.}
