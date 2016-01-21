@@ -59,6 +59,21 @@ amLegend <- function(useGraphSettings, ...) {
   return(.Object)
 }
 
+#' @description Constructor for an AmLegend.
+#' @examples 
+#' legend(useGraphSettings = FALSE)
+#' @rdname initialize-AmLegend
+#' @export
+legend <- function(useGraphSettings, ...) {
+  .Object <- new("AmLegend")
+  if (!missing(useGraphSettings)) {
+    .Object@useGraphSettings <- useGraphSettings
+  } else {}
+  .Object <- setProperties(.Object, ...)
+  validObject(.Object)
+  return(.Object)
+}
+
 #' @title Constructor for StockLegend.
 #' @description This method is used for \linkS4class{AmStockChart}.
 #' 
