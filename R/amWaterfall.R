@@ -114,7 +114,8 @@ amWaterfall <- function(data, start = 0, horiz = FALSE,
   
   res <- pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = "label", balloonValue = "val",
-                  rotate = horiz)
+                  rotate = horiz),
+    setProperties(RType_ = "waterfall")
   )
   
   if(show_values) {

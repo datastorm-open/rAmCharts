@@ -178,7 +178,8 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
              noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
     addGraph(id = "g5", type = "line", valueField = "real_outlier",lineColor = "black",
              lineAlpha = 0, bullet = "round", noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
-    setChartCursor(oneBalloonOnly = TRUE)
+    setChartCursor(oneBalloonOnly = TRUE),
+    setProperties(RType_ = "boxplot")
   )
   
   if(ncol(dp) > 8){
