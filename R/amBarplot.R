@@ -16,7 +16,6 @@
 #' @param xlab \code{character} label for x-axis.
 #' @param ylab \code{character} label for y-axis.
 #' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-#' @param labelRotation \code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
 #' If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.
 #' @param stack_type \code{character}, "regular" if you wish stacked bars, "100" if
 #' you want 100 percent stacked bars. Default is set to "none".
@@ -51,7 +50,7 @@
 #' 
 #' @export
 #' 
-amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,horiz = FALSE, labelRotation = 0,
+amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,horiz = FALSE,
                       stack_type = "none", layered = FALSE, show_values = FALSE, depth = 0,
                       dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
@@ -151,7 +150,6 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
                   depth3D = depth3D, angle = angle, dataDateFormat = dataDateFormat),
     addValueAxis(title = ylab, position = 'left', stackType = stack_type),
     setCategoryAxis(title = xlab, gridPosition = 'start',
-                    labelRotation = labelRotation,
                     axisAlpha = 0, gridAlpha = 0,
                     parseDates = parseDates, minPeriod = minPeriod)
   )

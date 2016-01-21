@@ -21,7 +21,6 @@
 #' @param xlab \code{character} label for x-axis.
 #' @param ylab \code{character} label for y-axis.
 #' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-#' @param labelRotation \code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
 #' If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.
 #' @param ... see \code{\link{amOptions}} for more options
 #' 
@@ -29,7 +28,7 @@
 #' 
 #' @export
 
-amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, labelRotation = 45,
+amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, 
                           positiveColor = "#7f8da9", negativeColor = "#db4c3c",
                           names = c("low", "open", "close", "high"),
                           dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
@@ -60,8 +59,7 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, labelRotati
   .testCharacterLength1(char = xlab)
   .testCharacterLength1(char = ylab)
   .testLogicalLength1(logi = horiz)
-  .testLength(param = labelRotation, len = 1)
-  .testInterval(num = labelRotation, binf = -90, bsup = 90)
+
   .testCharacter(char = names)
   .testLength(param = names, len = 4)
   
@@ -113,7 +111,7 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, labelRotati
     amSerialChart(dataProvider = data, categoryField = "category", precision = 2,
                   dataDateFormat = dataDateFormat, rotate = horiz),
     addValueAxis(title = xlab, position = 'left', gridAlpha = 0.1),
-    setCategoryAxis(title = ylab, labelRotation = labelRotation, axisAlpha = 0, gridAlpha = 0.1,
+    setCategoryAxis(title = ylab, axisAlpha = 0, gridAlpha = 0.1,
                     parseDates = parseDates, minPeriod = minPeriod),
     setGraphs(graph)
   )
