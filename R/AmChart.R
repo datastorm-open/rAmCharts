@@ -154,6 +154,9 @@ setClass(Class = "AmChart", contains = "AmObject",
            if (length(object@creditsPosition) && !(object@creditsPosition %in% c("top-left", "top-right", "bottom-left", "bottom-right"))) {
              stop("[AmChart]: invalid property 'creditsPosition'")
            }
+           if (length(object@theme) && !(object@theme %in% c("none", "light", "dark", "pattern", "chalk"))) {
+             stop("[AmChart]: invalid property 'theme'")
+           }
          }
 )
 
@@ -318,7 +321,7 @@ setMethod(f = "initialize", signature = "AmChart",
               .Object@segmentsField <- segmentsField
             } else {}
             if (!missing(theme)) {
-              .Object@theme <- theme
+              .Object <- setTheme(.Object, theme)
             } else {}
             if (!missing(titles)) {
               .Object <- setTitles(.Object, titles)

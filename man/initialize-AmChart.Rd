@@ -67,6 +67,8 @@
 \alias{setResponsive,AmChart,logicalOrMissing-method}
 \alias{setSubChartProperties}
 \alias{setSubChartProperties,AmChart-method}
+\alias{setTheme}
+\alias{setTheme,AmChart,character-method}
 \alias{setTitles}
 \alias{setTitles,AmChart,list-method}
 \alias{setTrendLines}
@@ -203,6 +205,10 @@ addSubData(.Object, categoryIDs, data)
 setSubChartProperties(.Object, .subObject = NULL, ...)
 
 \S4method{setSubChartProperties}{AmChart}(.Object, .subObject = NULL, ...)
+
+setTheme(.Object, theme)
+
+\S4method{setTheme}{AmChart,character}(.Object, theme)
 
 setTitles(.Object, titles)
 
@@ -546,6 +552,12 @@ dataProvider_obj <- data.frame(key = c("FR", "US", "GER", "ENG", "IT" ),
 print(setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj))
 # ---
 print(setExport(.Object = amSerialChart()))
+\dontshow{
+amchart <- setExport(.Object = amSerialChart())
+print(amchart)
+amchart <- setExport(.Object = amchart, enabled = FALSE)
+print(amchart)
+}
 graphs_ls <- list(amGraph(balloonText = "balloonText"), amGraph(type = "column"))
 print(setGraphs(.Object = amChart(), graphs = graphs_ls))
 \dontrun{
@@ -598,6 +610,11 @@ amChart_obj <- amChart(dataProvider = data.frame(a = 1:5, b = 6:10))
 print(addSubData(.Object = amChart_obj, categoryIDs = 3, data = data.frame(a = 1:10, b = 11:20)))
 # ---
 print(setSubChartProperties(.Object = amSerialChart(), type = "serial"))
+# ---
+print(setTheme(.Object = amPieChart(), theme = "dark"))
+\dontrun{
+print(setTheme(.Object = amPieChart(), theme = "error"))
+}
 # ---
 titles_ls <- list(title(text = "balloonText"), title(text = "column"))
 print(setTitles(.Object = amXYChart(), titles = titles_ls))

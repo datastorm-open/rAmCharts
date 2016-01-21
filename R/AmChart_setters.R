@@ -39,7 +39,7 @@ setMethod(f = "setAllLabels", signature = c("AmChart", "list"),
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addLabel",
-            def = function(.Object, label = NULL, ...) {standardGeneric("addLabel")})
+           def = function(.Object, label = NULL, ...) {standardGeneric("addLabel")})
 #' @rdname initialize-AmChart
 setMethod(f = "addLabel", signature = c("AmChart", "LabelOrMissing"),
           definition = function(.Object, label = NULL, ...)
@@ -64,7 +64,7 @@ setMethod(f = "addLabel", signature = c("AmChart", "LabelOrMissing"),
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setArrows",
-            def = function(.Object, arrows = NULL) { standardGeneric("setArrows") } )
+           def = function(.Object, arrows = NULL) { standardGeneric("setArrows") } )
 #' @rdname initialize-AmChart
 setMethod(f = "setArrows", signature = c("AmChart"),
           definition = function(.Object, arrows = NULL)
@@ -95,21 +95,21 @@ setMethod(f = "setArrows", signature = c("AmChart"),
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addArrow",
-            def = function(.Object, arrow = NULL, ...) { standardGeneric("addArrow") } )
+           def = function(.Object, arrow = NULL, ...) { standardGeneric("addArrow") } )
 #' @rdname initialize-AmChart
 setMethod(f = "addArrow", signature = c("AmChart", "GaugeArrowOrMissing"),
-           definition = function(.Object, arrow = NULL, ...)
-           {
-             if (is.null(arrow) && !missing(...)) {
-               arrow <- gaugeArrow(...)
-             } else if (is.null(arrow) && missing(...)) {
-               stop("You must either provide argument arrow or give its properties")
-             } else {}
-             
-             .Object@arrows <- rlist::list.append(.Object@arrows, listProperties(arrow))
-             validObject(.Object)
-             return(.Object)
-           })
+          definition = function(.Object, arrow = NULL, ...)
+          {
+            if (is.null(arrow) && !missing(...)) {
+              arrow <- gaugeArrow(...)
+            } else if (is.null(arrow) && missing(...)) {
+              stop("You must either provide argument arrow or give its properties")
+            } else {}
+            
+            .Object@arrows <- rlist::list.append(.Object@arrows, listProperties(arrow))
+            validObject(.Object)
+            return(.Object)
+          })
 
 # ---
 
@@ -141,7 +141,7 @@ setMethod(f = "setAxes", signature = c("AmChart", "list"),
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addAxe",
-            def = function(.Object, axe = NULL, ...) {standardGeneric("addAxe")})
+           def = function(.Object, axe = NULL, ...) {standardGeneric("addAxe")})
 #' @rdname initialize-AmChart
 setMethod(f = "addAxe", signature = c("AmChart", "GaugeAxisOrMissing"),
           definition = function(.Object, axe = NULL, ...)
@@ -213,18 +213,18 @@ setMethod(f = "addAxis", signature = c("AmChart", "GaugeAxisOrMissing"),
 #' # ---
 #' @rdname initialize-AmChart
 setMethod(f = "setBalloon", signature = c("AmChart", "AmBalloonOrMissing"),
-           definition = function(.Object, amBalloon = NULL, ...)
-           {
-             if (is.null(amBalloon) && !missing(...)) {
-               amBalloon <- amBalloon(...)
-             } else if (is.null(amBalloon) && missing(...)) {
-               stop("You must either give argument 'amBalloon' or its properties")
-             } else {}
-             
-             .Object@balloon <- listProperties(amBalloon)
-             validObject(.Object)
-             return(.Object)
-           })
+          definition = function(.Object, amBalloon = NULL, ...)
+          {
+            if (is.null(amBalloon) && !missing(...)) {
+              amBalloon <- amBalloon(...)
+            } else if (is.null(amBalloon) && missing(...)) {
+              stop("You must either give argument 'amBalloon' or its properties")
+            } else {}
+            
+            .Object@balloon <- listProperties(amBalloon)
+            validObject(.Object)
+            return(.Object)
+          })
 
 #' @examples
 #' print(setCategoryAxis(.Object = amSerialChart(), gridPosition = "start"))
@@ -239,7 +239,7 @@ setMethod(f = "setBalloon", signature = c("AmChart", "AmBalloonOrMissing"),
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setCategoryAxis",
-            def = function(.Object, categoryAxis = NULL , ...) {standardGeneric("setCategoryAxis")} )
+           def = function(.Object, categoryAxis = NULL , ...) {standardGeneric("setCategoryAxis")} )
 #' @rdname initialize-AmChart
 setMethod(f = "setCategoryAxis", signature = c("AmChart"),
           definition = function(.Object, categoryAxis = NULL, ...)
@@ -260,7 +260,7 @@ setMethod(f = "setCategoryAxis", signature = c("AmChart"),
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setCategoryField",
-            def = function(.Object, categoryField) {standardGeneric("setCategoryField")} )
+           def = function(.Object, categoryField) {standardGeneric("setCategoryField")} )
 #' @rdname initialize-AmChart
 setMethod(f = "setCategoryField", signature = c("AmChart", "character"),
           definition = function(.Object, categoryField)
@@ -343,7 +343,7 @@ setMethod(f = "setChartScrollbar", signature = c("AmChart", "ChartScrollbarOrMis
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setCreditsPosition",
-            def = function(.Object, creditsPosition) {standardGeneric("setCreditsPosition")} )
+           def = function(.Object, creditsPosition) {standardGeneric("setCreditsPosition")} )
 #' @rdname initialize-AmChart
 setMethod(f = "setCreditsPosition", signature = c("AmChart", "character"),
           definition = function(.Object, creditsPosition)
@@ -366,8 +366,8 @@ setGeneric(name = "setDataLoader",
 setMethod(f = "setDataLoader", signature = c("AmChart", "character", "character"),
           definition = function(.Object, url, format, ...)
           {
-            .Object <- setProperties(.Object = .Object,
-                                     dataLoader = list(url = url, format = format,...))
+            .Object@otherProperties["dataLoader"] <- NULL
+            .Object <- setProperties(.Object = .Object, dataLoader = list(url = url, format = format,...))
             validObject(.Object)
             return(.Object)
           })
@@ -383,24 +383,32 @@ setMethod(f = "setDataLoader", signature = c("AmChart", "character", "character"
 #' @rdname initialize-AmChart
 #' @export
 setMethod(f = "setDataProvider", signature = c("AmChart", "data.frame", "logicalOrMissing"),
-           definition = function(.Object, dataProvider, keepNA = TRUE)
-           {
-             .Object@dataProvider <- toList(dataProvider, keepNA )
-             validObject(.Object)
-             return(.Object)
-           })
+          definition = function(.Object, dataProvider, keepNA = TRUE)
+          {
+            .Object@dataProvider <- toList(dataProvider, keepNA )
+            validObject(.Object)
+            return(.Object)
+          })
 
 #' @examples 
 #' print(setExport(.Object = amSerialChart()))
+#' \dontshow{
+#' amchart <- setExport(.Object = amSerialChart())
+#' print(amchart)
+#' amchart <- setExport(.Object = amchart, enabled = FALSE)
+#' print(amchart)
+#' }
 #' @rdname initialize-AmChart
 #' 
 setMethod(f = "setExport", signature = c("AmChart"),
-           definition = function(.Object, enabled = TRUE, ...)
-           {
-             .Object <- setProperties( .Object, export = list(enabled = enabled, ...) )
-             validObject(.Object)
-             return(.Object)
-           })
+          definition = function(.Object, enabled = TRUE, ...)
+          {
+            .Object@otherProperties["export"] <- NULL
+            
+            .Object <- setProperties(.Object, export = list(enabled = enabled, ...))
+            validObject(.Object)
+            return(.Object)
+          })
 
 # > @graphs : setters ####
 
@@ -415,7 +423,7 @@ setMethod(f = "setExport", signature = c("AmChart"),
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setGraphs",
-            def = function(.Object, graphs) { standardGeneric("setGraphs") } )
+           def = function(.Object, graphs) { standardGeneric("setGraphs") } )
 #' @rdname initialize-AmChart
 setMethod(f = "setGraphs", signature = c("AmChart", "list"),
           definition = function(.Object, graphs)
@@ -437,7 +445,7 @@ setMethod(f = "setGraphs", signature = c("AmChart", "list"),
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addGraph",
-            def = function(.Object, amGraph = NULL, ...) {standardGeneric("addGraph")})
+           def = function(.Object, amGraph = NULL, ...) {standardGeneric("addGraph")})
 #' @rdname initialize-AmChart
 setMethod(f = "addGraph", signature = c("AmChart", "AmGraphOrMissing"),
           definition = function(.Object, amGraph = NULL , ...)
@@ -559,6 +567,7 @@ setGeneric(name = "setResponsive",
 setMethod(f = "setResponsive", signature = c("AmChart", "logicalOrMissing"),
           definition = function(.Object, enabled = TRUE, ...)
           {
+            .Object@otherProperties["responsive"] <- NULL
             .Object <- setProperties(.Object = .Object, responsive = list(enabled = enabled, ...))
             validObject(.Object)
             return(.Object)
@@ -655,7 +664,7 @@ setMethod(f = "addSubData", signature = c("AmChart", "numeric", "data.frame"),
               if (is(data, "data.frame")) {
                 #cat("data.frame")
                 .Object@dataProvider [[ eval(categoryID) ]] <- rlist::list.append( .Object@dataProvider[[ eval(categoryID) ]],
-                                                                                  subdata = toList(data) )
+                                                                                   subdata = toList(data) )
               } else if (is(data, "list")) {
                 #cat("list")
                 .Object@dataProvider [[ eval(categoryID) ]] <- rlist::list.append( .Object@dataProvider[[ eval(categoryID) ]],
@@ -698,6 +707,24 @@ setMethod(f = "setSubChartProperties", signature = c("AmChart"),
           })
 
 #' @examples
+#' print(setTheme(.Object = amPieChart(), theme = "dark"))
+#' \dontrun{
+#' print(setTheme(.Object = amPieChart(), theme = "error"))
+#' }
+#' # ---
+#' @rdname initialize-AmChart
+#' @export
+setGeneric(name = "setTheme", def = function(.Object, theme) {standardGeneric("setTheme")})
+#' @rdname initialize-AmChart
+setMethod(f = "setTheme", signature = c("AmChart", "character"),
+          definition = function(.Object, theme)
+          {
+            .Object@theme <- theme
+            validObject(.Object)
+            return(.Object)
+          })
+
+#' @examples
 #' titles_ls <- list(title(text = "balloonText"), title(text = "column"))
 #' print(setTitles(.Object = amXYChart(), titles = titles_ls))
 #' # or...
@@ -705,8 +732,7 @@ setMethod(f = "setSubChartProperties", signature = c("AmChart"),
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setTitles",
-            def = function(.Object, titles) { standardGeneric("setTitles") } )
+setGeneric(name = "setTitles", def = function(.Object, titles) { standardGeneric("setTitles") } )
 #' @rdname initialize-AmChart
 setMethod(f = "setTitles", signature = c("AmChart", "list"),
           definition = function(.Object, titles)
@@ -730,7 +756,7 @@ setMethod(f = "setTitles", signature = c("AmChart", "list"),
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addTitle",
-            def = function(.Object, title = NULL, ...) {standardGeneric("addTitle")})
+           def = function(.Object, title = NULL, ...) {standardGeneric("addTitle")})
 #' @rdname initialize-AmChart
 setMethod(f = "addTitle", signature = c("AmChart", "TitleOrMissing"),
           definition = function(.Object, title = NULL, ...)
@@ -755,7 +781,7 @@ setMethod(f = "addTitle", signature = c("AmChart", "TitleOrMissing"),
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setTrendLines",
-            def = function(.Object, trendLines) {standardGeneric("setTrendLines")})
+           def = function(.Object, trendLines) {standardGeneric("setTrendLines")})
 #' @rdname initialize-AmChart
 setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
           definition = function(.Object, trendLines)
@@ -856,14 +882,14 @@ addValueAxes_def <- function(.Object, valueAxis = NULL, ...)
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addValueAxes",
-            def = function(.Object, valueAxis = NULL, ... ) {standardGeneric("addValueAxes")})
+           def = function(.Object, valueAxis = NULL, ... ) {standardGeneric("addValueAxes")})
 #' @rdname initialize-AmChart
 setMethod(f = "addValueAxes", signature = c("AmChart", "ValueAxisOrMissing"),
           definition = addValueAxes_def)
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addValueAxis",
-            def = function(.Object, valueAxis = NULL, ... ) { standardGeneric("addValueAxis") } )
+           def = function(.Object, valueAxis = NULL, ... ) { standardGeneric("addValueAxis") } )
 #' @rdname initialize-AmChart
 setMethod(f = "addValueAxis", signature = c("AmChart", "ValueAxisOrMissing"),
           definition = addValueAxes_def)
