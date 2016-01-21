@@ -86,7 +86,7 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   data <- cbind(data,databullet)
   res <- amRadarChart() %>>% 
     setDataProvider(data) %>>% 
-    setProperties(type = "radar", theme = "light", startDuration = 1, categoryField = "labels") %>>% 
+    setProperties(type = "radar", startDuration = 1, categoryField = "labels") %>>% 
     setGraphs(graphs) %>>% 
     addValueAxes(gridType = "circle")
   
