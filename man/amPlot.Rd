@@ -109,9 +109,6 @@ amPlot(x = xc, y = y, type = "st")
 amPlot(x = xc, y = y, type = "p")
 amPlot(x = xc, y = y,type = "b")
 
-# add parameter from amOptions
-amPlot(x = xc, y = y,type = "b", zoom = TRUE)
-
 # ---
 # x, y plot if x is a date (character)
 # ---
@@ -156,14 +153,15 @@ amPlot(x = x, y = y, type = "p", weights = weights)
 amPlot(x = x, y = y, type = "p", cex = 1)
 amPlot(x = x, y = y, type = "p", cex = 10)
 
-# add title
-amPlot(x = x, y = y, main = "title")
 
 # change color
 amPlot(x = x, y = y, col = "blue")
 
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
+
+# add title from amOptions
+amPlot(x = x, y = y, main = "title")
 
 # ---
 # x plot
@@ -222,7 +220,7 @@ x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
-# add parameter from amOptions
+# add a title from amOptions
 amPlot(x = x, type = "st", lwd = 2, main = "My title")
 
 # -------------------
@@ -307,9 +305,6 @@ amPlot(x = xc, y = y, type = "st")
 amPlot(x = xc, y = y, type = "p")
 amPlot(x = xc, y = y,type = "b")
 
-# add parameter from amOptions
-amPlot(x = xc, y = y,type = "b", zoom = TRUE)
-
 # ---
 # x, y plot if x is a date (character)
 # ---
@@ -354,14 +349,15 @@ amPlot(x = x, y = y, type = "p", weights = weights)
 amPlot(x = x, y = y, type = "p", cex = 1)
 amPlot(x = x, y = y, type = "p", cex = 10)
 
-# add title
-amPlot(x = x, y = y, main = "title")
 
 # change color
 amPlot(x = x, y = y, col = "blue")
 
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
+
+# add title from amOptions
+amPlot(x = x, y = y, main = "title")
 
 # ---
 # x plot
@@ -420,7 +416,7 @@ x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
-# add parameter from amOptions
+# add a title from amOptions
 amPlot(x = x, type = "st", lwd = 2, main = "My title")
 
 # -------------------
@@ -505,9 +501,6 @@ amPlot(x = xc, y = y, type = "st")
 amPlot(x = xc, y = y, type = "p")
 amPlot(x = xc, y = y,type = "b")
 
-# add parameter from amOptions
-amPlot(x = xc, y = y,type = "b", zoom = TRUE)
-
 # ---
 # x, y plot if x is a date (character)
 # ---
@@ -552,14 +545,15 @@ amPlot(x = x, y = y, type = "p", weights = weights)
 amPlot(x = x, y = y, type = "p", cex = 1)
 amPlot(x = x, y = y, type = "p", cex = 10)
 
-# add title
-amPlot(x = x, y = y, main = "title")
 
 # change color
 amPlot(x = x, y = y, col = "blue")
 
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
+
+# add title from amOptions
+amPlot(x = x, y = y, main = "title")
 
 # ---
 # x plot
@@ -618,7 +612,7 @@ x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
-# add parameter from amOptions
+# add a title from amOptions
 amPlot(x = x, type = "st", lwd = 2, main = "My title")
 
 # -------------------
@@ -703,9 +697,6 @@ amPlot(x = xc, y = y, type = "st")
 amPlot(x = xc, y = y, type = "p")
 amPlot(x = xc, y = y,type = "b")
 
-# add parameter from amOptions
-amPlot(x = xc, y = y,type = "b", zoom = TRUE)
-
 # ---
 # x, y plot if x is a date (character)
 # ---
@@ -750,14 +741,15 @@ amPlot(x = x, y = y, type = "p", weights = weights)
 amPlot(x = x, y = y, type = "p", cex = 1)
 amPlot(x = x, y = y, type = "p", cex = 10)
 
-# add title
-amPlot(x = x, y = y, main = "title")
 
 # change color
 amPlot(x = x, y = y, col = "blue")
 
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
+
+# add title from amOptions
+amPlot(x = x, y = y, main = "title")
 
 # ---
 # x plot
@@ -816,7 +808,7 @@ x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
-# add parameter from amOptions
+# add a title from amOptions
 amPlot(x = x, type = "st", lwd = 2, main = "My title")
 
 # -------------------
