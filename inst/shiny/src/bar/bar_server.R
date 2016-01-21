@@ -1,10 +1,7 @@
 
 output$bar0 <- rAmCharts::renderAmCharts({
   ##Data
-  data_bar <- data.frame(
-    country = c('USA', 'China', 'Japan', 'Germany','UK', 'France', 'India', 'Spain','Netherlands', 'Russia', 'South Korea','Canada'),
-    visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580, 443, 441)
-  )
+  data('data_bar')
   ##Plot
   pipeR::pipeline(
     amSerialChart(),
@@ -19,10 +16,7 @@ output$bar0 <- rAmCharts::renderAmCharts({
 output$code_bar0 <- renderText({
   "
   ##Data
-  data_bar <- data.frame(
-    country = c('USA', 'China', 'Japan', 'Germany','UK', 'France', 'India', 'Spain','Netherlands', 'Russia', 'South Korea','Canada'),
-    visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580, 443, 441)
-  )
+  data('data_bar')
   ##Plot
   pipeR::pipeline(
     amSerialChart(),
@@ -39,13 +33,7 @@ output$code_bar0 <- renderText({
 
 output$bar1 <- rAmCharts::renderAmCharts({
   ##Data
-  data_bar <- data.frame(
-    country = c('USA', 'China', 'Japan', 'Germany','UK',
-                'France', 'India', 'Spain','Netherlands', 'Russia', 'South Korea','Canada'),
-    visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580, 443, 441),
-    color =c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202','#F8FF01', '#B0DE09',
-             '#04D215', '#0D8ECF','#0D52D1', '#2A0CD0', '#8A0CCF', '#CD0D74'),
-    stringsAsFactors = FALSE)
+  data('data_bar')
   ##Plot
   pipeR::pipeline(
     amSerialChart(),
@@ -63,12 +51,7 @@ output$bar1 <- rAmCharts::renderAmCharts({
 output$code_bar1 <- renderText({
   "
   ##Data
-  data_bar <- data.frame(
-    country = c('USA', 'China', 'Japan', 'Germany','UK', 'France', 'India', 'Spain','Netherlands', 'Russia', 'South Korea','Canada'),
-    visits = c(3025, 1882, 1809, 1322, 1122, 1114, 984, 711, 665, 580, 443, 441),
-    color =c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202','#F8FF01', '#B0DE09', '#04D215', '#0D8ECF','#0D52D1', '#2A0CD0', '#8A0CCF', '#CD0D74'),
-    stringsAsFactors = FALSE
-  )
+  data('data_bar')
   ##Plot
   pipeR::pipeline(
     amSerialChart(),
@@ -85,10 +68,7 @@ output$code_bar1 <- renderText({
 
 output$bar2 <- rAmCharts::renderAmCharts({
   ##Data
-  data_gbar <- data.frame(year = c('2005', '2006', '2007', '2008', '2009'),
-                          income = c(23.5, 26.2, 30.1, 29.5, 24.6),
-                          expenses = c(18.1, 22.8, 23.9, 25.1, 25),
-                          stringsAsFactors = FALSE)
+  data('data_gbar')
   ##Plot
   pipeR::pipeline(
     amSerialChart(),
@@ -105,10 +85,7 @@ output$bar2 <- rAmCharts::renderAmCharts({
 output$code_bar2 <- renderText({
   "
   ##Data
-  data_gbar <- data.frame(year = c('2005', '2006', '2007', '2008', '2009'),
-                          income = c(23.5, 26.2, 30.1, 29.5, 24.6),
-                          expenses = c(18.1, 22.8, 23.9, 25.1, 25),
-                          stringsAsFactors = FALSE)
+ data('data_gbar')
   ##Plot
   pipeR::pipeline(
     amSerialChart(),
@@ -124,10 +101,7 @@ output$code_bar2 <- renderText({
 
 output$bar3 <- rAmCharts::renderAmCharts({
   ##Data
-  data_gbar <- data.frame(year = c('2005', '2006', '2007', '2008', '2009'),
-                          income = c(23.5, 26.2, 30.1, 29.5, 24.6),
-                          expenses = c(18.1, 22.8, 23.9, 25.1, 25),
-                          stringsAsFactors = FALSE)
+  data('data_gbar')
   ##Plot
   pipeR::pipeline(
     amSerialChart(),
@@ -150,10 +124,7 @@ output$bar3 <- rAmCharts::renderAmCharts({
 output$code_bar3 <- renderText({
   "
  ##Data
-  data_gbar <- data.frame(year = c('2005', '2006', '2007', '2008', '2009'),
-    income = c(23.5, 26.2, 30.1, 29.5, 24.6),
-    expenses = c(18.1, 22.8, 23.9, 25.1, 25),
-  stringsAsFactors = FALSE)
+ data('data_gbar')
   ##Plot
   pipeR::pipeline(
     amSerialChart(),
@@ -172,10 +143,7 @@ output$code_bar3 <- renderText({
 
 output$bar5 <- rAmCharts::renderAmCharts({
   ##Data
-  data_gbar <- data.frame(year = c('2005', '2006', '2007', '2008', '2009'),
-                          income = c(23.5, 26.2, 30.1, 29.5, 24.6),
-                          expenses = c(18.1, 22.8, 23.9, 25.1, 25),
-                          stringsAsFactors = FALSE)
+  data('data_gbar')
   ##Plot
   pipeR::pipeline(
     amSerialChart(),
@@ -195,11 +163,7 @@ output$bar5 <- rAmCharts::renderAmCharts({
 output$code_bar5 <- renderText({
   "
   ##Data
-  data_gbar <- data.frame(year = c('2005', '2006', '2007', '2008', '2009'),
-    income = c(23.5, 26.2, 30.1, 29.5, 24.6),
-    expenses = c(18.1, 22.8, 23.9, 25.1, 25),
-    stringsAsFactors = FALSE
-  )
+ data('data_gbar')
   ##Plot
   pipeR::pipeline(
     amSerialChart(),

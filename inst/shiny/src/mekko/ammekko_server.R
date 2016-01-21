@@ -1,8 +1,6 @@
 output$ammekko0 <- rAmCharts::renderAmCharts({
   ##Data
-data_mekko <- data.frame(var1 = c(rep('A1', 150), rep('A2', 350), rep('A3', 500)),
-                         var2 = sample(c('B1', 'B2', 'B3', 'B4', 'B5', 'B6'), 
-                                       1000, replace = TRUE))
+  data('data_mekko')
 ##Plot
 amMekko(x = 'var1', y = 'var2', data = data_mekko)
 })
@@ -11,9 +9,7 @@ amMekko(x = 'var1', y = 'var2', data = data_mekko)
 output$code_ammekko0 <- renderText({
   "
   ##Data
-  data_mekko <- data.frame(var1 = c(rep('A1', 150), rep('A2', 350), rep('A3', 500)),
-    var2 = sample(c('B1', 'B2', 'B3', 'B4', 'B5', 'B6'), 
-  1000, replace = TRUE))
+  data('data_mekko')
   ##Plot
   amMekko(x = 'var1', y = 'var2', data = data_mekko)
   "
@@ -23,9 +19,7 @@ output$code_ammekko0 <- renderText({
   
 output$ammekko1 <- rAmCharts::renderAmCharts({
   ##Data
-  data_mekko <- data.frame(var1 = c(rep('A1', 150), rep('A2', 350), rep('A3', 500)),
-                           var2 = sample(c('B1', 'B2', 'B3', 'B4', 'B5', 'B6'), 
-                                         1000, replace = TRUE))
+  data('data_mekko')
   ##Plot
   amMekko(x = "var1", y = "var2", data = data_mekko, horiz = TRUE, show_values = TRUE)
 })
@@ -34,9 +28,7 @@ output$ammekko1 <- rAmCharts::renderAmCharts({
 output$code_ammekko1 <- renderText({
   "
   ##Data
-  data_mekko <- data.frame(var1 = c(rep('A1', 150), rep('A2', 350), rep('A3', 500)),
-  var2 = sample(c('B1', 'B2', 'B3', 'B4', 'B5', 'B6'), 
-  1000, replace = TRUE))
+  data('data_mekko')
   ##Plot
 amMekko(x = 'var1', y = 'var2', data = data_mekko, horiz = TRUE, show_values = TRUE)
   "
@@ -45,9 +37,7 @@ amMekko(x = 'var1', y = 'var2', data = data_mekko, horiz = TRUE, show_values = T
 
 output$ammekko2 <- rAmCharts::renderAmCharts({
   ##Data
-  data_mekko <- data.frame(var1 = c(rep('A1', 150), rep('A2', 350), rep('A3', 500)),
-                           var2 = sample(c('B1', 'B2', 'B3', 'B4', 'B5', 'B6'), 
-                                         1000, replace = TRUE))
+  data('data_mekko')
   ##Plot
   amMekko(x = "var1", y = "var2", data = data_mekko, legend = TRUE)
 })
@@ -56,9 +46,7 @@ output$ammekko2 <- rAmCharts::renderAmCharts({
 output$code_ammekko2 <- renderText({
   "
   ##Data
-  data_mekko <- data.frame(var1 = c(rep('A1', 150), rep('A2', 350), rep('A3', 500)),
-    var2 = sample(c('B1', 'B2', 'B3', 'B4', 'B5', 'B6'), 
-  1000, replace = TRUE))
+  data('data_mekko')
   ##Plot
   amMekko(x = 'var1', y = 'var2', data = data_mekko, legend = TRUE)
   "

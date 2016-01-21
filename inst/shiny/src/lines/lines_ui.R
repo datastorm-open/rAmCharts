@@ -29,7 +29,8 @@ shinydashboard::tabItem(
                    verbatimTextOutput("code_lines0"))
                )
              )
-      ),
+      )
+      ,
       
       
       tabBox(width=12,height=550,
@@ -53,7 +54,8 @@ shinydashboard::tabItem(
                    verbatimTextOutput("code_lines1"))
                )
              )
-      ),
+      )
+      ,
       
       tabBox(width=12,height=550,
              
@@ -76,7 +78,8 @@ shinydashboard::tabItem(
                    verbatimTextOutput("code_lines2"))
                )
              )
-      ),
+      )
+      ,
       tabBox(width=12,height=550,
              
              tabPanel(
@@ -98,7 +101,8 @@ shinydashboard::tabItem(
                    verbatimTextOutput("code_lines3"))
                )
              )
-      ),
+      )
+       ,
       tabBox(width=12,
              
              tabPanel(
@@ -120,7 +124,8 @@ shinydashboard::tabItem(
                    verbatimTextOutput("code_lines4"))
                )
              )
-      ),
+      )
+       ,
       tabBox(width=12,
              
              tabPanel(

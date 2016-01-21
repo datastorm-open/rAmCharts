@@ -92,7 +92,7 @@ output$lines3 <- rAmCharts::renderAmCharts({
   
   # plot
   pipeR::pipeline(
-    amSerialChart(dataProvider = AirP, theme = 'light', categoryField = 'Period') ,
+    amSerialChart(dataProvider = data_AirPassengers, theme = 'light', categoryField = 'Period') ,
     addGraph(id='curve',valueField='AirPassengers', 
              balloonText ='AirPassengers : <b>[[AirPassengers]]</b>, [[[Binf]], [[Bsup]]]',
              lineColor = '#FF0000'),
@@ -115,7 +115,7 @@ output$code_lines3 <- renderText({
   
   # plot
   pipeR::pipeline(
-    amSerialChart(dataProvider = AirP, theme = 'light', categoryField = 'Period') ,
+    amSerialChart(dataProvider = data_AirPassengers, theme = 'light', categoryField = 'Period') ,
     addGraph(id='curve',valueField='AirPassengers', 
              balloonText ='AirPassengers : <b>[[AirPassengers]]</b>, [[[Binf]], [[Bsup]]]',
              lineColor = '#FF0000'),

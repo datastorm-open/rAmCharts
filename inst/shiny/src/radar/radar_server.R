@@ -73,12 +73,11 @@ output$code_radar3 <- renderText({
 
 output$radar2 <- rAmCharts::renderAmCharts({
   ##Data
-  datawind <- data.frame(direction  =  c('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'),
-                         value  =  c(10, 7, 8, 9, 5, 4, 6, 9))
+  data('data_wind')
   ##Plot
   pipeR::pipeline(
     amRadarChart(theme = 'light', startDuration = 0, categoryField  =  'direction'),
-    setDataProvider(datawind),
+    setDataProvider(data_wind),
     addValueAxis(gridType = 'circles', minimum = 0, autoGridCount = FALSE,
                  axisAlpha = 0.2, fillAlpha = 0.05, fillColor = '#FFFFFF',
                  gridAlpha = 0.08, position = 'left'),
@@ -95,13 +94,12 @@ output$radar2 <- rAmCharts::renderAmCharts({
 
 output$code_radar2 <- renderText({
   "
-  ##Data
-  datawind <- data.frame(direction  =  c('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'),
-                               value  =  c(10, 7, 8, 9, 5, 4, 6, 9))
+##Data
+  data('data_wind')
   ##Plot
   pipeR::pipeline(
     amRadarChart(theme = 'light', startDuration = 0, categoryField  =  'direction'),
-    setDataProvider(datawind),
+    setDataProvider(data_wind),
     addValueAxis(gridType = 'circles', minimum = 0, autoGridCount = FALSE,
                  axisAlpha = 0.2, fillAlpha = 0.05, fillColor = '#FFFFFF',
                  gridAlpha = 0.08, position = 'left'),

@@ -6,10 +6,12 @@ output$amlines0 <- rAmCharts::renderAmCharts({
 })
 
 output$code_amlines0 <- renderText({
+  "
   # load data
   data('data_AirPassengers')
   # plot
   amPlot(AirPassengers ~ Period, data = data_AirPassengers, type = 'l')
+  "
 })
 
 # ---
