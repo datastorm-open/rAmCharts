@@ -91,13 +91,13 @@ amOptions <- function(chart, legend = FALSE,legendPosition = "right", legendAlig
     
     if(chart@type == "gauge")
     {
-      warning("Legend argument is not logic for your type of graph, it is remove")
+      cat("Legend argument is not logic for your type of graph, it is remove")
     }else{
       if(length(chart@otherProperties$RType_)>0)
       {
         if(chart@otherProperties$RType_ %in% c("waterfall", "boxplot", "histogram"))
         {
-          warning("Legend argument is not logic for your type of graph, it is remove")
+          cat("Legend argument is not logic for your type of graph, it is remove")
         }
       }else{
         if(chart@type%in%c("radar","serial","xy"))
@@ -157,8 +157,18 @@ amOptions <- function(chart, legend = FALSE,legendPosition = "right", legendAlig
   
   if(labelRotation !=0)
   {
+   if(!chart@type %in%c("radar"))
+   {
     chart <- chart %>>% setCategoryAxis(labelRotation = labelRotation)
+   }
+    else{
+      cat("labelRotation argument is not logic for your type of graph, it is remove")
+    }
   }
+  
+  
+  
+  
   
   chart
 }

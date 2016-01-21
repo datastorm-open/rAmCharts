@@ -84,7 +84,6 @@ Collate:
     'amPie.R'
     'amPlot.R'
     'amRadar.R'
-    'amTestFunction.R'
     'amTests.R'
     'amWaterfall.R'
     'amWind.R'
