@@ -1,40 +1,52 @@
-#Basic Example : column chart
-data_bar <- data.frame(country = c("USA", "China", "Japan", "Germany", 
-                                   "UK", "France", "India", "Spain",
-                                   "Netherlands", "Russia", "South Korea",
-                                   "Canada"),
-                       visits = c(3025, 1882, 1809, 1322, 1122, 1114, 
-                                  984, 711, 665, 580, 443, 441),
-                       color = c("#FF0F00", "#FF6600", "#FF9E01", "#FCD202",
-                                 "#F8FF01", "#B0DE09", "#04D215", "#0D8ECF",
-                                 "#0D52D1", "#2A0CD0", "#8A0CCF", "#CD0D74"),
-                       stringsAsFactors = FALSE)
+stopifnot(require(pipeR))
 
-amBarplot(x = "country", y = "visits", data = data_bar)
+#Data
+data(data_bar)
+
+
+# test with label rotation
+amBarplot(x = "country", y = "visits", data = data_bar,
+          labelRotation = -90) %>>% amOptions(legend = TRUE)
 
 #horizontal bar
-amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE)
+amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -90)
 
 #3D bar
-amBarplot(x = "country", y = "visits", data = data_bar, third_dim = TRUE)
+amBarplot(x = "country", y = "visits", data = data_bar, depth = 15, labelRotation = -90)
 
 #display values
-amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE)
+amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -90)
 
 #grouped columns
-data_gbar <- data.frame(year = c("2005", "2006", "2007", "2008", "2009"),
-                        income = c(23.5, 26.2, 30.1, 29.5, 24.6),
-                        expenses = c(18.1, 22.8, 23.9, 25.1, 25),
-                        stringsAsFactors = FALSE)
+data(data_gbar)
 
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
 
-#add legend
-amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, legend = TRUE)
+# Parse dates
+
+# default label: firt day of each year
+pipeR::pipeline(
+  amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar,
+            dataDateFormat = "YYYY", minPeriod = "YYYY"),
+  setChartCursor()
+)
+
+# default label: first day of each month
+pipeR::pipeline(
+  amBarplot(x = "month", y = c("income", "expenses"), data = data_gbar,
+            dataDateFormat = "MM/YYYY", minPeriod = "MM"),
+  setChartCursor()
+)
+
+pipeR::pipeline(
+  amBarplot(x = "day", y = c("income", "expenses"), data = data_gbar,
+            dataDateFormat = "DD/MM/YYYY"),
+  setChartCursor()
+)
 
 #change groups colors
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, 
-      groups_color = c("#87cefa", "#c7158"), legend = TRUE)
+      groups_color = c("#87cefa", "#c7158"))
 
 #stacked bars
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "regular")

@@ -26,6 +26,7 @@ testthat::test_that("setCategoryAxis method", {
 
 testthat::test_that("setChartCursor method", {
   testthat::expect_error(setChartCursor(.Object = amSerialChart(), chartCursor = "error"))
+  testthat::expect_silent(setChartCursor(.Object = amAngularGaugeChart(), chartCursor = chartCursor()))
 })
 
 testthat::test_that("setChartScrollbar method", {

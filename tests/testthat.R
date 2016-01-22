@@ -1,4 +1,3 @@
 library(testthat)
-library(rAmCharts)
+testthat::test_check("rAmCharts")
 
-test_check("rAmCharts")

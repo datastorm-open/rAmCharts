@@ -15,11 +15,13 @@
 #' arguments are specified that only apply to the \code{plot = TRUE} case.
 #' @param col a colour to be used to fill the bars.
 #' @param border a colour for the borders.
-#' @param labels logical or character.
-#' Additionally draw labels on top of bars, if not \code{FALSE};
+#' @param labels \code{logical} default \code{FALSE}.
+#' Additionally draw labels on top of bars.
 #' if \code{TRUE}, draw the counts or rounded densities;
 #' if labels is a \code{character}, draw itself.
-#' @param ... further arguments and graphical parameters passed to plot.histogram
+#' @param control_hist (optional) named \code{list()} containing parameters for computing the histogram.
+#' @param ... Other parameters for \link{amOptions}.
+#' 
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 
@@ -33,53 +35,69 @@ amHist <- function(x, ...) UseMethod("amHist")
 
 
 #' @rdname amHist
+#' @import pipeR
+#' @import data.table
 #' @export
 #' 
 amHist.numeric <- function(x, col = "gray", border = "gray",
-                           freq = TRUE, plot = TRUE, labels = TRUE,
-                           xlab, ylab, ylim, ...)
+                           freq = TRUE, plot = TRUE, labels = FALSE,
+                           xlab, ylab, ylim, control_hist,...)
 {
-  if (!requireNamespace(package = "pipeR")) {
-    stop ("Please install the package 'pipeR' for running this function")
-    return (NULL)
-  } else {}
+  .testNumeric(num = x)
   
-  if (!missing(...)) {
-    resHist <- graphics::hist(x = x, plot = FALSE, ...)
+  if (!missing(control_hist)) {
+    resHist <- do.call(graphics::hist, c(list(x = x, plot = FALSE), control_hist))
   } else {
     resHist <- graphics::hist(x = x, plot = FALSE)
   }
+  .testLogicalLength1(logi = plot)
   
   if (!plot) {
     return (resHist)
   } else {
+    # check parameters
+    .testCharacterLength1(char = border)
+    .testCharacterLength1(char = col)
+    
+    .testLogicalLength1(logi = labels)
+    
+    .testLogicalLength1(logi = freq)
+    
+    if (!missing(xlab))
+      .testCharacterLength1(char = xlab)
+    
+    if (!missing(ylab))
+      .testCharacterLength1(char = ylab)
+    
     amLabels <- ifelse(labels, "[[value]]", "")
+    
     y <- if (freq) {
       resHist$counts
     } else {
       round(x = resHist$density, digits = 3)
     }
     
-    if (missing(ylim)) ylim <- range(y*1.05, 0)
+    if (!missing(ylim)) {
+      .testLength(param = ylim, len = 2)
+      .testNumeric(num = ylim)
+    } else {
+      ylim <- range(y*1.05, 0)
+    }
+    
     
     if (missing(ylab))
       ylab <- ifelse(test = !freq, yes = "Density", no = "Frequency")
     
     if (missing(xlab)) xlab <- deparse(substitute(x))
     
-    dp <- dataAmHist(resHist, y, col)
-    plotAmHist(dp = dp, amLabels = amLabels, ylim = ylim, ylab = ylab, xlab = xlab, border = border)
+    dp <- .dataAmHist(resHist, y, col)
+    chart <- .plotAmHist(dp = dp, amLabels = amLabels, ylim = ylim,
+                         ylab = ylab, xlab = xlab, border = border)
+    amOptions(chart, ...)
   }
 }
 
-#' @examples
-#' pipeR::pipeline(
-#' amHist(iris$Sepal.Length),
-#' setExport()
-#' )
-#' @noRd
-#' 
-plotAmHist <- function(dp, amLabels, ylim, ylab, xlab, border)
+.plotAmHist <- function(dp, amLabels, ylim, ylab, xlab, border)
 {
   pipeR::pipeline(
     amSerialChart(theme = "light", categoryField = "x", columnSpacing = 0, 
@@ -87,13 +105,13 @@ plotAmHist <- function(dp, amLabels, ylim, ylab, xlab, border)
                   columnWidth = 1, fillAlphas = 1, lineAlpha = 1),
     addGraph(balloonText = "<b>[[value]]</b> <br/> [[cut]] ", type = "column",
              valueField = "y", fillAlphas = .8, lineAlpha = 1,
-             fillColorsField = "color", lineColor = border),
+             fillColorsField = "color", lineColor = border, labelText = amLabels),
     addGraph(valueField = "y", type = "smoothedLine", lineColor = "black",
              balloonText = "", id = "graph-line"),
     addValueAxes(title = ylab, minimum = ylim[1], maximum = ylim[2]),
-    setCategoryAxis(title = xlab)
+    setCategoryAxis(title = xlab),
+    setProperties(RType_ = "histogram")
   )
-  
   
   #   if (scrollbar)
   #     chart <- setChartScrollbar(.Object = chart, graph = "graph-line", scrollbarHeight = 30,
@@ -105,7 +123,8 @@ plotAmHist <- function(dp, amLabels, ylim, ylab, xlab, border)
   #                                selectedGraphLineColor = '#888888', selectedGraphLineAlpha = 1)
 }
 
-dataAmHist <- function (resHist, y, col)
+#' @import data.table
+.dataAmHist <- function (resHist, y, col)
 {
   data_DT <- data.table(x = round(resHist$mids, 1), y = y, 
                         cut = paste0("(from ", round(resHist$breaks[-length(resHist$breaks)], 2),

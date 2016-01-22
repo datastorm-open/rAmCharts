@@ -8,12 +8,12 @@
 amHist(x, ...)
 
 \method{amHist}{numeric}(x, col = "gray", border = "gray", freq = TRUE,
-  plot = TRUE, labels = TRUE, xlab, ylab, ylim, ...)
+  plot = TRUE, labels = FALSE, xlab, ylab, ylim, control_hist, ...)
 }
 \arguments{
 \item{x}{a vector of values for which the histogram is desired.}
 
-\item{...}{further arguments and graphical parameters passed to plot.histogram}
+\item{...}{Other parameters for \link{amOptions}.}
 
 \item{col}{a colour to be used to fill the bars.}
 
@@ -29,14 +29,16 @@ an histogram is plotted, otherwise a list of breaks and counts is returned.
 In the latter case, a warning is used if (typically graphical)
 arguments are specified that only apply to the \code{plot = TRUE} case.}
 
-\item{labels}{logical or character.
-Additionally draw labels on top of bars, if not \code{FALSE};
+\item{labels}{\code{logical} default \code{FALSE}.
+Additionally draw labels on top of bars.
 if \code{TRUE}, draw the counts or rounded densities;
 if labels is a \code{character}, draw itself.}
 
 \item{xlab, ylab}{\code{character}, labels of the axis.}
 
 \item{ylim}{the range of y values with sensible defaults.}
+
+\item{control_hist}{(optional) named \code{list()} containing parameters for computing the histogram.}
 }
 \value{
 An object of class \linkS4class{AmChart}.
@@ -66,15 +68,13 @@ amHist(x = x, border = "blue")
 amHist(x = x, col = "lightblue", breaks = 100)
 amHist(x = x, col = "grey", breaks = 100)
 amHist(x = x, col = "gray")
-amHist(x = x, freq = FALSE)
-amHist(x = x, breaks = "Scott")
-amHist(x = x, breaks = "Scott", labels = TRUE)
-amHist(x = x, breaks = "Scott", main = "Histogram", ylab = "y-axis", xlab = "x-axis", col = "red")
-amHist(x = x, breaks = "Scott", main = "Histogram", 
-       ylab = "y-axis", xlab = "x-axis", ylim = c(10, 15))
+amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis", col = "red")
+amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis", ylim = c(10, 15))
+amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis")
 
-amHist(rnorm(100), breaks = "Scott", main = "Histogram", 
-       ylab = "y-axis", xlab = "x-axis")
+# options for computing the histogram
+amHist(x = x, control_hist = list(breaks = "Scott"))
+
 
 }
 

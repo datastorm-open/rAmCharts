@@ -12,7 +12,7 @@
 #' @param col color(s) to be used to fill the boxplot
 #' @param horizontal Boolean. Rotate boxplot ?
 #' @param id in case of using a data.frame, column name of id for identify outliers
-#' @param ... Don't use... For S3 Definition...
+#' @param ... Other parameters for \link{amOptions}.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 
@@ -28,11 +28,17 @@ amBoxplot <- function(object, ...) UseMethod("amBoxplot")
 #' @rdname amBoxplot
 #' 
 #' @export
-amBoxplot.default <- function(object,xlab = NULL, ylab = NULL, ylim = NULL,
+amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
                               names = NULL, col = NULL, horizontal = FALSE, ...){
   
   x <- object
   value <- x
+  
+  if (!is.null(xlab))
+    .testCharacterLength1(char = xlab)
+  
+  if (!is.null(ylab))
+    .testCharacterLength1(char = ylab)
   
   if(is.null(names(x))){
     id <- 1:length(x)
@@ -47,18 +53,22 @@ amBoxplot.default <- function(object,xlab = NULL, ylab = NULL, ylim = NULL,
   }
   data <- data.table(value, id, group = names)
   
-  res <- data[, list(dtBoxplotStat(list(value, id))), by = "group"]
+  res <- data[, list(.dtBoxplotStat(list(value, id))), by = "group"]
   
-  final.outliers <- finalDataBoxplot(res, col = col)
+  final.outliers <- .finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(final.outliers, xlab = xlab, 
-                ylab = ylab, ylim = ylim, horizontal = horizontal)
+  chart <- .plotAmBoxplot(final.outliers, xlab = xlab, 
+                          ylab = ylab, ylim = ylim, horizontal = horizontal)
+  
+  # return the object
+  amOptions(chart, ...)
 }
 
 #' @rdname amBoxplot
 #' @export
 amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL, 
-                                 ylim = NULL, col = NULL, horizontal = FALSE, ...){
+                                 ylim = NULL, col = NULL, horizontal = FALSE, ...)
+{
   
   x <- object
   xx <- x[, colnames(x)[!colnames(x)%in%id], drop = FALSE]
@@ -76,11 +86,14 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
   
   data <- data.table(value, group, id)
   
-  res <- data[, list(dtBoxplotStat(list(value, id))), by = group]
+  res <- data[, list(.dtBoxplotStat(list(value, id))), by = group]
   
-  final.outliers <- finalDataBoxplot(res, col = col)
+  final.outliers <- .finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(dp = final.outliers, xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
+  chart <- .plotAmBoxplot(dp = final.outliers, xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
+  
+  # return the object
+  amOptions(chart, ...)
 }
 
 #' @rdname amBoxplot
@@ -109,11 +122,15 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL,
   data <- data.table(value, group, id)
   
   
-  res <- data[, list(dtBoxplotStat(list(value, id))), by = group]
+  res <- data[, list(.dtBoxplotStat(list(value, id))), by = group]
   
-  final.outliers <- finalDataBoxplot(res, col = col)
+  final.outliers <- .finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(dp = final.outliers,xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
+  chart <- .plotAmBoxplot(dp = final.outliers,xlab = xlab, ylab = ylab,
+                          ylim = ylim, horizontal = horizontal)
+  
+  # return the object
+  amOptions(chart, ...)
   
 }
 
@@ -140,15 +157,18 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   x <- as.character(formula)[2]
   y <- as.character(formula)[3]
   
-  res <- data[, list(dtBoxplotStat(list(eval(parse(text = x)), id))), by = y]
+  res <- data[, list(.dtBoxplotStat(list(eval(parse(text = x)), id))), by = y]
   
-  final.outliers <- finalDataBoxplot(res, col = col)
+  final.outliers <- .finalDataBoxplot(res, col = col)
   
-  plotAmBoxplot(dp = final.outliers, xlab = xlab, 
-                ylab = ylab, ylim = ylim, horizontal = horizontal)
+  chart <- .plotAmBoxplot(dp = final.outliers, xlab = xlab, 
+                          ylab = ylab, ylim = ylim, horizontal = horizontal)
+  
+  # return the object
+  amOptions(chart, ...)
 }
 
-plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horizontal = FALSE){
+.plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horizontal = FALSE){
   
   if (!requireNamespace(package = "pipeR")) {
     warning("Please install the package pipeR for running this function")
@@ -172,7 +192,8 @@ plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horizontal 
              noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
     addGraph(id = "g5", type = "line", valueField = "real_outlier",lineColor = "black",
              lineAlpha = 0, bullet = "round", noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
-    setChartCursor(oneBalloonOnly = TRUE)
+    
+    setProperties(RType_ = "boxplot")
   )
   
   if(ncol(dp) > 8){
@@ -182,7 +203,7 @@ plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horizontal 
                         balloonText = paste0("<b> Individual </b>: [[individual_",i,"]]<br/><b> Value </b>: [[real_outlier_",i,"]]"))
     }
   }
-
+  
   if(!is.null(ylab) & !is.null(ylim)){
     graph <- addValueAxes(graph, title = ylab, minimum = ylim[1], maximum = ylim[length(ylim)])
   }
@@ -202,12 +223,12 @@ plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horizontal 
   graph
 }
 
-dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
+.dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
   xx <- data.table(x = data[[1]], id = data[[2]])[eval(parse(text = "!is.na(x)"))]
   setkeyv(xx, "x")
   
   n <- xx[, eval(parse(text = "sum(x)"))]
-  stats <- dtFivenum(xx, na.rm = TRUE)
+  stats <- .dtFivenum(xx, na.rm = TRUE)
   
   iqr <- diff(stats[c(2, 4)])
   if (coef == 0){
@@ -229,7 +250,7 @@ dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
   list(stats = stats, out = out)
 }
 
-dtFivenum <- function (xx, na.rm = TRUE) {
+.dtFivenum <- function (xx, na.rm = TRUE) {
   
   n <- nrow(xx)
   
@@ -242,7 +263,8 @@ dtFivenum <- function (xx, na.rm = TRUE) {
   }
 }
 
-finalDataBoxplot <- function(res, col = NULL){
+.finalDataBoxplot <- function(res, col = NULL)
+{
   
   dp <- data.table(cat = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[1]))]), 
                    round(t(data.frame(res[seq(1, nrow(res), by = 2), eval(parse(text = "V1"))]))[, c(1,1:5, 5), drop = FALSE], 2))
@@ -272,7 +294,7 @@ finalDataBoxplot <- function(res, col = NULL){
     
     final.outliers <- NULL
     ctrl <- lapply(split.outliers, function(x){
-      inter <- formatOutlier(x)
+      inter <- .formatOutlier(x)
       if(is.null(final.outliers)){
         final.outliers <<- inter
       }else{
@@ -288,7 +310,8 @@ finalDataBoxplot <- function(res, col = NULL){
   final.outliers
 }
 
-formatOutlier <- function(data){
+.formatOutlier <- function(data)
+{
   
   if(is.list(data) & !"data.table"%in%class(data)){
     data <- data.frame(rev(data))
@@ -304,41 +327,3 @@ formatOutlier <- function(data){
   setkey(data, cat)
   data
 }
-
-#  # vector
-#  set.seed(144)
-#  amBoxplot(c(rnorm(20), 50),names = "A", col = "red")
-#  amBoxplot(rnorm(10),names = "A", ylab = "y-axis", xlab = "x-axis", ylim = c(-5,5))
-#  
-#  # data.frame
-#  don <- data.frame(a = c(rnorm(10),5), b = c(4,rnorm(10)))
-#  boxplot(don)
-#  amBoxplot(don)
-#  
-#  # matrix
-#  m =  matrix(ncol = 2, nrow = 6, c(5,rnorm(10),5))
-#  amBoxplot(m)
-#  
-#  nb = 100000
-#  data <- data.table(a = c(rnorm(nb),5), b = c(4,rnorm(nb)), c = LETTERS[1:5])
-#  formula <-as.formula("a ~ c")
-#  
-#  boxplot(a ~ c, data = data, xlab = "re")
-#  amBoxplot(a ~ c, data = data, xlab = "re")
-#  x = matrix(nrow = 10, ncol = 5, rnorm(50))
-#  colnames(x) <- LETTERS[1:5]
-#  xlab = NULL
-#  ylab = NULL
-#  ylim = NULL
-#  col = NULL
-#  use.cols = TRUE
-#  amBoxplot(x, use.cols = TRUE, xlab = "re")
-#  use.cols = TRUE
-#  
-#  formula <- as.formula("count ~ spray")
-#  data =  InsectSprays
-#  id = NULL
-#  xlab = NULL
-#  ylab = NULL
-#  ylim = NULL
-#  col = NULL

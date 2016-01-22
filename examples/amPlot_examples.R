@@ -1,5 +1,4 @@
 library(pipeR)
-library(rAmCharts)
 library(data.table)
 
 # ----------------
@@ -66,14 +65,15 @@ amPlot(x = x, y = y, type = "p", weights = weights)
 amPlot(x = x, y = y, type = "p", cex = 1)
 amPlot(x = x, y = y, type = "p", cex = 10)
 
-# add title
-amPlot(x = x, y = y, main = "title")
 
 # change color
 amPlot(x = x, y = y, col = "blue")
 
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
+
+# add title from amOptions
+amPlot(x = x, y = y, main = "title")
 
 # ---
 # x plot
@@ -132,6 +132,9 @@ x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
+# add a title from amOptions
+amPlot(x = x, type = "st", lwd = 2, main = "My title")
+
 # -------------------
 # EXAMPLES DATA.FRAME
 # -------------------
@@ -152,8 +155,9 @@ amPlot(iris)
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) %>>%
   setLegend(useGraphSettings = TRUE)
 
+# add parameter from amOptions
 co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2)
+amPlot(co2, zoom = TRUE)
 
 # -------------------
 # ADD OTHER SERIE(S)
@@ -187,3 +191,6 @@ amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
 amPlot(Sepal.Length~Sepal.Width, data = iris)
 amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) %>>%
   setLegend(useGraphSettings = TRUE)
+
+# add parameter from amOptions
+amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
