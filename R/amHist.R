@@ -15,8 +15,8 @@
 #' arguments are specified that only apply to the \code{plot = TRUE} case.
 #' @param col a colour to be used to fill the bars.
 #' @param border a colour for the borders.
-#' @param labels logical or character.
-#' Additionally draw labels on top of bars, if not \code{FALSE};
+#' @param labels \code{logical} default \code{FALSE}.
+#' Additionally draw labels on top of bars.
 #' if \code{TRUE}, draw the counts or rounded densities;
 #' if labels is a \code{character}, draw itself.
 #' @param control_hist (optional) named \code{list()} containing parameters for computing the histogram.
@@ -40,7 +40,7 @@ amHist <- function(x, ...) UseMethod("amHist")
 #' @export
 #' 
 amHist.numeric <- function(x, col = "gray", border = "gray",
-                           freq = TRUE, plot = TRUE, labels = TRUE,
+                           freq = TRUE, plot = TRUE, labels = FALSE,
                            xlab, ylab, ylim, control_hist,...)
 {
   .testNumeric(num = x)
@@ -58,7 +58,9 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
     # check parameters
     .testCharacterLength1(char = border)
     .testCharacterLength1(char = col)
+    
     .testLogicalLength1(logi = labels)
+    
     .testLogicalLength1(logi = freq)
     
     if (!missing(xlab))
@@ -68,6 +70,7 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
       .testCharacterLength1(char = ylab)
     
     amLabels <- ifelse(labels, "[[value]]", "")
+    
     y <- if (freq) {
       resHist$counts
     } else {
@@ -102,14 +105,13 @@ amHist.numeric <- function(x, col = "gray", border = "gray",
                   columnWidth = 1, fillAlphas = 1, lineAlpha = 1),
     addGraph(balloonText = "<b>[[value]]</b> <br/> [[cut]] ", type = "column",
              valueField = "y", fillAlphas = .8, lineAlpha = 1,
-             fillColorsField = "color", lineColor = border),
+             fillColorsField = "color", lineColor = border, labelText = amLabels),
     addGraph(valueField = "y", type = "smoothedLine", lineColor = "black",
              balloonText = "", id = "graph-line"),
     addValueAxes(title = ylab, minimum = ylim[1], maximum = ylim[2]),
     setCategoryAxis(title = xlab),
     setProperties(RType_ = "histogram")
   )
-  
   
   #   if (scrollbar)
   #     chart <- setChartScrollbar(.Object = chart, graph = "graph-line", scrollbarHeight = 30,

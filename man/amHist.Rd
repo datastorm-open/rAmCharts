@@ -8,7 +8,7 @@
 amHist(x, ...)
 
 \method{amHist}{numeric}(x, col = "gray", border = "gray", freq = TRUE,
-  plot = TRUE, labels = TRUE, xlab, ylab, ylim, control_hist, ...)
+  plot = TRUE, labels = FALSE, xlab, ylab, ylim, control_hist, ...)
 }
 \arguments{
 \item{x}{a vector of values for which the histogram is desired.}
@@ -29,8 +29,8 @@ an histogram is plotted, otherwise a list of breaks and counts is returned.
 In the latter case, a warning is used if (typically graphical)
 arguments are specified that only apply to the \code{plot = TRUE} case.}
 
-\item{labels}{logical or character.
-Additionally draw labels on top of bars, if not \code{FALSE};
+\item{labels}{\code{logical} default \code{FALSE}.
+Additionally draw labels on top of bars.
 if \code{TRUE}, draw the counts or rounded densities;
 if labels is a \code{character}, draw itself.}
 
