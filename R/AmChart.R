@@ -154,7 +154,7 @@ setClass(Class = "AmChart", contains = "AmObject",
            if (length(object@creditsPosition) && !(object@creditsPosition %in% c("top-left", "top-right", "bottom-left", "bottom-right"))) {
              stop("[AmChart]: invalid property 'creditsPosition'")
            }
-           if (length(object@theme) && !(object@theme %in% c("none", "light", "dark", "pattern", "chalk"))) {
+           if (length(object@theme) && !(object@theme %in% c("none", "light", "dark", "patterns", "chalk"))) {
              stop("[AmChart]: invalid property 'theme'")
            }
          }
