@@ -2,18 +2,18 @@
 #' @description  amBullet computes a bullet chart of the given value.
 #' @author Elena Salette
 #' 
-#' @param value \code{numeric}
-#' @param min \code{numeric} minimum value allowed
-#' @param max \code{numeric} maximum value allowed
-#' @param val_color \code{character} color of the bar value, in hexadecimal
-#' @param limit \code{numeric} target value
-#' @param limit_color \code{character} color of the line limit
+#' @param value \code{numeric}.
+#' @param min \code{numeric} minimum value allowed.
+#' @param max \code{numeric} maximum value allowed.
+#' @param val_color \code{character} color of the bar value, in hexadecimal.
+#' @param limit \code{numeric} target value.
+#' @param limit_color \code{character} color of the line limit.
 #' @param rates a data frame with 4 columns : name (character), min (numeric), max (numeric), 
-#' and color (character, color in hexadecimal)
-#' @param steps \code{boolean} default set to TRUE
-#' @param label \code{character} label of the bullet
-#' @param horiz \code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one
-#' @param ... see \code{\link{amOptions}} for more options
+#' and color (character, color in hexadecimal).
+#' @param steps \code{boolean} default set to TRUE.
+#' @param label \code{character} label of the bullet.
+#' @param horiz \code{boolean} TRUE (default) for an horizontal bullet chart, FALSE for a vertical one.
+#' @param ... see \link{amOptions} for more options.
 #' 
 #' @example examples/amBullet_examples.R
 #'

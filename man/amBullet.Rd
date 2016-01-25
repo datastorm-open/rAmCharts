@@ -9,28 +9,28 @@ amBullet(value, min = 0, max = 100, val_color = "#000000", limit = 85,
   rates, ...)
 }
 \arguments{
-\item{value}{\code{numeric}}
+\item{value}{\code{numeric}.}
 
-\item{min}{\code{numeric} minimum value allowed}
+\item{min}{\code{numeric} minimum value allowed.}
 
-\item{max}{\code{numeric} maximum value allowed}
+\item{max}{\code{numeric} maximum value allowed.}
 
-\item{val_color}{\code{character} color of the bar value, in hexadecimal}
+\item{val_color}{\code{character} color of the bar value, in hexadecimal.}
 
-\item{limit}{\code{numeric} target value}
+\item{limit}{\code{numeric} target value.}
 
-\item{limit_color}{\code{character} color of the line limit}
+\item{limit_color}{\code{character} color of the line limit.}
 
-\item{steps}{\code{boolean} default set to TRUE}
+\item{steps}{\code{boolean} default set to TRUE.}
 
-\item{label}{\code{character} label of the bullet}
+\item{label}{\code{character} label of the bullet.}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal bullet chart, FALSE for a vertical one}
+\item{horiz}{\code{boolean} TRUE (default) for an horizontal bullet chart, FALSE for a vertical one.}
 
 \item{rates}{a data frame with 4 columns : name (character), min (numeric), max (numeric), 
-and color (character, color in hexadecimal)}
+and color (character, color in hexadecimal).}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \link{amOptions} for more options.}
 }
 \description{
 amBullet computes a bullet chart of the given value.
