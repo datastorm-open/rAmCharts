@@ -25,7 +25,7 @@ output$amRadar1 <- rAmCharts::renderAmCharts({
   data('data_radar')
   ##Plot
   amRadar(data_radar, main = 'My title',
-          col = c('#0000FF', '#00FF00', '#FF0000'), backTransparency = c(0, 0.4),
+          col = c('#0000FF', '#00FF00', '#FF0000'), backTransparency = c(0, 0.4, 0.2),
           type = 'polygons', pch = 'triangleRight')
 })
 
@@ -35,7 +35,7 @@ output$code_amRadar1 <- renderText({
   data('data_radar')
   ##Plot
   amRadar(data_radar, main = 'My title',
-          col = c('#0000FF', '#00FF00', '#FF0000'), backTransparency = c(0, 0.4),
+          col = c('#0000FF', '#00FF00', '#FF0000'), backTransparency = c(0, 0.4, 0.2),
           type = 'polygons', pch = 'triangleRight')
   "
 })
