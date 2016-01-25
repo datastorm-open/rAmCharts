@@ -40,17 +40,18 @@ amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
   if (!is.null(ylab))
     .testCharacterLength1(char = ylab)
   
-  if(is.null(names(x))){
+  if (is.null(names(x))) {
     id <- 1:length(x)
-  }else{
+  } else {
     id <- names(x)
   }
   
-  if(is.null(names)){
+  if (is.null(names)) {
     names <- "x"
-  }else{
+  } else {
     names <- names[1]
   }
+  
   data <- data.table(value, id, group = names)
   
   res <- data[, list(.dtBoxplotStat(list(value, id))), by = "group"]
@@ -69,18 +70,17 @@ amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
 amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL, 
                                  ylim = NULL, col = NULL, horizontal = FALSE, ...)
 {
-  
   x <- object
   xx <- x[, colnames(x)[!colnames(x)%in%id], drop = FALSE]
   value <- do.call("c", xx)
-  if(is.null(colnames(xx))){
+  if (is.null(colnames(xx))) {
     group <- rep(1:ncol(x), each = nrow(xx))
-  }else{
+  } else {
     group <- rep(colnames(xx), each = nrow(x))
   }
   if(is.null(id)){
     id <- rep(1:nrow(x), ncol(x))
-  }else{
+  } else {
     id <- rep(x[, id], nrow(x))
   }
   
@@ -101,26 +101,25 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
 amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL, 
                              ylim = NULL, col = NULL, horizontal = FALSE, ...){
   x <- object
-  if(use.cols){
+  if (use.cols) {
     value <- as.vector(x)
-    if(is.null(colnames(x))){
+    if (is.null(colnames(x))) {
       group <- rep(1:ncol(x), each = nrow(x))
-    }else{
+    } else {
       group <- rep(colnames(x), each = nrow(x))
     }
     id <- rep(1:nrow(x), ncol(x))
-  }else{
+  } else {
     value <- as.vector(t(x))
-    if(is.null(rownames(x))){
+    if (is.null(rownames(x))) {
       group <- rep(1:nrow(x), each = ncol(x))
-    }else{
+    } else {
       group <- rep(rownames(x), each = ncol(x))
     }
     id <- rep(1:ncol(x), nrow(x))
   }
   
   data <- data.table(value, group, id)
-  
   
   res <- data[, list(.dtBoxplotStat(list(value, id))), by = group]
   
@@ -131,24 +130,24 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL,
   
   # return the object
   amOptions(chart, ...)
-  
 }
 
 #' @rdname amBoxplot
 #' @export
 amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab = NULL, 
-                             ylim = NULL, col = NULL, horizontal = FALSE, ...){
+                             ylim = NULL, col = NULL, horizontal = FALSE, ...)
+{
   
   formula <- object
-  if(missing(formula) || (length(formula) != 3L))
+  if (missing(formula) || (length(formula) != 3L))
     stop("'formula' missing or incorrect")
   
   data <- data.table(data)
   
-  if(is.null(id)){
+  if (is.null(id)) {
     data[, id := 1:.N]
-  }else{
-    if(!id%in%colnames(data)){
+  } else {
+    if (!id%in%colnames(data)) {
       stop("Can't find '", id, "' column in data")
     }
     setnames(data, id, "id")
@@ -196,34 +195,35 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
     setProperties(RType_ = "boxplot")
   )
   
-  if(ncol(dp) > 8){
-    for(i in 1:(ncol(dp)-8)){
+  if (ncol(dp) > 8) {
+    for (i in 1:(ncol(dp)-8)) {
       graph <- addGraph(graph, type = "line", valueField = paste0("real_outlier_", i) ,lineColor = "black",
                         lineAlpha = 0, bullet = "round", noStepRisers = TRUE, periodSpan = 0.5,
                         balloonText = paste0("<b> Individual </b>: [[individual_",i,"]]<br/><b> Value </b>: [[real_outlier_",i,"]]"))
     }
   }
   
-  if(!is.null(ylab) & !is.null(ylim)){
+  if (!is.null(ylab) & !is.null(ylim)) {
     graph <- addValueAxes(graph, title = ylab, minimum = ylim[1], maximum = ylim[length(ylim)])
   }
   
-  if(!is.null(ylab) & is.null(ylim)){
+  if (!is.null(ylab) & is.null(ylim)) {
     graph <- addValueAxes(graph, title = ylab)
   }
   
-  if(is.null(ylab) & !is.null(ylim)){
+  if (is.null(ylab) & !is.null(ylim)) {
     graph <- addValueAxes(graph, minimum = ylim[1], maximum = ylim[length(ylim)])
   }
   
-  if(!is.null(xlab)){
+  if (!is.null(xlab)) {
     graph <- setCategoryAxis(graph, title = xlab)
   }
   
   graph
 }
 
-.dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE) {
+.dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE)
+{
   xx <- data.table(x = data[[1]], id = data[[2]])[eval(parse(text = "!is.na(x)"))]
   setkeyv(xx, "x")
   
@@ -231,17 +231,17 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   stats <- .dtFivenum(xx, na.rm = TRUE)
   
   iqr <- diff(stats[c(2, 4)])
-  if (coef == 0){
+  if (coef == 0) {
     do.out <- FALSE
-  }else{
+  } else {
     out <- if (!is.na(iqr)) {
       xx[eval(parse(text = "x < (stats[2L] - coef * iqr) | x > (stats[4L] + coef * 
                                                iqr)")), eval(parse(text = "list(x, id)"))]
       
-    }else{
+    } else {
       data.table()
     }
-    if (nrow(out) > 0){
+    if (nrow(out) > 0) {
       stats[1] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "min(x)"))]
       stats[5] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "max(x)"))]
     }
@@ -250,13 +250,13 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   list(stats = stats, out = out)
 }
 
-.dtFivenum <- function (xx, na.rm = TRUE) {
-  
+.dtFivenum <- function (xx, na.rm = TRUE)
+{
   n <- nrow(xx)
   
-  if (n == 0){
+  if (n == 0) {
     rep.int(NA, 5)
-  }else {
+  } else {
     n4 <- floor((n + 3)/2)/2
     d <- c(1, n4, (n + 1)/2, n + 1 - n4, n)
     0.5 * (xx[floor(d), eval(parse(text = "x"))] + xx[ceiling(d), eval(parse(text = "x"))])
@@ -268,7 +268,6 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   
   dp <- data.table(cat = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[1]))]), 
                    round(t(data.frame(res[seq(1, nrow(res), by = 2), eval(parse(text = "V1"))]))[, c(1,1:5, 5), drop = FALSE], 2))
-  
   
   setnames(dp,  c("cat", "low_outlier", "low", "open", "median", "close", "high", "high_outlier"))
   
