@@ -1,16 +1,15 @@
 #' @title Plotting radar using rAmCharts
-#' 
 #' @description  radar computes a radarplot of the given data values.
 #' 
 #' @param data a data frame first column is named "label" (character), other columns are series of values,
-#' see \code{\link{data_radar}}
-#' @param col  \code{character} color(s) of serie(s) hexadecimal like "#00FF00"
-#' @param backTransparency \code{numeric} background transparency, between 0 and 1
-#' @param type \code{character} "polygons" or "circle", type of radar
+#' see \link{data_radar}.
+#' @param col  \code{character} color(s) of serie(s) hexadecimal like "#00FF00".
+#' @param backTransparency \code{numeric} background transparency, between 0 and 1.
+#' @param type \code{character} "polygons" or "circle", type of radar.
 #' @param pch \code{character} symbols must be in "round", "square", "triangleUp", 
 #' "triangleDown", "triangleLeft", "triangleRight", "bubble", 
-#' "diamond", "xError", "yError" 
-#' @param ... see \code{\link{amOptions}} for more options
+#' "diamond", "xError", "yError". 
+#' @param ... see \link{amOptions} for more options.
 #' 
 #' @example examples/amRadar_examples.R
 #' 
@@ -18,8 +17,9 @@
 #' @import data.table
 #' @rdname amRadar
 #' @export
-amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons", pch = "round", ...) {
-  
+#' 
+amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons", pch = "round", ...)
+{
   #data
   data <- as.data.frame(data)
   
@@ -67,9 +67,7 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
             bullet = as.character(x[4]))
   })
   
-  res <- amRadarChart() %>>% 
-    setDataProvider(data) %>>% 
-    setProperties(type = "radar", categoryField = "label") %>>% 
+  res <- amRadarChart(dataProvider = data, categoryField = "label") %>>% 
     setGraphs(graphs) %>>% 
     addValueAxes(gridType = type)
   

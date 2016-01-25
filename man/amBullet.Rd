@@ -55,4 +55,7 @@ amBullet(value = 65, text = "Evaluation")
 ### Change min and max values:   
 amBullet(value = 65, min = 20, max = 90)
 }
+\author{
+Elena Salette
+}
 

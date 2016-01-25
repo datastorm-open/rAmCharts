@@ -40,18 +40,19 @@ output$code_amRadar1 <- renderText({
 
 output$amWind <- rAmCharts::renderAmCharts({
   # prepare data
-  data("data_wind")
-  #Graph
-  amWind(data_wind, main = '', export = TRUE, col = c('#0404B4', '#01DF01', '#FFBF00'),
-         backTransparency = 1 ,pch='round')
+  data('data_wind')
+  
+  # draw chart
+  amWind(data = data_wind, export = TRUE, col = c('#0404B4', '#01DF01', '#FFBF00'),
+         backTransparency = 1, pch = 'round')
 })
 
-  output$code_amWind <- renderText({
+output$code_amWind <- renderText({
   "
-  ##Data
+  # prepare data
   data('data_wind')
-  ##Plot
-  amWind(data_wind, main = '', export = TRUE, col = c('#0404B4', '#01DF01', '#FFBF00'), backTransparency = 1 ,pch='round')
-    "
-  })
-  
+  # draw chart
+  amWind(data_wind, export = TRUE, col = c('#0404B4', '#01DF01', '#FFBF00'),
+         backTransparency = 1 ,pch='round')
+  "
+})

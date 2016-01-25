@@ -54,7 +54,6 @@ shinydashboard::tabItem(
              )
       ),
       tabBox(width=12,height=550,
-             
              tabPanel(
                title = "Graphic",
                fluidRow(
@@ -67,10 +66,9 @@ shinydashboard::tabItem(
              tabPanel(
                title = "Code",
                fluidRow(
-                 h2("Title and legend", align="center"),
+                 h2("Title", align="center"),
                  column(
                    width = 12,
-                   
                    verbatimTextOutput("code_amBullet2"))
                )
              )

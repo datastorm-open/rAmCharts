@@ -21,7 +21,7 @@ or a stacked barchart, y is a vector of characters or numerics.}
 You can add a column "color" (character, colors in hexadecimal). You can
 also add a column "description" (character) containing the text you want to
 display when mouse is on the graphic ('<br>' for a new line). See \code{\link{data_bar}}
-and \code{\link{data_gbar}}.}
+and \link{data_gbar}.}
 
 \item{xlab}{\code{character} label for x-axis.}
 
@@ -56,7 +56,7 @@ fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - mont
 It's also possible to supply a number for increments, i.e. '15mm'
 which will instruct the chart that your data is supplied in 15 minute increments.}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \link{amOptions} for more options}
 }
 \value{
 An object of class \linkS4class{AmChart}.

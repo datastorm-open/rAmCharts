@@ -5,13 +5,13 @@
 \title{Plotting funnel chart using rAmCharts}
 \usage{
 amFunnel(data, inverse = FALSE, neck_height = NULL, neck_width = NULL,
-  depth = 0, label_side = "right", margin_right = 160, margin_left = 15,
-  ...)
+  depth = 0, label_side = "right", margin_right = 200,
+  margin_left = 200, ...)
 }
 \arguments{
 \item{data}{a data frame of at least 2 columns : value (numeric, positive), 
 and description (character). You can add a third column "color" (character,
-colors in hexadecimal) see \code{\link{data_funnel}}}
+colors in hexadecimal) see \link{data_funnel}}
 
 \item{inverse}{\code{boolean}, if TRUE, the funnel chart will be inversed.}
 
@@ -30,7 +30,7 @@ pyramid chart (without a bottleneck). Value between 0 and 100}
 
 \item{margin_left}{\code{numeric} margin at the left side}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \link{amOptions} for more options}
 }
 \description{
 amFunnel computes a funnel chart of the given value.

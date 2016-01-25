@@ -1,8 +1,9 @@
 #' @title Plotting candlestick chart using rAmCharts
 #' @description  amCandlestick computes a candlestick chart of the given value.
-#' @param data \code{data.frame} dataframe with at least 5 columns : 
+#' 
+#' @param data \code{data.frame} dataframe with at least 5 columns: 
 #' category, open (numeric), close (numeric), low (numeric),
-#' high (numeric). See \code{\link{data_candleStick1}} and \code{\link{data_candleStick2}}
+#' high (numeric). See \link{data_candleStick1} and \link{data_candleStick2}.
 #' @param dataDateFormat \code{character}, default 'NULL'. Even if your chart parses dates,
 #' you can pass them as strings in your data - 
 #' all you need to do is to set data date format and the chart will parse dates to date objects.
@@ -22,7 +23,7 @@
 #' @param ylab \code{character} label for y-axis.
 #' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 #' If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.
-#' @param ... see \code{\link{amOptions}} for more options
+#' @param ... see \link{amOptions} for more options
 #' 
 #' @example examples/amCandlestick_examples.R
 #' 
@@ -31,7 +32,8 @@
 amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, 
                           positiveColor = "#7f8da9", negativeColor = "#db4c3c",
                           names = c("low", "open", "close", "high"),
-                          dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
+                          dataDateFormat = NULL,
+                          minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
   # data format
   data$category <- as.character(data$category)
@@ -105,8 +107,6 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
                                              names[2], "<b>[[openpos]]</b><br>",
                                              names[1], ":<b>[[lowpos]]</b><br>"))
   
-  
-  
   chart <- pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = "category", precision = 2,
                   dataDateFormat = dataDateFormat, rotate = horiz),
@@ -115,10 +115,6 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
                     parseDates = parseDates, minPeriod = minPeriod),
     setGraphs(graph)
   )
-  
-  
-  
-  
   
   chart <- amOptions(chart, ...)
   chart

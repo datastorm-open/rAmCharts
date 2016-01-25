@@ -1,49 +1,38 @@
 #' @title Plotting wind using rAmCharts
-#' 
 #' @description  wind computes a windplot of the given data values.
 #' 
-#' 
 #' @param data : columns are series of values, from week wind (first column)
-#'  to strong wind (last column). See See \code{\link{data_wind}}.
-#' @param col  \code{character} color(s) of serie(s) hexadecimal like "#00FF00"
-#' @param backTransparency \code{numeric} background transparency, between 0 and 1
-#' @param ... see \code{\link{amOptions}} for more options
-#' 
-#' 
-#' @seealso \code{\link{amRadar}}
+#'  to strong wind (last column). See \link{data_wind}.
+#' @param col  \code{character} color(s) of serie(s) hexadecimal like "#00FF00".
+#' @param backTransparency \code{numeric} background transparency, between 0 and 1.
+#' @param ... see \link{amOptions} for more options.
 #' 
 #' @example examples/amWind_examples.R
-#' 
-#'        
+#'
 #' @import data.table
 #' @import pipeR
 #' 
-#' @rdname amWind
 #' @export
+#' @seealso \link{amRadar}
 #' 
 amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   
   
-  #backTransparency
+  # backTransparency
   .testNumeric(num = backTransparency)
   .testLength(param = backTransparency, len = c(1, ncol(data)))
   sapply(backTransparency, function(X){.testInterval(num = X,binf = 0, bsup = 1, arg = "backTransparency")})
   
-  
-  
-  #col
-  if(!is.null(col))
-  {
+  # col
+  if(!is.null(col)) {
     .testCharacter(char = col)
     .testLength(param = col, len = c(1, ncol(data)))
   }
   
   
-  ##Test data numeric
+  # Test data numeric
   dt <- as.character(substitute(data))  
   apply(data, 2, function(X){.testNumeric(num = X, arg = dt)})
-  
-  
   
   databullet <- apply( rbind(names(data),data),2,function(x){paste0("<b>", as.numeric(x[-1]),
                     " </b>Observations <br><b>",round(as.numeric(x[-1])/sum(as.numeric(x[-1]))*100,2),
@@ -58,9 +47,9 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   data$labels[which(data$labels=="90")] <- "E"
   data$labels[which(data$labels=="135")] <- "SE"
   data$labels[which(data$labels=="180")] <- "S"
-  data$labels[which(data$labels=="225")] <- "SO"
-  data$labels[which(data$labels=="270")] <- "O"
-  data$labels[which(data$labels=="315")] <- "NO"
+  data$labels[which(data$labels=="225")] <- "SW"
+  data$labels[which(data$labels=="270")] <- "W"
+  data$labels[which(data$labels=="315")] <- "NW"
   col <- rev(col) 
   datavalue <- data[, (ncol(data)-1):1, drop = FALSE]
   if(is.null(col)){col <- ""}

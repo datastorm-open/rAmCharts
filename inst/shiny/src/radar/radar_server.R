@@ -32,11 +32,13 @@ output$code_radar1 <- renderText({
 
 
 output$radar3 <- rAmCharts::renderAmCharts({
-  ##Data
-  dp <- data.frame(Eye=c('Blue' ,'Brown' , 'Green', 'Hazel'), Male = c(101, 98, 33, 47), Female = c(114, 122, 31, 46))
-  #Plot
+  # Data
+  dp <- data.frame(Eye = c('Blue' ,'Brown' , 'Green', 'Hazel'),
+                   Male = c(101, 98, 33, 47),
+                   Female = c(114, 122, 31, 46))
+  # Plot
   pipeR::pipeline(
-    amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp, export=list(enabled = TRUE)),
+    amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp),
     addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'Male',
              title = 'Male',fillAlphas=0.5,bullet='xError'),
     addGraph(balloonText = '(female) [[category]]: [[value]]', valueField = 'Female',
@@ -48,36 +50,32 @@ output$radar3 <- rAmCharts::renderAmCharts({
 
 output$code_radar3 <- renderText({
   "
-  ##Data
-  dp <- data.frame(Eye=c('Blue' ,'Brown' , 'Green', 'Hazel'), Male = c(101, 98, 33, 47), Female = c(114, 122, 31, 46))
-  ##Plot
+  # Data
+  dp <- data.frame(Eye = c('Blue' ,'Brown' , 'Green', 'Hazel'),
+                   Male = c(101, 98, 33, 47),
+                   Female = c(114, 122, 31, 46))
+  # Plot
   pipeR::pipeline(
-  amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp, export=list(enabled = TRUE)),
-  addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'Male',
-  title = 'Male',fillAlphas=0.5,bullet='xError'),
-  addGraph(balloonText = '(female) [[category]]: [[value]]', valueField = 'Female',
-  title = 'Female', bullet = 'round'),
-  setLegend(position = 'right'),
-  addTitle(text='Title exemple')
+    amRadarChart(startDuration = 0, categoryField = 'Eye', dataProvider = dp),
+    addGraph(balloonText = '(male) [[category]]: [[value]]', valueField = 'Male',
+             title = 'Male',fillAlphas=0.5,bullet='xError'),
+    addGraph(balloonText = '(female) [[category]]: [[value]]', valueField = 'Female',
+             title = 'Female', bullet = 'round'),
+    setLegend(position = 'right'),
+    addTitle(text='Title exemple')
   )
   "
 })
 
-
-
-
-
-
-
-
-
 output$radar2 <- rAmCharts::renderAmCharts({
-  ##Data
+  ## Data
   data('data_wind')
-  ##Plot
+  data_wind$category <- c("N", "NE", "E", "SE", "S", "SW", "W", "NO")
+  
+  ## Plot
   pipeR::pipeline(
-    amRadarChart(theme = 'light', startDuration = 0, categoryField  =  'direction'),
-    setDataProvider(data_wind),
+    amRadarChart(theme = 'light', startDuration = 0, categoryField = 'category',
+                 dataProvider = data_wind),
     addValueAxis(gridType = 'circles', minimum = 0, autoGridCount = FALSE,
                  axisAlpha = 0.2, fillAlpha = 0.05, fillColor = '#FFFFFF',
                  gridAlpha = 0.08, position = 'left'),
@@ -88,7 +86,7 @@ output$radar2 <- rAmCharts::renderAmCharts({
              tickLength = 0, toAngle = 135, toValue = 14, value = 0,
              lineAlpha = 0),
     addGraph(balloonText = '[[category]]: [[value]] m/s', bullet = 'round',
-             fillAlphas = 0.3, valueField = 'value')
+             fillAlphas = 0.3, valueField = 'weak')
   )
 })
 

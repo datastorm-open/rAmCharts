@@ -10,7 +10,7 @@
 #' You can add a column "color" (character, colors in hexadecimal). You can
 #' also add a column "description" (character) containing the text you want to
 #' display when mouse is on the graphic ('<br>' for a new line). See \code{\link{data_bar}}
-#' and \code{\link{data_gbar}}.
+#' and \link{data_gbar}.
 #' @param groups_color \code{character} vector of colors in hexadecimal, 
 #' same length as y.
 #' @param xlab \code{character} label for x-axis.
@@ -34,7 +34,7 @@
 #' fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
-#' @param ... see \code{\link{amOptions}} for more options
+#' @param ... see \link{amOptions} for more options
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 

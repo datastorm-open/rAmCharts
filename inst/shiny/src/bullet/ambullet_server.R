@@ -2,8 +2,6 @@ output$amBullet0 <- rAmCharts::renderAmCharts({
   amBullet(value = 65)
 })
 
-
-
 output$code_amBullet0 <- renderText({
   "
   ##Plot
@@ -14,8 +12,6 @@ output$code_amBullet0 <- renderText({
 output$amBullet0 <- rAmCharts::renderAmCharts({
   amBullet(value = 65)
 })
-
-
 
 output$code_amBullet0 <- renderText({
   "
@@ -36,19 +32,14 @@ output$code_amBullet1 <- renderText({
   "
 })
 
-
-
 output$amBullet2 <- rAmCharts::renderAmCharts({
-  ##Plot
-  amBullet(value = 65, legend = 'Evaluation',
-           main = 'Bullet chart 1', mainSize = 15)
-  
+  ## Plot
+  amBullet(value = 65, main = 'Bullet chart 1', mainSize = 15)
 })
 
 output$code_amBullet2 <- renderText({
   "
-  ##Plot
-  amBullet(value = 65, legend = 'Evaluation',
-           main = 'Bullet chart 1', mainSize = 15)
+  ## Plot
+  amBullet(value = 65, main = 'Bullet chart 1', mainSize = 15)
   "
 })

@@ -10,9 +10,9 @@ amCandlestick(data, xlab = "", ylab = "", horiz = FALSE,
   minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 }
 \arguments{
-\item{data}{\code{data.frame} dataframe with at least 5 columns : 
+\item{data}{\code{data.frame} dataframe with at least 5 columns: 
 category, open (numeric), close (numeric), low (numeric),
-high (numeric). See \code{\link{data_candleStick1}} and \code{\link{data_candleStick2}}}
+high (numeric). See \link{data_candleStick1} and \link{data_candleStick2}.}
 
 \item{xlab}{\code{character} label for x-axis.}
 
@@ -41,7 +41,7 @@ fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - mont
 It's also possible to supply a number for increments, i.e. '15mm'
 which will instruct the chart that your data is supplied in 15 minute increments.}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \link{amOptions} for more options}
 }
 \description{
 amCandlestick computes a candlestick chart of the given value.

@@ -1,28 +1,14 @@
-
-# This is the server logic for a Shiny web application.
-# You can find out more about building applications with Shiny here:
-#
-# http://shiny.rstudio.com
-#
-
 library(shiny)
 library(rAmCharts)
 library(pipeR)
 library(data.table)
 library(shinydashboard)
+
 shinyServer(function(input, output) {
   
-  category <- reactive({
-    "attribute"
-  })
-  
-  data('data_stock1')
-  data('data_gdp')
-  setnames(data_gdp,"country","label")
-  setnames(data_gdp,"gdp","value")
-  
   source("./src/pie/pie_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/pie/AmPie_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/pie/amPie_server.R", local = TRUE, encoding = "UTF-8")
+  
   source("./src/radar/radar_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/radar/amRadar_server.R", local = TRUE, encoding = "UTF-8")
 
@@ -32,26 +18,24 @@ shinyServer(function(input, output) {
   source("./src/lines/lines_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/lines/amLines_server.R", local = TRUE, encoding = "UTF-8")
   
-  # source("./src/serial/serial_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/xy/xy_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/xy/amxy_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/xy/amXY_server.R", local = TRUE, encoding = "UTF-8")
   
   source("./src/stock/stock_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/stock/amstock_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/stock/amStock_server.R", local = TRUE, encoding = "UTF-8")
   
   source("./src/funnel/funnel_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/funnel/amfunnel_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/funnel/amFunnel_server.R", local = TRUE, encoding = "UTF-8")
   
   source("./src/gauge/gauge_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/gauge/amgauge_server.R", local = TRUE, encoding = "UTF-8")
-  # source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
-  
-  source("./src/Candlesticks/candlesticks_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/Candlesticks/amcandlesticks_server.R", local = TRUE, encoding = "UTF-8")
-  # source("./src/drilldown/drilldown_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/gauge/amGauge_server.R", local = TRUE, encoding = "UTF-8")
+
+  source("./src/candlestick/candlestick_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/candlestick/amCandlestick_server.R", local = TRUE, encoding = "UTF-8")
+
   source("./src/bullet/bullet_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/bullet/ambullet_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/bullet/amBullet_server.R", local = TRUE, encoding = "UTF-8")
   
   source("./src/mekko/mekko_server.R", local = TRUE, encoding = "UTF-8")
-  source("./src/mekko/ammekko_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/mekko/amMekko_server.R", local = TRUE, encoding = "UTF-8")
 })

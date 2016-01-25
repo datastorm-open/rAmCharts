@@ -1,8 +1,9 @@
 #' @title Plotting funnel chart using rAmCharts
 #' @description  amFunnel computes a funnel chart of the given value.
+#' 
 #' @param data a data frame of at least 2 columns : value (numeric, positive), 
 #' and description (character). You can add a third column "color" (character,
-#' colors in hexadecimal) see \code{\link{data_funnel}}
+#' colors in hexadecimal) see \link{data_funnel}
 #' @param neck_height \code{numeric} value between 0 and 100 : if a bottleneck
 #' is desired, this value determines its heigh. Default to NULL
 #' @param neck_width \code{numeric} value between 0 and 100 : if a bottleneck
@@ -13,21 +14,17 @@
 #' @param label_side \code{character} label position : "right" or "left"
 #' @param margin_right \code{numeric} margin at the right side
 #' @param margin_left \code{numeric} margin at the left side
-#' @param ... see \code{\link{amOptions}} for more options
+#' @param ... see \link{amOptions} for more options
 #' 
 #' @example examples/amFunnel_examples.R
 #'
 #' @export
 #' 
 amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NULL, 
-                     depth = 0, label_side = "right", margin_right = 160,
-                     margin_left = 15, ...) {
+                     depth = 0, label_side = "right", margin_right = 200,
+                     margin_left = 200, ...)
+{
   
-  
-  
-  ##Test
-  #data
-  #description
   .testIn(vect = "description", control = colnames(data))
   .testCharacter(char = data$description, arg = "data$description")
   
@@ -37,21 +34,16 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
   
   .testLogical(logi = inverse)
   
-  if(!is.null(neck_height)){
-    .testNumeric(num = neck_height)
-  }
+  if (!is.null(neck_height)) .testNumeric(num = neck_height)
   
-  
-  if(!is.null(neck_width)){
-  .testNumeric(num = neck_width)
-  }
+  if (!is.null(neck_width)) .testNumeric(num = neck_width)
   
   .testInterval(num = depth, binf = 0, bsup = 100)
-
+  
   .testNumericLength1(num = margin_right)
   .testNumericLength1(num = margin_left)
   
-  if("color" %in% colnames(data)) {
+  if ("color" %in% colnames(data)) {
     .testCharacter(char = data$color)
     vec_col <- data$color
     data <- data[,c("description", "value")]
@@ -63,7 +55,7 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
     data$color <- vec_col
   }
   
-  if(!is.null(neck_height) & !is.null(neck_width)) {
+  if (!is.null(neck_height) & !is.null(neck_width)) {
     neck_height_c <- paste0(neck_height, "%")
     neck_width_c <- paste0(neck_width, "%")
     res <- pipeR::pipeline(
@@ -71,32 +63,26 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
                     labelPosition = label_side, marginRight = margin_right, 
                     marginLeft = margin_left, colorField = "color",
                     neckHeight = neck_height_c, neckWidth = neck_width_c,
-                    rotate = inverse)
+                    rotate = inverse, startDuration = 0)
     )
   } else {
-    if(depth >0) {
+    if (depth >0) {
       res <- pipeR::pipeline(
         amFunnelChart(dataProvider = data, titleField = "description", valueField = "value",
                       labelPosition = label_side, marginRight = margin_right, 
                       marginLeft = margin_left, colorField = "color",
                       depth3D = depth, angle = 40,
-                      rotate = inverse)
+                      rotate = inverse, startDuration = 0)
       )
     } else {
       res <- pipeR::pipeline(
         amFunnelChart(dataProvider = data, titleField = "description", valueField = "value",
                       labelPosition = label_side, marginRight = margin_right, 
                       marginLeft = margin_left, colorField = "color",
-                      rotate = inverse)
+                      rotate = inverse, startDuration = 0)
       )
     }
   }
-  
-#   if (isTRUE(getOption('knitr.in.progress'))) {
-#     return(plot(res))
-#   } else {
-#     return(res)
-#   }
   
   res <- amOptions(res, ...)
   res

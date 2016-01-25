@@ -9,19 +9,19 @@ amRadar(data, col = NULL, backTransparency = 0.5, type = "polygons",
 }
 \arguments{
 \item{data}{a data frame first column is named "label" (character), other columns are series of values,
-see \code{\link{data_radar}}}
+see \link{data_radar}.}
 
-\item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00"}
+\item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00".}
 
-\item{backTransparency}{\code{numeric} background transparency, between 0 and 1}
+\item{backTransparency}{\code{numeric} background transparency, between 0 and 1.}
 
-\item{type}{\code{character} "polygons" or "circle", type of radar}
+\item{type}{\code{character} "polygons" or "circle", type of radar.}
 
 \item{pch}{\code{character} symbols must be in "round", "square", "triangleUp", 
 "triangleDown", "triangleLeft", "triangleRight", "bubble", 
-"diamond", "xError", "yError"}
+"diamond", "xError", "yError".}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \link{amOptions} for more options.}
 }
 \description{
 radar computes a radarplot of the given data values.

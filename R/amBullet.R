@@ -1,6 +1,6 @@
 #' @title Plotting bullet chart using rAmCharts
-#' 
 #' @description  amBullet computes a bullet chart of the given value.
+#' @author Elena Salette
 #' 
 #' @param value \code{numeric}
 #' @param min \code{numeric} minimum value allowed
@@ -21,10 +21,10 @@
 #' @export
 #'
 amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
-                        limit = 85, limit_color = "#000000", 
-                        steps = TRUE, 
-                     label = "", horiz = TRUE, rates, ...) {
-
+                     limit = 85, limit_color = "#000000", 
+                     steps = TRUE, label = "", horiz = TRUE, rates, ...)
+{
+  
   if (missing(rates))
     rates <- data.frame(name = c("excelent", "good", "average", "poor", "bad"),
                         min = c(0, 20, 40, 60, 80),
@@ -51,19 +51,19 @@ amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
   
   .testNumeric(num = min)
   .testNumeric(num = max)
-
+  
   .testCharacter(char = val_color)
   .testNumeric(num = limit)
   
   .testCharacter(char = limit_color)
   
   .testLogical(logi = steps)
-
+  
   .testLogical(logi = horiz)
- 
+  
   label <- as.character(label)
   
- 
+  
   val_color <- tolower(val_color)
   limit_color <- tolower(limit_color)
   rates$color <- tolower(rates$color)
@@ -86,24 +86,16 @@ amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
   if(steps) {
     sapply(1:nrow(rates), FUN = function(rt) {
       chart <<- addGraph(chart, type = "column", valueField = as.character(rates$name[rt]), fillAlphas = 0.8,
-                       lineColor = rates$color[rt], showBalloon = FALSE, columnWidth = 1)
+                         lineColor = rates$color[rt], showBalloon = FALSE, columnWidth = 1)
     })
   } else {
     chart <- addGraph(chart, type = "column", valueField = "full", lineAlpha = 0, fillAlphas = 0.8, 
-                    fillColors = rates$color, gradientOrientation = ifelse(horiz, "horizontal", "vertical"),
-                    showBalloon = FALSE)
+                      fillColors = rates$color, gradientOrientation = ifelse(horiz, "horizontal", "vertical"),
+                      showBalloon = FALSE)
   }
   
   chart <- addGraph(chart, type = "column", valueField = "bullet", columnWidth = 0.3, fillAlphas = 1, 
-                  lineColor = val_color, clustered = FALSE, stackable = FALSE)
-  
-#   if (isTRUE(getOption('knitr.in.progress'))) {
-#     return(plot(chart))
-#   } else {
-#     return(chart)
-#   }
-  
-  
+                    lineColor = val_color, clustered = FALSE, stackable = FALSE)
   
   chart <- amOptions(chart, ...)
   chart
