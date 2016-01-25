@@ -1,18 +1,19 @@
 
 
 output$amRadar0 <- rAmCharts::renderAmCharts({
-  ##Data
-  dp <- data.frame(label = c('Blue', 'Brown', 'Green', 'Hazel')
-                   , Male = c(101, 98, 33, 47), Female = c(114, 122, 31, 46))
-  ##Plot
+  ## Data
+  dp <- data.frame(label = c('Blue', 'Brown', 'Green', 'Hazel'),
+                   Male = c(101, 98, 33, 47), Female = c(114, 122, 31, 46))
+  ## Plot
   amRadar(dp)
 })
 
 output$code_amRadar0 <- renderText({
   "
-  ##Data
-  dp <- data.frame(label = c('Blue', 'Brown', 'Green', 'Hazel'), Male = c(101, 98, 33, 47), Female = c(114, 122, 31, 46))
-  ##Plot
+  ## Data
+  dp <- data.frame(label = c('Blue', 'Brown', 'Green', 'Hazel'),
+                   Male = c(101, 98, 33, 47), Female = c(114, 122, 31, 46))
+  ## Plot
   amRadar(dp)
   "
 })
@@ -20,21 +21,22 @@ output$code_amRadar0 <- renderText({
 
 
 output$amRadar1 <- rAmCharts::renderAmCharts({
-  # prepare data
-  data("data_radar")
-  #Graph
-  amRadar(data_radar, main = 'My title', export = TRUE,
+  # data
+  data('data_radar')
+  # chart
+  amRadar(data_radar, main = 'My title',
           col = c('#0000FF','#00FF00','#FF0000'), backTransparency = c(0,0.4),
-          type = c('polygons'),pch='triangleRight')
+          type = c('polygons'), pch = 'triangleRight')
 })
 
 output$code_amRadar1 <- renderText({
   "
-  ##Data
-   data('data_radar')
-  ##Plot
-  amRadar(data_radar, main = 'My title', export = TRUE, col = c('#0000FF','#00FF00','#FF0000'), backTransparency = c(0,0.4),
-  type = c('polygons'),pch='triangleRight')
+  # data
+  data('data_radar')
+  # chart
+  amRadar(data_radar, main = 'My title',
+          col = c('#0000FF','#00FF00','#FF0000'), backTransparency = c(0,0.4),
+          type = c('polygons'), pch = 'triangleRight')
   "
 })
 
@@ -43,7 +45,7 @@ output$amWind <- rAmCharts::renderAmCharts({
   data('data_wind')
   
   # draw chart
-  amWind(data = data_wind, export = TRUE, col = c('#0404B4', '#01DF01', '#FFBF00'),
+  amWind(data = data_wind, col = c('#0404B4', '#01DF01', '#FFBF00'),
          backTransparency = 1, pch = 'round')
 })
 
@@ -52,7 +54,7 @@ output$code_amWind <- renderText({
   # prepare data
   data('data_wind')
   # draw chart
-  amWind(data_wind, export = TRUE, col = c('#0404B4', '#01DF01', '#FFBF00'),
-         backTransparency = 1 ,pch='round')
+  amWind(data = data_wind, col = c('#0404B4', '#01DF01', '#FFBF00'),
+         backTransparency = 1, pch = 'round')
   "
 })
