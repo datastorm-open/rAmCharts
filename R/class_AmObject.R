@@ -29,7 +29,6 @@ setClass(Class = "AmObject",
 setMethod(f = "show", signature = "AmObject",
           definition = function(object)
           {
-            # message("call show method for 'AmObject'")
             cat("~", class(object),"~\n")
             print(listProperties(object))
           })

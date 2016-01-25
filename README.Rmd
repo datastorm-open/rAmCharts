@@ -39,15 +39,14 @@ devtools::install_github("dataKnowledge/rAmCharts")
 ```{r, eval = FALSE}
 library(rAmCharts)
 data(iris)
-pipeR::pipeline(
-  amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray"),
-  setProperties(path = "http://www.amcharts.com/lib/3"),
-  # setProperties(path = system.file("htmlwidgets/lib", package = "rAmCharts"))
-  plot()
-)
+
+amHist(iris$Sepal.Length, freq = FALSE, breaks = 30, col = "gray",
+       path = "http://www.amcharts.com/lib/3")
+# path = system.file("htmlwidgets/lib", package = "rAmCharts"))
+
 ```
 
-* Usual R colors work (for instance, light or dark prefixes), however the 'export' feature needs valid CSS colors. To be sure, prefer HTML for exporting option.
+* Usual R colors work (for instance, light or dark prefixes), however the 'export' feature needs valid CSS colors. To be sure, use hexadecimal format if you want to use the 'export' feature.
 
 [url_amcharts]: http://www.amcharts.com
 [url_htmlwidgets]: http://www.htmlwidgets.org

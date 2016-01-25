@@ -371,9 +371,11 @@ setMethod(f = "initialize", signature = "AmChart",
 setMethod(f = "show", signature = "AmChart",
           definition = function(object)
           {
-            # message("call show method for 'AmChart'")
             if (length(object@type)) {
-              print(plot(object))
+              chart <- plot(object)
+              if (isTRUE(getOption('knitr.in.progress'))) knitr::knit_print(chart)
+              else print(chart)
+              
             } else {
               print(object)
             }
