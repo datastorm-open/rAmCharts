@@ -2,6 +2,7 @@
 
 ### rAmCharts 1.1.3 (based on [amcharts][amcharts_url] version **3.18.3**)
 
+  * New functions 'am'
   * fix init and rendered event with shiny
   * fix class 'Label' to allow character for properties 'x' and 'y'
   * Improve `am___` functions (histogram, scatter plot, gauge, funnel, etc.)
