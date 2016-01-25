@@ -8,13 +8,13 @@ amWind(data, col = NULL, backTransparency = 0.5, ...)
 }
 \arguments{
 \item{data}{: columns are series of values, from week wind (first column)
-to strong wind (last column). See See \code{\link{data_wind}}.}
+to strong wind (last column). See \link{data_wind}.}
 
-\item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00"}
+\item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00".}
 
-\item{backTransparency}{\code{numeric} background transparency, between 0 and 1}
+\item{backTransparency}{\code{numeric} background transparency, between 0 and 1.}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \link{amOptions} for more options.}
 }
 \description{
 wind computes a windplot of the given data values.
@@ -38,6 +38,6 @@ amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparenc
 
 }
 \seealso{
-\code{\link{amRadar}}
+\link{amRadar}
 }
 
