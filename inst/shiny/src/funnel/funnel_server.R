@@ -1,8 +1,7 @@
 output$funnel1 <- rAmCharts::renderAmCharts({
-  # prepare data
+  ##Data
   data('data_funnel')
-  
-  # build chart
+  ##Plot
   amFunnelChart(dataProvider = data_funnel, startDuration = 0,
                 labelPosition = 'left', marginLeft = 200, marginRight = 100,
                 titleField = 'description', valueField = 'value')
@@ -10,10 +9,9 @@ output$funnel1 <- rAmCharts::renderAmCharts({
 
 output$code_funnel1 <- renderText({
   "
-  # prepare data
+  ##Data
   data('data_funnel')
-  
-  # build chart
+  ##Plot
   amFunnelChart(dataProvider = data_funnel, startDuration = 0,
                 labelPosition = 'left', marginLeft = 200, marginRight = 100,
                 titleField = 'description', valueField = 'value')
@@ -23,7 +21,6 @@ output$code_funnel1 <- renderText({
 output$funnel2 <- rAmCharts::renderAmCharts({
   ##Data
   data('data_funnel')
-  
   ##Plot
   amFunnelChart(dataProvider = data_funnel, startX = -500,
                 depth3D = 50, angle = 60, outlineColor = '#FFFFFF',
@@ -36,7 +33,6 @@ output$code_funnel2 <- renderText({
   "
   ##Data
   data('data_funnel')
-  
   ##Plot
   amFunnelChart(dataProvider = data_funnel, startX = -500,
                 depth3D = 50, angle = 60, outlineColor = '#FFFFFF',

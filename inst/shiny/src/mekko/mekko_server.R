@@ -24,11 +24,11 @@ output$code_mekko0 <- renderText({
   "
   ##Data
   mekkodata <- data.frame(continent = c('North America', 'Asia', 'Europe'),
-    Trucks = c(40000, 90000, 30000),
-    SUVs = c(180000, 40000, 50000),
-    Cars = c(90000, 110000, 110000),
-    total = c(310000, 240000, 190000),
-  stringsAsFactors = FALSE)
+                          Trucks = c(40000, 90000, 30000),
+                          SUVs = c(180000, 40000, 50000),
+                          Cars = c(90000, 110000, 110000),
+                          total = c(310000, 240000, 190000),
+                          stringsAsFactors = FALSE)
   ##Plot
   pipeR::pipeline(
     amSerialChart(dataProvider = mekkodata, categoryField = 'continent'),

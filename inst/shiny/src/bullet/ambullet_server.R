@@ -5,7 +5,7 @@ output$amBullet0 <- rAmCharts::renderAmCharts({
 output$code_amBullet0 <- renderText({
   "
   ##Plot
- amBullet(value = 65)
+  amBullet(value = 65)
   "
 })
 
@@ -22,13 +22,13 @@ output$code_amBullet0 <- renderText({
 
 output$amBullet1 <- rAmCharts::renderAmCharts({
   ##Plot
-amBullet(value = 65, val_color = "purple", limit_color = "#3c8dbc", step=FALSE, limit=66)
+  amBullet(value = 65, val_color = "purple", limit_color = "#3c8dbc", step = FALSE, limit = 66)
 })
 
 output$code_amBullet1 <- renderText({
   "
   ##Plot
-  amBullet(value = 65, val_color = 'purple', limit_color = '#3c8dbc', step=FALSE, limit=66)
+  amBullet(value = 65, val_color = 'purple', limit_color = '#3c8dbc', step = FALSE, limit = 66)
   "
 })
 

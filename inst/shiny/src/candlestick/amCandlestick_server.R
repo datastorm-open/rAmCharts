@@ -1,8 +1,7 @@
 output$cds0 <- rAmCharts::renderAmCharts({
-  # load data
+  ##Data
   data('data_candleStick2')
-  
-  # draw chart
+  ##Plot
   amCandlestick(data = data_candleStick2)
 })
 
@@ -10,20 +9,18 @@ output$cds0 <- rAmCharts::renderAmCharts({
 
 output$code_cds0 <- renderText({
   "
-  # load data
+  ##Data
   data('data_candleStick2')
-
-  # draw chart
+  ##Plot
   amCandlestick(data = data_candleStick2)
   "
 })
 
 
 output$cds1 <- rAmCharts::renderAmCharts({
-  # load data
+  ##Data
   data('data_candleStick2')
-  
-  # draw chart
+  ##Plot
   amCandlestick(data = data_candleStick2, scrollbar = TRUE, horiz = TRUE)
 })
 
@@ -31,10 +28,9 @@ output$cds1 <- rAmCharts::renderAmCharts({
 
 output$code_cds1 <- renderText({
   "
-  # load data
+  ##Data
   data('data_candleStick2')
-  
-  # draw chart
+  ##Plot
   amCandlestick(data = data_candleStick2, scrollbar = TRUE, horiz = TRUE)
   "
 })
@@ -43,19 +39,17 @@ output$code_cds1 <- renderText({
 
 
 output$cds2 <- rAmCharts::renderAmCharts({
-  # load data
+  ##Data
   data('data_candleStick2')
-  
-  # draw chart
+  ##Plot
   amCandlestick(data = data_candleStick2, dataDateFormat = 'YYYY-MM-DD', period_type = 'month')
 })
 
 output$code_cds2 <- renderText({
   "
-  # load data
+  ##Data
   data('data_candleStick2')
-  
-  # draw chart
+  ##Plot
   amCandlestick(data = data_candleStick2, dataDateFormat = 'YYYY-MM-DD', period_type = 'month')
   "
 })

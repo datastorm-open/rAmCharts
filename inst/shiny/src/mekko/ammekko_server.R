@@ -1,8 +1,8 @@
 output$ammekko0 <- rAmCharts::renderAmCharts({
   ##Data
   data('data_mekko')
-##Plot
-amMekko(x = 'var1', y = 'var2', data = data_mekko)
+  ##Plot
+  amMekko(x = 'var1', y = 'var2', data = data_mekko)
 })
 
 

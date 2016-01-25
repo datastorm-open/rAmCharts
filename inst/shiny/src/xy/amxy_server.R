@@ -1,6 +1,4 @@
 
-
-
 output$amxy0 <- rAmCharts::renderAmCharts({
   ##Data
   x <- sort(rnorm(100))
@@ -47,7 +45,7 @@ output$amxy2 <- rAmCharts::renderAmCharts({
   x <- sort(rnorm(100))
   y <- rnorm(100, sd = 10)
   ##Plot
-  amPlot(x = x, y = y, type = 'p', weights = rnorm(100, sd = 5), main='My XY', col = 'blue')
+  amPlot(x = x, y = y, type = 'p', weights = rnorm(100, sd = 5), main = 'My XY', col = 'blue')
 })
 
 output$code_amxy2 <- renderText({
@@ -56,7 +54,7 @@ output$code_amxy2 <- renderText({
   x <- sort(rnorm(100))
   y <- rnorm(100, sd = 10)
   ##Plot
-  amPlot(x = x, y = y, type = 'p', weights = rnorm(100, sd = 5), main='My XY', col = 'blue')
+  amPlot(x = x, y = y, type = 'p', weights = rnorm(100, sd = 5), main = 'My XY', col = 'blue')
   "
 })
 
