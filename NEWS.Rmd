@@ -1,7 +1,9 @@
 ## LOG CHANGE
 
+
 ### rAmCharts 1.1.3 (based on [amcharts][amcharts_url] version **3.18.3**)
 
+  * fix bug in markdown : now a call to method 'plot' is optionnal
   * New functions 'am'
   * fix init and rendered event with shiny
   * fix class 'Label' to allow character for properties 'x' and 'y'
