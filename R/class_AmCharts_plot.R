@@ -15,7 +15,7 @@ setClassUnion(name = "AmCharts", members = c("AmChart", "AmStockChart"))
 #' @rdname plot.AmChart
 #' @export
 setMethod(f = "plot", signature = "AmCharts",
-          definition = function(x, y, width = "100%", height = "500px",
+          definition = function(x, y, width = "100%", height = NULL,
                                 background = "#ffffff",...)
           {
             chart_ls <- listProperties(x)
@@ -135,6 +135,14 @@ setMethod(f = "plot", signature = "AmCharts",
             widget <- dependency_addTheme(widget, data, theme, version)
             widget <- dependency_addDataLoader(widget, data, version)
             widget <- dependency_addResponsive(widget, data, version)
+#             style_dep <- htmltools::htmlDependency(
+#               name = "amcharts_style",
+#               version = version,
+#               src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
+#               stylesheet = "style.css"
+#             )
+#             
+#             widget$dependencies[[length(widget$dependencies)+1]] <- style_dep
             
             widget
           })
@@ -170,20 +178,10 @@ dependency_chartType <- function(widget, data, type, version)
   } else {}
   
   widget$dependencies[[length(widget$dependencies)+1]] <- type_dep
-  
-  #   style_dep <- htmltools::htmlDependency(
-  #     name = "amcharts_style",
-  #     version = version,
-  #     src = c(file = system.file("htmlwidgets", package = "rAmCharts")),
-  #     stylesheet = "style.css"
-  #   )
-  
-  # widget$dependencies[[length(widget$dependencies)+1]] <- style_dep
-  
   widget
 }
 
-#' Add dependency for eport
+#' Add dependency for export
 #' @noRd
 dependency_addExport <- function(widget, data, version)
 {

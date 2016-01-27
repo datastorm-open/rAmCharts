@@ -5,7 +5,7 @@
 \alias{plot,AmCharts-method}
 \title{PLOTTING METHOD}
 \usage{
-\S4method{plot}{AmCharts}(x, y, width = "100\%", height = "500px",
+\S4method{plot}{AmCharts}(x, y, width = "100\%", height = NULL,
   background = "#ffffff", ...)
 }
 \arguments{
