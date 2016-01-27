@@ -12,9 +12,9 @@ addListener(.Object, name, expression)
 
 \S4method{addListener}{AmObject,character,character}(.Object, name, expression)
 
-setProperties(.Object, list, ...)
+setProperties(.Object, list_prop, ...)
 
-\S4method{setProperties}{AmObject}(.Object, list, ...)
+\S4method{setProperties}{AmObject}(.Object, list_prop, ...)
 }
 \arguments{
 \item{.Object}{\code{\linkS4class{AmObject}}.}
@@ -23,7 +23,7 @@ setProperties(.Object, list, ...)
 
 \item{expression}{\code{character} containing the associated function event.}
 
-\item{list}{(Optional) \code{list} containing properties to set.
+\item{list_prop}{(Optional) \code{list} containing properties to set.
 The former properties will be overwritten.}
 
 \item{...}{Other properties}
@@ -35,7 +35,7 @@ The updated object.
 Methods for inherited classes.
 }
 \details{
-If the property is a class property, it will be overwritten if the attribute is non NULL
+Former properties will be overwritten.
 }
 \examples{
 addListener(.Object = amPieChart(),
@@ -47,9 +47,25 @@ addListener(.Object = amLegend(),
             expression = paste0("function onSelect (properties) {",
                                 "alert('selected nodes: ' + properties.nodes);",
                                 "}"))
+
 library(pipeR)
-# For an AmChart
-ls <- list(categoryAxis = list(gridPosition = "start"), test = 1)
-amPieChart() \%>>\% setProperties(list = ls) \%>>\% setProperties(fontSize = 15)
+# either you can set a list
+ls <- list(categoryAxis = list(gridPosition = "start"), fontSize = 15)
+amSerialChart() \%>>\% setProperties(list = ls)  \%>>\% print()
+
+# or you can set one or more properties
+amPieChart() \%>>\% setProperties(handDrawn = TRUE, fontSize = 15) \%>>\% print()
+
+# overwrite a property
+amPieChart() \%>>\%  setProperties(fontSize = 15) \%>>\%  setProperties(fontSize = 12) \%>>\% print()
+
+# warning if you try to set a property which is a slot...
+# in that case, use the setter methods 'setXX' or 'addXX' which check the validity
+\dontrun{
+amPieChart() \%>>\% setProperties(type = "serial") \%>>\% print()
+}
+
+amPieChart() \%>>\% setExport()
+
 }
 

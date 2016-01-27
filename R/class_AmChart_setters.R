@@ -378,7 +378,8 @@ setMethod(f = "setDataLoader", signature = c("AmChart", "character", "character"
 #' @examples
 #' dataProvider_obj <- data.frame(key = c("FR", "US", "GER", "ENG", "IT" ),
 #'                                value = round(runif(5, max = 100)))
-#' print(setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj))
+#' amchart <- setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj)
+#' print(amchart)
 #' # ---
 #' @rdname initialize-AmChart
 #' @export

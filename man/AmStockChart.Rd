@@ -194,7 +194,9 @@ setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")
 # ---
 setChartCursorSettings(.Object = amStockChart(), oneBallOnly = TRUE)
 # ---
-setChartScrollbarSettings(.Object = amStockChart(), enabled = TRUE)
+amchart <- setChartScrollbarSettings(.Object = amStockChart(), enabled = TRUE)
+print(amchart)
+
 # equivalent to:
 chartScrollbarSettings_obj <- chartScrollbarSettings()
 setChartScrollbarSettings(.Object = amStockChart(),

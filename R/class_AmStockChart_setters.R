@@ -65,7 +65,9 @@ setMethod(f = "setChartCursorSettings", signature = c("AmStockChart"),
 #' you should call stockChart.validateNow() method in order for it to work.
 #' If there is no default value specified, default value of ChartScrollbar class will be used.
 #' @examples
-#' setChartScrollbarSettings(.Object = amStockChart(), enabled = TRUE)
+#' amchart <- setChartScrollbarSettings(.Object = amStockChart(), enabled = TRUE)
+#' print(amchart)
+#' 
 #' # equivalent to:
 #' chartScrollbarSettings_obj <- chartScrollbarSettings()
 #' setChartScrollbarSettings(.Object = amStockChart(),
@@ -73,6 +75,7 @@ setMethod(f = "setChartCursorSettings", signature = c("AmStockChart"),
 #' # ---
 #' @rdname AmStockChart
 #' @export
+#' 
 setGeneric(name = "setChartScrollbarSettings", def = function(.Object, chartScrollbarSettings = NULL, ...) {standardGeneric("setChartScrollbarSettings")})
 #' @rdname AmStockChart
 setMethod(f = "setChartScrollbarSettings", signature = c("AmStockChart", "ChartScrollbarOrMissing"),

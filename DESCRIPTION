@@ -98,7 +98,8 @@ Imports:
     data.table,
     graphics,
     utils,
-    pipeR
+    pipeR,
+    knitr
 Suggests:
     magrittr,
     shiny,

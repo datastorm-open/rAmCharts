@@ -359,7 +359,6 @@ setMethod(f = "initialize", signature = "AmChart",
 #' @title Visualize AmChart with show
 #' @description Display the object in the console
 #' 
-#' @param object \linkS4class{AmChart}.
 #' @examples
 #' pipeR::pipeline(
 #'   amPieChart(valueField = "value", titleField = "key"),
@@ -367,6 +366,7 @@ setMethod(f = "initialize", signature = "AmChart",
 #'   setExport(position = "bottom-left")
 #' )
 #' 
+#' @import knitr
 #' 
 setMethod(f = "show", signature = "AmChart",
           definition = function(object)

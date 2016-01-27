@@ -18,7 +18,8 @@
 Display the object in the console.
 }
 \details{
-The method 'print' can also plot the object of class \linkS4class{AmChart}.
+If the object possess a 'dataProvider' property, it will be hidden in the console.
+To see if it's correctly registered use '@dataProvider'.
 }
 \examples{
 print(new("AmChart", categoryField = "variables", type = "serial"))

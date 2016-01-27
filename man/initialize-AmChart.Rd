@@ -550,7 +550,8 @@ print(setDataLoader(.Object = amSerialChart(), url = "data.json", format = "json
 # ---
 dataProvider_obj <- data.frame(key = c("FR", "US", "GER", "ENG", "IT" ),
                                value = round(runif(5, max = 100)))
-print(setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj))
+amchart <- setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj)
+print(amchart)
 # ---
 print(setExport(.Object = amSerialChart()))
 \dontshow{

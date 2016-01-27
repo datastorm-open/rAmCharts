@@ -29,7 +29,8 @@ NULL
 #' @slot value \code{numeric}.
 #' 
 #' @seealso \url{http://docs.amcharts.com/3/javascriptstockchart/AmStockChart}
-#' @export
+#' 
+#' 
 setClass("AmStockChart", contains = "AmObject",
          representation = representation(
            balloon = "list",
@@ -129,7 +130,7 @@ amStockChart <- function(balloon, comparedDataSets, dataSets,
                          dataSetSelector, mainDataSet,
                          panels, periodSelector, theme, ...)
 {
-  .Object = new("AmStockChart", type = "stock")
+  .Object <- new("AmStockChart")
   if (!missing(balloon)) {
     .Object <- setBalloon(.Object = .Object, amBalloon = balloon)
   } else {}
@@ -203,13 +204,16 @@ setMethod(f = "listProperties", signature = "AmStockChart",
 #' 
 #' @param object \linkS4class{AmStockChart}
 #' 
-#' @export
+#' @import knitr
 #' 
-setMethod(f = "show", signature = "AmStockChart",
+setMethod(f = "show", signature = "AmChart",
           definition = function(object)
           {
             if (length(object@type)) {
-              print(plot(object))
+              chart <- plot(object)
+              if (isTRUE(getOption('knitr.in.progress'))) knitr::knit_print(chart)
+              else print(chart)
+              
             } else {
               print(object)
             }
