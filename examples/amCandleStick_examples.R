@@ -8,7 +8,7 @@ amCandlestick(data = data_candleStick2)
 amCandlestick(data = data_candleStick2, positiveColor = "black", negativeColor = "green")
 
 # naming the axes
-amCandlestick(data = data_candleStick2, xlab = "values", ylab = "categories")
+amCandlestick(data = data_candleStick2, xlab = "categories", ylab = "values")
 
 # Rotate the labels for x axis
 amCandlestick(data = data_candleStick2, labelRotation = 90)
@@ -17,7 +17,7 @@ amCandlestick(data = data_candleStick2, labelRotation = 90)
 amCandlestick(data = data_candleStick2, names = c("min", "begin", "end", "max"))
 
 #Horizontal chart :
-amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD", horiz = TRUE)
+amCandlestick(data = data_candleStick2, horiz = TRUE)
 
 #  Parse date              
 amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD")

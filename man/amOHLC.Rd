@@ -18,8 +18,7 @@ high (numeric).}
 
 \item{ylab}{\code{character} label for y-axis.}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.}
+\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
 
 \item{positiveColor}{\code{character} color for positive values. 
 Must be in hexadecimal if you plan to export the chart.}
@@ -57,12 +56,12 @@ amOHLC(data = data_candleStick2)
 amOHLC(data = data_candleStick2, positiveColor = "green", negativeColor = "red")
 
 # naming the axes
-amOHLC(data = data_candleStick2, xlab = "values", ylab = "categories")
+amOHLC(data = data_candleStick2, xlab = "categories", ylab = "values") \%>>\% setChartCursor()
 
 # Rotate the labels for x axis
 amOHLC(data = data_candleStick2, labelRotation = 90)
 
 # change names
-amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max"))
+amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max")) \%>>\% setChartCursor()
 }
 

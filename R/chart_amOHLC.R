@@ -21,7 +21,6 @@
 #' @param xlab \code{character} label for x-axis.
 #' @param ylab \code{character} label for y-axis.
 #' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-#' If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.
 #' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' @example examples/amOHLC_examples.R
@@ -67,8 +66,8 @@ amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE,
   chart <- pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = "category", precision = 2,
                   dataDateFormat = dataDateFormat, rotate = horiz),
-    addValueAxis(title = xlab, position = 'left', gridAlpha = 0.1),
-    setCategoryAxis(title = ylab, axisAlpha = 0, gridAlpha = 0.1,
+    addValueAxis(title = ylab, position = 'left', gridAlpha = 0.1),
+    setCategoryAxis(title = xlab, axisAlpha = 0, gridAlpha = 0.1,
                     parseDates = parseDates, minPeriod = minPeriod),
     addGraph(id = "g1", openField = "open", closeField = "close", highField = "high", lowField = "low",
              valueField = "close", fillColors = positiveColor, lineColor = positiveColor, 

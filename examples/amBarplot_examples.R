@@ -6,7 +6,7 @@ data(data_bar)
 
 # test with label rotation
 amBarplot(x = "country", y = "visits", data = data_bar,
-          labelRotation = -90) %>>% amOptions(legend = TRUE)
+          labelRotation = -90) 
 
 #horizontal bar
 amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -90)
@@ -24,7 +24,7 @@ amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
 
 # Parse dates
 
-# default label: firt day of each year
+# default label: first day of each year
 pipeR::pipeline(
   amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar,
             dataDateFormat = "YYYY", minPeriod = "YYYY"),
