@@ -43,7 +43,7 @@ setClass(Class = "GaugeArrow", contains = "AmObject",
 setMethod(f = "initialize", signature = c("GaugeArrow"),
           definition = function(.Object, alpha = 1, axis, ...)
           {            
-            if(!missing(axis)){
+            if (!missing(axis)) {
               .Object <- setAxis(.Object = .Object, axis = axis)
             } else {}
             .Object <- setProperties(.Object, alpha = alpha, ...)

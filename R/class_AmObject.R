@@ -48,7 +48,7 @@ setMethod(f = "show", signature = "AmObject",
 setMethod(f = "print", signature = "AmObject",
           definition = function(x, withDetail = TRUE,...) {
             if (withDetail) {
-              cat("~ ", class(x)," object (printed with detail) ~\n\n")
+              cat("~ ", class(x)," object (with detail) ~\n\n")
               
               cat("Referenced properties:\n")
               ls <- listProperties(x)
@@ -61,7 +61,7 @@ setMethod(f = "print", signature = "AmObject",
                 
               print(ls)
             } else {
-              cat("~ ", class(x)," object (printed without detail)~\n\n")
+              cat("~ ", class(x)," object (without detail)~\n\n")
               cat("Referenced properties:\n")
               ls <- listProperties(x)
               cat(paste(names(ls), collapse = ", "))
@@ -100,6 +100,7 @@ setMethod(f = "addListener", signature = c("AmObject", "character", "character")
             validObject(.Object)
             return(.Object)
           })
+
 
 # > @otherProperties: setProperties ####
 
@@ -144,8 +145,8 @@ setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
               # may be referenced as slots, in that case a warning is sent.
               lapply(X = names(newProperties), FUN = function(prop) {
                 if (prop %in% slotNames(.Object)) {
-                  # if it's a slot, a warning is sent
-                  warning("You should use setter for property '", prop, "'")
+                  # if it's a slot and the prop is not "value", a warning is sent
+                  if (prop != "value") warning("You should use setter for property '", prop, "'")
                   slot(.Object, prop, check = TRUE) <<- newProperties[[prop]]
                 } else {
                   .Object@otherProperties[[prop]] <<- newProperties[[prop]]
@@ -181,5 +182,10 @@ setMethod(f = "listProperties", signature = "AmObject",
             if (length(.Object@listeners)) {
               properties <- rlist::list.append(properties, listeners = .Object@listeners)
             } else {}
+            if (length(.Object@value)) {
+              properties <- rlist::list.append(properties, value = .Object@value)
+            } else {
+              properties <- list()
+            }
             return(properties)
           })

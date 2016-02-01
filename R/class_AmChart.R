@@ -457,5 +457,4 @@ setMethod(f = "listProperties", signature = "AmChart",
               ls <- rlist::list.append(ls, valueAxis = .Object@valueAxis)
             } else {}
             return(ls)
-          }
-)
+          })

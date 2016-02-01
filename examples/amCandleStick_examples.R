@@ -30,3 +30,7 @@ data_candleStick2$category <- c("2015-01-01", "2015-02-01", "2015-03-01",
 
 amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD", minPeriod = "MM")
 
+# decimal precision
+require(pipeR)
+amCandlestick(data = data_candleStick2, horiz = TRUE) %>>%
+  setProperties(precision = 2) 

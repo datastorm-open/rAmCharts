@@ -60,3 +60,8 @@ amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, layered = T
 #data with row names
 dataset <- data.frame(get(x = "USArrests", pos = "package:datasets"))
 amBarplot(y = c("Murder", "Assault", "UrbanPop", "Rape"), data = dataset, stack_type = "regular")
+
+
+# round values
+amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar) %>>%
+  setProperties(precision = 0)
