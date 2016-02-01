@@ -46,6 +46,8 @@ which will instruct the chart that your data is supplied in 15 minute increments
 amOHLC computes an OHLC chart of the given value.
 }
 \examples{
+require(pipeR)
+
 # load data
 data("data_candleStick2")
 

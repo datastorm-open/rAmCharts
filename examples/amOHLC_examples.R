@@ -1,3 +1,5 @@
+require(pipeR)
+
 # load data
 data("data_candleStick2")
 
