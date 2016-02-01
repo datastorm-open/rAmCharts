@@ -18,8 +18,7 @@ high (numeric). See \link{data_candleStick1} and \link{data_candleStick2}.}
 
 \item{ylab}{\code{character} label for y-axis.}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.}
+\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
 
 \item{positiveColor}{\code{character} color for positive values. 
 Must be in hexadecimal if you plan to export the chart.}
@@ -57,7 +56,7 @@ amCandlestick(data = data_candleStick2)
 amCandlestick(data = data_candleStick2, positiveColor = "black", negativeColor = "green")
 
 # naming the axes
-amCandlestick(data = data_candleStick2, xlab = "values", ylab = "categories")
+amCandlestick(data = data_candleStick2, xlab = "categories", ylab = "values")
 
 # Rotate the labels for x axis
 amCandlestick(data = data_candleStick2, labelRotation = 90)
@@ -66,7 +65,7 @@ amCandlestick(data = data_candleStick2, labelRotation = 90)
 amCandlestick(data = data_candleStick2, names = c("min", "begin", "end", "max"))
 
 #Horizontal chart :
-amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD", horiz = TRUE)
+amCandlestick(data = data_candleStick2, horiz = TRUE)
 
 #  Parse date              
 amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD")

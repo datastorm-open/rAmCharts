@@ -5,7 +5,7 @@
 #' @param end \code{numeric} maximum value allowed
 #' @param step \code{numeric} intervals size
 #' @param bands a data frame with 4 columns : start (numeric, minimal value for the band), 
-#' end (numeric, maximal value for the band), color (character, color of the ban, in hexadecimal)
+#' end (numeric, maximal value for the band), color (character, color of the band, in hexadecimal)
 #' and width (numeric, width of the band). If the last column is not defined, it is auomatically
 #' set to 10. 
 #' @param text \code{character} text lengend
@@ -14,8 +14,10 @@
 #' @param start2 \code{numeric} minimum value allowed for the second axe if secondAxe is TRUE.
 #' @param end2 \code{numeric} maximum value allowed for the second axe if secondAxe is TRUE.
 #' @param step2 \code{numeric} intervals size for the second axe if secondAxe is TRUE.
-#' @param bands2 a list containing lists with bands informations for the second axe, named : bandStartValue (numeric),
-#' bandEndValue (numeric), bandColor (hexadecimal color value)
+#' @param bands2 a data frame with 4 columns : start (numeric, minimal value for the band), 
+#' end (numeric, maximal value for the band), color (character, color of the band, in hexadecimal)
+#' and width (numeric, width of the band). If the last column is not defined, it is auomatically
+#' set to 10. 
 #' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' @example examples/amGauge_examples.R
