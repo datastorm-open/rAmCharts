@@ -174,18 +174,21 @@ setGeneric(name = "listProperties", def = function(.Object){standardGeneric("lis
 #' @rdname listProperties-AmObject
 setMethod(f = "listProperties", signature = "AmObject",
           definition = function(.Object) {
+            
             if (length(.Object@otherProperties)) {
               properties <- .Object@otherProperties
             } else {
               properties <- list()
             }
+            
+            if (length(.Object@value)) {
+              properties <- rlist::list.append(properties, value = .Object@value)
+            } else {}
+            
             if (length(.Object@listeners)) {
               properties <- rlist::list.append(properties, listeners = .Object@listeners)
             } else {}
-            if (length(.Object@value)) {
-              properties <- rlist::list.append(properties, value = .Object@value)
-            } else {
-              properties <- list()
-            }
+            
+            
             return(properties)
           })

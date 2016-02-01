@@ -4,7 +4,6 @@ data("data_pie")
 #Basic example                 
 amPie(data = data_pie)
 
-
 #don't display values
 amPie(data = data_pie, show_values = FALSE)
 
