@@ -66,10 +66,13 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
   
   parseDates <- (!is.null(dataDateFormat))
   
+  data$color <- ""
+  data$color[data$open < data$close] <- positiveColor
+  data$color[data$close <= data$open] <- negativeColor
+  
   graph_obj <- graph(title = "negative", id = "g1", openField = "open", closeField = "close",
-                     highField = "high", lowField = "low", valueField = "close",
-                     fillColors = positiveColor, lineColor = positiveColor,
-                     negativeFillColors = negativeColor, negativeLineColor = negativeColor,
+                     highField = "high", lowField = "low", valueField = "close", colorField = "color",
+                     lineColorField = "color",
                      type = "candlestick", fillAlphas = 0.8, 
                      balloonText =  paste0(names[4], ": <b>[[high]]</b><br>",
                                            names[3], ": <b>[[close]]</b><br>",
