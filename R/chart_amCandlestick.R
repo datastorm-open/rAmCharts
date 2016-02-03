@@ -66,46 +66,42 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
   
   parseDates <- (!is.null(dataDateFormat))
   
-  #   data$openpos <- data$open
-  #   data$closepos <- data$close
-  #   data$lowpos <- data$low
-  #   data$highpos <- data$high
+  # --- positive or negative color stick ?
+  positiveRows <- which(data$open <= data$close)
+
+  data$openPositive <- data$open
+  data$closePositive <- data$close
+  data$lowPositive <- data$low
+  data$highPositive <- data$high
   
-  clo <- data$close
-  ope <- data$open
+  data$open[positiveRows] <- NA
+  data$close[positiveRows] <- NA
+  data$low[positiveRows] <- NA
+  data$high[positiveRows] <- NA
   
-  data$open[which(ope<=clo)] <- NA
-  data$close[which(ope<=clo)] <- NA
-  data$low[which(ope<=clo)] <- NA
-  data$high[which(ope<=clo)] <- NA
+  data$openPositive[-positiveRows] <- NA
+  data$closePositive[-positiveRows] <- NA
+  data$lowPositive[-positiveRows] <- NA
+  data$highPositive[-positiveRows] <- NA
   
-  #   data$openpos[which(ope>clo)] <- NA
-  #   data$closepos[which(ope>clo)] <- NA
-  #   data$lowpos[which(ope>clo)] <- NA
-  #   data$highpos[which(ope>clo)] <- NA
+  graph_ls <- list()
+  graph_ls[[1]] <- graph(title = "negative",id = "g1", openField = "open", closeField = "close",
+                         highField = "high", lowField = "low",
+                         valueField = "close", fillColors = negativeColor, lineColor = negativeColor,
+                         type = "candlestick", fillAlphas = 0.8, 
+                         balloonText =  paste0(names[4], ": <b>[[high]]</b><br>",
+                                               names[3], ": <b>[[close]]</b><br>",
+                                               names[2], ": <b>[[open]]</b><br>",
+                                               names[1], ": <b>[[low]]</b><br>"))
   
-  #   data$openpos <- round(data$openpos, 2)
-  #   data$closepos <- round(data$closepos, 2)
-  #   data$lowpos <- round(data$lowpos, 2)
-  #   data$highpos <- round(data$highpos, 2)
-  
-  # graph <- list()
-  graph_obj <- amGraph(title = "negative",id = "g1", openField = "open", closeField = "close",
-                       highField = "high", lowField = "low",
-                       valueField = "close", fillColors = negativeColor, lineColor = negativeColor,
-                       type = "candlestick", fillAlphas = 0.8, 
-                       balloonText =  paste0(names[4], ": <b>[[high]]</b><br>",
-                                             names[3], ": <b>[[close]]</b><br>",
-                                             names[2], ": <b>[[open]]</b><br>",
-                                             names[1], ": <b>[[low]]</b><br>"))
-  
-  #   graph[[2]] <- amGraph(title = "positive",id = "g2", openField = "openpos", closeField = "closepos", highField = "highpos", lowField = "lowpos",
-  #                         valueField = "closepos", fillColors =  positiveColor, lineColor = positiveColor, 
-  #                         type = "candlestick", fillAlphas = 0.8, 
-  #                         balloonText =  paste(names[4], ": <b>[[highpos]]</b><br>",
-  #                                              names[3], ": <b>[[closepos]]</b><br>",
-  #                                              names[2], "<b>[[openpos]]</b><br>",
-  #                                              names[1], ":<b>[[lowpos]]</b><br>"))
+  graph_ls[[2]] <- graph(title = "positive",id = "g2", openField = "openPositive", closeField = "closePositive",
+                         highField = "highPositive", lowField = "lowPositive",
+                         valueField = "closePositive", fillColors =  positiveColor, lineColor = positiveColor, 
+                         type = "candlestick", fillAlphas = 0.8, 
+                         balloonText =  paste0(names[4], ": <b>[[highPositive]]</b><br>",
+                                               names[3], ": <b>[[closePositive]]</b><br>",
+                                               names[2], ": <b>[[openPositive]]</b><br>",
+                                               names[1], ": <b>[[lowPositive]]</b><br>"))
   
   chart <- pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = "category", precision = 2,
@@ -113,7 +109,7 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
     addValueAxis(title = ylab, position = 'left', gridAlpha = 0.1),
     setCategoryAxis(title = xlab, axisAlpha = 0, gridAlpha = 0.1,
                     parseDates = parseDates, minPeriod = minPeriod),
-    addGraph(graph_obj)
+    setGraphs(graph_ls)
   )
   
   chart <- amOptions(chart, ...)
