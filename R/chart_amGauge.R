@@ -1,15 +1,16 @@
 #' @title Plotting gauge using rAmCharts
 #' @description  amAngularGauge computes a gauge of the given value.
+#' 
 #' @param x an integer of the value for which the angular gauge is desired.
-#' @param start \code{numeric} minimum value allowed
-#' @param end \code{numeric} maximum value allowed
-#' @param step \code{numeric} intervals size
+#' @param start \code{numeric} minimum value allowed.
+#' @param end \code{numeric} maximum value allowed.
+#' @param step \code{numeric} intervals size.
 #' @param bands a data frame with 4 columns : start (numeric, minimal value for the band), 
 #' end (numeric, maximal value for the band), color (character, color of the band, in hexadecimal)
 #' and width (numeric, width of the band). If the last column is not defined, it is auomatically
 #' set to 10. 
-#' @param text \code{character} text lengend
-#' @param textSize \code{numeric} text size
+#' @param text \code{character} text lengend.
+#' @param textSize \code{numeric} text size.
 #' @param secondAxe \code{boolean} TRUE if two axes are desired. Default is set to FALSE.
 #' @param start2 \code{numeric} minimum value allowed for the second axe if secondAxe is TRUE.
 #' @param end2 \code{numeric} maximum value allowed for the second axe if secondAxe is TRUE.
@@ -18,7 +19,7 @@
 #' end (numeric, maximal value for the band), color (character, color of the band, in hexadecimal)
 #' and width (numeric, width of the band). If the last column is not defined, it is auomatically
 #' set to 10. 
-#' @param ... see \code{\link{amOptions}} for more options
+#' @param ... see \link{amOptions} for more options
 #' 
 #' @example examples/amGauge_examples.R
 #' 

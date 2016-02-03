@@ -4,14 +4,17 @@
 \alias{amOptions}
 \title{amOptions}
 \usage{
-amOptions(chart, legend = FALSE, legendPosition = "right",
-  legendAlign = "left", export = FALSE, exportFormat = NULL,
-  creditsPosition = "top-left", theme = "none", main = "",
-  mainColor = "#000000", mainSize = 15, zoom = FALSE, scrollbar = FALSE,
-  scrollbarHeight = 20, labelRotation = 0, ...)
+amOptions(chart, theme = "none", legend = FALSE, legendPosition = "right",
+  legendAlign = "left", export = FALSE, exportFormat = character(),
+  creditsPosition = "top-left", main = character(), mainColor = "#000000",
+  mainSize = 15, zoom = FALSE, scrollbar = FALSE, scrollbarHeight = 20,
+  labelRotation = 0)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
+
+\item{theme}{\code{character}, control theme.Can be "none","light","dark","patterns","chalk",
+default "none"}
 
 \item{legend}{\code{boolean}, TRUE or FALSE, default FALSE, display legend if TRUE.}
 
@@ -29,9 +32,6 @@ CSV ,JSON, PDF, XLSX, PRINT}
 \item{creditsPosition}{\code{character},  control credits position,
 can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left}
 
-\item{theme}{\code{character}, control theme.Can be "none","light","dark","patterns","chalk",
-default "none"}
-
 \item{main}{\code{character}, title of graphic, default ""}
 
 \item{mainColor}{\code{character}, color of title (html-color), default "#000000"}
@@ -46,8 +46,6 @@ default "none"}
 
 \item{labelRotation}{\code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
 Must be between -90 and 90.}
-
-\item{...}{Don't use...}
 }
 \description{
 Most used options fot rAmCharts graphs customization
@@ -90,8 +88,5 @@ amPie(data = data_pie)\%>>\%
   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40,
             theme = "dark", legend = TRUE, legendPosition = "bottom",
              creditsPosition = "bottom-right" )
-}
-\author{
-DataKnowledge
 }
 

@@ -35,13 +35,13 @@ setMethod(f = "plot", signature = "AmCharts",
             # set background
             if (exists("backgroundColor", where = chart_ls)) {
               background <- chart_ls$backgroundColor
-              chart_ls <- rlist::list.remove(chart_ls, "backgroundColor")
+              chart_ls["backgroundColor"] <- NULL
             } else {}
             
             # listeners on chart
             if (exists("listeners", where = chart_ls)) {
               listeners <- chart_ls$listeners
-              chart_ls <- rlist::list.remove(chart_ls, "listeners")
+              chart_ls["listeners"] <- NULL
             } else {
               listeners <- NULL
             }
@@ -135,14 +135,14 @@ setMethod(f = "plot", signature = "AmCharts",
             widget <- dependency_addTheme(widget, data, theme, version)
             widget <- dependency_addDataLoader(widget, data, version)
             widget <- dependency_addResponsive(widget, data, version)
-#             style_dep <- htmltools::htmlDependency(
-#               name = "amcharts_style",
-#               version = version,
-#               src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
-#               stylesheet = "style.css"
-#             )
-#             
-#             widget$dependencies[[length(widget$dependencies)+1]] <- style_dep
+            style_dep <- htmltools::htmlDependency(
+              name = "amcharts_style",
+              version = version,
+              src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
+              stylesheet = "style.css"
+            )
+            
+            widget$dependencies[[length(widget$dependencies)+1]] <- style_dep
             
             widget
           })

@@ -106,7 +106,7 @@ setMethod(f = "addListener", signature = c("AmObject", "character", "character")
 
 #' @param list_prop (Optional) \code{list} containing properties to set.
 #' The former properties will be overwritten.
-#' @param ... Other properties
+#' @param ... other properties
 #' 
 #' @examples
 #' 
@@ -164,10 +164,16 @@ setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
 # > listProperties ####
 
 #' @title List properties of an S4 object
-#' @description Each S4 class implement the method to list its properties (usefull for update complex properties).
+#' @description Each S4 class implement the method to list its properties
+#' (usefull for update complex properties).
+#' 
 #' @param .Object any class object of the package
+#' 
+#' @return A list containing all the properties of the chart.
+#' 
 #' @examples
 #' amChart(type = "serial")
+#' 
 #' @rdname listProperties-AmObject
 #' @export
 setGeneric(name = "listProperties", def = function(.Object){standardGeneric("listProperties")})

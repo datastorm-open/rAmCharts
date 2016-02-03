@@ -26,7 +26,7 @@ setProperties(.Object, list_prop, ...)
 \item{list_prop}{(Optional) \code{list} containing properties to set.
 The former properties will be overwritten.}
 
-\item{...}{Other properties}
+\item{...}{other properties}
 }
 \value{
 The updated object.
