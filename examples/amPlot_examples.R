@@ -52,7 +52,7 @@ amPlot(x = x, y = y, type = "l") %>>%
 
 # add a scrollbar
 amPlot(x = x, y = y, scrollbar = TRUE)
-amPlot(x = x, y = y, scrollbar = TRUE, hideYScrollbar = FALSE)
+amPlot(x = x, y = y, scrollbar = TRUE)
 
 # change lty
 amPlot(x = x, y = y, type = "l", lty = 2)
@@ -98,12 +98,6 @@ amPlot(x = x, type = "b")
 
 # change color
 amPlot(x = rnorm(100), col = "lightblue")
-
-# disable the cursor
-amPlot(x = rnorm(100), cursor = FALSE)
-
-# allow scrollbar
-amPlot(x = rnorm(100), scrollbar = TRUE)
 
 # change bullets
 x <- rnorm(100)

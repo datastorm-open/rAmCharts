@@ -17,3 +17,6 @@ amOHLC(data = data_candleStick2, labelRotation = 90)
 
 # change names
 amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max")) %>>% setChartCursor()
+
+# use amOptions
+amOHLC(data = data_candleStick2, zoom = FALSE)

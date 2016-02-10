@@ -3,7 +3,7 @@ require(pipeR)
 data("data_radar")
 
 #Basic
-amRadar(data_radar)
+amRadar(data_radar, labelRotation = 90)
 
 #col
 amRadar(data_radar, col = "#FF0000")
