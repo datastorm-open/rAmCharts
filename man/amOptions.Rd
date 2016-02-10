@@ -13,20 +13,21 @@ amOptions(chart, theme = "none", legend = FALSE, legendPosition = "right",
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
 
-\item{theme}{\code{character}, chn. Can be "none","light","dark","patterns","chalk",
+\item{theme}{\code{character}, control theme. Can be "none","light","dark","patterns","chalk",
 default "none".}
 
-\item{legend}{\code{logical}, default \code{FALSE}. Add a legend to the chart ?.}
+\item{legend}{\code{boolean}, TRUE or FALSE, default FALSE, display legend if TRUE.}
 
-\item{legendPosition}{\code{character}. Can be "left", "right", "top" or "bottom", default "right".}
+\item{legendPosition}{\code{character}, control legend position,
+can be "left", "right", "top" or "bottom", default "rigth". Only use if legend = TRUE.}
 
-\item{legendAlign}{\code{character} controls the legend alignement. Can be "left","right" or "center",
-default "left". Only use if \code{legend = TRUE}.}
+\item{legendAlign}{\code{character} control legend align, must be "left","rigth" or "center",
+default "left". Only use if legend = TRUE.}
 
-\item{export}{\code{logical}, default FALSE. Display export feature ?.}
+\item{export}{\code{boolean}, TRUE or FALSE, default FALSE, display export if TRUE.}
 
 \item{exportFormat}{\code{character} export format to keep, must be in JPG, PNG ,SVG,
-CSV, JSON, PDF, XLSX, PRINT.}
+CSV, JSON, PDF, XLSX, PRINT. Notice that it's impossible to export a gauge chart data as CSV.}
 
 \item{creditsPosition}{\code{character},  control credits position,
 can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left.}
@@ -37,9 +38,9 @@ can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-lef
 
 \item{mainSize}{\code{numeric}, color of title (html-color), default 15.}
 
-\item{zoom}{\code{logical}, add a chart cursor, default FALSE.}
+\item{zoom}{\code{boolean}, activated zoom, default FALSE.}
 
-\item{scrollbar}{\code{logical}, default \code{FALSE}, display Scrollbar if \code{TRUE}.}
+\item{scrollbar}{\code{boolean}, TRUE or FALSE, default FALSE, display Scrollbar if TRUE.}
 
 \item{scrollbarHeight}{\code{numeric}, Height in px, must be > 0.}
 
@@ -47,15 +48,7 @@ can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-lef
 Must be between -90 and 90.}
 }
 \description{
-Set the most common options for chart customization.
-You can set other properties with the method \link{setProperties}.
-See details for exception.
-}
-\details{
-\strong{Exception:} 
-\itemize{
- \item{It's impossible to export a gauge chart data as CSV.}
- }
+Most used options fot rAmCharts graphs customization
 }
 \examples{
 data(data_pie) 
