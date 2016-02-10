@@ -6,5 +6,6 @@
 ^img
 ^dev
 ^examples
+^enhancement
 ^issues
 ^inst/htmlwidgets/NOTICE.Rmd
