@@ -11,7 +11,7 @@
 #' You can add a column "color" (character, colors in hexadecimal). You can
 #' also add a column "description" (character) containing the text you want to
 #' display when mouse is on the graphic ('<br>' for a new line).
-#' See \code{\link{data_fbar}}
+#' See \link{data_fbar}.
 #' @param groups_color \code{character} vector of colors in hexadecimal, 
 #' same length as y_inf or y_sup.
 #' @param xlab \code{character} label for x-axis.

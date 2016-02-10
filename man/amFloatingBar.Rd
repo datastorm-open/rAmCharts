@@ -23,7 +23,7 @@ of the corresponding column.}
 You can add a column "color" (character, colors in hexadecimal). You can
 also add a column "description" (character) containing the text you want to
 display when mouse is on the graphic ('<br>' for a new line).
-See \code{\link{data_fbar}}}
+See \link{data_fbar}.}
 
 \item{xlab}{\code{character} label for x-axis.}
 
@@ -73,21 +73,29 @@ stopifnot(require(pipeR))
 #Basic Example : column chart
 data(data_fbar)
 
-# test with label rotation
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -45)
+
+# label rotation modification
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
               data = data_fbar, labelRotation = -90)
 
 # horizontal bar
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
-              data = data_fbar, labelRotation = -90, horiz = TRUE)
+              data = data_fbar, horiz = TRUE)
 
 #3D bar
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
-              data = data_fbar, labelRotation = -90, depth = 15)
+              data = data_fbar, labelRotation = -45, depth = 15)
 
 #display values
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
               data = data_fbar, labelRotation = -90, show_values = TRUE)
+
+#change colors
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar[,1:3], labelRotation = -45, groups_color = "#67b7dc")
+
 
 #grouped columns
 data(data_gbar)

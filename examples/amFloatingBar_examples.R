@@ -4,7 +4,7 @@ stopifnot(require(pipeR))
 data(data_fbar)
 
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
-              data = data_fbar, labelRoation = -45)
+              data = data_fbar, labelRotation = -45)
 
 # label rotation modification
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
