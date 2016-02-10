@@ -31,9 +31,6 @@
 #' fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
-#' @param stack_type ...
-#' @param layered ...
-#' 
 #' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' @return An object of class \linkS4class{AmChart}.
@@ -51,9 +48,8 @@
 #' @export
 #' 
 amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_color = NULL,horiz = FALSE,
-                          stack_type = "none", layered = FALSE, show_values = FALSE, depth = 0,
-                          dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
-{
+                          show_values = FALSE, depth = 0, dataDateFormat = NULL, 
+                          minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...) {
   
   if(!is.data.frame(data)) {
     stop("data must be a data frame")
@@ -113,24 +109,10 @@ amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_co
   
   .testCharacterLength1(char = xlab)
   .testCharacterLength1(char = ylab)
-  .testLogicalLength1(logi = layered)
-  
-  if(layered && stack_type != "none") {
-    stop("You have to choose : layered or stacked. If layered
-         is set to TRUE, stack_type must be equal to 'none'")
-  }
   
   .testLogicalLength1(logi = horiz)
   .testLogicalLength1(logi = show_values)
   .testInterval(num = depth, binf = 0, bsup = 100)
-  
-  
-  if(!is.null(stack_type)) {
-    .testCharacter(char = stack_type)
-    .testIn(vect = stack_type, control = c("regular", "100", "none"))
-  }
-  
-  if(stack_type == "100") stack_type = "100%"
   
   if(!"color" %in% colnames(data)) {
     if(length(y_inf) == 1) {

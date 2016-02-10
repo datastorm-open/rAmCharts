@@ -14,20 +14,20 @@ amAngularGauge(x, start = 0, end = 100, step = 20,
 \arguments{
 \item{x}{an integer of the value for which the angular gauge is desired.}
 
-\item{start}{\code{numeric} minimum value allowed}
+\item{start}{\code{numeric} minimum value allowed.}
 
-\item{end}{\code{numeric} maximum value allowed}
+\item{end}{\code{numeric} maximum value allowed.}
 
-\item{step}{\code{numeric} intervals size}
+\item{step}{\code{numeric} intervals size.}
 
 \item{bands}{a data frame with 4 columns : start (numeric, minimal value for the band), 
 end (numeric, maximal value for the band), color (character, color of the band, in hexadecimal)
 and width (numeric, width of the band). If the last column is not defined, it is auomatically
 set to 10.}
 
-\item{text}{\code{character} text lengend}
+\item{text}{\code{character} text lengend.}
 
-\item{textSize}{\code{numeric} text size}
+\item{textSize}{\code{numeric} text size.}
 
 \item{secondAxe}{\code{boolean} TRUE if two axes are desired. Default is set to FALSE.}
 
@@ -42,7 +42,7 @@ end (numeric, maximal value for the band), color (character, color of the band, 
 and width (numeric, width of the band). If the last column is not defined, it is auomatically
 set to 10.}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \link{amOptions} for more options}
 }
 \description{
 amAngularGauge computes a gauge of the given value.

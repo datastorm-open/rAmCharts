@@ -5,8 +5,7 @@
 \title{Plotting floating bar chart using rAmCharts}
 \usage{
 amFloatingBar(x, y_inf, y_sup, data, xlab = "", ylab = "",
-  groups_color = NULL, horiz = FALSE, stack_type = "none",
-  layered = FALSE, show_values = FALSE, depth = 0,
+  groups_color = NULL, horiz = FALSE, show_values = FALSE, depth = 0,
   dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD",
   ""), ...)
 }
@@ -35,10 +34,6 @@ same length as y_inf or y_sup.}
 
 \item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
 If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.}
-
-\item{stack_type}{...}
-
-\item{layered}{...}
 
 \item{show_values}{\code{boolean} TRUE to display values.}
 

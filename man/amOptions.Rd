@@ -13,8 +13,8 @@ amOptions(chart, theme = "none", legend = FALSE, legendPosition = "right",
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
 
-\item{theme}{\code{character}, control theme.Can be "none","light","dark","patterns","chalk",
-default "none"}
+\item{theme}{\code{character}, control theme. Can be "none","light","dark","patterns","chalk",
+default "none".}
 
 \item{legend}{\code{boolean}, TRUE or FALSE, default FALSE, display legend if TRUE.}
 
@@ -24,25 +24,25 @@ can be "left", "right", "top" or "bottom", default "rigth". Only use if legend =
 \item{legendAlign}{\code{character} control legend align, must be "left","rigth" or "center",
 default "left". Only use if legend = TRUE.}
 
-\item{export}{\code{boolean}, TRUE or FALSE, default FALSE, display export if TRUE}
+\item{export}{\code{boolean}, TRUE or FALSE, default FALSE, display export if TRUE.}
 
 \item{exportFormat}{\code{character} export format to keep, must be in JPG, PNG ,SVG,
-CSV ,JSON, PDF, XLSX, PRINT}
+CSV, JSON, PDF, XLSX, PRINT. Notice that it's impossible to export a gauge chart data as CSV.}
 
 \item{creditsPosition}{\code{character},  control credits position,
-can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left}
+can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left.}
 
-\item{main}{\code{character}, title of graphic, default ""}
+\item{main}{\code{character}, title of graphic, default empty \code{character}.}
 
-\item{mainColor}{\code{character}, color of title (html-color), default "#000000"}
+\item{mainColor}{\code{character}, color of title (html-color), default "#000000".}
 
-\item{mainSize}{\code{numeric}, color of title (html-color), default 15}
+\item{mainSize}{\code{numeric}, color of title (html-color), default 15.}
 
 \item{zoom}{\code{boolean}, activated zoom, default FALSE.}
 
-\item{scrollbar}{\code{boolean}, TRUE or FALSE, default FALSE, display Scrollbar if TRUE}
+\item{scrollbar}{\code{boolean}, TRUE or FALSE, default FALSE, display Scrollbar if TRUE.}
 
-\item{scrollbarHeight}{\code{numeric}, Height in px, must be >0}
+\item{scrollbarHeight}{\code{numeric}, Height in px, must be > 0.}
 
 \item{labelRotation}{\code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
 Must be between -90 and 90.}
