@@ -27,7 +27,7 @@ amBullet(value, min = 0, max = 100, val_color = "#000000", limit = 85,
 
 \item{horiz}{\code{boolean} TRUE (default) for an horizontal bullet chart, FALSE for a vertical one.}
 
-\item{rates}{a data frame with 4 columns : name (character), min (numeric), max (numeric), 
+\item{rates}{a data frame with 4 columns: name (character), min (numeric), max (numeric), 
 and color (character, color in hexadecimal).}
 
 \item{...}{see \link{amOptions} for more options.}
@@ -50,12 +50,9 @@ amBullet(value = 65, val_color = "purple", limit_color = "#3c8dbc")
 amBullet(value = 65, steps = FALSE, horiz = FALSE)
 
 ### Add text :
-amBullet(value = 65, text = "Evaluation")
+amBullet(value = 65, label = "Evaluation")
 
 ### Change min and max values:   
 amBullet(value = 65, min = 20, max = 90)
-}
-\author{
-Elena Salette
 }
 

@@ -8,23 +8,23 @@ amSolidGauge(x, min = 0, max = 100, type = "full", width = 20,
   color = "", text = "", textSize = 20, ...)
 }
 \arguments{
-\item{x}{\code{integer} an integer of the value for which the solid gauge is desired.}
+\item{x}{\code{numeric}, value for which the angular gauge is desired.}
 
-\item{min}{\code{numeric} minimal value possible}
+\item{min}{\code{numeric} minimal possible value.}
 
-\item{max}{\code{numeric} maximal value possible}
+\item{max}{\code{numeric} maximal possible value.}
 
-\item{type}{\code{character} type of gauge : "full" or "semi"}
+\item{type}{\code{character} type of gauge : "full" or "semi".}
 
-\item{width}{\code{numeric} width of the gauge}
+\item{width}{\code{numeric} width of the gauge.}
 
-\item{color}{\code{character} hexadecimal color value or a vector of colors}
+\item{color}{\code{character} hexadecimal color value or a vector of colors.}
 
-\item{text}{\code{character} text}
+\item{text}{\code{character} text.}
 
-\item{textSize}{\code{numeric} text size}
+\item{textSize}{\code{numeric} text size.}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \link{amOptions} for more options.}
 }
 \description{
 amSolidGauge computes a gauge of the given value.

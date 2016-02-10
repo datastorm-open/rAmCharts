@@ -4,7 +4,7 @@
 \alias{amOHLC}
 \title{Plotting OHLC chart using rAmCharts}
 \usage{
-amOHLC(data, xlab = "", ylab = "", horiz = FALSE,
+amOHLC(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,
   positiveColor = "#7f8da9", negativeColor = "#db4c3c", names = c("low",
   "open", "close", "high"), dataDateFormat = NULL,
   minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
@@ -19,6 +19,8 @@ high (numeric).}
 \item{ylab}{\code{character} label for y-axis.}
 
 \item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
+
+\item{zoom}{\code{logical}, default TRUE, a cursor is added to the chart.}
 
 \item{positiveColor}{\code{character} color for positive values. 
 Must be in hexadecimal if you plan to export the chart.}
@@ -40,7 +42,7 @@ fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - mont
 It's also possible to supply a number for increments, i.e. '15mm'
 which will instruct the chart that your data is supplied in 15 minute increments.}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \link{amOptions} for more options}
 }
 \description{
 amOHLC computes an OHLC chart of the given value.
@@ -65,5 +67,8 @@ amOHLC(data = data_candleStick2, labelRotation = 90)
 
 # change names
 amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max")) \%>>\% setChartCursor()
+
+# use amOptions
+amOHLC(data = data_candleStick2, zoom = FALSE)
 }
 

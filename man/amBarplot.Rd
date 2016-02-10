@@ -20,7 +20,7 @@ or a stacked barchart, y is a vector of characters or numerics.}
 \item{data}{\code{data.frame} dataframe with values to display.
 You can add a column "color" (character, colors in hexadecimal). You can
 also add a column "description" (character) containing the text you want to
-display when mouse is on the graphic ('<br>' for a new line). See \code{\link{data_bar}}
+display when mouse is on the graphic ('<br>' for a new line). See \link{data_bar}
 and \link{data_gbar}.}
 
 \item{xlab}{\code{character} label for x-axis.}

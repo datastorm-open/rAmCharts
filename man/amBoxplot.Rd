@@ -11,7 +11,7 @@
 amBoxplot(object, ...)
 
 \method{amBoxplot}{default}(object, xlab = NULL, ylab = NULL, ylim = NULL,
-  names = NULL, col = NULL, horizontal = FALSE, ...)
+  names = NULL, col = "#1e90ff", horizontal = FALSE, ...)
 
 \method{amBoxplot}{data.frame}(object, id = NULL, xlab = NULL,
   ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE, ...)

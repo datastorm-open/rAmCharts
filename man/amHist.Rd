@@ -7,8 +7,9 @@
 \usage{
 amHist(x, ...)
 
-\method{amHist}{numeric}(x, col = "gray", border = "gray", freq = TRUE,
-  plot = TRUE, labels = FALSE, xlab, ylab, ylim, control_hist, ...)
+\method{amHist}{numeric}(x, col = "#1e90ff", border = "#1e90ff",
+  freq = TRUE, plot = TRUE, labels = FALSE, xlab, ylab, ylim,
+  control_hist, ...)
 }
 \arguments{
 \item{x}{a vector of values for which the histogram is desired.}
@@ -29,9 +30,9 @@ an histogram is plotted, otherwise a list of breaks and counts is returned.
 In the latter case, a warning is used if (typically graphical)
 arguments are specified that only apply to the \code{plot = TRUE} case.}
 
-\item{labels}{\code{logical} default \code{FALSE}.
+\item{labels}{\code{logical} default FALSE.
 Additionally draw labels on top of bars.
-if \code{TRUE}, draw the counts or rounded densities;
+if TRUE, draw the counts or rounded densities;
 if labels is a \code{character}, draw itself.}
 
 \item{xlab, ylab}{\code{character}, labels of the axis.}
@@ -45,7 +46,7 @@ An object of class \linkS4class{AmChart}.
 }
 \description{
 amHist computes a histogram of the given data values.
-If \code{plot = TRUE}, the resulting object of class \code{"histogram"} before it is returned.
+If \code{plot = TRUE}, the resulting object of class 'histogram' before it is returned.
 }
 \examples{
 x <- replicate(1000, {
@@ -65,8 +66,8 @@ amHist(x = x, plot = FALSE)
 
 # With options
 amHist(x = x, border = "blue")
-amHist(x = x, col = "lightblue", breaks = 100)
-amHist(x = x, col = "grey", breaks = 100)
+amHist(x = x, col = "lightblue", control_hist = list(breaks = 100))
+amHist(x = x, col = "grey")
 amHist(x = x, col = "gray")
 amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis", col = "red")
 amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis", ylim = c(10, 15))
