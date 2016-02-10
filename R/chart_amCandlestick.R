@@ -81,7 +81,7 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
   
   
   chart <- pipeR::pipeline(
-    amSerialChart(categoryField = "category", precision = 2, RType_ = "candlestick",
+    amSerialChart(categoryField = "category", precision = 2,
                   dataDateFormat = dataDateFormat, rotate = horiz),
     setDataProvider(dataProvider = data, keepNA = FALSE),
     addValueAxis(title = ylab, position = 'left', gridAlpha = 0.1),
@@ -90,7 +90,7 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
     addGraph(graph_obj)
   )
   
-  chart <- amOptions(chart, ...)
-  chart
-  
+  # add argupment 'RType_' for amOptions
+  chart <- setProperties(.Object = chart, RType_ = "candlestick")
+  amOptions(chart, ...)
 }

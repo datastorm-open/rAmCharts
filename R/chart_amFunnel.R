@@ -55,35 +55,26 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
     data$color <- vec_col
   }
   
+  # base chart
+  chart <- amFunnelChart(dataProvider = data, titleField = "description", valueField = "value",
+                         labelPosition = label_side, marginRight = margin_right, 
+                         marginLeft = margin_left, colorField = "color")
+  
   if (!is.null(neck_height) & !is.null(neck_width)) {
     neck_height_c <- paste0(neck_height, "%")
     neck_width_c <- paste0(neck_width, "%")
-    res <- pipeR::pipeline(
-      amFunnelChart(dataProvider = data, titleField = "description", valueField = "value",
-                    labelPosition = label_side, marginRight = margin_right, 
-                    marginLeft = margin_left, colorField = "color",
-                    neckHeight = neck_height_c, neckWidth = neck_width_c,
-                    rotate = inverse, startDuration = 0)
-    )
+    chart <- setProperties(.Object = chart, neckHeight = neck_height_c, neckWidth = neck_width_c,
+                           rotate = inverse, startDuration = 0)
   } else {
-    if (depth >0) {
-      res <- pipeR::pipeline(
-        amFunnelChart(dataProvider = data, titleField = "description", valueField = "value",
-                      labelPosition = label_side, marginRight = margin_right, 
-                      marginLeft = margin_left, colorField = "color",
-                      depth3D = depth, angle = 40,
-                      rotate = inverse, startDuration = 0)
-      )
+    if (depth > 0) {
+      chart <- setProperties(.Object = chart, depth3D = depth, angle = 40,
+                             rotate = inverse, startDuration = 0)
     } else {
-      res <- pipeR::pipeline(
-        amFunnelChart(dataProvider = data, titleField = "description", valueField = "value",
-                      labelPosition = label_side, marginRight = margin_right, 
-                      marginLeft = margin_left, colorField = "color",
-                      rotate = inverse, startDuration = 0)
-      )
+      chart <- setProperties(.Object = chart, rotate = inverse, startDuration = 0)
     }
   }
   
-  res <- amOptions(res, ...)
-  res
+  # add argupment 'RType_' for amOptions
+  chart <- setProperties(.Object = chart, RType_ = "funnel")
+  amOptions(chart, ...)
 }

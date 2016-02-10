@@ -1,6 +1,5 @@
 #' @title Plotting bullet chart using rAmCharts
 #' @description  amBullet computes a bullet chart of the given value.
-#' @author Elena Salette
 #' 
 #' @param value \code{numeric}.
 #' @param min \code{numeric} minimum value allowed.
@@ -8,7 +7,7 @@
 #' @param val_color \code{character} color of the bar value, in hexadecimal.
 #' @param limit \code{numeric} target value.
 #' @param limit_color \code{character} color of the line limit.
-#' @param rates a data frame with 4 columns : name (character), min (numeric), max (numeric), 
+#' @param rates a data frame with 4 columns: name (character), min (numeric), max (numeric), 
 #' and color (character, color in hexadecimal).
 #' @param steps \code{boolean} default set to TRUE.
 #' @param label \code{character} label of the bullet.
@@ -97,6 +96,7 @@ amBullet <- function(value, min = 0, max = 100, val_color = "#000000",
   chart <- addGraph(chart, type = "column", valueField = "bullet", columnWidth = 0.3, fillAlphas = 1, 
                     lineColor = val_color, clustered = FALSE, stackable = FALSE)
   
-  chart <- amOptions(chart, ...)
-  chart
+  # add argupment 'RType_' for amOptions
+  chart <- setProperties(.Object = chart, RType_ = "bullet")
+  amOptions(chart, ...)
 }

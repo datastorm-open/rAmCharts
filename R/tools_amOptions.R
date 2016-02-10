@@ -1,32 +1,38 @@
 #' @title amOptions
-#' @description Most used options fot rAmCharts graphs customization
+#' @description Set the most common options for chart customization.
+#' You can set other properties with the method \link{setProperties}.
+#' See details for exception.
 #' 
 #' @param chart \linkS4class{AmChart}.
-#' @param legend \code{boolean}, TRUE or FALSE, default FALSE, display legend if TRUE.
-#' @param legendPosition \code{character}, control legend position,
-#' can be "left", "right", "top" or "bottom", default "rigth". Only use if legend = TRUE.
-#' @param legendAlign \code{character} control legend align, must be "left","rigth" or "center",
-#' default "left". Only use if legend = TRUE.
-#' @param export \code{boolean}, TRUE or FALSE, default FALSE, display export if TRUE.
+#' @param legend \code{logical}, default \code{FALSE}. Add a legend to the chart ?.
+#' @param legendPosition \code{character}. Can be "left", "right", "top" or "bottom", default "right".
+#' @param legendAlign \code{character} controls the legend alignement. Can be "left","right" or "center",
+#' default "left". Only use if \code{legend = TRUE}.
+#' @param export \code{logical}, default FALSE. Display export feature ?.
 #' @param exportFormat \code{character} export format to keep, must be in JPG, PNG ,SVG,
-#' CSV, JSON, PDF, XLSX, PRINT. Notice that it's impossible to export a gauge chart data as CSV. 
+#' CSV, JSON, PDF, XLSX, PRINT. 
 #' @param creditsPosition \code{character},  control credits position,
 #' can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left.
-#' @param theme \code{character}, control theme. Can be "none","light","dark","patterns","chalk",
+#' @param theme \code{character}, chn. Can be "none","light","dark","patterns","chalk",
 #' default "none".
 #' @param main \code{character}, title of graphic, default empty \code{character}.
 #' @param mainColor \code{character}, color of title (html-color), default "#000000".
 #' @param mainSize \code{numeric}, color of title (html-color), default 15.
-#' @param zoom \code{boolean}, activated zoom, default FALSE.
-#' @param scrollbar \code{boolean}, TRUE or FALSE, default FALSE, display Scrollbar if TRUE.
+#' @param zoom \code{logical}, add a chart cursor, default FALSE.
+#' @param scrollbar \code{logical}, default \code{FALSE}, display Scrollbar if \code{TRUE}.
 #' @param scrollbarHeight \code{numeric}, Height in px, must be > 0.
 #' @param labelRotation \code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
 #' Must be between -90 and 90.
 #' 
+#' @details
+#' \strong{Exception:} 
+#' \itemize{
+#'  \item{It's impossible to export a gauge chart data as CSV.}
+#'  }
+#' 
 #' @import pipeR
 #' 
 #' @example examples/amOptions_examples.R
-#' 
 #' 
 #' @rdname amOptions
 #' @export
@@ -90,14 +96,15 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
   # Set legend to graph, usage of useGraphSettings argument depend of graph type
   if (legend) {
     if (chart@type == "gauge") {
-      message("You cannot add a legend to a 'gauge' chart")
+      message("Impossible to a legend on a gauge chart")
     } else {
       if (length(chart@otherProperties$RType_) > 0) {
         if (chart@otherProperties$RType_ %in% c("candlestick", "waterfall", "boxplot", "histogram"))
           message("You cannot add a legend this kind of chart")
       } else {
-        if (chart@type %in% c("radar","serial","xy")) {
-          chart <- setLegend(.Object = chart, position = legendPosition, useGraphSettings = TRUE, align = legendAlign)
+        if (chart@type %in% c("radar", "serial", "xy")) {
+          chart <- setLegend(.Object = chart, position = legendPosition,
+                             useGraphSettings = TRUE, align = legendAlign)
         } else {
           chart <- setLegend(.Object = chart, position = legendPosition, align = legendAlign)
         }
@@ -110,8 +117,20 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
     if (!length(exportFormat)) {
       chart <- setExport(.Object = chart)
     } else {
-      menuc <- sapply(exportFormat, function(X) list(format = X, label = X), simplify = FALSE, USE.NAMES = FALSE)
-      chart <- setExport(.Object = chart, enabled = TRUE, menu = list(list(class = "export-main" , menu = menuc)))
+      # text compatibility of formats
+      if ("CSV" %in% exportFormat && chart@type == "gauge") {
+        message("Export 'CSV' impossible for type gauge")
+        exportFormat <- setdiff(x = exportFormat, y = "CSV")
+      }
+      
+      # test if there are some other formats
+      if (length(exportFormat)) {  
+        exportMenu <- lapply(exportFormat, function(format) {
+          list(format = format, label = paste("Download as", format), title = format)
+        })
+        chart <- setExport(.Object = chart, enabled = TRUE,
+                           menu = list(list(class = "export-main", menu = exportMenu)))
+      }
     }
   }
   
@@ -128,19 +147,23 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
     chart <- addTitle(.Object = chart, text =  main, size = mainSize, color = mainColor)
   
   ## Set zoom cursor
-  if (zoom) chart <- setChartCursor(.Object = chart)
+  if (zoom)
+    chart <- setChartCursor(.Object = chart)
+  else
+    slot(object = chart, name = "chartCursor", check = TRUE) <- list()
   
   ## Set scrollbar
   if (scrollbar) 
     chart <- setChartScrollbar(.Object = chart, enabled = scrollbar, scrollbarHeight = scrollbarHeight)
+  else 
+    slot(object = chart, name = "chartScrollbar", check = TRUE) <- list()
   
   ## Rotate label
   if (labelRotation !=0) {
-    if (!chart@type %in% c("radar")) {
+    if (!chart@type == "radar")
       chart <- setCategoryAxis(.Object = chart, labelRotation = labelRotation)
-    } else {
-      message("Impossible to rotate label for a 'radar' chart !")
-    }
+    else
+      message("Impossible to rotate label for a radar chart !")
   }
   
   chart

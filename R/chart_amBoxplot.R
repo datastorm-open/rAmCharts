@@ -29,7 +29,7 @@ amBoxplot <- function(object, ...) UseMethod("amBoxplot")
 #' 
 #' @export
 amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
-                              names = NULL, col = NULL, horizontal = FALSE, ...){
+                              names = NULL, col = "#1e90ff", horizontal = FALSE, ...){
   
   x <- object
   value <- x
@@ -93,6 +93,7 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
   chart <- .plotAmBoxplot(dp = final.outliers, xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
   
   # return the object
+  chart <- setProperties(.Object = chart, RType_ = "barplot")
   amOptions(chart, ...)
 }
 
@@ -174,7 +175,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
     return (NULL)
   } else {}
   
-  graph <- pipeR::pipeline(
+  chart <- pipeR::pipeline(
     amSerialChart(categoryField = "cat", theme = "light", rotate = horizontal),
     setDataProvider(dp, keepNA = FALSE),
     addGraph(id = "g1", type = "candlestick",
@@ -190,36 +191,35 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
     addGraph(id = "g4", type = "step", valueField = "high_outlier",lineColor = "black",
              noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
     addGraph(id = "g5", type = "line", valueField = "real_outlier",lineColor = "black",
-             lineAlpha = 0, bullet = "round", noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
-    
-    setProperties(RType_ = "boxplot")
+             lineAlpha = 0, bullet = "round", noStepRisers = TRUE, balloonText = "", periodSpan = 0.5)
   )
   
   if (ncol(dp) > 8) {
     for (i in 1:(ncol(dp)-8)) {
-      graph <- addGraph(graph, type = "line", valueField = paste0("real_outlier_", i) ,lineColor = "black",
+      chart <- addGraph(chart, type = "line", valueField = paste0("real_outlier_", i) ,lineColor = "black",
                         lineAlpha = 0, bullet = "round", noStepRisers = TRUE, periodSpan = 0.5,
                         balloonText = paste0("<b> Individual </b>: [[individual_",i,"]]<br/><b> Value </b>: [[real_outlier_",i,"]]"))
     }
   }
   
   if (!is.null(ylab) & !is.null(ylim)) {
-    graph <- addValueAxes(graph, title = ylab, minimum = ylim[1], maximum = ylim[length(ylim)])
+    chart <- addValueAxes(chart, title = ylab, minimum = ylim[1], maximum = ylim[length(ylim)])
   }
   
   if (!is.null(ylab) & is.null(ylim)) {
-    graph <- addValueAxes(graph, title = ylab)
+    chart <- addValueAxes(chart, title = ylab)
   }
   
   if (is.null(ylab) & !is.null(ylim)) {
-    graph <- addValueAxes(graph, minimum = ylim[1], maximum = ylim[length(ylim)])
+    chart <- addValueAxes(chart, minimum = ylim[1], maximum = ylim[length(ylim)])
   }
   
   if (!is.null(xlab)) {
-    graph <- setCategoryAxis(graph, title = xlab)
+    chart <- setCategoryAxis(chart, title = xlab)
   }
   
-  graph
+  # return the chart with argument 'RType_' for amOptions
+  setProperties(.Object = chart, RType_ = "boxplot")
 }
 
 .dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE)

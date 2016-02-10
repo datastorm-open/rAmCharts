@@ -1,5 +1,6 @@
 #' @title Plotting OHLC chart using rAmCharts
 #' @description  amOHLC computes an OHLC chart of the given value.
+#' 
 #' @param data \code{data.frame} dataframe with at least 5 columns : 
 #' category, open (numeric), close (numeric), low (numeric),
 #' high (numeric).
@@ -21,16 +22,17 @@
 #' @param xlab \code{character} label for x-axis.
 #' @param ylab \code{character} label for y-axis.
 #' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-#' @param ... see \code{\link{amOptions}} for more options
+#' @param zoom \code{logical}, default TRUE, a cursor is added to the chart.
+#' @param ... see \link{amOptions} for more options
 #' 
 #' @example examples/amOHLC_examples.R
 #' 
 #' @export
 
-amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE, 
-                          positiveColor = "#7f8da9", negativeColor = "#db4c3c",
-                          names = c("low", "open", "close", "high"),
-                          dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
+amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,
+                   positiveColor = "#7f8da9", negativeColor = "#db4c3c",
+                   names = c("low", "open", "close", "high"),
+                   dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
   # data format
   data$category <- as.character(data$category)
@@ -58,6 +60,7 @@ amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE,
   .testCharacterLength1(char = xlab)
   .testCharacterLength1(char = ylab)
   .testLogicalLength1(logi = horiz)
+  .testLogicalLength1(logi = zoom)
   .testCharacter(char = names)
   .testLength(param = names, len = 4)
   
@@ -79,7 +82,6 @@ amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE,
                                   names[3], ":<b>[[close]]</b><br>"))
   )
   
-  chart <- amOptions(chart, ...)
-  chart
-  
+  chart <- setProperties(.Object = chart, RType_ = "OHLC")
+  amOptions(chart, zoom = zoom, ...)
 }

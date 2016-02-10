@@ -164,7 +164,7 @@ amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_co
   
   parseDates <- !is.null(dataDateFormat)
   
-  res <- pipeR::pipeline(
+  chart <- pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = x, rotate = horiz, 
                   depth3D = depth3D, angle = angle, dataDateFormat = dataDateFormat),
     addValueAxis(title = ylab, position = 'left', stackType = stack_type),
@@ -178,11 +178,12 @@ amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_co
   } else {
     tooltip <- '<b>[[tp_val]]</b>'
   }
-  res <- addGraph(res, balloonText = tooltip, fillColorsField = 'color', 
-                  fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y_sup,
-                  openField = y_inf, labelText = label_text)
+  chart <- addGraph(chart, balloonText = tooltip, fillColorsField = 'color', 
+                    fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y_sup,
+                    openField = y_inf, labelText = label_text)
   
-  res <- amOptions(res, ...)
-  res
+  # add argupment 'RType_' for amOptions
+  chart <- setProperties(.Object = chart, RType_ = "floatingbar")
+  amOptions(chart, ...)
 }
 

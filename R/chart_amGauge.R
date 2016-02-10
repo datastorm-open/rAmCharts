@@ -1,7 +1,7 @@
 #' @title Plotting gauge using rAmCharts
 #' @description  amAngularGauge computes a gauge of the given value.
 #' 
-#' @param x an integer of the value for which the angular gauge is desired.
+#' @param x \code{numeric}, value for which the angular gauge is desired.
 #' @param start \code{numeric} minimum value allowed.
 #' @param end \code{numeric} maximum value allowed.
 #' @param step \code{numeric} intervals size.
@@ -156,86 +156,63 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
 
 #' @title Plotting solid gauge using rAmCharts
 #' @description  amSolidGauge computes a gauge of the given value.
-#' @param x \code{integer} an integer of the value for which the solid gauge is desired.
-#' @param min \code{numeric} minimal value possible
-#' @param max \code{numeric} maximal value possible
-#' @param type \code{character} type of gauge : "full" or "semi"
-#' @param width \code{numeric} width of the gauge
-#' @param color \code{character} hexadecimal color value or a vector of colors
-#' @param text \code{character} text
-#' @param textSize \code{numeric} text size
-#' @param ... see \code{\link{amOptions}} for more options
+#' 
+#' @param x \code{numeric}, value for which the angular gauge is desired.
+#' @param min \code{numeric} minimal possible value.
+#' @param max \code{numeric} maximal possible value.
+#' @param type \code{character} type of gauge : "full" or "semi".
+#' @param width \code{numeric} width of the gauge.
+#' @param color \code{character} hexadecimal color value or a vector of colors.
+#' @param text \code{character} text.
+#' @param textSize \code{numeric} text size.
+#' @param ... see \link{amOptions} for more options.
 #' 
 #' @example examples/amSolidGauge_examples.R
 #' @import data.table
+#' @import pipeR
 #' @export
 #' 
 amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
-                         color = "", text = "",
-                         textSize = 20, ...) {
+                         color = "", text = "", textSize = 20, ...)
+{
+  # check arguments validity
+  {
+    .testNumericLength1(num = x)
+    .testNumeric(num = min)
+    .testNumeric(num = max)
+    .testCharacter(char = type)
+    .testIn(vect = type, control = c("full", "semi"))
+    .testNumeric(num = width)
+    .testCharacter(char = color)
+    .testNumericLength1(num = textSize)
+    .testInterval(num = min, bsup = max)
+    .testInterval(num = x, binf = min, bsup = max)
+    text <- as.character(text)
+  }
   
-  if (!requireNamespace(package = "pipeR")) {
-    stop ("Please install the package pipeR for running this function")
-  } else {}
-  
-  
-  #x
-  .testNumericLength1(num = x)
-  
-  #min
-  .testNumeric(num = min)
-  
-  #max
-  .testNumeric(num = max)
-  
-  #type
-  .testCharacter(char = type)
-  .testIn(vect = type, control = c("full", "semi"))
-  
-  #width
-  .testNumeric(num = width)
-  
-  #color
-  .testCharacter(char = color)
-  
-  
-  
-  text <- as.character(text)
-  
-  #textSize
-  .testNumericLength1(num = textSize)
-  
-  #min, max, x
-  .testInterval(num = min, bsup = max)
-  .testInterval(num = x, binf = min, bsup = max)
-  
-  
-  
-  if(width < 100 & width > 0) {
-    innerRadius <- paste0(100-width, "%")
+  if (width < 100 && width > 0) {
+    innerRadius <- paste0(100 - width, "%")
   } else {
     innerRadius <- "97%"
   }
   
-  if(type == "full") {
-    startAngle = 0
-    endAngle = 360
+  if (type == "full") {
+    startAngle <- 0
+    endAngle <- 360
     bottomTextYOffset = -110
   } else if(type == "semi") {
-    startAngle = -90
-    endAngle = 90
-    bottomTextYOffset = -150
+    startAngle <- -90
+    endAngle <- 90
+    bottomTextYOffset <- -150
   }
   
   col = color
   color <- tolower(color)
-  if(length(color)==1) {
-    if(color==""){
-      col <- "#1e90ff"
-    } 
+  if (length(color) == 1) {
+    if (color == "") col <- "#1e90ff"
   } else if(length(color) > 1) {
     colfunc <- colorRampPalette(color)
-    palette = colfunc(max - min)
+    palette <- colfunc(max - min)
     col <- palette[(x-min)]
   }
   

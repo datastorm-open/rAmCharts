@@ -1,6 +1,6 @@
 #' @title Plot an histogram
 #' @description  amHist computes a histogram of the given data values.
-#' If \code{plot = TRUE}, the resulting object of class \code{"histogram"} before it is returned.
+#' If \code{plot = TRUE}, the resulting object of class 'histogram' before it is returned.
 #' 
 #' @param x a vector of values for which the histogram is desired.
 #' @param freq \code{logical}; if \code{TRUE}, the histogram graphic is a representation of frequencies,
@@ -15,9 +15,9 @@
 #' arguments are specified that only apply to the \code{plot = TRUE} case.
 #' @param col a colour to be used to fill the bars.
 #' @param border a colour for the borders.
-#' @param labels \code{logical} default \code{FALSE}.
+#' @param labels \code{logical} default FALSE.
 #' Additionally draw labels on top of bars.
-#' if \code{TRUE}, draw the counts or rounded densities;
+#' if TRUE, draw the counts or rounded densities;
 #' if labels is a \code{character}, draw itself.
 #' @param control_hist (optional) named \code{list()} containing parameters for computing the histogram.
 #' @param ... Other parameters for \link{amOptions}.
@@ -38,7 +38,7 @@ amHist <- function(x, ...) UseMethod("amHist")
 #' @import data.table
 #' @export
 #' 
-amHist.numeric <- function(x, col = "gray", border = "gray",
+amHist.numeric <- function(x, col = "#1e90ff", border = "#1e90ff",
                            freq = TRUE, plot = TRUE, labels = FALSE,
                            xlab, ylab, ylim, control_hist,...)
 {

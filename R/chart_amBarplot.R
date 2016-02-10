@@ -9,7 +9,7 @@
 #' @param data \code{data.frame} dataframe with values to display.
 #' You can add a column "color" (character, colors in hexadecimal). You can
 #' also add a column "description" (character) containing the text you want to
-#' display when mouse is on the graphic ('<br>' for a new line). See \code{\link{data_bar}}
+#' display when mouse is on the graphic ('<br>' for a new line). See \link{data_bar}
 #' and \link{data_gbar}.
 #' @param groups_color \code{character} vector of colors in hexadecimal, 
 #' same length as y.
@@ -58,7 +58,7 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   if(!is.data.frame(data)) {
     stop("data must be a data frame")
   } else {}
-
+  
   # check argument x
   if (missing(x) && !length(rownames(data))) {
     stop("Argument x is not provided and the data.frame does not have row names")
@@ -145,7 +145,7 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   
   parseDates <- !is.null(dataDateFormat)
   
-  res <- pipeR::pipeline(
+  chart <- pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = x, rotate = horiz, 
                   depth3D = depth3D, angle = angle, dataDateFormat = dataDateFormat),
     addValueAxis(title = ylab, position = 'left', stackType = stack_type),
@@ -160,9 +160,9 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
     } else {
       tooltip <- '<b>[[value]]</b>'
     }
-    res <- addGraph(res, balloonText = tooltip, fillColorsField = 'color', 
-                    fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y,
-                    labelText = label_text)
+    chart <- addGraph(chart, balloonText = tooltip, fillColorsField = 'color', 
+                      fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y,
+                      labelText = label_text)
   } else if(length(y) > 1) {
     if(!is.null(groups_color)) {
       if(length(groups_color) == length(y)) {
@@ -192,11 +192,11 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
         } else {
           tooltip2 <- paste0(as.character(y[i])," : [[value]]")
         }
-        res <<- addGraph(res, id = paste0("AmGraph-",i),
-                         balloonText = tooltip2, fillColors = v_col[i], legendColor = v_col[i],
-                         fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y[i],
-                         title = y[i], labelText = label_text, clustered = FALSE, 
-                         columnWidth = col_height[i])
+        chart <<- addGraph(chart, id = paste0("AmGraph-",i),
+                           balloonText = tooltip2, fillColors = v_col[i], legendColor = v_col[i],
+                           fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y[i],
+                           title = y[i], labelText = label_text, clustered = FALSE, 
+                           columnWidth = col_height[i])
       })
     } else {
       sapply(1:length(y), FUN = function(i) {
@@ -205,15 +205,15 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
         } else {
           tooltip2 <- paste0(as.character(y[i])," : [[value]]")
         }
-        res <<- addGraph(res, id = paste0("AmGraph-",i),
-                         balloonText = tooltip2, fillColors = v_col[i], legendColor = v_col[i],
-                         fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y[i],
-                         title = y[i], labelText = label_text)
+        chart <<- addGraph(chart, id = paste0("AmGraph-",i),
+                           balloonText = tooltip2, fillColors = v_col[i], legendColor = v_col[i],
+                           fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y[i],
+                           title = y[i], labelText = label_text)
       })
     }
   }
   
-  res <- amOptions(res, ...)
-  res
+  chart <- setProperties(.Object = chart, RType_ = "barplot")
+  amOptions(chart, ...)
 }
 
