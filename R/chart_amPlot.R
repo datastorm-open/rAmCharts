@@ -572,7 +572,7 @@ amLines <- function(chart, x = NULL, y = NULL, type, col, title)
   
   # the field where to find the new values depend on the chart type
   if (chart@type == "serial")
-    graph_obj <- setProperties(.Object = graph_obj, valueField = name)
+    graph_obj <- setProperties(.Object = graph_obj)
   else
     graph_obj <- setProperties(.Object = graph_obj, xField = "x", yField = name)
   
