@@ -4,9 +4,8 @@ output$bar0 <- rAmCharts::renderAmCharts({
   data('data_bar')
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
+    amSerialChart(categoryField = 'country'),
     setDataProvider(data_bar),
-    setProperties(type = 'serial', categoryField = 'country'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',type = 'column',valueField = 'visits')
   )
 })
@@ -19,9 +18,8 @@ output$code_bar0 <- renderText({
   data('data_bar')
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
+    amSerialChart(categoryField = 'country'),
     setDataProvider(data_bar),
-    setProperties(type = 'serial', categoryField = 'country'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',type = 'column',valueField = 'visits')
   )
   "
@@ -36,9 +34,8 @@ output$bar1 <- rAmCharts::renderAmCharts({
   data('data_bar')
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
+    amSerialChart(categoryField = 'country'),
     setDataProvider(data_bar),
-    setProperties(type = 'serial', categoryField = 'country'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',type = 'column', valueField = 'visits', fillColorsField = 'color',
              fillAlphas = 1, lineAlpha=0),
     setCategoryAxis(labelRotation = 45),
@@ -54,9 +51,8 @@ output$code_bar1 <- renderText({
   data('data_bar')
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
+    amSerialChart(categoryField = 'country'),
     setDataProvider(data_bar),
-    setProperties(type = 'serial', categoryField = 'country'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',type = 'column', valueField = 'visits', fillColorsField = 'color',
              fillAlphas = 1, lineAlpha=0),
     setCategoryAxis(labelRotation = 45),
@@ -71,9 +67,8 @@ output$bar2 <- rAmCharts::renderAmCharts({
   data('data_gbar')
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
+    amSerialChart(categoryField = 'year'),
     setDataProvider(data_gbar),
-    setProperties(type = 'serial', categoryField = 'year'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',
              type = 'column', valueField = 'income', fillAlphas = 1, lineAlpha = 0),
     addGraph(balloonText='<b>[[category]]: [[value]]</b>',
@@ -88,9 +83,8 @@ output$code_bar2 <- renderText({
   data('data_gbar')
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
+    amSerialChart(categoryField = 'year'),
     setDataProvider(data_gbar),
-    setProperties(type = 'serial', categoryField = 'year'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',
              type = 'column', valueField = 'income', fillAlphas = 1, lineAlpha = 0),
     addGraph(balloonText='<b>[[category]]: [[value]]</b>',
@@ -106,9 +100,8 @@ output$bar3 <- rAmCharts::renderAmCharts({
   data('data_gbar')
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
+    amSerialChart(categoryField = 'year'),
     setDataProvider(data_gbar),
-    setProperties(type = 'serial', categoryField = 'year'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>', type = 'column',
              valueField = 'income', fillAlphas = 1, lineAlpha = 0, title = 'income'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',type = 'column',
@@ -129,9 +122,8 @@ output$code_bar3 <- renderText({
   data('data_gbar')
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
+    amSerialChart(categoryField = 'year'),
     setDataProvider(data_gbar),
-    setProperties(type = 'serial', categoryField = 'year'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>', type = 'column',
              valueField = 'income', fillAlphas = 1, lineAlpha = 0, title = 'income'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',type = 'column',
@@ -150,10 +142,9 @@ output$bar5 <- rAmCharts::renderAmCharts({
   data('data_gbar')
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
-    setDataProvider(data_gbar),
-    setProperties(type = 'serial', categoryField = 'year', 
+    amSerialChart(categoryField = 'year', 
                   depth3D = 60, angle = 30, export = list(enabled = TRUE)),
+    setDataProvider(data_gbar),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',
              type = 'column',valueField = 'expenses', fillAlphas = 1, lineAlpha = 0, title = 'expenses'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',
@@ -170,10 +161,9 @@ output$code_bar5 <- renderText({
   data('data_gbar')
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
-    setDataProvider(data_gbar),
-    setProperties(type = 'serial', categoryField = 'year', 
+    amSerialChart(categoryField = 'year', 
                   depth3D = 60, angle = 30, export = list(enabled = TRUE)),
+    setDataProvider(data_gbar),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',
              type = 'column',valueField = 'expenses', fillAlphas = 1, lineAlpha = 0, title = 'expenses'),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>',
@@ -184,22 +174,6 @@ output$code_bar5 <- renderText({
   )
   "
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 output$bar4 <- rAmCharts::renderAmCharts({
   ##Data
@@ -212,9 +186,8 @@ output$bar4 <- rAmCharts::renderAmCharts({
   )
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
+    amSerialChart(theme = 'light', startDuration = 1, columnWidth = 0.6, categoryField = 'name'),
     setDataProvider(df),
-    setProperties(theme = 'light',type = 'serial', startDuration = 1, columnWidth = 0.6, categoryField = 'name'),
     addValueAxis(axisAlpha = 0, gridAlpha = 0.1, position = 'left'),
     addGraph(balloonText = '[[category]]</span><br><b>$[[balloonValue]] Mln</b>',
              colorField = 'color', fillAlphas = 0.8,
@@ -247,9 +220,8 @@ output$code_bar4 <- renderText({
   )
   ##Plot
   pipeR::pipeline(
-    amSerialChart(),
+    amSerialChart(theme = 'light', startDuration = 1, columnWidth = 0.6, categoryField = 'name'),
     setDataProvider(df),
-    setProperties(theme = 'light',type = 'serial', startDuration = 1, columnWidth = 0.6, categoryField = 'name'),
     addValueAxis(axisAlpha = 0, gridAlpha = 0.1, position = 'left'),
     addGraph(balloonText = '[[category]]</span><br><b>$[[balloonValue]] Mln</b>',
              colorField = 'color', fillAlphas = 0.8,

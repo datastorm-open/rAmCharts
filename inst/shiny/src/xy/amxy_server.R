@@ -25,7 +25,7 @@ output$amxy1 <- rAmCharts::renderAmCharts({
   x <- sort(rnorm(100))
   y <- rnorm(100, sd = 10)
   ##Plot
-  amPlot(x = x, y = y, scrollbar = TRUE, hideYScrollbar = FALSE)
+  amPlot(x = x, y = y, zoom = TRUE, scrollbar = TRUE)
 })
 
 output$code_amxy1 <- renderText({
@@ -34,7 +34,7 @@ output$code_amxy1 <- renderText({
   x <- sort(rnorm(100))
   y <- rnorm(100, sd = 10)
   ##Plot
-  amPlot(x = x, y = y, scrollbar = TRUE, hideYScrollbar = FALSE)
+  amPlot(x = x, y = y, zoom = TRUE, scrollbar = TRUE)
   "
 })
 

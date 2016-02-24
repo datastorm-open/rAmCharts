@@ -30,6 +30,7 @@
 #' Consequently, be sure that the columns are correctly named.
 #' 
 #' @import data.table
+#' @noRd
 #' 
 .toList <- function(df, keepNA = TRUE)
 {

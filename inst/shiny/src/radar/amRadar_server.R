@@ -45,7 +45,7 @@ output$amWind <- rAmCharts::renderAmCharts({
   data('data_wind')
   ##Plot
   amWind(data = data_wind, col = c('#0404B4', '#01DF01', '#FFBF00'),
-         backTransparency = 1, pch = 'round')
+         backTransparency = 1)
 })
 
 output$code_amWind <- renderText({
@@ -54,6 +54,6 @@ output$code_amWind <- renderText({
   data('data_wind')
   ##Plot
   amWind(data = data_wind, col = c('#0404B4', '#01DF01', '#FFBF00'),
-         backTransparency = 1, pch = 'round')
+         backTransparency = 1)
   "
 })

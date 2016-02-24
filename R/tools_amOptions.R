@@ -123,9 +123,7 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
         if (chart@type %in% c("radar", "serial", "xy")) {
           chart <- setLegend(.Object = chart, position = legendPosition,
                              useGraphSettings = TRUE, align = legendAlign)
-          print("ici2")
         } else {
-          print("ici")
           chart <- setLegend(.Object = chart, position = legendPosition, align = legendAlign)
         }
       }

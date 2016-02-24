@@ -65,7 +65,7 @@ output$amBar3 <- rAmCharts::renderAmCharts({
   ##Data
   data('data_gbar')
   ##Plot
-  amBarplot(x = 'year', y = c('income', 'expenses'), data = data_gbar, stack_type = '100', legend = TRUE, legend_side = 'left')
+  amBarplot(x = 'year', y = c('income', 'expenses'), data = data_gbar, stack_type = '100', legend = TRUE, legendPosition = 'left')
 })
 
 
@@ -75,7 +75,7 @@ output$code_amBar3 <- renderText({
  ##Data
   data('data_gbar')
   ##Plot
-  amBarplot(x = 'year', y = c('income', 'expenses'), data = data_gbar, stack_type = '100', legend = TRUE, legend_side = 'left')
+  amBarplot(x = 'year', y = c('income', 'expenses'), data = data_gbar, stack_type = '100', legend = TRUE, legendPosition = 'left')
   "
 })
 
