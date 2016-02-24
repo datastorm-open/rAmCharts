@@ -10,7 +10,7 @@ NULL
 #' 
 #' @slot id \code{character}. Unique id of a band.
 #' @slot listeners \code{list} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string.
+#' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
 #' @slot otherProperties \code{list}, containing other avalaible properties
 #' @slot value \code{numeric}.

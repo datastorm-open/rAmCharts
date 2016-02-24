@@ -11,44 +11,46 @@
 amBoxplot(object, ...)
 
 \method{amBoxplot}{default}(object, xlab = NULL, ylab = NULL, ylim = NULL,
-  names = NULL, col = "#1e90ff", horizontal = FALSE, ...)
+  names = NULL, col = "#1e90ff", horiz = FALSE, ...)
 
 \method{amBoxplot}{data.frame}(object, id = NULL, xlab = NULL,
-  ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE, ...)
+  ylab = NULL, ylim = NULL, col = NULL, horiz = FALSE, ...)
 
 \method{amBoxplot}{matrix}(object, use.cols = TRUE, xlab = NULL,
-  ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE, ...)
+  ylab = NULL, ylim = NULL, col = NULL, horiz = FALSE, ...)
 
 \method{amBoxplot}{formula}(object, data = NULL, id = NULL, xlab = NULL,
-  ylab = NULL, ylim = NULL, col = NULL, horizontal = FALSE, ...)
+  ylab = NULL, ylim = NULL, col = NULL, horiz = FALSE, ...)
 }
 \arguments{
-\item{object}{a vector, data.frame, a matrix, or a formula !}
+\item{object}{a vector, data.frame, a matrix, or a formula.}
 
 \item{...}{Other parameters for \link{amOptions}.}
 
 \item{xlab, ylab}{\code{character}, labels of the axis.}
 
-\item{ylim}{the range of y values with sensible defaults.}
+\item{ylim}{\code{numeric}, y values range with sensible defaults.}
 
-\item{names}{in case of vector, name on x-axis}
+\item{names}{\code{character} in case of vector, name on x-axis.}
 
-\item{col}{color(s) to be used to fill the boxplot}
+\item{col}{\code{character}, color(s) to be used to fill the boxplot.}
 
-\item{horizontal}{Boolean. Rotate boxplot ?}
+\item{horiz}{\code{logical} TRUE to rotate chart.}
 
-\item{id}{in case of using a data.frame, column name of id for identify outliers}
+\item{id}{\code{character} in case of using a data.frame, column name of id to 
+identify outliers.}
 
-\item{use.cols}{for matrix only. Boxplot on columns or rows ?}
+\item{use.cols}{\code{logical}, for matrix only. Set to TRUE to display boxplot
+based on columns.}
 
-\item{data}{a data.frame from which the variables in formula should be taken}
+\item{data}{\code{data.frame}, from which the variables in formula should be taken.}
 }
 \value{
 An object of class \linkS4class{AmChart}.
 }
 \description{
 amBoxplot computes a boxplot of the given data values.
-Can be a vector, a data.frame, or a matrix
+Can be a vector, a data.frame, or a matrix.
 }
 \examples{
 # ---
@@ -63,7 +65,7 @@ amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50),
           xlab = "spray", col = c("darkblue", "gray"))
 
 # transpose
-amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50), xlab = "spray", horizontal = TRUE)
+amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50), xlab = "spray", horiz = TRUE)
 
 # using a custom colum to identify outliers
 InsectSprays$id <- paste0("ID : ", 1:nrow(InsectSprays))

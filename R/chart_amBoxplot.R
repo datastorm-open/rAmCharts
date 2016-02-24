@@ -1,17 +1,19 @@
 #' @title Plotting boxplot using rAmCharts
 #' 
 #' @description  amBoxplot computes a boxplot of the given data values.
-#' Can be a vector, a data.frame, or a matrix
+#' Can be a vector, a data.frame, or a matrix.
 #' 
-#' @param object a vector, data.frame, a matrix, or a formula !
-#' @param data a data.frame from which the variables in formula should be taken
-#' @param use.cols for matrix only. Boxplot on columns or rows ?
+#' @param object a vector, data.frame, a matrix, or a formula.
+#' @param data \code{data.frame}, from which the variables in formula should be taken.
+#' @param use.cols \code{logical}, for matrix only. Set to TRUE to display boxplot
+#' based on columns.
 #' @param xlab,ylab \code{character}, labels of the axis.
-#' @param ylim the range of y values with sensible defaults.
-#' @param names in case of vector, name on x-axis
-#' @param col color(s) to be used to fill the boxplot
-#' @param horizontal Boolean. Rotate boxplot ?
-#' @param id in case of using a data.frame, column name of id for identify outliers
+#' @param ylim \code{numeric}, y values range with sensible defaults.
+#' @param names \code{character} in case of vector, name on x-axis.
+#' @param col \code{character}, color(s) to be used to fill the boxplot.
+#' @param horiz \code{logical} TRUE to rotate chart. 
+#' @param id \code{character} in case of using a data.frame, column name of id to 
+#' identify outliers.
 #' @param ... Other parameters for \link{amOptions}.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
@@ -29,7 +31,7 @@ amBoxplot <- function(object, ...) UseMethod("amBoxplot")
 #' 
 #' @export
 amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
-                              names = NULL, col = "#1e90ff", horizontal = FALSE, ...){
+                              names = NULL, col = "#1e90ff", horiz = FALSE, ...){
   
   x <- object
   value <- x
@@ -59,7 +61,7 @@ amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
   final.outliers <- .finalDataBoxplot(res, col = col)
   
   chart <- .plotAmBoxplot(final.outliers, xlab = xlab, 
-                          ylab = ylab, ylim = ylim, horizontal = horizontal)
+                          ylab = ylab, ylim = ylim, horiz = horiz)
   
   # return the object
   amOptions(chart, ...)
@@ -68,7 +70,7 @@ amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
 #' @rdname amBoxplot
 #' @export
 amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL, 
-                                 ylim = NULL, col = NULL, horizontal = FALSE, ...)
+                                 ylim = NULL, col = NULL, horiz = FALSE, ...)
 {
   x <- object
   xx <- x[, colnames(x)[!colnames(x)%in%id], drop = FALSE]
@@ -90,7 +92,7 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
   
   final.outliers <- .finalDataBoxplot(res, col = col)
   
-  chart <- .plotAmBoxplot(dp = final.outliers, xlab = xlab, ylab = ylab, ylim = ylim, horizontal = horizontal)
+  chart <- .plotAmBoxplot(dp = final.outliers, xlab = xlab, ylab = ylab, ylim = ylim, horiz = horiz)
   
   # return the object
   chart <- setProperties(.Object = chart, RType_ = "barplot")
@@ -100,7 +102,7 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
 #' @rdname amBoxplot
 #' @export
 amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL, 
-                             ylim = NULL, col = NULL, horizontal = FALSE, ...){
+                             ylim = NULL, col = NULL, horiz = FALSE, ...){
   x <- object
   if (use.cols) {
     value <- as.vector(x)
@@ -127,7 +129,7 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL,
   final.outliers <- .finalDataBoxplot(res, col = col)
   
   chart <- .plotAmBoxplot(dp = final.outliers,xlab = xlab, ylab = ylab,
-                          ylim = ylim, horizontal = horizontal)
+                          ylim = ylim, horiz = horiz)
   
   # return the object
   amOptions(chart, ...)
@@ -136,7 +138,7 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL,
 #' @rdname amBoxplot
 #' @export
 amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab = NULL, 
-                             ylim = NULL, col = NULL, horizontal = FALSE, ...)
+                             ylim = NULL, col = NULL, horiz = FALSE, ...)
 {
   
   formula <- object
@@ -162,13 +164,13 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   final.outliers <- .finalDataBoxplot(res, col = col)
   
   chart <- .plotAmBoxplot(dp = final.outliers, xlab = xlab, 
-                          ylab = ylab, ylim = ylim, horizontal = horizontal)
+                          ylab = ylab, ylim = ylim, horiz = horiz)
   
   # return the object
   amOptions(chart, ...)
 }
 
-.plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horizontal = FALSE){
+.plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horiz = FALSE){
   
   if (!requireNamespace(package = "pipeR")) {
     warning("Please install the package pipeR for running this function")
@@ -176,7 +178,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   } else {}
   
   chart <- pipeR::pipeline(
-    amSerialChart(categoryField = "cat", theme = "light", rotate = horizontal),
+    amSerialChart(categoryField = "cat", theme = "light", rotate = horiz),
     setDataProvider(dp, keepNA = FALSE),
     addGraph(id = "g1", type = "candlestick",
              balloonText = "High = <b>[[high_outlier]]</b><br/>3rd quart. = <b>[[close]]</b><br/>Median = <b>[[median]]</b><br/>1st quart. = <b>[[open]]</b><br/>Low = <b>[[low_outlier]]</b><br/>",

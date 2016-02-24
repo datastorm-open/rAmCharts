@@ -252,68 +252,70 @@ addValueAxis(.Object, valueAxis = NULL, ...)
 \item{.Object}{\linkS4class{AmChart}.}
 
 \item{allLabels}{\code{list} of \linkS4class{Label}.
-Example of label object, with all possible properties:
-label(x = 20, y = 20, text = "this is label", align = "left", size = 12, color = "#CC0000",
-      alpha = 1, rotation = 0, bold = TRUE, url = "http=//www.amcharts.com")
-Run \code{api("Label")} for more information.}
+Example of a label object, with all possible properties:
+label(x = 20, y = 20, text = "this is a label", align = "left", size = 12, color = "#CC0000",
+      alpha = 1, rotation = 0, bold = TRUE, url = "http=//www.amcharts.com").
+Run \code{api("Label")} for more informations.}
 
 \item{arrows}{\code{list} of \linkS4class{GaugeArrow}. Only valid for gauge charts.
-Run \code{api("GaugeArrow")} for more information.}
+Run \code{api("GaugeArrow")} for more informations.}
 
 \item{axes}{\code{list} of \linkS4class{GaugeAxis} properties.
 Only valid for gauge charts.
-Run \code{api("GaugeAxis")} for more information.}
+Run \code{api("GaugeAxis")} for more informations.}
 
 \item{balloon}{\linkS4class{AmBalloon}.
 Creates the balloons (tooltips) of the chart,
 It follows the mouse cursor when you roll-over the data items.
-The framework generates the instances automatically you only need to adjust
+The framework generates the instances automatically you just have to adjust
 the appearance to your needs.
-Run \code{api("AmBalloon")} for more information.}
+Run \code{api("AmBalloon")} for more informations.}
 
 \item{categoryAxis}{\linkS4class{CategoryAxis}.
 Read-only. Chart creates category axis itself.
 If you want to change some properties,
-you should get this axis from the chart and set properties to this object.}
+you should get this axis from the chart and set properties to this object.
+Run \code{api("CategoryAxis")} for more informations.}
 
 \item{categoryField}{\code{character}.
-Category field name tells the chart the name of the field in your dataProvider object
+Category field name indicates the name of the field in your dataProvider object
 which will be used for category axis values.}
 
 \item{chartCursor}{\linkS4class{ChartCursor}.
-Cursor of a chart.
+Chart's cursor.
 Run \code{api("ChartCursor")} for more information.}
 
 \item{chartScrollbar}{\linkS4class{ChartScrollbar}.
 Chart's scrollbar.
-Run \code{api("ChartScrollbar")} for more information.}
+Run \code{api("ChartScrollbar")} for more informations.}
 
 \item{creditsPosition}{\code{character},
-specifying position of link to amCharts site.
+specifies position of the amCharts' website link.
 Allowed values are: "top-left", "top-right", "bottom-left" and "bottom-right".}
 
 \item{dataProvider}{\code{data.frame}, containing the data.}
 
 \item{graphs}{\code{list} of \linkS4class{AmGraph}.
 Creates the visualization of the data in following types: line, column, step line,
-smoothed line, olhc and candlestick.}
+smoothed line, olhc and candlestick.
+Run \code{api("AmGraph")} for more informations.}
 
 \item{graph}{\linkS4class{AmGraph}.
 Only valid for Gantt charts.
 Gant chart actually creates multiple graphs (separate for each segment).
 Properties of this graph are passed to each of the created graphs
 - this allows you to control the look of segments.
-Run \code{api("AmGraph")} for more information.}
+Run \code{api("AmGraph")} for more informations.}
 
 \item{guides}{\code{list} of \linkS4class{Guide}.
 Instead of adding guides to the axes, you can push all of them to this array.
-In case guide has category or date defined, it will automatically will be assigned to the category axis.
-Otherwise to first value axis, unless you specify a different valueAxes for the guide.
-Run \code{api("Guide")} for more information.}
+In case guide has category or date defined, it will automatically be assigned to the category axis,
+otherwise to the first value axis, unless you specify a different valueAxes for the guide.
+Run \code{api("Guide")} for more informations.}
 
 \item{legend}{\linkS4class{AmLegend}.
 Legend of a chart.
-Run \code{api("AmLegend")} for more information.}
+Run \code{api("AmLegend")} for more informations.}
 
 \item{segmentsField}{\code{character}.
 Segments field in your data provider.
@@ -324,10 +326,11 @@ Theme of a chart. Config files of themes can be found in amcharts/themes/ folder
 See \url{http://www.amcharts.com/tutorials/working-with-themes/}.}
 
 \item{titles}{\code{list} of \linkS4class{Title}.
-Run \code{api("Title")} for more information.}
+Run \code{api("Title")} for more informations.}
 
 \item{trendLines}{\code{list} of \linkS4class{TrendLine} objects added to a chart.
-You can add trend lines to a chart using this list or access already existing trend lines.}
+You can add trend lines to a chart using this list or access already existing trend lines.
+Run \code{api("TrendLine")} for more informations.}
 
 \item{type}{\code{character}.
 Possible types are: "serial", "pie", "radar", "xy", "radar", "funnel", "gauge", "stock".
@@ -337,11 +340,12 @@ See details about using argument type.
 \item{valueAxes}{\code{list} of \linkS4class{ValueAxis}.
 Chart creates one value axis automatically,
 so if you need only one value axis, you don't need to create it.
-Run \code{api("ValueAxis")} for more information.}
+Run \code{api("ValueAxis")} for more informations.}
 
 \item{valueAxis}{\linkS4class{ValueAxis}.
 Only valid for Gantt Charts.
-Set it's type to "date" if your data is date or time based.}
+Set it's type to "date" if your data is date or time based.
+Run \code{api("ValueAxis")} for more informations.}
 
 \item{...}{In case of constructor \code{new("AmChart")} or \code{amChart()}
 Dots represent other properties to set to the \linkS4class{AmChart} object.

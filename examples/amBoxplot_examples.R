@@ -10,7 +10,7 @@ amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50),
           xlab = "spray", col = c("darkblue", "gray"))
 
 # transpose
-amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50), xlab = "spray", horizontal = TRUE)
+amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50), xlab = "spray", horiz = TRUE)
 
 # using a custom colum to identify outliers
 InsectSprays$id <- paste0("ID : ", 1:nrow(InsectSprays))

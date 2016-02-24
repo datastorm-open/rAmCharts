@@ -16,7 +16,7 @@ Class to draw stock charts
 Properties of data sets selected for comparing.}
 
 \item{\code{dataSets}}{\code{list} of \linkS4class{DataSet}.
-Each element must a list of DataSet properties.}
+Each element must be a list of DataSet properties.}
 
 \item{\code{dataSetSelector}}{\code{list} of \linkS4class{DataSetSelector}.
 You can add it if you have more than one data set and want users
@@ -36,10 +36,11 @@ date ranges or zoom chart with predefined period buttons.}
 \item{\code{type}}{equals "stock"}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must a character string. See examples for details.}
+The list must be named as in the official API. Each element must be a character string. 
+See examples for details.}
 
-\item{\code{otherProperties}}{\code{list},
-containing other avalaible properties non coded in the class.}
+\item{\code{otherProperties}}{\code{list}
+containing other avalaible properties not yet coded in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

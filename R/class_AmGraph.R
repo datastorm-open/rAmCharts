@@ -3,7 +3,7 @@ NULL
 
 #' @title AmGraph class
 #' @description Creates the visualization of the data in following types:
-#' line, column, step line, smoothed line, olhc and candlestick.
+#' line, column, step line, smoothed line, ohlc and candlestick.
 #' 
 #' @slot balloonText  \code{character}.
 #' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
@@ -15,10 +15,10 @@ NULL
 #' @slot valueField \code{character}.
 #' Name of the value field in your dataProvider.
 #' @slot listeners \code{"list"} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string.
+#' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
-#' @slot otherProperties \code{"list"},
-#' containing other avalaible properties non coded in the package yet
+#' @slot otherProperties \code{"list"}
+#' containing other avalaible properties not yet coded in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @details Run \code{api("AmGraph")} for more details and all avalaible properties.

@@ -8,12 +8,12 @@ amMekko(x, y, data, xlab = "", ylab = "", groups_color = NULL,
   horiz = FALSE, show_values = FALSE, ...)
 }
 \arguments{
-\item{x}{\code{character} column name for x-axis}
+\item{x}{\code{character} column name for x-axis.}
 
-\item{y}{\code{character} column name for y-axis}
+\item{y}{\code{character} column name for y-axis.}
 
 \item{data}{\code{data.frame} dataframe with values to display.
-See  see \code{\link{data_mekko}}}
+See \code{\link{data_mekko}}}
 
 \item{xlab}{\code{character} label for x-axis.}
 
@@ -22,11 +22,11 @@ See  see \code{\link{data_mekko}}}
 \item{groups_color}{\code{character} vector of colors in hexadecimal, 
 same length as the number of y modalities.}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
+\item{horiz}{\code{logical} TRUE for an horizontal chart, FALSE for a vertical one}
 
-\item{show_values}{\code{boolean} TRUE to display values.}
+\item{show_values}{\code{logical} TRUE to display values.}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \code{\link{amOptions}} for more options.}
 }
 \description{
 amMekko computes a mekko chart of the given values.

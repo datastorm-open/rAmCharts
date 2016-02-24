@@ -6,7 +6,7 @@
 \alias{addListener,AmObject,character,character-method}
 \alias{setProperties}
 \alias{setProperties,AmObject-method}
-\title{Methods of AmObject}
+\title{AmObject methods}
 \usage{
 addListener(.Object, name, expression)
 
@@ -59,7 +59,7 @@ amPieChart() \%>>\% setProperties(handDrawn = TRUE, fontSize = 15) \%>>\% print(
 # overwrite a property
 amPieChart() \%>>\%  setProperties(fontSize = 15) \%>>\%  setProperties(fontSize = 12) \%>>\% print()
 
-# warning if you try to set a property which is a slot...
+# Carefull if you try to set a property which is a slot...
 # in that case, use the setter methods 'setXX' or 'addXX' which check the validity
 \dontrun{
 amPieChart() \%>>\% setProperties(type = "serial") \%>>\% print()

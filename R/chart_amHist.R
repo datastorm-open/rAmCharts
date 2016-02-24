@@ -1,25 +1,24 @@
-#' @title Plot an histogram
+#' @title Plotting histogram using rAmCharts
 #' @description  amHist computes a histogram of the given data values.
-#' If \code{plot = TRUE}, the resulting object of class 'histogram' before it is returned.
 #' 
-#' @param x a vector of values for which the histogram is desired.
+#' @param x \code{numeric}, a vector of values for which the histogram is desired.
 #' @param freq \code{logical}; if \code{TRUE}, the histogram graphic is a representation of frequencies,
 #' the counts component of the result; if FALSE, probability densities,
 #' component density, are plotted (so that the histogram has a total area of one).
 #' Defaults to TRUE if and only if breaks are equidistant (and probability is not specified).
 #' @param xlab,ylab \code{character}, labels of the axis.
-#' @param ylim the range of y values with sensible defaults.
-#' @param plot logical. If \code{TRUE} (default),
+#' @param ylim \code{numeric}, the range of y values with sensible defaults.
+#' @param plot \code{logical}, if \code{TRUE} (default),
 #' an histogram is plotted, otherwise a list of breaks and counts is returned.
-#' In the latter case, a warning is used if (typically graphical)
+#' In the second case, a warning is used if (typically graphical)
 #' arguments are specified that only apply to the \code{plot = TRUE} case.
-#' @param col a colour to be used to fill the bars.
-#' @param border a colour for the borders.
+#' @param col \code{character}, a color to be used to fill the bars.
+#' @param border \code{character} a color for the borders.
 #' @param labels \code{logical} default FALSE.
 #' Additionally draw labels on top of bars.
 #' if TRUE, draw the counts or rounded densities;
 #' if labels is a \code{character}, draw itself.
-#' @param control_hist (optional) named \code{list()} containing parameters for computing the histogram.
+#' @param control_hist (optional) named \code{list()} containing parameters to compute the histogram.
 #' @param ... Other parameters for \link{amOptions}.
 #' 
 #' @return An object of class \linkS4class{AmChart}.

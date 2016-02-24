@@ -2,31 +2,38 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 
 #' @title Plot serial data
 #' 
-#' @description  amPlot computes a plot of the given data values.
-#' Can be a vector, a data.frame, or a formula
+#' @description  amPlot computes a plot of the given data values (can be a vectorn a dataframe
+#' or a formula).
 #' 
-#' @param x the coordinates of points in the plot numeric,
-#' data.frame, formula.
-#' @param y the y coordinates of points in the plot,
+#' @param x the coordinates of points in the plot : \code{numeric},
+#' \code{data.frame}, or \code{formula}.
+#' @param y \code{numeric}, the y coordinates of points in the plot,
 #' optional if x is an appropriate structure.
-#' @param xlab a title for the x axis, default NULL
-#' @param ylab a title for the y axis, default NULL
-#' @param bullet default "round"
-#' @param type what type of plot should be drawn, default "p".
-#' @param col either a factor or a \code{character} default "gray"
-#' @param weights for x/y charts only, default rep(1, x)
-#' @param id for x/y charts only, default 1:length(x),
-#' @param precision default 2
-#' @param dataDateFormat Even if your chart parses dates, you can pass them as strings in your data,
+#' @param xlab \code{character},  label for x-axis.
+#' @param ylab \code{character},  label for y-axis.
+#' @param bullet \code{character}, point shape. Possible values are : "diamond", "square", 
+#' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp", 
+#' "triangleDown". Default set to "round".
+#' @param type \code{character}, type of plot. Possible values are : "l" for a line, "sl" 
+#' for a smoothed line, "st" for steps, "p" for points, and "b" for line and points.
+#' Default set to "p".
+#' @param col either a \code{factor} or a \code{character}, default set to "gray".
+#' @param weights \code{numeric}, weights for x/y charts only. Default set to rep(1, x).
+#' @param id \code{numeric}, point id, for x/y charts only. Default 1:length(x).
+#' @param precision \code{numeric}, precision you wish to display. Default set to 2.
+#' @param dataDateFormat \code{character}, default set to NULL. Even if your chart parses dates,
+#' you can pass them as strings in your dataframe - 
 #' all you need to do is to set data date format and the chart will parse dates to date objects.
-#' See available format at https://www.amcharts.com/tutorials/formatting-dates/.
-#' @param parseDates default FALSE, if TRUE argument \code{dataDateFormat} has to be provided.
-#' @param error only when type is "xError" "yError" default NULL,
-#' @param xlim range of x
-#' @param ylim range of y
-#' @param cex bullet size
-#' @param lty line type (dashes)
-#' @param lwd line width 
+#' Check this page for available formats.
+#' Please note that two-digit years (YY) as well as literal month names (MMM)  are NOT supported in this setting.
+#' @param parseDates \code{logical}, default set to FALSE, if TRUE argument 
+#' \code{dataDateFormat} has to be provided.
+#' @param error \code{numeric}, only when type is "xError" "yError" default NULL,
+#' @param xlim \code{numeric}, x range.
+#' @param ylim \code{numeric}, y range.
+#' @param cex \code{numeric}, bullet size.
+#' @param lty \code{numeric}, line type (dashes).
+#' @param lwd \code{numeric}, line width 
 #' @param ... Other parameters for \link{amOptions}.
 #' 
 #' @example examples/amPlot_examples.R
@@ -43,7 +50,7 @@ amPlot <- function(x, ...) UseMethod("amPlot")
 amPlot.default <- function(x, ...) "Wrong class"
 
 #' @rdname amPlot
-#' @example examples/amPlot_examples.R
+#' @example examples/amLines_examples.R
 #' 
 #' @import data.table
 #' @import pipeR
@@ -51,7 +58,7 @@ amPlot.default <- function(x, ...) "Wrong class"
 #' 
 amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray", 
                            weights = NULL, precision = 2, id, error, xlab, ylab,
-                           lty, cex, lwd, xlim, ylim,...)
+                           lty, cex, lwd, xlim, ylim, ...)
 {
   # check arguments validity
   # ---
@@ -479,21 +486,26 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty,
   else setProperties(graph_obj, bulletSize = cex)
 }
 
-#' @title Add chart graph.
-#' @description Add a new data to an existing serial chart.
+#' @title amLines adds a serie to a graph.
+#' @description amLines adds a new serie to an existing serial chart.
 #'
-#' @param chart \linkS4class{AmChart}.
-#' @param x \code{numeric} equivalent to y, deprecated.
+#' @param chart \linkS4class{AmChart}. Chart you wish to add the new serie.
+#' @param x \code{numeric}, equivalent to y, deprecated.
 #' @param y \code{numeric}.
-#' @param type (optionnal) \code{character}.
-#' @param col \code{character}, color of teh new serie.
-#' @param title \code{character} used when legend is enabled.
+#' @param type (optionnal) \code{character}. Possible values are : "l" for line, 
+#' "p" for points, "sl" for smoothed line. 
+#' @param col \code{character}, color of the new serie.
+#' @param title \code{character}, name of the new serie, used when legend is enabled.
 #' 
 #' @example examples/amPlot_examples.R
 #' 
 #' @rdname amLines
 #' @export
 #' 
+#' @note It is supposed here that x or y corresponds to the y-axis, and the x-axis
+#' is automatically linked to the x values of the chart "chart". That is why it makes
+#' sense to give the y argument. 
+
 amLines <- function(chart, x = NULL, y = NULL, type, col, title)
 {
 

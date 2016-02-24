@@ -18,23 +18,22 @@ high (numeric). See \link{data_candleStick1} and \link{data_candleStick2}.}
 
 \item{ylab}{\code{character} label for y-axis.}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
+\item{horiz}{\code{logical} TRUE for an horizontal chart, FALSE for a vertical one}
 
-\item{positiveColor}{\code{character} color for positive values. 
-Must be in hexadecimal if you plan to export the chart.}
+\item{positiveColor}{\code{character} color for positive values (in hexadecimal).}
 
 \item{negativeColor}{\code{character} color for negative values (in hexadecimal).}
 
-\item{names}{\code{character}, names for the tooltip.}
+\item{names}{\code{character}, names for the tooltip. Default set to c("low", "open", "close", "high").}
 
-\item{dataDateFormat}{\code{character}, default 'NULL'. Even if your chart parses dates,
-you can pass them as strings in your data - 
+\item{dataDateFormat}{\code{character}, default set to NULL. Even if your chart parses dates,
+you can pass them as strings in your dataframe - 
 all you need to do is to set data date format and the chart will parse dates to date objects.
 Check this page for available formats.
 Please note that two-digit years (YY) as well as literal month names (MMM)  are NOT supported in this setting.}
 
 \item{minPeriod}{\code{character} minPeriod Specifies the shortest period of your data.
-This should be set only if dataDateFormat is not 'NULL'.
+This should be set only if dataDateFormat is not NULL.
 Possible period values:
 fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 It's also possible to supply a number for increments, i.e. '15mm'

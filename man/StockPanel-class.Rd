@@ -42,7 +42,7 @@ Run \code{api("GaugeAxis")} for more information.}
 \item{\code{balloon}}{\linkS4class{AmBalloon}.
 Creates the balloons (tooltips) of the chart,
 It follows the mouse cursor when you roll-over the data items.
-The framework generates the instances automatically you only need to adjust
+The framework generates the instances automatically you just have to adjust
 the appearance to your needs.
 Run \code{api("AmBalloon")} for more information.}
 
@@ -64,7 +64,7 @@ Chart's scrollbar.
 Run \code{api("ChartScrollbar")} for more information.}
 
 \item{\code{creditsPosition}}{\code{character},
-specifying position of link to amCharts site.
+specifies position of the amCharts' website link.
 Allowed values are: "top-left", "top-right", "bottom-left" and "bottom-right".}
 
 \item{\code{dataProvider}}{\code{data.frame}, containing the data.}
@@ -122,11 +122,11 @@ Only valid for Gantt Charts.
 Set it's type to "date" if your data is date or time based.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must a character string.
+The list must be named as in the official API. Each element must be a character string.
 Run \code{runShinyExamples()} for examples.}
 
-\item{\code{otherProperties}}{\code{list},
-containing other avalaible properties non coded in the package.}
+\item{\code{otherProperties}}{\code{list}
+containing other avalaible properties not yet coded in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

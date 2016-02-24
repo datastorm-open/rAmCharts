@@ -1,29 +1,28 @@
 #' @title Plotting OHLC chart using rAmCharts
 #' @description  amOHLC computes an OHLC chart of the given value.
 #' 
-#' @param data \code{data.frame} dataframe with at least 5 columns : 
+#' @param data \code{data.frame}, dataframe with at least 5 columns : 
 #' category, open (numeric), close (numeric), low (numeric),
 #' high (numeric).
-#' @param dataDateFormat \code{character}, default 'NULL'. Even if your chart parses dates,
-#' you can pass them as strings in your data - 
+#' @param dataDateFormat \code{character}, default set to NULL. Even if your chart parses dates,
+#' you can pass them as strings in your dataframe - 
 #' all you need to do is to set data date format and the chart will parse dates to date objects.
 #' Check this page for available formats.
 #' Please note that two-digit years (YY) as well as literal month names (MMM)  are NOT supported in this setting.
-#' @param minPeriod \code{character} minPeriod Specifies the shortest period of your data.
+#' @param minPeriod \code{character}, minPeriod Specifies the shortest period of your data.
 #' This should be set only if dataDateFormat is not 'NULL'.
 #' Possible period values:
 #' fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
-#' @param positiveColor \code{character} color for positive values. 
-#' Must be in hexadecimal if you plan to export the chart.
-#' @param negativeColor \code{character} color for negative values (in hexadecimal).
-#' @param names \code{character}, names for the tooltip.
-#' @param xlab \code{character} label for x-axis.
-#' @param ylab \code{character} label for y-axis.
-#' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-#' @param zoom \code{logical}, default TRUE, a cursor is added to the chart.
-#' @param ... see \link{amOptions} for more options
+#' @param positiveColor \code{character}, color for positive values (in hexadecimal). 
+#' @param negativeColor \code{character}, color for negative values (in hexadecimal).
+#' @param names \code{character}, names for the tooltip. Default to c("low", "open", "close", "high").
+#' @param xlab \code{character}, label for x-axis.
+#' @param ylab \code{character}, label for y-axis.
+#' @param horiz \code{logical}, TRUE for an horizontal chart, FALSE for a vertical one
+#' @param zoom \code{logical}, default set to TRUE : a cursor is added to the chart.
+#' @param ... see \link{amOptions} for more options.
 #' 
 #' @example examples/amOHLC_examples.R
 #' 
@@ -32,8 +31,7 @@
 amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,
                    positiveColor = "#7f8da9", negativeColor = "#db4c3c",
                    names = c("low", "open", "close", "high"),
-                   dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
-{
+                   dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...) {
   # data format
   data$category <- as.character(data$category)
   .testIn("category", colnames(data))

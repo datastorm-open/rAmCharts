@@ -6,7 +6,7 @@
 \title{AmGraph class}
 \description{
 Creates the visualization of the data in following types:
-line, column, step line, smoothed line, olhc and candlestick.
+line, column, step line, smoothed line, ohlc and candlestick.
 }
 \details{
 Run \code{api("AmGraph")} for more details and all avalaible properties.
@@ -28,11 +28,11 @@ XY and Radar charts can only display "line" otherArguments graphs.}
 Name of the value field in your dataProvider.}
 
 \item{\code{listeners}}{\code{"list"} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must a character string.
+The list must be named as in the official API. Each element must be a character string.
 See examples for details.}
 
-\item{\code{otherProperties}}{\code{"list"},
-containing other avalaible properties non coded in the package yet}
+\item{\code{otherProperties}}{\code{"list"}
+containing other avalaible properties not yet coded in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

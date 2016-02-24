@@ -1,33 +1,34 @@
 #' @title amOptions
-#' @description Set the most common options for chart customization.
+#' @description amOptions sets the most common options for chart customization.
 #' You can set other properties with the method \link{setProperties}.
 #' See details for exception.
 #' 
 #' @param chart \linkS4class{AmChart}.
-#' @param legend \code{logical}, default \code{FALSE}. Add a legend to the chart ?.
-#' @param legendPosition \code{character}. Can be "left", "right", "top" or "bottom", default "right".
-#' @param legendAlign \code{character} controls the legend alignement. Can be "left","right" or "center",
-#' default "left". Only use if \code{legend = TRUE}.
-#' @param export \code{logical}, default FALSE. Display export feature ?.
-#' @param exportFormat \code{character} export format to keep, must be in JPG, PNG ,SVG,
-#' CSV, JSON, PDF, XLSX, PRINT. 
-#' @param creditsPosition \code{character},  control credits position,
-#' can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left.
-#' @param theme \code{character}, chn. Can be "none","light","dark","patterns","chalk",
-#' default "none".
-#' @param main \code{character}, title of graphic, default empty \code{character}.
-#' @param mainColor \code{character}, color of title (html-color), default "#000000".
-#' @param mainSize \code{numeric}, color of title (html-color), default 15.
-#' @param zoom \code{logical}, add a chart cursor, default FALSE.
-#' @param scrollbar \code{logical}, default \code{FALSE}, display Scrollbar if \code{TRUE}.
-#' @param scrollbarHeight \code{numeric}, Height in px, must be > 0.
-#' @param labelRotation \code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
-#' Must be between -90 and 90.
+#' @param legend \code{logical}, default \code{FALSE}. TRUE to add a legend to the chart.
+#' @param legendPosition \code{character}. Possible values are : "left", "right", "top" or "bottom", 
+#' default set to "right".
+#' @param legendAlign \code{character} controls the legend alignement. Possible values are : 
+#' "left","right" or "center", default set to "left". Only used if \code{legend = TRUE}.
+#' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
+#' @param exportFormat \code{character} desired export format. Possible values are : "JPG",
+#'  "PNG" ,"SVG", "CSV", "JSON", "PDF", "XLSX", "PRINT". 
+#' @param creditsPosition \code{character}, controsl credits position. Possible values are : 
+#' "top-left", "top-right", "bottom-left" or "bottom-right", default set to "top-left".
+#' @param theme \code{character}. Possible values are : "none", "light", "dark", "patterns",
+#' "chalk", default set to "none".
+#' @param main \code{character}, chart's title.
+#' @param mainColor \code{character}, main color (in hexadecimal), default set to "#000000".
+#' @param mainSize \code{numeric}, main size, default set to 15.
+#' @param zoom \code{logical}, TRUE to add a chart cursor, default set to FALSE.
+#' @param scrollbar \code{logical}, default \code{FALSE}, TRUE to display scrollbar.
+#' @param scrollbarHeight \code{numeric}, height in pixels, must be > 0.
+#' @param labelRotation \code{numeric}, rotation angle of a label. Only horizontal axis' values 
+#' can be rotated. Value must be between -90 and 90.
 #' 
 #' @details
 #' \strong{Exception:} 
 #' \itemize{
-#'  \item{It's impossible to export a gauge chart data as CSV.}
+#'  \item{It's not possible to export a gauge chart data as CSV.}
 #'  }
 #' 
 #' @import pipeR

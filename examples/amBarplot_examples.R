@@ -6,16 +6,16 @@ data(data_bar)
 
 # test with label rotation
 amBarplot(x = "country", y = "visits", data = data_bar,
-          labelRotation = -90) 
+          labelRotation = -45) 
 
 #horizontal bar
-amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -90)
+amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -45)
 
 #3D bar
-amBarplot(x = "country", y = "visits", data = data_bar, depth = 15, labelRotation = -90)
+amBarplot(x = "country", y = "visits", data = data_bar, depth = 15, labelRotation = -45)
 
 #display values
-amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -90)
+amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -45)
 
 #grouped columns
 data(data_gbar)

@@ -30,21 +30,21 @@ and \link{data_gbar}.}
 \item{groups_color}{\code{character} vector of colors in hexadecimal, 
 same length as y.}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.}
+\item{horiz}{\code{logical} TRUE for an horizontal chart, FALSE for a vertical one
+If 'horiz' is set to TRUE, the setting 'labelRotation' will be ignored.}
 
 \item{stack_type}{\code{character}, "regular" if you wish stacked bars, "100" if
 you want 100 percent stacked bars. Default is set to "none".}
 
-\item{layered}{\code{boolean} TRUE for layered. If TRUE, stack_type must be set
+\item{layered}{\code{logical} TRUE for layered bars. If TRUE, stack_type must be set
 to "none".}
 
-\item{show_values}{\code{boolean} TRUE to display values.}
+\item{show_values}{\code{logical} TRUE to display values.}
 
 \item{depth}{\code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.}
 
-\item{dataDateFormat}{\code{character}, default 'NULL'. Even if your chart parses dates,
-you can pass them as strings in your data - 
+\item{dataDateFormat}{\code{character}, default set to NULL. Even if your chart parses dates,
+you can pass them as strings in your dataframe - 
 all you need to do is to set data date format and the chart will parse dates to date objects.
 Check this page for available formats.
 Please note that two-digit years (YY) as well as literal month names (MMM)  are NOT supported in this setting.}
@@ -56,7 +56,7 @@ fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - mont
 It's also possible to supply a number for increments, i.e. '15mm'
 which will instruct the chart that your data is supplied in 15 minute increments.}
 
-\item{...}{see \link{amOptions} for more options}
+\item{...}{see \link{amOptions} for more options.}
 }
 \value{
 An object of class \linkS4class{AmChart}.
@@ -80,16 +80,16 @@ data(data_bar)
 
 # test with label rotation
 amBarplot(x = "country", y = "visits", data = data_bar,
-          labelRotation = -90) 
+          labelRotation = -45) 
 
 #horizontal bar
-amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -90)
+amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -45)
 
 #3D bar
-amBarplot(x = "country", y = "visits", data = data_bar, depth = 15, labelRotation = -90)
+amBarplot(x = "country", y = "visits", data = data_bar, depth = 15, labelRotation = -45)
 
 #display values
-amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -90)
+amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -45)
 
 #grouped columns
 data(data_gbar)

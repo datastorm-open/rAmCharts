@@ -27,8 +27,8 @@ setValueLineAxis(.Object, valueLineAxis = NULL, ...)
 \item{.Object}{\linkS4class{ChartCursor}.}
 
 \item{oneBalloonOnly}{\code{logical}.
-If this is set to TRUE, border color instead of background color will be changed when
-user rolls-over the slice, graph, etc.}
+If TRUE, border color will be changed when user rolls-over the slice, graph, 
+etc, instead of background color.}
 
 \item{valueLineAxis}{\linkS4class{ValueAxis}.
 If you set valueLineBalloonEnabled to true,

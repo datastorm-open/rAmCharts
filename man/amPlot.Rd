@@ -33,47 +33,54 @@ amPlot(x, ...)
 \method{amPlot}{formula}(x, data, ...)
 }
 \arguments{
-\item{x}{the coordinates of points in the plot numeric,
-data.frame, formula.}
+\item{x}{the coordinates of points in the plot : \code{numeric},
+\code{data.frame}, or \code{formula}.}
 
 \item{...}{Other parameters for \link{amOptions}.}
 
-\item{y}{the y coordinates of points in the plot,
+\item{y}{\code{numeric}, the y coordinates of points in the plot,
 optional if x is an appropriate structure.}
 
-\item{bullet}{default "round"}
+\item{bullet}{\code{character}, point shape. Possible values are : "diamond", "square", 
+"bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp", 
+"triangleDown". Default set to "round".}
 
-\item{type}{what type of plot should be drawn, default "p".}
+\item{type}{\code{character}, type of plot. Possible values are : "l" for a line, "sl" 
+for a smoothed line, "st" for steps, "p" for points, and "b" for line and points.
+Default set to "p".}
 
-\item{col}{either a factor or a \code{character} default "gray"}
+\item{col}{either a \code{factor} or a \code{character}, default set to "gray".}
 
-\item{weights}{for x/y charts only, default rep(1, x)}
+\item{weights}{\code{numeric}, weights for x/y charts only. Default set to rep(1, x).}
 
-\item{precision}{default 2}
+\item{precision}{\code{numeric}, precision you wish to display. Default set to 2.}
 
-\item{id}{for x/y charts only, default 1:length(x),}
+\item{id}{\code{numeric}, point id, for x/y charts only. Default 1:length(x).}
 
-\item{error}{only when type is "xError" "yError" default NULL,}
+\item{error}{\code{numeric}, only when type is "xError" "yError" default NULL,}
 
-\item{xlab}{a title for the x axis, default NULL}
+\item{xlab}{\code{character},  label for x-axis.}
 
-\item{ylab}{a title for the y axis, default NULL}
+\item{ylab}{\code{character},  label for y-axis.}
 
-\item{lty}{line type (dashes)}
+\item{lty}{\code{numeric}, line type (dashes).}
 
-\item{cex}{bullet size}
+\item{cex}{\code{numeric}, bullet size.}
 
-\item{lwd}{line width}
+\item{lwd}{\code{numeric}, line width}
 
-\item{xlim}{range of x}
+\item{xlim}{\code{numeric}, x range.}
 
-\item{ylim}{range of y}
+\item{ylim}{\code{numeric}, y range.}
 
-\item{parseDates}{default FALSE, if TRUE argument \code{dataDateFormat} has to be provided.}
+\item{parseDates}{\code{logical}, default set to FALSE, if TRUE argument 
+\code{dataDateFormat} has to be provided.}
 
-\item{dataDateFormat}{Even if your chart parses dates, you can pass them as strings in your data,
+\item{dataDateFormat}{\code{character}, default set to NULL. Even if your chart parses dates,
+you can pass them as strings in your dataframe - 
 all you need to do is to set data date format and the chart will parse dates to date objects.
-See available format at https://www.amcharts.com/tutorials/formatting-dates/.}
+Check this page for available formats.
+Please note that two-digit years (YY) as well as literal month names (MMM)  are NOT supported in this setting.}
 
 \item{columns}{(optional) either a vector of \code{character} containing
 the names of the series to draw, or a \code{numeric} vector of indices.
@@ -82,8 +89,8 @@ By default all numeric columns will be drawn.}
 \item{data}{dataset}
 }
 \description{
-amPlot computes a plot of the given data values.
-Can be a vector, a data.frame, or a formula
+amPlot computes a plot of the given data values (can be a vectorn a dataframe
+or a formula).
 }
 \examples{
 library(pipeR)
@@ -276,165 +283,6 @@ amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
 
 # add parameter from amOptions
 amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
-library(pipeR)
-library(data.table)
-
-# ----------------
-# EXAMPLES NUMERIC
-# ----------------
-
-# ---
-# x, y plot if x is a factor or a character
-# ---
-
-xc <- paste("cat.", 1:100)
-xf <- factor(xc)
-y <- rnorm(length(xc))
-
-# change type
-amPlot(x = xc, y = y, type = 'l')
-amPlot(x = xf, y = y, type = 'l') # x can be either a character or a factor
-amPlot(x = xc, y = y, type = "sl")
-amPlot(x = xc, y = y, type = "st")
-amPlot(x = xc, y = y, type = "p")
-amPlot(x = xc, y = y,type = "b")
-
-# ---
-# x, y plot if x is a date (character)
-# ---
-start <- as.POSIXct('01-01-2015', format = '\%d-\%m-\%Y')
-end <- as.POSIXct('31-12-2015', format = '\%d-\%m-\%Y')
-date <- seq.POSIXt(from = start, to = end, by = 'day')
-date <- format(date, '\%m-\%d-\%Y')
-
-y <- rnorm(length(date))
-amPlot(x = date, y = y, type = 'l') # default parseDates = FALSE
-
-amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
-
-
-# ---
-# x, y plot if both x, y are numeric
-# ---
-
-x <- sort(rnorm(100))
-y <- rnorm(100, sd = 10)
-
-# change type
-amPlot(x = x, y = y) # default type = "p"
-amPlot(x = x, y = y, type = "l")
-
-# add a legend
-amPlot(x = x, y = y, type = "l") \%>>\%
-  setLegend(useGraphSettings = TRUE)
-
-# add a scrollbar
-amPlot(x = x, y = y, scrollbar = TRUE)
-amPlot(x = x, y = y, scrollbar = TRUE)
-
-# change lty
-amPlot(x = x, y = y, type = "l", lty = 2)
-
-# add weight
-weights <- rnorm(100, sd = 5)
-amPlot(x = x, y = y, type = "p", weights = weights)
-
-# change cex
-amPlot(x = x, y = y, type = "p", cex = 1)
-amPlot(x = x, y = y, type = "p", cex = 10)
-
-
-# change color
-amPlot(x = x, y = y, col = "blue")
-
-col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
-amPlot(x = x, y = y, col = col)
-
-# add title from amOptions
-amPlot(x = x, y = y, main = "title")
-
-# ---
-# x plot
-# ---
-x <- rnorm(100)
-
-# simple scatter plot
-amPlot(x = x)
-
-# add title
-amPlot(x = x, main = "Title")
-
-# set a title
-amPlot(x = x, main = "Title")
-
-# change type (set to "p" by default)
-amPlot(x = x, type = "l")
-amPlot(x = x, type = "sl")
-amPlot(x = x, type = "st")
-amPlot(x = x, type = "p")
-amPlot(x = x, type = "b")
-
-# change color
-amPlot(x = rnorm(100), col = "lightblue")
-
-# change bullets
-x <- rnorm(100)
-amPlot(x = x, bullet = "diamond")
-amPlot(x = x, bullet = "square")
-amPlot(x = x, bullet = "triangleUp")
-amPlot(x = x, bullet = "triangleDown")
-amPlot(x = x, bullet = "triangleLeft")
-amPlot(x = x, bullet = "triangleRight")
-amPlot(x = x, bullet = "bubble")
-amPlot(x = x, bullet = "yError", error = sample(100))
-amPlot(x = x, bullet = "xError", error = sample(100))
-
-# change lty
-x <- rnorm(100)
-amPlot(x = x, type = "b", lty = 1)
-amPlot(x = x, type = "b", lty = 6)
-
-# change cex
-x <- rnorm(100)
-amPlot(x = x, cex = 1)
-amPlot(x = x, cex = 10)
-
-# change lwd
-x <- rnorm(100)
-amPlot(x = x, type = "st", lwd = 1)
-amPlot(x = x, type = "st", lwd = 2)
-
-# add a title from amOptions
-amPlot(x = x, type = "st", lwd = 2, main = "My title")
-
-# -------------------
-# EXAMPLES DATA.FRAME
-# -------------------
-
-iris <- get("iris", "package:datasets")
-
-# select the column to plot with a character or a numeric
-amPlot(iris, columns = "Sepal.Length")
-amPlot(iris, columns = 1)
-
-# select several columns
-amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"))
-
-# select all numeric columns
-amPlot(iris)
-
-# add a legend 
-amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
-  setLegend(useGraphSettings = TRUE)
-
-# add parameter from amOptions
-co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2, zoom = TRUE)
-
-# -------------------
-# ADD OTHER SERIE(S)
-# -------------------
-
 # For a simple chart
 amPlot(x = rnorm(100), type = 'sl') \%>>\%
   amLines(x = rnorm(100), type = "p")
@@ -452,20 +300,6 @@ y3 <- rnorm(100, sd = 10)
 amPlot(x = x, y = y1) \%>>\%
   amLines(x = y2, col = "blue") \%>>\%
   amLines(x = y3, type = "p")
-
-
-# -------------------
-# FORMULA
-# -------------------
-iris <- data.table(get("iris", "package:datasets"))
-
-amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
-amPlot(Sepal.Length~Sepal.Width, data = iris)
-amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
-  setLegend(useGraphSettings = TRUE)
-
-# add parameter from amOptions
-amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
 library(pipeR)
 library(data.table)
 

@@ -2,25 +2,31 @@
 % Please edit documentation in R/chart_amPlot.R
 \name{amLines}
 \alias{amLines}
-\title{Add chart graph.}
+\title{amLines adds a serie to a graph.}
 \usage{
 amLines(chart, x = NULL, y = NULL, type, col, title)
 }
 \arguments{
-\item{chart}{\linkS4class{AmChart}.}
+\item{chart}{\linkS4class{AmChart}. Chart you wish to add the new serie.}
 
-\item{x}{\code{numeric} equivalent to y, deprecated.}
+\item{x}{\code{numeric}, equivalent to y, deprecated.}
 
 \item{y}{\code{numeric}.}
 
-\item{type}{(optionnal) \code{character}.}
+\item{type}{(optionnal) \code{character}. Possible values are : "l" for line, 
+"p" for points, "sl" for smoothed line.}
 
-\item{col}{\code{character}, color of teh new serie.}
+\item{col}{\code{character}, color of the new serie.}
 
-\item{title}{\code{character} used when legend is enabled.}
+\item{title}{\code{character}, name of the new serie, used when legend is enabled.}
 }
 \description{
-Add a new data to an existing serial chart.
+amLines adds a new serie to an existing serial chart.
+}
+\note{
+It is supposed here that x or y corresponds to the y-axis, and the x-axis
+is automatically linked to the x values of the chart "chart". That is why it makes
+sense to give the y argument.
 }
 \examples{
 library(pipeR)

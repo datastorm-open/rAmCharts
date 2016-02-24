@@ -4,25 +4,26 @@ NULL
 #' @title AmBalloon class
 #' @description Creates the balloons (tooltips) of the chart.
 #' It follows the mouse cursor when you roll-over the data items.
-#' The framework generates the instances automatically you only need to adjust
+#' The framework generates the instances automatically, you just have to adjust
 #' the appearance to your needs.
 #' 
 #' @slot adjustBorderColor \code{logical}.
-#' If this is set to TRUE, border color instead of background color will be changed when
-#' user rolls-over the slice, graph, etc.
+#' If TRUE, border color will be changed when user rolls-over the slice, graph, 
+#' etc, instead of background color.
 #' @slot color \code{character}.
-#' Color of text in the balloon.
+#' Balloon text color.
 #' @slot cornerRadius \code{numeric}.
 #' Balloon corner radius.
 #' @slot fillColor \code{character}.
-#' Balloon background color. Usually balloon background color is set by the chart.
-#' Only if "adjustBorderColor" is "true" this color will be used.
+#' Balloon background color. It is usually defined by the chart itself. If
+#' "adjustBorderColor" is set to TRUE, the balloon background color will be
+#' equal to "fillColor".
 #' @slot listeners \code{list} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string.
+#' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
 #' Inherited from \linkS4class{AmObject}.
-#' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the package yet.
+#' @slot otherProperties \code{list}
+#' containing other avalaible properties not yet coded in the package.
 #' Inherited from \linkS4class{AmObject}.
 #' @slot value \code{numeric}.
 #' Inherited from \linkS4class{AmObject}.
@@ -42,15 +43,16 @@ setClass(Class = "AmBalloon", contains = "AmObject",
 #' 
 #' @param .Object \linkS4class{AmBalloon}.
 #' @param adjustBorderColor \code{logical}.
-#' If set to TRUE, border color instead of background color will be changed when
-#' user rolls-over the slice, graph, etc.
+#' If TRUE, border color will be changed when user rolls-over the slice, graph, 
+#' etc, instead of background color.
 #' @param color \code{character}.
-#' Color of text in the balloon.
+#' Balloon text color.
 #' @param cornerRadius \code{numeric}.
 #' Balloon corner radius.
 #' @param fillColor \code{character}.
-#' Balloon background color. Usually balloon background color is set by the chart.
-#' Only if "adjustBorderColor" is "true" this color will be used.
+#' Balloon background color. It is usually defined by the chart itself. If
+#' "adjustBorderColor" is set to TRUE, the balloon background color will be
+#' equal to "fillColor".
 #' @param ... other properties of AmBalloon.
 #' See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.
 #' 

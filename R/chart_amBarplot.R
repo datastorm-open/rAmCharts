@@ -15,16 +15,16 @@
 #' same length as y.
 #' @param xlab \code{character} label for x-axis.
 #' @param ylab \code{character} label for y-axis.
-#' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-#' If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.
+#' @param horiz \code{logical} TRUE for an horizontal chart, FALSE for a vertical one
+#' If 'horiz' is set to TRUE, the setting 'labelRotation' will be ignored.
 #' @param stack_type \code{character}, "regular" if you wish stacked bars, "100" if
 #' you want 100 percent stacked bars. Default is set to "none".
-#' @param layered \code{boolean} TRUE for layered. If TRUE, stack_type must be set
+#' @param layered \code{logical} TRUE for layered bars. If TRUE, stack_type must be set
 #' to "none".
-#' @param show_values \code{boolean} TRUE to display values.
+#' @param show_values \code{logical} TRUE to display values.
 #' @param depth \code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.
-#' @param dataDateFormat \code{character}, default 'NULL'. Even if your chart parses dates,
-#' you can pass them as strings in your data - 
+#' @param dataDateFormat \code{character}, default set to NULL. Even if your chart parses dates,
+#' you can pass them as strings in your dataframe - 
 #' all you need to do is to set data date format and the chart will parse dates to date objects.
 #' Check this page for available formats.
 #' Please note that two-digit years (YY) as well as literal month names (MMM)  are NOT supported in this setting.
@@ -34,7 +34,7 @@
 #' fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
-#' @param ... see \link{amOptions} for more options
+#' @param ... see \link{amOptions} for more options.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 
