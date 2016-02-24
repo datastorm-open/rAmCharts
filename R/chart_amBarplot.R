@@ -74,12 +74,12 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   # convert x into character if necessary
   if (is.numeric(x)) x <- colnames(data)[x]
   # check if the column is compatible
-  if (!is.character(data[,x]))
-    stop(paste("The column ", x, " of the dataframe must be character."))
+  .testCharacter(char = data[,x])
   
   # check argument y
-  if (is.character(y) && !all(y %in% colnames(data)))
-    stop(paste("Cannot extract column(s)", y, "from data"))
+  if (is.character(y))
+    .testIn(vect = y, control = colnames(data))
+  
   
   sapply(1:length(y), FUN = function(i) {
     if (is.numeric(y[i])) {
