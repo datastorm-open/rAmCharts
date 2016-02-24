@@ -10,15 +10,15 @@ NULL
 #' Possible period values are:
 #' "ss" - seconds, "mm" - minutes, "hh" - hours, "DD" - days, "MM" - months and "YYYY" - years.
 #' property "count" specifies how many periods this button will select.
-#' "label" will be displayed on a button and "selected" is a boolean
+#' "label" will be displayed on a button and "selected" is logical.
 #' which specifies if this button is selected when chart is initialized or not.
 #' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string.
+#' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
 #' 
-#' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the package yet.
+#' @slot otherProperties \code{list}
+#' containing other avalaible properties not yet coded in the package.
 #' 
 #' @slot value
 #' Object of class \code{numeric}.
@@ -37,7 +37,7 @@ setClass(Class = "PeriodSelector", contains = "AmObject",
 #' Possible period values are:
 #' "ss" - seconds, "mm" - minutes, "hh" - hours, "DD" - days, "MM" - months and "YYYY" - years.
 #' property "count" specifies how many periods this button will select.
-#' "label" will be displayed on a button and "selected" is a boolean
+#' "label" will be displayed on a button and "selected" is a logical.
 #' which specifies if this button is selected when chart is initialized or not.
 #' @param ... Other properties.
 #' @return (updated) .Object of class \linkS4class{PeriodSelector}.
