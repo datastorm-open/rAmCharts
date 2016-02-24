@@ -41,7 +41,7 @@ fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - mont
 It's also possible to supply a number for increments, i.e. '15mm'
 which will instruct the chart that your data is supplied in 15 minute increments.}
 
-\item{...}{see \link{amOptions} for more options.}
+\item{...}{see \code{\link{amOptions}} for more options.}
 }
 \description{
 amOHLC computes an OHLC chart of the given value.
@@ -49,25 +49,25 @@ amOHLC computes an OHLC chart of the given value.
 \examples{
 require(pipeR)
 
-# load data
+# Load data
 data("data_candleStick2")
 
 # Basic example
 amOHLC(data = data_candleStick2)
 
-# change colors
+# Change colors
 amOHLC(data = data_candleStick2, positiveColor = "green", negativeColor = "red")
 
-# naming the axes
+# Naming the axes
 amOHLC(data = data_candleStick2, xlab = "categories", ylab = "values") \%>>\% setChartCursor()
 
 # Rotate the labels for x axis
 amOHLC(data = data_candleStick2, labelRotation = 90)
 
-# change names
+# Change names
 amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max")) \%>>\% setChartCursor()
 
-# use amOptions
+# Use amOptions
 amOHLC(data = data_candleStick2, zoom = FALSE)
 }
 

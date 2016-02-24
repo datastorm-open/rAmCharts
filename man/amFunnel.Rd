@@ -15,39 +15,41 @@ colors in hexadecimal) see \link{data_funnel}.}
 
 \item{inverse}{\code{logical}, if TRUE, the funnel chart will be inversed.}
 
-\item{neck_height}{\code{numeric} value between 0 and 100 : if a bottleneck
+\item{neck_height}{\code{numeric}, value between 0 and 100 : if a bottleneck
 is desired, this value determines its heigh. Default to NULL.}
 
-\item{neck_width}{\code{numeric} value between 0 and 100 : if a bottleneck
+\item{neck_width}{\code{numeric}, value between 0 and 100 : if a bottleneck
 is desired, this value determines its witdh. Default to NULL.}
 
-\item{depth}{\code{numeric} if > 0, chart is displayed in 3D, only for
+\item{depth}{\code{numeric}, if > 0, chart is displayed in 3D, only for
 pyramid chart (without a bottleneck). Value between 0 and 100.}
 
-\item{label_side}{\code{character} label position : "right" or "left".}
+\item{label_side}{\code{character}, label position : "right" or "left".}
 
-\item{margin_right}{\code{numeric} margin at the right side.}
+\item{margin_right}{\code{numeric}, margin at the right side.}
 
-\item{margin_left}{\code{numeric} margin at the left side.}
+\item{margin_left}{\code{numeric}, margin at the left side.}
 
-\item{...}{see \link{amOptions} for more options.}
+\item{...}{see \code{\link{amOptions}} for more options.}
 }
 \description{
 amFunnel computes a funnel chart of the given value.
 }
 \examples{
-#Basic example : pyramid
+# Load data
 data(data_funnel)
+
+# Reference example : pyramid
 amFunnel(data = data_funnel, inverse = TRUE)
              
-#Change the orientation and legend side              
+# Change the orientation and legend side              
 amFunnel(data = data_funnel, inverse = FALSE,
                label_side = "left", margin_right = 15, margin_left = 160)
 
-#Basic example : Funnel chart
+# Basic example : Funnel chart
 amFunnel(data = data_funnel, neck_height = 30, neck_width = 40)
                
-#3D pyramid
+# 3D pyramid
 amFunnel(data = data_funnel, depth = 50, inverse = TRUE)
 }
 

@@ -1,4 +1,4 @@
-#' @title Convert a data.frame in list
+#' @title Converts a data.frame in list
 #' @description This function is useful for the use of rAmChart, particularly for drill-down feature
 #' 
 #' @param df \code{data.frame} containing the data.

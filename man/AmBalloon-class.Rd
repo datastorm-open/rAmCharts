@@ -37,7 +37,7 @@ See examples for details.
 Inherited from \linkS4class{AmObject}.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.
+containing other avalaible properties not yet implemented in the package.
 Inherited from \linkS4class{AmObject}.}
 
 \item{\code{value}}{\code{numeric}.

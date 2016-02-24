@@ -7,7 +7,7 @@
 \alias{legend}
 \alias{setUseGraphSettings}
 \alias{setUseGraphSettings,AmLegend,logical-method}
-\title{Initialize}
+\title{Initializes legend of the chart}
 \usage{
 \S4method{initialize}{AmLegend}(.Object, useGraphSettings, ...)
 
@@ -22,16 +22,14 @@ setUseGraphSettings(.Object, useGraphSettings)
 \arguments{
 \item{.Object}{\linkS4class{AmLegend}.}
 
-\item{useGraphSettings}{\code{logical}.
-If TRUE, border color will be changed when user rolls-over the slice, graph, 
+\item{useGraphSettings}{\code{logical}, 
+if TRUE, border color will be changed when user rolls-over the slice, graph, 
 etc, instead of background color.}
 
 \item{...}{Other properties of \linkS4class{AmLegend}.
 See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}.}
 }
 \description{
-Constructor for an AmLegend.
-
 Constructor for an AmLegend.
 }
 \examples{

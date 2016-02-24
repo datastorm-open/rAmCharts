@@ -5,7 +5,7 @@
 \alias{AmChart-class}
 \title{AmChart}
 \description{
-Define the AmChart properties.
+Defines the AmChart properties.
 }
 \details{
 API for plotting AmChart with R.
@@ -117,7 +117,7 @@ The list must be named as in the official API. Each element must be a character 
 Run \code{runShinyExamples()} for examples.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

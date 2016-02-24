@@ -17,9 +17,8 @@ NULL
 #' to indicate which axis should display balloon.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -30,18 +29,18 @@ setClass(Class = "ChartCursor", contains = "AmObject",
            valueLineAxis = "listOrCharacter"
          ))
 
-#' @title Initialize a ChartCursor
-#' @description Initialize or update a \linkS4class{ChartCursor}.
+#' @title Initializes a ChartCursor
+#' @description Initializes or updates a \linkS4class{ChartCursor}.
 #' 
 #' @param .Object \linkS4class{ChartCursor}.
-#' @param oneBalloonOnly \code{logical}.
-#' If TRUE, border color will be changed when user rolls-over the slice, graph, 
+#' @param oneBalloonOnly \code{logical}, 
+#' if TRUE, border color will be changed when user rolls-over the slice, graph, 
 #' etc, instead of background color.
 #' @param valueLineAxis \linkS4class{ValueAxis}.
-#' If you set valueLineBalloonEnabled to true,
+#' If you set valueLineBalloonEnabled to TRUE,
 #' but you have more than one axis, you can use this property
 #' to indicate which axis should display balloon.
-#' @param ... other properties.
+#' @param ... other properties of ChartCursor.
 #' See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}
 #' 
 #' @return (updated) .Object of class \linkS4class{ChartCursor}.

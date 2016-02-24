@@ -7,7 +7,7 @@ setClassUnion(name = "AmCharts", members = c("AmChart", "AmStockChart"))
 #' @description Basic method to plot an AmChart 
 #' @details Plots an object of class \code{\linkS4class{AmChart}}
 #' @param x \linkS4class{AmChart}
-#' @param y unused
+#' @param y unused.
 #' @param width \code{character}.
 #' @param height \code{character}.
 #' @param background \code{character}.

@@ -13,7 +13,7 @@
 \item{object}{\linkS4class{AmStockChart}}
 }
 \description{
-Display the object in the console
+Displays the object in the console
 
 Display the object in the console
 }

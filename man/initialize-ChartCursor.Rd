@@ -8,7 +8,7 @@
 \alias{setOneBalloonOnly,ChartCursor,logical-method}
 \alias{setValueLineAxis}
 \alias{setValueLineAxis,ChartCursor,ValueAxisOrCharacterOrMissing-method}
-\title{Initialize a ChartCursor}
+\title{Initializes a ChartCursor}
 \usage{
 \S4method{initialize}{ChartCursor}(.Object, oneBalloonOnly, valueLineAxis, ...)
 
@@ -26,16 +26,16 @@ setValueLineAxis(.Object, valueLineAxis = NULL, ...)
 \arguments{
 \item{.Object}{\linkS4class{ChartCursor}.}
 
-\item{oneBalloonOnly}{\code{logical}.
-If TRUE, border color will be changed when user rolls-over the slice, graph, 
+\item{oneBalloonOnly}{\code{logical}, 
+if TRUE, border color will be changed when user rolls-over the slice, graph, 
 etc, instead of background color.}
 
 \item{valueLineAxis}{\linkS4class{ValueAxis}.
-If you set valueLineBalloonEnabled to true,
+If you set valueLineBalloonEnabled to TRUE,
 but you have more than one axis, you can use this property
 to indicate which axis should display balloon.}
 
-\item{...}{other properties.
+\item{...}{other properties of ChartCursor.
 See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}}
 
 \item{animationDuration}{\code{numeric}, duration of animation of a line, in seconds.}
@@ -44,7 +44,7 @@ See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}}
 (updated) .Object of class \linkS4class{ChartCursor}.
 }
 \description{
-Initialize or update a \linkS4class{ChartCursor}.
+Initializes or updates a \linkS4class{ChartCursor}.
 }
 \examples{
 new("ChartCursor", oneBalloonOnly = TRUE)

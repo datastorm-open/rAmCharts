@@ -27,7 +27,7 @@ setStockGraph(.Object, stockGraph = NULL, ...)
 This is the graph on which event will be displayed.
 You can use a reference to the stock graph object or id of the graph.}
 
-\item{...}{Other properties.}
+\item{...}{other properties of StockEvent.}
 }
 \value{
 (updated) argument .Object of class \linkS4class{StockEvent}.

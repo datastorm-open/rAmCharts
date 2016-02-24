@@ -4,7 +4,7 @@ NULL
 #' @title ChartScrollbar class
 #' @author DataKnowledge
 #' 
-#' @description Create a scrollbar for amSerialChart and amXYChart charts.
+#' @description Creates a scrollbar for amSerialChart and amXYChart charts.
 #' @details Run \code{api("ChartScrollbar")} for more information and all avalaible properties.
 #' 
 #' @slot enabled \code{logical}.
@@ -15,24 +15,24 @@ NULL
 #' Only Serial chart's scrollbar can display a graph.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
 setClass(Class = "ChartScrollbar", contains = "AmObject",
          representation = representation(graph = "listOrCharacter", enabled = "logical" ))
 
-#' @title Initialize a ChartScrollbar
+#' @title Initializes a ChartScrollbar
 #' @param .Object \linkS4class{ChartScrollbar}.
 #' @param graph \linkS4class{AmGraph}.
 #' Specifies which graph will be displayed in the scrollbar.
-#' @param enabled \code{logical}.
-#' Specifies if the chart should be updated while dragging/resizing the scrollbar
-#' or only at the moment when user releases mouse button.
-#' @param ... Other preperties
+#' @param enabled \code{logical}, 
+#' specifies if the chart should be updated while dragging/resizing the scrollbar
+#' or only when user releases mouse button.
+#' @param ... other properties of ChartScrollbar.
 #' See \url{http://docs.amcharts.com/3/javascriptcharts/ChartScrollbar}
+#' 
 #' @examples
 #' new("ChartScrollbar", graph = "g1")
 #' new("ChartScrollbar", graph = amGraph(test = 1))
@@ -70,11 +70,11 @@ chartScrollbar <- function(graph, enabled = TRUE,...){
 }
 
 #' @rdname initialize-ChartScrollbar
-#' @description ChartScrollbarSettings settings set's settings for chart scrollbar.
+#' @description ChartScrollbarSettings sets settings for chart scrollbar.
 #' If you change a property after the chart is initialized,
-#' you should call stockChart.validateNow() method in order for it to work.
+#' you should call stockChart.validateNow() method.
 #' If there is no default value specified, default value of ChartScrollbar class will be used.
-#' Run \code{api("ChartScrollbarSettings")} for more information.
+#' Run \code{api("ChartScrollbarSettings")} for more informations.
 #' @examples
 #' chartScrollbar()
 #' chartScrollbar(enabled = TRUE)

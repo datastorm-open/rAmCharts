@@ -19,9 +19,9 @@ setProperties(.Object, list_prop, ...)
 \arguments{
 \item{.Object}{\code{\linkS4class{AmObject}}.}
 
-\item{name}{\code{character} containing the name of the listener.}
+\item{name}{\code{character}, name of the listener.}
 
-\item{expression}{\code{character} containing the associated function event.}
+\item{expression}{\code{character}, associated function event.}
 
 \item{list_prop}{(Optional) \code{list} containing properties to set.
 The former properties will be overwritten.}

@@ -4,20 +4,19 @@ NULL
 #' @title StockEvent class
 #' @author DataKnowledge
 #' 
-#' @description StockEvent is object which holds information about event (bullet).
+#' @description StockEvent is an object which holds information about event (bullet).
 #' Values from StockEventsSettings will be used if not set.
 #' Stock event bullet's size depends on it's graphs fontSize.
 #' When user rolls-over, clicks or rolls-out of the event bullet, AmStockChart dispatches events.
-#' @details Run \code{api("StockEvent")} for more information.
+#' @details Run \code{api("StockEvent")} for more informations.
 #' 
 #' @slot stockGraph \linkS4class{AmGraph} containing properties of stockGraph.
 #' This is the graph on which event will be displayed.
 #' You can use a reference to the stock graph object or id of the graph.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -33,7 +32,7 @@ setClass(Class = "StockEvent", contains = "AmObject",
 #' @param stockGraph \linkS4class{AmGraph} created with stockGraph(*).
 #' This is the graph on which event will be displayed.
 #' You can use a reference to the stock graph object or id of the graph.
-#' @param ... Other properties.
+#' @param ... other properties of StockEvent.
 #' 
 #' @return (updated) argument .Object of class \linkS4class{StockEvent}.
 #' @rdname initialize-StockEvent

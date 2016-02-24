@@ -13,7 +13,7 @@
 data_AirPassengers
 }
 \description{
-Based on the dataset 'AirPassengers' from the package 'datasets'
+Based on the dataset 'AirPassengers' from the package 'datasets'.
 }
 \keyword{datasets}
 

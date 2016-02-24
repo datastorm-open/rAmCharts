@@ -23,7 +23,7 @@ NULL
 #' See examples for details.
 #' Inherited from \linkS4class{AmObject}.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' Inherited from \linkS4class{AmObject}.
 #' @slot value \code{numeric}.
 #' Inherited from \linkS4class{AmObject}.
@@ -38,19 +38,19 @@ setClass(Class = "AmBalloon", contains = "AmObject",
            fillColor = "character"
          ))
 
-#' @title Initialize an AmBalloon
-#' @description Initialize or update an object \linkS4class{AmBalloon}.
+#' @title Initializes an AmBalloon
+#' @description Initializes or updates an object \linkS4class{AmBalloon}.
 #' 
 #' @param .Object \linkS4class{AmBalloon}.
-#' @param adjustBorderColor \code{logical}.
-#' If TRUE, border color will be changed when user rolls-over the slice, graph, 
+#' @param adjustBorderColor \code{logical}, 
+#' if TRUE, border color will be changed when user rolls-over the slice, graph, 
 #' etc, instead of background color.
-#' @param color \code{character}.
-#' Balloon text color.
-#' @param cornerRadius \code{numeric}.
-#' Balloon corner radius.
-#' @param fillColor \code{character}.
-#' Balloon background color. It is usually defined by the chart itself. If
+#' @param color \code{character}, 
+#' balloon text color.
+#' @param cornerRadius \code{numeric}, 
+#' balloon corner radius.
+#' @param fillColor \code{character}, 
+#' balloon background color. It is usually defined by the chart itself. If
 #' "adjustBorderColor" is set to TRUE, the balloon background color will be
 #' equal to "fillColor".
 #' @param ... other properties of AmBalloon.

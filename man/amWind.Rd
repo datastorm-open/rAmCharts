@@ -7,30 +7,30 @@
 amWind(data, col = NULL, backTransparency = 0.5, ...)
 }
 \arguments{
-\item{data}{: columns are series of values, from week wind (first column)
-to strong wind (last column). See \link{data_wind}.}
+\item{data}{\code{data.frame}, a dataframe which columns are series of values, 
+from weakest wind (first column) to stronger wind (last column). See \link{data_wind}.}
 
-\item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00".}
+\item{col}{\code{character}, color(s) of serie(s) hexadecimal like "#00FF00".}
 
-\item{backTransparency}{\code{numeric} background transparency, between 0 and 1.}
+\item{backTransparency}{\code{numeric}, background transparency, between 0 and 1.}
 
-\item{...}{see \link{amOptions} for more options.}
+\item{...}{see \code{\link{amOptions}} for more options.}
 }
 \description{
-wind computes a windplot of the given data values.
+amWind computes a windplot of the given data values.
 }
 \examples{
-# load data
+# Load data
 data("data_wind")
 
-# basic
+# Reference example : wind chart 
 amWind(data_wind)
 
-# color
+# Change color
 amWind(data = data_wind, col = "#0404B4")
 amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"))
 
-# backTransparency
+# Change backTransparency
 amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = 0.1)
 amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = 1)
 amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = c(0.1, 0.1, 1))

@@ -9,12 +9,12 @@
 #' based on columns.
 #' @param xlab,ylab \code{character}, labels of the axis.
 #' @param ylim \code{numeric}, y values range with sensible defaults.
-#' @param names \code{character} in case of vector, name on x-axis.
+#' @param names \code{character}, name on x-axis, if object is a vector.
 #' @param col \code{character}, color(s) to be used to fill the boxplot.
-#' @param horiz \code{logical} TRUE to rotate chart. 
-#' @param id \code{character} in case of using a data.frame, column name of id to 
-#' identify outliers.
-#' @param ... Other parameters for \link{amOptions}.
+#' @param horiz \code{logical}, TRUE to rotate chart. 
+#' @param id \code{character},  column name of id to 
+#' identify outliers, if object is a dataframe.
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 

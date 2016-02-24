@@ -9,28 +9,27 @@ NULL
 #' 
 #' @slot axis \code{list} containing properties of \linkS4class{GaugeAxis}.
 #' Axis of the arrow. You can use reference to the axis or id of the axis.
-#' If you don't set any axis, the first axis of a chart will be used.
-#' @slot listeners \code{list} containining the listeners to add to the object.
+#' If you don't set any axis, the first axis of the chart will be used.
+#' @slot listeners \code{list} containining the listeners to add to the chart.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
 setClass(Class = "GaugeArrow", contains = "AmObject",
          representation = representation(axis = "listOrCharacter"))
 
-#' @title Initialize a GaugeArrow
-#' @description Use the constructor to create the object with its properties
+#' @title Initializes a GaugeArrow
+#' @description Uses the constructor to create the object with its properties
 #' or update an existing one with the setters.
 #' 
 #' @param .Object \linkS4class{GaugeArrow}.
 #' @param alpha \code{numeric}.
 #' @param axis \linkS4class{GaugeAxis}.
 #' Axis of the arrow. You can use reference to the axis or id of the axis.
-#' If you don't set any axis, the first axis of a chart will be used.
-#' @param ... Other properties.
+#' If you don't set any axis, the first axis of the chart will be used.
+#' @param ... other properties of GaugeArrow.
 #' 
 #' @return (updated) .Object of class \linkS4class{GaugeArrow}.
 #' 

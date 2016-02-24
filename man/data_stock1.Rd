@@ -14,7 +14,7 @@
 data_stock1
 }
 \description{
-A list containing 4 datasets
+A list containing 4 datasets.
 }
 \keyword{datasets}
 

@@ -7,7 +7,7 @@
 \alias{setFillAlpha}
 \alias{setFillAlpha,Guide,numeric-method}
 \alias{setValueAxis,Guide,ValueAxisOrCharacterOrMissing-method}
-\title{Initialize a Guide}
+\title{Initializes a Guide}
 \usage{
 \S4method{initialize}{Guide}(.Object, fillAlpha, valueAxis, value, ...)
 
@@ -23,10 +23,10 @@ setFillAlpha(.Object, fillAlpha)
 \arguments{
 \item{.Object}{\linkS4class{Guide}}
 
-\item{fillAlpha}{\code{numeric}.
-Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
+\item{fillAlpha}{\code{numeric}, 
+specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
 Possible values are: "start" and "middle"
-This setting doesn't work if parseDates is set to true.}
+This setting doesn't work if parseDates is set to TRUE.}
 
 \item{valueAxis}{\linkS4class{ValueAxis} class.
 As you can add guides directly to the chart, you might need to specify 
@@ -34,10 +34,10 @@ which value axis should be used.}
 
 \item{value}{\code{numeric}.}
 
-\item{...}{Other properties.}
+\item{...}{other properties of Guide.}
 }
 \description{
-Use the constructor to create the object
+Uses the constructor to create the object
 or update an existing one with the setters.
 }
 \examples{

@@ -16,7 +16,7 @@ NULL
 #' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' Guides belonging to this axis. Use addGuide method
 #' 
@@ -25,8 +25,8 @@ NULL
 setClass(Class = "ValueAxis", contains = "AxisBase",
          representation = representation(title = "character"))
 
-#' @title Initialize
-#' @description Creates a ValuesAxis or update its properties.
+#' @title Initializes ValueAxis
+#' @description Creates a ValuesAxis or updates its properties.
 #' 
 #' @param .Object \linkS4class{ValueAxis}.
 #' @param title \code{character}.

@@ -10,7 +10,7 @@
 \arguments{
 \item{x}{\linkS4class{AmChart}.}
 
-\item{withDetail}{\code{logical}. Should the detail be printed ?}
+\item{withDetail}{\code{logical}, TRUE to display details.}
 
 \item{...}{Other properties.}
 }

@@ -11,43 +11,44 @@ amRadar(data, col = NULL, backTransparency = 0.5, type = "polygons",
 \item{data}{a data frame first column is named "label" (character), other columns are series of values,
 see \link{data_radar}.}
 
-\item{col}{\code{character} color(s) of serie(s) hexadecimal like "#00FF00".}
+\item{col}{\code{character}, color(s) of serie(s) hexadecimal like "#00FF00".}
 
-\item{backTransparency}{\code{numeric} background transparency, between 0 and 1.}
+\item{backTransparency}{\code{numeric}, background transparency, between 0 and 1.}
 
-\item{type}{\code{character} "polygons" or "circle", type of radar.}
+\item{type}{\code{character}, type of radar. Possible values are : "polygons" or "circle".}
 
-\item{pch}{\code{character} symbols must be in "round", "square", "triangleUp", 
+\item{pch}{\code{character}, points symbols. Possible values are : "round", "square", "triangleUp", 
 "triangleDown", "triangleLeft", "triangleRight", "bubble", 
 "diamond", "xError", "yError".}
 
-\item{...}{see \link{amOptions} for more options.}
+\item{...}{see \code{\link{amOptions}} for more options.}
 }
 \description{
 radar computes a radarplot of the given data values.
 }
 \examples{
 require(pipeR)
-#Data
+
+# Load data
 data("data_radar")
 
-#Basic
+# Reference example : radar chart 
 amRadar(data_radar, labelRotation = 90)
 
-#col
+# Change color
 amRadar(data_radar, col = "#FF0000")
 amRadar(data_radar, col = c("#0000FF", "#00FF00", "#FF0000"))
 
 
-#backTransparency
+# Change backTransparency
 amRadar(data_radar, backTransparency = 0.6)
 amRadar(data_radar, backTransparency = c(0, 0.4, 0.6))
 
 
-#type
+# Change type
 amRadar(data_radar, type = "circles")
 
-#pch
+# Change pch
 amRadar(data_radar,  pch = "triangleRight")
 amRadar(data_radar,  pch = "triangleLeft")
 

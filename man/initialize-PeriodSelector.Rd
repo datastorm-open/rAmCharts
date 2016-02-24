@@ -6,7 +6,7 @@
 \alias{addPeriod,PeriodSelector-method}
 \alias{initialize,PeriodSelector-method}
 \alias{periodSelector}
-\title{Initialize a PeriodSelector}
+\title{Initializes a PeriodSelector}
 \usage{
 \S4method{initialize}{PeriodSelector}(.Object, periods, ...)
 
@@ -27,13 +27,13 @@ property "count" specifies how many periods this button will select.
 "label" will be displayed on a button and "selected" is a logical.
 which specifies if this button is selected when chart is initialized or not.}
 
-\item{...}{Other properties.}
+\item{...}{other properties of PeriodSelector.}
 }
 \value{
 (updated) .Object of class \linkS4class{PeriodSelector}.
 }
 \description{
-Use the constructors to create the object with its properties
+Uses the constructors to create the object with its properties
 or update an existing one with the setters.
 }
 \examples{

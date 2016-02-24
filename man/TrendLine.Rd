@@ -15,7 +15,7 @@
 \alias{setValueAxisX}
 \alias{setValueAxisX,TrendLine,ValueAxisOrCharacterOrMissing-method}
 \alias{trendLine}
-\title{Initialize a TrendLine}
+\title{Initializes a TrendLine}
 \usage{
 \S4method{initialize}{TrendLine}(.Object, initialValue, initialXValue,
   finalValue, finalXValue, valueAxis, valueAxisX, ...)
@@ -50,13 +50,13 @@ setValueAxisX(.Object, valueAxisX = NULL, ...)
 \arguments{
 \item{.Object}{\linkS4class{TrendLine}.}
 
-\item{initialValue}{\code{numeric}. Value from which trend line should start.}
+\item{initialValue}{\code{numeric}, value from which trend line should start.}
 
-\item{initialXValue}{\code{numeric}. Used by XY chart only. X value from which trend line should start.}
+\item{initialXValue}{\code{numeric}, used by XY chart only. X value from which trend line should start.}
 
-\item{finalValue}{\code{numeric}. Value at which trend line should end.}
+\item{finalValue}{\code{numeric}, value at which trend line should end.}
 
-\item{finalXValue}{\code{numeric}. Used by XY chart only. X value at which trend line should end.}
+\item{finalXValue}{\code{numeric}, used by XY chart only. X value at which trend line should end.}
 
 \item{valueAxis}{\linkS4class{ValueAxis}.
 Value axis of the trend line. Will use first value axis of the chart if not set any.
@@ -67,13 +67,13 @@ Used by XY chart only. X axis of trend line.
 Will use first X axis of the chart if not set any.
 You can use a reference to the value axis object or id of value axis.}
 
-\item{...}{Other properties.}
+\item{...}{other properties of TrendLine.}
 }
 \value{
 (possibly updated) .Object of class \linkS4class{TrendLine}.
 }
 \description{
-Use the constructor to create the object
+Uses the constructor to create the object
 or update an existing one with the setters.
 }
 \examples{

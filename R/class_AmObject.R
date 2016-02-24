@@ -5,7 +5,7 @@
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string. 
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -17,7 +17,7 @@ setClass(Class = "AmObject",
 
 #' @title Visualize with show
 #' @description Display the object in the console.
-#' @param object \linkS4class{AmObject}
+#' @param object \linkS4class{AmObject}.
 #' @examples
 #' pipeR::pipeline(
 #'   rAmCharts::amPieChart(valueField = "value", titleField = "key", creditsPosition = "top-right",
@@ -37,7 +37,7 @@ setMethod(f = "show", signature = "AmObject",
 #' @title Visualize with print
 #' @description Display the object in the console.
 #' @param x \linkS4class{AmChart}.
-#' @param withDetail \code{logical}. Should the detail be printed ?
+#' @param withDetail \code{logical}, TRUE to display details.
 #' @param ... Other properties.
 #' @examples
 #' print(new("AmChart", categoryField = "variables", type = "serial"))
@@ -75,8 +75,8 @@ setMethod(f = "print", signature = "AmObject",
 #' @description Methods for inherited classes.
 #' 
 #' @param .Object \code{\linkS4class{AmObject}}.
-#' @param name \code{character} containing the name of the listener.
-#' @param expression \code{character} containing the associated function event.
+#' @param name \code{character}, name of the listener.
+#' @param expression \code{character}, associated function event.
 #' 
 #' @return The updated object.
 #' @examples
@@ -164,12 +164,12 @@ setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
 # > listProperties ####
 
 #' @title List properties of an S4 object
-#' @description Each S4 class implement the method to list its properties
-#' (usefull for update complex properties).
+#' @description Each S4 class implements the method to list its properties
+#' (usefull to update complex properties).
 #' 
 #' @param .Object any class object of the package
 #' 
-#' @return A list containing all the properties of the chart.
+#' @return A list containing all the chart's properties.
 #' 
 #' @examples
 #' amChart(type = "serial")

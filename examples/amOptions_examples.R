@@ -1,36 +1,34 @@
+library(pipeR)
+
+# Load data
 data(data_pie) 
 
-library(pipeR)
-#Export                 
+# Export                 
 amPie(data = data_pie)%>>%
   amOptions(export = TRUE)
 
-#Legend
+# Legend
 amPie(data = data_pie)%>>%
   amOptions(legend = TRUE)
 
-#Legend position
+# Legend position
 amPie(data = data_pie)%>>%
   amOptions(legend = TRUE, legendPosition = "bottom")
 
-#credits Position
+# Credits position
 amPie(data = data_pie)%>>%
   amOptions(creditsPosition = "bottom-right")
 
-#credits Position
-amPie(data = data_pie)%>>%
-  amOptions(creditsPosition = "bottom-right")
-
-#Theme
+# Theme
 amPie(data = data_pie)%>>%
   amOptions(theme = "chalk")
 
-#Title
+# Title
 amPie(data = data_pie)%>>%
   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40, theme = "chalk")
 
 
-#custom exemple
+# Custom exemple
 amPie(data = data_pie)%>>%
   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40,
             theme = "dark", legend = TRUE, legendPosition = "bottom",

@@ -22,11 +22,10 @@ Run \code{api("Label")} for more information and all avalaible properties.
 \item{\code{y}}{\code{numeric}. Y position of a label.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must be a character string.
-See examples for details.}
+The list must be named as in the official API. Each element must be a character string.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

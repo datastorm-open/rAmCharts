@@ -1,10 +1,14 @@
 library(pipeR)
+
+# Load data
 data(data_mekko)
+
+# Reference example : mekko chart
 amMekko(x = "var1", y = "var2", data = data_mekko)
 
-#Horizontal :
+# Horizontal
 amMekko(x = "var1", y = "var2", data = data_mekko, horiz = TRUE)
 
-#display values :
+# Display values
 amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)%>>%amOptions()
 

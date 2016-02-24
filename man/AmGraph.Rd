@@ -11,7 +11,7 @@
 \alias{setType,AmGraph,character-method}
 \alias{setValueField}
 \alias{setValueField,AmGraph,character-method}
-\title{Initialize an AmGraph}
+\title{Initializes an AmGraph}
 \usage{
 \S4method{initialize}{AmGraph}(.Object, animationPlayed = FALSE, balloonText,
   title, type, valueField, ...)
@@ -37,23 +37,24 @@ setValueField(.Object, valueField)
 
 \item{animationPlayed}{\code{logical}.}
 
-\item{balloonText}{\code{character}.
-Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
+\item{balloonText}{\code{character}, 
+balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
 or any other field name from your data provider. HTML tags can also be used.}
 
-\item{title}{\code{character}. Graph title.}
+\item{title}{\code{character}, graph title.}
 
-\item{type}{\code{character}.
-Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
+\item{type}{\code{character}, 
+type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
 XY and Radar charts can only display "line" otherArguments graphs.}
 
-\item{valueField}{\code{character}.
-Name of the value field in your dataProvider.}
+\item{valueField}{\code{character}, 
+name of the value field in your dataProvider.}
 
-\item{...}{Other properties.}
+\item{...}{other properties of AmGraph.
+See \url{http://docs.amcharts.com/3/javascriptcharts/AmGraph}.}
 }
 \value{
-An object of class \linkS4class{AmGraph} with the properties given.
+An object of class \linkS4class{AmGraph} with the given properties.
 }
 \description{
 To create an AmGraph, you can use the usual methode

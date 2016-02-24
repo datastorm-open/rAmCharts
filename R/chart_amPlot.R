@@ -34,7 +34,7 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' @param cex \code{numeric}, bullet size.
 #' @param lty \code{numeric}, line type (dashes).
 #' @param lwd \code{numeric}, line width 
-#' @param ... Other parameters for \link{amOptions}.
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @example examples/amPlot_examples.R
 #' 

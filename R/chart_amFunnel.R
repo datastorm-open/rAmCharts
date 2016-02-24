@@ -4,17 +4,17 @@
 #' @param data a data frame of at least 2 columns : value (numeric, positive), 
 #' and description (character). You can add a third column "color" (character,
 #' colors in hexadecimal) see \link{data_funnel}.
-#' @param neck_height \code{numeric} value between 0 and 100 : if a bottleneck
+#' @param neck_height \code{numeric}, value between 0 and 100 : if a bottleneck
 #' is desired, this value determines its heigh. Default to NULL.
-#' @param neck_width \code{numeric} value between 0 and 100 : if a bottleneck
+#' @param neck_width \code{numeric}, value between 0 and 100 : if a bottleneck
 #' is desired, this value determines its witdh. Default to NULL.
-#' @param depth \code{numeric} if > 0, chart is displayed in 3D, only for
+#' @param depth \code{numeric}, if > 0, chart is displayed in 3D, only for
 #' pyramid chart (without a bottleneck). Value between 0 and 100.
 #' @param inverse \code{logical}, if TRUE, the funnel chart will be inversed. 
-#' @param label_side \code{character} label position : "right" or "left".
-#' @param margin_right \code{numeric} margin at the right side.
-#' @param margin_left \code{numeric} margin at the left side.
-#' @param ... see \link{amOptions} for more options.
+#' @param label_side \code{character}, label position : "right" or "left".
+#' @param margin_right \code{numeric}, margin at the right side.
+#' @param margin_left \code{numeric}, margin at the left side.
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @example examples/amFunnel_examples.R
 #'

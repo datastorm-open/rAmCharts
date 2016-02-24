@@ -13,7 +13,7 @@ xc <- paste("cat.", 1:100)
 xf <- factor(xc)
 y <- rnorm(length(xc))
 
-# change type
+# Change type
 amPlot(x = xc, y = y, type = 'l')
 amPlot(x = xf, y = y, type = 'l') # x can be either a character or a factor
 amPlot(x = xc, y = y, type = "sl")
@@ -42,37 +42,37 @@ amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-Y
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
 
-# change type
+# Change type
 amPlot(x = x, y = y) # default type = "p"
 amPlot(x = x, y = y, type = "l")
 
-# add a legend
+# Add a legend
 amPlot(x = x, y = y, type = "l") %>>%
   setLegend(useGraphSettings = TRUE)
 
-# add a scrollbar
+# Add a scrollbar
 amPlot(x = x, y = y, scrollbar = TRUE)
 amPlot(x = x, y = y, scrollbar = TRUE)
 
-# change lty
+# Change lty
 amPlot(x = x, y = y, type = "l", lty = 2)
 
-# add weight
+# Add weight
 weights <- rnorm(100, sd = 5)
 amPlot(x = x, y = y, type = "p", weights = weights)
 
-# change cex
+# Change cex
 amPlot(x = x, y = y, type = "p", cex = 1)
 amPlot(x = x, y = y, type = "p", cex = 10)
 
 
-# change color
+# Change color
 amPlot(x = x, y = y, col = "blue")
 
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
 
-# add title from amOptions
+# Add title from amOptions
 amPlot(x = x, y = y, main = "title")
 
 # ---
@@ -80,26 +80,26 @@ amPlot(x = x, y = y, main = "title")
 # ---
 x <- rnorm(100)
 
-# simple scatter plot
+# Simple scatter plot
 amPlot(x = x)
 
-# add title
+# Add title
 amPlot(x = x, main = "Title")
 
-# set a title
+# Set a title
 amPlot(x = x, main = "Title")
 
-# change type (set to "p" by default)
+# Change type (set to "p" by default)
 amPlot(x = x, type = "l")
 amPlot(x = x, type = "sl")
 amPlot(x = x, type = "st")
 amPlot(x = x, type = "p")
 amPlot(x = x, type = "b")
 
-# change color
+# Change color
 amPlot(x = rnorm(100), col = "lightblue")
 
-# change bullets
+# Change bullets
 x <- rnorm(100)
 amPlot(x = x, bullet = "diamond")
 amPlot(x = x, bullet = "square")
@@ -111,22 +111,22 @@ amPlot(x = x, bullet = "bubble")
 amPlot(x = x, bullet = "yError", error = sample(100))
 amPlot(x = x, bullet = "xError", error = sample(100))
 
-# change lty
+# Change lty
 x <- rnorm(100)
 amPlot(x = x, type = "b", lty = 1)
 amPlot(x = x, type = "b", lty = 6)
 
-# change cex
+# Change cex
 x <- rnorm(100)
 amPlot(x = x, cex = 1)
 amPlot(x = x, cex = 10)
 
-# change lwd
+# Change lwd
 x <- rnorm(100)
 amPlot(x = x, type = "st", lwd = 1)
 amPlot(x = x, type = "st", lwd = 2)
 
-# add a title from amOptions
+# Add a title from amOptions
 amPlot(x = x, type = "st", lwd = 2, main = "My title")
 
 # -------------------
@@ -135,21 +135,21 @@ amPlot(x = x, type = "st", lwd = 2, main = "My title")
 
 iris <- get("iris", "package:datasets")
 
-# select the column to plot with a character or a numeric
+# Select the column to plot with a character or a numeric
 amPlot(iris, columns = "Sepal.Length")
 amPlot(iris, columns = 1)
 
-# select several columns
+# Select several columns
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"))
 
-# select all numeric columns
+# Select all numeric columns
 amPlot(iris)
 
-# add a legend 
+# Add a legend 
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) %>>%
   setLegend(useGraphSettings = TRUE)
 
-# add parameter from amOptions
+# Add parameter from amOptions
 co2 <- data.table(get("CO2", "package:datasets"))
 amPlot(co2, zoom = TRUE)
 
@@ -186,5 +186,5 @@ amPlot(Sepal.Length~Sepal.Width, data = iris)
 amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) %>>%
   setLegend(useGraphSettings = TRUE)
 
-# add parameter from amOptions
+# Add parameter from amOptions
 amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)

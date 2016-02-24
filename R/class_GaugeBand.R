@@ -9,10 +9,10 @@ NULL
 #' @details Run \code{api("GaugeBand")} for more information and all avalaible properties.
 #' 
 #' @slot id \code{character}. Unique id of a band.
-#' @slot listeners \code{list} containining the listeners to add to the object.
+#' @slot listeners \code{list} containining the listeners to add to the chart.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
-#' @slot otherProperties \code{list}, containing other avalaible properties
+#' @slot otherProperties \code{list}
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -20,14 +20,14 @@ setClass(Class = "GaugeBand", contains = "AmObject",
          representation = representation(id = "character")
 )
 
-#' @title Initialize a GaugeBand
-#' @description Use the constructor to create the object
+#' @title Initializes a GaugeBand
+#' @description Uses the constructor to create the object
 #' or update an existing one with the setters.
 #' 
 #' @param .Object \linkS4class{GaugeBand} (or "GaugeBand" for initialize).
 #' @param alpha \code{numeric}.
 #' @param id \code{character}.
-#' @param ... other properties.
+#' @param ... other properties of GaugeBand.
 #' @return (updated) .Object of class \linkS4class{GaugeBand}.
 #' 
 #' @examples

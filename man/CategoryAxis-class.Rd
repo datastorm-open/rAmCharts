@@ -6,7 +6,7 @@
 \title{CategoryAxis class}
 \description{
 Children class of AxisBase.
-Gets automatically populated if none has been specified.
+Automatically set.
 }
 \details{
 Run \code{api("CategoryAxis")} for more information and all avalaible properties.
@@ -17,14 +17,13 @@ Run \code{api("CategoryAxis")} for more information and all avalaible properties
 \item{\code{gridPosition}}{\code{character}.
 Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
 Possible values are: "start" and "middle"
-This setting doesn't work if parseDates is set to true.}
+This setting doesn't work if parseDates is set to TRUE.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must be a character string.
-See examples for details.}
+The list must be named as in the official API. Each element must be a character string.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

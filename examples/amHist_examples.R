@@ -22,7 +22,7 @@ amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis", col = "red")
 amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis", ylim = c(10, 15))
 amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis")
 
-# options for computing the histogram
+# Options for computing the histogram
 amHist(x = x, control_hist = list(breaks = "Scott"))
 
 

@@ -6,7 +6,7 @@
 \alias{initialize,DataSetSelector-method}
 \alias{setPosition}
 \alias{setPosition,DataSetSelector,character-method}
-\title{Creat or update a DataSetSelector}
+\title{Creates or updates a DataSetSelector}
 \usage{
 \S4method{initialize}{DataSetSelector}(.Object, position, ...)
 
@@ -17,17 +17,17 @@ setPosition(.Object, position)
 \S4method{setPosition}{DataSetSelector,character}(.Object, position)
 }
 \arguments{
-\item{.Object}{\linkS4class{DataSetSelector}}
+\item{.Object}{\linkS4class{DataSetSelector}.}
 
 \item{position}{\code{character}.
 Possible values: "right", "left", "top", "bottom".
 "top" and "bottom" positions has a limitation -
-only one data set can be selected for comparing.}
+only one data set can be selected for comparison.}
 
-\item{...}{Other properties.}
+\item{...}{other properties of DataSetSelector.}
 }
 \value{
-(updated) \linkS4class{DataSetSelector}
+(updated) \linkS4class{DataSetSelector}.
 }
 \description{
 Use the constructors to create the object with its properties

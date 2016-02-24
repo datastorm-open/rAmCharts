@@ -3,8 +3,7 @@ NULL
 
 #' @rdname DataSet
 #' 
-#' @param keepNA \code{logical}.
-#' Should the missing values appear in the list ?
+#' @param keepNA \code{logical}, TRUE to keep NA values.
 #' 
 #' @examples
 #' setDataProvider(.Object = dataSet(), data.frame(key = c("FR", "US"), value = c(20,10)))

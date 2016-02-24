@@ -7,19 +7,19 @@
 #' of the corresponding column. 
 #' @param y_sup \code{character}, column name for the upper value or \code{numeric}  vector
 #' of the corresponding column. 
-#' @param data \code{data.frame} dataframe with values to display.
+#' @param data \code{data.frame}, dataframe with values to display.
 #' You can add a column "color" (character, colors in hexadecimal). You can
 #' also add a column "description" (character) containing the text you want to
 #' display when mouse is on the graphic ('<br>' for a new line).
 #' See \link{data_fbar}.
-#' @param groups_color \code{character} vector of colors in hexadecimal, 
+#' @param groups_color \code{character}, vector of colors in hexadecimal, 
 #' same length as y_inf or y_sup.
-#' @param xlab \code{character} label for x-axis.
-#' @param ylab \code{character} label for y-axis.
-#' @param horiz \code{logical} TRUE for an horizontal chart, FALSE for a vertical one
+#' @param xlab \code{character}, label for x-axis.
+#' @param ylab \code{character}, label for y-axis.
+#' @param horiz \code{logical}, TRUE for an horizontal chart, FALSE for a vertical one
 #' If 'horiz' is set to TRUE, the setting 'labelRotation' will be ignored.
-#' @param show_values \code{logical} TRUE to display values.
-#' @param depth \code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.
+#' @param show_values \code{logical}, TRUE to display values.
+#' @param depth \code{numeric}, if > 0, chart is displayed in 3D. Value between 0 and 100.
 #' @param dataDateFormat \code{character}, default set to NULL. Even if your chart parses dates,
 #' you can pass them as strings in your dataframe - 
 #' all you need to do is to set data date format and the chart will parse dates to date objects.
@@ -31,7 +31,7 @@
 #' fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
-#' @param ... see \code{\link{amOptions}} for more options
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 

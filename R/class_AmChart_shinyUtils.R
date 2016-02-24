@@ -24,11 +24,11 @@ amChartsOutput <- function(outputId, type = NULL, width = "100%", height = "400p
   )
 }
 
-#' @title Test the class of an exepression
-#' @description Only used in the package in 'renderAmCharts'.
+#' @title Tests the class of an exepression.
+#' @description Only used in 'renderAmCharts'.
 #' @param x expression passed to 'renderAmCharts'.
-#' Either an expression that generates an HTML widget.
-#' Or an expression that generates an AmChart.
+#' Either an expression that generates an HTML widget, either an
+#' expression that generates an AmChart.
 #' @details This function has only an internal purpose. Never use it.
 #' @export
 controlShinyPlot <- function(x) {
@@ -41,11 +41,11 @@ controlShinyPlot <- function(x) {
 }
 
 #' @title SHINY
-#' @description Widget output function for use in Shiny
+#' @description Widget output function to use in Shiny.
 #' @param expr an expression that generates an HTML widget.
-#' @param env the environment in which to evaluate expr.
-#' @param quoted is expr a quoted expression (with quote())?
-#' This is useful if you want to save an expression in a variable.
+#' @param env the environment in which expr must be evaluated.
+#' @param quoted is expr a quoted expression (with quote()).
+#' This is useful if you want to save an expression into variable.
 #' @name renderAmCharts
 #' @rdname renderAmCharts
 #' @export

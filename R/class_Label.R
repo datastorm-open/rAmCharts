@@ -13,9 +13,8 @@ NULL
 #' @slot y \code{numeric}. Y position of a label.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -26,16 +25,16 @@ setClass(Class = "Label", contains = "AmObject",
            x = "numericOrCharacter",
            y = "numericOrCharacter"))
 
-#' @title Initialize
-#' @description Use the constructor to create the object
+#' @title Initializes Label
+#' @description Uses the constructor to create the object
 #' or update an existing one with the setters.
 #' 
 #' @param .Object \linkS4class{Label}.
-#' @param bold \code{character}. Specifies if label is bold or not.
-#' @param text \code{character}. Text of a title.
-#' @param x \code{numeric}. X position of a label.
-#' @param y \code{numeric}. Y position of a label.
-#' @param ... Other properties.
+#' @param bold \code{character}, specifies if label is bold or not.
+#' @param text \code{character}, text of a title.
+#' @param x \code{numeric}, label's x position.
+#' @param y \code{numeric}, label's y position.
+#' @param ... other properties of Label.
 #' 
 #' @return (updated) .Object of class \linkS4class{Label}.
 #' 

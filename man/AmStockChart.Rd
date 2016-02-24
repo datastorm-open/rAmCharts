@@ -37,7 +37,7 @@
 \alias{setStockEventsSettings,AmStockChart-method}
 \alias{setValueAxesSettings}
 \alias{setValueAxesSettings,AmStockChart-method}
-\title{Initialize an AmStockChart}
+\title{Initializes an AmStockChart}
 \usage{
 \S4method{initialize}{AmStockChart}(.Object, balloon, comparedDataSets,
   dataSets, dataSetSelector, mainDataSet, panels, periodSelector, theme, ...)
@@ -146,7 +146,7 @@ date ranges or zoom chart with predefined period buttons.}
 
 \item{theme}{\code{character}.}
 
-\item{...}{Other properties...}
+\item{...}{other properties of AmStockChart.}
 
 \item{amBalloon}{\linkS4class{AmBalloon}.
 Argument for method \code{setBalloon}.}
@@ -164,19 +164,19 @@ If there is no default value specified, default value of ChartScrollbar class wi
 An object of class \linkS4class{AmStockChart}.
 }
 \description{
-Method for initializing any S4 class provided by the package.
+Method to initialize any S4 class provided by the package.
 }
 \details{
-CategoryAxesSettings set's settings common for all CategoryAxes of StockPanels.
+CategoryAxesSettings sets common settings for all CategoryAxes of StockPanels.
 If you change a property after the chart is initialized,
-you should call stockChart.validateNow() method in order for it to work.
-If there is no default value specified, default value of CategoryAxis class will be used.
+you should call stockChart.validateNow() method.
+If there is no specified value, default value of CategoryAxis class will be used.
 you should get this axis from the chart and set properties to this object.
 
-ChartCursorSettings settings set's settings for chart cursor.
+ChartCursorSettings sets settings for chart cursor.
 If you change a property after the chart is initialized,
-you should call stockChart.validateNow() method in order for it to work.
-If there is no default value specified, default value of ChartCursor class will be used.
+you should call stockChart.validateNow() method.
+If there is no specified value, default value of ChartCursor class will be used.
 
 You can add it if you have more than one data set and want users
 to be able to select/compare them.

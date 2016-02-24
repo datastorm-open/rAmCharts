@@ -39,11 +39,10 @@ setValueAxis(.Object, valueAxis = NULL, ...)
 
 \item{dataProvider}{\code{data.frame}.}
 
-\item{keepNA}{\code{logical}, default \code{TRUE}.
+\item{keepNA}{\code{logical}, default set to \code{TRUE}.
 Indicates if \code{NULL} values have to be kept or ignored.}
 
-\item{enabled}{\code{logical}, default \code{TRUE}.
-Should the export button be shown ?}
+\item{enabled}{\code{logical}, TRUE to display the export button.}
 
 \item{title}{\code{character}.}
 
@@ -61,22 +60,22 @@ Should the export button be shown ?}
 These methods are shared by at least two different classes
 }
 \details{
-\code{setBalloon} is shared by AmChart and AmStockChart
+\code{setBalloon} is shared by AmChart and AmStockChart.
 
-setDataProvider(..) is shared by AmGraph and DataSet
+setDataProvider(..) is shared by AmGraph and DataSet.
 
-setExport(...) is Shared by AmChart and AmStockChart
+setExport(...) is Shared by AmChart and AmStockChart.
 
-setTitle(...) is Shared by AmGraph and ValueAxis
+setTitle(...) is Shared by AmGraph and ValueAxis.
 
-setType(...) is shared by AmGraph and AmChart
+setType(...) is shared by AmGraph and AmChart.
 
-setGraph(...) is shared by AmChart and ChartScrollbar
+setGraph(...) is shared by AmChart and ChartScrollbar.
 
-addGuide(...) is shared by AxisBase and AmChart
+addGuide(...) is shared by AxisBase and AmChart.
 
-setText(...) is shared by Title and Label
+setText(...) is shared by Title and Label.
 
-setValueAxis(...) is shared by AmChart(type = "gantt"), TrendLine and Guide
+setValueAxis(...) is shared by AmChart(type = "gantt"), TrendLine and Guide.
 }
 

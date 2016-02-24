@@ -3,16 +3,15 @@ NULL
 
 #' @title AxisBase class
 #' @author DataKnowledge
-#' @description Base class for ValueAxis and CategoryAxis. It can not be instantiated explicitly.
+#' @description Base class for ValueAxis and CategoryAxis. It can not be explicitly instantiated.
 #' 
 #' @slot guides \code{list}.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
-#' Guides belonging to this axis. Use addGuide method
+#' Guides of this axis. Use addGuide method.
 #' 
 #' @export
 #' 

@@ -18,7 +18,7 @@ NULL
 #' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
 #' @slot otherProperties \code{"list"}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @details Run \code{api("AmGraph")} for more details and all avalaible properties.
@@ -48,24 +48,25 @@ setClass (Class = "AmGraph", contains = "AmObject",
     return(TRUE)
   })
 
-#' @title Initialize an AmGraph
+#' @title Initializes an AmGraph
 #' @description To create an AmGraph, you can use the usual methode
 #' Initialize or the constructor.
 #' You can update properties with setters.
 #' @param .Object \linkS4class{AmGraph}.
 #' @param animationPlayed \code{logical}.
-#' @param balloonText \code{character}.
-#' Balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
+#' @param balloonText \code{character}, 
+#' balloon text. You can use tags like [[value]], [[description]], [[percents]], [[open]], [[category]]
 #' or any other field name from your data provider. HTML tags can also be used.
-#' @param title \code{character}. Graph title.
-#' @param type \code{character}.
-#' Type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
+#' @param title \code{character}, graph title.
+#' @param type \code{character}, 
+#' type of the graph. Possible values are: "line", "column", "step", "smoothedLine", "candlestick", "ohlc".
 #' XY and Radar charts can only display "line" otherArguments graphs.
-#' @param valueField \code{character}.
-#' Name of the value field in your dataProvider.
-#' @param ... Other properties.
+#' @param valueField \code{character}, 
+#' name of the value field in your dataProvider.
+#' @param ... other properties of AmGraph.
+#' See \url{http://docs.amcharts.com/3/javascriptcharts/AmGraph}.
 #' 
-#' @return An object of class \linkS4class{AmGraph} with the properties given.
+#' @return An object of class \linkS4class{AmGraph} with the given properties.
 #' 
 #' @examples
 #' # --- method 'initialize'

@@ -3,7 +3,7 @@
 # -------------------------------------------------------------
 
 #' @title Random data for example
-#' @description A list containing 4 datasets
+#' @description A list containing 4 datasets.
 #' @format Each datasetis a data.table with 21 rows and 4 variables:
 #' \describe{
 #'   \item{date}{vector of dates}
@@ -25,7 +25,7 @@
 
 
 #' @title Air passengers for example
-#' @description Based on the dataset 'AirPassengers' from the package 'datasets'
+#' @description Based on the dataset 'AirPassengers' from the package 'datasets'.
 #' @format 2 column, 144 rows :
 #' \describe{
 #'   \item{AirPassengers}{\code{numeric}}
@@ -79,7 +79,7 @@
 
 #' @title Random data for plotting candlestick chart examples
 #' @description This dataset is used in the examples,
-#' moreover it can be used as a reference if you notice a bug
+#' moreover it can be used as a reference if you notice a bug.
 #' 
 #' @format Dataset of 3 columns and 15 rows
 #' \describe{
@@ -96,7 +96,7 @@
 
 #' @title Random data for plotting wind chart examples
 #' @description This dataset is used in the examples,
-#' moreover it can be used as a reference if you notice a bug
+#' moreover it can be used as a reference if you notice a bug.
 #' 
 #' @format Dataset of 3 columns and 8 rows
 #' \describe{
@@ -109,7 +109,7 @@
 
 #' @title Random data for plotting radar chart examples
 #' @description This dataset is used in the examples,
-#' moreover it can be used as a reference if you notice a bug
+#' moreover it can be used as a reference if you notice a bug.
 #' 
 #' @format Dataset of 4 columns and 5 rows
 #' \describe{
@@ -123,7 +123,7 @@
 
 #' @title Random data for plotting pie chart examples
 #' @description This dataset is used in the examples,
-#' moreover it can be used as a reference if you notice a bug
+#' moreover it can be used as a reference if you notice a bug.
 #' 
 #' @format Dataset of 2 columns and 5 rows
 #' \describe{
@@ -135,7 +135,7 @@
 
 #' @title Random data for plotting bar chart examples
 #' @description This dataset is used in the examples,
-#' moreover it can be used as a reference if you notice a bug
+#' moreover it can be used as a reference if you notice a bug.
 #' 
 #' @format Dataset of 3 columns and 12 rows
 #' \describe{
@@ -148,7 +148,7 @@
 
 #' @title Random data for plotting bar chart examples
 #' @description This dataset is used in the examples,
-#' moreover it can be used as a reference if you notice a bug
+#' moreover it can be used as a reference if you notice a bug.
 #' 
 #' @format Dataset of 5 columns and 12 rows
 #' \describe{
@@ -164,7 +164,7 @@
 
 #' @title Random data for plotting funnel chart examples
 #' @description This dataset is used in the examples,
-#' moreover it can be used as a reference if you notice a bug
+#' moreover it can be used as a reference if you notice a bug.
 #' 
 #' @format Dataset of 2 columns and 7 rows
 #' \describe{
@@ -175,7 +175,7 @@
 
 #' @title Random data for plotting mekko chart examples
 #' @description This dataset is used in the examples,
-#' moreover it can be used as a reference if you notice a bug
+#' moreover it can be used as a reference if you notice a bug.
 #' 
 #' @format Dataset of 2 columns and 1000 rows
 #' \describe{
@@ -187,7 +187,7 @@
 
 #' @title Random data for plotting floating bar chart examples
 #' @description This dataset is used in the examples,
-#' moreover it can be used as a reference if you notice a bug
+#' moreover it can be used as a reference if you notice a bug.
 #' 
 #' @format Dataset of 2 columns and 1000 rows
 #' \describe{

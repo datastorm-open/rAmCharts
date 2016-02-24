@@ -8,7 +8,7 @@
 \S4method{show}{AmObject}(object)
 }
 \arguments{
-\item{object}{\linkS4class{AmObject}}
+\item{object}{\linkS4class{AmObject}.}
 }
 \description{
 Display the object in the console.

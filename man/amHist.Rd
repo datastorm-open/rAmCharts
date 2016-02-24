@@ -14,13 +14,13 @@ amHist(x, ...)
 \arguments{
 \item{x}{\code{numeric}, a vector of values for which the histogram is desired.}
 
-\item{...}{Other parameters for \link{amOptions}.}
+\item{...}{see \code{\link{amOptions}} for more options.}
 
 \item{col}{\code{character}, a color to be used to fill the bars.}
 
-\item{border}{\code{character} a color for the borders.}
+\item{border}{\code{character}, a color for the borders.}
 
-\item{freq}{\code{logical}; if \code{TRUE}, the histogram graphic is a representation of frequencies,
+\item{freq}{\code{logical}, if \code{TRUE}, the histogram graphic is a representation of frequencies,
 the counts component of the result; if FALSE, probability densities,
 component density, are plotted (so that the histogram has a total area of one).
 Defaults to TRUE if and only if breaks are equidistant (and probability is not specified).}
@@ -30,7 +30,7 @@ an histogram is plotted, otherwise a list of breaks and counts is returned.
 In the second case, a warning is used if (typically graphical)
 arguments are specified that only apply to the \code{plot = TRUE} case.}
 
-\item{labels}{\code{logical} default FALSE.
+\item{labels}{\code{logical}, set to TRUE to display labels. Default set to FALSE.
 Additionally draw labels on top of bars.
 if TRUE, draw the counts or rounded densities;
 if labels is a \code{character}, draw itself.}
@@ -72,7 +72,7 @@ amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis", col = "red")
 amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis", ylim = c(10, 15))
 amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis")
 
-# options for computing the histogram
+# Options for computing the histogram
 amHist(x = x, control_hist = list(breaks = "Scott"))
 
 

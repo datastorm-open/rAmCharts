@@ -7,33 +7,33 @@
 amWaterfall(data, start = 0, horiz = FALSE, show_values = FALSE, ...)
 }
 \arguments{
-\item{data}{\code{data.frame} dataframe with at least 3 columns : 
+\item{data}{\code{data.frame}, dataframe with at least 3 columns : 
 label (character), value (numeric), operation (character : "plus", "minus", "total").
 You can add a third column "color" (character, colors in hexadecimal). You can
 also add a column "description" (character) containing the text you want to
 display when mouse is on the graphic ('<br>' for a new line).
 See \code{\link{data_waterfall}}.}
 
-\item{start}{\code{numeric} value from which to start}
+\item{start}{\code{numeric}, value from which to start.}
 
-\item{horiz}{\code{logical} TRUE for an horizontal chart, FALSE for a vertical one}
+\item{horiz}{\code{logical}, TRUE for an horizontal chart, FALSE for a vertical one.}
 
-\item{show_values}{\code{logical} TRUE to display values on the chart.}
+\item{show_values}{\code{logical}, TRUE to display values on the chart.}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \code{\link{amOptions}} for more options.}
 }
 \description{
 amWaterfall computes a waterfall chart of the given value.
 }
 \examples{
-# load data
+# Load data
 data("data_waterfall")
 
-#simple exemple
+# Reference example : waterfall chart 
 amWaterfall(data = data_waterfall, show_values = TRUE)
 
 
-#change the orientation :
+# Change the orientation :
 amWaterfall(data = data_waterfall, horiz = TRUE)                                  
 }
 

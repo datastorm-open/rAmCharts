@@ -7,21 +7,20 @@ NULL
 #' @description DataSet is an object which holds all information about data for \linkS4class{AmStockChart}
 #' @details Run \code{api("DataSet")} for more information.
 #' 
-#' @slot dataProvider \code{list}. The data set data.
+#' @slot dataProvider \code{list}, the data set data.
 #' Important: the data sets need to come pre-ordered in ascending order.
 #' Data with incorrect order might result in visual and functional glitches on the chart.
-#' @slot fieldMappings \code{list} field mappings.
+#' @slot fieldMappings \code{list}, field mappings.
 #' Field mapping is an object with fromField and toField properties.
-#' fromField is a name of your value field in dataProvider.
+#' fromField is the name of your value field in dataProvider.
 #' toField might be chosen freely,
-#' it will be used to set value/open/close/high/low fields for the StockGraph.
+#' it will be used to set value/open/close/high/low fields for the StockChart.
 #' Example: {fromField:"val1", toField:"value"}.
 #' @slot stockEvents \code{list} of \linkS4class{StockEvent}.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -34,13 +33,13 @@ setClass(Class = "DataSet", contains = "AmObject",
           ))
 
 
-#' @title Create or update a DataSet
-#' @description Use the constructors to create the object with its properties
-#' or update an existing one with the setters.
+#' @title Creates or updates a DataSet
+#' @description Uses the constructors to create the object with its properties
+#' or updates an existing one with the setters.
 #' 
 #' @param .Object \linkS4class{DataSet}.
 #' @param compared \code{logical}.
-#' @param dataProvider \code{data.frame}. The data set data.
+#' @param dataProvider \code{data.frame}, the data set data.
 #' Important: the data sets need to come pre-ordered in ascending order.
 #' Data with incorrect order might result in visual and functional glitches on the chart.
 #' @param fieldMappings \code{list} of field mappings.
@@ -50,7 +49,7 @@ setClass(Class = "DataSet", contains = "AmObject",
 #' it will be used to set value/open/close/high/low fields for the StockGraph.
 #' Example: list(fromField = "val1", toField ="value").
 #' @param stockEvents \linkS4class{StockEvent}.
-#' @param ... Other properties.
+#' @param ... other properties of DataSet.
 #' 
 #' @return (updated) \linkS4class{DataSet} object
 #' 

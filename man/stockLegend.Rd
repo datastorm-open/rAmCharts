@@ -8,9 +8,10 @@ stockLegend(useGraphSettings, valueTextComparing = "[[percents.value]]\%",
   ...)
 }
 \arguments{
-\item{useGraphSettings}{Legend markers can mirror graph's settings,
+\item{useGraphSettings}{\code{logical}
+Legend markers can mirror graph's settings,
 displaying a line and a real bullet as in the graph itself.
-Set this property to true if you want to enable this feature.}
+Set this property to TRUE if you want to enable this feature.}
 
 \item{valueTextComparing}{\code{character}}
 
