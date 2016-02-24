@@ -99,19 +99,38 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
       message("Impossible to a legend on a gauge chart")
     } else {
       if (length(chart@otherProperties$RType_) > 0) {
+        
         if (chart@otherProperties$RType_ %in% c("candlestick", "waterfall", "boxplot", "histogram"))
+        {
           message("You cannot add a legend this kind of chart")
+        }
+        
+        if (chart@otherProperties$RType_ %in% c("barplot"))
+        {
+          if(length(chart@graphs) == 1)
+          {
+            message("You cannot add a legend this kind of chart")
+          } else {
+            chart <- setLegend(.Object = chart, position = legendPosition,
+                               useGraphSettings = TRUE, align = legendAlign)
+          }
+          
+        }
+        
+        
       } else {
         if (chart@type %in% c("radar", "serial", "xy")) {
           chart <- setLegend(.Object = chart, position = legendPosition,
                              useGraphSettings = TRUE, align = legendAlign)
+          print("ici2")
         } else {
+          print("ici")
           chart <- setLegend(.Object = chart, position = legendPosition, align = legendAlign)
         }
       }
     }
   }
-
+  
   ## Set export
   if (export || length(exportFormat)) {
     if (!length(exportFormat)) {
