@@ -3,9 +3,9 @@
 #' @description This is a virtual class for representing any Am** class
 #' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string. See examples for details.
-#' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the class.
+#' The list must be named as in the official API. Each element must be a character string. 
+#' @slot otherProperties \code{list}
+#' containing other avalaible properties not yet coded in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -71,7 +71,7 @@ setMethod(f = "print", signature = "AmObject",
 
 # > @listeners: setters ####
 
-#' @title Methods of AmObject
+#' @title AmObject methods
 #' @description Methods for inherited classes.
 #' 
 #' @param .Object \code{\linkS4class{AmObject}}.
@@ -121,7 +121,7 @@ setMethod(f = "addListener", signature = c("AmObject", "character", "character")
 #' # overwrite a property
 #' amPieChart() %>>%  setProperties(fontSize = 15) %>>%  setProperties(fontSize = 12) %>>% print()
 #' 
-#' # warning if you try to set a property which is a slot...
+#' # Carefull if you try to set a property which is a slot...
 #' # in that case, use the setter methods 'setXX' or 'addXX' which check the validity
 #' \dontrun{
 #' amPieChart() %>>% setProperties(type = "serial") %>>% print()

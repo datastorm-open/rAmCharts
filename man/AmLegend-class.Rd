@@ -14,15 +14,15 @@ Run \code{api("AmLegend")} for more information and all avalaible properties.
 
 \describe{
 \item{\code{useGraphSettings}}{\code{logical}.
-If this is set to TRUE, border color instead of background color will be changed when
-user rolls-over the slice, graph, etc.}
+If TRUE, border color will be changed when user rolls-over the slice, graph, 
+etc, instead of background color.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must a character string.
+The list must be named as in the official API. Each element must be a character string.
 See examples for details.}
 
-\item{\code{otherProperties}}{\code{list},
-containing other avalaible properties non coded in the package yet.}
+\item{\code{otherProperties}}{\code{list} 
+containing other avalaible properties not yet coded in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

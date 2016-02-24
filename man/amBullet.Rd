@@ -9,7 +9,7 @@ amBullet(value, min = 0, max = 100, val_color = "#000000", limit = 85,
   rates, ...)
 }
 \arguments{
-\item{value}{\code{numeric}.}
+\item{value}{\code{numeric} value to display.}
 
 \item{min}{\code{numeric} minimum value allowed.}
 
@@ -19,13 +19,13 @@ amBullet(value, min = 0, max = 100, val_color = "#000000", limit = 85,
 
 \item{limit}{\code{numeric} target value.}
 
-\item{limit_color}{\code{character} color of the line limit.}
+\item{limit_color}{\code{character} color of the target line.}
 
-\item{steps}{\code{boolean} default set to TRUE.}
+\item{steps}{\code{logical} default set to TRUE.}
 
 \item{label}{\code{character} label of the bullet.}
 
-\item{horiz}{\code{boolean} TRUE (default) for an horizontal bullet chart, FALSE for a vertical one.}
+\item{horiz}{\code{logical} TRUE (default) for an horizontal bullet chart, FALSE for a vertical one.}
 
 \item{rates}{a data frame with 4 columns: name (character), min (numeric), max (numeric), 
 and color (character, color in hexadecimal).}

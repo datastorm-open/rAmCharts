@@ -1,16 +1,16 @@
 #' @title Plotting mekko chart (quali vs quali) using rAmCharts
 #' @description  amMekko computes a mekko chart of the given values.
-#' @param x \code{character} column name for x-axis
-#' @param y \code{character} column name for y-axis
+#' @param x \code{character} column name for x-axis.
+#' @param y \code{character} column name for y-axis.
 #' @param data \code{data.frame} dataframe with values to display.
-#' See  see \code{\link{data_mekko}}
+#' See \code{\link{data_mekko}}
 #' @param groups_color \code{character} vector of colors in hexadecimal, 
 #' same length as the number of y modalities.
 #' @param xlab \code{character} label for x-axis.
 #' @param ylab \code{character} label for y-axis.
-#' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-#' @param show_values \code{boolean} TRUE to display values.
-#' @param ... see \code{\link{amOptions}} for more options
+#' @param horiz \code{logical} TRUE for an horizontal chart, FALSE for a vertical one
+#' @param show_values \code{logical} TRUE to display values.
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @example examples/amMekko_examples.R
 #' 

@@ -13,48 +13,49 @@ amOptions(chart, theme = "none", legend = FALSE, legendPosition = "right",
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
 
-\item{theme}{\code{character}, chn. Can be "none","light","dark","patterns","chalk",
-default "none".}
+\item{theme}{\code{character}. Possible values are : "none", "light", "dark", "patterns",
+"chalk", default set to "none".}
 
-\item{legend}{\code{logical}, default \code{FALSE}. Add a legend to the chart ?.}
+\item{legend}{\code{logical}, default \code{FALSE}. TRUE to add a legend to the chart.}
 
-\item{legendPosition}{\code{character}. Can be "left", "right", "top" or "bottom", default "right".}
+\item{legendPosition}{\code{character}. Possible values are : "left", "right", "top" or "bottom", 
+default set to "right".}
 
-\item{legendAlign}{\code{character} controls the legend alignement. Can be "left","right" or "center",
-default "left". Only use if \code{legend = TRUE}.}
+\item{legendAlign}{\code{character} controls the legend alignement. Possible values are : 
+"left","right" or "center", default set to "left". Only used if \code{legend = TRUE}.}
 
-\item{export}{\code{logical}, default FALSE. Display export feature ?.}
+\item{export}{\code{logical}, default set to  FALSE. TRUE to display export feature.}
 
-\item{exportFormat}{\code{character} export format to keep, must be in JPG, PNG ,SVG,
-CSV, JSON, PDF, XLSX, PRINT.}
+\item{exportFormat}{\code{character} desired export format. Possible values are : "JPG",
+"PNG" ,"SVG", "CSV", "JSON", "PDF", "XLSX", "PRINT".}
 
-\item{creditsPosition}{\code{character},  control credits position,
-can be "top-left", "top-right", "bottom-left" or "bottom-right", default top-left.}
+\item{creditsPosition}{\code{character}, controsl credits position. Possible values are : 
+"top-left", "top-right", "bottom-left" or "bottom-right", default set to "top-left".}
 
-\item{main}{\code{character}, title of graphic, default empty \code{character}.}
+\item{main}{\code{character}, chart's title.}
 
-\item{mainColor}{\code{character}, color of title (html-color), default "#000000".}
+\item{mainColor}{\code{character}, main color (in hexadecimal), default set to "#000000".}
 
-\item{mainSize}{\code{numeric}, color of title (html-color), default 15.}
+\item{mainSize}{\code{numeric}, main size, default set to 15.}
 
-\item{zoom}{\code{logical}, add a chart cursor, default FALSE.}
+\item{zoom}{\code{logical}, TRUE to add a chart cursor, default set to FALSE.}
 
-\item{scrollbar}{\code{logical}, default \code{FALSE}, display Scrollbar if \code{TRUE}.}
+\item{scrollbar}{\code{logical}, default \code{FALSE}, TRUE to display scrollbar.}
 
-\item{scrollbarHeight}{\code{numeric}, Height in px, must be > 0.}
+\item{scrollbarHeight}{\code{numeric}, height in pixels, must be > 0.}
 
-\item{labelRotation}{\code{numeric} Rotation angle of a label. Only horizontal axis' values can be rotated.
-Must be between -90 and 90.}
+\item{labelRotation}{\code{numeric}, rotation angle of a label. Only horizontal axis' values 
+can be rotated. Value must be between -90 and 90.}
 }
 \description{
-Set the most common options for chart customization.
+amOptions sets the most common options for chart customization.
 You can set other properties with the method \link{setProperties}.
 See details for exception.
 }
 \details{
 \strong{Exception:} 
 \itemize{
- \item{It's impossible to export a gauge chart data as CSV.}
+ \item{It's not possible to export a gauge chart data as CSV.}
  }
 }
 \examples{

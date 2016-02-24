@@ -11,26 +11,26 @@ amFunnel(data, inverse = FALSE, neck_height = NULL, neck_width = NULL,
 \arguments{
 \item{data}{a data frame of at least 2 columns : value (numeric, positive), 
 and description (character). You can add a third column "color" (character,
-colors in hexadecimal) see \link{data_funnel}}
+colors in hexadecimal) see \link{data_funnel}.}
 
-\item{inverse}{\code{boolean}, if TRUE, the funnel chart will be inversed.}
+\item{inverse}{\code{logical}, if TRUE, the funnel chart will be inversed.}
 
 \item{neck_height}{\code{numeric} value between 0 and 100 : if a bottleneck
-is desired, this value determines its heigh. Default to NULL}
+is desired, this value determines its heigh. Default to NULL.}
 
 \item{neck_width}{\code{numeric} value between 0 and 100 : if a bottleneck
-is desired, this value determines its witdh. Default to NULL}
+is desired, this value determines its witdh. Default to NULL.}
 
 \item{depth}{\code{numeric} if > 0, chart is displayed in 3D, only for
-pyramid chart (without a bottleneck). Value between 0 and 100}
+pyramid chart (without a bottleneck). Value between 0 and 100.}
 
-\item{label_side}{\code{character} label position : "right" or "left"}
+\item{label_side}{\code{character} label position : "right" or "left".}
 
-\item{margin_right}{\code{numeric} margin at the right side}
+\item{margin_right}{\code{numeric} margin at the right side.}
 
-\item{margin_left}{\code{numeric} margin at the left side}
+\item{margin_left}{\code{numeric} margin at the left side.}
 
-\item{...}{see \link{amOptions} for more options}
+\item{...}{see \link{amOptions} for more options.}
 }
 \description{
 amFunnel computes a funnel chart of the given value.

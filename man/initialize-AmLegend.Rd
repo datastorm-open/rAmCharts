@@ -23,8 +23,8 @@ setUseGraphSettings(.Object, useGraphSettings)
 \item{.Object}{\linkS4class{AmLegend}.}
 
 \item{useGraphSettings}{\code{logical}.
-If this is set to TRUE, border color instead of background color will be changed when
-user rolls-over the slice, graph, etc.}
+If TRUE, border color will be changed when user rolls-over the slice, graph, 
+etc, instead of background color.}
 
 \item{...}{Other properties of \linkS4class{AmLegend}.
 See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}.}

@@ -129,7 +129,7 @@ setValueAxesSettings(.Object, ...)
 Properties of data sets selected for comparing.}
 
 \item{dataSets}{\code{list} of \linkS4class{DataSet}.
-Each element must a list of DataSet properties.}
+Each element must be a list of DataSet properties.}
 
 \item{dataSetSelector}{\code{list} of \linkS4class{DataSetSelector}.
 You can add it if you have more than one data set and want users

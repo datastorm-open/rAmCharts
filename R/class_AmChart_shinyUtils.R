@@ -1,11 +1,10 @@
 #' @title SHINY
 #' 
 #' @description Widget output function for use in Shiny
-#' @param outputId \code{character}.
-#' @param type \code{character}
-#' indicating the chart type.
-#' @param width \code{character}.
-#' @param height \code{character}.
+#' @param outputId \code{character}, output variable to read the chart from.
+#' @param type \code{character}, indicating the chart type.
+#' @param width \code{character}, the width of the chart container.
+#' @param height \code{character}, the height of the chart container.
 #' 
 #' @export
 #' @rdname amChartsOutput

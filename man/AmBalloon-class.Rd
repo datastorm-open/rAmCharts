@@ -7,7 +7,7 @@
 \description{
 Creates the balloons (tooltips) of the chart.
 It follows the mouse cursor when you roll-over the data items.
-The framework generates the instances automatically you only need to adjust
+The framework generates the instances automatically, you just have to adjust
 the appearance to your needs.
 }
 \details{
@@ -17,26 +17,27 @@ Run \code{api("AmBalloon")} for more information and all avalaible properties.
 
 \describe{
 \item{\code{adjustBorderColor}}{\code{logical}.
-If this is set to TRUE, border color instead of background color will be changed when
-user rolls-over the slice, graph, etc.}
+If TRUE, border color will be changed when user rolls-over the slice, graph, 
+etc, instead of background color.}
 
 \item{\code{color}}{\code{character}.
-Color of text in the balloon.}
+Balloon text color.}
 
 \item{\code{cornerRadius}}{\code{numeric}.
 Balloon corner radius.}
 
 \item{\code{fillColor}}{\code{character}.
-Balloon background color. Usually balloon background color is set by the chart.
-Only if "adjustBorderColor" is "true" this color will be used.}
+Balloon background color. It is usually defined by the chart itself. If
+"adjustBorderColor" is set to TRUE, the balloon background color will be
+equal to "fillColor".}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must a character string.
+The list must be named as in the official API. Each element must be a character string.
 See examples for details.
 Inherited from \linkS4class{AmObject}.}
 
-\item{\code{otherProperties}}{\code{list},
-containing other avalaible properties non coded in the package yet.
+\item{\code{otherProperties}}{\code{list}
+containing other avalaible properties not yet coded in the package.
 Inherited from \linkS4class{AmObject}.}
 
 \item{\code{value}}{\code{numeric}.

@@ -18,10 +18,10 @@ NULL
 #' Example: {fromField:"val1", toField:"value"}.
 #' @slot stockEvents \code{list} of \linkS4class{StockEvent}.
 #' @slot listeners \code{list} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string.
+#' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
-#' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the package yet.
+#' @slot otherProperties \code{list}
+#' containing other avalaible properties not yet coded in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export

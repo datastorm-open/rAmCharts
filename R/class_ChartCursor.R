@@ -9,17 +9,17 @@ NULL
 #' @details Run \code{api("ChartCursor")} for more information and all avalaible properties.
 #' 
 #' @slot oneBalloonOnly \code{logical}.
-#' If this is set to TRUE, border color instead of background color will be changed when
-#' user rolls-over the slice, graph, etc.
+#' If TRUE, border color will be changed when user rolls-over the slice, graph, 
+#' etc, instead of background color.
 #' @slot valueLineAxis \code{list}.
 #' Properties of Axis of value line. If you set valueLineBalloonEnabled to true,
 #' but you have more than one axis, you can use this property
 #' to indicate which axis should display balloon.
 #' @slot listeners \code{list} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string.
+#' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
-#' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the package yet.
+#' @slot otherProperties \code{list}
+#' containing other avalaible properties not yet coded in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -35,8 +35,8 @@ setClass(Class = "ChartCursor", contains = "AmObject",
 #' 
 #' @param .Object \linkS4class{ChartCursor}.
 #' @param oneBalloonOnly \code{logical}.
-#' If this is set to TRUE, border color instead of background color will be changed when
-#' user rolls-over the slice, graph, etc.
+#' If TRUE, border color will be changed when user rolls-over the slice, graph, 
+#' etc, instead of background color.
 #' @param valueLineAxis \linkS4class{ValueAxis}.
 #' If you set valueLineBalloonEnabled to true,
 #' but you have more than one axis, you can use this property

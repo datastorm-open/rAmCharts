@@ -7,8 +7,8 @@
 #' display when mouse is on the graphic ('<br>' for a new line).
 #' See \code{\link{data_waterfall}}.
 #' @param start \code{numeric} value from which to start
-#' @param horiz \code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-#' @param show_values \code{boolean} TRUE to display values on the chart.
+#' @param horiz \code{logical} TRUE for an horizontal chart, FALSE for a vertical one
+#' @param show_values \code{logical} TRUE to display values on the chart.
 #' @param ... see \code{\link{amOptions}} for more options
 #' 
 #' @example examples/amWaterfall_examples.R

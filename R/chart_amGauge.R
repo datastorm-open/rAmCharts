@@ -11,7 +11,7 @@
 #' set to 10. 
 #' @param text \code{character} text lengend.
 #' @param textSize \code{numeric} text size.
-#' @param secondAxe \code{boolean} TRUE if two axes are desired. Default is set to FALSE.
+#' @param secondAxe \code{logical} TRUE if two axes are desired. Default is set to FALSE.
 #' @param start2 \code{numeric} minimum value allowed for the second axe if secondAxe is TRUE.
 #' @param end2 \code{numeric} maximum value allowed for the second axe if secondAxe is TRUE.
 #' @param step2 \code{numeric} intervals size for the second axe if secondAxe is TRUE.
@@ -19,7 +19,7 @@
 #' end (numeric, maximal value for the band), color (character, color of the band, in hexadecimal)
 #' and width (numeric, width of the band). If the last column is not defined, it is auomatically
 #' set to 10. 
-#' @param ... see \link{amOptions} for more options
+#' @param ... see \link{amOptions} for more options.
 #' 
 #' @example examples/amGauge_examples.R
 #' 

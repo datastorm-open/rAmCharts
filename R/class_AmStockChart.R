@@ -9,7 +9,7 @@ NULL
 #' @slot comparedDataSets \code{list} of \linkS4class{DataSet}.
 #' Properties of data sets selected for comparing.
 #' @slot dataSets \code{list} of \linkS4class{DataSet}.
-#' Each element must a list of DataSet properties.
+#' Each element must be a list of DataSet properties.
 #' @slot dataSetSelector \code{list} of \linkS4class{DataSetSelector}.
 #' You can add it if you have more than one data set and want users
 #' to be able to select/compare them.
@@ -23,9 +23,10 @@ NULL
 #' @slot type equals "stock"
 #' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string. See examples for details.
-#' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the class.
+#' The list must be named as in the official API. Each element must be a character string. 
+#' See examples for details.
+#' @slot otherProperties \code{list}
+#' containing other avalaible properties not yet coded in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @seealso \url{http://docs.amcharts.com/3/javascriptstockchart/AmStockChart}
@@ -61,7 +62,7 @@ setClass("AmStockChart", contains = "AmObject",
 #' @param comparedDataSets \code{list} of \linkS4class{DataSet}.
 #' Properties of data sets selected for comparing.
 #' @param dataSets \code{list} of \linkS4class{DataSet}.
-#' Each element must a list of DataSet properties.
+#' Each element must be a list of DataSet properties.
 #' @param dataSetSelector \code{list} of \linkS4class{DataSetSelector}.
 #' You can add it if you have more than one data set and want users
 #' to be able to select/compare them.

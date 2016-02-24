@@ -7,14 +7,13 @@
 amChartsOutput(outputId, type = NULL, width = "100\%", height = "400px")
 }
 \arguments{
-\item{outputId}{\code{character}.}
+\item{outputId}{\code{character}, output variable to read the chart from.}
 
-\item{type}{\code{character}
-indicating the chart type.}
+\item{type}{\code{character}, indicating the chart type.}
 
-\item{width}{\code{character}.}
+\item{width}{\code{character}, the width of the chart container.}
 
-\item{height}{\code{character}.}
+\item{height}{\code{character}, the height of the chart container.}
 }
 \description{
 Widget output function for use in Shiny

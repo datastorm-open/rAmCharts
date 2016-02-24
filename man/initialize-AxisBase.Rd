@@ -19,7 +19,7 @@ Argument for method \code{addGuide}.}
 (possibly updated) .Object of class \linkS4class{AxisBase}.
 }
 \description{
-Update an of object of inherited class \linkS4class{AxisBase}.
+Update an object of inherited class \linkS4class{AxisBase}.
 }
 \examples{
 addGuide(.Object = valueAxis(), fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)

@@ -16,9 +16,9 @@ See \code{\link{data_waterfall}}.}
 
 \item{start}{\code{numeric} value from which to start}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one}
+\item{horiz}{\code{logical} TRUE for an horizontal chart, FALSE for a vertical one}
 
-\item{show_values}{\code{boolean} TRUE to display values on the chart.}
+\item{show_values}{\code{logical} TRUE to display values on the chart.}
 
 \item{...}{see \code{\link{amOptions}} for more options}
 }

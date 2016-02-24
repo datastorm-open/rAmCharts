@@ -8,13 +8,13 @@ NULL
 #' @details Run \code{api("AmLegend")} for more information and all avalaible properties.
 #' 
 #' @slot useGraphSettings \code{logical}.
-#' If this is set to TRUE, border color instead of background color will be changed when
-#' user rolls-over the slice, graph, etc.
+#' If TRUE, border color will be changed when user rolls-over the slice, graph, 
+#' etc, instead of background color.
 #' @slot listeners \code{list} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must a character string.
+#' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
-#' @slot otherProperties \code{list},
-#' containing other avalaible properties non coded in the package yet.
+#' @slot otherProperties \code{list} 
+#' containing other avalaible properties not yet coded in the package.
 #' @slot value \code{numeric}.
 #' @export
 setClass(Class = "AmLegend", contains = "AmObject",
@@ -23,8 +23,8 @@ setClass(Class = "AmLegend", contains = "AmObject",
 #' @title Initialize
 #' @param .Object \linkS4class{AmLegend}.
 #' @param useGraphSettings \code{logical}.
-#' If this is set to TRUE, border color instead of background color will be changed when
-#' user rolls-over the slice, graph, etc.
+#' If TRUE, border color will be changed when user rolls-over the slice, graph, 
+#' etc, instead of background color.
 #' @param ... Other properties of \linkS4class{AmLegend}.
 #' See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}.
 #' @examples

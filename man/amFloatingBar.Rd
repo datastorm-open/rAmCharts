@@ -32,15 +32,15 @@ See \link{data_fbar}.}
 \item{groups_color}{\code{character} vector of colors in hexadecimal, 
 same length as y_inf or y_sup.}
 
-\item{horiz}{\code{boolean} TRUE for an horizontal chart, FALSE for a vertical one
-If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.}
+\item{horiz}{\code{logical} TRUE for an horizontal chart, FALSE for a vertical one
+If 'horiz' is set to TRUE, the setting 'labelRotation' will be ignored.}
 
-\item{show_values}{\code{boolean} TRUE to display values.}
+\item{show_values}{\code{logical} TRUE to display values.}
 
 \item{depth}{\code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.}
 
-\item{dataDateFormat}{\code{character}, default 'NULL'. Even if your chart parses dates,
-you can pass them as strings in your data - 
+\item{dataDateFormat}{\code{character}, default set to NULL. Even if your chart parses dates,
+you can pass them as strings in your dataframe - 
 all you need to do is to set data date format and the chart will parse dates to date objects.
 Check this page for available formats.
 Please note that two-digit years (YY) as well as literal month names (MMM)  are NOT supported in this setting.}

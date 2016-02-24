@@ -3,7 +3,7 @@
 \name{amHist}
 \alias{amHist}
 \alias{amHist.numeric}
-\title{Plot an histogram}
+\title{Plotting histogram using rAmCharts}
 \usage{
 amHist(x, ...)
 
@@ -12,22 +12,22 @@ amHist(x, ...)
   control_hist, ...)
 }
 \arguments{
-\item{x}{a vector of values for which the histogram is desired.}
+\item{x}{\code{numeric}, a vector of values for which the histogram is desired.}
 
 \item{...}{Other parameters for \link{amOptions}.}
 
-\item{col}{a colour to be used to fill the bars.}
+\item{col}{\code{character}, a color to be used to fill the bars.}
 
-\item{border}{a colour for the borders.}
+\item{border}{\code{character} a color for the borders.}
 
 \item{freq}{\code{logical}; if \code{TRUE}, the histogram graphic is a representation of frequencies,
 the counts component of the result; if FALSE, probability densities,
 component density, are plotted (so that the histogram has a total area of one).
 Defaults to TRUE if and only if breaks are equidistant (and probability is not specified).}
 
-\item{plot}{logical. If \code{TRUE} (default),
+\item{plot}{\code{logical}, if \code{TRUE} (default),
 an histogram is plotted, otherwise a list of breaks and counts is returned.
-In the latter case, a warning is used if (typically graphical)
+In the second case, a warning is used if (typically graphical)
 arguments are specified that only apply to the \code{plot = TRUE} case.}
 
 \item{labels}{\code{logical} default FALSE.
@@ -37,16 +37,15 @@ if labels is a \code{character}, draw itself.}
 
 \item{xlab, ylab}{\code{character}, labels of the axis.}
 
-\item{ylim}{the range of y values with sensible defaults.}
+\item{ylim}{\code{numeric}, the range of y values with sensible defaults.}
 
-\item{control_hist}{(optional) named \code{list()} containing parameters for computing the histogram.}
+\item{control_hist}{(optional) named \code{list()} containing parameters to compute the histogram.}
 }
 \value{
 An object of class \linkS4class{AmChart}.
 }
 \description{
 amHist computes a histogram of the given data values.
-If \code{plot = TRUE}, the resulting object of class 'histogram' before it is returned.
 }
 \examples{
 x <- replicate(1000, {

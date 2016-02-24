@@ -3,7 +3,7 @@
 #' @param data \code{data.frame} dataframe with at least 2 columns : 
 #' label (character), value (numeric). See \code{\link{data_pie}}
 #' You can add a third column "color" (character, colors in hexadecimal).
-#' @param show_values \code{boolean} TRUE to display values.
+#' @param show_values \code{logical} TRUE to display values.
 #' @param depth \code{numeric} if > 0, chart is displayed in 3D, value
 #' between 0 and 100
 #' @param inner_radius \code{numeric} value between 0 and 100

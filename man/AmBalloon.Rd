@@ -39,18 +39,19 @@ setFillColor(.Object, fillColor)
 \item{.Object}{\linkS4class{AmBalloon}.}
 
 \item{adjustBorderColor}{\code{logical}.
-If set to TRUE, border color instead of background color will be changed when
-user rolls-over the slice, graph, etc.}
+If TRUE, border color will be changed when user rolls-over the slice, graph, 
+etc, instead of background color.}
 
 \item{color}{\code{character}.
-Color of text in the balloon.}
+Balloon text color.}
 
 \item{cornerRadius}{\code{numeric}.
 Balloon corner radius.}
 
 \item{fillColor}{\code{character}.
-Balloon background color. Usually balloon background color is set by the chart.
-Only if "adjustBorderColor" is "true" this color will be used.}
+Balloon background color. It is usually defined by the chart itself. If
+"adjustBorderColor" is set to TRUE, the balloon background color will be
+equal to "fillColor".}
 
 \item{...}{other properties of AmBalloon.
 See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.}

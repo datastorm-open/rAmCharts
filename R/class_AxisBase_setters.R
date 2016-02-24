@@ -2,7 +2,7 @@
 NULL
 
 #' @title Add a Guide for AxisBase
-#' @description Update an of object of inherited class \linkS4class{AxisBase}.
+#' @description Update an object of inherited class \linkS4class{AxisBase}.
 #' 
 #' @param .Object children class of \linkS4class{AxisBase}.
 #' @param guide (optional) \linkS4class{Guide}.

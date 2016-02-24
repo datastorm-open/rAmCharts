@@ -29,7 +29,7 @@ set to 10.}
 
 \item{textSize}{\code{numeric} text size.}
 
-\item{secondAxe}{\code{boolean} TRUE if two axes are desired. Default is set to FALSE.}
+\item{secondAxe}{\code{logical} TRUE if two axes are desired. Default is set to FALSE.}
 
 \item{start2}{\code{numeric} minimum value allowed for the second axe if secondAxe is TRUE.}
 
@@ -42,7 +42,7 @@ end (numeric, maximal value for the band), color (character, color of the band, 
 and width (numeric, width of the band). If the last column is not defined, it is auomatically
 set to 10.}
 
-\item{...}{see \link{amOptions} for more options}
+\item{...}{see \link{amOptions} for more options.}
 }
 \description{
 amAngularGauge computes a gauge of the given value.
