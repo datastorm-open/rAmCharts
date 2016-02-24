@@ -399,11 +399,11 @@ amPlot.formula <- function (x, data, ...)
   x_name <- all.vars(x[-2]) # subset variables in the rhs
   if (length(y_name) == 1) {
     chart <- amPlot(x = data[[eval(x_name)]], y = data[[eval(y_name)]],
-                    xlab = eval(x_name), ylab = eval(y_name))
+                    xlab = eval(x_name), ylab = eval(y_name), ...)
   } else {
     i <- 1
     chart <- amPlot(x = data[[eval(x_name)]], y = data[[eval(y_name[i])]],
-                    xlab = eval(x_name), ylab = "multiple series")
+                    xlab = eval(x_name), ylab = "multiple series", ...)
     repeat {
       chart <- chart %>>%
         amLines(x = data[[eval(y_name[i])]], type = "p", title = eval(y_name[i]))
@@ -411,7 +411,7 @@ amPlot.formula <- function (x, data, ...)
       else i <- i + 1
     }
   }
-  amOptions(chart, ...)
+  chart
 }
 
 amCheck_type <- function(type, valid = c("l", "sl", "st", "p", "b"))
