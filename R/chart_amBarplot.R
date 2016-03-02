@@ -74,6 +74,9 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   # convert x into character if necessary
   if (is.numeric(x)) x <- colnames(data)[x]
   # check if the column is compatible
+  if(is.factor(data[,x])) {
+    data[,x] <- as.character(data[,x])
+  }
   .testCharacter(char = data[,x])
   
   # check argument y

@@ -26,6 +26,9 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
 {
   
   .testIn(vect = "description", control = colnames(data))
+  if(is.factor(data$description)) {
+    data$description <- as.character(data$description)
+  }
   .testCharacter(char = data$description, arg = "data$description")
   
   #

@@ -35,6 +35,9 @@ amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,
   # data format
   data$category <- as.character(data$category)
   .testIn("category", colnames(data))
+  if(is.factor(data$category)) {
+    data$category <- as.character(data$category)
+  }
   .testCharacter(data$category, arg = "data$category")
   
   .testIn("open", colnames(data))

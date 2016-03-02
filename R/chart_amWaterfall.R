@@ -24,6 +24,9 @@ amWaterfall <- function(data, start = 0, horiz = FALSE,
   #data
   #label
   .testIn(vect = "label", control = colnames(data))
+  if(is.factor(data$label)) {
+    data$label <- as.character(data$label)
+  }
   .testCharacter(char = data$label, arg = "data$label")
 
   #value

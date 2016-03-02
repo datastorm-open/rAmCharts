@@ -70,6 +70,9 @@ amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_co
   # convert x into character if necessary
   if (is.numeric(x)) x <- colnames(data)[x]
   # check if the column is compatible
+  if(is.factor(data[,x])) {
+    data[,x] <- as.character(data[,x])
+  }
   if (!is.character(data[,x]))
     stop(paste("The column ", x, " of the dataframe must be character."))
   

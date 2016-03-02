@@ -21,6 +21,9 @@ amPie <- function(data,show_values = TRUE, depth = 0, inner_radius = 0, ...) {
   #data
   #label
   .testIn(vect = "label", control = colnames(data))
+  if(is.factor(data$label)) {
+    data$label <- as.character(data$label)
+  }
   .testCharacter(char = data$label, arg = "data$label")
   
   #label
