@@ -137,7 +137,7 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
             
             }
             
-            chart <- setLegend(.Object = chart, data = legend)
+            chart <- setLegend(.Object = chart, position = legendPosition, data = legend)
           } else {
             chart <- setLegend(.Object = chart, position = legendPosition,
                                useGraphSettings = TRUE, align = legendAlign)
