@@ -8,7 +8,7 @@ NULL
 #' @examples
 #' setDataProvider(.Object = dataSet(), data.frame(key = c("FR", "US"), value = c(20,10)))
 #' 
-setMethod(f = "setDataProvider", signature = c("DataSet", "data.frame"),
+setMethod(f = "setDataProvider", signature = c("DataSet", "DataFrame"),
           definition = function(.Object, dataProvider, keepNA = TRUE)
           {
             .Object@dataProvider <- .toList(dataProvider, keepNA)

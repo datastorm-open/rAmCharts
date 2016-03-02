@@ -383,7 +383,7 @@ setMethod(f = "setDataLoader", signature = c("AmChart", "character", "character"
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setMethod(f = "setDataProvider", signature = c("AmChart", "data.frame", "logicalOrMissing"),
+setMethod(f = "setDataProvider", signature = c("AmChart", "DataFrame", "logicalOrMissing"),
           definition = function(.Object, dataProvider, keepNA = TRUE)
           {
             .Object@dataProvider <- .toList(dataProvider, keepNA )
@@ -653,7 +653,7 @@ setMethod(f = "addSegment", signature = c( .Object = "AmChart", categoryIDs = "n
 setGeneric(name = "addSubData",
            def = function(.Object, categoryIDs, data) {standardGeneric("addSubData")})
 #' @rdname initialize-AmChart
-setMethod(f = "addSubData", signature = c("AmChart", "numeric", "data.frame"),
+setMethod(f = "addSubData", signature = c("AmChart", "numeric", "DataFrame"),
           definition = function(.Object, categoryIDs, data)
           {
             if (prod(categoryIDs %in% 1:length(.Object@dataProvider)) != 1) {
