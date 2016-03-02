@@ -38,6 +38,10 @@ amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparenc
 
 }
 \seealso{
-\link{amRadar}
+#' @seealso 
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\link{amRadar}}
+}
 }
 

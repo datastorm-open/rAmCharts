@@ -13,6 +13,11 @@
 #' 
 #' @example examples/amRadar_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @import pipeR
 #' @import data.table
 #' @rdname amRadar
@@ -20,7 +25,7 @@
 #' 
 amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons", pch = "round", ...) {
   #data
-  data <- as.data.frame(data)
+  data <- .testFormatData(data)
   
   .testIn("label", colnames(data))
   

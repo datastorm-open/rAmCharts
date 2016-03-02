@@ -36,4 +36,9 @@ amWaterfall(data = data_waterfall, show_values = TRUE)
 # Change the orientation :
 amWaterfall(data = data_waterfall, horiz = TRUE)                                  
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

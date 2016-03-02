@@ -118,4 +118,9 @@ data(data_gbar)
                 dataDateFormat = "DD/MM/YYYY", zoom = TRUE)
 
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

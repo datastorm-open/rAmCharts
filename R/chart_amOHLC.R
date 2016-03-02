@@ -26,19 +26,29 @@
 #' 
 #' @example examples/amOHLC_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @export
 
 amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,
                    positiveColor = "#7f8da9", negativeColor = "#db4c3c",
                    names = c("low", "open", "close", "high"),
                    dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...) {
+  ##data
   # data format
+  data <- .testFormatData(data)
+ 
   data$category <- as.character(data$category)
   .testIn("category", colnames(data))
   if(is.factor(data$category)) {
     data$category <- as.character(data$category)
   }
   .testCharacter(data$category, arg = "data$category")
+
+
   
   .testIn("open", colnames(data))
   .testNumeric(data$open, arg = "data$open")

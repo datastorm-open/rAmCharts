@@ -13,9 +13,19 @@
 #' @import pipeR
 #' 
 #' @export
-#' @seealso \link{amRadar}
+#' @seealso 
+#' #' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' \item{\link{amRadar}}
+#' }
 #' 
 amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
+  
+  
+  
+  #data
+  data <- .testFormatData(data)
   
   
   # backTransparency

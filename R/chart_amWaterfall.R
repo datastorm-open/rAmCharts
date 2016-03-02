@@ -13,6 +13,11 @@
 #' 
 #' @example examples/amWaterfall_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @export
 
 amWaterfall <- function(data, start = 0, horiz = FALSE,
@@ -22,6 +27,8 @@ amWaterfall <- function(data, start = 0, horiz = FALSE,
   
   ##Test
   #data
+  data <- .testFormatData(data)
+  
   #label
   .testIn(vect = "label", control = colnames(data))
   if(is.factor(data$label)) {

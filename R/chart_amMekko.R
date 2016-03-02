@@ -14,6 +14,11 @@
 #' 
 #' @example examples/amMekko_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @export
 amMekko <- function(x, y, data, xlab = "", 
                     ylab = "", groups_color = NULL,

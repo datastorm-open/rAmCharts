@@ -95,4 +95,9 @@ amPie(data = data_pie)\%>>\%
             theme = "dark", legend = TRUE, legendPosition = "bottom",
              creditsPosition = "bottom-right" )
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

@@ -24,6 +24,11 @@
 #' @return An object of class \linkS4class{AmChart}.
 #' 
 #' @example examples/amHist_examples.R
+#' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
 #'        
 #' @rdname amHist     
 #' @import data.table

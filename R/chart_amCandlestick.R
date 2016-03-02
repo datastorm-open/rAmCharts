@@ -25,6 +25,11 @@
 #' 
 #' @example examples/amCandlestick_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @export
 
 amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, 
@@ -33,6 +38,10 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
                           dataDateFormat = NULL,
                           minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
+  
+  #data
+  data <- .testFormatData(data)
+  
   # data format
   data$category <- as.character(data$category)
   .testIn("category", colnames(data))

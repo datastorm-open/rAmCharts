@@ -12,13 +12,20 @@
 #' @example examples/amPie_examples.R
 #' 
 #' @rdname amPie
+#' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
 #'     
 #' @export
 
-amPie <- function(data,show_values = TRUE, depth = 0, inner_radius = 0, ...) {
+amPie <- function(data, show_values = TRUE, depth = 0, inner_radius = 0, ...) {
   
   ##Test
   #data
+  data <- .testFormatData(data)
+  
   #label
   .testIn(vect = "label", control = colnames(data))
   if(is.factor(data$label)) {

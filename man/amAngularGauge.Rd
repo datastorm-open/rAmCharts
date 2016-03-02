@@ -77,4 +77,9 @@ amSolidGauge(x = 65, text = "\%")
 # Modify textSize value
 amSolidGauge(x = 65, text = "\%", textSize = 50)
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

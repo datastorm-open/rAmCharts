@@ -45,6 +45,11 @@
 #' 
 #' @example ./examples/amFloatingBar_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @export
 #' 
 amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_color = NULL,horiz = FALSE,

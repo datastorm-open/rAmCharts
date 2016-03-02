@@ -47,4 +47,9 @@ amMekko(x = "var1", y = "var2", data = data_mekko, horiz = TRUE)
 amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)\%>>\%amOptions()
 
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

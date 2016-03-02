@@ -70,4 +70,9 @@ amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max")) \%>>\%
 # Use amOptions
 amOHLC(data = data_candleStick2, zoom = FALSE)
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

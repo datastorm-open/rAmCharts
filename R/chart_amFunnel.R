@@ -18,12 +18,22 @@
 #' 
 #' @example examples/amFunnel_examples.R
 #'
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#'
 #' @export
 
 amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NULL, 
                      depth = 0, label_side = "right", margin_right = 200,
                      margin_left = 200, ...)
 {
+  
+  
+  #data
+  data <- .testFormatData(data)
+  
   
   .testIn(vect = "description", control = colnames(data))
   if(is.factor(data$description)) {

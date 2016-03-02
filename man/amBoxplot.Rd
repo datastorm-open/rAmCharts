@@ -107,4 +107,9 @@ amBoxplot(rnorm(100))
 # Parameter for amOptions
 amBoxplot(x, zoom = TRUE)
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

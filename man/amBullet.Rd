@@ -54,4 +54,9 @@ amBullet(value = 65, label = "Evaluation")
 # Change min and max values
 amBullet(value = 65, min = 20, max = 90)
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

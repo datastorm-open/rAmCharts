@@ -681,4 +681,9 @@ amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
 # Add parameter from amOptions
 amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 
