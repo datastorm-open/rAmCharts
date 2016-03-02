@@ -26,6 +26,11 @@
 #' 
 #' @example examples/amOHLC_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @export
 
 amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,

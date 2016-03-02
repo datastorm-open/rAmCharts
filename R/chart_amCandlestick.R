@@ -25,6 +25,11 @@
 #' 
 #' @example examples/amCandlestick_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @export
 
 amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE, 

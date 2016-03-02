@@ -50,4 +50,9 @@ amFunnel(data = data_funnel, neck_height = 30, neck_width = 40)
 #3D pyramid
 amFunnel(data = data_funnel, depth = 50, inverse = TRUE)
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

@@ -43,4 +43,9 @@ amPie(data = data_pie, inner_radius = 50)
 amPie(data = data_pie, inner_radius = 50, depth = 10, show_values = FALSE)
 
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

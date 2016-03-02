@@ -52,4 +52,9 @@ amRadar(data_radar,  pch = "triangleRight")
 amRadar(data_radar,  pch = "triangleLeft")
 
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

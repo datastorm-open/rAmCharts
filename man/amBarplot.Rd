@@ -140,4 +140,9 @@ amBarplot(y = c("Murder", "Assault", "UrbanPop", "Rape"), data = dataset, stack_
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar) \%>>\%
   setProperties(precision = 0)
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

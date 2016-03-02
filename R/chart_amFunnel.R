@@ -18,6 +18,11 @@
 #' 
 #' @example examples/amFunnel_examples.R
 #'
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#'
 #' @export
 
 amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NULL, 

@@ -38,6 +38,11 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' 
 #' @example examples/amPlot_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @import data.table
 #' @rdname amPlot
 #' @export

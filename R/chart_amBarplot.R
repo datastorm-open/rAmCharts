@@ -48,6 +48,11 @@
 #' 
 #' @example ./examples/amBarplot_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @export
 #' 
 amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,horiz = FALSE,

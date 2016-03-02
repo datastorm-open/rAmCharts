@@ -12,6 +12,11 @@
 #' @example examples/amPie_examples.R
 #' 
 #' @rdname amPie
+#' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
 #'     
 #' @export
 

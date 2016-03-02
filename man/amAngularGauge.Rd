@@ -68,4 +68,9 @@ bands2 = data.frame(start = c(100, 130, 170), end = c(130, 170, 200),
 amAngularGauge(x = 25, start = 0, end = 100, bands = bands,
                secondAxe = TRUE, start2 = 100, end2 = 200, bands2 = bands2)
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 

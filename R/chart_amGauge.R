@@ -23,6 +23,11 @@
 #' 
 #' @example examples/amGauge_examples.R
 #' 
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' }
+#' 
 #' @import pipeR
 #' @export
 #' 

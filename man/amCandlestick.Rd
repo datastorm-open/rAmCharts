@@ -82,4 +82,9 @@ require(pipeR)
 amCandlestick(data = data_candleStick2, horiz = TRUE) \%>>\%
   setProperties(precision = 2) 
 }
+\seealso{
+\itemize{
+\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+}
+}
 
