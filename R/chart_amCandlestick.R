@@ -33,6 +33,10 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
                           dataDateFormat = NULL,
                           minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
+  
+  #data
+  data <- .testFormatData(data)
+  
   # data format
   data$category <- as.character(data$category)
   .testIn("category", colnames(data))

@@ -55,10 +55,10 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
                       dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
   
-  if(!is.data.frame(data)) {
-    stop("data must be a data frame")
-  } else {}
   
+  #data
+  data <- .testFormatData(data)
+
   # check argument x
   if (missing(x) && !length(rownames(data))) {
     stop("Argument x is not provided and the data.frame does not have row names")

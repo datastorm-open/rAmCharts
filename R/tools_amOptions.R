@@ -110,7 +110,29 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
         {
           if(length(chart@graphs) == 1)
           {
-            message("You cannot add a legend this kind of chart")
+            legend <- chart@dataProvider
+            if(length(unique(unlist(legend)[names(unlist(legend)) == "color"])) > 1)
+            {
+            print("Ok")
+            lapply(1:length(legend), function(X){
+              names(legend[[X]])[names(legend[[X]]) == chart@categoryField] <<- "title"
+            })
+            
+          
+              out <<- legend
+              print(legend)
+
+              
+              
+              } else{
+              print(unique(unlist(legend)[names(unlist(legend)) == "color"]))
+              legend <- list(list(title = chart@categoryField,
+                                  color = unique(unlist(legend)[names(unlist(legend)) == "color"])))
+              out2 <<- legend
+              print(legend)
+            }
+            
+            chart <- setLegend(.Object = chart, data = legend)
           } else {
             chart <- setLegend(.Object = chart, position = legendPosition,
                                useGraphSettings = TRUE, align = legendAlign)

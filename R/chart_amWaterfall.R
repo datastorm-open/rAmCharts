@@ -22,6 +22,8 @@ amWaterfall <- function(data, start = 0, horiz = FALSE,
   
   ##Test
   #data
+  data <- .testFormatData(data)
+  
   #label
   .testIn(vect = "label", control = colnames(data))
   .testCharacter(char = data$label, arg = "data$label")

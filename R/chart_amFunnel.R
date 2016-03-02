@@ -25,6 +25,11 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
                      margin_left = 200, ...)
 {
   
+  
+  #data
+  data <- .testFormatData(data)
+  
+  
   .testIn(vect = "description", control = colnames(data))
   .testCharacter(char = data$description, arg = "data$description")
   

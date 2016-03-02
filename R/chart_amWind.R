@@ -18,6 +18,11 @@
 amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   
   
+  
+  #data
+  data <- .testFormatData(data)
+  
+  
   # backTransparency
   .testNumeric(num = backTransparency)
   .testLength(param = backTransparency, len = c(1, ncol(data)))
