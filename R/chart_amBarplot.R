@@ -135,6 +135,11 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
         data$color <- vec_col
       }
     } 
+  } else {
+    if(!is.null(groups_color)) {
+      vec_col <- rep(groups_color, nrow(data))
+      data$color <- vec_col[1:nrow(data)]
+    }
   }
   
   if (depth > 0) {
