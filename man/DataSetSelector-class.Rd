@@ -5,8 +5,8 @@
 \alias{DataSetSelector-class}
 \title{DataSetSelector class}
 \description{
-DataSetSelector is a tool for selecting data set's
-as main and for comparing with main data set.
+DataSetSelector is a tool used to select data sets
+as main and to compare to main data set.
 }
 \details{
 Run \code{api("DataSetSelector")} for more information and all avalaible properties.
@@ -20,11 +20,10 @@ Possible values: "right", "left", "top", "bottom".
 only one data set can be selected for comparing.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must be a character string.
-See examples for details.}
+The list must be named as in the official API. Each element must be a character string.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

@@ -12,7 +12,7 @@
 \alias{setCornerRadius,AmBalloon,numeric-method}
 \alias{setFillColor}
 \alias{setFillColor,AmBalloon,character-method}
-\title{Initialize an AmBalloon}
+\title{Initializes an AmBalloon}
 \usage{
 \S4method{initialize}{AmBalloon}(.Object, adjustBorderColor, color,
   cornerRadius, fillColor, ...)
@@ -38,18 +38,18 @@ setFillColor(.Object, fillColor)
 \arguments{
 \item{.Object}{\linkS4class{AmBalloon}.}
 
-\item{adjustBorderColor}{\code{logical}.
-If TRUE, border color will be changed when user rolls-over the slice, graph, 
+\item{adjustBorderColor}{\code{logical}, 
+if TRUE, border color will be changed when user rolls-over the slice, graph, 
 etc, instead of background color.}
 
-\item{color}{\code{character}.
-Balloon text color.}
+\item{color}{\code{character}, 
+balloon text color.}
 
-\item{cornerRadius}{\code{numeric}.
-Balloon corner radius.}
+\item{cornerRadius}{\code{numeric}, 
+balloon corner radius.}
 
-\item{fillColor}{\code{character}.
-Balloon background color. It is usually defined by the chart itself. If
+\item{fillColor}{\code{character}, 
+balloon background color. It is usually defined by the chart itself. If
 "adjustBorderColor" is set to TRUE, the balloon background color will be
 equal to "fillColor".}
 
@@ -60,7 +60,7 @@ See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.}
 An object, possibly updated,  of class \linkS4class{AmBalloon}.
 }
 \description{
-Initialize or update an object \linkS4class{AmBalloon}.
+Initializes or updates an object \linkS4class{AmBalloon}.
 }
 \examples{
 

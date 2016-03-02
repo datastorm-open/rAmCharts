@@ -11,7 +11,7 @@
 \alias{setX,Label,numericOrCharacter-method}
 \alias{setY}
 \alias{setY,Label,numericOrCharacter-method}
-\title{Initialize}
+\title{Initializes Label}
 \usage{
 \S4method{initialize}{Label}(.Object, text, bold, x, y, ...)
 
@@ -34,21 +34,21 @@ setY(.Object, y)
 \arguments{
 \item{.Object}{\linkS4class{Label}.}
 
-\item{text}{\code{character}. Text of a title.}
+\item{text}{\code{character}, text of a title.}
 
-\item{bold}{\code{character}. Specifies if label is bold or not.}
+\item{bold}{\code{character}, specifies if label is bold or not.}
 
-\item{x}{\code{numeric}. X position of a label.}
+\item{x}{\code{numeric}, label's x position.}
 
-\item{y}{\code{numeric}. Y position of a label.}
+\item{y}{\code{numeric}, label's y position.}
 
-\item{...}{Other properties.}
+\item{...}{other properties of Label.}
 }
 \value{
 (updated) .Object of class \linkS4class{Label}.
 }
 \description{
-Use the constructor to create the object
+Uses the constructor to create the object
 or update an existing one with the setters.
 }
 \examples{

@@ -7,7 +7,7 @@ NULL
 #' 
 #' @slot balloon \linkS4class{AmBalloon}.
 #' @slot comparedDataSets \code{list} of \linkS4class{DataSet}.
-#' Properties of data sets selected for comparing.
+#' Properties of data sets selected for comparison.
 #' @slot dataSets \code{list} of \linkS4class{DataSet}.
 #' Each element must be a list of DataSet properties.
 #' @slot dataSetSelector \code{list} of \linkS4class{DataSetSelector}.
@@ -17,16 +17,15 @@ NULL
 #' Data set selected as main.
 #' @slot panels \code{list} of \linkS4class{StockPanel}.
 #' @slot periodSelector \linkS4class{PeriodSelector}.
-#' You can add it if you want user's to be able to enter
+#' You can add it if you want users to be able to enter
 #' date ranges or zoom chart with predefined period buttons.
 #' @slot theme \code{character}
 #' @slot type equals "stock"
 #' 
-#' @slot listeners \code{list} containining the listeners to add to the object.
-#' The list must be named as in the official API. Each element must be a character string. 
-#' See examples for details.
+#' @slot listeners \code{list} containining the listeners to add to the chart.
+#' The list must be named as in the official API. Each element must be a character string.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @seealso \url{http://docs.amcharts.com/3/javascriptstockchart/AmStockChart}
@@ -54,8 +53,8 @@ setClass("AmStockChart", contains = "AmObject",
            }
          })
 
-#' @title Initialize an AmStockChart
-#' @description Method for initializing any S4 class provided by the package.
+#' @title Initializes an AmStockChart
+#' @description Method to initialize any S4 class provided by the package.
 #' 
 #' @param .Object \linkS4class{AmStockChart}.
 #' @param balloon \linkS4class{AmBalloon}.
@@ -73,7 +72,7 @@ setClass("AmStockChart", contains = "AmObject",
 #' You can add it if you want user's to be able to enter
 #' date ranges or zoom chart with predefined period buttons.
 #' @param theme \code{character}.
-#' @param ... Other properties...
+#' @param ... other properties of AmStockChart.
 #' 
 #' @return An object of class \linkS4class{AmStockChart}.
 #' 

@@ -8,7 +8,7 @@
 \alias{setEnabled}
 \alias{setEnabled,ChartScrollbar,logical-method}
 \alias{setGraph,ChartScrollbar,AmGraphOrCharacterOrMissing-method}
-\title{Initialize a ChartScrollbar}
+\title{Initializes a ChartScrollbar}
 \usage{
 \S4method{initialize}{ChartScrollbar}(.Object, graph, enabled, ...)
 
@@ -29,19 +29,19 @@ setEnabled(.Object, enabled)
 \item{graph}{\linkS4class{AmGraph}.
 Specifies which graph will be displayed in the scrollbar.}
 
-\item{enabled}{\code{logical}.
-Specifies if the chart should be updated while dragging/resizing the scrollbar
-or only at the moment when user releases mouse button.}
+\item{enabled}{\code{logical}, 
+specifies if the chart should be updated while dragging/resizing the scrollbar
+or only when user releases mouse button.}
 
-\item{...}{Other preperties
+\item{...}{other properties of ChartScrollbar.
 See \url{http://docs.amcharts.com/3/javascriptcharts/ChartScrollbar}}
 }
 \description{
-ChartScrollbarSettings settings set's settings for chart scrollbar.
+ChartScrollbarSettings sets settings for chart scrollbar.
 If you change a property after the chart is initialized,
-you should call stockChart.validateNow() method in order for it to work.
+you should call stockChart.validateNow() method.
 If there is no default value specified, default value of ChartScrollbar class will be used.
-Run \code{api("ChartScrollbarSettings")} for more information.
+Run \code{api("ChartScrollbarSettings")} for more informations.
 }
 \examples{
 new("ChartScrollbar", graph = "g1")

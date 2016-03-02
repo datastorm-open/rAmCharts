@@ -1,11 +1,11 @@
 #' @title Plotting wind using rAmCharts
-#' @description  wind computes a windplot of the given data values.
+#' @description  amWind computes a windplot of the given data values.
 #' 
-#' @param data : columns are series of values, from week wind (first column)
-#'  to strong wind (last column). See \link{data_wind}.
-#' @param col  \code{character} color(s) of serie(s) hexadecimal like "#00FF00".
-#' @param backTransparency \code{numeric} background transparency, between 0 and 1.
-#' @param ... see \link{amOptions} for more options.
+#' @param data \code{data.frame}, a dataframe which columns are series of values, 
+#' from weakest wind (first column) to stronger wind (last column). See \link{data_wind}.
+#' @param col  \code{character}, color(s) of serie(s) hexadecimal like "#00FF00".
+#' @param backTransparency \code{numeric}, background transparency, between 0 and 1.
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @example examples/amWind_examples.R
 #'

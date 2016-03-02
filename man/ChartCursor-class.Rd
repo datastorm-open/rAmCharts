@@ -24,11 +24,10 @@ but you have more than one axis, you can use this property
 to indicate which axis should display balloon.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must be a character string.
-See examples for details.}
+The list must be named as in the official API. Each element must be a character string.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

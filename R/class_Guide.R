@@ -11,35 +11,34 @@ NULL
 #' 
 #' @slot fillAlpha \code{numeric}.
 #' Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
-#' Possible values are: "start" and "middle" This setting doesn't work if parseDates is set to true.
+#' Possible values are: "start" and "middle" This setting doesn't work if parseDates is set to TRUE.
 #' @slot valueAxis \linkS4class{ValueAxis}.
 #' As you can add guides directly to the chart, you might need to specify 
 #' which value axis should be used.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
 setClass(Class = "Guide", contains = "AmObject",
          representation = representation(fillAlpha = "numeric", valueAxis = "listOrCharacter"))
 
-#' @title Initialize a Guide
-#' @description Use the constructor to create the object
+#' @title Initializes a Guide
+#' @description Uses the constructor to create the object
 #' or update an existing one with the setters.
 #' 
 #' @param .Object \linkS4class{Guide}
-#' @param fillAlpha \code{numeric}.
-#' Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
+#' @param fillAlpha \code{numeric}, 
+#' specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
 #' Possible values are: "start" and "middle"
-#' This setting doesn't work if parseDates is set to true.
+#' This setting doesn't work if parseDates is set to TRUE.
 #' @param valueAxis \linkS4class{ValueAxis} class.
 #' As you can add guides directly to the chart, you might need to specify 
 #' which value axis should be used.
 #' @param value \code{numeric}.
-#' @param ... Other properties.
+#' @param ... other properties of Guide.
 #' 
 #' @examples
 #' # --- method initialize

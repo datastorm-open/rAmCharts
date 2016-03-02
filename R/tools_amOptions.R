@@ -5,16 +5,16 @@
 #' 
 #' @param chart \linkS4class{AmChart}.
 #' @param legend \code{logical}, default \code{FALSE}. TRUE to add a legend to the chart.
-#' @param legendPosition \code{character}. Possible values are : "left", "right", "top" or "bottom", 
+#' @param legendPosition \code{character}, possible values are : "left", "right", "top" or "bottom", 
 #' default set to "right".
-#' @param legendAlign \code{character} controls the legend alignement. Possible values are : 
+#' @param legendAlign \code{character}, controls the legend alignement. Possible values are : 
 #' "left","right" or "center", default set to "left". Only used if \code{legend = TRUE}.
 #' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
-#' @param exportFormat \code{character} desired export format. Possible values are : "JPG",
+#' @param exportFormat \code{character}, desired export format. Possible values are : "JPG",
 #'  "PNG" ,"SVG", "CSV", "JSON", "PDF", "XLSX", "PRINT". 
 #' @param creditsPosition \code{character}, controsl credits position. Possible values are : 
 #' "top-left", "top-right", "bottom-left" or "bottom-right", default set to "top-left".
-#' @param theme \code{character}. Possible values are : "none", "light", "dark", "patterns",
+#' @param theme \code{character}, possible values are : "none", "light", "dark", "patterns",
 #' "chalk", default set to "none".
 #' @param main \code{character}, chart's title.
 #' @param mainColor \code{character}, main color (in hexadecimal), default set to "#000000".
@@ -213,5 +213,3 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
   
   chart
 }
-
-

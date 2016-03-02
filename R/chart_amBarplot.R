@@ -1,28 +1,28 @@
 #' @title Plotting bar chart using rAmCharts
 #' @description  amBarplot computes a bar chart of the given values.
 #' 
-#' @param x \code{character}, column name for x-axis or \code{numeric} value of the corresponding column.
+#' @param x \code{character}, column name for x-axis or \code{numeric}, value of the corresponding column.
 #' It is optional if argument \code{data} has row names.
 #' @param y \code{character}, column name for y-axis or \code{numeric}  vector
 #' of the corresponding column. If you want to display a grouped barchart
 #' or a stacked barchart, y is a vector of characters or numerics.
-#' @param data \code{data.frame} dataframe with values to display.
+#' @param data \code{data.frame}, dataframe with values to display.
 #' You can add a column "color" (character, colors in hexadecimal). You can
 #' also add a column "description" (character) containing the text you want to
 #' display when mouse is on the graphic ('<br>' for a new line). See \link{data_bar}
 #' and \link{data_gbar}.
-#' @param groups_color \code{character} vector of colors in hexadecimal, 
+#' @param groups_color \code{character}, vector of colors in hexadecimal, 
 #' same length as y.
-#' @param xlab \code{character} label for x-axis.
-#' @param ylab \code{character} label for y-axis.
-#' @param horiz \code{logical} TRUE for an horizontal chart, FALSE for a vertical one
+#' @param xlab \code{character}, label for x-axis.
+#' @param ylab \code{character}, label for y-axis.
+#' @param horiz \code{logical}, TRUE for an horizontal chart, FALSE for a vertical one
 #' If 'horiz' is set to TRUE, the setting 'labelRotation' will be ignored.
 #' @param stack_type \code{character}, "regular" if you wish stacked bars, "100" if
 #' you want 100 percent stacked bars. Default is set to "none".
-#' @param layered \code{logical} TRUE for layered bars. If TRUE, stack_type must be set
+#' @param layered \code{logical}, TRUE for layered bars. If TRUE, stack_type must be set
 #' to "none".
-#' @param show_values \code{logical} TRUE to display values.
-#' @param depth \code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.
+#' @param show_values \code{logical}, TRUE to display values.
+#' @param depth \code{numeric}, if > 0, chart is displayed in 3D. Value between 0 and 100.
 #' @param dataDateFormat \code{character}, default set to NULL. Even if your chart parses dates,
 #' you can pass them as strings in your dataframe - 
 #' all you need to do is to set data date format and the chart will parse dates to date objects.
@@ -34,7 +34,7 @@
 #' fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
-#' @param ... see \link{amOptions} for more options.
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 
@@ -79,6 +79,9 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   # convert x into character if necessary
   if (is.numeric(x)) x <- colnames(data)[x]
   # check if the column is compatible
+  if(is.factor(data[,x])) {
+    data[,x] <- as.character(data[,x])
+  }
   .testCharacter(char = data[,x])
   
   # check argument y

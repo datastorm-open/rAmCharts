@@ -5,7 +5,7 @@
 \alias{initialize,ValueAxis-method}
 \alias{setTitle,ValueAxis,character-method}
 \alias{valueAxis}
-\title{Initialize}
+\title{Initializes ValueAxis}
 \usage{
 \S4method{initialize}{ValueAxis}(.Object, title, guides, ...)
 
@@ -23,7 +23,7 @@ valueAxis(title, ...)
 \item{...}{Other properties (depend of call function)}
 }
 \description{
-Creates a ValuesAxis or update its properties.
+Creates a ValuesAxis or updates its properties.
 }
 \examples{
 

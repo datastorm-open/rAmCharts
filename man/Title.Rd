@@ -7,7 +7,7 @@
 \alias{setSize,Title,numeric-method}
 \alias{setText,Title,character-method}
 \alias{title}
-\title{Initialize A Title}
+\title{Initializes A Title}
 \usage{
 \S4method{initialize}{Title}(.Object, text, size, ...)
 
@@ -22,17 +22,17 @@ setSize(.Object, size)
 \arguments{
 \item{.Object}{\linkS4class{Title}}
 
-\item{text}{\code{character}. Text of a title.}
+\item{text}{\code{character}, title text.}
 
-\item{size}{\code{numeric}. Text size of a title.}
+\item{size}{\code{numeric}, title size.}
 
-\item{...}{Other properties.}
+\item{...}{other properties of Title.}
 }
 \value{
 (updated) \linkS4class{Title}
 }
 \description{
-Use the constructor to create the object
+Uses the constructor to create the object
 or update an existing one with the setters.
 }
 \examples{

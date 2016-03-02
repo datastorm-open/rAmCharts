@@ -1,18 +1,17 @@
-### basic example
-# keep the default parameter values: 
+# Reference example
 amBullet(value = 65)
 
-### Remove steps for background:
+# Remove steps for background
 amBullet(value = 65, steps = FALSE)
 
-### Tune the colors with name or HTML code:
+# Tune the colors with name or HTML code
 amBullet(value = 65, val_color = "purple", limit_color = "#3c8dbc")
 
-### Change the orientation:
+# Change the orientation
 amBullet(value = 65, steps = FALSE, horiz = FALSE)
 
-### Add text :
+# Add text
 amBullet(value = 65, label = "Evaluation")
 
-### Change min and max values:   
+# Change min and max values
 amBullet(value = 65, min = 20, max = 90)

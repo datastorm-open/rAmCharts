@@ -6,7 +6,7 @@
 \alias{initialize,GaugeBand-method}
 \alias{setID}
 \alias{setID,GaugeBand-method}
-\title{Initialize a GaugeBand}
+\title{Initializes a GaugeBand}
 \usage{
 \S4method{initialize}{GaugeBand}(.Object, alpha = 1, id, ...)
 
@@ -23,13 +23,13 @@ setID(.Object, id)
 
 \item{id}{\code{character}.}
 
-\item{...}{other properties.}
+\item{...}{other properties of GaugeBand.}
 }
 \value{
 (updated) .Object of class \linkS4class{GaugeBand}.
 }
 \description{
-Use the constructor to create the object
+Uses the constructor to create the object
 or update an existing one with the setters.
 }
 \examples{

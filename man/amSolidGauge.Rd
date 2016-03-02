@@ -10,32 +10,32 @@ amSolidGauge(x, min = 0, max = 100, type = "full", width = 20,
 \arguments{
 \item{x}{\code{numeric}, value for which the angular gauge is desired.}
 
-\item{min}{\code{numeric} minimal possible value.}
+\item{min}{\code{numeric}, minimal possible value.}
 
-\item{max}{\code{numeric} maximal possible value.}
+\item{max}{\code{numeric}, maximal possible value.}
 
-\item{type}{\code{character} type of gauge : "full" or "semi".}
+\item{type}{\code{character}, type of gauge : "full" or "semi".}
 
-\item{width}{\code{numeric} width of the gauge.}
+\item{width}{\code{numeric}, width of the gauge.}
 
-\item{color}{\code{character} hexadecimal color value or a vector of colors.}
+\item{color}{\code{character}, hexadecimal color value or a vector of colors.}
 
-\item{text}{\code{character} text.}
+\item{text}{\code{character}, text.}
 
-\item{textSize}{\code{numeric} text size.}
+\item{textSize}{\code{numeric}, text size.}
 
-\item{...}{see \link{amOptions} for more options.}
+\item{...}{see \code{\link{amOptions}} for more options.}
 }
 \description{
 amSolidGauge computes a gauge of the given value.
 }
 \examples{
-#Full gauge
+# Full gauge
 amSolidGauge(x = 75, min = 0, max = 100, type = "full", width = 20, 
              color = "#1e90ff", text = "\%",
              textSize = 50)
 
-#Demi gauge
+# Demi gauge
 amSolidGauge(x = 70, min = 0, max = 100, type = "semi", width = 20, 
              color = c("#00ff00", "#ffd700", "#ff0000"), text = "\%",
              textSize = 25)

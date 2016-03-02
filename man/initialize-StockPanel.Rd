@@ -56,7 +56,7 @@ Each element must be have been created with stockGraph(*)}
 \item{stockLegend}{\code{list} of \linkS4class{AmLegend}.
 Each element must be have been created with stockLegend(*)}
 
-\item{...}{Other properties...}
+\item{...}{other properties of StockPanel.}
 
 \item{valueAxis}{(optional) \linkS4class{ValueAxis}.
 Argument for method \code{setDrawOnAxis}.}

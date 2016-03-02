@@ -22,7 +22,7 @@
 #' @param ylab \code{character}, label for y-axis.
 #' @param horiz \code{logical}, TRUE for an horizontal chart, FALSE for a vertical one
 #' @param zoom \code{logical}, default set to TRUE : a cursor is added to the chart.
-#' @param ... see \link{amOptions} for more options.
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @example examples/amOHLC_examples.R
 #' 
@@ -43,6 +43,9 @@ amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,
  
   data$category <- as.character(data$category)
   .testIn("category", colnames(data))
+  if(is.factor(data$category)) {
+    data$category <- as.character(data$category)
+  }
   .testCharacter(data$category, arg = "data$category")
 
 

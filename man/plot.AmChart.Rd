@@ -11,7 +11,7 @@
 \arguments{
 \item{x}{\linkS4class{AmChart}}
 
-\item{y}{unused}
+\item{y}{unused.}
 
 \item{width}{\code{character}.}
 

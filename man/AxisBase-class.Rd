@@ -5,7 +5,7 @@
 \alias{AxisBase-class}
 \title{AxisBase class}
 \description{
-Base class for ValueAxis and CategoryAxis. It can not be instantiated explicitly.
+Base class for ValueAxis and CategoryAxis. It can not be explicitly instantiated.
 }
 \section{Slots}{
 
@@ -13,14 +13,13 @@ Base class for ValueAxis and CategoryAxis. It can not be instantiated explicitly
 \item{\code{guides}}{\code{list}.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must be a character string.
-See examples for details.}
+The list must be named as in the official API. Each element must be a character string.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.
-Guides belonging to this axis. Use addGuide method}
+Guides of this axis. Use addGuide method.}
 }}
 \author{
 DataKnowledge

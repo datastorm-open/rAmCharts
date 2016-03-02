@@ -6,7 +6,7 @@
 \alias{initialize,GaugeArrow-method}
 \alias{setAxis}
 \alias{setAxis,GaugeArrow,GaugeAxisOrCharacterOrMissing-method}
-\title{Initialize a GaugeArrow}
+\title{Initializes a GaugeArrow}
 \usage{
 \S4method{initialize}{GaugeArrow}(.Object, alpha = 1, axis, ...)
 
@@ -24,15 +24,15 @@ setAxis(.Object, axis = NULL, ...)
 
 \item{axis}{\linkS4class{GaugeAxis}.
 Axis of the arrow. You can use reference to the axis or id of the axis.
-If you don't set any axis, the first axis of a chart will be used.}
+If you don't set any axis, the first axis of the chart will be used.}
 
-\item{...}{Other properties.}
+\item{...}{other properties of GaugeArrow.}
 }
 \value{
 (updated) .Object of class \linkS4class{GaugeArrow}.
 }
 \description{
-Use the constructor to create the object with its properties
+Uses the constructor to create the object with its properties
 or update an existing one with the setters.
 }
 \examples{

@@ -77,7 +77,7 @@
 \alias{setValueAxes}
 \alias{setValueAxes,AmChart,list-method}
 \alias{setValueAxis,AmChart,ValueAxisOrMissing-method}
-\title{Create an AmChart}
+\title{Creates an AmChart}
 \usage{
 \S4method{initialize}{AmChart}(.Object, allLabels, arrows, axes, balloon,
   categoryAxis, categoryField, chartCursor, chartScrollbar, creditsPosition,
@@ -265,9 +265,9 @@ Only valid for gauge charts.
 Run \code{api("GaugeAxis")} for more informations.}
 
 \item{balloon}{\linkS4class{AmBalloon}.
-Creates the balloons (tooltips) of the chart,
+Creates the balloons (tooltips) of the chart.
 It follows the mouse cursor when you roll-over the data items.
-The framework generates the instances automatically you just have to adjust
+The framework automatically generates the instances you just have to adjust
 the appearance to your needs.
 Run \code{api("AmBalloon")} for more informations.}
 
@@ -277,19 +277,19 @@ If you want to change some properties,
 you should get this axis from the chart and set properties to this object.
 Run \code{api("CategoryAxis")} for more informations.}
 
-\item{categoryField}{\code{character}.
-Category field name indicates the name of the field in your dataProvider object
+\item{categoryField}{\code{character}, 
+category field name indicates the name of the field in your dataProvider object
 which will be used for category axis values.}
 
 \item{chartCursor}{\linkS4class{ChartCursor}.
 Chart's cursor.
-Run \code{api("ChartCursor")} for more information.}
+Run \code{api("ChartCursor")} for more informations.}
 
 \item{chartScrollbar}{\linkS4class{ChartScrollbar}.
 Chart's scrollbar.
 Run \code{api("ChartScrollbar")} for more informations.}
 
-\item{creditsPosition}{\code{character},
+\item{creditsPosition}{\code{character}, 
 specifies position of the amCharts' website link.
 Allowed values are: "top-left", "top-right", "bottom-left" and "bottom-right".}
 
@@ -317,23 +317,23 @@ Run \code{api("Guide")} for more informations.}
 Legend of a chart.
 Run \code{api("AmLegend")} for more informations.}
 
-\item{segmentsField}{\code{character}.
-Segments field in your data provider.
+\item{segmentsField}{\code{character}, 
+segments field in your data provider.
 Only valid for Gantt Charts.}
 
-\item{theme}{\code{character}.
-Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
+\item{theme}{\code{character}, 
+theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
 See \url{http://www.amcharts.com/tutorials/working-with-themes/}.}
 
 \item{titles}{\code{list} of \linkS4class{Title}.
 Run \code{api("Title")} for more informations.}
 
-\item{trendLines}{\code{list} of \linkS4class{TrendLine} objects added to a chart.
+\item{trendLines}{\code{list} of \linkS4class{TrendLine} objects added to the chart.
 You can add trend lines to a chart using this list or access already existing trend lines.
 Run \code{api("TrendLine")} for more informations.}
 
-\item{type}{\code{character}.
-Possible types are: "serial", "pie", "radar", "xy", "radar", "funnel", "gauge", "stock".
+\item{type}{\code{character}, 
+possible types are: "serial", "pie", "radar", "xy", "radar", "funnel", "gauge", "stock".
 See details about using argument type.
 (type map is in development).}
 
@@ -406,28 +406,28 @@ Argument of method \code{addTrendLine}.}
 (updated) \linkS4class{AmChart} with given properties.
 }
 \description{
-Method for initializing any S4 class provided by the package.
+Method to initialize any S4 class provided by the package.
 }
 \details{
-amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}
+amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}.
 
 amFunnelChart is a shortcut
-for instantiating AmChart of type \code{funnel}
+for instantiating AmChart of type \code{funnel}.
 
 amRadarChart is a shortcut
-for instantiating AmChart of type \code{radar}
+for instantiating AmChart of type \code{radar}.
 
 amSerialChart is a shortcut constructor 
-for instantiating AmChart of type \code{serial}
+for instantiating AmChart of type \code{serial}.
 
 amPieChart is a shortcut constructor
-for instantiating AmChart of type \code{pie}
+for instantiating AmChart of type \code{pie}.
 
 amGanttChart is a constructor
-for instantiating AmChart of type \code{gantt}
+for instantiating AmChart of type \code{gantt}.
 
 amXYChart is a shortcut constructor
-for instantiating AmChart of type \code{xy}
+for instantiating AmChart of type \code{xy}.
 
 Method 'addAxe' is deprecated, use 'addAxis'.
 

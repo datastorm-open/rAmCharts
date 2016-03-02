@@ -8,7 +8,7 @@
 \alias{initialize,GaugeAxis-method}
 \alias{setBands}
 \alias{setBands,GaugeAxis,list-method}
-\title{Initialize a GaugeAxis}
+\title{Initializes a GaugeAxis}
 \usage{
 \S4method{initialize}{GaugeAxis}(.Object, axisAlpha = 1, bands, ...)
 
@@ -30,13 +30,13 @@ addBand(.Object, band = NULL, ...)
 \item{bands}{\code{list} of \linkS4class{GaugeBand}.
 Bands are used to draw color fills between specified values.}
 
-\item{...}{other properties.}
+\item{...}{other properties of GaugeAxis.}
 
 \item{band}{\linkS4class{GaugeBand}.
 Argument for method \code{addBand}.}
 }
 \description{
-Use the constructor to create the object
+Uses the constructor to create the object
 or update an existing one with the setters.
 }
 \examples{

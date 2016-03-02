@@ -78,7 +78,7 @@ amChart <- function(allLabels, arrows, axes, balloon, categoryAxis, categoryFiel
   return(object)
 }
 
-#' @details amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}
+#' @details amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}.
 #' @examples
 #' amAngularGaugeChart()
 #' @rdname initialize-AmChart
@@ -91,7 +91,7 @@ amAngularGaugeChart <- function(arrows, titles, axes, ...)
 }
 
 #' @details amFunnelChart is a shortcut
-#' for instantiating AmChart of type \code{funnel}
+#' for instantiating AmChart of type \code{funnel}.
 #' @param marginLeft \code{character}, left margin of the chart.
 #' @param marginRight \code{character}, right margin of the chart.
 #' @examples
@@ -107,7 +107,7 @@ amFunnelChart <- function(dataProvider, marginLeft = 10, marginRight = 10,...)
 }
 
 #' @details amRadarChart is a shortcut
-#' for instantiating AmChart of type \code{radar}
+#' for instantiating AmChart of type \code{radar}.
 #' @examples
 #' amRadarChart()
 #' @rdname initialize-AmChart
@@ -132,7 +132,7 @@ amRadarChart <- function(allLabels,
 }
 
 #' @details amSerialChart is a shortcut constructor 
-#' for instantiating AmChart of type \code{serial}
+#' for instantiating AmChart of type \code{serial}.
 #' @examples
 #' amSerialChart(creditsPostion = "top-right")
 #' @rdname initialize-AmChart
@@ -152,7 +152,7 @@ amSerialChart <- function(allLabels, balloon, categoryAxis, categoryField, chart
 }
 
 #' @details amPieChart is a shortcut constructor
-#' for instantiating AmChart of type \code{pie}
+#' for instantiating AmChart of type \code{pie}.
 #' @examples
 #' amPieChart()
 #' @rdname initialize-AmChart
@@ -172,7 +172,7 @@ amPieChart <- function(allLabels,
 }
 
 #' @details amGanttChart is a constructor
-#' for instantiating AmChart of type \code{gantt}
+#' for instantiating AmChart of type \code{gantt}.
 #' @examples
 #' amGanttChart(segmentsField = "segments")
 #' @rdname initialize-AmChart
@@ -191,7 +191,7 @@ amGanttChart <- function(categoryField,
 }
 
 #' @details amXYChart is a shortcut constructor
-#' for instantiating AmChart of type \code{xy}
+#' for instantiating AmChart of type \code{xy}.
 #' @examples
 #' amXYChart()
 #' @rdname initialize-AmChart

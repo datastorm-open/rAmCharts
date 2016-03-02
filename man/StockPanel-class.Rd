@@ -16,7 +16,7 @@ Run \code{api("StockPanel")} for more information and all avalaible properties.
 \describe{
 \item{\code{drawOnAxis}}{\linkS4class{ValueAxis}.
 Specifies on which value axis user can draw trend lines.
-Set drawingIconsEnabled to true if you want drawing icons to be visible.
+Set drawingIconsEnabled to TRUE if you want icons to be visible.
 First value axis will be used if not set here.
 You can use a reference to the value axis object or id of value axis.}
 
@@ -29,22 +29,22 @@ Each element must be have been created with stockLegend(*)}
 \item{\code{allLabels}}{\code{list} of \linkS4class{Label}.
 Example of label object, with all possible properties:
 label(x = 20, y = 20, text = "this is label", align = "left", size = 12, color = "#CC0000",
-      alpha = 1, rotation = 0, bold = TRUE, url = "http=//www.amcharts.com")
-Run \code{api("Label")} for more information.}
+      alpha = 1, rotation = 0, bold = TRUE, url = "http=//www.amcharts.com").
+Run \code{api("Label")} for more informations.}
 
 \item{\code{arrows}}{\code{list} of \linkS4class{GaugeArrow}. Only valid for gauge charts.
-Run \code{api("GaugeArrow")} for more information.}
+Run \code{api("GaugeArrow")} for more informations.}
 
 \item{\code{axes}}{\code{list} of \linkS4class{GaugeAxis} properties.
 Only valid for gauge charts.
-Run \code{api("GaugeAxis")} for more information.}
+Run \code{api("GaugeAxis")} for more informations.}
 
-\item{\code{balloon}}{\linkS4class{AmBalloon}.
-Creates the balloons (tooltips) of the chart,
+\item{\code{balloon}}{\linkS4class{AmBalloon}
+Creates the balloons (tooltips) of the chart.
 It follows the mouse cursor when you roll-over the data items.
-The framework generates the instances automatically you just have to adjust
+The framework automatically generates the instances you just have to adjust
 the appearance to your needs.
-Run \code{api("AmBalloon")} for more information.}
+Run \code{api("AmBalloon")} for more informations.}
 
 \item{\code{categoryAxis}}{\linkS4class{CategoryAxis}.
 Read-only. Chart creates category axis itself.
@@ -52,16 +52,16 @@ If you want to change some properties,
 you should get this axis from the chart and set properties to this object.}
 
 \item{\code{categoryField}}{\code{character}.
-Category field name tells the chart the name of the field in your dataProvider object
+Category field name indicates the chart the name of the field in your dataProvider object
 which will be used for category axis values.}
 
 \item{\code{ChartCursor}}{\linkS4class{ChartCursor}.
 Cursor of a chart.
-Run \code{api("ChartCursor")} for more information.}
+Run \code{api("ChartCursor")} for more informations.}
 
 \item{\code{ChartScrollbar}}{\linkS4class{ChartScrollbar}.
 Chart's scrollbar.
-Run \code{api("ChartScrollbar")} for more information.}
+Run \code{api("ChartScrollbar")} for more informations.}
 
 \item{\code{creditsPosition}}{\code{character},
 specifies position of the amCharts' website link.
@@ -78,17 +78,17 @@ Only valid for Gantt charts.
 Gant chart actually creates multiple graphs (separate for each segment).
 Properties of this graph are passed to each of the created graphs
 - this allows you to control the look of segments.
-Run \code{api("AmGraph")} for more information.}
+Run \code{api("AmGraph")} for more informations.}
 
 \item{\code{guides}}{\code{list} of \linkS4class{Guide}.
 Instead of adding guides to the axes, you can push all of them to this array.
-In case guide has category or date defined, it will automatically will be assigned to the category axis.
+In case guide has category or date defined, it automatically will be assigned to the category axis.
 Otherwise to first value axis, unless you specify a different valueAxes for the guide.
-Run \code{api("Guide")} for more information.}
+Run \code{api("Guide")} for more informations.}
 
 \item{\code{legend}}{\linkS4class{AmLegend}.
-Legend of a chart.
-Run \code{api("AmLegend")} for more information.}
+Chart's legend.
+Run \code{api("AmLegend")} for more informations.}
 
 \item{\code{segmentsField}}{\code{character}.
 Segments field in your data provider.
@@ -98,11 +98,11 @@ Only valid for Gantt Charts.}
 Only valid for Drilldown charts.}
 
 \item{\code{theme}}{\code{character}.
-Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
+Chart's theme. Config files of themes can be found in amcharts/themes/ folder.
 See \url{http://www.amcharts.com/tutorials/working-with-themes/}.}
 
 \item{\code{titles}}{\code{list} of \linkS4class{Title}.
-Run \code{api("Title")} for more information.}
+Run \code{api("Title")} for more informations.}
 
 \item{\code{trendLines}}{\code{list} of \linkS4class{TrendLine} objects added to a chart.
 You can add trend lines to a chart using this list or access already existing trend lines.}
@@ -115,7 +115,7 @@ See details about using argument type.
 \item{\code{valueAxes}}{\code{list} of \linkS4class{ValueAxis}.
 Chart creates one value axis automatically,
 so if you need only one value axis, you don't need to create it.
-Run \code{api("ValueAxis")} for more information.}
+Run \code{api("ValueAxis")} for more informations.}
 
 \item{\code{valueAxis}}{\linkS4class{ValueAxis}.
 Only valid for Gantt Charts.
@@ -126,13 +126,11 @@ The list must be named as in the official API. Each element must be a character 
 Run \code{runShinyExamples()} for examples.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}
 \author{
-DataKnowledge
-
 DataKnowledge
 }
 

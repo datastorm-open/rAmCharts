@@ -3,7 +3,7 @@ NULL
 
 #' @title PeriodSelector
 #' @author Dataknowledge
-#' @description Define the PeriodSelector properties.
+#' @description Defines the PeriodSelector properties.
 #' 
 #' @slot periods \code{list}.
 #' Period object has 4 properties - period, count, label and selected.
@@ -18,7 +18,7 @@ NULL
 #' See examples for details.
 #' 
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' 
 #' @slot value
 #' Object of class \code{numeric}.
@@ -27,8 +27,8 @@ NULL
 setClass(Class = "PeriodSelector", contains = "AmObject",
          representation = representation(periods = "list"))
 
-#' @title Initialize a PeriodSelector
-#' @description Use the constructors to create the object with its properties
+#' @title Initializes a PeriodSelector
+#' @description Uses the constructors to create the object with its properties
 #' or update an existing one with the setters.
 #' 
 #' @param .Object \linkS4class{PeriodSelector}.
@@ -39,7 +39,7 @@ setClass(Class = "PeriodSelector", contains = "AmObject",
 #' property "count" specifies how many periods this button will select.
 #' "label" will be displayed on a button and "selected" is a logical.
 #' which specifies if this button is selected when chart is initialized or not.
-#' @param ... Other properties.
+#' @param ... other properties of PeriodSelector.
 #' @return (updated) .Object of class \linkS4class{PeriodSelector}.
 #' @examples
 #' new( "PeriodSelector")

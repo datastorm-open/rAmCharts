@@ -21,10 +21,10 @@ setMethod(f = "setBalloon", signature = c("AmStockChart", "AmBalloonOrMissing"),
             return(.Object)
           })
 
-#' @details CategoryAxesSettings set's settings common for all CategoryAxes of StockPanels.
+#' @details CategoryAxesSettings sets common settings for all CategoryAxes of StockPanels.
 #' If you change a property after the chart is initialized,
-#' you should call stockChart.validateNow() method in order for it to work.
-#' If there is no default value specified, default value of CategoryAxis class will be used.
+#' you should call stockChart.validateNow() method.
+#' If there is no specified value, default value of CategoryAxis class will be used.
 #' you should get this axis from the chart and set properties to this object.
 #' @examples
 #' setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")
@@ -41,10 +41,10 @@ setMethod(f = "setCategoryAxesSettings", signature = c("AmStockChart"),
             return(.Object)
           })
 
-#' @details ChartCursorSettings settings set's settings for chart cursor.
+#' @details ChartCursorSettings sets settings for chart cursor.
 #' If you change a property after the chart is initialized,
-#' you should call stockChart.validateNow() method in order for it to work.
-#' If there is no default value specified, default value of ChartCursor class will be used.
+#' you should call stockChart.validateNow() method.
+#' If there is no specified value, default value of ChartCursor class will be used.
 #' @examples
 #' setChartCursorSettings(.Object = amStockChart(), oneBallOnly = TRUE)
 #' # ---

@@ -13,20 +13,20 @@ amOptions(chart, theme = "none", legend = FALSE, legendPosition = "right",
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
 
-\item{theme}{\code{character}. Possible values are : "none", "light", "dark", "patterns",
+\item{theme}{\code{character}, possible values are : "none", "light", "dark", "patterns",
 "chalk", default set to "none".}
 
 \item{legend}{\code{logical}, default \code{FALSE}. TRUE to add a legend to the chart.}
 
-\item{legendPosition}{\code{character}. Possible values are : "left", "right", "top" or "bottom", 
+\item{legendPosition}{\code{character}, possible values are : "left", "right", "top" or "bottom", 
 default set to "right".}
 
-\item{legendAlign}{\code{character} controls the legend alignement. Possible values are : 
+\item{legendAlign}{\code{character}, controls the legend alignement. Possible values are : 
 "left","right" or "center", default set to "left". Only used if \code{legend = TRUE}.}
 
 \item{export}{\code{logical}, default set to  FALSE. TRUE to display export feature.}
 
-\item{exportFormat}{\code{character} desired export format. Possible values are : "JPG",
+\item{exportFormat}{\code{character}, desired export format. Possible values are : "JPG",
 "PNG" ,"SVG", "CSV", "JSON", "PDF", "XLSX", "PRINT".}
 
 \item{creditsPosition}{\code{character}, controsl credits position. Possible values are : 
@@ -59,39 +59,37 @@ See details for exception.
  }
 }
 \examples{
+library(pipeR)
+
+# Load data
 data(data_pie) 
 
-library(pipeR)
-#Export                 
+# Export                 
 amPie(data = data_pie)\%>>\%
   amOptions(export = TRUE)
 
-#Legend
+# Legend
 amPie(data = data_pie)\%>>\%
   amOptions(legend = TRUE)
 
-#Legend position
+# Legend position
 amPie(data = data_pie)\%>>\%
   amOptions(legend = TRUE, legendPosition = "bottom")
 
-#credits Position
+# Credits position
 amPie(data = data_pie)\%>>\%
   amOptions(creditsPosition = "bottom-right")
 
-#credits Position
-amPie(data = data_pie)\%>>\%
-  amOptions(creditsPosition = "bottom-right")
-
-#Theme
+# Theme
 amPie(data = data_pie)\%>>\%
   amOptions(theme = "chalk")
 
-#Title
+# Title
 amPie(data = data_pie)\%>>\%
   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40, theme = "chalk")
 
 
-#custom exemple
+# Custom exemple
 amPie(data = data_pie)\%>>\%
   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40,
             theme = "dark", legend = TRUE, legendPosition = "bottom",

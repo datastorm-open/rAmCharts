@@ -182,5 +182,3 @@
   
   stop(paste0("class(", arg, ") is not in c('data.frame', 'data.table', 'tbl')"))
 }
-
-

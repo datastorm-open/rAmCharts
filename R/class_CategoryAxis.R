@@ -5,18 +5,17 @@ NULL
 #' @author DataKnowledge
 #' 
 #' @description Children class of AxisBase.
-#' Gets automatically populated if none has been specified.
+#' Automatically set.
 #' @details Run \code{api("CategoryAxis")} for more information and all avalaible properties.
 #' 
 #' @slot gridPosition \code{character}.
 #' Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
 #' Possible values are: "start" and "middle"
-#' This setting doesn't work if parseDates is set to true.
+#' This setting doesn't work if parseDates is set to TRUE.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -24,14 +23,14 @@ NULL
 setClass(Class = "CategoryAxis", contains = "AxisBase",
          representation = representation(gridPosition = "character"))
 
-#' @title Initialize a CategoryAxis
-#' @description Initialize or update a \linkS4class{CategoryAxis}.
+#' @title Initializes a CategoryAxis
+#' @description Initializes or update a \linkS4class{CategoryAxis}.
 #' 
 #' @param .Object \linkS4class{CategoryAxis}.
-#' @param gridPosition \code{character}.
-#' Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
+#' @param gridPosition \code{character}, 
+#' specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
 #' Possible values are: "start" and "middle"
-#' This setting doesn't work if parseDates is set to true.
+#' This setting doesn't work if parseDates is set to TRUE.
 #' @param guides \code{list} of \linkS4class{Guide}.
 #' @param ... Other properties.
 #' 

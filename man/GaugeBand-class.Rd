@@ -16,11 +16,11 @@ Run \code{api("GaugeBand")} for more information and all avalaible properties.
 \describe{
 \item{\code{id}}{\code{character}. Unique id of a band.}
 
-\item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must be a character string.
-See examples for details.}
+\item{\code{listeners}}{\code{list} containining the listeners to add to the chart.
+The list must be named as in the official API. Each element must be a character string.}
 
-\item{\code{otherProperties}}{\code{list}, containing other avalaible properties}
+\item{\code{otherProperties}}{\code{list}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

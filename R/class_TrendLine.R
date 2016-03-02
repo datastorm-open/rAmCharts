@@ -37,15 +37,15 @@ setClass(Class = "TrendLine", contains = "AmObject",
            valueAxisX = "listOrCharacter"
          ))
 
-#' @title Initialize a TrendLine
-#' @description Use the constructor to create the object
+#' @title Initializes a TrendLine
+#' @description Uses the constructor to create the object
 #' or update an existing one with the setters.
 #' 
 #' @param .Object \linkS4class{TrendLine}.
-#' @param finalValue \code{numeric}. Value at which trend line should end.
-#' @param finalXValue \code{numeric}. Used by XY chart only. X value at which trend line should end.
-#' @param initialValue \code{numeric}. Value from which trend line should start.
-#' @param initialXValue \code{numeric}. Used by XY chart only. X value from which trend line should start.
+#' @param finalValue \code{numeric}, value at which trend line should end.
+#' @param finalXValue \code{numeric}, used by XY chart only. X value at which trend line should end.
+#' @param initialValue \code{numeric}, value from which trend line should start.
+#' @param initialXValue \code{numeric}, used by XY chart only. X value from which trend line should start.
 #' @param valueAxis \linkS4class{ValueAxis}.
 #' Value axis of the trend line. Will use first value axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
@@ -53,7 +53,7 @@ setClass(Class = "TrendLine", contains = "AmObject",
 #' Used by XY chart only. X axis of trend line.
 #' Will use first X axis of the chart if not set any.
 #' You can use a reference to the value axis object or id of value axis.
-#' @param ... Other properties.
+#' @param ... other properties of TrendLine.
 #' 
 #' @return (possibly updated) .Object of class \linkS4class{TrendLine}.
 #' 

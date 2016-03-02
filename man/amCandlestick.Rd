@@ -10,19 +10,19 @@ amCandlestick(data, xlab = "", ylab = "", horiz = FALSE,
   minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 }
 \arguments{
-\item{data}{\code{data.frame} dataframe with at least 5 columns: 
+\item{data}{\code{data.frame}, dataframe with at least 5 columns: 
 category, open (numeric), close (numeric), low (numeric),
 high (numeric). See \link{data_candleStick1} and \link{data_candleStick2}.}
 
-\item{xlab}{\code{character} label for x-axis.}
+\item{xlab}{\code{character}, label for x-axis.}
 
-\item{ylab}{\code{character} label for y-axis.}
+\item{ylab}{\code{character}, label for y-axis.}
 
-\item{horiz}{\code{logical} TRUE for an horizontal chart, FALSE for a vertical one}
+\item{horiz}{\code{logical}, TRUE for an horizontal chart, FALSE for a vertical one}
 
-\item{positiveColor}{\code{character} color for positive values (in hexadecimal).}
+\item{positiveColor}{\code{character}, color for positive values (in hexadecimal).}
 
-\item{negativeColor}{\code{character} color for negative values (in hexadecimal).}
+\item{negativeColor}{\code{character}, color for negative values (in hexadecimal).}
 
 \item{names}{\code{character}, names for the tooltip. Default set to c("low", "open", "close", "high").}
 
@@ -32,44 +32,44 @@ all you need to do is to set data date format and the chart will parse dates to 
 Check this page for available formats.
 Please note that two-digit years (YY) as well as literal month names (MMM)  are NOT supported in this setting.}
 
-\item{minPeriod}{\code{character} minPeriod Specifies the shortest period of your data.
+\item{minPeriod}{\code{character}, minPeriod Specifies the shortest period of your data.
 This should be set only if dataDateFormat is not NULL.
 Possible period values:
 fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 It's also possible to supply a number for increments, i.e. '15mm'
 which will instruct the chart that your data is supplied in 15 minute increments.}
 
-\item{...}{see \link{amOptions} for more options}
+\item{...}{see \code{\link{amOptions}} for more options.}
 }
 \description{
 amCandlestick computes a candlestick chart of the given value.
 }
 \examples{
-# load data
+# Load data
 data("data_candleStick2")
 
-# Basic example
+# Reference example
 amCandlestick(data = data_candleStick2)
 
-# change colors
+# Change colors
 amCandlestick(data = data_candleStick2, positiveColor = "black", negativeColor = "green")
 
-# naming the axes
+# Naming the axes
 amCandlestick(data = data_candleStick2, xlab = "categories", ylab = "values")
 
 # Rotate the labels for x axis
 amCandlestick(data = data_candleStick2, labelRotation = 90)
 
-# change names
+# Change names
 amCandlestick(data = data_candleStick2, names = c("min", "begin", "end", "max"))
 
-#Horizontal chart :
+# Horizontal chart :
 amCandlestick(data = data_candleStick2, horiz = TRUE)
 
-#  Parse date              
+# Parse date              
 amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD")
 
-# datas over months
+# Datas over months
 data_candleStick2$category <- c("2015-01-01", "2015-02-01", "2015-03-01",
                                 "2015-04-01", "2015-05-01", "2015-06-01",
                                 "2015-07-01", "2015-08-01", "2015-09-01",
@@ -77,7 +77,7 @@ data_candleStick2$category <- c("2015-01-01", "2015-02-01", "2015-03-01",
 
 amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD", minPeriod = "MM")
 
-# decimal precision
+# Decimal precision
 require(pipeR)
 amCandlestick(data = data_candleStick2, horiz = TRUE) \%>>\%
   setProperties(precision = 2) 

@@ -9,25 +9,25 @@ NULL
 #' 
 #' @slot bands \code{list} containing properties of one or several \linkS4class{GaugeBand} objects.
 #' Bands are used to draw color fills between specified values.
-#' @slot listeners \code{list} containining the listeners to add to the object.
+#' @slot listeners \code{list} containining the listeners to add to the chart.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
-#' @slot otherProperties \code{list}, containing other avalaible properties.
+#' @slot otherProperties \code{list}
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
 setClass(Class = "GaugeAxis", contains = "AmObject",
          representation = representation(bands = "list" ))
 
-#' @title Initialize a GaugeAxis
-#' @description Use the constructor to create the object
+#' @title Initializes a GaugeAxis
+#' @description Uses the constructor to create the object
 #' or update an existing one with the setters.
 #' 
 #' @param .Object \linkS4class{GaugeAxis}.
 #' @param axisAlpha \code{numeric}.
 #' @param bands \code{list} of \linkS4class{GaugeBand}.
 #' Bands are used to draw color fills between specified values.
-#' @param ... other properties.
+#' @param ... other properties of GaugeAxis.
 #' 
 #' @examples
 #' # --- method initialize

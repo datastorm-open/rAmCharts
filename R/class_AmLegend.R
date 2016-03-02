@@ -14,19 +14,20 @@ NULL
 #' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
 #' @slot otherProperties \code{list} 
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' @export
 setClass(Class = "AmLegend", contains = "AmObject",
           representation = representation(useGraphSettings = "logical"))
 
-#' @title Initialize
+#' @title Initializes legend of the chart
 #' @param .Object \linkS4class{AmLegend}.
-#' @param useGraphSettings \code{logical}.
-#' If TRUE, border color will be changed when user rolls-over the slice, graph, 
+#' @param useGraphSettings \code{logical}, 
+#' if TRUE, border color will be changed when user rolls-over the slice, graph, 
 #' etc, instead of background color.
 #' @param ... Other properties of \linkS4class{AmLegend}.
 #' See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}.
+#' 
 #' @examples
 #' new("AmLegend", useGraphSettings = TRUE)
 #' @rdname initialize-AmLegend
@@ -59,7 +60,7 @@ amLegend <- function(useGraphSettings, ...) {
   return(.Object)
 }
 
-#' @description Constructor for an AmLegend.
+
 #' @examples 
 #' legend(useGraphSettings = FALSE)
 #' @rdname initialize-AmLegend
@@ -77,10 +78,10 @@ legend <- function(useGraphSettings, ...) {
 #' @title Constructor for StockLegend.
 #' @description This method is used for \linkS4class{AmStockChart}.
 #' 
-#' @param useGraphSettings
+#' @param useGraphSettings \code{logical}
 #' Legend markers can mirror graph's settings,
 #' displaying a line and a real bullet as in the graph itself.
-#' Set this property to true if you want to enable this feature.
+#' Set this property to TRUE if you want to enable this feature.
 #' @param valueTextComparing \code{character}
 #' @param ...
 #' Properties of AmLegend.

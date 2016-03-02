@@ -13,7 +13,7 @@ Class to draw stock charts
 \item{\code{balloon}}{\linkS4class{AmBalloon}.}
 
 \item{\code{comparedDataSets}}{\code{list} of \linkS4class{DataSet}.
-Properties of data sets selected for comparing.}
+Properties of data sets selected for comparison.}
 
 \item{\code{dataSets}}{\code{list} of \linkS4class{DataSet}.
 Each element must be a list of DataSet properties.}
@@ -28,19 +28,18 @@ Data set selected as main.}
 \item{\code{panels}}{\code{list} of \linkS4class{StockPanel}.}
 
 \item{\code{periodSelector}}{\linkS4class{PeriodSelector}.
-You can add it if you want user's to be able to enter
+You can add it if you want users to be able to enter
 date ranges or zoom chart with predefined period buttons.}
 
 \item{\code{theme}}{\code{character}}
 
 \item{\code{type}}{equals "stock"}
 
-\item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must be a character string. 
-See examples for details.}
+\item{\code{listeners}}{\code{list} containining the listeners to add to the chart.
+The list must be named as in the official API. Each element must be a character string.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

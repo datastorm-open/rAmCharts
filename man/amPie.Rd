@@ -7,39 +7,39 @@
 amPie(data, show_values = TRUE, depth = 0, inner_radius = 0, ...)
 }
 \arguments{
-\item{data}{\code{data.frame} dataframe with at least 2 columns : 
+\item{data}{\code{data.frame}, dataframe with at least 2 columns : 
 label (character), value (numeric). See \code{\link{data_pie}}
 You can add a third column "color" (character, colors in hexadecimal).}
 
-\item{show_values}{\code{logical} TRUE to display values.}
+\item{show_values}{\code{logical}, TRUE to display values.}
 
-\item{depth}{\code{numeric} if > 0, chart is displayed in 3D, value
+\item{depth}{\code{numeric}, if > 0, chart is displayed in 3D, value
 between 0 and 100}
 
-\item{inner_radius}{\code{numeric} value between 0 and 100}
+\item{inner_radius}{\code{numeric}, value between 0 and 100}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \code{\link{amOptions}} for more options.}
 }
 \description{
 amPie computes a pie chart of the given value.
 }
 \examples{
-#Data
+# Load data
 data("data_pie")
 
-#Basic example                 
+# Reference example : pie chart                
 amPie(data = data_pie)
 
-#don't display values
+# Don't display values
 amPie(data = data_pie, show_values = FALSE)
 
-#3D pie
+# 3D pie
 amPie(data = data_pie, depth = 10)
 
-#donut chart
+# Donut chart
 amPie(data = data_pie, inner_radius = 50)
 
-#all
+# All parameters
 amPie(data = data_pie, inner_radius = 50, depth = 10, show_values = FALSE)
 
 }

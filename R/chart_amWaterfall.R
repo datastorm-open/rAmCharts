@@ -1,15 +1,15 @@
 #' @title Plotting waterfall chart using rAmCharts
 #' @description  amWaterfall computes a waterfall chart of the given value.
-#' @param data \code{data.frame} dataframe with at least 3 columns : 
+#' @param data \code{data.frame}, dataframe with at least 3 columns : 
 #' label (character), value (numeric), operation (character : "plus", "minus", "total").
 #' You can add a third column "color" (character, colors in hexadecimal). You can
 #' also add a column "description" (character) containing the text you want to
 #' display when mouse is on the graphic ('<br>' for a new line).
 #' See \code{\link{data_waterfall}}.
-#' @param start \code{numeric} value from which to start
-#' @param horiz \code{logical} TRUE for an horizontal chart, FALSE for a vertical one
-#' @param show_values \code{logical} TRUE to display values on the chart.
-#' @param ... see \code{\link{amOptions}} for more options
+#' @param start \code{numeric}, value from which to start.
+#' @param horiz \code{logical}, TRUE for an horizontal chart, FALSE for a vertical one.
+#' @param show_values \code{logical}, TRUE to display values on the chart.
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @example examples/amWaterfall_examples.R
 #' 
@@ -31,6 +31,9 @@ amWaterfall <- function(data, start = 0, horiz = FALSE,
   
   #label
   .testIn(vect = "label", control = colnames(data))
+  if(is.factor(data$label)) {
+    data$label <- as.character(data$label)
+  }
   .testCharacter(char = data$label, arg = "data$label")
 
   #value

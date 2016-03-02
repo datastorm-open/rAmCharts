@@ -17,18 +17,17 @@ Run \code{api("Guide")} for more information and all avalaible properties.
 \describe{
 \item{\code{fillAlpha}}{\code{numeric}.
 Specifies if a grid line is placed on the center of a cell or on the beginning of a cell.
-Possible values are: "start" and "middle" This setting doesn't work if parseDates is set to true.}
+Possible values are: "start" and "middle" This setting doesn't work if parseDates is set to TRUE.}
 
 \item{\code{valueAxis}}{\linkS4class{ValueAxis}.
 As you can add guides directly to the chart, you might need to specify 
 which value axis should be used.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must be a character string.
-See examples for details.}
+The list must be named as in the official API. Each element must be a character string.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

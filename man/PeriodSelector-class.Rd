@@ -5,7 +5,7 @@
 \alias{PeriodSelector-class}
 \title{PeriodSelector}
 \description{
-Define the PeriodSelector properties.
+Defines the PeriodSelector properties.
 }
 \section{Slots}{
 
@@ -23,7 +23,7 @@ The list must be named as in the official API. Each element must be a character 
 See examples for details.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{Object of class \code{numeric}.}
 }}

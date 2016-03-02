@@ -8,23 +8,23 @@ amMekko(x, y, data, xlab = "", ylab = "", groups_color = NULL,
   horiz = FALSE, show_values = FALSE, ...)
 }
 \arguments{
-\item{x}{\code{character} column name for x-axis.}
+\item{x}{\code{character}, column name for x-axis.}
 
-\item{y}{\code{character} column name for y-axis.}
+\item{y}{\code{character}, column name for y-axis.}
 
-\item{data}{\code{data.frame} dataframe with values to display.
+\item{data}{\code{data.frame}, dataframe with values to display.
 See \code{\link{data_mekko}}}
 
-\item{xlab}{\code{character} label for x-axis.}
+\item{xlab}{\code{character}, label for x-axis.}
 
-\item{ylab}{\code{character} label for y-axis.}
+\item{ylab}{\code{character}, label for y-axis.}
 
 \item{groups_color}{\code{character} vector of colors in hexadecimal, 
 same length as the number of y modalities.}
 
-\item{horiz}{\code{logical} TRUE for an horizontal chart, FALSE for a vertical one}
+\item{horiz}{\code{logical}, TRUE for an horizontal chart, FALSE for a vertical one.}
 
-\item{show_values}{\code{logical} TRUE to display values.}
+\item{show_values}{\code{logical}, TRUE to display values.}
 
 \item{...}{see \code{\link{amOptions}} for more options.}
 }
@@ -33,13 +33,17 @@ amMekko computes a mekko chart of the given values.
 }
 \examples{
 library(pipeR)
+
+# Load data
 data(data_mekko)
+
+# Reference example : mekko chart
 amMekko(x = "var1", y = "var2", data = data_mekko)
 
-#Horizontal :
+# Horizontal
 amMekko(x = "var1", y = "var2", data = data_mekko, horiz = TRUE)
 
-#display values :
+# Display values
 amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)\%>>\%amOptions()
 
 }

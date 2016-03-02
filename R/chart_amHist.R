@@ -2,7 +2,7 @@
 #' @description  amHist computes a histogram of the given data values.
 #' 
 #' @param x \code{numeric}, a vector of values for which the histogram is desired.
-#' @param freq \code{logical}; if \code{TRUE}, the histogram graphic is a representation of frequencies,
+#' @param freq \code{logical}, if \code{TRUE}, the histogram graphic is a representation of frequencies,
 #' the counts component of the result; if FALSE, probability densities,
 #' component density, are plotted (so that the histogram has a total area of one).
 #' Defaults to TRUE if and only if breaks are equidistant (and probability is not specified).
@@ -13,13 +13,13 @@
 #' In the second case, a warning is used if (typically graphical)
 #' arguments are specified that only apply to the \code{plot = TRUE} case.
 #' @param col \code{character}, a color to be used to fill the bars.
-#' @param border \code{character} a color for the borders.
-#' @param labels \code{logical} default FALSE.
+#' @param border \code{character}, a color for the borders.
+#' @param labels \code{logical}, set to TRUE to display labels. Default set to FALSE.
 #' Additionally draw labels on top of bars.
 #' if TRUE, draw the counts or rounded densities;
 #' if labels is a \code{character}, draw itself.
 #' @param control_hist (optional) named \code{list()} containing parameters to compute the histogram.
-#' @param ... Other parameters for \link{amOptions}.
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 

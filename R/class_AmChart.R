@@ -2,7 +2,7 @@
 NULL
 
 #' @title AmChart
-#' @description Define the AmChart properties.
+#' @description Defines the AmChart properties.
 #' 
 #' @slot allLabels \code{list} of \linkS4class{Label}.
 #' Example of a label object, with all possible properties:
@@ -108,7 +108,7 @@ NULL
 #' Run \code{runShinyExamples()} for examples.
 #' 
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' 
 #' @slot value \code{numeric}.
 #' 
@@ -173,8 +173,8 @@ setClass(Class = "AmChart", contains = "AmObject",
            }
          })
 
-#' @title Create an AmChart
-#' @description Method for initializing any S4 class provided by the package.
+#' @title Creates an AmChart
+#' @description Method to initialize any S4 class provided by the package.
 #' 
 #' 
 #' @param .Object \linkS4class{AmChart}.
@@ -193,9 +193,9 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' Run \code{api("GaugeAxis")} for more informations.
 #' 
 #' @param balloon \linkS4class{AmBalloon}.
-#' Creates the balloons (tooltips) of the chart,
+#' Creates the balloons (tooltips) of the chart.
 #' It follows the mouse cursor when you roll-over the data items.
-#' The framework generates the instances automatically you just have to adjust
+#' The framework automatically generates the instances you just have to adjust
 #' the appearance to your needs.
 #' Run \code{api("AmBalloon")} for more informations.
 #' 
@@ -205,19 +205,19 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' you should get this axis from the chart and set properties to this object.
 #' Run \code{api("CategoryAxis")} for more informations.
 #' 
-#' @param categoryField \code{character}.
-#' Category field name indicates the name of the field in your dataProvider object
+#' @param categoryField \code{character}, 
+#' category field name indicates the name of the field in your dataProvider object
 #' which will be used for category axis values.
 #' 
 #' @param chartCursor \linkS4class{ChartCursor}.
 #' Chart's cursor.
-#' Run \code{api("ChartCursor")} for more information.
+#' Run \code{api("ChartCursor")} for more informations.
 #' 
 #' @param chartScrollbar \linkS4class{ChartScrollbar}.
 #' Chart's scrollbar.
 #' Run \code{api("ChartScrollbar")} for more informations.
 #' 
-#' @param creditsPosition \code{character},
+#' @param creditsPosition \code{character}, 
 #' specifies position of the amCharts' website link.
 #' Allowed values are: "top-left", "top-right", "bottom-left" and "bottom-right".
 #' 
@@ -245,23 +245,23 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' Legend of a chart.
 #' Run \code{api("AmLegend")} for more informations.
 #' 
-#' @param segmentsField \code{character}.
-#' Segments field in your data provider.
+#' @param segmentsField \code{character}, 
+#' segments field in your data provider.
 #' Only valid for Gantt Charts.
 #' 
-#' @param theme \code{character}.
-#' Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
+#' @param theme \code{character}, 
+#' theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
 #' See \url{http://www.amcharts.com/tutorials/working-with-themes/}.
 #' 
 #' @param titles \code{list} of \linkS4class{Title}.
 #' Run \code{api("Title")} for more informations.
 #' 
-#' @param trendLines \code{list} of \linkS4class{TrendLine} objects added to a chart.
+#' @param trendLines \code{list} of \linkS4class{TrendLine} objects added to the chart.
 #' You can add trend lines to a chart using this list or access already existing trend lines.
 #' Run \code{api("TrendLine")} for more informations.
 #' 
-#' @param type \code{character}.
-#' Possible types are: "serial", "pie", "radar", "xy", "radar", "funnel", "gauge", "stock".
+#' @param type \code{character}, 
+#' possible types are: "serial", "pie", "radar", "xy", "radar", "funnel", "gauge", "stock".
 #' See details about using argument type.
 #' (type map is in development).
 #' 
@@ -365,7 +365,7 @@ setMethod(f = "initialize", signature = "AmChart",
           })
 
 #' @title Visualize AmChart with show
-#' @description Display the object in the console
+#' @description Displays the object in the console
 #' 
 #' @examples
 #' pipeR::pipeline(

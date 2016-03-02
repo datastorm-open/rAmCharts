@@ -1,13 +1,13 @@
 #' @title Plotting pie chart using rAmCharts
 #' @description  amPie computes a pie chart of the given value.
-#' @param data \code{data.frame} dataframe with at least 2 columns : 
+#' @param data \code{data.frame}, dataframe with at least 2 columns : 
 #' label (character), value (numeric). See \code{\link{data_pie}}
 #' You can add a third column "color" (character, colors in hexadecimal).
-#' @param show_values \code{logical} TRUE to display values.
-#' @param depth \code{numeric} if > 0, chart is displayed in 3D, value
+#' @param show_values \code{logical}, TRUE to display values.
+#' @param depth \code{numeric}, if > 0, chart is displayed in 3D, value
 #' between 0 and 100
-#' @param inner_radius \code{numeric} value between 0 and 100
-#' @param ... see \code{\link{amOptions}} for more options
+#' @param inner_radius \code{numeric}, value between 0 and 100
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @example examples/amPie_examples.R
 #' 
@@ -28,6 +28,9 @@ amPie <- function(data, show_values = TRUE, depth = 0, inner_radius = 0, ...) {
   
   #label
   .testIn(vect = "label", control = colnames(data))
+  if(is.factor(data$label)) {
+    data$label <- as.character(data$label)
+  }
   .testCharacter(char = data$label, arg = "data$label")
   
   #label

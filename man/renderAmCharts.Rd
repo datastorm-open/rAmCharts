@@ -9,12 +9,12 @@ renderAmCharts(expr, env = parent.frame(), quoted = FALSE)
 \arguments{
 \item{expr}{an expression that generates an HTML widget.}
 
-\item{env}{the environment in which to evaluate expr.}
+\item{env}{the environment in which expr must be evaluated.}
 
-\item{quoted}{is expr a quoted expression (with quote())?
-This is useful if you want to save an expression in a variable.}
+\item{quoted}{is expr a quoted expression (with quote()).
+This is useful if you want to save an expression into variable.}
 }
 \description{
-Widget output function for use in Shiny
+Widget output function to use in Shiny.
 }
 

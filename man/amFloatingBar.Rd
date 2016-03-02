@@ -19,25 +19,25 @@ of the corresponding column.}
 \item{y_sup}{\code{character}, column name for the upper value or \code{numeric}  vector
 of the corresponding column.}
 
-\item{data}{\code{data.frame} dataframe with values to display.
+\item{data}{\code{data.frame}, dataframe with values to display.
 You can add a column "color" (character, colors in hexadecimal). You can
 also add a column "description" (character) containing the text you want to
 display when mouse is on the graphic ('<br>' for a new line).
 See \link{data_fbar}.}
 
-\item{xlab}{\code{character} label for x-axis.}
+\item{xlab}{\code{character}, label for x-axis.}
 
-\item{ylab}{\code{character} label for y-axis.}
+\item{ylab}{\code{character}, label for y-axis.}
 
-\item{groups_color}{\code{character} vector of colors in hexadecimal, 
+\item{groups_color}{\code{character}, vector of colors in hexadecimal, 
 same length as y_inf or y_sup.}
 
-\item{horiz}{\code{logical} TRUE for an horizontal chart, FALSE for a vertical one
+\item{horiz}{\code{logical}, TRUE for an horizontal chart, FALSE for a vertical one
 If 'horiz' is set to TRUE, the setting 'labelRotation' will be ignored.}
 
-\item{show_values}{\code{logical} TRUE to display values.}
+\item{show_values}{\code{logical}, TRUE to display values.}
 
-\item{depth}{\code{numeric} if > 0, chart is displayed in 3D. Value between 0 and 100.}
+\item{depth}{\code{numeric}, if > 0, chart is displayed in 3D. Value between 0 and 100.}
 
 \item{dataDateFormat}{\code{character}, default set to NULL. Even if your chart parses dates,
 you can pass them as strings in your dataframe - 
@@ -52,7 +52,7 @@ fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - mont
 It's also possible to supply a number for increments, i.e. '15mm'
 which will instruct the chart that your data is supplied in 15 minute increments.}
 
-\item{...}{see \code{\link{amOptions}} for more options}
+\item{...}{see \code{\link{amOptions}} for more options.}
 }
 \value{
 An object of class \linkS4class{AmChart}.
@@ -70,44 +70,45 @@ You can also add a cursor to your chart...
 \examples{
 stopifnot(require(pipeR))
 
-#Basic Example : column chart
+# Load data
 data(data_fbar)
 
+# Reference example : column chart
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
               data = data_fbar, labelRotation = -45)
 
-# label rotation modification
+# Label rotation modification
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
               data = data_fbar, labelRotation = -90)
 
-# horizontal bar
+# Horizontal bar
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
               data = data_fbar, horiz = TRUE)
 
-#3D bar
+# 3D bar
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
               data = data_fbar, labelRotation = -45, depth = 15)
 
-#display values
+# Display values
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
               data = data_fbar, labelRotation = -90, show_values = TRUE)
 
-#change colors
+# Change colors
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
               data = data_fbar[,1:3], labelRotation = -45, groups_color = "#67b7dc")
 
 
-#grouped columns
+# Grouped columns
 data(data_gbar)
 
 # Parse dates
 
-# default label: firt day of each year
+# Default label: firt day of each year
 
   amFloatingBar(x = "year", y_inf = "expenses", y_sup = "income", data = data_gbar,
                 dataDateFormat = "YYYY", minPeriod = "YYYY", zoom = TRUE)
 
-# default label: first day of each month
+# Default label: first day of each month
 
   amFloatingBar(x = "month", y_inf = "expenses", y_sup = "income", data = data_gbar,
                 dataDateFormat = "MM/YYYY", minPeriod = "MM", zoom = TRUE)

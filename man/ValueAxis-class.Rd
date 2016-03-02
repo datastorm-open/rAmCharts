@@ -25,7 +25,7 @@ The list must be named as in the official API. Each element must be a character 
 See examples for details.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.
 Guides belonging to this axis. Use addGuide method}

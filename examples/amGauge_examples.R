@@ -1,19 +1,28 @@
 require(pipeR)
-#basic example
-amAngularGauge(x = 25)
 
-#add colored bands
-bands = data.frame(start = c(0, 40, 60), end = c(40, 60, 100), 
-                   color = c("#00CC00", "#ffac29", "#ea3838"),
-                   stringsAsFactors = FALSE)
-amAngularGauge(x = 25, bands = bands)
-   
-#add some text to the displayed value
-amAngularGauge(x = 25, text = "km/h")
+# Reference example : solid gauge
+amSolidGauge(x = 65)
 
-#a gauge with two axis
-bands2 = data.frame(start = c(100, 130, 170), end = c(130, 170, 200), 
-                   color = c("#00CC00", "#ffac29", "#ea3838"),
-                   stringsAsFactors = FALSE)
-amAngularGauge(x = 25, start = 0, end = 100, bands = bands,
-               secondAxe = TRUE, start2 = 100, end2 = 200, bands2 = bands2)
+# Change min and max values
+amSolidGauge(x = 65, min = 0, max = 200)
+
+# Semi solid gauge
+amSolidGauge(x = 65, type = "semi")
+
+# Change width
+amSolidGauge(x = 65, width = 50)
+
+# Change color
+amSolidGauge(x = 65, color = "#2F4F4F")
+
+# Put a color scale
+amSolidGauge(x = 10, color = c("#00ff00", "#ffd700", "#ff0000"))
+amSolidGauge(x = 35, color = c("#00ff00", "#ffd700", "#ff0000"))
+amSolidGauge(x = 70, color = c("#00ff00", "#ffd700", "#ff0000"))
+amSolidGauge(x = 90, color = c("#00ff00", "#ffd700", "#ff0000"))
+
+# Add some text to the printed value
+amSolidGauge(x = 65, text = "%")
+  
+# Modify textSize value
+amSolidGauge(x = 65, text = "%", textSize = 50)

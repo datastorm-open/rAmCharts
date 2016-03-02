@@ -15,14 +15,13 @@ Run \code{api("GaugeArrow")} for more information and all avalaible properties.
 \describe{
 \item{\code{axis}}{\code{list} containing properties of \linkS4class{GaugeAxis}.
 Axis of the arrow. You can use reference to the axis or id of the axis.
-If you don't set any axis, the first axis of a chart will be used.}
+If you don't set any axis, the first axis of the chart will be used.}
 
-\item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must be a character string.
-See examples for details.}
+\item{\code{listeners}}{\code{list} containining the listeners to add to the chart.
+The list must be named as in the official API. Each element must be a character string.}
 
 \item{\code{otherProperties}}{\code{list}
-containing other avalaible properties not yet coded in the package.}
+containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}

@@ -5,15 +5,15 @@ NULL
 #' @author DataKnowledge
 #' 
 #' @description Creates a title on above the chart, multiple can be assigned.
-#' @details Run \code{api("Title")} for more information and all avalaible properties.
+#' @details Run \code{api("Title")} for more informations and all avalaible properties.
 #' 
-#' @slot text \code{character}. Text of a title.
-#' @slot size \code{numeric}. Text size of a title.
+#' @slot text \code{character}, title's text.
+#' @slot size \code{numeric}, title's size.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
 #' See examples for details.
 #' @slot otherProperties \code{list}
-#' containing other avalaible properties not yet coded in the package.
+#' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
 #' @export
@@ -21,14 +21,14 @@ setClass(Class = "Title", contains = "AmObject",
          representation =
            representation(text = "character", size = "numeric"))
 
-#' @title Initialize A Title
-#' @description Use the constructor to create the object
+#' @title Initializes A Title
+#' @description Uses the constructor to create the object
 #' or update an existing one with the setters.
 #' 
 #' @param .Object \linkS4class{Title}
-#' @param text \code{character}. Text of a title.
-#' @param size \code{numeric}. Text size of a title.
-#' @param ... Other properties.
+#' @param text \code{character}, title text.
+#' @param size \code{numeric}, title size.
+#' @param ... other properties of Title.
 #' 
 #' @return (updated) \linkS4class{Title}
 #' 

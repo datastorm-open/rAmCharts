@@ -1,7 +1,7 @@
 #' @title Plotting candlestick chart using rAmCharts
 #' @description  amCandlestick computes a candlestick chart of the given value.
 #' 
-#' @param data \code{data.frame} dataframe with at least 5 columns: 
+#' @param data \code{data.frame}, dataframe with at least 5 columns: 
 #' category, open (numeric), close (numeric), low (numeric),
 #' high (numeric). See \link{data_candleStick1} and \link{data_candleStick2}.
 #' @param dataDateFormat \code{character}, default set to NULL. Even if your chart parses dates,
@@ -9,19 +9,19 @@
 #' all you need to do is to set data date format and the chart will parse dates to date objects.
 #' Check this page for available formats.
 #' Please note that two-digit years (YY) as well as literal month names (MMM)  are NOT supported in this setting.
-#' @param minPeriod \code{character} minPeriod Specifies the shortest period of your data.
+#' @param minPeriod \code{character}, minPeriod Specifies the shortest period of your data.
 #' This should be set only if dataDateFormat is not NULL.
 #' Possible period values:
 #' fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
-#' @param positiveColor \code{character} color for positive values (in hexadecimal).
-#' @param negativeColor \code{character} color for negative values (in hexadecimal).
+#' @param positiveColor \code{character}, color for positive values (in hexadecimal).
+#' @param negativeColor \code{character}, color for negative values (in hexadecimal).
 #' @param names \code{character}, names for the tooltip. Default set to c("low", "open", "close", "high").
-#' @param xlab \code{character} label for x-axis.
-#' @param ylab \code{character} label for y-axis.
-#' @param horiz \code{logical} TRUE for an horizontal chart, FALSE for a vertical one
-#' @param ... see \link{amOptions} for more options
+#' @param xlab \code{character}, label for x-axis.
+#' @param ylab \code{character}, label for y-axis.
+#' @param horiz \code{logical}, TRUE for an horizontal chart, FALSE for a vertical one
+#' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @example examples/amCandlestick_examples.R
 #' 
@@ -45,6 +45,9 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
   # data format
   data$category <- as.character(data$category)
   .testIn("category", colnames(data))
+  if(is.factor(data$category)) {
+    data$category <- as.character(data$category)
+  }
   .testCharacter(data$category, arg = "data$category")
   
   .testIn("open", colnames(data))

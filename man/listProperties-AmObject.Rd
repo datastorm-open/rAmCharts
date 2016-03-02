@@ -80,11 +80,11 @@ listProperties(.Object)
 \item{.Object}{any class object of the package}
 }
 \value{
-A list containing all the properties of the chart.
+A list containing all the chart's properties.
 }
 \description{
-Each S4 class implement the method to list its properties
-(usefull for update complex properties).
+Each S4 class implements the method to list its properties
+(usefull to update complex properties).
 }
 \examples{
 amChart(type = "serial")

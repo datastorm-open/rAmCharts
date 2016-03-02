@@ -13,7 +13,7 @@
 \alias{setFieldMappings,DataSet,list-method}
 \alias{setStockEvents}
 \alias{setStockEvents,DataSet,list-method}
-\title{Create or update a DataSet}
+\title{Creates or updates a DataSet}
 \usage{
 \S4method{initialize}{DataSet}(.Object, compared = FALSE, dataProvider,
   fieldMappings, stockEvents, ...)
@@ -45,7 +45,7 @@ addStockEvent(.Object, stockEvent = NULL, ...)
 
 \item{compared}{\code{logical}.}
 
-\item{dataProvider}{\code{data.frame}. The data set data.
+\item{dataProvider}{\code{data.frame}, the data set data.
 Important: the data sets need to come pre-ordered in ascending order.
 Data with incorrect order might result in visual and functional glitches on the chart.}
 
@@ -58,10 +58,9 @@ Example: list(fromField = "val1", toField ="value").}
 
 \item{stockEvents}{\linkS4class{StockEvent}.}
 
-\item{...}{Other properties.}
+\item{...}{other properties of DataSet.}
 
-\item{keepNA}{\code{logical}.
-Should the missing values appear in the list ?}
+\item{keepNA}{\code{logical}, TRUE to keep NA values.}
 
 \item{stockEvent}{\linkS4class{StockEvent}.
 Argument for method \code{addStockEvent}.}
@@ -70,8 +69,8 @@ Argument for method \code{addStockEvent}.}
 (updated) \linkS4class{DataSet} object
 }
 \description{
-Use the constructors to create the object with its properties
-or update an existing one with the setters.
+Uses the constructors to create the object with its properties
+or updates an existing one with the setters.
 }
 \examples{
 new("DataSet")
