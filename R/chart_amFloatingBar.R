@@ -146,7 +146,6 @@ amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_co
   }
   
   data$tp_val <- round(as.numeric(data[,y_sup] - data[,y_inf]), 10)
-  # data$tp_val <- c(5.4,3.4, 6.2,  4.4, -0.4)
   
   parseDates <- !is.null(dataDateFormat)
   
