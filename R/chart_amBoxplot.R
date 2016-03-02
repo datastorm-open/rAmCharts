@@ -279,7 +279,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   setnames(dp,  c("cat", "low_outlier", "low", "open", "median", "close", "high", "high_outlier"))
   
   if(is.null(col)){
-    col <- "gray"
+    col <- "#1e90ff"
   }
   dp$color <- col
   
