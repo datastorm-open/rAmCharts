@@ -122,15 +122,11 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
             lapply(1:length(legend), function(X){
               names(legend[[X]])[names(legend[[X]]) == chart@categoryField] <<- "title"
             })
-            
-          
-              out <<- legend
 
               } else{
              
               legend <- list(list(title = chart@categoryField,
                                   color = unique(unlist(legend)[names(unlist(legend)) == "color"])))
-              out2 <<- legend
             
             }
             
