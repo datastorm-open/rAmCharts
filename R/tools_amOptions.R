@@ -125,10 +125,7 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
             
           
               out <<- legend
-           
 
-              
-              
               } else{
              
               legend <- list(list(title = chart@categoryField,

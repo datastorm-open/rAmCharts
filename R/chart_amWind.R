@@ -41,9 +41,10 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   
   
   # Test data numeric
-  dt <- as.character(substitute(data))  
-  apply(data, 2, function(X){.testNumeric(num = X, arg = dt)})
-  
+  dt <- names(data)
+  apply(data, 2, function(X){
+    .testNumeric(num = X)})
+
   databullet <- apply( rbind(names(data),data),2,function(x){paste0("<b>", as.numeric(x[-1]),
                     " </b>Observations <br><b>",round(as.numeric(x[-1])/sum(as.numeric(x[-1]))*100,2),
                     "%</b> of wind <b>",x[1],"</b>")})
