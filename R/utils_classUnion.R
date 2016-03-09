@@ -1,5 +1,6 @@
 setOldClass("tbl_df")
-setClassUnion(name = "DataFrame", members = c("data.table", "data.frame", "tbl_df"))
+setOldClass("tbl_dt")
+setClassUnion(name = "DataFrame", members = c("data.table", "data.frame", "tbl_df", "tbl_dt"))
 
 #' @include class_AmBalloon.R
 setClassUnion(name = "AmBalloonOrMissing", members = c("AmBalloon", "missing"))
