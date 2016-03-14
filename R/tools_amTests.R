@@ -148,10 +148,10 @@
 #' @import data.table
 #' @noRd
 .testFormatData <- function(data, format = "data.frame"){
-  arg <- substitute(data)
-  if(class(data)[1] == "data.frame"){
+  
+  if(inherits(data, 'data.frame')){
     if(format == "data.frame"){
-      return(data)
+      return(data.frame(data))
     } else {}
     if(format == "data.table"){
       data <- data.table(data)
@@ -159,26 +159,5 @@
     } else {}
   } else {}
   
-  if("tbl" %in% class(data)){
-    if(format == "data.frame"){
-      data <- data.frame(data)
-      return(data)
-    } else {}
-    if(format == "data.table"){
-      data <- data.table(data)
-      return(data)
-    } else {}
-  } else {}
-  
-  if("data.table" %in% class(data)){
-    if(format == "data.frame"){
-      data <- data.frame(data)
-      return(data)
-    } else {}
-    if(format == "data.table"){
-      return(data)
-    } else {}
-  } else {}
-  
-  stop(paste0("class(", arg, ") is not in c('data.frame', 'data.table', 'tbl')"))
+  stop("Invalid data format. Must inherits from 'data.frame'")
 }

@@ -383,10 +383,10 @@ setMethod(f = "setDataLoader", signature = c("AmChart", "character", "character"
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setMethod(f = "setDataProvider", signature = c("AmChart", "DataFrame", "logicalOrMissing"),
+setMethod(f = "setDataProvider", signature = c("AmChart", "ANY", "logicalOrMissing"),
           definition = function(.Object, dataProvider, keepNA = TRUE)
           {
-            .Object@dataProvider <- .toList(dataProvider, keepNA )
+            .Object@dataProvider <- .toList(.testFormatData(dataProvider), keepNA )
             validObject(.Object)
             return(.Object)
           })
@@ -653,7 +653,7 @@ setMethod(f = "addSegment", signature = c( .Object = "AmChart", categoryIDs = "n
 setGeneric(name = "addSubData",
            def = function(.Object, categoryIDs, data) {standardGeneric("addSubData")})
 #' @rdname initialize-AmChart
-setMethod(f = "addSubData", signature = c("AmChart", "numeric", "DataFrame"),
+setMethod(f = "addSubData", signature = c("AmChart", "numeric", "ANY"),
           definition = function(.Object, categoryIDs, data)
           {
             if (prod(categoryIDs %in% 1:length(.Object@dataProvider)) != 1) {
@@ -664,6 +664,7 @@ setMethod(f = "addSubData", signature = c("AmChart", "numeric", "DataFrame"),
             add <- function(.Object, categoryID, data) {
               if (is(data, "data.frame")) {
                 #cat("data.frame")
+                data <- .testFormatData(data)
                 .Object@dataProvider [[ eval(categoryID) ]] <- rlist::list.append( .Object@dataProvider[[ eval(categoryID) ]],
                                                                                    subdata = .toList(data) )
               } else if (is(data, "list")) {
