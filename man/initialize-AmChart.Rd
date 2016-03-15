@@ -16,7 +16,7 @@
 \alias{addSegment}
 \alias{addSegment,AmChart,numeric-method}
 \alias{addSubData}
-\alias{addSubData,AmChart,numeric,data.frame-method}
+\alias{addSubData,AmChart,numeric-method}
 \alias{addTitle}
 \alias{addTitle,AmChart,TitleOrMissing-method}
 \alias{addTrendLine}
@@ -53,7 +53,7 @@
 \alias{setCreditsPosition,AmChart,character-method}
 \alias{setDataLoader}
 \alias{setDataLoader,AmChart,character,character-method}
-\alias{setDataProvider,AmChart,data.frame,logicalOrMissing-method}
+\alias{setDataProvider,AmChart,ANY,logicalOrMissing-method}
 \alias{setExport,AmChart-method}
 \alias{setExport,AmStockChart-method}
 \alias{setGraph,AmChart,AmGraphOrMissing-method}
@@ -164,8 +164,8 @@ setDataLoader(.Object, url, format, ...)
 
 \S4method{setDataLoader}{AmChart,character,character}(.Object, url, format, ...)
 
-\S4method{setDataProvider}{AmChart,data.frame,logicalOrMissing}(.Object,
-  dataProvider, keepNA = TRUE)
+\S4method{setDataProvider}{AmChart,ANY,logicalOrMissing}(.Object, dataProvider,
+  keepNA = TRUE)
 
 \S4method{setExport}{AmChart}(.Object, enabled = TRUE, ...)
 
@@ -200,7 +200,7 @@ addSegment(.Object, categoryIDs, sgts)
 
 addSubData(.Object, categoryIDs, data)
 
-\S4method{addSubData}{AmChart,numeric,data.frame}(.Object, categoryIDs, data)
+\S4method{addSubData}{AmChart,numeric}(.Object, categoryIDs, data)
 
 setSubChartProperties(.Object, .subObject = NULL, ...)
 
