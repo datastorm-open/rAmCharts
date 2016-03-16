@@ -185,7 +185,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     }
     
     graph_obj <- getGraphXY(type = type, bullet = bullet, cex = cex, title = graphTitle,
-                            lwd = lwd, lty = lty, bulletAlpha = bulletAlpha,
+                            lwd = lwd, lty = lty, bulletAlpha = bulletAlpha, col = col,
                             balloonText = balloonText, weighted = weighted)
     
     amXYChart(precision = precision) %>>%
@@ -193,6 +193,9 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
       addValueAxis(valueAxis = valueAxis_bottom) %>>%
       setDataProvider(dataProvider = dt) %>>%
       (~ chart)
+    
+    # since simple line chart has no tooltip, we remove the latter for simple xy line chart
+    if (type == "line") chart <- setBalloon(.Object = chart, enabled = FALSE)
     
   } else {
     stop("Error in arguments x or y")
@@ -279,10 +282,10 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
       stopifnot(!missing(dataDateFormat))
       .testCharacter(dataDateFormat)
       amSerialChart(categoryField = "cat", precision = precision, dataDateFormat = dataDateFormat) %>>%
-        (~ chart )
+        (~ chart)
     } else {
       amSerialChart(categoryField = "cat", precision = precision) %>>%
-        (~ chart )
+        (~ chart)
     }
     
     
@@ -472,30 +475,33 @@ getGraph <- function (type, col, bullet, cex, lwd, lty, title)
     setProperties(.Object = graph_obj, lineColorField = "col")
 }
 
-getGraphXY <- function (type, colorField, bullet, cex, lwd, lty,
+getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
                         bulletAlpha, balloonText, weighted, title)
 {
   graph_obj <- switch (type,
                        "points" = {
                          graph(balloonText = balloonText, valueField = "weights",
                                xField = "x", yField = "y", lineAlpha = 0,
-                               title = title, lineColorField = "col", bullet = bullet)
+                               title = title, bullet = bullet)
                        },
                        "smoothedLine" = {
-                         graph(balloonText = balloonText, valueField = "weights",
-                               lineColorField = "col", title = title,
+                         graph(balloonText = balloonText, valueField = "weights", title = title,
                                xField = "x", yField = "y", bullet = bullet,
                                lineThickness = lwd, dashLength = lty, bulletAlpha = bulletAlpha)
                        },
                        "line" = {
-                         graph(balloonText = balloonText, valueField = "weights",
-                               lineColorField = "col", title = title,
+                         graph(balloonText = balloonText, valueField = "weights", title = title,
                                xField = "x", yField = "y", bullet = bullet,
                                lineThickness = lwd, dashLength = lty, bulletAlpha = bulletAlpha)
                        })
   
   if (weighted) setProperties(graph_obj, maxBulletSize = cex)
   else setProperties(graph_obj, bulletSize = cex)
+  
+  if (nlevels(col) == 1) 
+    setProperties(.Object = graph_obj, lineColor = levels(col))
+  else
+    setProperties(.Object = graph_obj, lineColorField = "col")
 }
 
 #' @title amLines adds a serie to a graph.

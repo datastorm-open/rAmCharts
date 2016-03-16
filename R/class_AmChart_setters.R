@@ -429,8 +429,8 @@ setGeneric(name = "setGraphs",
 setMethod(f = "setGraphs", signature = c("AmChart", "list"),
           definition = function(.Object, graphs)
           {
-            rightClassElements <- prod(sapply(graphs, function(element) {is(element, "AmGraph")}))
-            stopifnot(as.logical(rightClassElements))
+            rightClassElements <- all(sapply(graphs, function(element) {is(element, "AmGraph")}))
+            stopifnot(rightClassElements)
             .Object@graphs <- lapply(graphs, listProperties)
             validObject(.Object)
             return(.Object)
@@ -499,8 +499,8 @@ setGeneric(name = "setGuides",
 setMethod(f = "setGuides", signature = c("AmChart", "list"),
           definition = function(.Object, guides)
           {
-            rightClassElements <- prod(sapply(guides, function(element) {is(element, "Guide")}))
-            if (as.logical(rightClassElements)) {
+            rightClassElements <- all(sapply(guides, function(element) {is(element, "Guide")}))
+            if (rightClassElements) {
               .Object@guides <- lapply(guides, listProperties)
             } else {}
             validObject(.Object)
@@ -788,8 +788,8 @@ setGeneric(name = "setTrendLines",
 setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
           definition = function(.Object, trendLines)
           {
-            rightClassElements <- prod(sapply(trendLines, function(element) {class(element) == "TrendLine"}))
-            stopifnot(as.logical(rightClassElements))
+            rightClassElements <- all(sapply(trendLines, function(element) {class(element) == "TrendLine"}))
+            stopifnot(rightClassElements)
             .Object@trendLines <- lapply(trendLines, listProperties)
             validObject(.Object)
             return(.Object)
@@ -851,8 +851,8 @@ setGeneric(name = "setValueAxes",
 setMethod(f = "setValueAxes", signature = c("AmChart", "list"),
           definition = function(.Object, valueAxes)
           {
-            rightClassElements <- prod(sapply(valueAxes, function(element) {is(element, "ValueAxis")}))
-            stopifnot(as.logical(rightClassElements))
+            rightClassElements <- all(sapply(valueAxes, function(element) {is(element, "ValueAxis")}))
+            stopifnot(rightClassElements)
             .Object@valueAxes <- lapply(valueAxes, listProperties)
             validObject(.Object)
             return(.Object)

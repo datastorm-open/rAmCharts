@@ -104,13 +104,13 @@ library(data.table)
 # x, y plot if x is a factor or a character
 # ---
 
-
 xc <- paste("cat.", 1:100)
 xf <- factor(xc)
 y <- rnorm(length(xc))
 
 # Change type...
-amPlot(x = xc, y = y, type = 'l')
+amPlot(x = xc, y = y, type = 'p', cex = .01)
+
 # amPlot(x = xf, y = y, type = 'l') , x can be either a character or a factor
 
 # ---
@@ -133,19 +133,14 @@ amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-Y
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
 
-# Add a legend, and scrollbar
-amPlot(x = x, y = y, type = "l", legend = TRUE, scrollbar = TRUE)
-
-# Change lty
-amPlot(x = x, y = y, type = "l", lty = 2)
+# Add a legend, and scrollbar...
+amPlot(x = x, y = y, type = "l", scrollbar = TRUE, lty = 2, cex = 10, col = "blue")
 
 # Add weight
-weights <- rnorm(100, sd = 5)
+weights <- rnorm(100, sd = 2)
 amPlot(x = x, y = y, type = "p", weights = weights)
 
-# Change cex and color
-amPlot(x = x, y = y, type = "p", cex = 10, col = "blue", main = "title")
-
+# Change color
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
 
@@ -211,13 +206,13 @@ library(data.table)
 # x, y plot if x is a factor or a character
 # ---
 
-
 xc <- paste("cat.", 1:100)
 xf <- factor(xc)
 y <- rnorm(length(xc))
 
 # Change type...
-amPlot(x = xc, y = y, type = 'l')
+amPlot(x = xc, y = y, type = 'p', cex = .01)
+
 # amPlot(x = xf, y = y, type = 'l') , x can be either a character or a factor
 
 # ---
@@ -240,19 +235,14 @@ amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-Y
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
 
-# Add a legend, and scrollbar
-amPlot(x = x, y = y, type = "l", legend = TRUE, scrollbar = TRUE)
-
-# Change lty
-amPlot(x = x, y = y, type = "l", lty = 2)
+# Add a legend, and scrollbar...
+amPlot(x = x, y = y, type = "l", scrollbar = TRUE, lty = 2, cex = 10, col = "blue")
 
 # Add weight
-weights <- rnorm(100, sd = 5)
+weights <- rnorm(100, sd = 2)
 amPlot(x = x, y = y, type = "p", weights = weights)
 
-# Change cex and color
-amPlot(x = x, y = y, type = "p", cex = 10, col = "blue", main = "title")
-
+# Change color
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
 
@@ -318,13 +308,13 @@ library(data.table)
 # x, y plot if x is a factor or a character
 # ---
 
-
 xc <- paste("cat.", 1:100)
 xf <- factor(xc)
 y <- rnorm(length(xc))
 
 # Change type...
-amPlot(x = xc, y = y, type = 'l')
+amPlot(x = xc, y = y, type = 'p', cex = .01)
+
 # amPlot(x = xf, y = y, type = 'l') , x can be either a character or a factor
 
 # ---
@@ -347,19 +337,14 @@ amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-Y
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
 
-# Add a legend, and scrollbar
-amPlot(x = x, y = y, type = "l", legend = TRUE, scrollbar = TRUE)
-
-# Change lty
-amPlot(x = x, y = y, type = "l", lty = 2)
+# Add a legend, and scrollbar...
+amPlot(x = x, y = y, type = "l", scrollbar = TRUE, lty = 2, cex = 10, col = "blue")
 
 # Add weight
-weights <- rnorm(100, sd = 5)
+weights <- rnorm(100, sd = 2)
 amPlot(x = x, y = y, type = "p", weights = weights)
 
-# Change cex and color
-amPlot(x = x, y = y, type = "p", cex = 10, col = "blue", main = "title")
-
+# Change color
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
 
@@ -425,13 +410,13 @@ library(data.table)
 # x, y plot if x is a factor or a character
 # ---
 
-
 xc <- paste("cat.", 1:100)
 xf <- factor(xc)
 y <- rnorm(length(xc))
 
 # Change type...
-amPlot(x = xc, y = y, type = 'l')
+amPlot(x = xc, y = y, type = 'p', cex = .01)
+
 # amPlot(x = xf, y = y, type = 'l') , x can be either a character or a factor
 
 # ---
@@ -454,19 +439,14 @@ amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-Y
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
 
-# Add a legend, and scrollbar
-amPlot(x = x, y = y, type = "l", legend = TRUE, scrollbar = TRUE)
-
-# Change lty
-amPlot(x = x, y = y, type = "l", lty = 2)
+# Add a legend, and scrollbar...
+amPlot(x = x, y = y, type = "l", scrollbar = TRUE, lty = 2, cex = 10, col = "blue")
 
 # Add weight
-weights <- rnorm(100, sd = 5)
+weights <- rnorm(100, sd = 2)
 amPlot(x = x, y = y, type = "p", weights = weights)
 
-# Change cex and color
-amPlot(x = x, y = y, type = "p", cex = 10, col = "blue", main = "title")
-
+# Change color
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
 

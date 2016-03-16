@@ -1,7 +1,16 @@
-#' @template sharedGenerics
-#' @param amBalloon \linkS4class{AmBalloon}.
+#' @name Generics functions
+#' @title General shared generic methods
+#' @description These methods are shared by at least two different classes
+#' @param .Object \linkS4class{AmObject}.
+#' @details Be cautious when using one of these functions since they have several signatures (S4).
+#' @return An updated 'AmObject'.
 #' 
-#' @details \code{setBalloon} is shared by AmChart and AmStockChart.
+#' @rdname shared-generics
+NULL
+
+
+#' @param amBalloon \linkS4class{AmBalloon}.
+#' @details setBalloon is shared by AmChart and AmStockChart.
 #' 
 #' @rdname shared-generics
 #' @export
@@ -20,6 +29,7 @@ setGeneric(name = "setDataProvider", def = function(.Object, dataProvider, keepN
 
 #' @details setExport(...) is Shared by AmChart and AmStockChart.
 #' @param enabled \code{logical}, TRUE to display the export button.
+#' 
 #' @rdname shared-generics
 #' @export
 #' 
@@ -27,6 +37,7 @@ setGeneric(name = "setExport", def = function(.Object, enabled = TRUE, ...) {sta
 
 #' @details setTitle(...) is Shared by AmGraph and ValueAxis.
 #' @param title \code{character}.
+#' 
 #' @rdname shared-generics
 #' @export
 #' 
@@ -34,6 +45,7 @@ setGeneric(name = "setTitle", def = function(.Object, title) {standardGeneric("s
 
 #' @details setType(...) is shared by AmGraph and AmChart.
 #' @param type \code{character}.
+#' 
 #' @rdname shared-generics
 #' @export
 #' 
@@ -42,14 +54,15 @@ setGeneric( name = "setType", def = function(.Object, type) {standardGeneric("se
 #' @details setGraph(...) is shared by AmChart and ChartScrollbar.
 #' @param graph \linkS4class{AmGraph}.
 #' @param ... Other properties.
+#' 
 #' @rdname shared-generics
 #' @export
 #' 
 setGeneric(name = "setGraph", def = function(.Object, graph = NULL, ...) {standardGeneric("setGraph")})
 
-
 #' @details addGuide(...) is shared by AxisBase and AmChart.
 #' @param guide \linkS4class{Guide}.
+#' 
 #' @rdname shared-generics
 #' @export
 #' 
@@ -57,6 +70,7 @@ setGeneric(name = "addGuide", def = function(.Object, guide = NULL, ...) {standa
 
 #' @details setText(...) is shared by Title and Label.
 #' @param text \code{character}.
+#' 
 #' @rdname shared-generics
 #' @export
 #' 
@@ -64,6 +78,7 @@ setGeneric(name = "setText", def = function(.Object, text) {standardGeneric("set
 
 #' @details setValueAxis(...) is shared by AmChart(type = "gantt"), TrendLine and Guide.
 #' @param valueAxis \linkS4class{ValueAxis}.
+#' 
 #' @rdname shared-generics
 #' @export
 #' 

@@ -3,6 +3,7 @@
 \name{Generics functions}
 \alias{Generics functions}
 \alias{addGuide}
+\alias{setBalloon}
 \alias{setDataProvider}
 \alias{setExport}
 \alias{setGraph}
@@ -10,7 +11,7 @@
 \alias{setTitle}
 \alias{setType}
 \alias{setValueAxis}
-\title{Shared generics methods}
+\title{General shared generic methods}
 \usage{
 setBalloon(.Object, amBalloon = NULL, ...)
 
@@ -65,7 +66,7 @@ These methods are shared by at least two different classes
 \details{
 Be cautious when using one of these functions since they have several signatures (S4).
 
-\code{setBalloon} is shared by AmChart and AmStockChart.
+setBalloon is shared by AmChart and AmStockChart.
 
 setDataProvider(..) is shared by AmGraph and DataSet.
 
