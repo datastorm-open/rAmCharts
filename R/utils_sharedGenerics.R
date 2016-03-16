@@ -8,10 +8,11 @@
 #' 
 setGeneric(name = "setBalloon", def = function(.Object, amBalloon = NULL, ...) {standardGeneric("setBalloon")})
 
-#' @details setDataProvider(..) is shared by AmGraph and DataSet.
 #' @param dataProvider \code{data.frame}.
 #' @param keepNA \code{logical}, default set to \code{TRUE}.
 #' Indicates if \code{NULL} values have to be kept or ignored.
+#' @details setDataProvider(..) is shared by AmGraph and DataSet.
+#' 
 #' @rdname shared-generics
 #' @export
 #' 

@@ -28,7 +28,6 @@ date <- format(date, '%m-%d-%Y')
 
 y <- rnorm(length(date))
 amPlot(x = date, y = y, type = 'l') # default parseDates = FALSE
-
 amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
 
 
@@ -61,7 +60,7 @@ amPlot(x = x, y = y, col = col)
 x <- rnorm(100)
 
 # Simple scatter plot with title and color
-amPlot(x = x, main = "Title", col = "lightblue", main = "My title")
+amPlot(x = x, main = "Title", col = "lightblue")
 
 # Change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
 amPlot(x = x, type = "b")
@@ -92,28 +91,6 @@ amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
 # Add parameter from amOptions
 co2 <- data.table(get("CO2", "package:datasets"))
 amPlot(co2, zoom = TRUE)
-
-# -------------------
-# ADD OTHER SERIE(S)
-# -------------------
-
-# For a simple chart
-amPlot(x = rnorm(100), type = 'sl') %>>%
-  amLines(x = rnorm(100), type = "p")
-
-amPlot(x = rnorm(100), type = 'sl') %>>%
-  amLines(x = rnorm(100), col = "blue") %>>%
-  amLines(x = rnorm(100), type = "sl") %>>%
-  amLines(x = rnorm(100), type = "p")
-
-# For an XY chart
-x <- sort(rnorm(100))
-y1 <- rnorm(100, sd = 10)
-y2 <- rnorm(100, sd = 10)
-y3 <- rnorm(100, sd = 10)
-amPlot(x = x, y = y1) %>>%
-  amLines(x = y2, col = "blue") %>>%
-  amLines(x = y3, type = "p")
 
 
 # -------------------

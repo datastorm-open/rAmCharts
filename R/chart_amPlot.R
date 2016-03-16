@@ -55,7 +55,7 @@ amPlot <- function(x, ...) UseMethod("amPlot")
 amPlot.default <- function(x, ...) "Wrong class"
 
 #' @rdname amPlot
-#' @example examples/amLines_examples.R
+#' @example examples/amPlot_examples.R
 #' 
 #' @import data.table
 #' @import pipeR
@@ -509,7 +509,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty,
 #' @param col \code{character}, color of the new serie.
 #' @param title \code{character}, name of the new serie, used when legend is enabled.
 #' 
-#' @example examples/amPlot_examples.R
+#' @example examples/amLines_examples.R
 #' 
 #' @rdname amLines
 #' @export
@@ -537,7 +537,7 @@ amLines <- function(chart, x = NULL, y = NULL, type, col, title)
       if (missing(title)) title <- deparse(substitute(y))
       x <- y
     }
-  }else{
+  } else {
   
   if (missing(title)) title <- deparse(substitute(x))
   }
