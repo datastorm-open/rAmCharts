@@ -41,7 +41,7 @@ setClass(Class = "ChartCursor", contains = "AmObject",
 #' but you have more than one axis, you can use this property
 #' to indicate which axis should display balloon.
 #' @param ... other properties of ChartCursor.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}
+#' Run : api("ChartCursor") for more information.
 #' 
 #' @return (updated) .Object of class \linkS4class{ChartCursor}.
 #' 

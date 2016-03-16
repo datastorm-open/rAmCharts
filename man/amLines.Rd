@@ -29,6 +29,8 @@ is automatically linked to the x values of the chart "chart". That is why it mak
 sense to give the y argument.
 }
 \examples{
+require(pipeR)
+
 # For a simple chart
 amPlot(x = rnorm(100), type = 'sl') \%>>\%
   amLines(x = rnorm(100), type = "p")

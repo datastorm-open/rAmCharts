@@ -31,7 +31,7 @@ setClass(Class = "ChartScrollbar", contains = "AmObject",
 #' specifies if the chart should be updated while dragging/resizing the scrollbar
 #' or only when user releases mouse button.
 #' @param ... other properties of ChartScrollbar.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/ChartScrollbar}
+#' Run : api("ChartScrollbar") for more information.
 #' 
 #' @examples
 #' new("ChartScrollbar", graph = "g1")

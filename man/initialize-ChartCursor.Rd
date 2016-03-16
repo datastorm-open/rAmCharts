@@ -36,7 +36,7 @@ but you have more than one axis, you can use this property
 to indicate which axis should display balloon.}
 
 \item{...}{other properties of ChartCursor.
-See \url{http://docs.amcharts.com/3/javascriptcharts/ChartCursor}}
+Run : api("ChartCursor") for more information.}
 
 \item{animationDuration}{\code{numeric}, duration of animation of a line, in seconds.}
 }

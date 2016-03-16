@@ -34,7 +34,7 @@ specifies if the chart should be updated while dragging/resizing the scrollbar
 or only when user releases mouse button.}
 
 \item{...}{other properties of ChartScrollbar.
-See \url{http://docs.amcharts.com/3/javascriptcharts/ChartScrollbar}}
+Run : api("ChartScrollbar") for more information.}
 }
 \description{
 ChartScrollbarSettings sets settings for chart scrollbar.
