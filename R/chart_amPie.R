@@ -45,7 +45,7 @@ amPie <- function(data, show_values = TRUE, depth = 0, inner_radius = 0, ...) {
   
   if(!"color" %in% colnames(data)) {
    
-    vec_col <- tolower(head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
+    vec_col <- tolower(utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
                                   "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
                                   "#b9783f", "#b93e3d", "#913167"), 5), 
                             nrow(data)))

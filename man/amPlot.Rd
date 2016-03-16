@@ -95,10 +95,27 @@ or a formula).
 \examples{
 library(pipeR)
 library(data.table)
+iris <- data.table(get("iris", "package:datasets"))
 
 # ----------------
 # EXAMPLES NUMERIC
 # ----------------
+
+# ---
+# x plot
+# ---
+x <- rnorm(100)
+
+# Simple scatter plot with title and color
+# Also change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
+amPlot(x = x, main = "Title", col = "lightblue", type = "b")
+
+# Change bullets, available "diamond", "square", "triangleUp", "triangleDown",
+# "triangleLeft", "triangleRight", "bubble", "yError"
+amPlot(x = x, bullet = "xError", error = sample(100))
+
+# Change lty and cex, ...
+amPlot(x = x, type = "b", lty = 1, cex = 10, lwd = 2)
 
 # ---
 # x, y plot if x is a factor or a character
@@ -107,8 +124,6 @@ library(data.table)
 xc <- paste("cat.", 1:100)
 xf <- factor(xc)
 y <- rnorm(length(xc))
-
-# Change type...
 amPlot(x = xc, y = y, type = 'p', cex = .01)
 
 # amPlot(x = xf, y = y, type = 'l') , x can be either a character or a factor
@@ -122,85 +137,60 @@ date <- seq.POSIXt(from = start, to = end, by = 'day')
 date <- format(date, '\%m-\%d-\%Y')
 
 y <- rnorm(length(date))
-amPlot(x = date, y = y, type = 'l') # default parseDates = FALSE
 amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
+# notice that by default 'parseDates = FALSE'
 
 
 # ---
 # x, y plot if both x, y are numeric
 # ---
-
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
-
-# Add a legend, and scrollbar...
-amPlot(x = x, y = y, type = "l", scrollbar = TRUE, lty = 2, cex = 10, col = "blue")
-
-# Add weight
-weights <- rnorm(100, sd = 2)
-amPlot(x = x, y = y, type = "p", weights = weights)
-
-# Change color
+weights <- rnorm(100)
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
-amPlot(x = x, y = y, col = col)
-
-# ---
-# x plot
-# ---
-x <- rnorm(100)
-
-# Simple scatter plot with title and color
-amPlot(x = x, main = "Title", col = "lightblue")
-
-# Change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
-amPlot(x = x, type = "b")
-
-# Change bullets, available "diamond", "square", "triangleUp", "triangleDown",
-# "triangleLeft", "triangleRight", "bubble", "yError"
-amPlot(x = x, bullet = "xError", error = sample(100))
-
-# Change lty and cex, ...
-amPlot(x = x, type = "b", lty = 1, cex = 10, lwd = 2)
+amPlot(x = x, y = y, type = "l", col = col, weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
 
 # -------------------
 # EXAMPLES DATA.FRAME
 # -------------------
-
-iris <- get("iris", "package:datasets")
-
 # Select all numeric columns
-amPlot(iris)
 
 # Select the column to plot with a character or a numeric
 amPlot(iris, columns = "Sepal.Length")
-amPlot(iris, columns = 1)
+# can be 'columns = 1'
+# can be also all numeric columns by running 'amPlot(iris)'
 
-# Select several columns
+# Select several columns, a different type for each
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
-
-# Add parameter from amOptions
-co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2, zoom = TRUE)
 
 
 # -------------------
 # FORMULA
 # -------------------
-iris <- data.table(get("iris", "package:datasets"))
-
-amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
-amPlot(Sepal.Length~Sepal.Width, data = iris)
-amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
-  setLegend(useGraphSettings = TRUE)
-
-# Add parameter from amOptions
-amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
+amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
 library(pipeR)
 library(data.table)
+iris <- data.table(get("iris", "package:datasets"))
 
 # ----------------
 # EXAMPLES NUMERIC
 # ----------------
+
+# ---
+# x plot
+# ---
+x <- rnorm(100)
+
+# Simple scatter plot with title and color
+# Also change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
+amPlot(x = x, main = "Title", col = "lightblue", type = "b")
+
+# Change bullets, available "diamond", "square", "triangleUp", "triangleDown",
+# "triangleLeft", "triangleRight", "bubble", "yError"
+amPlot(x = x, bullet = "xError", error = sample(100))
+
+# Change lty and cex, ...
+amPlot(x = x, type = "b", lty = 1, cex = 10, lwd = 2)
 
 # ---
 # x, y plot if x is a factor or a character
@@ -209,8 +199,6 @@ library(data.table)
 xc <- paste("cat.", 1:100)
 xf <- factor(xc)
 y <- rnorm(length(xc))
-
-# Change type...
 amPlot(x = xc, y = y, type = 'p', cex = .01)
 
 # amPlot(x = xf, y = y, type = 'l') , x can be either a character or a factor
@@ -224,85 +212,60 @@ date <- seq.POSIXt(from = start, to = end, by = 'day')
 date <- format(date, '\%m-\%d-\%Y')
 
 y <- rnorm(length(date))
-amPlot(x = date, y = y, type = 'l') # default parseDates = FALSE
 amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
+# notice that by default 'parseDates = FALSE'
 
 
 # ---
 # x, y plot if both x, y are numeric
 # ---
-
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
-
-# Add a legend, and scrollbar...
-amPlot(x = x, y = y, type = "l", scrollbar = TRUE, lty = 2, cex = 10, col = "blue")
-
-# Add weight
-weights <- rnorm(100, sd = 2)
-amPlot(x = x, y = y, type = "p", weights = weights)
-
-# Change color
+weights <- rnorm(100)
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
-amPlot(x = x, y = y, col = col)
-
-# ---
-# x plot
-# ---
-x <- rnorm(100)
-
-# Simple scatter plot with title and color
-amPlot(x = x, main = "Title", col = "lightblue")
-
-# Change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
-amPlot(x = x, type = "b")
-
-# Change bullets, available "diamond", "square", "triangleUp", "triangleDown",
-# "triangleLeft", "triangleRight", "bubble", "yError"
-amPlot(x = x, bullet = "xError", error = sample(100))
-
-# Change lty and cex, ...
-amPlot(x = x, type = "b", lty = 1, cex = 10, lwd = 2)
+amPlot(x = x, y = y, type = "l", col = col, weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
 
 # -------------------
 # EXAMPLES DATA.FRAME
 # -------------------
-
-iris <- get("iris", "package:datasets")
-
 # Select all numeric columns
-amPlot(iris)
 
 # Select the column to plot with a character or a numeric
 amPlot(iris, columns = "Sepal.Length")
-amPlot(iris, columns = 1)
+# can be 'columns = 1'
+# can be also all numeric columns by running 'amPlot(iris)'
 
-# Select several columns
+# Select several columns, a different type for each
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
-
-# Add parameter from amOptions
-co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2, zoom = TRUE)
 
 
 # -------------------
 # FORMULA
 # -------------------
-iris <- data.table(get("iris", "package:datasets"))
-
-amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
-amPlot(Sepal.Length~Sepal.Width, data = iris)
-amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
-  setLegend(useGraphSettings = TRUE)
-
-# Add parameter from amOptions
-amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
+amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
 library(pipeR)
 library(data.table)
+iris <- data.table(get("iris", "package:datasets"))
 
 # ----------------
 # EXAMPLES NUMERIC
 # ----------------
+
+# ---
+# x plot
+# ---
+x <- rnorm(100)
+
+# Simple scatter plot with title and color
+# Also change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
+amPlot(x = x, main = "Title", col = "lightblue", type = "b")
+
+# Change bullets, available "diamond", "square", "triangleUp", "triangleDown",
+# "triangleLeft", "triangleRight", "bubble", "yError"
+amPlot(x = x, bullet = "xError", error = sample(100))
+
+# Change lty and cex, ...
+amPlot(x = x, type = "b", lty = 1, cex = 10, lwd = 2)
 
 # ---
 # x, y plot if x is a factor or a character
@@ -311,8 +274,6 @@ library(data.table)
 xc <- paste("cat.", 1:100)
 xf <- factor(xc)
 y <- rnorm(length(xc))
-
-# Change type...
 amPlot(x = xc, y = y, type = 'p', cex = .01)
 
 # amPlot(x = xf, y = y, type = 'l') , x can be either a character or a factor
@@ -326,85 +287,60 @@ date <- seq.POSIXt(from = start, to = end, by = 'day')
 date <- format(date, '\%m-\%d-\%Y')
 
 y <- rnorm(length(date))
-amPlot(x = date, y = y, type = 'l') # default parseDates = FALSE
 amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
+# notice that by default 'parseDates = FALSE'
 
 
 # ---
 # x, y plot if both x, y are numeric
 # ---
-
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
-
-# Add a legend, and scrollbar...
-amPlot(x = x, y = y, type = "l", scrollbar = TRUE, lty = 2, cex = 10, col = "blue")
-
-# Add weight
-weights <- rnorm(100, sd = 2)
-amPlot(x = x, y = y, type = "p", weights = weights)
-
-# Change color
+weights <- rnorm(100)
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
-amPlot(x = x, y = y, col = col)
-
-# ---
-# x plot
-# ---
-x <- rnorm(100)
-
-# Simple scatter plot with title and color
-amPlot(x = x, main = "Title", col = "lightblue")
-
-# Change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
-amPlot(x = x, type = "b")
-
-# Change bullets, available "diamond", "square", "triangleUp", "triangleDown",
-# "triangleLeft", "triangleRight", "bubble", "yError"
-amPlot(x = x, bullet = "xError", error = sample(100))
-
-# Change lty and cex, ...
-amPlot(x = x, type = "b", lty = 1, cex = 10, lwd = 2)
+amPlot(x = x, y = y, type = "l", col = col, weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
 
 # -------------------
 # EXAMPLES DATA.FRAME
 # -------------------
-
-iris <- get("iris", "package:datasets")
-
 # Select all numeric columns
-amPlot(iris)
 
 # Select the column to plot with a character or a numeric
 amPlot(iris, columns = "Sepal.Length")
-amPlot(iris, columns = 1)
+# can be 'columns = 1'
+# can be also all numeric columns by running 'amPlot(iris)'
 
-# Select several columns
+# Select several columns, a different type for each
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
-
-# Add parameter from amOptions
-co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2, zoom = TRUE)
 
 
 # -------------------
 # FORMULA
 # -------------------
-iris <- data.table(get("iris", "package:datasets"))
-
-amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
-amPlot(Sepal.Length~Sepal.Width, data = iris)
-amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
-  setLegend(useGraphSettings = TRUE)
-
-# Add parameter from amOptions
-amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
+amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
 library(pipeR)
 library(data.table)
+iris <- data.table(get("iris", "package:datasets"))
 
 # ----------------
 # EXAMPLES NUMERIC
 # ----------------
+
+# ---
+# x plot
+# ---
+x <- rnorm(100)
+
+# Simple scatter plot with title and color
+# Also change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
+amPlot(x = x, main = "Title", col = "lightblue", type = "b")
+
+# Change bullets, available "diamond", "square", "triangleUp", "triangleDown",
+# "triangleLeft", "triangleRight", "bubble", "yError"
+amPlot(x = x, bullet = "xError", error = sample(100))
+
+# Change lty and cex, ...
+amPlot(x = x, type = "b", lty = 1, cex = 10, lwd = 2)
 
 # ---
 # x, y plot if x is a factor or a character
@@ -413,8 +349,6 @@ library(data.table)
 xc <- paste("cat.", 1:100)
 xf <- factor(xc)
 y <- rnorm(length(xc))
-
-# Change type...
 amPlot(x = xc, y = y, type = 'p', cex = .01)
 
 # amPlot(x = xf, y = y, type = 'l') , x can be either a character or a factor
@@ -428,79 +362,37 @@ date <- seq.POSIXt(from = start, to = end, by = 'day')
 date <- format(date, '\%m-\%d-\%Y')
 
 y <- rnorm(length(date))
-amPlot(x = date, y = y, type = 'l') # default parseDates = FALSE
 amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
+# notice that by default 'parseDates = FALSE'
 
 
 # ---
 # x, y plot if both x, y are numeric
 # ---
-
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
-
-# Add a legend, and scrollbar...
-amPlot(x = x, y = y, type = "l", scrollbar = TRUE, lty = 2, cex = 10, col = "blue")
-
-# Add weight
-weights <- rnorm(100, sd = 2)
-amPlot(x = x, y = y, type = "p", weights = weights)
-
-# Change color
+weights <- rnorm(100)
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
-amPlot(x = x, y = y, col = col)
-
-# ---
-# x plot
-# ---
-x <- rnorm(100)
-
-# Simple scatter plot with title and color
-amPlot(x = x, main = "Title", col = "lightblue")
-
-# Change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
-amPlot(x = x, type = "b")
-
-# Change bullets, available "diamond", "square", "triangleUp", "triangleDown",
-# "triangleLeft", "triangleRight", "bubble", "yError"
-amPlot(x = x, bullet = "xError", error = sample(100))
-
-# Change lty and cex, ...
-amPlot(x = x, type = "b", lty = 1, cex = 10, lwd = 2)
+amPlot(x = x, y = y, type = "l", col = col, weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
 
 # -------------------
 # EXAMPLES DATA.FRAME
 # -------------------
-
-iris <- get("iris", "package:datasets")
-
 # Select all numeric columns
-amPlot(iris)
 
 # Select the column to plot with a character or a numeric
 amPlot(iris, columns = "Sepal.Length")
-amPlot(iris, columns = 1)
+# can be 'columns = 1'
+# can be also all numeric columns by running 'amPlot(iris)'
 
-# Select several columns
+# Select several columns, a different type for each
 amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
-
-# Add parameter from amOptions
-co2 <- data.table(get("CO2", "package:datasets"))
-amPlot(co2, zoom = TRUE)
 
 
 # -------------------
 # FORMULA
 # -------------------
-iris <- data.table(get("iris", "package:datasets"))
-
-amPlot(x = iris$Sepal.Length, y = iris$Sepal.Width, xlab = "Sepal.Length")
-amPlot(Sepal.Length~Sepal.Width, data = iris)
-amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris) \%>>\%
-  setLegend(useGraphSettings = TRUE)
-
-# Add parameter from amOptions
-amPlot(Sepal.Length~Sepal.Width, data = iris, zoom = TRUE)
+amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
 }
 \seealso{
 \itemize{

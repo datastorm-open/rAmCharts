@@ -216,7 +216,7 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
   if (length(color) == 1) {
     if (color == "") col <- "#1e90ff"
   } else if(length(color) > 1) {
-    colfunc <- colorRampPalette(color)
+    colfunc <- grDevices::colorRampPalette(color)
     palette <- colfunc(max - min)
     col <- palette[(x-min)]
   }

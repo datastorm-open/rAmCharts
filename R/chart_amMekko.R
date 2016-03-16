@@ -70,13 +70,13 @@ amMekko <- function(x, y, data, xlab = "",
     if(length(groups_color) == length(y)) {
       v_col <- groups_color
     } else {
-      v_col <- head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
+      v_col <- utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
                           "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
                           "#b9783f", "#b93e3d", "#913167"), 5), 
                     length(y))
     }
   } else {
-    v_col <- head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
+    v_col <- utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
                         "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
                         "#b9783f", "#b93e3d", "#913167"), 5), 
                   length(y))
