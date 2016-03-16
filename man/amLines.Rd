@@ -40,17 +40,14 @@ library(data.table)
 # x, y plot if x is a factor or a character
 # ---
 
+
 xc <- paste("cat.", 1:100)
 xf <- factor(xc)
 y <- rnorm(length(xc))
 
-# Change type
+# Change type...
 amPlot(x = xc, y = y, type = 'l')
-amPlot(x = xf, y = y, type = 'l') # x can be either a character or a factor
-amPlot(x = xc, y = y, type = "sl")
-amPlot(x = xc, y = y, type = "st")
-amPlot(x = xc, y = y, type = "p")
-amPlot(x = xc, y = y,type = "b")
+# amPlot(x = xf, y = y, type = 'l') , x can be either a character or a factor
 
 # ---
 # x, y plot if x is a date (character)
@@ -73,17 +70,8 @@ amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-Y
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
 
-# Change type
-amPlot(x = x, y = y) # default type = "p"
-amPlot(x = x, y = y, type = "l")
-
-# Add a legend
-amPlot(x = x, y = y, type = "l") \%>>\%
-  setLegend(useGraphSettings = TRUE)
-
-# Add a scrollbar
-amPlot(x = x, y = y, scrollbar = TRUE)
-amPlot(x = x, y = y, scrollbar = TRUE)
+# Add a legend, and scrollbar
+amPlot(x = x, y = y, type = "l", legend = TRUE, scrollbar = TRUE)
 
 # Change lty
 amPlot(x = x, y = y, type = "l", lty = 2)
@@ -92,73 +80,29 @@ amPlot(x = x, y = y, type = "l", lty = 2)
 weights <- rnorm(100, sd = 5)
 amPlot(x = x, y = y, type = "p", weights = weights)
 
-# Change cex
-amPlot(x = x, y = y, type = "p", cex = 1)
-amPlot(x = x, y = y, type = "p", cex = 10)
-
-
-# Change color
-amPlot(x = x, y = y, col = "blue")
+# Change cex and color
+amPlot(x = x, y = y, type = "p", cex = 10, col = "blue", main = "title")
 
 col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
 amPlot(x = x, y = y, col = col)
-
-# Add title from amOptions
-amPlot(x = x, y = y, main = "title")
 
 # ---
 # x plot
 # ---
 x <- rnorm(100)
 
-# Simple scatter plot
-amPlot(x = x)
+# Simple scatter plot with title and color
+amPlot(x = x, main = "Title", col = "lightblue", main = "My title")
 
-# Add title
-amPlot(x = x, main = "Title")
-
-# Set a title
-amPlot(x = x, main = "Title")
-
-# Change type (set to "p" by default)
-amPlot(x = x, type = "l")
-amPlot(x = x, type = "sl")
-amPlot(x = x, type = "st")
-amPlot(x = x, type = "p")
+# Change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
 amPlot(x = x, type = "b")
 
-# Change color
-amPlot(x = rnorm(100), col = "lightblue")
-
-# Change bullets
-x <- rnorm(100)
-amPlot(x = x, bullet = "diamond")
-amPlot(x = x, bullet = "square")
-amPlot(x = x, bullet = "triangleUp")
-amPlot(x = x, bullet = "triangleDown")
-amPlot(x = x, bullet = "triangleLeft")
-amPlot(x = x, bullet = "triangleRight")
-amPlot(x = x, bullet = "bubble")
-amPlot(x = x, bullet = "yError", error = sample(100))
+# Change bullets, available "diamond", "square", "triangleUp", "triangleDown",
+# "triangleLeft", "triangleRight", "bubble", "yError"
 amPlot(x = x, bullet = "xError", error = sample(100))
 
-# Change lty
-x <- rnorm(100)
-amPlot(x = x, type = "b", lty = 1)
-amPlot(x = x, type = "b", lty = 6)
-
-# Change cex
-x <- rnorm(100)
-amPlot(x = x, cex = 1)
-amPlot(x = x, cex = 10)
-
-# Change lwd
-x <- rnorm(100)
-amPlot(x = x, type = "st", lwd = 1)
-amPlot(x = x, type = "st", lwd = 2)
-
-# Add a title from amOptions
-amPlot(x = x, type = "st", lwd = 2, main = "My title")
+# Change lty and cex, ...
+amPlot(x = x, type = "b", lty = 1, cex = 10, lwd = 2)
 
 # -------------------
 # EXAMPLES DATA.FRAME
@@ -166,19 +110,15 @@ amPlot(x = x, type = "st", lwd = 2, main = "My title")
 
 iris <- get("iris", "package:datasets")
 
+# Select all numeric columns
+amPlot(iris)
+
 # Select the column to plot with a character or a numeric
 amPlot(iris, columns = "Sepal.Length")
 amPlot(iris, columns = 1)
 
 # Select several columns
-amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"))
-
-# Select all numeric columns
-amPlot(iris)
-
-# Add a legend 
-amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st")) \%>>\%
-  setLegend(useGraphSettings = TRUE)
+amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
 
 # Add parameter from amOptions
 co2 <- data.table(get("CO2", "package:datasets"))
