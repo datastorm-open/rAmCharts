@@ -9,7 +9,7 @@ amFunnel(data, inverse = FALSE, neck_height = NULL, neck_width = NULL,
   margin_left = 200, ...)
 }
 \arguments{
-\item{data}{a data frame of at least 2 columns : value (numeric, positive), 
+\item{data}{\code{data.frame} of at least 2 columns : value (numeric, positive), 
 and description (character). You can add a third column "color" (character,
 colors in hexadecimal) see \link{data_funnel}.}
 

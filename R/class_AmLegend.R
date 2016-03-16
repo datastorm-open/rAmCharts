@@ -12,7 +12,6 @@ NULL
 #' etc, instead of background color.
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
-#' See examples for details.
 #' @slot otherProperties \code{list} 
 #' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.

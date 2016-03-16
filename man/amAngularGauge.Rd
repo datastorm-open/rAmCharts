@@ -20,7 +20,7 @@ amAngularGauge(x, start = 0, end = 100, step = 20,
 
 \item{step}{\code{numeric}, intervals size.}
 
-\item{bands}{a data frame with 4 columns : start (numeric, minimal value for the band), 
+\item{bands}{\code{data.frame} with 4 columns : start (numeric, minimal value for the band), 
 end (numeric, maximal value for the band), color (character, color of the band, in hexadecimal)
 and width (numeric, width of the band). If the last column is not defined, it is auomatically
 set to 10.}
@@ -37,7 +37,7 @@ set to 10.}
 
 \item{step2}{\code{numeric}, intervals size for the second axe if secondAxe is TRUE.}
 
-\item{bands2}{a data frame with 4 columns : start (numeric, minimal value for the band), 
+\item{bands2}{\code{data.frame} with 4 columns : start (numeric, minimal value for the band), 
 end (numeric, maximal value for the band), color (character, color of the band, in hexadecimal)
 and width (numeric, width of the band). If the last column is not defined, it is auomatically
 set to 10.}

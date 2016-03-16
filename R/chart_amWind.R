@@ -53,7 +53,7 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
 
   
   colnames(databullet) <- paste0(  colnames(databullet),"lab")
-  
+  data <- round(data * 100 / sum(data), 2)
   data <- data.frame(t(apply(data, 1, cumsum)))
   data$labels<-as.character(seq(0,360,length.out = nrow(data)+1)[1:nrow(data)])
   data$labels[which(data$labels=="0")] <- "N"
@@ -65,13 +65,16 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   data$labels[which(data$labels=="270")] <- "W"
   data$labels[which(data$labels=="315")] <- "NW"
   
-  
-  
-  databullet <- apply(databullet, 2, function(X){
-    paste0(X, "<br><b>", round(rowSums(data1)/sum(data1)*100, 2),
-           "%</b> of wind <b>", data$labels, "</b>")
-  })
 
+  
+  
+  
+  lib2 <- round(data_wind/rowSums(data_wind)*100,2)
+  for(i in 1:ncol(lib2)){
+    databullet[, i] <- paste0(databullet[, i], "<br><b>", lib2[,i ],"%</b> of wind <b>", data$labels, "</b>")
+  }
+  
+ 
   
   col <- rev(col) 
   datavalue <- data[, (ncol(data)-1):1, drop = FALSE]
@@ -97,7 +100,7 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   data <- cbind(data,databullet)
   res <- amRadarChart(dataProvider = data, startDuration = 1,
                       categoryField = "labels", graphs = graphs) %>>% 
-    addValueAxes(gridType = "circle")
+    addValueAxes(gridType = "circle", unit = "%")
   
   
   res <- amOptions(res, ...)

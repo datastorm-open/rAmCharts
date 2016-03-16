@@ -18,8 +18,7 @@ If TRUE, border color will be changed when user rolls-over the slice, graph,
 etc, instead of background color.}
 
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
-The list must be named as in the official API. Each element must be a character string.
-See examples for details.}
+The list must be named as in the official API. Each element must be a character string.}
 
 \item{\code{otherProperties}}{\code{list} 
 containing other avalaible properties not yet implemented in the package.}

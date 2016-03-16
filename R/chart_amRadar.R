@@ -1,7 +1,7 @@
 #' @title Plotting radar using rAmCharts
 #' @description  radar computes a radarplot of the given data values.
 #' 
-#' @param data a data frame first column is named "label" (character), other columns are series of values,
+#' @param data  \code{data.frame} first column is named "label" (character), other columns are series of values,
 #' see \link{data_radar}.
 #' @param col  \code{character}, color(s) of serie(s) hexadecimal like "#00FF00".
 #' @param backTransparency \code{numeric}, background transparency, between 0 and 1.
@@ -29,6 +29,7 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
   
   .testIn("label", colnames(data))
   
+
   #Test Numeric data
   datavalue <- data[, -which(colnames(data)=="label"), drop = FALSE]
   invisible(sapply(names(datavalue),function(X){
@@ -71,6 +72,8 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
             bullet = as.character(x[4]))
   })
   
+
+
   res <- amRadarChart(dataProvider = data, categoryField = "label") %>>% 
     setGraphs(graphs) %>>% 
     addValueAxes(gridType = type)

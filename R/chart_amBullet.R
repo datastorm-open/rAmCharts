@@ -7,7 +7,7 @@
 #' @param val_color \code{character}, color of the bar value, in hexadecimal.
 #' @param limit \code{numeric}, target value.
 #' @param limit_color \code{character}, color of the target line.
-#' @param rates a data frame with 4 columns: name (character), min (numeric), max (numeric), 
+#' @param rates \code{data.frame} with 4 columns: name (character), min (numeric), max (numeric), 
 #' and color (character, color in hexadecimal).
 #' @param steps \code{logical}, default set to TRUE.
 #' @param label \code{character}, label of the bullet.

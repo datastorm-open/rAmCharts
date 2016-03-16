@@ -27,7 +27,7 @@ amBullet(value, min = 0, max = 100, val_color = "#000000", limit = 85,
 
 \item{horiz}{\code{logical}, TRUE (default) for an horizontal bullet chart, FALSE for a vertical one.}
 
-\item{rates}{a data frame with 4 columns: name (character), min (numeric), max (numeric), 
+\item{rates}{\code{data.frame} with 4 columns: name (character), min (numeric), max (numeric), 
 and color (character, color in hexadecimal).}
 
 \item{...}{see \code{\link{amOptions}} for more options.}
