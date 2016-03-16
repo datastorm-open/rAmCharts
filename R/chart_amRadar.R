@@ -75,6 +75,7 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
     setGraphs(graphs) %>>% 
     addValueAxes(gridType = type)
   
+
   res <- amOptions(res, ...)
   res
   

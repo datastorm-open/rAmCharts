@@ -106,12 +106,14 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
     } else {
       if (length(chart@otherProperties$RType_) > 0) {
         
-        if (chart@otherProperties$RType_ %in% c("candlestick", "waterfall", "boxplot", "histogram"))
+        if (chart@otherProperties$RType_ %in% c("candlestick", "waterfall",
+                                                "boxplot", "histogram"))
         {
           message("You cannot add a legend this kind of chart")
         }
         
-        if (chart@otherProperties$RType_ %in% c("barplot"))
+        
+        if (chart@otherProperties$RType_ %in% c("barplot", "wind"))
         {
           if(length(chart@graphs) == 1)
           {

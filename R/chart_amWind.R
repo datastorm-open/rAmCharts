@@ -44,10 +44,13 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   dt <- names(data)
   apply(data, 2, function(X){
     .testNumeric(num = X)})
+  data1 <- data
+  databullet <- apply( rbind(names(data), data), 2, function(x){paste0("<b>", as.numeric(x[-1]),
+                    " </b>Observations <br><b>", round(as.numeric(x[-1])/sum(as.numeric(x[-1]))*100, 2),
+                    "%</b> of wind <b>", x[1], "</b>")})
+  
+  
 
-  databullet <- apply( rbind(names(data),data),2,function(x){paste0("<b>", as.numeric(x[-1]),
-                    " </b>Observations <br><b>",round(as.numeric(x[-1])/sum(as.numeric(x[-1]))*100,2),
-                    "%</b> of wind <b>",x[1],"</b>")})
   
   colnames(databullet) <- paste0(  colnames(databullet),"lab")
   
@@ -61,6 +64,15 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   data$labels[which(data$labels=="225")] <- "SW"
   data$labels[which(data$labels=="270")] <- "W"
   data$labels[which(data$labels=="315")] <- "NW"
+  
+  
+  
+  databullet <- apply(databullet, 2, function(X){
+    paste0(X, "<br><b>", round(rowSums(data1)/sum(data1)*100, 2),
+           "%</b> of wind <b>", data$labels, "</b>")
+  })
+
+  
   col <- rev(col) 
   datavalue <- data[, (ncol(data)-1):1, drop = FALSE]
   if(is.null(col)){col <- ""}
@@ -73,7 +85,7 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   for(i in (nrow(constructGraph)):1)
   {
     graphs[[i]] <- amGraph(title = as.character(constructGraph[i,1]), lineThickness = 2, 
-                           legendAlpha = 1, lineColor = "#000000", lineAlpha = 1, 
+                           legendAlpha = 1, lineColor = as.character(constructGraph[i,2]), lineAlpha = 1, 
                            balloonText =  paste0("[[",as.character(constructGraph[i,1]),"lab]]"),
                            fillColors =  as.character(constructGraph[i,2]), 
                            fillAlphas = as.numeric(constructGraph[i,3]), 
