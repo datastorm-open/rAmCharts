@@ -1,32 +1,28 @@
 output$pie0 <- rAmCharts::renderAmCharts({
-  ##Data
+  ## Data
   data('data_gdp')
-  ##Plot
-  pipeR::pipeline(
-    amPieChart(valueField = 'gdp', titleField = 'country',
-               dataProvider = data_gdp, startDuration = 0)
-  )
+  ## Plot
+  amPieChart(valueField = 'gdp', titleField = 'country',
+             dataProvider = data_gdp, startDuration = 0)
 })
 
 output$code_pie0 <- renderText({
   "
-  ##Data
+  ## Data
   data('data_gdp')
-  ##Plot
-  pipeR::pipeline(
-    amPieChart(valueField = 'gdp', titleField = 'country',
-               dataProvider = data_gdp, startDuration = 0)
-  )
-  "
+  ## Plot
+  amPieChart(valueField = 'gdp', titleField = 'country',
+             dataProvider = data_gdp, startDuration = 0)
+"
 })
 
 
 
 
 output$pie01 <- rAmCharts::renderAmCharts({
-  ##Data
+  ## Data
   data('data_gdp')
-  ##Plot
+  ## Plot
   pipeR::pipeline(
     amPieChart(valueField = 'gdp', titleField = 'country',
                dataProvider = data_gdp, startDuration = 0),
@@ -37,9 +33,9 @@ output$pie01 <- rAmCharts::renderAmCharts({
 
 output$code_pie01 <- renderText({
   "
-  ##Data
+  ## Data
   data('data_gdp')
-  ##Plot
+  ## Plot
   pipeR::pipeline(
     amPieChart(valueField = 'gdp', titleField = 'country',
                dataProvider = data_gdp, startDuration = 0),
@@ -50,9 +46,9 @@ output$code_pie01 <- renderText({
 })
 
 output$pie03 <- rAmCharts::renderAmCharts({
-  ##Data
+  ## Data
   data('data_gdp')
-  ##Plot
+  ## Plot
   pipeR::pipeline(
     amPieChart(valueField = 'gdp', titleField = 'country', startDuration = 0,
                dataProvider = data_gdp, theme = 'dark', export=list(enabled = TRUE)),
@@ -64,9 +60,9 @@ output$pie03 <- rAmCharts::renderAmCharts({
 
 output$code_pie03 <- renderText({
   "
-  ##Data
+  ## Data
   data('data_gdp')
-  ##Plot
+  ## Plot
   pipeR::pipeline(
     amPieChart(valueField = 'gdp', titleField = 'country', startDuration = 0,
                dataProvider = data_gdp, theme = 'dark', export=list(enabled = TRUE)),
@@ -78,9 +74,9 @@ output$code_pie03 <- renderText({
 })
 
 output$pie04 <- rAmCharts::renderAmCharts({
-  ##Data
+  ## Data
   data('data_gdp')
-  ##Plot
+  ## Plot
   pipeR::pipeline(
     amPieChart(valueField = 'gdp', titleField = 'country', startDuration = 0,
                dataProvider = data_gdp, theme = 'light'),
@@ -94,9 +90,9 @@ output$pie04 <- rAmCharts::renderAmCharts({
 
 output$code_pie04 <- renderText({
   "
-  ##Data
+  ## Data
   data('data_gdp')
-  ##Plot
+  ## Plot
   pipeR::pipeline(
     amPieChart(valueField = 'gdp', titleField = 'country', startDuration = 0,
                dataProvider = data_gdp, theme = 'light'),
@@ -110,9 +106,9 @@ output$code_pie04 <- renderText({
 })
 
 output$pie05 <- rAmCharts::renderAmCharts({
-  ##Data
+  ## Data
   data('data_gdp')
-  ##Plot
+  ## Plot
   pipeR::pipeline(
     amPieChart(valueField = 'gdp', titleField = 'country', startDuration = 0,
                dataProvider = data_gdp),
@@ -125,9 +121,9 @@ output$pie05 <- rAmCharts::renderAmCharts({
 
 output$code_pie05 <- renderText({
   "
-  ##Data
+  ## Data
   data('data_gdp')
-  ##Plot
+  ## Plot
   pipeR::pipeline(
     amPieChart(valueField = 'gdp', titleField = 'country', startDuration = 0,
                dataProvider = data_gdp),

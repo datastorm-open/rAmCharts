@@ -1,3 +1,5 @@
+require(pipeR)
+
 # For a simple chart
 amPlot(x = rnorm(100), type = 'sl') %>>%
   amLines(x = rnorm(100), type = "p")

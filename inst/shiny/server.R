@@ -1,8 +1,10 @@
-library(shiny)
 library(rAmCharts)
+
+library(shiny)
+library(shinydashboard)
+
 library(pipeR)
 library(data.table)
-library(shinydashboard)
 
 shinyServer(function(input, output) {
   source("./src/pie/pie_server.R", local = TRUE, encoding = "UTF-8")

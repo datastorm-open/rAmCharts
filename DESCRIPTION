@@ -30,6 +30,7 @@ Depends:
     R (>= 3.2.0)
 Collate:
     'base_data.R'
+    'base_shiny.R'
     'base_startupMessage.R'
     'chart_amBarplot.R'
     'chart_amBoxplot.R'

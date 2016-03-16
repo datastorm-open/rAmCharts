@@ -68,8 +68,8 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
 
   
   
+  lib2 <- round(data1 / rowSums(data1) * 100, 2)
   
-  lib2 <- round(data_wind/rowSums(data_wind)*100,2)
   for(i in 1:ncol(lib2)){
     databullet[, i] <- paste0(databullet[, i], "<br><b>", lib2[,i ],"%</b> of wind <b>", data$labels, "</b>")
   }
@@ -77,7 +77,7 @@ amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
  
   
   col <- rev(col) 
-  datavalue <- data[, (ncol(data)-1):1, drop = FALSE]
+  datavalue <- data[, (ncol(data)-1) : 1, drop = FALSE]
   if(is.null(col)){col <- ""}
   oldw <- getOption("warn")
   options(warn = -1)
