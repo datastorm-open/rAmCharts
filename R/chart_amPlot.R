@@ -76,7 +76,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
   if (length(col) == 1) {
     col <- rep(col, times = length(x))
   } else {
-    stopifnot(length(col) == length(x))
+    .testLength(col, length(x))
     levels(col) <- grDevices::topo.colors(nlevels(col))
     levels(col) <- substr(levels(col), 1, 7)
   }
@@ -90,7 +90,8 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     # define the dataProvider
     if (type == "points" && bullet %in% c("xError", "yError")) {
       if (missing(error)) error <- rep(1, length(x))
-      stopifnot(is.numeric(error) && length(error) == length(x))
+      .testNumeric(error)
+      .testLength(error, length(x))
       dt <- data.table(x = x, cat = paste("obs.", 1:length(x)), error = error)
     } else {
       dt <- data.table(x = x, cat = paste("obs.", 1:length(x)))
@@ -112,7 +113,8 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     
     # Add category axis at the left
     categoryAxis_obj <- if (!missing(xlim)) {
-      stopifnot(is.numeric(xlim) && length(xlim) == 2)
+      .testNumeric(xlim)
+      .testLength(xlim, 2)
       categoryAxis(title = xlab, position = "bottom", id = "x",
                    minimum = xlim[1], maximum = xlim[2])
     } else {
@@ -157,7 +159,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     }
     
     if (!missing(weights)) {
-      stopifnot(length(weights) == length(x))
+      .testLength(weights, length(x))
       # width of bullets
       weights <- round(weights, precision)
       dt <- cbind(dt, weights = weights)
@@ -174,7 +176,8 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     
     # Add common valueAxis
     valueAxis_bottom <- if (!missing(xlim)) {
-      stopifnot(is.numeric(xlim) && length(xlim) == 2)
+      .testNumeric(xlim)
+      .testLength(xlim, 2)
       valueAxis(title = xlab, position = "bottom", axisAlpha = 0,
                 minimum = xlim[1], maximum = xlim[2])
     } else {
@@ -197,7 +200,8 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
   
   # Add common valueAxis at the left
   valueAxis_left <- if (!missing(ylim)) {
-    stopifnot(is.numeric(ylim) && length(ylim) == 2)
+    .testNumeric(ylim)
+    .testLength(ylim, 2)
     valueAxis(title = ylab, position = "left", axisAlpha = 0,
               minimum = ylim[1], maximum = ylim[2], id = "y")
   } else {
@@ -234,7 +238,7 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
   if (length(col) == 1) {
     col <- rep(col, times = length(x))
   } else {
-    stopifnot(length(col) == length(x))
+    .testLength(col, length(x))
     levels(col) <- grDevices::topo.colors(nlevels(col))
     levels(col) <- substr(levels(col), 1, 7)
   }
@@ -250,7 +254,8 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
     # define the dataProvider
     if (type == "points" && bullet %in% c("xError", "yError")) {
       if (missing(error)) error <- rep(1, length(x))
-      stopifnot(is.numeric(error) && length(error) == length(x))
+      .testNumeric(error)
+      .testLength(error, length(x))
       dt <- data.table(x = y, cat = x, error = error)
     } else {
       dt <- data.table(x = y, cat = x)
@@ -271,7 +276,8 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
     if (missing(ylab)) ylab <- deparse(substitute(x))
     
     if (parseDates) {
-      stopifnot(!missing(dataDateFormat) && is.character(dataDateFormat))
+      stopifnot(!missing(dataDateFormat))
+      .testCharacter(dataDateFormat)
       amSerialChart(categoryField = "cat", precision = precision, dataDateFormat = dataDateFormat) %>>%
         (~ chart )
     } else {
@@ -293,7 +299,8 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
   
   # Add common valueAxis at the left
   valueAxis_left <- if (!missing(ylim)) {
-    stopifnot(is.numeric(ylim) && length(ylim) == 2)
+    .testNumeric(ylim)
+    .testLength(ylim, 2)
     valueAxis(title = ylab, position = "left", axisAlpha = 0,
               minimum = ylim[1], maximum = ylim[2], id = "y")
   } else {
@@ -385,7 +392,7 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
       (~ chart)
     
   } else {
-    stopifnot(is.numeric(x))
+    .testNumeric(x)
     chart <- amPlot(x = x, type = type)
   }
   
@@ -421,7 +428,7 @@ amPlot.formula <- function (x, data, ...)
 
 amCheck_type <- function(type, valid = c("l", "sl", "st", "p", "b"))
 {
-  stopifnot(type %in% valid)
+  .testIn(type, valid)
   
   switch(type,
          "l" = "line",
@@ -536,23 +543,24 @@ amLines <- function(chart, x = NULL, y = NULL, type, col, title)
   }
   # check the arguments
   stopifnot(is(chart, "AmChart"))
-  stopifnot(is.numeric(x))
-
+  .testNumeric(x)
   
   type <- if (missing(type)) "line"
   else amCheck_type(type = type, valid = c("l", "p", "sl"))
   
   lineAlpha <- ifelse(type == "points", yes = 0, no = 1)
   
-  if (!missing(col))
-    stopifnot(is.character(col) && length(col) == 1)
-  else
+  if (!missing(col)) {
+    .testCharacter(col)
+    .testLength(col, 1)
+  } else {
     col <- ""
+  }
   
   # test the length of the vector
   dataProvider <- chart@dataProvider
   l <- length(dataProvider)
-  stopifnot(length(x) == l)
+  .testLength(x, l)
 
   # define the new name for the serie
   # here we suppose that each element of the list have the same names
