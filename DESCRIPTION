@@ -16,12 +16,12 @@ Description: API for using 'AmCharts' Library. Based on the 'htmlwidgets'
     'AmCharts' company.
 Version: 2.0.0
 Authors@R: c(
-    person(given = "Jeffery", family = "Petit", email = "jeffery.petit@datak.fr", role = c("aut", "cre")),
+    person(given = "Jeffery", family = "Petit", email = "jeffery.petit@datastorm.fr", role = c("aut", "cre")),
     person(given = "Antanas", family = " Marcelionis", role = c("aut", "cph"),
            comment = "'AmCharts' library in th directory htmlwidgets/lib/amcharts, refer to http://www.amcharts.com/"),
-    person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datak.fr", role = c("aut", "ctb")),
-    person(given = "Elena", family = "Salette", email = "elena.salette@datak.fr", role = c("ctb")),
-    person(given = "Titouan", family = "Robert", email = "titouan.robert@datak.fr", role = c("ctb")))
+    person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datastorm.fr", role = c("aut", "ctb")),
+    person(given = "Elena", family = "Salette", email = "elena.salette@datastorm.fr", role = c("aut", "ctb")),
+    person(given = "Titouan", family = "Robert", email = "titouan.robert@datastorm.fr", role = c("aut", "ctb")))
 Date: 2016-03-14
 License: GPL (>= 2)
 URL: http://dataknowledge.github.io/introduction_ramcharts/
