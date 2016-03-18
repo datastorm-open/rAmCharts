@@ -152,7 +152,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     # initialize dataProvider
     if (!missing(id)) {
       dt <- data.table(x = x, y = y, id = id, col = col)
-      labelId  <- "Obs. <b>[[id]]</b>"
+      labelId  <- "Obs. <b>[[id]]</b><br>"
     } else {
       dt <- data.table(x = x, y = y, col = col)
       labelId  <- ""
@@ -170,9 +170,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
       labelWeights <- NULL
     }
     
-    balloonText <- paste0(labelId, "<br>",
-                          "x:<b>[[x]]</b> <br> y:<b>[[y]]</b><br>",
-                          labelWeights, "<br>")
+    balloonText <- paste0(labelId, "x:<b>[[x]]</b><br>y:<b>[[y]]</b><br>", labelWeights)
     
     # Add common valueAxis
     valueAxis_bottom <- if (!missing(xlim)) {
@@ -408,22 +406,27 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
 #' @import pipeR
 #' @export
 #' 
-amPlot.formula <- function (x, data, ...)
+amPlot.formula <- function (x, data, type = "p", ...)
 {
   y_name <- all.vars(x[-3]) # subset variables in the lhs
   x_name <- all.vars(x[-2]) # subset variables in the rhs
   if (length(y_name) == 1) {
-    chart <- amPlot(x = data[[eval(x_name)]], y = data[[eval(y_name)]],
-                    xlab = eval(x_name), ylab = eval(y_name), ...)
+    y <- data[[eval(y_name)]]
+    assign(y_name, y)
+    chart <- eval(parse(text = paste0("amPlot(x = data[[eval(x_name)]], y = ", y_name,
+                    ", xlab = eval(x_name), ylab = eval(y_name), type = type, ...)")))
   } else {
     i <- 1
-    chart <- amPlot(x = data[[eval(x_name)]], y = data[[eval(y_name[i])]],
-                    xlab = eval(x_name), ylab = "multiple series", ...)
-    repeat {
+    y <- data[[eval(y_name[i])]]
+    assign(y_name[i], y)
+    chart <- eval(parse(text = paste0("amPlot(x = data[[eval(x_name)]], y = ", y_name[i],
+                                      ", xlab = eval(x_name), ylab = 'multiple series', type = type, ...)")))
+    i <- i + 1
+    while(i <= length(y_name)) {
       chart <- chart %>>%
-        amLines(x = data[[eval(y_name[i])]], type = "p", title = eval(y_name[i]))
-      if (i == length(y_name)) break
-      else i <- i + 1
+        amLines(y = data[[eval(y_name[i])]], title = eval(y_name[i]), 
+                type = type)
+      i <- i + 1
     }
   }
   chart
@@ -586,8 +589,12 @@ amLines <- function(chart, x = NULL, y = NULL, type, col, title)
     dataProvider[[i]]
   })
   
+  
+  balloonText <- paste0("x:<b>[[x]]</b><br>y:<b>[[y]]</b><br>")
+  
   # initialize the graph object
-  graph_obj <- graph(title = title, valueField = name, lineAlpha = lineAlpha, lineColor = col)
+  graph_obj <- graph(title = title, valueField = name, lineAlpha = lineAlpha, lineColor = col, 
+                     balloonText = balloonText)
   
   # the field where to find the new values depend on the chart type
   if (chart@type == "serial")
