@@ -45,6 +45,7 @@ which will instruct the chart that your data is supplied in 15 minute increments
 amCandlestick computes a candlestick chart of the given value.
 }
 \examples{
+\donttest{
 # Load data
 data("data_candleStick2")
 
@@ -81,6 +82,8 @@ amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD", minPeriod
 require(pipeR)
 amCandlestick(data = data_candleStick2, horiz = TRUE) \%>>\%
   setProperties(precision = 2) 
+}
+
 }
 \seealso{
 \itemize{

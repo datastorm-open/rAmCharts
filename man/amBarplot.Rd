@@ -72,15 +72,16 @@ Zoom on the chart to see if the chart can contain all labels. If not, use the pa
 You can also add a cursor to your chart...
 }
 \examples{
-stopifnot(require(pipeR))
+\donttest{
+library(pipeR)
 
 # Data
 data(data_bar)
+data(data_gbar)
 
 
 # Test with label rotation
-amBarplot(x = "country", y = "visits", data = data_bar,
-          labelRotation = -45) 
+amBarplot(x = "country", y = "visits", data = data_bar, labelRotation = -45) 
 
 # Horizontal bar
 amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -45)
@@ -92,35 +93,20 @@ amBarplot(x = "country", y = "visits", data = data_bar, depth = 15, labelRotatio
 amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -45)
 
 # Grouped columns
-data(data_gbar)
-
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
 
 # Parse dates
-
 # Default label: first day of each year
-pipeR::pipeline(
-  amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar,
-            dataDateFormat = "YYYY", minPeriod = "YYYY"),
-  setChartCursor()
-)
+amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar,
+          dataDateFormat = "YYYY", minPeriod = "YYYY")
 
-# Default label: first day of each month
-pipeR::pipeline(
-  amBarplot(x = "month", y = c("income", "expenses"), data = data_gbar,
-            dataDateFormat = "MM/YYYY", minPeriod = "MM"),
-  setChartCursor()
-)
+amBarplot(x = "month", y = c("income", "expenses"), data = data_gbar,
+          dataDateFormat = "MM/YYYY", minPeriod = "MM")
 
-pipeR::pipeline(
-  amBarplot(x = "day", y = c("income", "expenses"), data = data_gbar,
-            dataDateFormat = "DD/MM/YYYY"),
-  setChartCursor()
-)
-
-# Change groups colors
+amBarplot(x = "day", y = c("income", "expenses"), data = data_gbar,
+          dataDateFormat = "DD/MM/YYYY")
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, 
-      groups_color = c("#87cefa", "#c7158"))
+          groups_color = c("#87cefa", "#c7158"))
 
 # Stacked bars
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "regular")
@@ -139,6 +125,8 @@ amBarplot(y = c("Murder", "Assault", "UrbanPop", "Rape"), data = dataset, stack_
 # Round values
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar) \%>>\%
   setProperties(precision = 0)
+}
+
 }
 \seealso{
 \itemize{

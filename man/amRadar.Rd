@@ -27,6 +27,7 @@ see \link{data_radar}.}
 radar computes a radarplot of the given data values.
 }
 \examples{
+\donttest{
 require(pipeR)
 
 # Load data
@@ -51,6 +52,7 @@ amRadar(data_radar, type = "circles")
 # Change pch
 amRadar(data_radar,  pch = "triangleRight")
 amRadar(data_radar,  pch = "triangleLeft")
+}
 
 }
 \seealso{

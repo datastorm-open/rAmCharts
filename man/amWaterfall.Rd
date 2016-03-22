@@ -26,6 +26,7 @@ See \code{\link{data_waterfall}}.}
 amWaterfall computes a waterfall chart of the given value.
 }
 \examples{
+\donttest{
 # Load data
 data("data_waterfall")
 
@@ -34,7 +35,8 @@ amWaterfall(data = data_waterfall, show_values = TRUE)
 
 
 # Change the orientation :
-amWaterfall(data = data_waterfall, horiz = TRUE)                                  
+amWaterfall(data = data_waterfall, horiz = TRUE)         
+}
 }
 \seealso{
 \itemize{

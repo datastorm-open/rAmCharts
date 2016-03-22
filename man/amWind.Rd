@@ -20,6 +20,7 @@ from weakest wind (first column) to stronger wind (last column). See \link{data_
 amWind computes a windplot of the given data values.
 }
 \examples{
+\donttest{
 # Load data
 data("data_wind")
 
@@ -35,6 +36,7 @@ amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparenc
 amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = 1)
 amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = c(0.1, 0.1, 1))
 
+}
 
 }
 \seealso{

@@ -36,8 +36,6 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' @param lwd \code{numeric}, line width 
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
-#' @example examples/amPlot_examples.R
-#' 
 #' @seealso 
 #' \itemize{
 #' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
@@ -45,6 +43,7 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' 
 #' @import data.table
 #' @rdname amPlot
+#' 
 #' @export
 #' 
 amPlot <- function(x, ...) UseMethod("amPlot")
@@ -55,8 +54,22 @@ amPlot <- function(x, ...) UseMethod("amPlot")
 amPlot.default <- function(x, ...) "Wrong class"
 
 #' @rdname amPlot
-#' @example examples/amPlot_examples.R
 #' 
+#' @examples 
+#' \donttest{
+#' iris <- data.table(get("iris", "package:datasets"))
+#' x <- rnorm(100)
+#' 
+#' # Simple scatter plot with title and color
+#' # Also change type (set to "p" by default), avalaible "l", "sl", "st", "p", "b"
+#' amPlot(x = x, main = "Title", col = "lightblue", type = "b")
+#' 
+#' x <- sort(rnorm(100))
+#' y <- rnorm(100, sd = 10)
+#' weights <- rnorm(100)
+#' col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
+#' amPlot(x = x, y = y, type = "l", col = col, weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
+#' }
 #' @import data.table
 #' @import pipeR
 #' @export
@@ -216,14 +229,24 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
 }
 
 #' @rdname amPlot
-#' @example examples/amPlot_examples.R
 #' 
+#' @examples
+#' \donttest{
+#' start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
+#' end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
+#' date <- seq.POSIXt(from = start, to = end, by = 'day')
+#' date <- format(date, '%m-%d-%Y')
+#' 
+#' y <- rnorm(length(date))
+#' amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
+#' # notice that by default 'parseDates = FALSE'
+#' }
 #' @import data.table
 #' @import pipeR
 #' @export
 #' 
 amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray", 
-                            weights = NULL, precision = 2,
+                             weights = NULL, precision = 2,
                              parseDates = FALSE, dataDateFormat,
                              id, error, xlab, ylab,
                              lty, cex, lwd, xlim, ylim, ...)
@@ -316,7 +339,6 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
 
 
 #' @rdname amPlot
-#' @example examples/amPlot_examples.R
 #' 
 #' @import data.table
 #' @import pipeR
@@ -332,14 +354,20 @@ amPlot.factor <- function(x, y, bullet = "round", type = "p", col = "gray",
                    weights = weights, precision = precision,
                    parseDates = parseDates, dataDateFormat = dataDateFormat,
                    id = id, error = error, xlab = xlab, ylab = ylab,
-                  lty = lty, cex = cex, lwd = lwd,
+                   lty = lty, cex = cex, lwd = lwd,
                    xlim = xlim, ylim = xlim, ...)
 }
 
 #' @rdname amPlot
+#' 
 #' @param columns (optional) either a vector of \code{character} containing
 #' the names of the series to draw, or a \code{numeric} vector of indices.
 #' By default all numeric columns will be drawn.
+#' 
+#' @examples 
+#' \donttest{
+#' amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
+#' }
 #' 
 #' @import pipeR
 #' @import data.table
@@ -401,8 +429,13 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
 }
 
 #' @rdname amPlot
+#' 
 #' @param data dataset
 #' 
+#' @examples 
+#' \donttest{
+#' amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
+#' }
 #' @import pipeR
 #' @export
 #' 
@@ -414,7 +447,7 @@ amPlot.formula <- function (x, data, type = "p", ...)
     y <- data[[eval(y_name)]]
     assign(y_name, y)
     chart <- eval(parse(text = paste0("amPlot(x = data[[eval(x_name)]], y = ", y_name,
-                    ", xlab = eval(x_name), ylab = eval(y_name), type = type, ...)")))
+                                      ", xlab = eval(x_name), ylab = eval(y_name), type = type, ...)")))
   } else {
     i <- 1
     y <- data[[eval(y_name[i])]]
@@ -518,25 +551,46 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' @param col \code{character}, color of the new serie.
 #' @param title \code{character}, name of the new serie, used when legend is enabled.
 #' 
-#' @example examples/amLines_examples.R
+#' @examples
+#' \donttest{
+#' require(pipeR)
+#' 
+# For a simple chart
+#' amPlot(x = rnorm(100), type = 'sl') %>>%
+#'   amLines(x = rnorm(100), type = "p")
+#' 
+#' amPlot(x = rnorm(100), type = 'sl') %>>%
+#'   amLines(x = rnorm(100), col = "blue") %>>%
+#'   amLines(x = rnorm(100), type = "sl") %>>%
+#'   amLines(x = rnorm(100), type = "p")
+#' 
+#' # For an XY chart
+#' x <- sort(rnorm(100))
+#' y1 <- rnorm(100, sd = 10)
+#' y2 <- rnorm(100, sd = 10)
+#' y3 <- rnorm(100, sd = 10)
+#' amPlot(x = x, y = y1) %>>%
+#'   amLines(x = y2, col = "blue") %>>%
+#'   amLines(x = y3, type = "p")
+#' }
 #' 
 #' @rdname amLines
 #' @export
 #' 
 #' @note It is supposed here that x or y corresponds to the y-axis, and the x-axis
 #' is automatically linked to the x values of the chart "chart". That is why it makes
-#' sense to give the y argument. 
-
+#' sense to give the y argument.
+#' 
 amLines <- function(chart, x = NULL, y = NULL, type, col, title)
 {
-
+  
   
   if(!is.null(x) && !is.null(y))
   {
     stop("Please use only y, x is deprecated.")
   }
-      
-      
+  
+  
   if(is.null(x))
   {
     if(is.null(y))
@@ -547,8 +601,8 @@ amLines <- function(chart, x = NULL, y = NULL, type, col, title)
       x <- y
     }
   } else {
-  
-  if (missing(title)) title <- deparse(substitute(x))
+    
+    if (missing(title)) title <- deparse(substitute(x))
   }
   # check the arguments
   stopifnot(is(chart, "AmChart"))
@@ -570,7 +624,7 @@ amLines <- function(chart, x = NULL, y = NULL, type, col, title)
   dataProvider <- chart@dataProvider
   l <- length(dataProvider)
   .testLength(x, l)
-
+  
   # define the new name for the serie
   # here we suppose that each element of the list have the same names
   # consequently this method won't work if the dataProvider has been set
@@ -593,20 +647,19 @@ amLines <- function(chart, x = NULL, y = NULL, type, col, title)
   balloonText <- paste0("x:<b>[[x]]</b><br>y:<b>[[y]]</b><br>")
   
   # initialize the graph object
-  graph_obj <- graph(title = title, valueField = name, lineAlpha = lineAlpha, lineColor = col, 
+  graph_obj <- graph(title = title, valueField = name,
+                     lineAlpha = lineAlpha, lineColor = col, 
                      balloonText = balloonText)
   
   # the field where to find the new values depend on the chart type
-  if (chart@type == "serial")
-    graph_obj <- setProperties(.Object = graph_obj)
-  else
+  if (chart@type != "serial")
     graph_obj <- setProperties(.Object = graph_obj, xField = "x", yField = name)
   
   if (type == "points")
     graph_obj <- setProperties(.Object = graph_obj, bullet = "round", maxBulletSize = 5)
   # set the type if necessary
   if (type == "smoothedLine")
-    graph_obj <- setProperties(.Object = graph_obj, type = "smoothedLine")
+    graph_obj <- setType(.Object = graph_obj, type = "smoothedLine")
   
   # add the graph
   addGraph(.Object = chart, amGraph = graph_obj)

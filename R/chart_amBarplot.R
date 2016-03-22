@@ -46,7 +46,63 @@
 #' You can also add a cursor to your chart...
 #' 
 #' 
-#' @example ./examples/amBarplot_examples.R
+#' @examples
+#' \donttest{
+#' library(pipeR)
+#' 
+#' # Data
+#' data(data_bar)
+#' data(data_gbar)
+#' 
+#' 
+#' # Test with label rotation
+#' amBarplot(x = "country", y = "visits", data = data_bar, labelRotation = -45) 
+#' 
+#' # Horizontal bar
+#' amBarplot(x = "country", y = "visits", data = data_bar, horiz = TRUE, labelRotation = -45)
+#' 
+#' # 3D bar
+#' amBarplot(x = "country", y = "visits", data = data_bar, depth = 15, labelRotation = -45)
+#' 
+#' # Display values
+#' amBarplot(x = "country", y = "visits", data = data_bar, show_values = TRUE, labelRotation = -45)
+#' 
+#' # Grouped columns
+#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
+#' 
+#' # Parse dates
+#' # Default label: first day of each year
+#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar,
+#'           dataDateFormat = "YYYY", minPeriod = "YYYY")
+#' 
+# Default label: first day of each month
+#' amBarplot(x = "month", y = c("income", "expenses"), data = data_gbar,
+#'           dataDateFormat = "MM/YYYY", minPeriod = "MM")
+#' 
+#' amBarplot(x = "day", y = c("income", "expenses"), data = data_gbar,
+#'           dataDateFormat = "DD/MM/YYYY")
+# Change groups colors
+#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, 
+#'           groups_color = c("#87cefa", "#c7158"))
+#' 
+#' # Stacked bars
+#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "regular")
+#' 
+#' # 100% stacked bars
+#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "100")
+#' 
+#' # Layered bars
+#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, layered = TRUE)
+#' 
+#' # Data with row names
+#' dataset <- data.frame(get(x = "USArrests", pos = "package:datasets"))
+#' amBarplot(y = c("Murder", "Assault", "UrbanPop", "Rape"), data = dataset, stack_type = "regular")
+#' 
+#' 
+#' # Round values
+#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar) %>>%
+#'   setProperties(precision = 0)
+#' }
 #' 
 #' @seealso 
 #' \itemize{
@@ -63,7 +119,7 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   
   #data
   data <- .testFormatData(data)
-
+  
   # check argument x
   if (missing(x) && !length(rownames(data))) {
     stop("Argument x is not provided and the data.frame does not have row names")
@@ -129,9 +185,9 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
         data$color <- groups_color[1]
       } else {
         vec_col <- tolower(utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
-                                      "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
-                                      "#b9783f", "#b93e3d", "#913167"), 5), 
-                                nrow(data)))
+                                             "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
+                                             "#b9783f", "#b93e3d", "#913167"), 5), 
+                                       nrow(data)))
         data$color <- vec_col
       }
     } 
@@ -182,15 +238,15 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
         v_col <- groups_color
       } else {
         v_col <- utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
-                            "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
-                            "#b9783f", "#b93e3d", "#913167"), 5), 
-                      length(y))
+                                   "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
+                                   "#b9783f", "#b93e3d", "#913167"), 5), 
+                             length(y))
       }
     } else {
       v_col <- utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
-                          "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
-                          "#b9783f", "#b93e3d", "#913167"), 5), 
-                    length(y))
+                                 "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
+                                 "#b9783f", "#b93e3d", "#913167"), 5), 
+                           length(y))
     }
     
     if(layered) {

@@ -42,40 +42,10 @@ end (numeric, maximal value for the band), color (character, color of the band, 
 and width (numeric, width of the band). If the last column is not defined, it is auomatically
 set to 10.}
 
-\item{...}{see \code{\link{amOptions}} for more options.}
+\item{...}{see \link{amOptions} for more options.}
 }
 \description{
 amAngularGauge computes a gauge of the given value.
-}
-\examples{
-require(pipeR)
-
-# Reference example : solid gauge
-amSolidGauge(x = 65)
-
-# Change min and max values
-amSolidGauge(x = 65, min = 0, max = 200)
-
-# Semi solid gauge
-amSolidGauge(x = 65, type = "semi")
-
-# Change width
-amSolidGauge(x = 65, width = 50)
-
-# Change color
-amSolidGauge(x = 65, color = "#2F4F4F")
-
-# Put a color scale
-amSolidGauge(x = 10, color = c("#00ff00", "#ffd700", "#ff0000"))
-amSolidGauge(x = 35, color = c("#00ff00", "#ffd700", "#ff0000"))
-amSolidGauge(x = 70, color = c("#00ff00", "#ffd700", "#ff0000"))
-amSolidGauge(x = 90, color = c("#00ff00", "#ffd700", "#ff0000"))
-
-# Add some text to the printed value
-amSolidGauge(x = 65, text = "\%")
-  
-# Modify textSize value
-amSolidGauge(x = 65, text = "\%", textSize = 50)
 }
 \seealso{
 \itemize{

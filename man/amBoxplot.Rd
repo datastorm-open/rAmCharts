@@ -25,7 +25,7 @@ amBoxplot(object, ...)
 \arguments{
 \item{object}{a vector, data.frame, a matrix, or a formula.}
 
-\item{...}{see \code{\link{amOptions}} for more options.}
+\item{...}{see \link{amOptions} for more options.}
 
 \item{xlab, ylab}{\code{character}, labels of the axis.}
 
@@ -53,12 +53,34 @@ amBoxplot computes a boxplot of the given data values.
 Can be a vector, a data.frame, or a matrix.
 }
 \examples{
-# ---
-# formula
-# ---
+\donttest{
+amBoxplot(rnorm(100))
 
+# Parameter for amOptions
+amBoxplot(x, zoom = TRUE)
+}
+\donttest{
+don <- data.frame(a = 1:10, b = 1:5)
+amBoxplot(don, ylim = c(0,15))
+
+# Parameter for amOptions
+amBoxplot(count ~ spray, data = InsectSprays, creditsPosition = "top-right")
+}
+\donttest{
+# --- matrix
+x <- matrix(nrow = 10, ncol = 5, rnorm(50))
+
+amBoxplot(x) # on columns
+colnames(x) <- LETTERS[1:5]
+amBoxplot(x) # with names
+amBoxplot(x, use.cols = FALSE, col = c("blue", "red"))
+
+# Parameter for amOptions
+amBoxplot(x, export = TRUE, exportFormat = "SVG")
+}
+\donttest{
+# --- Formula
 (obj <- amBoxplot(count ~ spray, data = InsectSprays))
-print(obj)
 
 # Adding parameters
 amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50),
@@ -73,39 +95,7 @@ amBoxplot(count ~ spray, data = InsectSprays, id = "id")
 
 # Parameter for amOptions
 amBoxplot(count ~ spray, data = InsectSprays, main = "amcharts")
-
-# ---
-# data.frame
-# ---
-
-don <- data.frame(a = 1:10, b = 1:5)
-amBoxplot(don, ylim = c(0,15))
-
-# Parameter for amOptions
-amBoxplot(count ~ spray, data = InsectSprays, creditsPosition = "top-right")
-
-# ---
-# matrix
-# ---
-
-x <- matrix(nrow = 10, ncol = 5, rnorm(50))
-
-amBoxplot(x) # on columns
-colnames(x) <- LETTERS[1:5]
-amBoxplot(x) # with names
-amBoxplot(x, use.cols = FALSE, col = c("blue", "red"))
-
-# Parameter for amOptions
-amBoxplot(x, export = TRUE, exportFormat = "SVG")
-
-# ---
-# vector
-# ---
-
-amBoxplot(rnorm(100))
-
-# Parameter for amOptions
-amBoxplot(x, zoom = TRUE)
+}
 }
 \seealso{
 \itemize{

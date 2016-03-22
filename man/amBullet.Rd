@@ -36,6 +36,7 @@ and color (character, color in hexadecimal).}
 amBullet computes a bullet chart of the given value.
 }
 \examples{
+\donttest{
 # Reference example
 amBullet(value = 65)
 
@@ -53,6 +54,8 @@ amBullet(value = 65, label = "Evaluation")
 
 # Change min and max values
 amBullet(value = 65, min = 20, max = 90)
+}
+
 }
 \seealso{
 \itemize{
