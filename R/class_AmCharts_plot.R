@@ -13,6 +13,8 @@ setClassUnion(name = "AmCharts", members = c("AmChart", "AmStockChart"))
 #' @param background \code{character}.
 #' @param ... Other properties.
 #' @rdname plot.AmChart
+#' @import htmlwidgets
+#' @import htmltools
 #' @export
 setMethod(f = "plot", signature = "AmCharts",
           definition = function(x, y, width = "100%", height = NULL,

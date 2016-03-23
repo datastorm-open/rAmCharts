@@ -59,6 +59,7 @@
 #'        
 #' @rdname amHist     
 #' @import data.table
+#' @importFrom graphics hist
 #' @export
 #' 
 amHist <- function(x, ...) UseMethod("amHist")

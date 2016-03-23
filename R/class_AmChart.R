@@ -1,5 +1,9 @@
 #' @include class_AmObject.R
+#' @import rlist
+#' @import methods
 NULL
+
+
 
 #' @title AmChart
 #' @description Defines the AmChart properties.
@@ -288,7 +292,6 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' 
 #' @seealso Refer to \url{http://docs.amcharts.com/3/javascriptcharts/}.
 #' @rdname initialize-AmChart
-#' @import methods
 #' 
 setMethod(f = "initialize", signature = "AmChart",
           definition = function(.Object, allLabels, arrows, axes, balloon, categoryAxis,
@@ -393,6 +396,7 @@ setMethod(f = "show", signature = "AmChart",
 #' @examples
 #' # --- signature 'AmChart'
 #' listProperties(amChart(test = 1))
+#'
 #' 
 setMethod(f = "listProperties", signature = "AmChart",
           definition = function(.Object)
