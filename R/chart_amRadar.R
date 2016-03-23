@@ -19,7 +19,7 @@
 #' data("data_radar")
 #' 
 #' # Reference example : radar chart 
-#' amRadar(data_radar, labelRotation = 90)
+#' amRadar(data_radar)
 #' 
 #' # Change color
 #' amRadar(data_radar, col = "#FF0000")
