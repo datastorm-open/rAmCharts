@@ -204,6 +204,7 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
 #' 
 #' @import data.table
 #' @import pipeR
+#' @import grDevices
 #' @export
 #' 
 amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,

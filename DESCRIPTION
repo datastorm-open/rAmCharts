@@ -100,7 +100,8 @@ Imports:
     graphics,
     utils,
     pipeR,
-    knitr
+    knitr,
+    grDevices
 Suggests:
     magrittr,
     shiny,
