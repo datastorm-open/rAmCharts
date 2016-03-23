@@ -1,4 +1,4 @@
-### rAmCharts
+### rAmCharts has changed ownership (03-23-2016)
 
 This package has recently been transfered to the organization Datastorm-open (https://github.com/datastorm-open).
 
