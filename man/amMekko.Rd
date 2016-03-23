@@ -32,20 +32,18 @@ same length as the number of y modalities.}
 amMekko computes a mekko chart of the given values.
 }
 \examples{
+data(data_mekko)
+amMekko(x = "var1", y = "var2", data = data_mekko)
+
 \donttest{
- library(pipeR)
+# Other examples available which can be time consuming depending on your configuration.
+library(pipeR)
  
- # Load data
- data(data_mekko)
+# Horizontal
+amMekko(x = "var1", y = "var2", data = data_mekko, horiz = TRUE)
  
- # Reference example : mekko chart
- amMekko(x = "var1", y = "var2", data = data_mekko)
- 
- # Horizontal
- amMekko(x = "var1", y = "var2", data = data_mekko, horiz = TRUE)
- 
- # Display values
- amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)
+# Display values
+amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)
 }
 
 }

@@ -37,7 +37,8 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
                            end2 = 100, step2 = 20, 
                            bands2 = data.frame(start = numeric(), end = numeric(),
                                                color = character(),
-                                               stringsAsFactors = FALSE), ...) {
+                                               stringsAsFactors = FALSE), ...)
+{
   ##Test
   #x
   .testNumericLength1(num = x)
@@ -171,11 +172,12 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @examples
-#' \donttest{
-#' require(pipeR)
-#' 
-#' # Reference example : solid gauge
 #' amSolidGauge(x = 65)
+#' 
+#' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
+#' 
+#' require(pipeR)
 #' 
 #' # Change min and max values
 #' amSolidGauge(x = 65, min = 0, max = 200)

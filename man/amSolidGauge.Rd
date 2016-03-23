@@ -30,11 +30,12 @@ amSolidGauge(x, min = 0, max = 100, type = "full", width = 20,
 amSolidGauge computes a gauge of the given value.
 }
 \examples{
-\donttest{
-require(pipeR)
-
-# Reference example : solid gauge
 amSolidGauge(x = 65)
+
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
+
+require(pipeR)
 
 # Change min and max values
 amSolidGauge(x = 65, min = 0, max = 200)

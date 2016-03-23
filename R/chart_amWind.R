@@ -8,12 +8,11 @@
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @examples
-#' \donttest{
-#' # Load data
 #' data("data_wind")
-#' 
-#' # Reference example : wind chart 
 #' amWind(data_wind)
+#' 
+#' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' # Change color
 #' amWind(data = data_wind, col = "#0404B4")

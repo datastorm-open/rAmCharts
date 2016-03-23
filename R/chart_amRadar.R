@@ -12,14 +12,13 @@
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @examples
-#' \donttest{
-#' require(pipeR)
-#' 
-#' # Load data
 #' data("data_radar")
-#' 
-#' # Reference example : radar chart 
 #' amRadar(data_radar)
+#' 
+#' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
+#' 
+#' require(pipeR)
 #' 
 #' # Change color
 #' amRadar(data_radar, col = "#FF0000")

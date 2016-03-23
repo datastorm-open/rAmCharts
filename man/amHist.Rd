@@ -48,7 +48,11 @@ An object of class \linkS4class{AmChart}.
 amHist computes a histogram of the given data values.
 }
 \examples{
+amHist(x = rnorm(100))
+
 \donttest{
+# Other examples available which can be time consuming depending on your configuration.
+
 x <- replicate(1000, {
 if (round(runif(1))) {
   rnorm(1)
@@ -57,8 +61,6 @@ if (round(runif(1))) {
 }
 })
 
-# Default method
-(object <- amHist(x = x))
 
 # Without plot
 amHist(x = x, plot = FALSE)

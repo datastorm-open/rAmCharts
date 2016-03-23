@@ -18,7 +18,7 @@
 #' 
 #' @examples
 #' data(data_funnel)
-#' amFunnel(data = data_funnel)
+#' amFunnel(data = data_funnel, inverse = TRUE)
 #' 
 #' \donttest{
 #' # Other examples available which can be time consuming depending on your configuration.

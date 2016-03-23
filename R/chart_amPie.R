@@ -10,12 +10,11 @@
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @examples
-#' \donttest{
-#' # Load data
 #' data("data_pie")
-#' 
-#' # Reference example : pie chart                
 #' amPie(data = data_pie)
+#' 
+#' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' # Don't display values
 #' amPie(data = data_pie, show_values = FALSE)

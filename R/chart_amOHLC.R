@@ -25,14 +25,14 @@
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @examples
+#' data("data_candleStick2")
+#' amOHLC(data = data_candleStick2)
+#' 
 #' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
 #' require(pipeR)
 #' 
-#' # Load data
-#' data("data_candleStick2")
 #' 
-#' # Basic example
-#' amOHLC(data = data_candleStick2)
 #' 
 #' # Change colors
 #' amOHLC(data = data_candleStick2, positiveColor = "green", negativeColor = "red")

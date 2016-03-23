@@ -12,13 +12,10 @@
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @examples
-#' \donttest{
-#' # Load data
 #' data("data_waterfall")
-#' 
-#' # Reference example : waterfall chart 
 #' amWaterfall(data = data_waterfall, show_values = TRUE)
-#' 
+#' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' # Change the orientation :
 #' amWaterfall(data = data_waterfall, horiz = TRUE)         
