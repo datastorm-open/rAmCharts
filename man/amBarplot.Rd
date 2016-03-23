@@ -72,13 +72,18 @@ Zoom on the chart to see if the chart can contain all labels. If not, use the pa
 You can also add a cursor to your chart...
 }
 \examples{
-\donttest{
-library(pipeR)
-
 # Data
 data(data_bar)
 data(data_gbar)
 
+amBarplot(x = "country", y = "visits", data = data_bar)
+amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
+
+\donttest{
+
+# Other examples available which can be time consuming depending on your configuration.
+
+library(pipeR)
 
 # Test with label rotation
 amBarplot(x = "country", y = "visits", data = data_bar, labelRotation = -45) 
