@@ -67,8 +67,7 @@ amPlot.default <- function(x, ...) "Wrong class"
 #' x <- sort(rnorm(100))
 #' y <- rnorm(100, sd = 10)
 #' weights <- rnorm(100)
-#' col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
-#' amPlot(x = x, y = y, type = "l", col = col, weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
+#' amPlot(x = x, y = y, type = "l", weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
 #' }
 #' @import data.table
 #' @import pipeR
@@ -407,7 +406,8 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
     graphs_ls <- lapply(1:ncol(x), FUN = function (i) {
       graph(balloonText = "value: <b>[[value]]</b>",
             title = names[i], valueField = names[i],
-            lineAlpha = 1, type = type[i])
+            lineAlpha = 1, type = type[i], bullet = "round",
+            bulletAlpha = 0)
     })
     
     x <- cbind(x, amCategory = paste("Obs.", 1:nrow(x)))
@@ -462,7 +462,7 @@ amPlot.formula <- function (x, data, type = "p", ...)
       i <- i + 1
     }
   }
-  chart
+  amOptions(chart, ...)
 }
 
 amCheck_type <- function(type, valid = c("l", "sl", "st", "p", "b"))

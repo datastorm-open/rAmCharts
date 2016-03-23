@@ -104,8 +104,7 @@ amPlot(x = x, main = "Title", col = "lightblue", type = "b")
 x <- sort(rnorm(100))
 y <- rnorm(100, sd = 10)
 weights <- rnorm(100)
-col <- factor(c(rep(1,25), rep(2,50), rep(3,25)))
-amPlot(x = x, y = y, type = "l", col = col, weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
+amPlot(x = x, y = y, type = "l", weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
 }
 \donttest{
 start <- as.POSIXct('01-01-2015', format = '\%d-\%m-\%Y')
