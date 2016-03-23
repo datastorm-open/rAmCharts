@@ -15,10 +15,11 @@
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @examples
-#' # Other examples available which can be time consuming depending on your configuration.
 #' amBullet(value = 65)
 #' 
 #' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
+#' 
 #' # Remove steps for background
 #' amBullet(value = 65, steps = FALSE)
 #' 

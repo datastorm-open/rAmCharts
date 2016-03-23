@@ -36,12 +36,11 @@ pyramid chart (without a bottleneck). Value between 0 and 100.}
 amFunnel computes a funnel chart of the given value.
 }
 \examples{
-\donttest{
-# Load data
 data(data_funnel)
+amFunnel(data = data_funnel)
 
-# Reference example : pyramid
-amFunnel(data = data_funnel, inverse = TRUE)
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
 
 # Change the orientation and legend side              
 amFunnel(data = data_funnel, inverse = FALSE,

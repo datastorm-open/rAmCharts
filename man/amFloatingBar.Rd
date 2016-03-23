@@ -68,12 +68,19 @@ Zoom on the chart to see if the chart can contain all labels.
 You can also add a cursor to your chart...
 }
 \examples{
-\donttest{
-library(pipeR)
-
 # Load data
 data(data_fbar)
 data(data_gbar)
+
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -45)
+              
+amFloatingBar(x = "year", y_inf = "expenses", y_sup = "income", data = data_gbar,
+              dataDateFormat = "YYYY", minPeriod = "YYYY", zoom = TRUE)
+              
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
+library(pipeR)
 
 # Reference example : column chart
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",

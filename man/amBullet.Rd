@@ -36,10 +36,11 @@ and color (character, color in hexadecimal).}
 amBullet computes a bullet chart of the given value.
 }
 \examples{
-# Other examples available which can be time consuming depending on your configuration.
 amBullet(value = 65)
 
 \donttest{
+# Other examples available which can be time consuming depending on your configuration.
+
 # Remove steps for background
 amBullet(value = 65, steps = FALSE)
 
