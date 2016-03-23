@@ -206,7 +206,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
       (~ chart)
     
     # since simple line chart has no tooltip, we remove the latter for simple xy line chart
-    if (type == "line") chart <- setBalloon(.Object = chart, enabled = FALSE)
+   # if (type == "line") chart <- setBalloon(.Object = chart, enabled = FALSE)
     
   } else {
     stop("Error in arguments x or y")
@@ -501,6 +501,10 @@ getGraph <- function (type, col, bullet, cex, lwd, lty, title)
     graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
                        lineAlpha = 1, lineThickness = lwd, title = title,
                        dashLength = lty, bullet = bullet, bulletSize = cex, type = "smoothedLine")
+  else if(type %in% c("line", "smoothedLine", "step"))
+    graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x", title = title,
+                       lineAlpha = 1, dashLength = lty, lineThickness = lwd, type = type,
+                       bullet = "round", bulletAlpha = 0)
   else
     graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x", title = title,
                        lineAlpha = 1, dashLength = lty, lineThickness = lwd, type = type)
@@ -527,8 +531,8 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
                        },
                        "line" = {
                          graph(balloonText = balloonText, valueField = "weights", title = title,
-                               xField = "x", yField = "y", bullet = bullet,
-                               lineThickness = lwd, dashLength = lty, bulletAlpha = bulletAlpha)
+                               xField = "x", yField = "y", bullet = "round", bulletAlpha = 0,
+                               lineThickness = lwd, dashLength = lty)
                        })
   
   if (weighted) setProperties(graph_obj, maxBulletSize = cex)
