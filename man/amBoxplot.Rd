@@ -53,18 +53,25 @@ amBoxplot computes a boxplot of the given data values.
 Can be a vector, a data.frame, or a matrix.
 }
 \examples{
-\donttest{
+# numeric signature (default)
 amBoxplot(rnorm(100))
 
-# Parameter for amOptions
-amBoxplot(x, zoom = TRUE)
-}
+# formula
+amBoxplot(count ~ spray, data = InsectSprays)
+
+# matrix
+x <- matrix(nrow = 10, ncol = 5, rnorm(50))
+amBoxplot(x)
+
+# data.frame
+amBoxplot(iris)
+
+
+# Other examples available which can be time consuming depending on your configuration.
+
 \donttest{
 don <- data.frame(a = 1:10, b = 1:5)
 amBoxplot(don, ylim = c(0,15))
-
-# Parameter for amOptions
-amBoxplot(count ~ spray, data = InsectSprays, creditsPosition = "top-right")
 }
 \donttest{
 # --- matrix

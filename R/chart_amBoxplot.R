@@ -23,6 +23,23 @@
 #' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
 #' }
 #' 
+#' @examples
+#' # numeric signature (default)
+#' amBoxplot(rnorm(100))
+#' 
+#' # formula
+#' amBoxplot(count ~ spray, data = InsectSprays)
+#' 
+#' # matrix
+#' x <- matrix(nrow = 10, ncol = 5, rnorm(50))
+#' amBoxplot(x)
+#' 
+#' # data.frame
+#' amBoxplot(iris)
+#' 
+#' 
+#' # Other examples available which can be time consuming depending on your configuration.
+#' 
 #' @import data.table
 #' @rdname amBoxplot
 #' @export
@@ -31,13 +48,6 @@ amBoxplot <- function(object, ...) UseMethod("amBoxplot")
 
 
 #' @rdname amBoxplot
-#' @examples 
-#' \donttest{
-#' amBoxplot(rnorm(100))
-#' 
-#' # Parameter for amOptions
-#' amBoxplot(x, zoom = TRUE)
-#' }
 #' @export
 amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
                               names = NULL, col = "#1e90ff", horiz = FALSE, ...)
@@ -82,9 +92,6 @@ amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
 #' \donttest{
 #' don <- data.frame(a = 1:10, b = 1:5)
 #' amBoxplot(don, ylim = c(0,15))
-#' 
-#' # Parameter for amOptions
-#' amBoxplot(count ~ spray, data = InsectSprays, creditsPosition = "top-right")
 #' }
 #' @export
 amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL, 
@@ -133,7 +140,8 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
 #' }
 #' @export
 amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL, 
-                             ylim = NULL, col = NULL, horiz = FALSE, ...){
+                             ylim = NULL, col = NULL, horiz = FALSE, ...)
+{
   x <- object
   if (use.cols) {
     value <- as.vector(x)
