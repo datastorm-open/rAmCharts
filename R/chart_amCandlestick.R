@@ -24,13 +24,10 @@
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @examples
-#' \donttest{
-#' # Load data
 #' data("data_candleStick2")
-#' 
-#' # Reference example
 #' amCandlestick(data = data_candleStick2)
 #' 
+#' \donttest{
 #' # Change colors
 #' amCandlestick(data = data_candleStick2, positiveColor = "black", negativeColor = "green")
 #' 
