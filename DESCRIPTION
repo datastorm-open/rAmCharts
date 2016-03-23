@@ -6,7 +6,7 @@ Description: API for using 'AmCharts' Library. Based on the 'htmlwidgets'
     with S4 classes; for those classes, not all properties have been referenced
     but can easily be added in the constructors. Complex properties (e.g.
     'JavaScript' object) can be passed as named list. See examples at <http://
-    dataknowledge.github.io/introduction_ramcharts/>. and <http://www.amcharts.com/> for
+    datastorm-open.github.io/introduction_ramcharts/>. and <http://www.amcharts.com/> for
     more information about the library. The package includes the free version of
     'AmCharts' Library. Its only limitation is that a small link to the web site
     will be displayed in your charts. If you enjoy this library, do not hesitate
@@ -24,8 +24,8 @@ Authors@R: c(
     person(given = "Titouan", family = "Robert", email = "titouan.robert@datastorm.fr", role = c("aut", "ctb")))
 Date: 2016-03-14
 License: GPL (>= 2)
-URL: http://dataknowledge.github.io/introduction_ramcharts/
-BugReports: https://github.com/DataKnowledge/rAmCharts/issues/
+URL: http://datastorm-open.github.io/introduction_ramcharts/
+BugReports: https://github.com/datastorm-open/rAmCharts/issues/
 Depends:
     R (>= 3.2.0)
 Collate:

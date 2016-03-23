@@ -35,6 +35,6 @@ containing other avalaible properties not yet implemented in the package.}
 \item{\code{value}}{\code{numeric}.}
 }}
 \author{
-DataKnowledge
+datastorm-open
 }
 

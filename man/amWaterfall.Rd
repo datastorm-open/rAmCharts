@@ -37,7 +37,7 @@ amWaterfall(data = data_waterfall, horiz = TRUE)
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

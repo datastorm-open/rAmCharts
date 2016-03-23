@@ -41,6 +41,6 @@ containing other avalaible properties.}
 \item{\code{value}}{\code{numeric}.}
 }}
 \author{
-DataKnowledge
+datastorm-open
 }
 

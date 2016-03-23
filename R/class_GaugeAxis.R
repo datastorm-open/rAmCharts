@@ -2,7 +2,7 @@
 NULL
 
 #' @title GaugeAxis class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description Creates an axis for AmAngularGaugeChart, multiple can be assigned.
 #' @details Run \code{api("GaugeAxis")} for more information and all avalaible properties.

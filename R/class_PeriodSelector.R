@@ -2,7 +2,7 @@
 NULL
 
 #' @title PeriodSelector
-#' @author Dataknowledge
+#' @author datastorm-open
 #' @description Defines the PeriodSelector properties.
 #' 
 #' @slot periods \code{list}.

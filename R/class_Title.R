@@ -2,7 +2,7 @@
 NULL
 
 #' @title Title class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description Creates a title on above the chart, multiple can be assigned.
 #' @details Run \code{api("Title")} for more informations and all avalaible properties.

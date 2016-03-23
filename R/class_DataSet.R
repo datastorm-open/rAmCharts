@@ -2,7 +2,7 @@
 NULL
 
 #' @title DataSet class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description DataSet is an object which holds all information about data for \linkS4class{AmStockChart}
 #' @details Run \code{api("DataSet")} for more information.

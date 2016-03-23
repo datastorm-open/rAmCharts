@@ -2,7 +2,7 @@
 NULL
 
 #' @title AmStockChart
-#' @author Dataknowledge
+#' @author datastorm-open
 #' @description Class to draw stock charts
 #' 
 #' @slot balloon \linkS4class{AmBalloon}.

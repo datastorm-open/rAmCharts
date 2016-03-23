@@ -45,7 +45,7 @@ amPie(data = data_pie, inner_radius = 50, depth = 10, show_values = FALSE)
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

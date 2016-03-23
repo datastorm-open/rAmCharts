@@ -2,7 +2,7 @@
 NULL
 
 #' @title Label class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description Creates a label on the chart which can be placed anywhere, multiple can be assigned.
 #' @details Run \code{api("Label")} for more information and all avalaible properties.

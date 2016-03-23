@@ -93,8 +93,32 @@ amPlot computes a plot of the given data values (can be a vectorn a dataframe
 or a formula).
 }
 \examples{
+# 'numeric':
+amPlot(x = rnorm(100))
+
+# 'character':
+start <- as.POSIXct('01-01-2015', format = '\%d-\%m-\%Y')
+end <- as.POSIXct('31-12-2015', format = '\%d-\%m-\%Y')
+date <- seq.POSIXt(from = start, to = end, by = 'day')
+date <- format(date, '\%m-\%d-\%Y')
+
+y <- rnorm(length(date))
+amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
+# notice that by default 'parseDates = FALSE'
+
+# 'data.frame'
+amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
+
+# 'formula':
+amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
+
+# Other examples available which can be time consuming depending on your configuration.
+
 \donttest{
-iris <- data.table(get("iris", "package:datasets"))
+# Other examples available which can be time consuming depending on your configuration.
+library(data.table)
+
+iris <- as.data.table(get("iris", "package:datasets"))
 x <- rnorm(100)
 
 # Simple scatter plot with title and color
@@ -106,27 +130,10 @@ y <- rnorm(100, sd = 10)
 weights <- rnorm(100)
 amPlot(x = x, y = y, type = "l", weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
 }
-\donttest{
-start <- as.POSIXct('01-01-2015', format = '\%d-\%m-\%Y')
-end <- as.POSIXct('31-12-2015', format = '\%d-\%m-\%Y')
-date <- seq.POSIXt(from = start, to = end, by = 'day')
-date <- format(date, '\%m-\%d-\%Y')
-
-y <- rnorm(length(date))
-amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
-# notice that by default 'parseDates = FALSE'
-}
-\donttest{
-amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
-}
-
-\donttest{
-amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
-}
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

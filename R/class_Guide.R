@@ -2,7 +2,7 @@
 NULL
 
 #' @title Guide class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description Creates a horizontal/vertical guideline-/area for
 #' amSerialChart, amXYChart and amRadarChart charts,

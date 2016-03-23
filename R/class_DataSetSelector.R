@@ -17,7 +17,7 @@ NULL
 #' @slot value \code{numeric}.
 #' 
 #' @details Run \code{api("DataSetSelector")} for more information and all avalaible properties.
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @export
 #' 

@@ -38,8 +38,30 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' 
 #' @seealso 
 #' \itemize{
-#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 #' }
+#' 
+#' @examples 
+#' # 'numeric':
+#' amPlot(x = rnorm(100))
+#' 
+#' # 'character':
+#' start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
+#' end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
+#' date <- seq.POSIXt(from = start, to = end, by = 'day')
+#' date <- format(date, '%m-%d-%Y')
+#' 
+#' y <- rnorm(length(date))
+#' amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
+#' # notice that by default 'parseDates = FALSE'
+#' 
+#' # 'data.frame'
+#' amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
+#' 
+#' # 'formula':
+#' amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
+#' 
+#' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' @import data.table
 #' @rdname amPlot
@@ -55,9 +77,12 @@ amPlot.default <- function(x, ...) "Wrong class"
 
 #' @rdname amPlot
 #' 
-#' @examples 
+#' @examples
 #' \donttest{
-#' iris <- data.table(get("iris", "package:datasets"))
+#' # Other examples available which can be time consuming depending on your configuration.
+#' library(data.table)
+#' 
+#' iris <- as.data.table(get("iris", "package:datasets"))
 #' x <- rnorm(100)
 #' 
 #' # Simple scatter plot with title and color
@@ -228,18 +253,6 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
 }
 
 #' @rdname amPlot
-#' 
-#' @examples
-#' \donttest{
-#' start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
-#' end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
-#' date <- seq.POSIXt(from = start, to = end, by = 'day')
-#' date <- format(date, '%m-%d-%Y')
-#' 
-#' y <- rnorm(length(date))
-#' amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
-#' # notice that by default 'parseDates = FALSE'
-#' }
 #' @import data.table
 #' @import pipeR
 #' @export
@@ -363,11 +376,6 @@ amPlot.factor <- function(x, y, bullet = "round", type = "p", col = "gray",
 #' the names of the series to draw, or a \code{numeric} vector of indices.
 #' By default all numeric columns will be drawn.
 #' 
-#' @examples 
-#' \donttest{
-#' amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
-#' }
-#' 
 #' @import pipeR
 #' @import data.table
 #'
@@ -432,10 +440,6 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
 #' 
 #' @param data dataset
 #' 
-#' @examples 
-#' \donttest{
-#' amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
-#' }
 #' @import pipeR
 #' @export
 #' 
@@ -556,13 +560,11 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' @param title \code{character}, name of the new serie, used when legend is enabled.
 #' 
 #' @examples
-#' \donttest{
 #' require(pipeR)
-#' 
-# For a simple chart
 #' amPlot(x = rnorm(100), type = 'sl') %>>%
 #'   amLines(x = rnorm(100), type = "p")
-#' 
+#'   
+#' \donttest{
 #' amPlot(x = rnorm(100), type = 'sl') %>>%
 #'   amLines(x = rnorm(100), col = "blue") %>>%
 #'   amLines(x = rnorm(100), type = "sl") %>>%

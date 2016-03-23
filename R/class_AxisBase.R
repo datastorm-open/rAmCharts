@@ -2,7 +2,7 @@
 NULL
 
 #' @title AxisBase class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' @description Base class for ValueAxis and CategoryAxis. It can not be explicitly instantiated.
 #' 
 #' @slot guides \code{list}.

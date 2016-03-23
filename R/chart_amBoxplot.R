@@ -20,21 +20,21 @@
 #' 
 #' @seealso 
 #' \itemize{
-#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 #' }
 #' 
 #' @examples
-#' # numeric signature (default)
+#' # 'numeric' (default)
 #' amBoxplot(rnorm(100))
 #' 
-#' # formula
+#' # 'formula'
 #' amBoxplot(count ~ spray, data = InsectSprays)
 #' 
-#' # matrix
+#' # 'matrix'
 #' x <- matrix(nrow = 10, ncol = 5, rnorm(50))
 #' amBoxplot(x)
 #' 
-#' # data.frame
+#' # 'data.frame'
 #' amBoxplot(iris)
 #' 
 #' 

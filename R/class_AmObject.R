@@ -1,5 +1,5 @@
 #' @title AmObject class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' @description This is a virtual class for representing any Am** class
 #' 
 #' @slot listeners \code{list} containining the listeners to add to the object.

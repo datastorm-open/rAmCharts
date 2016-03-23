@@ -2,7 +2,7 @@
 NULL
 
 #' @title GaugeBand class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description Creates a band for a specified value range on the GaugeAxis.
 #' Multiple bands can be assigned to a single GaugeAxis.

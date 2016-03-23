@@ -74,7 +74,7 @@ amOHLC(data = data_candleStick2, zoom = FALSE)
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 
