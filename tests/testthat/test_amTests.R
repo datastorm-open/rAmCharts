@@ -9,7 +9,7 @@ testthat::test_that(".testNumeric", {
   testthat::expect_true(.testNumeric(1))
   testthat::expect_true(.testNumeric(1:10))
   # message
-  testthat::expect_error(.testNumeric(num = "a", arg = "toto"), regexp = "*.toto*.")
+  testthat::expect_error(.testNumeric(num = "a", arg = "toto"))
 })
 
 testthat::test_that(".testLogical", {
@@ -22,7 +22,7 @@ testthat::test_that(".testLogical", {
   testthat::expect_error(.testLogical(1))
   testthat::expect_error(.testLogical(1:10))
   # message
-  testthat::expect_error(.testLogical("bad foo", arg = "toto"), regexp = "*.toto*.")
+  testthat::expect_error(.testLogical("bad foo", arg = "toto"))
 })
 
 
@@ -37,7 +37,7 @@ testthat::test_that(".testCharacter", {
   testthat::expect_true(.testCharacter(var))
   testthat::expect_error(.testCharacter(1:10))
   # message
-  testthat::expect_error(.testCharacter(TRUE, arg = "toto"), regexp = "*.toto*.")
+  testthat::expect_error(.testCharacter(TRUE, arg = "toto"))
 })
 
 testthat::test_that(".testInterval", {
@@ -51,7 +51,7 @@ testthat::test_that(".testInterval", {
   testthat::expect_true(.testInterval(num = var, binf = 0, bsup = 1))
   testthat::expect_error(.testInterval(num = var, binf = -1, bsup = 0))
   # message
-  testthat::expect_error(.testInterval(num = TRUE, binf = 10, bsup = 10, arg = "toto"), regexp = "*.toto*.")
+  testthat::expect_error(.testInterval(num = TRUE, binf = 10, bsup = 10, arg = "toto"))
 })
 
 
@@ -68,7 +68,7 @@ testthat::test_that(".testLength", {
   testthat::expect_error(.testLength(param = vectNum, len = 1:3))
   
   # message
-  testthat::expect_error(.testLength(param = "e", len = 2, arg = "toto"), regexp = "*.toto*.")
+  testthat::expect_error(.testLength(param = "e", len = 2, arg = "toto"))
 })
 
 testthat::test_that(".testIn", {
