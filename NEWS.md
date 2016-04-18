@@ -3,6 +3,7 @@
 ### rAmCharts 2.0.1 (based on [amcharts][amcharts_url] version **3.18.3**)
 
   * fix ``runExamples()`` bug
+  * add ``dataLoader`` control for stock
   
 ### rAmCharts 2.0.0 (based on [amcharts][amcharts_url] version **3.18.3**)
 
