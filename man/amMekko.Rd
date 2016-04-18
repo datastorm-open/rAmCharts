@@ -32,24 +32,24 @@ same length as the number of y modalities.}
 amMekko computes a mekko chart of the given values.
 }
 \examples{
-library(pipeR)
-
-# Load data
 data(data_mekko)
-
-# Reference example : mekko chart
 amMekko(x = "var1", y = "var2", data = data_mekko)
 
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
+library(pipeR)
+ 
 # Horizontal
 amMekko(x = "var1", y = "var2", data = data_mekko, horiz = TRUE)
-
+ 
 # Display values
-amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)\%>>\%amOptions()
+amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)
+}
 
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

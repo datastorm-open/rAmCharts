@@ -11,11 +11,18 @@
 #' @param show_values \code{logical}, TRUE to display values on the chart.
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
-#' @example examples/amWaterfall_examples.R
+#' @examples
+#' data("data_waterfall")
+#' amWaterfall(data = data_waterfall, show_values = TRUE)
+#' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
 #' 
+#' # Change the orientation :
+#' amWaterfall(data = data_waterfall, horiz = TRUE)         
+#' }
 #' @seealso 
 #' \itemize{
-#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 #' }
 #' 
 #' @export
@@ -35,7 +42,7 @@ amWaterfall <- function(data, start = 0, horiz = FALSE,
     data$label <- as.character(data$label)
   }
   .testCharacter(char = data$label, arg = "data$label")
-
+  
   #value
   .testIn(vect = "value", control = colnames(data))
   .testNumeric(num = data$value, arg = "data$value")
@@ -45,18 +52,18 @@ amWaterfall <- function(data, start = 0, horiz = FALSE,
   .testIn(vect = "operation", control = colnames(data))
   .testCharacter(char = data$operation, arg = "data$operation")
   
-
+  
   
   .testIn(vect = data$operation, control = c("plus", "minus", "total"))
   
   .testNumericLength1(num = start)
   
   .testLogicalLength1(logi = horiz)
-
+  
   
   .testLogicalLength1(logi = show_values)
   
-
+  
   
   if(!"color" %in% colnames(data)) {
     data$color <- ""

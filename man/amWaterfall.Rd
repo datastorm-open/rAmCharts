@@ -26,19 +26,18 @@ See \code{\link{data_waterfall}}.}
 amWaterfall computes a waterfall chart of the given value.
 }
 \examples{
-# Load data
 data("data_waterfall")
-
-# Reference example : waterfall chart 
 amWaterfall(data = data_waterfall, show_values = TRUE)
-
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
 
 # Change the orientation :
-amWaterfall(data = data_waterfall, horiz = TRUE)                                  
+amWaterfall(data = data_waterfall, horiz = TRUE)         
+}
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

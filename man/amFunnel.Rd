@@ -36,25 +36,28 @@ pyramid chart (without a bottleneck). Value between 0 and 100.}
 amFunnel computes a funnel chart of the given value.
 }
 \examples{
-# Load data
 data(data_funnel)
-
-# Reference example : pyramid
 amFunnel(data = data_funnel, inverse = TRUE)
-             
+
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
+
 # Change the orientation and legend side              
 amFunnel(data = data_funnel, inverse = FALSE,
-               label_side = "left", margin_right = 15, margin_left = 160)
+         label_side = "left", margin_right = 15, margin_left = 160)
 
 # Basic example : Funnel chart
 amFunnel(data = data_funnel, neck_height = 30, neck_width = 40)
-               
+
 # 3D pyramid
 amFunnel(data = data_funnel, depth = 50, inverse = TRUE)
 }
+
+
+}
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

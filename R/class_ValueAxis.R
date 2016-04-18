@@ -2,7 +2,7 @@
 NULL
 
 #' @title ValueAxis class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description Extension for ValueAxis to create an axis for amSerialChart, amRadarChart,
 #' amXYChart charts, multiple can be assigned.

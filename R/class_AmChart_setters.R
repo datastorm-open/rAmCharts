@@ -5,16 +5,16 @@ NULL
 #' @export
 setGeneric(name = "setAllLabels", def = function(.Object, allLabels) {standardGeneric("setAllLabels")})
 #' @examples
+#' \donttest{
 #' allLabels <- list(label(text = "balloonText"), label(text = "column"))
-#' print(setAllLabels(.Object = amSerialChart(), allLabels = allLabels))
-#' # equivalent to:
-#' print(amSerialChart(allLabels = allLabels))
+#' amSerialChart(allLabels = allLabels)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 setMethod(f = "setAllLabels", signature = c("AmChart", "list"),
           definition = function(.Object, allLabels)
           {
-            rightClassElements <- prod(sapply(allLabels, function(element) {is(element, "Label")}))
+            rightClassElements <- all(sapply(allLabels, function(element) {is(element, "Label")}))
             if (!rightClassElements) {
               stop("[setAllLabels]: each element of allLabels must be of class Label")
             } else {}
@@ -23,23 +23,26 @@ setMethod(f = "setAllLabels", signature = c("AmChart", "list"),
             return(.Object)
           })
 
+
+
+
+
+
+
+
 #' @param label (optional) \linkS4class{Label}.
 #' Argument of method \code{addLabel}.
 #' @examples
-#' print(addLabel(.Object = amSerialChart(), text = "balloonText"))
+#' \donttest{
+#' addLabel(.Object = amSerialChart(), text = "balloonText")
 #' # equivalent to:
 #' label_obj <- label(text = "balloonText")
-#' print(addLabel(.Object = amSerialChart(), label = label_obj))
-#' \dontrun{
-#' # Error use cases:
-#'  addLabel(.Object = amChart())
-#'  addLabel(.Object = amChart(), label = "another class")
+#' addLabel(.Object = amSerialChart(), label = label_obj)
 #' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "addLabel",
-           def = function(.Object, label = NULL, ...) {standardGeneric("addLabel")})
+setGeneric(name = "addLabel", def = function(.Object, label = NULL, ...) {standardGeneric("addLabel")})
 #' @rdname initialize-AmChart
 setMethod(f = "addLabel", signature = c("AmChart", "LabelOrMissing"),
           definition = function(.Object, label = NULL, ...)
@@ -55,16 +58,19 @@ setMethod(f = "addLabel", signature = c("AmChart", "LabelOrMissing"),
             return(.Object)
           })
 
+
+
+
+
 #' @examples
-#' arrows_ls <- list(gaugeArrow(value = 130), gaugeArrow(value = 150) )
-#' print(setArrows(.Object = amAngularGaugeChart(), arrows = arrows_ls))
-#' # equivalent to:
-#' print(amAngularGaugeChart(arrows = arrows_ls))
+#' \donttest{
+#' arrows_ls <- list(gaugeArrow(value = 130), gaugeArrow(value = 150))
+#' amAngularGaugeChart(arrows = arrows_ls)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setArrows",
-           def = function(.Object, arrows = NULL) { standardGeneric("setArrows") } )
+setGeneric(name = "setArrows", def = function(.Object, arrows = NULL) {standardGeneric("setArrows")})
 #' @rdname initialize-AmChart
 setMethod(f = "setArrows", signature = c("AmChart"),
           definition = function(.Object, arrows = NULL)
@@ -79,23 +85,24 @@ setMethod(f = "setArrows", signature = c("AmChart"),
             return(.Object)
           })
 
+
+
+
+
+
 #' @param arrow (optional) \linkS4class{GaugeArrow}.
 #' Argument of method \code{addArrow}.
 #' @examples
-#' print(addArrow(.Object = amAngularGaugeChart(), value = 10))
+#' \donttest{
+#' addArrow(.Object = amAngularGaugeChart(), value = 10)
 #' # equivalent to:
 #' gaugeArrow_obj <- gaugeArrow(value = 10)
-#' print(addArrow(.Object = amAngularGaugeChart(), arrow = gaugeArrow_obj))
-#' \dontrun{
-#' # Error use cases: 
-#' addArrow(.Object = amAngularGaugeChart())
-#' addArrow(.Object = amAngularGaugeChart(), arrow = "error")
+#' addArrow(.Object = amAngularGaugeChart(), arrow = gaugeArrow_obj)
 #' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "addArrow",
-           def = function(.Object, arrow = NULL, ...) { standardGeneric("addArrow") } )
+setGeneric(name = "addArrow", def = function(.Object, arrow = NULL, ...) { standardGeneric("addArrow") } )
 #' @rdname initialize-AmChart
 setMethod(f = "addArrow", signature = c("AmChart", "GaugeArrowOrMissing"),
           definition = function(.Object, arrow = NULL, ...)
@@ -111,13 +118,19 @@ setMethod(f = "addArrow", signature = c("AmChart", "GaugeArrowOrMissing"),
             return(.Object)
           })
 
-# ---
+
+
+
+
+
 
 #' @examples
+#' \donttest{
 #' axes_ls <- list(gaugeAxis(value = 130), gaugeAxis(value = 150))
 #' setAxes(.Object = amAngularGaugeChart(), axes = axes_ls)
-#' # equivalent to:
-#' amChart(axes = axes_ls)
+#' # If possible, simplify your code by using the constructor:
+#' amAngularGaugeChart(axes = axes_ls)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -126,7 +139,7 @@ setGeneric(name = "setAxes", def = function(.Object, axes, ...) {standardGeneric
 setMethod(f = "setAxes", signature = c("AmChart", "list"),
           definition = function(.Object, axes)
           {
-            rightClassElements <- prod(sapply(axes, function(element) {is(element, "GaugeAxis")}))
+            rightClassElements <- all(sapply(axes, function(element) {is(element, "GaugeAxis")}))
             if (!rightClassElements) {
               stop("[setAxes]: each element of axes must be of class GaugeAxis")
             } else{}
@@ -136,12 +149,14 @@ setMethod(f = "setAxes", signature = c("AmChart", "list"),
           })
 
 
+
+
+
 #' @param axe (optional) \linkS4class{GaugeAxis}.
 #' Argument of deprecated method \code{addAxe}.
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "addAxe",
-           def = function(.Object, axe = NULL, ...) {standardGeneric("addAxe")})
+setGeneric(name = "addAxe", def = function(.Object, axe = NULL, ...) {standardGeneric("addAxe")})
 #' @rdname initialize-AmChart
 setMethod(f = "addAxe", signature = c("AmChart", "GaugeAxisOrMissing"),
           definition = function(.Object, axe = NULL, ...)
@@ -175,40 +190,33 @@ addAxis_def <- function(.Object, axis = NULL, ...)
 #' @details 
 #' Method 'addAxe' is deprecated, use 'addAxis'.
 #' @examples
+#' \donttest{
 #' addAxis(.Object = amAngularGaugeChart(), startValue = 0, endValue = 100, valueInterval = 10)
-#' 
 #' # equivalent to:
-#' 
 #' gaugeAxis_obj <- gaugeAxis(startValue = 0, enValue = 100, valueInterval = 10)
-#' addAxis(.Object = amAngularGaugeChart(), axe = gaugeAxis_obj)
-#' 
-#' \dontrun{
-#' # Error use cases: 
-#' addAxis(.Object = amAngularGaugeChart())
-#' addAxis(.Object = amAngularGaugeChart(), axis = "error")
+#' addAxis(.Object = amAngularGaugeChart(), axis = gaugeAxis_obj)
 #' }
-#' 
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "addAxis",
-           def = function(.Object, axis = NULL, ...) {standardGeneric("addAxis")})
+setGeneric(name = "addAxis", def = function(.Object, axis = NULL, ...) {standardGeneric("addAxis")})
 #' @rdname initialize-AmChart
 setMethod(f = "addAxis", signature = c("AmChart", "GaugeAxisOrMissing"),
           definition = addAxis_def)
 
+
+
+
+
 #' @param amBalloon \linkS4class{AmBalloon}, argument of method 'setBalloon'.
 #' @examples
+#' \donttest{
 #' setBalloon(.Object = amSerialChart(), adjustBorderColor = TRUE, fillColor = "#FFFFFF",
 #'            color = "#000000", cornerRadius = 5)
 #' # equivalent to:
 #' amBalloon_obj <- amBalloon(adjustBorderColor = TRUE, fillColor = "#FFFFFF",
 #'                            color = "#000000", cornerRadius = 5)
-#' print(setBalloon(.Object = amSerialChart(), amBalloon = amBalloon_obj))
-#' \dontrun{
-#' # Error use cases: 
-#' setBalloon(.Object = amSerialChart())
-#' setBalloon(.Object = amSerialChart(), amBalloon = "error")
+#' setBalloon(.Object = amSerialChart(), amBalloon = amBalloon_obj)
 #' }
 #' # ---
 #' @rdname initialize-AmChart
@@ -226,20 +234,21 @@ setMethod(f = "setBalloon", signature = c("AmChart", "AmBalloonOrMissing"),
             return(.Object)
           })
 
+
+
+
+
 #' @examples
-#' print(setCategoryAxis(.Object = amSerialChart(), gridPosition = "start"))
+#' \donttest{
+#' setCategoryAxis(.Object = amSerialChart(), gridPosition = "start")
 #' # equivalent to:
 #' categoryAxis_obj <- categoryAxis(gridPosition = "start")
-#' print(setCategoryAxis(.Object = amSerialChart(), categoryAxis = categoryAxis_obj))
-#' \dontrun{
-#' # The argument categoryAxis must be an object of class CategoryAxis
-#' setCategoryAxis(.Object = amSerialChart(), categoryAxis = "error")
+#' setCategoryAxis(.Object = amSerialChart(), categoryAxis = categoryAxis_obj)
 #' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setCategoryAxis",
-           def = function(.Object, categoryAxis = NULL , ...) {standardGeneric("setCategoryAxis")} )
+setGeneric(name = "setCategoryAxis", def = function(.Object, categoryAxis = NULL , ...) {standardGeneric("setCategoryAxis")})
 #' @rdname initialize-AmChart
 setMethod(f = "setCategoryAxis", signature = c("AmChart"),
           definition = function(.Object, categoryAxis = NULL, ...)
@@ -255,12 +264,16 @@ setMethod(f = "setCategoryAxis", signature = c("AmChart"),
             return(.Object)
           })
 
+
+
+
+
 #' @examples
-#' print(setCategoryField(.Object = amSerialChart(), categoryField = "country"))
+#' setCategoryField(.Object = amSerialChart(), categoryField = "country")
+#' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setCategoryField",
-           def = function(.Object, categoryField) {standardGeneric("setCategoryField")} )
+setGeneric(name = "setCategoryField", def = function(.Object, categoryField) {standardGeneric("setCategoryField")})
 #' @rdname initialize-AmChart
 setMethod(f = "setCategoryField", signature = c("AmChart", "character"),
           definition = function(.Object, categoryField)
@@ -270,23 +283,24 @@ setMethod(f = "setCategoryField", signature = c("AmChart", "character"),
             return(.Object)
           })
 
+
+
+
+
 #' @examples
-#' # with default value, nor argument needed
-#' print(setChartCursor(.Object = amSerialChart()))
+#' \donttest{
+#' # with default value, no argument needed
+#' setChartCursor(.Object = amSerialChart())
 #' # other example
-#' print(setChartCursor(.Object = amSerialChart(), oneBallOnly = TRUE))
+#' setChartCursor(.Object = amSerialChart(), oneBallOnly = TRUE)
 #' # equivalent to
 #' chartCursor_obj <- chartCursor(oneBallOnly = TRUE)
-#' print(setChartCursor(.Object = amSerialChart(), chartCursor = chartCursor_obj))
-#' \dontrun{
-#' Error use case:
-#' setChartCursor(.Object = amSerialChart(), chartCursor = "error")
+#' setChartCursor(.Object = amSerialChart(), chartCursor = chartCursor_obj)
 #' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setChartCursor",
-           def = function(.Object, chartCursor = NULL, ...) {standardGeneric("setChartCursor")})
+setGeneric(name = "setChartCursor", def = function(.Object, chartCursor = NULL, ...) {standardGeneric("setChartCursor")})
 #' @rdname initialize-AmChart
 setMethod(f = "setChartCursor", signature = c("AmChart", "ChartCursorOrMissing"),
           definition = function(.Object, chartCursor = NULL, ...)
@@ -303,20 +317,22 @@ setMethod(f = "setChartCursor", signature = c("AmChart", "ChartCursorOrMissing")
             return(.Object)
           })
 
+
+
+
+
 #' @examples
+#' \donttest{
 #' # Add the default scrollbar
-#' print(setChartScrollbar(.Object = amSerialChart()))
+#' setChartScrollbar(.Object = amSerialChart())
 #' # equivalent to:
 #' chartScrollbar_obj <- chartScrollbar(updateOnReleaseOnly = FALSE)
-#' print(setChartScrollbar(.Object = amSerialChart(), chartScrollbar = chartScrollbar_obj))
-#' \dontrun{
-#' setChartScrollbar(.Object = amSerialChart(), chartScrollbar = list(updateOnReleaseOnly = FALSE))
+#' setChartScrollbar(.Object = amSerialChart(), chartScrollbar = chartScrollbar_obj)
 #' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setChartScrollbar",
-           def = function(.Object, chartScrollbar = NULL, ...) {standardGeneric("setChartScrollbar")})
+setGeneric(name = "setChartScrollbar", def = function(.Object, chartScrollbar = NULL, ...) {standardGeneric("setChartScrollbar")})
 #' @rdname initialize-AmChart
 setMethod(f = "setChartScrollbar", signature = c("AmChart", "ChartScrollbarOrMissing"),
           definition = function(.Object, chartScrollbar = NULL, ...)
@@ -325,7 +341,6 @@ setMethod(f = "setChartScrollbar", signature = c("AmChart", "ChartScrollbarOrMis
               chartScrollbar <- chartScrollbar(...)
             } else if (is.null(chartScrollbar) && missing(...)) {
               chartScrollbar <- chartScrollbar()
-              # message("default 'chartScrollbar' added")
             } else {}
             
             .Object@chartScrollbar <- listProperties(chartScrollbar)
@@ -333,17 +348,18 @@ setMethod(f = "setChartScrollbar", signature = c("AmChart", "ChartScrollbarOrMis
             return(.Object)
           })
 
+
+
+
+
 #' @examples
-#' print(setCreditsPosition(.Object = amPieChart(), creditsPosition = "top-right"))
-#' \dontrun{
-#' Error use case:
-#' setCreditsPosition(.Object = amPieChart(), creditsPosition = "top-center")
+#' \donttest{
+#' setCreditsPosition(.Object = amPieChart(), creditsPosition = "top-right")
 #' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setCreditsPosition",
-           def = function(.Object, creditsPosition) {standardGeneric("setCreditsPosition")} )
+setGeneric(name = "setCreditsPosition", def = function(.Object, creditsPosition) {standardGeneric("setCreditsPosition")})
 #' @rdname initialize-AmChart
 setMethod(f = "setCreditsPosition", signature = c("AmChart", "character"),
           definition = function(.Object, creditsPosition)
@@ -356,12 +372,13 @@ setMethod(f = "setCreditsPosition", signature = c("AmChart", "character"),
 #' @param url \code{character}.
 #' @param format \code{character}.
 #' @examples
-#' print(setDataLoader(.Object = amSerialChart(), url = "data.json", format = "json"))
+#' \donttest{
+#' setDataLoader(.Object = amSerialChart(), url = "data.json", format = "json")
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setDataLoader",
-           def = function(.Object, url, format, ...) {standardGeneric("setDataLoader")})
+setGeneric(name = "setDataLoader", def = function(.Object, url, format, ...) {standardGeneric("setDataLoader")})
 #' @rdname initialize-AmChart
 setMethod(f = "setDataLoader", signature = c("AmChart", "character", "character"),
           definition = function(.Object, url, format, ...)
@@ -376,10 +393,11 @@ setMethod(f = "setDataLoader", signature = c("AmChart", "character", "character"
 #' object of class \code{logical}, default \code{TRUE}.
 #' Indicates if \code{NULL} values have to be kept or ignored. 
 #' @examples
+#' \donttest{
 #' dataProvider_obj <- data.frame(key = c("FR", "US", "GER", "ENG", "IT" ),
 #'                                value = round(runif(5, max = 100)))
-#' amchart <- setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj)
-#' print(amchart)
+#' setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -392,7 +410,9 @@ setMethod(f = "setDataProvider", signature = c("AmChart", "ANY", "logicalOrMissi
           })
 
 #' @examples 
-#' print(setExport(.Object = amSerialChart()))
+#' \donttest{
+#' setExport(.Object = amSerialChart())
+#' }
 #' \dontshow{
 #' amchart <- setExport(.Object = amSerialChart())
 #' print(amchart)
@@ -414,17 +434,14 @@ setMethod(f = "setExport", signature = c("AmChart"),
 # > @graphs : setters ####
 
 #' @examples
-#' graphs_ls <- list(amGraph(balloonText = "balloonText"), amGraph(type = "column"))
-#' print(setGraphs(.Object = amChart(), graphs = graphs_ls))
-#' \dontrun{
-#' graphs_ls <- list(list(balloonText = "balloonText"), list(type = "column"))
-#' setGraphs(.Object = amChart(), graphs = graphs_ls)
+#' \donttest{
+#' graphs_ls <- list(graph(balloonText = "balloonText"), graph(type = "column"))
+#' setGraphs(.Object = amSerialChart(), graphs = graphs_ls)
 #' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "setGraphs",
-           def = function(.Object, graphs) { standardGeneric("setGraphs") } )
+setGeneric(name = "setGraphs", def = function(.Object, graphs) {standardGeneric("setGraphs")})
 #' @rdname initialize-AmChart
 setMethod(f = "setGraphs", signature = c("AmChart", "list"),
           definition = function(.Object, graphs)
@@ -438,10 +455,12 @@ setMethod(f = "setGraphs", signature = c("AmChart", "list"),
 
 #' @param amGraph (optional) \linkS4class{AmGraph}.
 #' @examples
-#' print(addGraph(.Object = amSerialChart(), balloonText = "balloonText", "type" = "column"))
+#' \donttest{
+#' addGraph(.Object = amSerialChart(), balloonText = "balloonText", "type" = "column")
 #' # equivalent to
 #' amGraph_obj <- amGraph(balloonText = "balloonText", "type" = "column")
-#' print(addGraph(.Object = amSerialChart(), amGraph = amGraph_obj))
+#' addGraph(.Object = amSerialChart(), amGraph = amGraph_obj)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -464,10 +483,12 @@ setMethod(f = "addGraph", signature = c("AmChart", "AmGraphOrMissing"),
 
 #' @details Method \code{setGraph} is only valid for Gantt Charts.
 #' @examples
+#' \donttest{
 #' print(setGraph(.Object = amGanttChart(), id = "amGraph-1"))
-#' # equivalent to
+#' # equivalent to:
 #' amGraph_obj <- amGraph(id = "amGraph-1")
-#' print(setGraph(.Object = amGanttChart(), amGraph = amGraph_obj))
+#' setGraph(.Object = amGanttChart(), amGraph = amGraph_obj)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -486,10 +507,10 @@ setMethod(f = "setGraph", signature = c("AmChart", "AmGraphOrMissing"),
           })
 
 #' @examples
+#' \donttest{
 #' guides_ls <- list(guide(fillAlpha = .1), guide(fillAlpha = .5))
-#' print(setGuides(.Object = amSerialChart(), guides = guides_ls))
-#' # or...
 #' amSerialChart(guides = guides_ls)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -510,10 +531,10 @@ setMethod(f = "setGuides", signature = c("AmChart", "list"),
 #' @param guide (optional) \linkS4class{Guide}.
 #' Argument of method \code{addGuide}.
 #' @examples
-#' print(addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10))
+#' addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10)
 #' # equivalent to
 #' guide_obj <- guide(fillAlpha = .1, value = 0, toValue = 10, valueAxis = "1")
-#' print(addGuide(.Object = amSerialChart(), guide = guide_obj))
+#' addGuide(.Object = amSerialChart(), guide = guide_obj)
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -533,9 +554,11 @@ setMethod(f = "addGuide", signature = c("AmChart", "GuideOrMissing"),
 
 #' @param amLegend (optional) \linkS4class{AmLegend}.
 #' @examples
-#' print(setLegend(.Object = amChart(), amLegend = amLegend(useGraphSettings = TRUE)))
+#' \donttest{
+#' setLegend(.Object = amChart(), amLegend = amLegend(useGraphSettings = TRUE))
 #' # equivalent to:
-#' print(setLegend(.Object = amChart(), useGraphSettings = TRUE))
+#' setLegend(.Object = amChart(), useGraphSettings = TRUE)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -558,7 +581,9 @@ setMethod(f = "setLegend", signature = c("AmChart", "AmLegendOrMissing"),
 
 #' @param enabled \code{logical}, default \code{TRUE}.
 #' @examples
-#' print(setResponsive(.Object = amSerialChart(), enabled = FALSE))
+#' \donttest{
+#' setResponsive(.Object = amSerialChart(), enabled = FALSE)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -578,6 +603,7 @@ setMethod(f = "setResponsive", signature = c("AmChart", "logicalOrMissing"),
 #' @param sgts \code{data.frame}
 #' ( or \code{list} of \code{data.frame} for multiple add ).
 #' @examples
+#' \donttest{
 #' pipeR::pipeline(
 #'   amGanttChart(segmentsField = "segments"),
 #'   setDataProvider(data.frame(category = c( "John", "Julia"))),
@@ -592,6 +618,7 @@ setMethod(f = "setResponsive", signature = c("AmChart", "logicalOrMissing"),
 #'   setDataProvider(data.frame(category = c( "John", "Julia"))),
 #'   addSegment(1:2,  ls)
 #' )
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -599,9 +626,9 @@ setGeneric(name = "addSegment",
            def = function (.Object, categoryIDs, sgts) { standardGeneric("addSegment") })
 #' @rdname initialize-AmChart
 setMethod(f = "addSegment", signature = c( .Object = "AmChart", categoryIDs = "numeric"),
-          definition = function(.Object, categoryIDs, sgts) {
-            
-            if (prod( categoryIDs %in% 1:length(.Object@dataProvider) ) != 1) {
+          definition = function(.Object, categoryIDs, sgts)
+          {
+            if (!all(categoryIDs %in% 1:length(.Object@dataProvider))) {
               stop( "[addSegment]: range of argument categoryIDs must in [", 
                     1 , ":" , length(.Object@dataProvider), "]" )
             } else {}
@@ -645,8 +672,10 @@ setMethod(f = "addSegment", signature = c( .Object = "AmChart", categoryIDs = "n
 #' @param data \code{data.frame}. Data to draw at the second level,
 #' after clicking on the column.
 #' @examples
+#' \donttest{
 #' amChart_obj <- amChart(dataProvider = data.frame(a = 1:5, b = 6:10))
-#' print(addSubData(.Object = amChart_obj, categoryIDs = 3, data = data.frame(a = 1:10, b = 11:20)))
+#' addSubData(.Object = amChart_obj, categoryIDs = 3, data = data.frame(a = 1:10, b = 11:20))
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -690,7 +719,9 @@ setMethod(f = "addSubData", signature = c("AmChart", "numeric", "ANY"),
 
 #' @param .subObject \linkS4class{AmChart}.
 #' @examples
-#' print(setSubChartProperties(.Object = amSerialChart(), type = "serial"))
+#' \donttest{
+#' setSubChartProperties(.Object = amSerialChart(), type = "serial")
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -709,9 +740,8 @@ setMethod(f = "setSubChartProperties", signature = c("AmChart"),
           })
 
 #' @examples
-#' print(setTheme(.Object = amPieChart(), theme = "dark"))
-#' \dontrun{
-#' print(setTheme(.Object = amPieChart(), theme = "error"))
+#' \donttest{
+#' setTheme(.Object = amPieChart(), theme = "dark")
 #' }
 #' # ---
 #' @rdname initialize-AmChart
@@ -727,10 +757,12 @@ setMethod(f = "setTheme", signature = c("AmChart", "character"),
           })
 
 #' @examples
+#' \donttest{
 #' titles_ls <- list(title(text = "balloonText"), title(text = "column"))
-#' print(setTitles(.Object = amXYChart(), titles = titles_ls))
+#' setTitles(.Object = amXYChart(), titles = titles_ls)
 #' # or...
-#' print(amChart(titles = titles_ls))
+#' amXYChart(titles = titles_ls)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -750,10 +782,12 @@ setMethod(f = "setTitles", signature = c("AmChart", "list"),
 
 #' @param title (optional) \linkS4class{Title}, argument of method \code{addTitle}.
 #' @examples
-#' print(addTitle(.Object = amPieChart(), text = "balloonText", size = 15))
+#' \donttest{
+#' addTitle(.Object = amPieChart(), text = "balloonText", size = 15)
 #' # equivalent to
 #' title_obj <- title(text = "balloonText", size = 15)
-#' print(addTitle(.Object = amPieChart(), title = title_obj))
+#' addTitle(.Object = amPieChart(), title = title_obj)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -775,11 +809,14 @@ setMethod(f = "addTitle", signature = c("AmChart", "TitleOrMissing"),
           })
 
 #' @examples
+#' \donttest{
 #' trendLines <- list(trendLine(initialValue = 1, finalValue = 5),
 #'                    trendLine(initialValue = 7, finalValue = 19))
-#' print(setTrendLines(.Object = amChart(), trendLines = trendLines))
-#'# or... 
-#' print(amChart(trendLines = trendLines)) # Equivalent
+#' setTrendLines(.Object = amSerialChart(), trendLines = trendLines)
+#' # or... 
+#' amSerialChart(trendLines = trendLines) # Equivalent
+#' }
+#' # ---
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "setTrendLines",
@@ -798,11 +835,14 @@ setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
 #' @param trendLine (optional) \linkS4class{TrendLine}.
 #' Argument of method \code{addTrendLine}.
 #' @examples 
+#' \donttest{
 #' addTrendLine(.Object = amSerialChart(), initialValue = 1, initialXValue = 1,
 #'              finalValue = 11, finalXValue = 12)
 #' # equivalent to:
 #' trendLine_obj <- trendLine(initialValue = 1, initialXValue = 1, finalValue = 11, finalXValue = 12)
 #' addTrendLine(.Object = amSerialChart(), trendLine = trendLine_obj)
+#' }
+#' # ---
 #' @rdname initialize-AmChart
 #' @export
 setGeneric(name = "addTrendLine",
@@ -823,9 +863,11 @@ setMethod(f = "addTrendLine", signature = c("AmChart", "TrendLineOrMissing"),
           })
 
 #' @examples
+#' \donttest{
 #' setType(.Object = amChart(), type = "pie")
 #' # equivalent to:
 #' amPieChart()
+#' }
 #' @rdname initialize-AmChart
 #' @export
 setMethod(f = "setType", signature = c("AmChart", "character"),
@@ -837,11 +879,13 @@ setMethod(f = "setType", signature = c("AmChart", "character"),
           })
 
 #' @examples
+#' \donttest{
 #' valueAxes <- list(valueAxis(axisTitleOffset = 12, tickLength = 10),
 #'                   valueAxis(axisTitleOffset = 10, tickLength = 10))
 #' setValueAxes(.Object = amSerialChart(), valueAxes = valueAxes)
 #' # or...
 #' amSerialChart(valueAxes = valueAxes)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -860,7 +904,7 @@ setMethod(f = "setValueAxes", signature = c("AmChart", "list"),
 
 # ---
 
-addValueAxes_def <- function(.Object, valueAxis = NULL, ...)
+addValueAxis_def <- function(.Object, valueAxis = NULL, ...)
 {
   if (is.null(valueAxis) && !missing(...)) {
     valueAxis <- valueAxis(...)
@@ -873,13 +917,14 @@ addValueAxes_def <- function(.Object, valueAxis = NULL, ...)
   return(.Object)
 }
 
-#' @details For method \code{addValueAxes}: valueAxis is optional.
+#' @details For method \code{addValueAxis}: valueAxis is optional. Method \code{addValueAxes} is deprecated.
 #' @examples
-#' addValueAxes(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10)
+#' \donttest{
 #' addValueAxis(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10)
 #' # equivalent to:
 #' valueAxis_obj <- valueAxis(axisTitleOffset = 12, tickLength = 10)
-#' addValueAxes(.Object = amSerialChart(), valueAxis = valueAxis_obj)
+#' addValueAxis(.Object = amSerialChart(), valueAxis = valueAxis_obj)
+#' }
 #' # ---
 #' @rdname initialize-AmChart
 #' @export
@@ -887,19 +932,20 @@ setGeneric(name = "addValueAxes",
            def = function(.Object, valueAxis = NULL, ... ) {standardGeneric("addValueAxes")})
 #' @rdname initialize-AmChart
 setMethod(f = "addValueAxes", signature = c("AmChart", "ValueAxisOrMissing"),
-          definition = addValueAxes_def)
+          definition = addValueAxis_def)
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "addValueAxis",
-           def = function(.Object, valueAxis = NULL, ... ) { standardGeneric("addValueAxis") } )
+setGeneric(name = "addValueAxis", def = function(.Object, valueAxis = NULL, ... ) { standardGeneric("addValueAxis") } )
 #' @rdname initialize-AmChart
 setMethod(f = "addValueAxis", signature = c("AmChart", "ValueAxisOrMissing"),
-          definition = addValueAxes_def)
+          definition = addValueAxis_def)
 
 #' @details Method \code{setValueAxis} is only valid for Gantt charts.
 #' @examples
-#' print(setValueAxis(.Object = amGanttChart()))
-#' print(setValueAxis(.Object = amGanttChart(), type = "date"))
+#' \donttest{
+#' setValueAxis(.Object = amGanttChart())
+#' setValueAxis(.Object = amGanttChart(), type = "date")
+#' }
 #' @rdname initialize-AmChart
 #' @export
 setMethod(f = "setValueAxis", signature = c("AmChart", "ValueAxisOrMissing"),

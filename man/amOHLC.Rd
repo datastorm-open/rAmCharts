@@ -47,13 +47,14 @@ which will instruct the chart that your data is supplied in 15 minute increments
 amOHLC computes an OHLC chart of the given value.
 }
 \examples{
+data("data_candleStick2")
+amOHLC(data = data_candleStick2)
+
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
 require(pipeR)
 
-# Load data
-data("data_candleStick2")
 
-# Basic example
-amOHLC(data = data_candleStick2)
 
 # Change colors
 amOHLC(data = data_candleStick2, positiveColor = "green", negativeColor = "red")
@@ -70,9 +71,10 @@ amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max")) \%>>\%
 # Use amOptions
 amOHLC(data = data_candleStick2, zoom = FALSE)
 }
+}
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

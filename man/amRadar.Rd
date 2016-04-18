@@ -27,13 +27,13 @@ see \link{data_radar}.}
 radar computes a radarplot of the given data values.
 }
 \examples{
-require(pipeR)
-
-# Load data
 data("data_radar")
+amRadar(data_radar)
 
-# Reference example : radar chart 
-amRadar(data_radar, labelRotation = 90)
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
+
+require(pipeR)
 
 # Change color
 amRadar(data_radar, col = "#FF0000")
@@ -51,11 +51,12 @@ amRadar(data_radar, type = "circles")
 # Change pch
 amRadar(data_radar,  pch = "triangleRight")
 amRadar(data_radar,  pch = "triangleLeft")
+}
 
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

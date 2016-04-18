@@ -2,7 +2,7 @@
 NULL
 
 #' @title StockPanel class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description StockPanel class creates stock panels (charts).
 #' AmStockChart can have multiple Stock panels.

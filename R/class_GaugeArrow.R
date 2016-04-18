@@ -2,7 +2,7 @@
 NULL
 
 #' @title GaugeArrow class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description Creates an arrow for AmAngularGaugeChart, multiple can be assigned.
 #' @details Run \code{api("GaugeArrow")} for more information and all avalaible properties.

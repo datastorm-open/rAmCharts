@@ -2,7 +2,7 @@
 NULL
 
 #' @title CategoryAxis class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description Children class of AxisBase.
 #' Automatically set.

@@ -22,6 +22,6 @@ runExamples <- function ()
   if (!requireNamespace(package = "data.table"))
     message("Package 'data.table' is required to run this function")
   
-  shiny::shinyAppDir(appDir = "./inst/shiny/")
+  shiny::shinyAppDir(appDir = system.file("shiny", package="rAmCharts"))
 }
 

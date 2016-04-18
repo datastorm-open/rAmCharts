@@ -14,16 +14,31 @@
 #' @param horiz \code{logical}, TRUE to rotate chart. 
 #' @param id \code{character},  column name of id to 
 #' identify outliers, if object is a dataframe.
-#' @param ... see \code{\link{amOptions}} for more options.
+#' @param ... see \link{amOptions} for more options.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
 #' 
-#' @example examples/amBoxplot_examples.R
-#' 
 #' @seealso 
 #' \itemize{
-#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 #' }
+#' 
+#' @examples
+#' # 'numeric' (default)
+#' amBoxplot(rnorm(100))
+#' 
+#' # 'formula'
+#' amBoxplot(count ~ spray, data = InsectSprays)
+#' 
+#' # 'matrix'
+#' x <- matrix(nrow = 10, ncol = 5, rnorm(50))
+#' amBoxplot(x)
+#' 
+#' # 'data.frame'
+#' amBoxplot(iris)
+#' 
+#' 
+#' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' @import data.table
 #' @rdname amBoxplot
@@ -33,10 +48,10 @@ amBoxplot <- function(object, ...) UseMethod("amBoxplot")
 
 
 #' @rdname amBoxplot
-#' 
 #' @export
 amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
-                              names = NULL, col = "#1e90ff", horiz = FALSE, ...){
+                              names = NULL, col = "#1e90ff", horiz = FALSE, ...)
+{
   
   x <- object
   value <- x
@@ -73,6 +88,11 @@ amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
 }
 
 #' @rdname amBoxplot
+#' @examples 
+#' \donttest{
+#' don <- data.frame(a = 1:10, b = 1:5)
+#' amBoxplot(don, ylim = c(0,15))
+#' }
 #' @export
 amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL, 
                                  ylim = NULL, col = NULL, horiz = FALSE, ...)
@@ -105,9 +125,23 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
 }
 
 #' @rdname amBoxplot
+#' @examples 
+#' \donttest{
+#' # --- matrix
+#' x <- matrix(nrow = 10, ncol = 5, rnorm(50))
+#' 
+#' amBoxplot(x) # on columns
+#' colnames(x) <- LETTERS[1:5]
+#' amBoxplot(x) # with names
+#' amBoxplot(x, use.cols = FALSE, col = c("blue", "red"))
+#' 
+#' # Parameter for amOptions
+#' amBoxplot(x, export = TRUE, exportFormat = "SVG")
+#' }
 #' @export
 amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL, 
-                             ylim = NULL, col = NULL, horiz = FALSE, ...){
+                             ylim = NULL, col = NULL, horiz = FALSE, ...)
+{
   x <- object
   if (use.cols) {
     value <- as.vector(x)
@@ -141,6 +175,25 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL,
 }
 
 #' @rdname amBoxplot
+#' @examples 
+#' \donttest{
+#' # --- Formula
+#' (obj <- amBoxplot(count ~ spray, data = InsectSprays))
+#' 
+#' # Adding parameters
+#' amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50),
+#'           xlab = "spray", col = c("darkblue", "gray"))
+#' 
+#' # Transpose
+#' amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50), xlab = "spray", horiz = TRUE)
+#' 
+#' # Using a custom colum to identify outliers
+#' InsectSprays$id <- paste0("ID : ", 1:nrow(InsectSprays))
+#' amBoxplot(count ~ spray, data = InsectSprays, id = "id")
+#' 
+#' # Parameter for amOptions
+#' amBoxplot(count ~ spray, data = InsectSprays, main = "amcharts")
+#' }
 #' @export
 amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab = NULL, 
                              ylim = NULL, col = NULL, horiz = FALSE, ...)
@@ -175,7 +228,8 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   amOptions(chart, ...)
 }
 
-.plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horiz = FALSE){
+.plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horiz = FALSE)
+{
   
   if (!requireNamespace(package = "pipeR")) {
     warning("Please install the package pipeR for running this function")

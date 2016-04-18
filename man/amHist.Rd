@@ -48,17 +48,19 @@ An object of class \linkS4class{AmChart}.
 amHist computes a histogram of the given data values.
 }
 \examples{
+amHist(x = rnorm(100))
+
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
+
 x <- replicate(1000, {
-  if (round(runif(1))) {
-    rnorm(1)
-  } else {
-    rnorm(1, mean = 5)
-  }
+if (round(runif(1))) {
+  rnorm(1)
+} else {
+  rnorm(1, mean = 5)
+}
 })
 
-# Default method
-(object <- amHist(x = x))
-print(object)
 
 # Without plot
 amHist(x = x, plot = FALSE)
@@ -74,12 +76,12 @@ amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis")
 
 # Options for computing the histogram
 amHist(x = x, control_hist = list(breaks = "Scott"))
-
+}
 
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

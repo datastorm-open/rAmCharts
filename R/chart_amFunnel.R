@@ -16,11 +16,28 @@
 #' @param margin_left \code{numeric}, margin at the left side.
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
-#' @example examples/amFunnel_examples.R
-#'
+#' @examples
+#' data(data_funnel)
+#' amFunnel(data = data_funnel, inverse = TRUE)
+#' 
+#' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
+#' 
+#' # Change the orientation and legend side              
+#' amFunnel(data = data_funnel, inverse = FALSE,
+#'          label_side = "left", margin_right = 15, margin_left = 160)
+#' 
+#' # Basic example : Funnel chart
+#' amFunnel(data = data_funnel, neck_height = 30, neck_width = 40)
+#' 
+#' # 3D pyramid
+#' amFunnel(data = data_funnel, depth = 50, inverse = TRUE)
+#' }
+#' 
+#' 
 #' @seealso 
 #' \itemize{
-#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 #' }
 #'
 #' @export
@@ -62,9 +79,9 @@ amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NUL
     data <- data[,c("description", "value")]
   } else {
     vec_col <- tolower(utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
-                                  "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
-                                  "#b9783f", "#b93e3d", "#913167"), 5), 
-                            nrow(data)))
+                                         "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
+                                         "#b9783f", "#b93e3d", "#913167"), 5), 
+                                   nrow(data)))
     data$color <- vec_col
   }
   

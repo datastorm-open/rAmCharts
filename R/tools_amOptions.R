@@ -33,11 +33,46 @@
 #' 
 #' @import pipeR
 #' 
-#' @example examples/amOptions_examples.R
+#' @examples
+#' \donttest{
+#' library(pipeR)
+#' data(data_pie) 
+#' 
+#' # Export                 
+#' amPie(data = data_pie) %>>%
+#'   amOptions(export = TRUE)
+#' 
+#' # Legend
+#' amPie(data = data_pie) %>>%
+#'   amOptions(legend = TRUE)
+#' 
+#' # Legend position
+#' amPie(data = data_pie) %>>%
+#'   amOptions(legend = TRUE, legendPosition = "bottom")
+#' 
+#' # Credits position
+#' amPie(data = data_pie) %>>%
+#'   amOptions(creditsPosition = "bottom-right")
+#' 
+#' # Theme
+#' amPie(data = data_pie) %>>%
+#'   amOptions(theme = "chalk")
+#' 
+#' # Title
+#' amPie(data = data_pie) %>>%
+#'   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40, theme = "chalk")
+#' 
+#' 
+#' # Custom exemple
+#' amPie(data = data_pie) %>>%
+#'   amOptions(main = "Social network", mainColor = "#FFFFFF", mainSize = 40,
+#'             theme = "dark", legend = TRUE, legendPosition = "bottom",
+#'             creditsPosition = "bottom-right" )
+#' }
 #' 
 #' @seealso 
 #' \itemize{
-#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 #' }
 #' 
 #' @rdname amOptions
@@ -120,16 +155,16 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
             legend <- chart@dataProvider
             if(length(unique(unlist(legend)[names(unlist(legend)) == "color"])) > 1)
             {
-         
-            lapply(1:length(legend), function(X){
-              names(legend[[X]])[names(legend[[X]]) == chart@categoryField] <<- "title"
-            })
-
-              } else{
-             
+              
+              lapply(1:length(legend), function(X){
+                names(legend[[X]])[names(legend[[X]]) == chart@categoryField] <<- "title"
+              })
+              
+            } else{
+              
               legend <- list(list(title = chart@categoryField,
                                   color = unique(unlist(legend)[names(unlist(legend)) == "color"])))
-            
+              
             }
             
             chart <- setLegend(.Object = chart, position = legendPosition, data = legend)

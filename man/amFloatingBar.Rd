@@ -68,10 +68,19 @@ Zoom on the chart to see if the chart can contain all labels.
 You can also add a cursor to your chart...
 }
 \examples{
-stopifnot(require(pipeR))
-
 # Load data
 data(data_fbar)
+data(data_gbar)
+
+amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
+              data = data_fbar, labelRotation = -45)
+              
+amFloatingBar(x = "year", y_inf = "expenses", y_sup = "income", data = data_gbar,
+              dataDateFormat = "YYYY", minPeriod = "YYYY", zoom = TRUE)
+              
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
+library(pipeR)
 
 # Reference example : column chart
 amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
@@ -99,28 +108,28 @@ amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
 
 
 # Grouped columns
-data(data_gbar)
-
 # Parse dates
 
 # Default label: firt day of each year
 
-  amFloatingBar(x = "year", y_inf = "expenses", y_sup = "income", data = data_gbar,
-                dataDateFormat = "YYYY", minPeriod = "YYYY", zoom = TRUE)
+amFloatingBar(x = "year", y_inf = "expenses", y_sup = "income", data = data_gbar,
+              dataDateFormat = "YYYY", minPeriod = "YYYY", zoom = TRUE)
 
 # Default label: first day of each month
 
-  amFloatingBar(x = "month", y_inf = "expenses", y_sup = "income", data = data_gbar,
-                dataDateFormat = "MM/YYYY", minPeriod = "MM", zoom = TRUE)
+amFloatingBar(x = "month", y_inf = "expenses", y_sup = "income", data = data_gbar,
+              dataDateFormat = "MM/YYYY", minPeriod = "MM", zoom = TRUE)
 
 
-  amFloatingBar(x = "day", y_inf = "expenses", y_sup = "income", data = data_gbar,
-                dataDateFormat = "DD/MM/YYYY", zoom = TRUE)
+amFloatingBar(x = "day", y_inf = "expenses", y_sup = "income", data = data_gbar,
+              dataDateFormat = "DD/MM/YYYY", zoom = TRUE)
+
+}
 
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

@@ -19,13 +19,11 @@
 #' end (numeric, maximal value for the band), color (character, color of the band, in hexadecimal)
 #' and width (numeric, width of the band). If the last column is not defined, it is auomatically
 #' set to 10. 
-#' @param ... see \code{\link{amOptions}} for more options.
-#' 
-#' @example examples/amGauge_examples.R
+#' @param ... see \link{amOptions} for more options.
 #' 
 #' @seealso 
 #' \itemize{
-#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 #' }
 #' 
 #' @import pipeR
@@ -39,7 +37,8 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
                            end2 = 100, step2 = 20, 
                            bands2 = data.frame(start = numeric(), end = numeric(),
                                                color = character(),
-                                               stringsAsFactors = FALSE), ...) {
+                                               stringsAsFactors = FALSE), ...)
+{
   ##Test
   #x
   .testNumericLength1(num = x)
@@ -172,9 +171,42 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
 #' @param textSize \code{numeric}, text size.
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
-#' @example examples/amSolidGauge_examples.R
+#' @examples
+#' amSolidGauge(x = 65)
+#' 
+#' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
+#' 
+#' require(pipeR)
+#' 
+#' # Change min and max values
+#' amSolidGauge(x = 65, min = 0, max = 200)
+#' 
+#' # Semi solid gauge
+#' amSolidGauge(x = 65, type = "semi")
+#' 
+#' # Change width
+#' amSolidGauge(x = 65, width = 50)
+#' 
+#' # Change color
+#' amSolidGauge(x = 65, color = "#2F4F4F")
+#' 
+#' # Put a color scale
+#' amSolidGauge(x = 10, color = c("#00ff00", "#ffd700", "#ff0000"))
+#' amSolidGauge(x = 35, color = c("#00ff00", "#ffd700", "#ff0000"))
+#' amSolidGauge(x = 70, color = c("#00ff00", "#ffd700", "#ff0000"))
+#' amSolidGauge(x = 90, color = c("#00ff00", "#ffd700", "#ff0000"))
+#' 
+#' # Add some text to the printed value
+#' amSolidGauge(x = 65, text = "%")
+#' 
+#' # Modify textSize value
+#' amSolidGauge(x = 65, text = "%", textSize = 50)
+#' }
+#' 
 #' @import data.table
 #' @import pipeR
+#' @import grDevices
 #' @export
 #' 
 amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,

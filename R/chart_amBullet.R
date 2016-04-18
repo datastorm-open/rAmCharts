@@ -14,11 +14,31 @@
 #' @param horiz \code{logical}, TRUE (default) for an horizontal bullet chart, FALSE for a vertical one.
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
-#' @example examples/amBullet_examples.R
+#' @examples
+#' amBullet(value = 65)
+#' 
+#' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
+#' 
+#' # Remove steps for background
+#' amBullet(value = 65, steps = FALSE)
+#' 
+#' # Tune the colors with name or HTML code
+#' amBullet(value = 65, val_color = "purple", limit_color = "#3c8dbc")
+#' 
+#' # Change the orientation
+#' amBullet(value = 65, steps = FALSE, horiz = FALSE)
+#' 
+#' # Add text
+#' amBullet(value = 65, label = "Evaluation")
+#' 
+#' # Change min and max values
+#' amBullet(value = 65, min = 20, max = 90)
+#' }
 #'
 #' @seealso 
 #' \itemize{
-#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 #' }
 #'
 #' @import pipeR 

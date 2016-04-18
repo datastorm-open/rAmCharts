@@ -2,7 +2,7 @@
 NULL
 
 #' @title StockEvent class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description StockEvent is an object which holds information about event (bullet).
 #' Values from StockEventsSettings will be used if not set.

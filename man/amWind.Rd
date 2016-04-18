@@ -20,11 +20,11 @@ from weakest wind (first column) to stronger wind (last column). See \link{data_
 amWind computes a windplot of the given data values.
 }
 \examples{
-# Load data
 data("data_wind")
-
-# Reference example : wind chart 
 amWind(data_wind)
+
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
 
 # Change color
 amWind(data = data_wind, col = "#0404B4")
@@ -35,11 +35,12 @@ amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparenc
 amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = 1)
 amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = c(0.1, 0.1, 1))
 
+}
 
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 \item{\link{amRadar}}
 }
 }

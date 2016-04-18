@@ -36,8 +36,10 @@ and color (character, color in hexadecimal).}
 amBullet computes a bullet chart of the given value.
 }
 \examples{
-# Reference example
 amBullet(value = 65)
+
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
 
 # Remove steps for background
 amBullet(value = 65, steps = FALSE)
@@ -54,9 +56,11 @@ amBullet(value = 65, label = "Evaluation")
 # Change min and max values
 amBullet(value = 65, min = 20, max = 90)
 }
+
+}
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

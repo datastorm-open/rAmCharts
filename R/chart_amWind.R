@@ -7,7 +7,23 @@
 #' @param backTransparency \code{numeric}, background transparency, between 0 and 1.
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
-#' @example examples/amWind_examples.R
+#' @examples
+#' data("data_wind")
+#' amWind(data_wind)
+#' 
+#' \donttest{
+#' # Other examples available which can be time consuming depending on your configuration.
+#' 
+#' # Change color
+#' amWind(data = data_wind, col = "#0404B4")
+#' amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"))
+#' 
+#' # Change backTransparency
+#' amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = 0.1)
+#' amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = 1)
+#' amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparency = c(0.1, 0.1, 1))
+#' 
+#' }
 #'
 #' @import data.table
 #' @import pipeR
@@ -16,7 +32,7 @@
 #' @seealso 
 #' 
 #' \itemize{
-#' \item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 #' \item{\link{amRadar}}
 #' }
 #' 

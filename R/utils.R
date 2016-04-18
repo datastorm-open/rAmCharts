@@ -61,6 +61,8 @@
 #' @examples
 #' api()
 #' api("AmChart")
+#' @importFrom utils browseURL
+#' @importFrom utils  head
 #' @export
 #' 
 api <- function(class = NULL){

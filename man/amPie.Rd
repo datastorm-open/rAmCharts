@@ -24,11 +24,11 @@ between 0 and 100}
 amPie computes a pie chart of the given value.
 }
 \examples{
-# Load data
 data("data_pie")
-
-# Reference example : pie chart                
 amPie(data = data_pie)
+
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
 
 # Don't display values
 amPie(data = data_pie, show_values = FALSE)
@@ -41,11 +41,11 @@ amPie(data = data_pie, inner_radius = 50)
 
 # All parameters
 amPie(data = data_pie, inner_radius = 50, depth = 10, show_values = FALSE)
-
+}
 }
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

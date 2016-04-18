@@ -30,11 +30,10 @@ sense to give the y argument.
 }
 \examples{
 require(pipeR)
-
-# For a simple chart
 amPlot(x = rnorm(100), type = 'sl') \%>>\%
   amLines(x = rnorm(100), type = "p")
-
+  
+\donttest{
 amPlot(x = rnorm(100), type = 'sl') \%>>\%
   amLines(x = rnorm(100), col = "blue") \%>>\%
   amLines(x = rnorm(100), type = "sl") \%>>\%
@@ -48,5 +47,7 @@ y3 <- rnorm(100, sd = 10)
 amPlot(x = x, y = y1) \%>>\%
   amLines(x = y2, col = "blue") \%>>\%
   amLines(x = y3, type = "p")
+}
+
 }
 

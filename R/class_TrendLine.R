@@ -2,7 +2,7 @@
 NULL
 
 #' @title TrendLine class
-#' @author DataKnowledge
+#' @author datastorm-open
 #' 
 #' @description Creates a trendline for amSerialChart and amXYChart charts which indicates the trend
 #' of your data or covers some different purposes. Multiple can be assigned.

@@ -1,5 +1,7 @@
 #' @examples
+#' \donttest{
 #' amChart(type = "pie")
+#' }
 #' @rdname initialize-AmChart
 #' @export
 #' 
@@ -80,7 +82,9 @@ amChart <- function(allLabels, arrows, axes, balloon, categoryAxis, categoryFiel
 
 #' @details amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}.
 #' @examples
+#' \donttest{
 #' amAngularGaugeChart()
+#' }
 #' @rdname initialize-AmChart
 #' @export
 amAngularGaugeChart <- function(arrows, titles, axes, ...)
@@ -95,7 +99,9 @@ amAngularGaugeChart <- function(arrows, titles, axes, ...)
 #' @param marginLeft \code{character}, left margin of the chart.
 #' @param marginRight \code{character}, right margin of the chart.
 #' @examples
+#' \donttest{
 #' amFunnelChart(marginLeft = 15)
+#' }
 #' @rdname initialize-AmChart
 #' @export
 amFunnelChart <- function(dataProvider, marginLeft = 10, marginRight = 10,...)
@@ -109,7 +115,9 @@ amFunnelChart <- function(dataProvider, marginLeft = 10, marginRight = 10,...)
 #' @details amRadarChart is a shortcut
 #' for instantiating AmChart of type \code{radar}.
 #' @examples
+#' \donttest{
 #' amRadarChart()
+#' }
 #' @rdname initialize-AmChart
 #' @export
 amRadarChart <- function(allLabels,
@@ -134,7 +142,9 @@ amRadarChart <- function(allLabels,
 #' @details amSerialChart is a shortcut constructor 
 #' for instantiating AmChart of type \code{serial}.
 #' @examples
+#' \donttest{
 #' amSerialChart(creditsPostion = "top-right")
+#' }
 #' @rdname initialize-AmChart
 #' @export
 amSerialChart <- function(allLabels, balloon, categoryAxis, categoryField, chartCursor,
@@ -154,7 +164,9 @@ amSerialChart <- function(allLabels, balloon, categoryAxis, categoryField, chart
 #' @details amPieChart is a shortcut constructor
 #' for instantiating AmChart of type \code{pie}.
 #' @examples
+#' \donttest{
 #' amPieChart()
+#' }
 #' @rdname initialize-AmChart
 #' @export
 amPieChart <- function(allLabels,
@@ -174,7 +186,9 @@ amPieChart <- function(allLabels,
 #' @details amGanttChart is a constructor
 #' for instantiating AmChart of type \code{gantt}.
 #' @examples
+#' \donttest{
 #' amGanttChart(segmentsField = "segments")
+#' }
 #' @rdname initialize-AmChart
 #' @export
 amGanttChart <- function(categoryField,
@@ -193,7 +207,9 @@ amGanttChart <- function(categoryField,
 #' @details amXYChart is a shortcut constructor
 #' for instantiating AmChart of type \code{xy}.
 #' @examples
+#' \donttest{
 #' amXYChart()
+#' }
 #' @rdname initialize-AmChart
 #' @export
 amXYChart <- function(creditsPosition, dataProvider, graphs, ...)

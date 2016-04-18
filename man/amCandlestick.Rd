@@ -45,12 +45,10 @@ which will instruct the chart that your data is supplied in 15 minute increments
 amCandlestick computes a candlestick chart of the given value.
 }
 \examples{
-# Load data
 data("data_candleStick2")
-
-# Reference example
 amCandlestick(data = data_candleStick2)
 
+\donttest{
 # Change colors
 amCandlestick(data = data_candleStick2, positiveColor = "black", negativeColor = "green")
 
@@ -82,9 +80,11 @@ require(pipeR)
 amCandlestick(data = data_candleStick2, horiz = TRUE) \%>>\%
   setProperties(precision = 2) 
 }
+
+}
 \seealso{
 \itemize{
-\item{\url{https://dataknowledge.github.io/introduction_ramcharts/}}
+\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
 

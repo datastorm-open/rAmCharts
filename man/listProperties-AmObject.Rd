@@ -93,6 +93,7 @@ amBalloon(adjustBorderColor = TRUE)
 # --- signature 'AmChart'
 listProperties(amChart(test = 1))
 
+
 \dontshow{
 library(pipeR)
 categoryAxis(ignoreAxisWidth = TRUE) \%>>\% listProperties() \%>>\% class

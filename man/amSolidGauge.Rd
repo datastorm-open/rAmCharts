@@ -30,14 +30,37 @@ amSolidGauge(x, min = 0, max = 100, type = "full", width = 20,
 amSolidGauge computes a gauge of the given value.
 }
 \examples{
-# Full gauge
-amSolidGauge(x = 75, min = 0, max = 100, type = "full", width = 20, 
-             color = "#1e90ff", text = "\%",
-             textSize = 50)
+amSolidGauge(x = 65)
 
-# Demi gauge
-amSolidGauge(x = 70, min = 0, max = 100, type = "semi", width = 20, 
-             color = c("#00ff00", "#ffd700", "#ff0000"), text = "\%",
-             textSize = 25)
+\donttest{
+# Other examples available which can be time consuming depending on your configuration.
+
+require(pipeR)
+
+# Change min and max values
+amSolidGauge(x = 65, min = 0, max = 200)
+
+# Semi solid gauge
+amSolidGauge(x = 65, type = "semi")
+
+# Change width
+amSolidGauge(x = 65, width = 50)
+
+# Change color
+amSolidGauge(x = 65, color = "#2F4F4F")
+
+# Put a color scale
+amSolidGauge(x = 10, color = c("#00ff00", "#ffd700", "#ff0000"))
+amSolidGauge(x = 35, color = c("#00ff00", "#ffd700", "#ff0000"))
+amSolidGauge(x = 70, color = c("#00ff00", "#ffd700", "#ff0000"))
+amSolidGauge(x = 90, color = c("#00ff00", "#ffd700", "#ff0000"))
+
+# Add some text to the printed value
+amSolidGauge(x = 65, text = "\%")
+
+# Modify textSize value
+amSolidGauge(x = 65, text = "\%", textSize = 50)
+}
+
 }
 
