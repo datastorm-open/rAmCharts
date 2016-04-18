@@ -1,12 +1,15 @@
 ## LOG CHANGE
 
+### rAmCharts 2.0.1 (based on [amcharts][amcharts_url] version **3.18.3**)
+
+  * fix ``runExamples()`` bug
+  
 ### rAmCharts 2.0.0 (based on [amcharts][amcharts_url] version **3.18.3**)
 
   * New version available on CRAN, 
   * New functions 'am'
-  * New shiny application : runExamples()
-  * New API : 
-  
+  * New shiny application : ``runExamples()``
+  * New API
 
 ### rAmCharts 1.1.3 (based on [amcharts][amcharts_url] version **3.18.3**)
 
@@ -25,7 +28,6 @@
 [amcharts_url]: http://www.amcharts.com
 
 ---
----
 
 ### rAmCharts 1.1.1
   
@@ -41,4 +43,4 @@
   * access the documentation with the functions api() or api(class = [className])
   
 ---
----
+
