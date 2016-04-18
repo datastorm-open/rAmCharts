@@ -1,34 +1,18 @@
-shinydashboard::tabItem(
-  tabName = "gauge",
-  
+shiny::tabPanel(
+  title = "Gauge",
   fluidRow(
     column(
       width = 12,
-      
+      h2("Theme setter"),
+      selectInput("theme_gauge", label = "Theme:", choices = c("default", "light", "patterns", "dark", "chalk")),
       br(),
+      rAmCharts::amChartsOutput("gauge1"),
+      verbatimTextOutput("code_gauge1"),
+      br(), hr(), br(),
       
-      tabBox(width=12,height=550,
-             
-             tabPanel(
-               title = "Graphic",
-               fluidRow(
-                 h2("Simple example", align="center"),
-                 column(
-                   width = 12,
-                   rAmCharts::amChartsOutput("gauge1"))
-                 
-               )),
-             tabPanel(
-               title = "Code",
-               fluidRow(
-                 h2("Simple example", align="center"),
-                 column(
-                   width = 12,
-                   
-                   verbatimTextOutput("code_gauge1"))
-               )
-             )
-      )
+      h2("Listener on Band"),
+      rAmCharts::amChartsOutput("gauge2"),
+      verbatimTextOutput("code_gauge2")
     )
   )
 )

@@ -1,12 +1,13 @@
 output$serial1 <- renderAmCharts({
-  ##Data
+  # prepare data
   data <- as.data.table(get('Titanic', 'package:datasets'))
   data <- data[, .(freq = sum(N)), by = list(Sex, Survived)]
   (data <- split(data, f = data$Survived))
   setkey(data$Yes, Sex)
   setkey(data$No, Sex)
   (dp <- data$Yes[data$No])
-  ##Plot
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(categoryField = 'Sex', startDuration = 0,
                   dataProvider = dp),
@@ -17,20 +18,21 @@ output$serial1 <- renderAmCharts({
     addValueAxis(stackType = '100%'),
     addTitle(text = 'Survivors to Titanic'),
     setLegend(useGraphSettings = TRUE),
-    setProperties(theme = input$theme)
+    setProperties(theme = input$theme_serial)
   )
 })
 
 output$code_serial1 <- renderText({
   "
-  ##Data
+  # prepare data
   data <- as.data.table(get('Titanic', 'package:datasets'))
   data <- data[, .(freq = sum(N)), by = list(Survived, Sex)]
   (data <- split(data, f = data$Sex))
   setkey(data$Male, Survived)
   setkey(data$Female, Survived)
   (dp <- data$Male[data$Female])
-  ##Plot
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(categoryField = 'Survived', startDuration = 0,
                   dataProvider = dp),
@@ -46,7 +48,7 @@ output$code_serial1 <- renderText({
 })
 
 output$serial2 <- renderAmCharts({
-  ##Data
+  # prepare data
   dp <- data.table(year  =  c(2010, 2011, 2012, 2013, 2014),
                    income  =  c(20.4, 20.6, 24.3, 21.5, 22.3), 
                    expenses  =  c(31.5, 32.4, 25.6, 22.6, 24.9),
@@ -56,7 +58,7 @@ output$serial2 <- renderAmCharts({
   
   balloonText <- paste('<span style = \'font-size:12px;\'>[[title]] in [[category]]:',
                        '<br><span style = \'font-size:20px;\'>[[value]]</span> [[additional]]</span>')
-  ##Plot
+  # build the chart
   pipeR::pipeline(
     amSerialChart(addClassNames = TRUE, autoMargins = FALSE,
                   dataProvider = dp, marginLeft = 30, marginRight = 8,
@@ -80,7 +82,7 @@ output$serial2 <- renderAmCharts({
 
 output$code_serial2 <- renderText({
   "
-  ##Data
+  # prepare data
   dp <- data.table(year  =  c(2010, 2011, 2012, 2013, 2014),
                    income  =  c(20.4, 20.6, 24.3, 21.5, 22.3), 
                    expenses  =  c(31.5, 32.4, 25.6, 22.6, 24.9),
@@ -90,7 +92,7 @@ output$code_serial2 <- renderText({
   
   balloonText <- paste('<span style = \'font-size:12px;\'>[[title]] in [[category]]:',
                        '<br><span style = \'font-size:20px;\'>[[value]]</span> [[additional]]</span>')
-  ##Plot
+  # build the chart
   pipeR::pipeline(
     amSerialChart(addClassNames = TRUE, autoMargins = FALSE,
                   dataProvider = dp, marginLeft = 30, marginRight = 8,
@@ -114,7 +116,7 @@ output$code_serial2 <- renderText({
 })
 
 output$serial3 <- renderAmCharts({
-  ##Data
+  # prepare data
   dp <- data.table(
     country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France',
                 'India', 'Spain', 'Netherlands', 'Russia'), 
@@ -122,7 +124,8 @@ output$serial3 <- renderAmCharts({
     color = c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202', '#F8FF01',
               '#B0DE09', '#04D215', '#0D8ECF', '#0D52D1', '#2A0CD0')
   )
-  ##Plot
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(categoryField = 'country', dataProvider = dp,
                   depth3D = 40, angle = 30),
@@ -135,7 +138,7 @@ output$serial3 <- renderAmCharts({
 
 output$code_serial3 <- renderText({
   "
-  ##Data
+  # prepare data
   dp <- data.table(
     country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France',
                 'India', 'Spain', 'Netherlands', 'Russia'), 
@@ -143,7 +146,8 @@ output$code_serial3 <- renderText({
     color = c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202', '#F8FF01',
               '#B0DE09', '#04D215', '#0D8ECF', '#0D52D1', '#2A0CD0')
   )
-  ##Plot
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(categoryField = 'country', dataProvider = dp,
                   depth3D = 40, angle = 30),
@@ -156,7 +160,7 @@ output$code_serial3 <- renderText({
 })
 
 output$serial4 <- rAmCharts::renderAmCharts({
-  ##Data
+  # prepare data
   dp <- data.table(year = 1994:2012, 
                    cars = rnorm(length(1994:2012), mean = 10), 
                    motorcycles = rnorm(length(1994:2012), mean = 15), 
@@ -171,7 +175,9 @@ output$serial4 <- rAmCharts::renderAmCharts({
                'margin-right: 10px; width:28px; height:21px;\'>',
                '<span style = \'font-size:14px; color:#000000;\'>',
                '<b>[[value]]</b></span>')
-  ##Plot
+  
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(marginRight = 30, plotAreaBorderAlpha = 0, categoryField = 'year',
                   startDuration = 0, dataProvider = dp, theme = 'light'),
@@ -200,7 +206,7 @@ output$serial4 <- rAmCharts::renderAmCharts({
 
 output$code_serial4 <- renderText({
   "
-  ##Data
+  # prepare data
   dp <- data.table(year = 1994:2012, 
                    cars = rnorm(length(1994:2012), mean = 10), 
                    motorcycles = rnorm(length(1994:2012), mean = 15), 
@@ -215,7 +221,9 @@ output$code_serial4 <- renderText({
                'margin-right: 10px; width:28px; height:21px;\'>',
                '<span style = \'font-size:14px; color:#000000;\'>',
                '<b>[[value]]</b></span>')
-  ##Plot
+  
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(marginRight = 30, plotAreaBorderAlpha = 0, categoryField = 'year',
                   startDuration = 0, dataProvider = dp, theme = 'light'),
@@ -244,7 +252,6 @@ output$code_serial4 <- renderText({
 })
 
 output$serial5 <- renderAmCharts({
-  ##Plot
   pipeR::pipeline(
     amSerialChart(marginTop = 0, marginRight = 80, dataDateFormat = 'YYYY',
                   categoryField = 'year', startDuration = 0),
@@ -269,7 +276,6 @@ output$serial5 <- renderAmCharts({
 
 output$code_serial5 <- renderText({
   "
-  ##Plot
   pipeR::pipeline(
     amSerialChart(marginTop = 0, marginRight = 80, dataDateFormat = 'YYYY',
                   categoryField = 'year'),
@@ -294,11 +300,11 @@ output$code_serial5 <- renderText({
 })
 
 output$serial6 <- renderAmCharts({
-  ##Data
-  dp <- data.table(binf = c(1, 2, 3, 4, 5),
-                   bsup = c(3, 4, 5,6, 7),
-                   value = c(2, 3, 4, 5, 6),
-                   heure = c('9h', '10h', '11h', '12h', '13h'))
+  # prepare data
+  dp <- data.table(binf = c(1,2,3,4,5),
+                   bsup = c(3,4,5,6,7),
+                   value = c(2,3,4,5,6),
+                   heure = c('9h','10h','11h','12h','13h'))
   
   # prepare legend
   legend <- pipeR::pipeline(
@@ -314,7 +320,8 @@ output$serial6 <- renderAmCharts({
                                    'event.chart.showGraph(event.chart.getGraphById(id + \'_to\'));',
                                    '}'))
   )
-  ##Plot
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(legend = legend, dataProvider = dp, addClassNames=TRUE,
                   autoMargins = TRUE, startDuration = 0.5, categoryField = 'heure'),
@@ -334,11 +341,11 @@ output$serial6 <- renderAmCharts({
 
 output$code_serial6 <- renderText({
   "
-  #Data
-  dp <- data.table(binf = c(1, 2, 3, 4, 5),
-                   bsup = c(3, 4, 5,6, 7),
-                   value = c(2, 3, 4, 5, 6),
-                   heure = c('9h', '10h', '11h', '12h', '13h'))
+  # prepare data
+  dp <- data.table(binf = c(1,2,3,4,5),
+                   bsup = c(3,4,5,6,7),
+                   value = c(2,3,4,5,6),
+                   heure = c('9h','10h','11h','12h','13h'))
   
   # prepare legend
   legend <- pipeR::pipeline(
@@ -355,7 +362,7 @@ output$code_serial6 <- renderText({
                                    '}'))
   )
   
-  ##Plot
+  # build the chart
   pipeR::pipeline(
     amSerialChart(legend = legend, dataProvider = dp, addClassNames=TRUE,
                   autoMargins = TRUE, startDuration = 0.5, categoryField = 'heure'),
@@ -375,7 +382,7 @@ output$code_serial6 <- renderText({
 })
 
 output$serial7 <- renderAmCharts({
-  ##Data
+  # prepare data
   data <- as.data.table(get('Titanic', 'package:datasets'))
   data <- data[, .(freq = sum(N)), by = list(Sex, Survived)]
   (data <- split(data, f = data$Survived))
@@ -386,7 +393,8 @@ output$serial7 <- renderAmCharts({
     categoryAxis(gridPosition = 'start'),
     addListener('clickItem', 'function(event) {alert(\'Click on category axis\')}')
   )
-  ##Plot
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(categoryField = 'Sex', startDuration = 0,
                   dataProvider = dp, categoryAxis = catAxis),
@@ -402,7 +410,7 @@ output$serial7 <- renderAmCharts({
 
 output$code_serial7 <- renderText({
   "
-  ##Data
+  # prepare data
   data <- as.data.table(get('Titanic', 'package:datasets'))
   data <- data[, .(freq = sum(N)), by = list(Sex, Survived)]
   (data <- split(data, f = data$Survived))
@@ -413,7 +421,8 @@ output$code_serial7 <- renderText({
     categoryAxis(gridPosition = 'start'),
     addListener('clickItem', 'function(event) {alert(\'Click on category axis\')}')
   )
-  ##Plot
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(categoryField = 'Sex', startDuration = 0,
                   dataProvider = dp, categoryAxis = catAxis),
@@ -429,7 +438,7 @@ output$code_serial7 <- renderText({
 })
 
 output$serial8 <- renderAmCharts({
-  ##Data
+  # prepare data
   dp <- data.table(
     country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France',
                 'India', 'Spain', 'Netherlands', 'Russia'), 
@@ -441,7 +450,8 @@ output$serial8 <- renderAmCharts({
     chartCursor(categoryBalloonEnabled = FALSE, cursorAlpha = 0),
     addListener('zoomed', 'function(event) {alert(\'Zoom to some period\')}')
   )
-  ##Plot
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(categoryField = 'country', dataProvider = dp,
                   chartCursor = chartCursor_obj),
@@ -453,7 +463,7 @@ output$serial8 <- renderAmCharts({
 
 output$code_serial8 <- renderText({
   "
-  ##Data
+  # prepare data
   dp <- data.table(
     country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France',
                 'India', 'Spain', 'Netherlands', 'Russia'), 
@@ -465,7 +475,8 @@ output$code_serial8 <- renderText({
     chartCursor(categoryBalloonEnabled = FALSE, cursorAlpha = 0),
     addListener('zoomed', 'function(event) {alert(\'Zoom to some period\')}')
   )
-  ##Plot
+  
+  # build the chart
   pipeR::pipeline(
     amSerialChart(categoryField = 'country', dataProvider = dp,
                   chartCursor = chartCursor_obj),
@@ -477,7 +488,7 @@ output$code_serial8 <- renderText({
 })
 
 output$serial9 <- renderAmCharts({
-  ##Data
+  # prepare data
   dp <- data.table(
     country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France',
                 'India', 'Spain', 'Netherlands', 'Russia'), 
@@ -486,7 +497,8 @@ output$serial9 <- renderAmCharts({
     color = c('#FF0F00', '#FF6600', '#FF9E01', '#FCD202', '#F8FF01',
               '#B0DE09', '#04D215', '#0D8ECF', '#0D52D1', '#2A0CD0')
   )
-  ##Plot
+  
+  # prepare value axes
   valueAxis_obj1 <- pipeR::pipeline(
     valueAxis(id = 'v1', title = 'valueAxis 1', position = 'left'),
     addListener('clickItem', 'function(event) {alert(\'Click on valueAxis 1\')}')
@@ -513,7 +525,7 @@ output$serial9 <- renderAmCharts({
 
 output$code_serial9 <- renderText({
   "
-  ##Data
+  # prepare data
   dp <- data.table(
     country = c('USA', 'China', 'Japan', 'Germany', 'UK', 'France',
                 'India', 'Spain', 'Netherlands', 'Russia'), 
@@ -534,7 +546,7 @@ output$code_serial9 <- renderText({
     addListener('clickItem', 'function(event) {Shiny.onInputChange(\'mydata\', event.value);}')
     )
   
-  #Plot
+  # build the chart
   pipeR::pipeline(
     amSerialChart(categoryField = 'country', dataProvider = dp),
     addGraph(balloonText = '<b>[[category]]: [[value]]</b>', fillColorsField = 'color', valueAxis = 'v1',
@@ -557,7 +569,8 @@ output$results <- renderPrint({
 # Candle stick with chartScrollbar zoom
 # ---
 output$serial10 <- renderAmCharts({
-  ##Data
+  
+  # prepare data
   start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
   end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
   date <- seq.POSIXt(from = start, to = end, by = 'day')
@@ -583,7 +596,7 @@ output$serial10 <- renderAmCharts({
                        'Low:<b>[[low]]</b><br>',
                        'High:<b>[[high]]</b><br>',
                        'Close:<b>[[close]]</b><br>')
-  ##Plot
+  # draw chart
   pipeline(
     amSerialChart(categoryField = 'date', dataDateFormat = 'MM-DD-YYYY',
                   dataProvider = dp, startDuration = 0),
@@ -604,7 +617,7 @@ output$serial10 <- renderAmCharts({
 
 output$code_serial10 <- renderText({
   "
-  ##Data
+  # prepare data
   start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
   end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
   date <- seq.POSIXt(from = start, to = end, by = 'day')
@@ -630,7 +643,7 @@ output$code_serial10 <- renderText({
                        'Low:<b>[[low]]</b><br>',
                        'High:<b>[[high]]</b><br>',
                        'Close:<b>[[close]]</b><br>')
-  ##Plot
+  # draw chart
   pipeline(
     amSerialChart(categoryField = 'date', dataDateFormat = 'MM-DD-YYYY',
                   dataProvider = dp, startDuration = 0),
@@ -654,7 +667,8 @@ output$code_serial10 <- renderText({
 # Stack bar with negative values
 # ---
 output$serial11 <- renderAmCharts({
-  ##Data
+  
+  # prepare data
   n <- 15
   (male <- round(sort(runif(n)), 1))
   (female <- -round(sort(runif(n)), 1))
@@ -672,7 +686,8 @@ output$serial11 <- renderAmCharts({
   
   valueAxis_obj <- valueAxis(gridAlpha = 0, ignoreAxisWidth = TRUE, id = 'axis1',
                              labelFunction = labelFunction2)
-  ##Plot
+  
+  # draw chart
   pipeline(
     amSerialChart(startDuration = 0, rotate = TRUE, marginBottom = 50,
                   categoryField = 'category'),
@@ -695,7 +710,7 @@ output$serial11 <- renderAmCharts({
 
 output$code_serial11 <- renderText({
   "
-  ##Data
+  # prepare data
   n <- 15
   (male <- round(sort(runif(n)), 1))
   (female <- -round(sort(runif(n)), 1))
@@ -713,7 +728,8 @@ output$code_serial11 <- renderText({
   
   valueAxis_obj <- valueAxis(gridAlpha = 0, ignoreAxisWidth = TRUE, id = 'axis1',
                              labelFunction = labelFunction2)
-  ##Plot
+  
+  # draw chart
   pipeline(
     amSerialChart(startDuration = 0, rotate = TRUE, marginBottom = 50,
                   categoryField = 'category'),

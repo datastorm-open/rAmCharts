@@ -1,20 +1,10 @@
 ## LOG CHANGE
 
-### rAmCharts 2.0.0 (based on [amcharts][amcharts_url] version **3.18.3**)
+### rAmCharts 1.1.3 (based on [amcharts][amcharts_url] version **3.17.3**)
 
-  * New version available on CRAN, 
-  * New functions 'am'
-  * New shiny application : runExamples()
-  * New API : 
-  
-
-### rAmCharts 1.1.3 (based on [amcharts][amcharts_url] version **3.18.3**)
-
-  * fix bug in markdown : now a call to method 'plot' is optionnal
-  * New functions 'am'
   * fix init and rendered event with shiny
   * fix class 'Label' to allow character for properties 'x' and 'y'
-  * Improve `am___` functions (histogram, scatter plot, gauge, funnel, etc.)
+  * Improve function 'amHist'
 
 ### rAmCharts 1.1.2 (based on [amcharts][amcharts_url] version **3.17.2**)
   

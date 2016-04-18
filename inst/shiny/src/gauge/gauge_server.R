@@ -1,7 +1,6 @@
 output$gauge1 <- rAmCharts::renderAmCharts({
-  ##Plot
   pipeR::pipeline(
-    amAngularGaugeChart(startDuration = 0),
+    amAngularGaugeChart(startDuration = 0, theme = input$theme_gauge),
     addArrow(value = 100),
     addAxis(gaugeAxis(bottomText = '100 km/h', endValue = 220, valueInterval = 10) %>>%
              addBand(color = '#00CC00', endValue = 90, startValue = 0) %>>%
@@ -12,14 +11,51 @@ output$gauge1 <- rAmCharts::renderAmCharts({
 
 output$code_gauge1 <- renderText({
   "
-  ##Plot
   pipeR::pipeline(
-    amAngularGaugeChart(startDuration = 0),
+    amAngularGaugeChart(startDuration = 0, theme = input$theme_gauge),
     addArrow(value = 100),
     addAxis(gaugeAxis(bottomText = '100 km/h', endValue = 220, valueInterval = 10) %>>%
               addBand(color = '#00CC00', endValue = 90, startValue = 0) %>>%
               addBand(color = '#ffac29', endValue = 130, startValue = 90) %>>%
               addBand(color = '#ea3838', endValue = 220, startValue = 130, innerRadius = '95%'))
+  )
+  "
+})
+
+output$gauge2 <- rAmCharts::renderAmCharts({
+  # prepare data
+  gaugeAxis_obj <- pipeR::pipeline(
+    gaugeAxis(bottomText = '100 km/h', endValue = 220, valueInterval = 10),
+    addBand(color = '#00CC00', endValue = 90, startValue = 0),
+    addBand(color = '#ffac29', endValue = 130, startValue = 90),
+    addBand(color = '#ea3838', endValue = 220, startValue = 130, innerRadius = '95%'),
+    addListener('clickBand', 'function(event) { alert(\'clicked on band !\') }')
+  )
+  
+  #build the chart
+  pipeR::pipeline(
+    amAngularGaugeChart(startDuration = 0),
+    addArrow(value = 100),
+    addAxis(axis = gaugeAxis_obj)
+  )
+})
+
+output$code_gauge2 <- renderText({
+  "
+  # prepare data
+  gaugeAxis_obj <- pipeR::pipeline(
+    gaugeAxis(bottomText = '100 km/h', endValue = 220, valueInterval = 10),
+    addBand(color = '#00CC00', endValue = 90, startValue = 0),
+    addBand(color = '#ffac29', endValue = 130, startValue = 90),
+    addBand(color = '#ea3838', endValue = 220, startValue = 130, innerRadius = '95%'),
+    addListener('clickBand', 'function(event) { alert(\'clicked on band !\') }')
+  )
+  
+  #build the chart
+  pipeR::pipeline(
+    amAngularGaugeChart(startDuration = 0),
+    addArrow(value = 100),
+    addAxis(axis = gaugeAxis_obj)
   )
   "
 })

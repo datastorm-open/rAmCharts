@@ -1,10 +1,10 @@
-shinydashboard::tabItem(
-  tabName = "serial",
+shiny::tabPanel(
+  title = "Serial",
   fluidRow(
     column(
       width = 12,
       h2("Theme setter"),
-    
+      selectInput("theme_serial", label = "Theme:", choices = c("default", "light", "patterns", "dark", "chalk")),
       br(),
       rAmCharts::amChartsOutput("serial1"),
       verbatimTextOutput("code_serial1"),

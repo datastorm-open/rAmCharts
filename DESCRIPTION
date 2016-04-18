@@ -6,7 +6,7 @@ Description: API for using 'AmCharts' Library. Based on the 'htmlwidgets'
     with S4 classes; for those classes, not all properties have been referenced
     but can easily be added in the constructors. Complex properties (e.g.
     'JavaScript' object) can be passed as named list. See examples at <http://
-    datastorm-open.github.io/introduction_ramcharts/>. and <http://www.amcharts.com/> for
+    dataknowledge.github.io/rAmCharts/>. and <http://www.amcharts.com/> for
     more information about the library. The package includes the free version of
     'AmCharts' Library. Its only limitation is that a small link to the web site
     will be displayed in your charts. If you enjoy this library, do not hesitate
@@ -14,97 +14,78 @@ Description: API for using 'AmCharts' Library. Based on the 'htmlwidgets'
     licence, and thus support its creators and get a period of Priority Support.
     See also <http://www.amcharts.com/about/> for more information about
     'AmCharts' company.
-Version: 2.0.0
+Version: 1.1.3
 Authors@R: c(
-    person(given = "Jeffery", family = "Petit", email = "jeffery.petit@datastorm.fr", role = c("aut", "cre")),
+    person(given = "Jeffery", family = "Petit", email = "jeff@datak.fr", role = c("aut", "cre")),
     person(given = "Antanas", family = " Marcelionis", role = c("aut", "cph"),
            comment = "'AmCharts' library in th directory htmlwidgets/lib/amcharts, refer to http://www.amcharts.com/"),
-    person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datastorm.fr", role = c("aut", "ctb")),
-    person(given = "Elena", family = "Salette", email = "elena.salette@datastorm.fr", role = c("aut", "ctb")),
-    person(given = "Titouan", family = "Robert", email = "titouan.robert@datastorm.fr", role = c("aut", "ctb")))
-Date: 2016-03-14
+    person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datak.fr", role = c("aut", "ctb")),
+    person(family = "DataKnowledge", role = c("ctb"),
+            comment = "See official web site at http://www.datak.fr"))
+Date: 2015-10-18
 License: GPL (>= 2)
-URL: http://datastorm-open.github.io/introduction_ramcharts/
-BugReports: https://github.com/datastorm-open/rAmCharts/issues/
+URL: http://dataknowledge.github.io/rAmCharts/
+BugReports: https://github.com/DataKnowledge/rAmCharts/issues/
 Depends:
     R (>= 3.2.0)
 Collate:
-    'base_data.R'
-    'base_shiny.R'
-    'base_startupMessage.R'
-    'chart_amBarplot.R'
-    'chart_amBoxplot.R'
-    'chart_amBullet.R'
-    'chart_amCandlestick.R'
-    'chart_amFloatingBar.R'
-    'chart_amFunnel.R'
-    'chart_amGauge.R'
-    'chart_amHist.R'
-    'chart_amMekko.R'
-    'chart_amOHLC.R'
-    'chart_amPie.R'
-    'chart_amPlot.R'
-    'chart_amRadar.R'
-    'chart_amWaterfall.R'
-    'chart_amWind.R'
-    'class_AmObject.R'
-    'class_AmBalloon.R'
-    'class_AmChart.R'
-    'class_AmChart_constructors.R'
-    'class_AxisBase.R'
-    'class_CategoryAxis.R'
-    'utils_sharedGenerics.R'
-    'class_ValueAxis.R'
-    'utils_basicClassUnions.R'
-    'class_TrendLine.R'
-    'class_Title.R'
-    'class_StockPanel.R'
-    'class_StockEvent.R'
-    'class_PeriodSelector.R'
-    'class_Label.R'
-    'class_Guide.R'
-    'class_GaugeAxis.R'
-    'class_GaugeBand.R'
-    'class_GaugeArrow.R'
-    'class_DataSet.R'
-    'class_ChartScrollbar.R'
-    'class_ChartCursor.R'
-    'class_AmLegend.R'
-    'class_AmGraph.R'
-    'utils_classUnion.R'
-    'class_AmChart_setters.R'
-    'class_AmChart_shinyUtils.R'
-    'class_AmStockChart.R'
-    'class_AmCharts_plot.R'
-    'class_AmStockChart_setters.R'
-    'class_AxisBase_setters.R'
-    'class_ChartCursor_setters.R'
-    'class_ChartScrollbar_setters.R'
-    'class_DataSetSelector.R'
-    'class_DataSet_setters.R'
-    'class_GaugeArrow_setters.R'
-    'class_GaugeAxis_setters.R'
-    'class_Guide_setters.R'
-    'class_StockEvent_setters.R'
-    'class_StockPanel_setters.R'
-    'class_TrendLine_setters.R'
-    'tools_amOptions.R'
-    'tools_amTests.R'
+    'AmObject.R'
+    'AmBalloon.R'
+    'AmChart.R'
+    'AmChart_constructors.R'
+    'sharedGenerics.R'
+    'AxisBase.R'
+    'ValueAxis.R'
+    'basicClassUnions.R'
+    'TrendLine.R'
+    'Title.R'
+    'StockPanel.R'
+    'StockEvent.R'
+    'PeriodSelector.R'
+    'Label.R'
+    'Guide.R'
+    'GaugeAxis.R'
+    'GaugeBand.R'
+    'GaugeArrow.R'
+    'DataSet.R'
+    'ChartScrollbar.R'
+    'ChartCursor.R'
+    'AmLegend.R'
+    'AmGraph.R'
+    'classUnion.R'
+    'CategoryAxis.R'
+    'AmChart_setters.R'
+    'AmChart_shinyUtils.R'
+    'AmStockChart.R'
+    'AmCharts_plot.R'
+    'AmStockChart_setters.R'
+    'AxisBase_setters.R'
+    'ChartCursor_setters.R'
+    'ChartScrollbar_setters.R'
+    'DataSetSelector.R'
+    'DataSet_setters.R'
+    'GaugeArrow_setters.R'
+    'GaugeAxis_setters.R'
+    'Guide_setters.R'
+    'StockEvent_setters.R'
+    'StockPanel_setters.R'
+    'TrendLine_setters.R'
+    'amBoxplot.R'
+    'amHist.R'
+    'data.R'
+    'shinyExamples.R'
+    'startupMessage.R'
     'utils.R'
 Imports:
     methods,
     htmlwidgets,
     htmltools,
     rlist,
-    data.table (>= 1.9.6),
+    data.table,
     graphics,
-    utils,
-    pipeR,
-    knitr,
-    grDevices
+    utils
 Suggests:
+    pipeR,
     magrittr,
     shiny,
-    testthat,
-    shinydashboard
-RoxygenNote: 5.0.1
+    testthat
