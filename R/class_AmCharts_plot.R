@@ -249,8 +249,10 @@ dependency_addTheme <- function(widget, data, theme, version)
 #' @noRd
 dependency_addDataLoader <- function(widget, data, version)
 {
-  cond <- exists("chartData", where = data) &&
-    exists("dataLoader", where = data$chartData)
+  cond <- ((exists("chartData", where = data) &&
+    exists("dataLoader", where = data$chartData)) || 
+      (exists("chartData", where = data) &&
+         any(sapply(data$chartData$dataSets, function(x){exists("dataLoader", where = x)}))))
   
   if (cond) {
     dataloader_dep <- htmltools::htmlDependency(
