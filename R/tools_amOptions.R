@@ -24,6 +24,7 @@
 #' @param scrollbarHeight \code{numeric}, height in pixels, must be > 0.
 #' @param labelRotation \code{numeric}, rotation angle of a label. Only horizontal axis' values 
 #' can be rotated. Value must be between -90 and 90.
+#' @param ... Other properties added to the chart using \code{setProperties}.
 #' 
 #' @details
 #' \strong{Exception:} 
@@ -78,11 +79,12 @@
 #' @rdname amOptions
 #' @export
 #' 
-amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "right",
+amOptions <- function(chart, theme = c("none", "light", "dark", "patterns", "chalk"),
+                      legend = FALSE, legendPosition = "right",
                       legendAlign = "left", export = FALSE, exportFormat = character(),
                       creditsPosition = "top-left", main = character(), mainColor = "#000000",
                       mainSize = 15, zoom = FALSE, scrollbar = FALSE, scrollbarHeight = 20,
-                      labelRotation = 0)
+                      labelRotation = 0, ...)
 {
   # Control parameters
   {
@@ -108,7 +110,7 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
     .testIn(vect = creditsPosition, control = c("top-left", "top-right", "bottom-left", "bottom-right"))
     
     # theme
-    .testIn(vect = theme, control = c("none", "light", "dark", "patterns", "chalk")) 
+    theme <- match.arg(theme)
     
     # main
     if (length(main)) .testCharacterLength1(char = main)
@@ -241,5 +243,5 @@ amOptions <- function(chart, theme = "none", legend = FALSE, legendPosition = "r
       message("Impossible to rotate label for a radar chart !")
   }
   
-  chart
+  setProperties(chart, ...)
 }

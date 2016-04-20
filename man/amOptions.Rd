@@ -4,11 +4,12 @@
 \alias{amOptions}
 \title{amOptions}
 \usage{
-amOptions(chart, theme = "none", legend = FALSE, legendPosition = "right",
-  legendAlign = "left", export = FALSE, exportFormat = character(),
+amOptions(chart, theme = c("none", "light", "dark", "patterns", "chalk"),
+  legend = FALSE, legendPosition = "right", legendAlign = "left",
+  export = FALSE, exportFormat = character(),
   creditsPosition = "top-left", main = character(), mainColor = "#000000",
   mainSize = 15, zoom = FALSE, scrollbar = FALSE, scrollbarHeight = 20,
-  labelRotation = 0)
+  labelRotation = 0, ...)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
@@ -46,6 +47,8 @@ default set to "right".}
 
 \item{labelRotation}{\code{numeric}, rotation angle of a label. Only horizontal axis' values 
 can be rotated. Value must be between -90 and 90.}
+
+\item{...}{Other properties added to the chart using \code{setProperties}.}
 }
 \description{
 amOptions sets the most common options for chart customization.

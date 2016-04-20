@@ -156,24 +156,19 @@ setMethod(f = "plot", signature = "AmCharts",
               
             }
             
+            # Create initial widget
             widget <- htmlwidgets::createWidget(name = eval(jsFile),
                                                 x = data,
                                                 width = width,
                                                 height = height,
                                                 package = 'rAmCharts')
             
+            # Add dependencies if necessary
             widget <- .add_type_dependency(widget = widget, data = data, type = x@type)
             widget <- .add_export_dependency(widget = widget, data = data)
             widget <- .add_theme_dependency(widget = widget, data = data)
             widget <- .add_dataloader_dependency(widget = widget, data = data)
             widget <- .add_responsive_dependency(widget = widget, data = data)
-            
-            style_dep <- htmltools::htmlDependency(name = "amcharts_style",
-                                                   version = yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))$amcharts_version,
-                                                   src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
-                                                   stylesheet = "style.css")
-            
-            widget$dependencies[[length(widget$dependencies)+1]] <- style_dep
             
             return (widget) 
           })
@@ -190,17 +185,30 @@ setMethod(f = "plot", signature = "AmCharts",
   if (type == "stock") type <- "amstock" # modification temporaire
   file_js <- paste0(type, ".js")
   
+  # For some type, we need to source also 'serial.js'
   if (type %in% c("gantt", "amstock")) file_js <- c("serial.js", file_js)
   
+  # Load the configuration yaml file into list
+  conf_list <- yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))
+
+  # Add main js dependency
   type_dep <- htmltools::htmlDependency(name = paste0("amcharts_type_", type),
                                         # name = paste0("amcharts_type", type),
-                                        version = yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))$amcharts_version,
+                                        version = conf_list$amcharts_version,
                                         src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
                                         script = file_js)
+  widget <- .add_dependency(widget = widget, dependency = type_dep)
   
-  if (length(widget$dependencies) == 0) widget$dependencies <- list()
-  
-  widget$dependencies[[length(widget$dependencies)+1]] <- type_dep
+  # Add stylesheet if necessary
+  if (type == "amstock") {
+    style_dep <- htmltools::htmlDependency(name = conf_list$styles$amctockcharts$name,
+                                           version = conf_list$amcharts_version,
+                                           src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
+                                           stylesheet = conf_list$styles$amctockcharts$script)
+    widget <- .add_dependency(widget = widget, dependency = style_dep)
+  } else {
+    # No stylesheet needed
+  }
   
   return (widget)
 }
@@ -240,11 +248,7 @@ add_export_dependency <- function (widget)
                                           src = system.file("htmlwidgets/lib/plugins/export", package = "rAmCharts"),
                                           stylesheet = conf_list$plugins$export$stylesheet,
                                           script = conf_list$plugins$export$script)
-  
-  if (length(widget$dependencies) == 0)
-    widget$dependencies <- list()
-  
-  widget$dependencies[[length(widget$dependencies)+1]] <- export_dep
+  widget <- .add_dependency(widget = widget, dependency = export_dep)
   
   return (widget)
 }
@@ -301,11 +305,7 @@ add_theme_dependency <- function (widget, theme_js = c("light.js", "patterns.js"
                                          version = conf_list$amcharts_version,
                                          src = system.file("htmlwidgets/lib/themes", package = "rAmCharts"),
                                          script = theme_js)
-  
-  if (length(widget$dependencies) == 0)
-    widget$dependencies <- list()
-  
-  widget$dependencies[[length(widget$dependencies) + 1]] <- theme_dep
+  widget <- .add_dependency(widget = widget, dependency = theme_dep)
   
   return (widget)
 }
@@ -343,10 +343,7 @@ add_dataloader_dependency <- function (widget)
                                               version = conf_list$amcharts_version,
                                               src = system.file("htmlwidgets/lib/plugins/responsive", package = "rAmCharts"),
                                               script = conf_list$plugins$dataloader$script)
-  
-  if (length(widget$dependencies) == 0) widget$dependencies <- list()
-  
-  widget$dependencies[[length(widget$dependencies) + 1]] <- dataloader_dep
+  widget <- .add_dependency(widget = widget, dependency = dataloader_dep)
   
   return (widget)
 }
@@ -383,10 +380,7 @@ add_responsive_dependency <- function(widget)
                                               version = conf_list$amcharts_version,
                                               src = system.file("htmlwidgets/lib/plugins/responsive", package = "rAmCharts"),
                                               script = conf_list$plugins$responsive$script)
-  
-  if (length(widget$dependencies) == 0) widget$dependencies <- list()
-  
-  widget$dependencies[[length(widget$dependencies) + 1]] <- responsive_dep
+  widget <- .add_dependency(widget = widget, dependency = responsive_dep)
   
   return (widget)
 }
@@ -453,4 +447,18 @@ substituteMultiListeners <- function(chart, obj)
   } else {}
   
   return(list(chart = chart, listeners_ls = listeners_ls, indices = indices))
+}
+
+#' @title Add any dependency to an htmlwidget
+#' @param widget An htmlwidget.
+#' @param dependency An htmlDependency.
+#' @return The widget with the given dependency
+#' @noRd
+#' 
+.add_dependency <- function (widget, dependency)
+{
+  if (length(widget$dependencies) == 0) widget$dependencies <- list()
+  widget$dependencies[[length(widget$dependencies)+1]] <- dependency
+  
+  return (widget)
 }

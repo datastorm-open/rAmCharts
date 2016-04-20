@@ -1,4 +1,8 @@
 amcharts_version : "3.18.2"
+styles:
+  amstockcharts:
+    name: "amstockcharts_style"
+    script: "style.css"
 plugins:
   responsive:
     name: "amcharts_responsive"

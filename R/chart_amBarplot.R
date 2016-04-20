@@ -53,7 +53,10 @@
 #' 
 #' amBarplot(x = "country", y = "visits", data = data_bar)
 #' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
-#' 
+#' \dontrun{
+#' # shortcut
+#' amBarplot(x = "year", y = c("inc", "exp"), data = data_gbar)
+#' }
 #' \donttest{
 #' 
 #' # Other examples available which can be time consuming depending on your configuration.
@@ -105,8 +108,7 @@
 #' 
 #' 
 #' # Round values
-#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar) %>>%
-#'   setProperties(precision = 0)
+#' amBarplot(x = "year", y = c("in", "ex"), data = data_gbar, precision = 0)
 #' }
 #' 
 #' @seealso 
@@ -146,9 +148,7 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   .testCharacter(char = data[,x])
   
   # check argument y
-  if (is.character(y))
-    .testIn(vect = y, control = colnames(data))
-  
+  y <- match.arg(arg = y, choices = colnames(data), several.ok = TRUE)
   
   sapply(1:length(y), FUN = function(i) {
     if (is.numeric(y[i])) {

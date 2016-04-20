@@ -78,7 +78,10 @@ data(data_gbar)
 
 amBarplot(x = "country", y = "visits", data = data_bar)
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
-
+\dontrun{
+# shortcut
+amBarplot(x = "year", y = c("inc", "exp"), data = data_gbar)
+}
 \donttest{
 
 # Other examples available which can be time consuming depending on your configuration.
@@ -128,8 +131,7 @@ amBarplot(y = c("Murder", "Assault", "UrbanPop", "Rape"), data = dataset, stack_
 
 
 # Round values
-amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar) \%>>\%
-  setProperties(precision = 0)
+amBarplot(x = "year", y = c("in", "ex"), data = data_gbar, precision = 0)
 }
 
 }

@@ -35,27 +35,20 @@
 #' @export
 amMekko <- function(x, y, data, xlab = "", 
                     ylab = "", groups_color = NULL,
-                    horiz = FALSE, show_values = FALSE, ...) {
+                    horiz = FALSE, show_values = FALSE, ...)
+{
+  x <- match.arg(arg = x, choices = colnames(data))
+  y <- match.arg(arg = y, choices = colnames(data))
   
-  
-  ##test
-  .testCharacterLength1(char = x)
-  .testCharacterLength1(char = y)
-  
-  .testIn(vect = x, control = colnames(data))
-  .testIn(vect = y, control = colnames(data))
-  #data
-  
-  
-  
-  data[,x] <- as.factor(as.character(data[,x]))
-  data[,y] <- as.factor(as.character(data[,y]))
+  # data
+  data[,x] <- as.factor(as.character(data[, x]))
+  data[,y] <- as.factor(as.character(data[, y]))
   
   .testCharacterLength1(char = xlab)
   .testCharacterLength1(char = ylab)
   .testLogicalLength1(logi = horiz)
-
-
+  
+  
   .testLogicalLength1(logi = show_values)
   
   
@@ -84,15 +77,15 @@ amMekko <- function(x, y, data, xlab = "",
       v_col <- groups_color
     } else {
       v_col <- utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
-                          "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
-                          "#b9783f", "#b93e3d", "#913167"), 5), 
-                    length(y))
+                                 "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
+                                 "#b9783f", "#b93e3d", "#913167"), 5), 
+                           length(y))
     }
   } else {
     v_col <- utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
-                        "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
-                        "#b9783f", "#b93e3d", "#913167"), 5), 
-                  length(y))
+                               "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
+                               "#b9783f", "#b93e3d", "#913167"), 5), 
+                         length(y))
   }
   
   sapply(1:(ncol(tab1)-2), FUN = function(i) {
@@ -103,7 +96,7 @@ amMekko <- function(x, y, data, xlab = "",
                      fillAlphas = 0.8, lineAlpha = 0, type = 'column', valueField = valcol,
                      title = valcol, labelText = label_text)
   })
-
+  
   res <- amOptions(res, ...)
   res
 }
