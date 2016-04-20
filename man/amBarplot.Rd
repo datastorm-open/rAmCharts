@@ -56,7 +56,7 @@ fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - mont
 It's also possible to supply a number for increments, i.e. '15mm'
 which will instruct the chart that your data is supplied in 15 minute increments.}
 
-\item{...}{see \code{\link{amOptions}} for more options.}
+\item{...}{see \link{amOptions} for more options.}
 }
 \value{
 An object of class \linkS4class{AmChart}.

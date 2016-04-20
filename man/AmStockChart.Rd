@@ -182,12 +182,15 @@ You can add it if you have more than one data set and want users
 to be able to select/compare them.
 }
 \examples{
+\donttest{
 # --- method 'initialize'
 new("AmStockChart", theme = "dark")
+}
 
+\donttest{
 # --- constructor
 amStockChart()
-
+}
 setBalloon(.Object = amStockChart(), gridPosition = "start")
 # ---
 setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")

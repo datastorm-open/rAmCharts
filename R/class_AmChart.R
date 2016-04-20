@@ -367,31 +367,6 @@ setMethod(f = "initialize", signature = "AmChart",
             return(.Object)
           })
 
-#' @title Visualize AmChart with show
-#' @description Displays the object in the console
-#' 
-#' @examples
-#' pipeR::pipeline(
-#'   amPieChart(valueField = "value", titleField = "key"),
-#'   setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
-#'   setExport(position = "bottom-left")
-#' )
-#' 
-#' @import knitr
-#' 
-setMethod(f = "show", signature = "AmChart",
-          definition = function(object)
-          {
-            if (length(object@type)) {
-              chart <- plot(object)
-              if (isTRUE(getOption('knitr.in.progress'))) knitr::knit_print(chart)
-              else print(chart)
-              
-            } else {
-              print(object)
-            }
-          })
-
 #' @rdname listProperties-AmObject
 #' @examples
 #' # --- signature 'AmChart'

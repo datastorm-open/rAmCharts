@@ -15,7 +15,7 @@
 
 \item{width}{\code{character}.}
 
-\item{height}{\code{character}.}
+\item{height}{\code{character}.B}
 
 \item{background}{\code{character}.}
 

@@ -101,7 +101,8 @@ Imports:
     utils,
     pipeR,
     knitr,
-    grDevices
+    grDevices,
+    yaml
 Suggests:
     magrittr,
     shiny,

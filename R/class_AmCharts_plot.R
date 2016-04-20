@@ -3,13 +3,46 @@ NULL
 
 setClassUnion(name = "AmCharts", members = c("AmChart", "AmStockChart"))
 
+#' Test wether a chart can be plotted (or printed)
+#' @noRd
+#' 
+.plot_or_print <- function (object)
+{
+  if (length(object@type)) {
+    cat("Plotting...")
+    chart <- plot(object)
+    if (isTRUE(getOption('knitr.in.progress')))
+      knitr::knit_print(chart)
+    else
+      print(chart)
+  } else {
+    cat("Printing...")
+    print(object)
+  }
+}
+#' @title Visualize AmStockChart with show
+#' @description Display the object in the console.
+#' @param object \linkS4class{AmChart}.
+#' @return If the object has a valid type, it will plot the chart.
+#' If not the method will trigger the method 'print'.
+#' 
+setMethod(f = "show", signature = "AmChart", definition = .plot_or_print)
+#' @title Visualize AmStockChart with show
+#' @description Display the object in the console.
+#' @param object \linkS4class{AmStockChart}.
+#' @return If the object has a valid type, it will plot the chart.
+#' If not the method will trigger the method 'print'.
+#' 
+setMethod(f = "show", signature = "AmStockChart", definition = .plot_or_print)
+
+
 #' @title PLOTTING METHOD
 #' @description Basic method to plot an AmChart 
 #' @details Plots an object of class \code{\linkS4class{AmChart}}
 #' @param x \linkS4class{AmChart}
 #' @param y unused.
 #' @param width \code{character}.
-#' @param height \code{character}.
+#' @param height \code{character}.B
 #' @param background \code{character}.
 #' @param ... Other properties.
 #' @rdname plot.AmChart
@@ -123,26 +156,23 @@ setMethod(f = "plot", signature = "AmCharts",
               
             }
             
-            widget <- htmlwidgets::createWidget(
-              name = eval(jsFile),
-              x = data,
-              width = width,
-              height = height,
-              package = 'rAmCharts'
-            )
+            widget <- htmlwidgets::createWidget(name = eval(jsFile),
+                                                x = data,
+                                                width = width,
+                                                height = height,
+                                                package = 'rAmCharts')
             
-            version <- "3.18.2"
-            widget <- dependency_chartType(widget, data, x@type, version)
-            widget <- dependency_addExport(widget, data, version)
-            widget <- dependency_addTheme(widget, data, theme, version)
-            widget <- dependency_addDataLoader(widget, data, version)
-            widget <- dependency_addResponsive(widget, data, version)
+            widget <- .add_type_dependency(widget = widget, data = data, type = x@type)
+            widget <- .add_export_dependency(widget = widget, data = data)
+            widget <- .add_theme_dependency(widget = widget, data = data)
+            widget <- .add_dataloader_dependency(widget = widget, data = data)
+            widget <- .add_responsive_dependency(widget = widget, data = data)
+            
             style_dep <- htmltools::htmlDependency(
               name = "amcharts_style",
-              version = version,
+              version = yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))$amcharts_version,
               src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
-              stylesheet = "style.css"
-            )
+              stylesheet = "style.css")
             
             widget$dependencies[[length(widget$dependencies)+1]] <- style_dep
             
@@ -150,154 +180,219 @@ setMethod(f = "plot", signature = "AmCharts",
           })
 
 #' Add dependency for chart type
+#' @import yaml
 #' @noRd
-dependency_chartType <- function(widget, data, type, version)
+#' 
+.add_type_dependency <- function(widget, data, version,
+                                 type = c("funnel", "gantt", "gauge", "pie",
+                                          "radar", "serial", "stock", "xy"))
 {
-  jsFiles <- switch(type,
-                    "funnel" = "funnel.js",
-                    "gantt" = "gantt.js",
-                    "gauge" = "gauge.js",
-                    "pie" = "pie.js",
-                    "radar" = "radar.js",
-                    "serial" = "serial.js",
-                    "stock" = "amstock.js",
-                    "xy" = "xy.js",
-                    stop("type error"))
+  type <- match.arg(type)
+  if (type == "stock") type <- "amstock" # modification temporaire
+  file_js <- paste0(type, ".js")
   
-  if (type %in% c("gantt", "stock")) {
-    jsFiles <- c("serial.js", jsFiles)
-  } else {}
+  if (type %in% c("gantt", "amstock")) file_js <- c("serial.js", file_js)
   
-  type_dep <- htmltools::htmlDependency(
-    name = paste0("amcharts_type", type),
-    version = version,
-    src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
-    script = jsFiles
-  )
+  type_dep <- htmltools::htmlDependency(name = paste0("amcharts_type_", type),
+                                        # name = paste0("amcharts_type", type),
+                                        version = yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))$amcharts_version,
+                                        src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
+                                        script = file_js)
   
-  if (length(widget$dependencies) == 0) {
-    widget$dependencies <- list()
-  } else {}
+  if (length(widget$dependencies) == 0) widget$dependencies <- list()
   
   widget$dependencies[[length(widget$dependencies)+1]] <- type_dep
-  widget
+  
+  return (widget)
 }
 
 #' Add dependency for export
 #' @noRd
-dependency_addExport <- function(widget, data, version)
+.add_export_dependency <- function(widget, data)
 {
   cond <- exists("chartData", where = data) &&
     exists("export", where = data$chartData) &&
     data$chartData$export$enabled
   
-  if (cond) {
-    export_dep <- htmltools::htmlDependency(
-      name = "amcharts_plugins_export",
-      version = version,
-      src = c(file = system.file("htmlwidgets/lib/plugins/export", package = "rAmCharts")),
-      stylesheet = "export.css",
-      script = "export.min.js"
-    )
-    
-    if (length(widget$dependencies) == 0) {
-      widget$dependencies <- list()
-    } else {}
-    
-    widget$dependencies[[length(widget$dependencies)+1]] <- export_dep
-    
-  } else {}
+  if (cond) widget <- add_export_dependency(widget)
   
-  widget
+  return (widget)
 }
+
+
+#' @title Add the export dependency to an htmlwidget
+#' 
+#' @description Add the 'export' dependency to an htmlwidget.
+#' You can only manipulate the htmlwidget if you call the method 'plot' with an rAmChart.
+#' 
+#' @param widget An htmlwidget.
+#'
+#' @return Return the updated widget with the 'export' dependency.
+#' 
+#' @export
+#' 
+add_export_dependency <- function (widget)
+{
+  # Load the configuration yaml file into list
+  conf_list <- yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))
+  
+  export_dep <- htmltools::htmlDependency(name = conf_list$plugins$export$name,
+                                          version = conf_list$amcharts_version,
+                                          src = system.file("htmlwidgets/lib/plugins/export", package = "rAmCharts"),
+                                          stylesheet = conf_list$plugins$export$stylesheet,
+                                          script = conf_list$plugins$export$script)
+  
+  if (length(widget$dependencies) == 0)
+    widget$dependencies <- list()
+  
+  widget$dependencies[[length(widget$dependencies)+1]] <- export_dep
+  
+  return (widget)
+}
+
+
 
 #' Add theme
 #' @noRd
-dependency_addTheme <- function(widget, data, theme, version)
+.add_theme_dependency <- function(widget, data)
 {
   cond <- exists("chartData", where = data) &&
     exists("theme", where = data$chartData) &&
+    length(data$chartData$theme) &&
     (data$chartData$theme != "default")
   
   if (cond) {
-    theme_dep <- htmltools::htmlDependency(
-      name = paste0("amcharts_themes_", theme),
-      version = version,
-      src = c(file = system.file("htmlwidgets/lib/themes", package = "rAmCharts")),
-      script = switch(theme,
-                      "light" = "light.js",
-                      "patterns" = "patterns.js",
-                      "default" = "",
-                      "dark" = "dark.js",
-                      "chalk" = "chalk.js",
-                      stop("[plot]: invalid theme")
-      )
-    )
-    
-    if (length(widget$dependencies) == 0) {
-      widget$dependencies <- list()
-    } else {}
-    
-    widget$dependencies[[length(widget$dependencies) + 1]] <- theme_dep
-    
-  } else {}
+    theme_js <- switch(data$chartData$theme,
+                       "light" = "light.js",
+                       "patterns" = "patterns.js",
+                       "dark" = "dark.js",
+                       "chalk" = "chalk.js",
+                       stop("[plot]: invalid theme"))
+    widget <- add_theme_dependency(widget = widget, theme_js = theme_js)
+  } else {
+    # Nothing to do, the condition is FALSE
+  }
   
-  widget
+  return (widget)
+}
+#' @title Add theme dependency
+#' 
+#' @description Add the 'theme' dependency to an htmlwidget.
+#' You can only manipulate the htmlwidget if you call the method 'plot' with an rAmChart.
+#' 
+#' @param widget An htmlwidget.
+#' @param theme_js A character indicating the JS file dependency.
+#'
+#' @return Return the updated htmlwidget.
+#' 
+#' @examples
+#' \donttest{
+#' library(pipeR)
+#' amPlot(1:10, theme = "dark") %>>% plot() %>>% add_theme_dependency("light.js")
+#' }
+#' 
+#' @export
+#' 
+add_theme_dependency <- function (widget, theme_js = c("light.js", "patterns.js", "dark.js", "chalk.js"))
+{
+  # Load the configuration yaml file into list
+  conf_list <- yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))
+  
+  theme_dep <- htmltools::htmlDependency(name = paste0("amcharts_themes_", theme_js),
+                                         version = conf_list$amcharts_version,
+                                         src = system.file("htmlwidgets/lib/themes", package = "rAmCharts"),
+                                         script = theme_js)
+  
+  if (length(widget$dependencies) == 0)
+    widget$dependencies <- list()
+  
+  widget$dependencies[[length(widget$dependencies) + 1]] <- theme_dep
+  
+  return (widget)
 }
 
 #' Add dataloader feature
 #' @noRd
-dependency_addDataLoader <- function(widget, data, version)
+.add_dataloader_dependency <- function(widget, data)
 {
-  cond <- ((exists("chartData", where = data) &&
-    exists("dataLoader", where = data$chartData)) || 
-      (exists("chartData", where = data) &&
-         any(sapply(data$chartData$dataSets, function(x){exists("dataLoader", where = x)}))))
+  cond1 <- exists("chartData", where = data) &&
+    exists("dataLoader", where = data$chartData)
+  cond2 <- exists("chartData", where = data) &&
+    any(sapply(X = data$chartData$dataSets, FUN = exists, x = "dataLoader"))
   
-  if (cond) {
-    dataloader_dep <- htmltools::htmlDependency(
-      name = "amcharts_dataloader",
-      version = version,
-      src = c(file = system.file("htmlwidgets/lib/plugins/dataloader", package = "rAmCharts")),
-      script = "dataloader.min.js"
-    )
-    
-    if (length(widget$dependencies) == 0) {
-      widget$dependencies <- list()
-    } else {}
-    
-    widget$dependencies[[length(widget$dependencies) + 1]] <- dataloader_dep
-    
-  } else {}
+  if (cond1 || cond2) widget <- add_dataloader_dependency(widget = widget)
   
-  widget
+  return (widget)
 }
+#' @title Add dataloader dependency
+#' 
+#' @description Add the 'dataloader' dependency to an htmlwidget.
+#' You can only manipulate the htmlwidget if you call the method 'plot' with an rAmChart.
+#' 
+#' @param widget An htmlwidget
+#'
+#' @return Return the updated htmlwidget.
+#' 
+#' @export
+#'
+add_dataloader_dependency <- function (widget)
+{
+  # Load the configuration yaml file into list
+  conf_list <- yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))
+  
+  dataloader_dep <- htmltools::htmlDependency(name = conf_list$plugins$dataloader$name,
+                                              version = conf_list$amcharts_version,
+                                              src = system.file("htmlwidgets/lib/plugins/responsive", package = "rAmCharts"),
+                                              script = conf_list$plugins$dataloader$script)
+  
+  if (length(widget$dependencies) == 0) widget$dependencies <- list()
+  
+  widget$dependencies[[length(widget$dependencies) + 1]] <- dataloader_dep
+  
+  return (widget)
+}
+
+
 
 #' Add responsive feature
 #' @noRd
-dependency_addResponsive <- function(widget, data, version)
+.add_responsive_dependency <- function(widget, data, version)
 {
-  cond <- exists("chartData", where = data) &&
-    exists("responsive", where = data$chartData)
+  cond <- exists("chartData", where = data) && exists("responsive", where = data$chartData)
   
-  if (cond) {
-    responsive_dep <- htmltools::htmlDependency(
-      name = "amcharts_responsive",
-      version = version,
-      src = c(file = system.file("htmlwidgets/lib/plugins/responsive", package = "rAmCharts")),
-      script = "responsive.min.js"
-    )
-    
-    if (length(widget$dependencies) == 0) {
-      widget$dependencies <- list()
-    } else {}
-    
-    widget$dependencies[[length(widget$dependencies) + 1]] <- responsive_dep
-    
-  } else {}
+  if (cond) widget <- add_responsive_dependency
   
-  widget
+  return (widget)
 }
+#' @title Add responsive dependency
+#' 
+#' @description Add the 'responsive' dependency to an htmlwidget.
+#' You can only manipulate the htmlwidget if you call the method 'plot' with an rAmChart.
+#' 
+#' @param widget An htmlwidget.
+#'
+#' @return Return an updated htmlwidget with the dependency.
+#' 
+#' @export
+#'
+add_responsive_dependency <- function(widget)
+{
+  # Load the configuration yaml file into list
+  conf_list <- yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))
+  
+  responsive_dep <- htmltools::htmlDependency(name = conf_list$plugins$responsive$name,
+                                              version = conf_list$amcharts_version,
+                                              src = system.file("htmlwidgets/lib/plugins/responsive", package = "rAmCharts"),
+                                              script = conf_list$plugins$responsive$script)
+  
+  if (length(widget$dependencies) == 0) widget$dependencies <- list()
+  
+  widget$dependencies[[length(widget$dependencies) + 1]] <- responsive_dep
+  
+  return (widget)
+}
+
+
 
 #' Substitue listeners from a single chart object
 #' @param chart \code{list} of chart properties.
@@ -340,7 +435,7 @@ substituteMultiListeners <- function(chart, obj)
   if (exists(obj, where = chart)) {
     
     # which element has listener(s) ?
-    (cond <- lapply(chart[[eval(obj)]], function(x) "listeners" %in% names(x)))
+    cond <- lapply(chart[[eval(obj)]], function(x) "listeners" %in% names(x))
     indices <- which(unlist(cond))
     
     if (length(indices)) {

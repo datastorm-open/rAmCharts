@@ -32,17 +32,15 @@ NULL
 #' 
 #' 
 setClass("AmStockChart", contains = "AmObject",
-         representation = representation(
-           balloon = "list",
-           comparedDataSets = "list",
-           dataSets = "list",
-           dataSetSelector = "list",
-           mainDataSet = "list",
-           panels = "list",
-           periodSelector = "list",
-           theme = "character",
-           type = "character"
-         ),
+         representation = representation(balloon = "list",
+                                         comparedDataSets = "list",
+                                         dataSets = "list",
+                                         dataSetSelector = "list",
+                                         mainDataSet = "list",
+                                         panels = "list",
+                                         periodSelector = "list",
+                                         theme = "character",
+                                         type = "character"),
          validity = function(object)
          {
            if (object@type != "stock") {
@@ -77,8 +75,10 @@ setClass("AmStockChart", contains = "AmObject",
 #' @return An object of class \linkS4class{AmStockChart}.
 #' 
 #' @examples
+#' \donttest{
 #' # --- method 'initialize'
 #' new("AmStockChart", theme = "dark")
+#' }
 #' 
 #' @rdname AmStockChart
 #' 
@@ -90,30 +90,22 @@ setMethod(f = "initialize", signature = "AmStockChart",
                                 panels, periodSelector, theme, ...)
           {
             .Object@type = "stock"
-            if (!missing(balloon)) {
+            if (!missing(balloon))
               .Object <- setBalloon(.Object = .Object, amBalloon = balloon)
-            } else {}
-            if (!missing(comparedDataSets)) {
+            if (!missing(comparedDataSets))
               .Object <- setComparedDataSets(.Object = .Object, comparedDataSets = comparedDataSets)
-            } else {}
-            if (!missing(dataSets)) {
+            if (!missing(dataSets))
               .Object <- setDataSets(.Object = .Object, dataSets = dataSets)
-            } else {}
-            if (!missing(dataSetSelector)) {
+            if (!missing(dataSetSelector))
               .Object <- setDataSetSelector(.Object = .Object, dataSetSelector = dataSetSelector)
-            } else {}
-            if (!missing(mainDataSet)) {
+            if (!missing(mainDataSet))
               .Object <- setMainDataSet(.Object = .Object, mainDataSet = mainDataSet)
-            } else {}
-            if (!missing(panels)) {
+            if (!missing(panels))
               .Object <- setPanels(.Object = .Object, panels = panels)
-            } else {}
-            if (!missing(periodSelector)) {
+            if (!missing(periodSelector))
               .Object <- setPeriodSelector(.Object = .Object, periodSelector = periodSelector)
-            } else {}
-            if (!missing(theme)) {
+            if (!missing(theme))
               .Object@theme <- theme
-            } else {}
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
@@ -121,9 +113,10 @@ setMethod(f = "initialize", signature = "AmStockChart",
 
 #' @rdname AmStockChart
 #' @examples
+#' \donttest{
 #' # --- constructor
 #' amStockChart()
-#' 
+#' }
 #' @export
 #' 
 amStockChart <- function(balloon, comparedDataSets, dataSets,
@@ -131,31 +124,24 @@ amStockChart <- function(balloon, comparedDataSets, dataSets,
                          panels, periodSelector, theme, ...)
 {
   .Object <- new("AmStockChart")
-  if (!missing(balloon)) {
+  if (!missing(balloon))
     .Object <- setBalloon(.Object = .Object, amBalloon = balloon)
-  } else {}
-  if (!missing(comparedDataSets)) {
+  if (!missing(comparedDataSets))
     .Object <- setComparedDataSets(.Object = .Object, comparedDataSets = comparedDataSets)
-  } else {}
-  if (!missing(dataSets)) {
+  if (!missing(dataSets))
     .Object <- setDataSets(.Object = .Object, dataSets = dataSets)
-  } else {}
-  if (!missing(dataSetSelector)) {
+  if (!missing(dataSetSelector))
     .Object <- setDataSetSelector(.Object = .Object, dataSetSelector = dataSetSelector)
-  } else {}
-  if (!missing(mainDataSet)) {
+  if (!missing(mainDataSet))
     .Object <- setMainDataSet(.Object = .Object, mainDataSet = mainDataSet)
-  } else {}
-  if (!missing(panels)) {
+  if (!missing(panels))
     .Object <- setPanels(.Object = .Object, panels = panels)
-  } else {}
-  if (!missing(periodSelector)) {
+  if (!missing(periodSelector))
     .Object <- setPeriodSelector(.Object = .Object, periodSelector = periodSelector)
-  } else {}
-  if (!missing(theme)) {
+  if (!missing(theme))
     .Object@theme <- theme
-  } else {}
   .Object <- setProperties(.Object, ...)
+  
   validObject(.Object)
   return(.Object)
 }
@@ -169,52 +155,24 @@ setMethod(f = "listProperties", signature = "AmStockChart",
           definition = function(.Object)
           {
             ls <- callNextMethod()
-            if (length(.Object@balloon)) {
+            if (length(.Object@balloon))
               ls <- rlist::list.append(ls, balloon = .Object@balloon)
-            } else {}
-            if (length(.Object@comparedDataSets)) {
+            if (length(.Object@comparedDataSets))
               ls <- rlist::list.append(ls, comparedDataSets = .Object@comparedDataSets)
-            } else {}
-            if (length(.Object@dataSets)) {
+            if (length(.Object@dataSets))
               ls <- rlist::list.append(ls, dataSets = .Object@dataSets)
-            } else {}
-            if (length(.Object@dataSetSelector)) {
+            if (length(.Object@dataSetSelector))
               ls <- rlist::list.append(ls, dataSetSelector = .Object@dataSetSelector)
-            } else {}
-            if (length(.Object@mainDataSet)) {
+            if (length(.Object@mainDataSet))
               ls <- rlist::list.append(ls, mainDataSet = .Object@mainDataSet)
-            } else {}
-            if (length(.Object@panels)) {
+            if (length(.Object@panels))
               ls <- rlist::list.append(ls, panels = .Object@panels)
-            } else {}
-            if (length(.Object@periodSelector)) {
+            if (length(.Object@periodSelector))
               ls <- rlist::list.append(ls, periodSelector = .Object@periodSelector)
-            } else {}
-            if (length(.Object@type)) {
+            if (length(.Object@type))
               ls <- rlist::list.append(ls, type = .Object@type)
-            } else {}
-            if (length(.Object@theme)) {
+            if (length(.Object@theme))
               ls <- rlist::list.append(ls, theme = .Object@theme)
-            } else {}
+            
             return(ls)
-          })
-
-#' @title Visualize AmStockChart with show
-#' @description Display the object in the console
-#' 
-#' @param object \linkS4class{AmStockChart}
-#' 
-#' @import knitr
-#' 
-setMethod(f = "show", signature = "AmChart",
-          definition = function(object)
-          {
-            if (length(object@type)) {
-              chart <- plot(object)
-              if (isTRUE(getOption('knitr.in.progress'))) knitr::knit_print(chart)
-              else print(chart)
-              
-            } else {
-              print(object)
-            }
           })
