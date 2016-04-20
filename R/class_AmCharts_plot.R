@@ -168,15 +168,14 @@ setMethod(f = "plot", signature = "AmCharts",
             widget <- .add_dataloader_dependency(widget = widget, data = data)
             widget <- .add_responsive_dependency(widget = widget, data = data)
             
-            style_dep <- htmltools::htmlDependency(
-              name = "amcharts_style",
-              version = yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))$amcharts_version,
-              src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
-              stylesheet = "style.css")
+            style_dep <- htmltools::htmlDependency(name = "amcharts_style",
+                                                   version = yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))$amcharts_version,
+                                                   src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
+                                                   stylesheet = "style.css")
             
             widget$dependencies[[length(widget$dependencies)+1]] <- style_dep
             
-            widget
+            return (widget) 
           })
 
 #' Add dependency for chart type
@@ -433,13 +432,11 @@ substituteMultiListeners <- function(chart, obj)
   indices <- NULL
   listeners_ls <- NULL
   if (exists(obj, where = chart)) {
-    
     # which element has listener(s) ?
     cond <- lapply(chart[[eval(obj)]], function(x) "listeners" %in% names(x))
     indices <- which(unlist(cond))
     
     if (length(indices)) {
-      
       # for element that have listener(s)
       listeners_ls <- lapply(indices, function(i) {
         chart_obji <- chart[[eval(obj)]][[i]]
@@ -449,10 +446,8 @@ substituteMultiListeners <- function(chart, obj)
       })
       
       # reformat data for JavaScript
-      if (length(indices) == 1) {
+      if (length(indices) == 1)
         indices <- list(indices)
-      } else {}
-      
     } else {}
     
   } else {}

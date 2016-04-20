@@ -1,11 +1,17 @@
 #' @include utils_classUnion.R
 NULL
 
+
+
 #' @param amBalloon \linkS4class{AmBalloon}.
 #' Argument for method \code{setBalloon}.
 #' @examples
-#' setBalloon(.Object = amStockChart(), gridPosition = "start")
-#' # ---
+#' library(pipeR)
+#' 
+#' \donttest{
+#' # Dummy example
+#' amStockChart() %>>% setBalloon(gridPosition = "start")
+#' }
 #' @rdname AmStockChart
 setMethod(f = "setBalloon", signature = c("AmStockChart", "AmBalloonOrMissing"),
           definition = function(.Object, amBalloon = NULL, ...)
@@ -27,8 +33,10 @@ setMethod(f = "setBalloon", signature = c("AmStockChart", "AmBalloonOrMissing"),
 #' If there is no specified value, default value of CategoryAxis class will be used.
 #' you should get this axis from the chart and set properties to this object.
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")
-#' # ---
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setCategoryAxesSettings", def = function(.Object, ...) {standardGeneric("setCategoryAxesSettings")})
@@ -46,8 +54,10 @@ setMethod(f = "setCategoryAxesSettings", signature = c("AmStockChart"),
 #' you should call stockChart.validateNow() method.
 #' If there is no specified value, default value of ChartCursor class will be used.
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' setChartCursorSettings(.Object = amStockChart(), oneBallOnly = TRUE)
-#' # ---
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setChartCursorSettings", def = function(.Object, ...) {standardGeneric("setChartCursorSettings")})
@@ -65,6 +75,8 @@ setMethod(f = "setChartCursorSettings", signature = c("AmStockChart"),
 #' you should call stockChart.validateNow() method in order for it to work.
 #' If there is no default value specified, default value of ChartScrollbar class will be used.
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' amchart <- setChartScrollbarSettings(.Object = amStockChart(), enabled = TRUE)
 #' print(amchart)
 #' 
@@ -72,7 +84,7 @@ setMethod(f = "setChartCursorSettings", signature = c("AmStockChart"),
 #' chartScrollbarSettings_obj <- chartScrollbarSettings()
 #' setChartScrollbarSettings(.Object = amStockChart(),
 #'                           chartScrollbarSettings = chartScrollbarSettings_obj)
-#' # ---
+#' }
 #' @rdname AmStockChart
 #' @export
 #' 
@@ -96,8 +108,11 @@ setMethod(f = "setChartScrollbarSettings", signature = c("AmStockChart", "ChartS
 # > @comparedDataSets : setters ####
 
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' comparedDataSets_ls <- list(dataSet(compared = TRUE), dataSet(compared = TRUE))
 #' setComparedDataSets(.Object = amStockChart(), comparedDataSets = comparedDataSets_ls)
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setComparedDataSets", def = function(.Object, comparedDataSets) {standardGeneric("setComparedDataSets")})
@@ -105,7 +120,7 @@ setGeneric(name = "setComparedDataSets", def = function(.Object, comparedDataSet
 setMethod(f = "setComparedDataSets", signature = c("AmStockChart"),
           definition = function(.Object, comparedDataSets)
           {
-            rightClassElements <- prod(sapply(comparedDataSets, function(element) {is(element, "DataSet")}))
+            rightClassElements <- all(sapply(comparedDataSets, function(element) {is(element, "DataSet")}))
             if (!rightClassElements) {
               stop("[setComparedDataSets]: each element of comparedDataSets must be of class DataSet")
             } else {}
@@ -117,8 +132,10 @@ setMethod(f = "setComparedDataSets", signature = c("AmStockChart"),
 
 #' @param dataSet \linkS4class{DataSet}.
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' addComparedDataSet(.Object = amStockChart(), compared = TRUE)
-#' # ---
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "addComparedDataSet", def = function(.Object, dataSet = NULL, ...) {standardGeneric("addComparedDataSet")})
@@ -139,9 +156,11 @@ setMethod(f = "addComparedDataSet", signature = c("AmStockChart", "DataSetOrMiss
           })
 
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' dataSets_ls <- list(dataSet(compared = FALSE), dataSet(compared = FALSE))
 #' setDataSets(.Object = amStockChart(), dataSets = dataSets_ls)
-#' # ---
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setDataSets", def = function(.Object, dataSets) {standardGeneric("setDataSets")})
@@ -149,7 +168,7 @@ setGeneric(name = "setDataSets", def = function(.Object, dataSets) {standardGene
 setMethod(f = "setDataSets", signature = c("AmStockChart"),
           definition = function(.Object, dataSets)
           {
-            rightClassElements <- prod(sapply(dataSets, function(element) {is(element, "DataSet")}))
+            rightClassElements <- all(sapply(dataSets, function(element) {is(element, "DataSet")}))
             if (!rightClassElements) {
               stop("[setDataSets]: each element of dataSets must be of class DataSet")
             } else {}
@@ -160,11 +179,13 @@ setMethod(f = "setDataSets", signature = c("AmStockChart"),
 
 
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' addDataSet(.Object = amStockChart(), compared = FALSE)
 #' # equivalent to:
 #' dataSet_obj <- dataSet(compared = FALSE)
 #' addDataSet(.Object = amStockChart(), dataSet = dataSet_obj)
-#' # ---
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "addDataSet", def = function(.Object, dataSet = NULL, ...) {standardGeneric("addDataSet")})
@@ -187,13 +208,15 @@ setMethod(f = "addDataSet", signature = c("AmStockChart", "DataSetOrMissing"),
 #' @details You can add it if you have more than one data set and want users
 #' to be able to select/compare them.
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' print(setDataSetSelector(.Object = amStockChart(), width = 180))
 #' 
 #' # equivalent to:
 #' dataSetSelector_obj <- dataSetSelector(width = 180)
 #' print(setDataSetSelector(.Object = amStockChart(),
 #'                          dataSetSelector = dataSetSelector_obj))
-#' 
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setDataSetSelector", def = function(.Object, dataSetSelector = NULL, ...) {standardGeneric("setDataSetSelector")})
@@ -213,7 +236,10 @@ setMethod(f = "setDataSetSelector", signature = c("AmStockChart"),
 
 
 #' @examples
-#' print(setExport(.Object = amStockChart()))
+#' \donttest{
+#' # Dummy example
+#' setExport(.Object = amStockChart())
+#' }
 #' @rdname initialize-AmChart
 #' 
 setMethod(f = "setExport", signature = c("AmStockChart"),
@@ -225,7 +251,10 @@ setMethod(f = "setExport", signature = c("AmStockChart"),
           })
 
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' setLegendSettings(.Object = amStockChart(), equalWidths = TRUE)
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setLegendSettings", def = function(.Object, ...) {standardGeneric("setLegendSettings")})
@@ -239,7 +268,10 @@ setMethod(f = "setLegendSettings", signature = c("AmStockChart"),
           })
 
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' setMainDataSet(.Object = amStockChart(), showInCompare = TRUE)
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setMainDataSet", def = function(.Object, dataSet = NULL, ...) {standardGeneric("setMainDataSet")})
@@ -259,8 +291,11 @@ setMethod(f = "setMainDataSet", signature = c("AmStockChart", "DataSetOrMissing"
           })
 
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' panels_ls <- list(stockPanel(compared = TRUE), stockPanel(compared = TRUE))
 #' setPanels(.Object = amStockChart(), panels = panels_ls)
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setPanels", def = function(.Object, panels) {standardGeneric("setPanels")})
@@ -268,7 +303,7 @@ setGeneric(name = "setPanels", def = function(.Object, panels) {standardGeneric(
 setMethod(f = "setPanels", signature = c("AmStockChart", "list"),
           definition = function(.Object, panels)
           {
-            rightClassElements <- prod(sapply(panels, function(element) {is(element, "StockPanel")}))
+              rightClassElements <- all(sapply(panels, function(element) {is(element, "StockPanel")}))
             if (!rightClassElements) {
               stop("[setPanels]: each element of panels must be of class Panel")
             } else {}
@@ -279,10 +314,13 @@ setMethod(f = "setPanels", signature = c("AmStockChart", "list"),
 
 #' @param panel \linkS4class{StockPanel}.
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' addPanel(.Object = amStockChart(), allowTurningOff = TRUE)
 #' # equivalent to:
 #' panel_obj <- panel(allowTurningOff = TRUE)
 #' addPanel(.Object = amStockChart(), panel = panel_obj)
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "addPanel", def = function(.Object, panel = NULL, ...) {standardGeneric("addPanel")})
@@ -301,7 +339,10 @@ setMethod(f = "addPanel", signature = c("AmStockChart", "StockPanelOrMissing"),
           })
 
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' setPanelsSettings(.Object = amStockChart(), backgroundAlpha = 0)
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setPanelsSettings", def = function(.Object, ...) {standardGeneric("setPanelsSettings")})
@@ -315,7 +356,10 @@ setMethod(f = "setPanelsSettings", signature = c("AmStockChart"),
           })
 
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' setPeriodSelector(.Object = amStockChart(), dateFormat = "DD-MM-YYYY")
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setPeriodSelector", def = function(.Object, periodSelector = NULL, ...) {standardGeneric("setPeriodSelector")})
@@ -334,7 +378,10 @@ setMethod(f = "setPeriodSelector", signature = c("AmStockChart", "PeriodSelector
           })
 
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' setStockEventsSettings(.Object = amStockChart(), backgroundAlpha = 1)
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setStockEventsSettings", def = function(.Object, ...) {standardGeneric("setStockEventsSettings")})
@@ -348,7 +395,10 @@ setMethod(f = "setStockEventsSettings", signature = c("AmStockChart"),
           })
 
 #' @examples
+#' \donttest{
+#' # Dummy example
 #' setValueAxesSettings(.Object = amStockChart(), autoGridCount = "TRUE")
+#' }
 #' @rdname AmStockChart
 #' @export
 setGeneric(name = "setValueAxesSettings", def = function(.Object, ...) {standardGeneric("setValueAxesSettings")})

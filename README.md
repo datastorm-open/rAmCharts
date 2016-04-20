@@ -18,7 +18,7 @@ The version 2.0.0 is available on CRAN:
 install.packages("rAmCharts")
 ```
 
-To install the "dev version" (v2.0.1), run the following code lines:
+To install the "dev version" (v2.0.2), run the following code lines:
 
 ```{r, eval = FALSE}
 if (!require(devtools)) {
@@ -32,6 +32,7 @@ devtools::install_github("datastorm-open/rAmCharts")
 
 * Version 1.1.2 is based on [AmCharts][url_amcharts] v3.17.2
 * Version 2.0.0 is based on [AmCharts][url_amcharts] v3.18.2
+* Version 2.0.2 is based on [AmCharts][url_amcharts] v3.20.3
 
 ### Known issues
 

@@ -688,7 +688,10 @@ addValueAxis(.Object = amSerialChart(), valueAxis = valueAxis_obj)
 setValueAxis(.Object = amGanttChart())
 setValueAxis(.Object = amGanttChart(), type = "date")
 }
-print(setExport(.Object = amStockChart()))
+\donttest{
+# Dummy example
+setExport(.Object = amStockChart())
+}
 }
 \seealso{
 Refer to \url{http://docs.amcharts.com/3/javascriptcharts/}.

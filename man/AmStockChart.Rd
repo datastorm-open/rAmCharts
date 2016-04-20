@@ -191,12 +191,22 @@ new("AmStockChart", theme = "dark")
 # --- constructor
 amStockChart()
 }
-setBalloon(.Object = amStockChart(), gridPosition = "start")
-# ---
+library(pipeR)
+
+\donttest{
+# Dummy example
+amStockChart() \%>>\% setBalloon(gridPosition = "start")
+}
+\donttest{
+# Dummy example
 setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")
-# ---
+}
+\donttest{
+# Dummy example
 setChartCursorSettings(.Object = amStockChart(), oneBallOnly = TRUE)
-# ---
+}
+\donttest{
+# Dummy example
 amchart <- setChartScrollbarSettings(.Object = amStockChart(), enabled = TRUE)
 print(amchart)
 
@@ -204,37 +214,72 @@ print(amchart)
 chartScrollbarSettings_obj <- chartScrollbarSettings()
 setChartScrollbarSettings(.Object = amStockChart(),
                           chartScrollbarSettings = chartScrollbarSettings_obj)
-# ---
+}
+\donttest{
+# Dummy example
 comparedDataSets_ls <- list(dataSet(compared = TRUE), dataSet(compared = TRUE))
 setComparedDataSets(.Object = amStockChart(), comparedDataSets = comparedDataSets_ls)
+}
+\donttest{
+# Dummy example
 addComparedDataSet(.Object = amStockChart(), compared = TRUE)
-# ---
+}
+\donttest{
+# Dummy example
 dataSets_ls <- list(dataSet(compared = FALSE), dataSet(compared = FALSE))
 setDataSets(.Object = amStockChart(), dataSets = dataSets_ls)
-# ---
+}
+\donttest{
+# Dummy example
 addDataSet(.Object = amStockChart(), compared = FALSE)
 # equivalent to:
 dataSet_obj <- dataSet(compared = FALSE)
 addDataSet(.Object = amStockChart(), dataSet = dataSet_obj)
-# ---
+}
+\donttest{
+# Dummy example
 print(setDataSetSelector(.Object = amStockChart(), width = 180))
 
 # equivalent to:
 dataSetSelector_obj <- dataSetSelector(width = 180)
 print(setDataSetSelector(.Object = amStockChart(),
                          dataSetSelector = dataSetSelector_obj))
-
+}
+\donttest{
+# Dummy example
 setLegendSettings(.Object = amStockChart(), equalWidths = TRUE)
+}
+\donttest{
+# Dummy example
 setMainDataSet(.Object = amStockChart(), showInCompare = TRUE)
+}
+\donttest{
+# Dummy example
 panels_ls <- list(stockPanel(compared = TRUE), stockPanel(compared = TRUE))
 setPanels(.Object = amStockChart(), panels = panels_ls)
+}
+\donttest{
+# Dummy example
 addPanel(.Object = amStockChart(), allowTurningOff = TRUE)
 # equivalent to:
 panel_obj <- panel(allowTurningOff = TRUE)
 addPanel(.Object = amStockChart(), panel = panel_obj)
+}
+\donttest{
+# Dummy example
 setPanelsSettings(.Object = amStockChart(), backgroundAlpha = 0)
+}
+\donttest{
+# Dummy example
 setPeriodSelector(.Object = amStockChart(), dateFormat = "DD-MM-YYYY")
+}
+\donttest{
+# Dummy example
 setStockEventsSettings(.Object = amStockChart(), backgroundAlpha = 1)
+}
+\donttest{
+# Dummy example
 setValueAxesSettings(.Object = amStockChart(), autoGridCount = "TRUE")
+}
 }
 

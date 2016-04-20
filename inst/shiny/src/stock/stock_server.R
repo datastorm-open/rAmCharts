@@ -2,6 +2,7 @@ output$stock1 <- renderAmCharts({
   data('data_stock1')
   pipeR::pipeline(
     amStockChart(startDuration = 0),
+    setExport(),
     addDataSet(pipeR::pipeline(dataSet(title = 'first data set', categoryField = 'date',
                                        dataProvider = data_stock1$chartData1),
                                addFieldMapping(fromField = 'value', toField = 'value'),
