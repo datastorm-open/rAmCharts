@@ -3,6 +3,17 @@
 # -------------------------------------------------------------
 
 #' @title Random data for example
+#' @description Times Series on 2015-2016, one data by hour
+#' @format Each datasetis a data.table with 21 rows and 4 variables:
+#' \describe{
+#'   \item{date}{vector of datesTimes}
+#'   \item{ts1}{random vector of data}
+#'   \item{ts2}{random vector of data}
+#' }
+#'
+"data_stock_2"
+
+#' @title Random data for example
 #' @description A list containing 4 datasets.
 #' @format Each datasetis a data.table with 21 rows and 4 variables:
 #' \describe{
