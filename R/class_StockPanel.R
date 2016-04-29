@@ -101,46 +101,79 @@ NULL
 #' 
 #' @export
 setClass(Class = "StockPanel", contains = "AmChart",
-          representation = representation(
-            drawOnAxis = "listOrCharacter",
-            stockGraphs = "list",
-            stockLegend = "list"
-         ))
+         representation = representation(
+           drawOnAxis = "listOrCharacter",
+           stockGraphs = "list",
+           stockLegend = "list",
+           title = "character"))
 
 #' @title Initialize a StockPanel
 #' @description Use the constructor to create the object
 #' or update an existing one with the setters.
 #' 
 #' @param .Object \linkS4class{StockPanel}.
+#' 
 #' @param drawOnAxis \linkS4class{ValueAxis}.
 #' Specifies on which value axis user can draw trend lines.
 #' Set drawingIconsEnabled to true if you want drawing icons to be visible.
 #' First value axis will be used if not set here.
 #' You can use a reference to the value axis object or id of value axis.
+#' 
 #' @param stockGraphs \code{list} of \linkS4class{AmGraph}.
 #' Each element must be have been created with stockGraph(*)
+#' 
 #' @param stockLegend \code{list} of \linkS4class{AmLegend}.
 #' Each element must be have been created with stockLegend(*)
+#' 
+#' @template amchart_param
+#' 
 #' @param ... other properties of StockPanel.
 #' 
 #' @return (updated) \linkS4class{StockPanel} with given properties.
 #' 
+#' 
+#' 
 #' @examples
-#' new("StockPanel")
+#' new("StockPanel", title = "Volume")
+#' 
 #' @rdname initialize-StockPanel
 #' @export
+#' 
 setMethod(f = "initialize", signature = "StockPanel",
-          definition = function(.Object, drawOnAxis, stockGraphs, stockLegend, ...)
-          {  
-            if(!missing(drawOnAxis)){
-              .Object <- setDrawOnAxis(.Object, drawOnAxis)
-            }
-            if(!missing(stockGraphs)){
-              .Object <- setStockGraphs(.Object, stockGraphs)
-            }
-            if(!missing(stockLegend)){
-              .Object <- setStockLegend(.Object, stockLegend)
-            }
+          definition = function(.Object,
+                                allLabels, axes, balloon, categoryAxis,
+                                categoryField, chartCursor, chartScrollbar,
+                                creditsPosition, dataProvider, graphs, graph,
+                                guides, legend, theme, title, titles,
+                                trendLines, type, valueAxes,
+                                drawOnAxis, stockGraphs, stockLegend,...)
+          { 
+            # specific setters for "AmChart"
+            if (!missing(allLabels)) .Object <- setAllLabels(.Object, allLabels)
+            if (!missing(axes)) .Object <- setAxes(.Object, axes)
+            if (!missing(balloon)) .Object <- setBalloon(.Object, balloon)
+            if (!missing(categoryAxis)) .Object <- setCategoryAxis(.Object, categoryAxis)
+            if (!missing(categoryField)) .Object<- setCategoryField(.Object, categoryField)
+            if (!missing(creditsPosition)) .Object <- setCreditsPosition(.Object, creditsPosition)
+            if (!missing(chartCursor)) .Object <- setChartCursor(.Object, chartCursor)
+            if (!missing(chartScrollbar)) .Object <- setChartScrollbar(.Object, chartScrollbar)
+            if (!missing(dataProvider)) .Object <- setDataProvider(.Object, dataProvider)
+            if (!missing(graphs)) .Object <- setGraphs(.Object, graphs)
+            if (!missing(graph)) .Object <- setGraph(.Object, graph)
+            if (!missing(guides)) .Object <- setGuides(.Object, guides)
+            if (!missing(legend)) .Object <- setLegend(.Object, legend)
+            if (!missing(theme)) .Object <- setTheme(.Object, theme)
+            if (!missing(title)) .Object@title <- title
+            if (!missing(titles)) .Object <- setTitles(.Object, titles)
+            if (!missing(trendLines)) .Object <- setTrendLines(.Object, trendLines)
+            if (!missing(type)) .Object <- setType(.Object, type)
+            if (!missing(valueAxes)) .Object <- setValueAxes(.Object, valueAxes)
+
+            # specific setters for "StockPanel"
+            if (!missing(drawOnAxis)) .Object <- setDrawOnAxis(.Object, drawOnAxis)
+            if (!missing(stockGraphs)) .Object <- setStockGraphs(.Object, stockGraphs)
+            if (!missing(stockLegend)) .Object <- setStockLegend(.Object, stockLegend)
+            
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
@@ -150,42 +183,33 @@ setMethod(f = "initialize", signature = "StockPanel",
 
 #' @rdname initialize-StockPanel
 #' @examples
-#' stockPanel()
+#' stockPanel(stockLegend = legend(useGraphSettings = TRUE))
 #' @export
-stockPanel <- function(drawOnAxis, stockGraphs, stockLegend, ...){
-  .Object <- new("StockPanel")
-  if (!missing(drawOnAxis)) {
-    .Object <- setDrawOnAxis(.Object, drawOnAxis)
-  } else {}
-  if (!missing(stockGraphs)) {
-    .Object <- setStockGraphs(.Object, stockGraphs)
-  } else {}
-  if (!missing(stockLegend)) {
-    .Object <- setStockLegend(.Object, stockLegend)
-  } else {}
-  .Object <- setProperties(.Object, ...)
+stockPanel <- function(drawOnAxis, stockGraphs, stockLegend, ...) {
+  list_call <- c(list(Class = "StockPanel"), as.list(match.call())[-1])
+  .Object <- do.call(what = "new", list_call)
+  # if (!missing(drawOnAxis)) {
+  #   .Object <- setDrawOnAxis(.Object, drawOnAxis)
+  # } else {}
+  # if (!missing(stockGraphs)) {
+  #   .Object <- setStockGraphs(.Object, stockGraphs)
+  # } else {}
+  # if (!missing(stockLegend)) {
+  #   .Object <- setStockLegend(.Object, stockLegend)
+  # } else {}
+  # .Object <- setProperties(.Object, ...)
   validObject(.Object)
   return(.Object)
 }
 
 #' @rdname initialize-StockPanel
 #' @examples
-#' panel()
+#' panel(creditsPosition = "top-right")
+#' panel(title = "top-right")
 #' @export
-panel <- function(drawOnAxis, stockGraphs, stockLegend, ...){
-  .Object <- new("StockPanel")
-  if (!missing(drawOnAxis)) {
-    .Object <- setDrawOnAxis(.Object, drawOnAxis)
-  } else {}
-  if (!missing(stockGraphs)) {
-    .Object <- setStockGraphs(.Object, stockGraphs)
-  } else {}
-  if (!missing(stockLegend)) {
-    .Object <- setStockLegend(.Object, stockLegend)
-  } else {}
-  .Object <- setProperties(.Object, ...)
-  validObject(.Object)
-  return(.Object)
+panel <- function(drawOnAxis, stockGraphs, stockLegend, ...)
+{
+  do.call(what = "stockPanel", as.list(match.call())[-1])
 }
 
 #' @examples
@@ -195,14 +219,9 @@ setMethod(f = "listProperties", signature = "StockPanel",
            definition = function(.Object)
            { 
              ls <- callNextMethod()
-             if (length(.Object@drawOnAxis)) {
-               ls <- rlist::list.append(ls, drawOnAxis = .Object@drawOnAxis)
-             } else {}
-             if (length(.Object@stockGraphs)) {
-               ls <- rlist::list.append(ls, stockGraphs = .Object@stockGraphs)
-             } else {}
-             if (length(.Object@stockLegend)) {
-               ls <- rlist::list.append(ls, stockLegend = .Object@stockLegend)
-             } else {}
+             if (length(.Object@drawOnAxis)) ls$drawOnAxis <- .Object@drawOnAxis
+             if (length(.Object@stockGraphs)) ls$stockGraphs <- .Object@stockGraphs
+             if (length(.Object@stockLegend)) ls$stockLegend <- .Object@stockLegend
+             if (length(.Object@title)) ls$title <- .Object@title
              return(ls)
            })

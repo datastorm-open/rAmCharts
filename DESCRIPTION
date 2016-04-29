@@ -30,7 +30,6 @@ Depends:
     R (>= 3.2.0)
 Collate:
     'base_data.R'
-    'base_shiny.R'
     'base_startupMessage.R'
     'chart_amBarplot.R'
     'chart_amBoxplot.R'
@@ -87,10 +86,11 @@ Collate:
     'class_StockEvent_setters.R'
     'class_StockPanel_setters.R'
     'class_TrendLine_setters.R'
-    'tools_amOptions.R'
-    'tools_amTests.R'
+    'shiny_examples.R'
     'union_AmCharts.R'
     'utils.R'
+    'utils_amOptions.R'
+    'utils_amTests.R'
 Imports:
     methods,
     htmlwidgets,

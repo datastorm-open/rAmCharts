@@ -215,7 +215,11 @@ amGanttChart <- function(categoryField,
 amXYChart <- function(creditsPosition, dataProvider, graphs, ...)
 {
   object <- amChart(creditsPosition = creditsPosition, dataProvider = dataProvider,
-                     graphs = graphs, type = "xy", ...)
+                    graphs = graphs, type = "xy", ...)
   validObject(object)
   return(object)
 }
+
+
+
+

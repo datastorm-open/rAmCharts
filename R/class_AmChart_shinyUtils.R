@@ -24,10 +24,10 @@ amChartsOutput <- function(outputId, type = NULL, width = "100%", height = "400p
   )
 }
 
-#' @title Tests the class of an exepression.
+#' @title Tests the class of an expression.
 #' @description Only used in 'renderAmCharts'.
 #' @param x expression passed to 'renderAmCharts'.
-#' Either an expression that generates an HTML widget, either an
+#' Either an expression that generates an HTML widget, or an
 #' expression that generates an AmChart.
 #' @details This function has only an internal purpose. Never use it.
 #' @export

@@ -2,13 +2,13 @@
 % Please edit documentation in R/class_AmChart_shinyUtils.R
 \name{controlShinyPlot}
 \alias{controlShinyPlot}
-\title{Tests the class of an exepression.}
+\title{Tests the class of an expression.}
 \usage{
 controlShinyPlot(x)
 }
 \arguments{
 \item{x}{expression passed to 'renderAmCharts'.
-Either an expression that generates an HTML widget, either an
+Either an expression that generates an HTML widget, or an
 expression that generates an AmChart.}
 }
 \description{

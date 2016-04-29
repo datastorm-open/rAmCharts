@@ -55,13 +55,13 @@ setMethod(f = "setResponsive", signature = c("AmCharts", "logicalOrMissing"),
 {
   if (length(object@type)) {
     # cat("Plotting...")
-    chart <- plot(object)
+    chart_widget <- plot(object)
     if (isTRUE(getOption('knitr.in.progress')))
-      knitr::knit_print(chart)
+      knitr::knit_print(chart_widget)
     else
-      print(chart)
+      print(chart_widget)
   } else {
-    cat("Printing...")
+    # cat("Printing...")
     print(object)
   }
 }
@@ -214,7 +214,6 @@ setMethod(f = "plot", signature = "AmCharts",
             widget <- .add_theme_dependency(widget = widget, data = data)
             widget <- .add_dataloader_dependency(widget = widget, data = data)
             widget <- .add_responsive_dependency(widget = widget, data = data)
-            print(widget)
             
             return (widget) 
           })
