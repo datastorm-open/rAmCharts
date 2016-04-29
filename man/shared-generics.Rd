@@ -5,7 +5,6 @@
 \alias{addGuide}
 \alias{setBalloon}
 \alias{setDataProvider}
-\alias{setExport}
 \alias{setGraph}
 \alias{setText}
 \alias{setTitle}
@@ -16,8 +15,6 @@
 setBalloon(.Object, amBalloon = NULL, ...)
 
 setDataProvider(.Object, dataProvider, keepNA = TRUE)
-
-setExport(.Object, enabled = TRUE, ...)
 
 setTitle(.Object, title)
 
@@ -43,8 +40,6 @@ setValueAxis(.Object, valueAxis = NULL, ...)
 \item{keepNA}{\code{logical}, default set to \code{TRUE}.
 Indicates if \code{NULL} values have to be kept or ignored.}
 
-\item{enabled}{\code{logical}, TRUE to display the export button.}
-
 \item{title}{\code{character}.}
 
 \item{type}{\code{character}.}
@@ -69,8 +64,6 @@ Be cautious when using one of these functions since they have several signatures
 setBalloon is shared by AmChart and AmStockChart.
 
 setDataProvider(..) is shared by AmGraph and DataSet.
-
-setExport(...) is Shared by AmChart and AmStockChart.
 
 setTitle(...) is Shared by AmGraph and ValueAxis.
 

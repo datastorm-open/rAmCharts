@@ -27,14 +27,6 @@ setGeneric(name = "setBalloon", def = function(.Object, amBalloon = NULL, ...) {
 #' 
 setGeneric(name = "setDataProvider", def = function(.Object, dataProvider, keepNA = TRUE) {standardGeneric("setDataProvider")})
 
-#' @details setExport(...) is Shared by AmChart and AmStockChart.
-#' @param enabled \code{logical}, TRUE to display the export button.
-#' 
-#' @rdname shared-generics
-#' @export
-#' 
-setGeneric(name = "setExport", def = function(.Object, enabled = TRUE, ...) {standardGeneric("setExport")})
-
 #' @details setTitle(...) is Shared by AmGraph and ValueAxis.
 #' @param title \code{character}.
 #' 

@@ -1,4 +1,4 @@
-#' @include utils_classUnion.R
+#' @include classUnions.R
 NULL
 
 #' @param valueAxis (optional) \linkS4class{ValueAxis}.

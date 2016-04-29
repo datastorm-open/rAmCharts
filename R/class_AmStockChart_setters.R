@@ -1,4 +1,4 @@
-#' @include utils_classUnion.R
+#' @include classUnions.R
 NULL
 
 
@@ -235,20 +235,7 @@ setMethod(f = "setDataSetSelector", signature = c("AmStockChart"),
           })
 
 
-#' @examples
-#' \donttest{
-#' # Dummy example
-#' setExport(.Object = amStockChart())
-#' }
-#' @rdname initialize-AmChart
-#' 
-setMethod(f = "setExport", signature = c("AmStockChart"),
-          definition = function(.Object, enabled = TRUE, ...)
-          {
-            .Object <- setProperties( .Object, export = list(enabled = enabled, ...) )
-            validObject(.Object)
-            return(.Object)
-          })
+
 
 #' @examples
 #' \donttest{

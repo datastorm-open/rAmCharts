@@ -1,19 +1,19 @@
 Package: rAmCharts
 Title: JavaScript Charts API Tool
 Description: API for using 'AmCharts' Library. Based on the 'htmlwidgets'
-    package, it provides a global architecture to generate 'JavaScript' source
-    code for charts. Most of classes in the library have their equivalent in R
-    with S4 classes; for those classes, not all properties have been referenced
-    but can easily be added in the constructors. Complex properties (e.g.
-    'JavaScript' object) can be passed as named list. See examples at <http://
-    datastorm-open.github.io/introduction_ramcharts/>. and <http://www.amcharts.com/> for
+    package, it provides a global architecture to generate 'JavaScript' source code
+    for charts. Most of classes in the library have their equivalent in R with S4
+    classes; for those classes, not all properties have been referenced but can
+    easily be added in the constructors. Complex properties (e.g. 'JavaScript'
+    object) can be passed as named list. See examples at <http:// datastorm-
+    open.github.io/introduction_ramcharts/>. and <http://www.amcharts.com/> for
     more information about the library. The package includes the free version of
     'AmCharts' Library. Its only limitation is that a small link to the web site
     will be displayed in your charts. If you enjoy this library, do not hesitate
     to refer to this page <http://www.amcharts.com/online-store/> to purchase a
     licence, and thus support its creators and get a period of Priority Support.
-    See also <http://www.amcharts.com/about/> for more information about
-    'AmCharts' company.
+    See also <http://www.amcharts.com/about/> for more information about 'AmCharts'
+    company.
 Version: 2.0.2
 Authors@R: c(
     person(given = "Jeffery", family = "Petit", email = "jeffery.petit@datastorm.fr", role = c("aut", "cre")),
@@ -47,17 +47,14 @@ Collate:
     'chart_amRadar.R'
     'chart_amWaterfall.R'
     'chart_amWind.R'
-    'class_AmObject.R'
-    'class_AmBalloon.R'
-    'class_AmChart.R'
-    'class_AmChart_constructors.R'
-    'class_AxisBase.R'
-    'class_CategoryAxis.R'
     'utils_sharedGenerics.R'
+    'class_AmObject.R'
+    'class_AxisBase.R'
     'class_ValueAxis.R'
     'utils_basicClassUnions.R'
     'class_TrendLine.R'
     'class_Title.R'
+    'class_AmChart.R'
     'class_StockPanel.R'
     'class_StockEvent.R'
     'class_PeriodSelector.R'
@@ -71,11 +68,13 @@ Collate:
     'class_ChartCursor.R'
     'class_AmLegend.R'
     'class_AmGraph.R'
-    'utils_classUnion.R'
+    'class_AmBalloon.R'
+    'classUnions.R'
+    'class_AmChart_constructors.R'
+    'class_CategoryAxis.R'
     'class_AmChart_setters.R'
     'class_AmChart_shinyUtils.R'
     'class_AmStockChart.R'
-    'class_AmCharts_plot.R'
     'class_AmStockChart_setters.R'
     'class_AxisBase_setters.R'
     'class_ChartCursor_setters.R'
@@ -90,6 +89,7 @@ Collate:
     'class_TrendLine_setters.R'
     'tools_amOptions.R'
     'tools_amTests.R'
+    'union_AmCharts.R'
     'utils.R'
 Imports:
     methods,

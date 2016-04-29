@@ -15,7 +15,7 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp", 
 #' "triangleDown". Default set to "round".
 #' @param type \code{character}, type of plot. Possible values are : "l" for a line, "sl" 
-#' for a smoothed line, "st" for steps, "p" for points, and "b" for line and points.
+#' for a smoothed line (deprecated), "st" for steps, "p" for points, and "b" for line and points.
 #' Default set to "p".
 #' @param col either a \code{factor} or a \code{character}, default set to "gray".
 #' @param weights \code{numeric}, weights for x/y charts only. Default set to rep(1, x).
@@ -35,6 +35,8 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' @param lty \code{numeric}, line type (dashes).
 #' @param lwd \code{numeric}, line width 
 #' @param ... see \code{\link{amOptions}} for more options.
+#' 
+#' @return Return an Amchart.
 #' 
 #' @seealso 
 #' \itemize{
@@ -56,12 +58,11 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' # notice that by default 'parseDates = FALSE'
 #' 
 #' # 'data.frame'
-#' amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
+#' amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE, legend = TRUE)
 #' 
 #' # 'formula':
 #' amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
 #' 
-#' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' @import data.table
 #' @rdname amPlot
@@ -98,13 +99,19 @@ amPlot.default <- function(x, ...) "Wrong class"
 #' @import pipeR
 #' @export
 #' 
-amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray", 
+amPlot.numeric <- function(x, y,
+                           bullet = c("round","diamond", "square", 
+                                      "bubble",  "yError", "xError",
+                                      "triangleLeft", "triangleRight",
+                                      "triangleUp", "triangleDown"),
+                           type = c("points", "line", "smoothedLine", "step", "both"),
+                           col = "gray", 
                            weights = NULL, precision = 2, id, error, xlab, ylab,
                            lty, cex, lwd, xlim, ylim, ...)
 {
   # check arguments validity
   # ---
-  bullet <- amCheck_bullet(bullet)
+  bullet <- match.arg(bullet)
   if (missing(lty)) lty <- 0
   if (missing(lwd)) lwd <- 1
   
@@ -118,11 +125,13 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     levels(col) <- substr(levels(col), 1, 7)
   }
   
-  if (missing(y)) {
-    # the user plot a simple line or point chart
-    
-    # check (and convert) the type 
-    type <- amCheck_type(type)
+  # check (and convert) the type
+  if (length(type) == 1L && type == "sl") # exception to remove for the next submission
+    type <- "smoothedLine"
+  else 
+    type <- match.arg(type)
+  
+  if (missing(y)) { # the user plot a simple line or point chart
     
     # define the dataProvider
     if (type == "points" && bullet %in% c("xError", "yError")) {
@@ -171,8 +180,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
     
     if (length(x) != length(y)) stop("'x' and 'y' lengths differ")
     
-    # check (and convert) the type 
-    type <- amCheck_type(type, valid = c("p", "l"))
+    type <- match.arg(arg = type, choices = c("points", "line"))
     
     # axes label
     if (missing(xlab)) xlab <- deparse(substitute(x))
@@ -230,7 +238,7 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
       (~ chart)
     
     # since simple line chart has no tooltip, we remove the latter for simple xy line chart
-   # if (type == "line") chart <- setBalloon(.Object = chart, enabled = FALSE)
+    # if (type == "line") chart <- setBalloon(.Object = chart, enabled = FALSE)
     
   } else {
     stop("Error in arguments x or y")
@@ -257,15 +265,22 @@ amPlot.numeric <- function(x, y, bullet = "round", type = "p", col = "gray",
 #' @import pipeR
 #' @export
 #' 
-amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray", 
-                             weights = NULL, precision = 2,
+amPlot.character <- function(x, y,
+                             bullet = c("round","diamond", "square", 
+                                        "bubble",  "yError", "xError",
+                                        "triangleLeft", "triangleRight",
+                                        "triangleUp", "triangleDown"),
+                             type = c("points", "line", "smoothedLine", "step", "both"),
+                             col = "gray", 
+                             weights = NULL,
+                             precision = 2,
                              parseDates = FALSE, dataDateFormat,
                              id, error, xlab, ylab,
                              lty, cex, lwd, xlim, ylim, ...)
 {
   # check arguments validity
   # ---
-  bullet <- amCheck_bullet(bullet)
+  bullet <- match.arg(bullet)
   if (missing(lty)) lty <- 0
   if (missing(lwd)) lwd <- 1
   
@@ -285,7 +300,10 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
     if (length(x) != length(y)) stop("'x' and 'y' lengths differ")
     
     # check (and convert) the type 
-    type <- amCheck_type(type)
+    if (length(type) == 1L && type == "sl") # exception to remove for the next submission
+      type <- "smoothedLine"
+    else 
+      type <- match.arg(type)
     
     # define the dataProvider
     if (type == "points" && bullet %in% c("xError", "yError")) {
@@ -314,11 +332,11 @@ amPlot.character <- function(x, y, bullet = "round", type = "p", col = "gray",
     if (parseDates) {
       stopifnot(!missing(dataDateFormat))
       .testCharacter(dataDateFormat)
-      amSerialChart(categoryField = "cat", precision = precision, dataDateFormat = dataDateFormat) %>>%
-        (~ chart)
+      chart <- amSerialChart(categoryField = "cat",
+                             precision = precision,
+                             dataDateFormat = dataDateFormat)
     } else {
-      amSerialChart(categoryField = "cat", precision = precision) %>>%
-        (~ chart)
+      chart <- amSerialChart(categoryField = "cat", precision = precision)
     }
     
     
@@ -404,7 +422,13 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
     if (length(type) > 1 && length(type) != ncol(x))
       stop("Invalid argument type")
     
-    type <- sapply(type, amCheck_type, valid = c("l", "sl", "st"))
+    type <- sapply(X = type, FUN = function (t) {
+      # check (and convert) the type
+      if (t == "sl") # exception to remove for the next submission
+        return ("smoothedLine")
+      else 
+        return (match.arg(t, c("line", "step")))
+    })
     
     if (length(type) == 1) type <- rep(type, ncol(x))
     
@@ -469,28 +493,6 @@ amPlot.formula <- function (x, data, type = "p", ...)
   amOptions(chart, ...)
 }
 
-amCheck_type <- function(type, valid = c("l", "sl", "st", "p", "b"))
-{
-  .testIn(type, valid)
-  
-  switch(type,
-         "l" = "line",
-         "sl" = "smoothedLine",
-         "st" = "step",
-         "p" = "points",
-         "b" = "both",
-         stop("Invalid type"))
-}
-
-amCheck_bullet <- function (bullet)
-{
-  validBullets <- c("diamond", "square", "bubble", "yError",
-                    "xError", "round", "triangleLeft", "triangleRight",
-                    "triangleUp", "triangleDown")
-  if (!(bullet %in% validBullets)) stop("Invalid bullet name")
-  
-  bullet
-}
 
 getGraph <- function (type, col, bullet, cex, lwd, lty, title)
 {
@@ -587,41 +589,40 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' is automatically linked to the x values of the chart "chart". That is why it makes
 #' sense to give the y argument.
 #' 
-amLines <- function(chart, x = NULL, y = NULL, type, col, title)
+amLines <- function(chart, x = NULL, y = NULL,
+                    type = c("points", "line", "smoothedLine"),
+                    col, title)
 {
   
   
-  if(!is.null(x) && !is.null(y))
-  {
+  if (!is.null(x) && !is.null(y))
     stop("Please use only y, x is deprecated.")
-  }
   
   
-  if(is.null(x))
-  {
-    if(is.null(y))
-    {
+  if (is.null(x)) {
+    if (is.null(y)) {
       stop("y is necessary")
-    }else{
+    } else {
       if (missing(title)) title <- deparse(substitute(y))
       x <- y
     }
   } else {
-    
     if (missing(title)) title <- deparse(substitute(x))
   }
+  
   # check the arguments
   stopifnot(is(chart, "AmChart"))
   .testNumeric(x)
   
-  type <- if (missing(type)) "line"
-  else amCheck_type(type = type, valid = c("l", "p", "sl"))
+  if (length(type) == 1L && type == "sl") # exception to remove for the next submission
+    type <- "smoothedLine"
+  else 
+    type <- match.arg(type)
   
   lineAlpha <- ifelse(type == "points", yes = 0, no = 1)
   
   if (!missing(col)) {
-    .testCharacter(col)
-    .testLength(col, 1)
+    .testCharacterLength1(col)
   } else {
     col <- ""
   }
@@ -648,7 +649,6 @@ amLines <- function(chart, x = NULL, y = NULL, type, col, title)
     dataProvider[[i]][[name]] <- x[i]
     dataProvider[[i]]
   })
-  
   
   balloonText <- paste0("x:<b>[[x]]</b><br>y:<b>[[y]]</b><br>")
   

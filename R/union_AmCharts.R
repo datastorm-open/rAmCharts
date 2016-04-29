@@ -3,13 +3,58 @@ NULL
 
 setClassUnion(name = "AmCharts", members = c("AmChart", "AmStockChart"))
 
+#' @title Setters for AmChart and AmStockChart.
+#' @description These methods can be used both for AmChart and AmStockChart.
+#' There are general for some first-level properties.
+#' @param .Object \linkS4class{AmChart} or \linkS4class{AmStockChart}.
+#' @param enabled \code{logical}, TRUE to display the export button.
+#' @param ... Other properties that can be used depending on the setter.
+#' @rdname amcharts-setters
+#' @export
+#' 
+setGeneric(name = "setExport", def = function(.Object, enabled = TRUE, ...) {standardGeneric("setExport")})
+#' @examples
+#' \donttest{
+#' # Dummy examples
+#' setExport(amPlot(1:10))
+#' setExport(amStockChart())
+#' }
+#' @rdname amcharts-setters
+#' 
+setMethod(f = "setExport", signature = c("AmCharts", "logicalOrMissing"),
+          definition = function(.Object, enabled = TRUE, ...)
+          {
+            .Object <- setProperties( .Object, export = list(enabled = enabled, ...) )
+            validObject(.Object)
+            return(.Object)
+          })
+
+#' @rdname amcharts-setters
+#' @export
+#' 
+setGeneric(name = "setResponsive", def = function(.Object, enabled = TRUE, ...) {standardGeneric("setResponsive")})
+#' @examples
+#' \donttest{
+#' # Dummy examples
+#' setResponsive(amSerialChart())
+#' setResponsive(amStockChart())
+#' }
+#' @rdname amcharts-setters
+setMethod(f = "setResponsive", signature = c("AmCharts", "logicalOrMissing"),
+          definition = function(.Object, enabled = TRUE, ...)
+          {
+            .Object <- setProperties(.Object = .Object, responsive = list(enabled = enabled, ...))
+            validObject(.Object)
+            return(.Object)
+          })
+
 #' Test wether a chart can be plotted (or printed)
 #' @noRd
 #' 
 .plot_or_print <- function (object)
 {
   if (length(object@type)) {
-    cat("Plotting...")
+    # cat("Plotting...")
     chart <- plot(object)
     if (isTRUE(getOption('knitr.in.progress')))
       knitr::knit_print(chart)
@@ -169,6 +214,7 @@ setMethod(f = "plot", signature = "AmCharts",
             widget <- .add_theme_dependency(widget = widget, data = data)
             widget <- .add_dataloader_dependency(widget = widget, data = data)
             widget <- .add_responsive_dependency(widget = widget, data = data)
+            print(widget)
             
             return (widget) 
           })
@@ -177,7 +223,8 @@ setMethod(f = "plot", signature = "AmCharts",
 #' @import yaml
 #' @noRd
 #' 
-.add_type_dependency <- function(widget, data, version,
+.add_type_dependency <- function(widget,
+                                 data,
                                  type = c("funnel", "gantt", "gauge", "pie",
                                           "radar", "serial", "stock", "xy"))
 {
@@ -201,10 +248,10 @@ setMethod(f = "plot", signature = "AmCharts",
   
   # Add stylesheet if necessary
   if (type == "amstock") {
-    style_dep <- htmltools::htmlDependency(name = conf_list$styles$amctockcharts$name,
+    style_dep <- htmltools::htmlDependency(name = conf_list$styles$amstockcharts$name,
                                            version = conf_list$amcharts_version,
                                            src = c(file = system.file("htmlwidgets/lib", package = "rAmCharts")),
-                                           stylesheet = conf_list$styles$amctockcharts$script)
+                                           stylesheet = conf_list$styles$amstockcharts$script)
     widget <- .add_dependency(widget = widget, dependency = style_dep)
   } else {
     # No stylesheet needed
@@ -341,7 +388,7 @@ add_dataloader_dependency <- function (widget)
   
   dataloader_dep <- htmltools::htmlDependency(name = conf_list$plugins$dataloader$name,
                                               version = conf_list$amcharts_version,
-                                              src = system.file("htmlwidgets/lib/plugins/responsive", package = "rAmCharts"),
+                                              src = system.file("htmlwidgets/lib/plugins/dataloader", package = "rAmCharts"),
                                               script = conf_list$plugins$dataloader$script)
   widget <- .add_dependency(widget = widget, dependency = dataloader_dep)
   
@@ -356,7 +403,7 @@ add_dataloader_dependency <- function (widget)
 {
   cond <- exists("chartData", where = data) && exists("responsive", where = data$chartData)
   
-  if (cond) widget <- add_responsive_dependency
+  if (cond) widget <- add_responsive_dependency(widget)
   
   return (widget)
 }
@@ -371,7 +418,7 @@ add_dataloader_dependency <- function (widget)
 #' 
 #' @export
 #'
-add_responsive_dependency <- function(widget)
+add_responsive_dependency <- function (widget)
 {
   # Load the configuration yaml file into list
   conf_list <- yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))

@@ -86,6 +86,7 @@ testthat::test_that("amLines", {
     y1 <- rnorm(100, sd = 10)
     y2 <- rnorm(100, sd = 10)
     y3 <- rnorm(100, sd = 10)
+    chart <- amPlot(x = x, y = y1)
     amPlot(x = x, y = y1) %>>%
       amLines(x = y2, col = "blue") %>>%
       amLines(x = y3, type = "p")

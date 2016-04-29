@@ -1,4 +1,4 @@
-#' @include utils_sharedGenerics.R utils_classUnion.R
+#' @include utils_sharedGenerics.R classUnions.R
 NULL
 
 #' @title Add a Guide for AxisBase

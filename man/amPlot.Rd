@@ -14,11 +14,15 @@ amPlot(x, ...)
 
 \method{amPlot}{default}(x, ...)
 
-\method{amPlot}{numeric}(x, y, bullet = "round", type = "p", col = "gray",
-  weights = NULL, precision = 2, id, error, xlab, ylab, lty, cex, lwd, xlim,
-  ylim, ...)
+\method{amPlot}{numeric}(x, y, bullet = c("round", "diamond", "square",
+  "bubble", "yError", "xError", "triangleLeft", "triangleRight", "triangleUp",
+  "triangleDown"), type = c("points", "line", "smoothedLine", "step", "both"),
+  col = "gray", weights = NULL, precision = 2, id, error, xlab, ylab, lty,
+  cex, lwd, xlim, ylim, ...)
 
-\method{amPlot}{character}(x, y, bullet = "round", type = "p",
+\method{amPlot}{character}(x, y, bullet = c("round", "diamond", "square",
+  "bubble", "yError", "xError", "triangleLeft", "triangleRight", "triangleUp",
+  "triangleDown"), type = c("points", "line", "smoothedLine", "step", "both"),
   col = "gray", weights = NULL, precision = 2, parseDates = FALSE,
   dataDateFormat, id, error, xlab, ylab, lty, cex, lwd, xlim, ylim, ...)
 
@@ -46,7 +50,7 @@ optional if x is an appropriate structure.}
 "triangleDown". Default set to "round".}
 
 \item{type}{\code{character}, type of plot. Possible values are : "l" for a line, "sl" 
-for a smoothed line, "st" for steps, "p" for points, and "b" for line and points.
+for a smoothed line (deprecated), "st" for steps, "p" for points, and "b" for line and points.
 Default set to "p".}
 
 \item{col}{either a \code{factor} or a \code{character}, default set to "gray".}
@@ -88,6 +92,9 @@ By default all numeric columns will be drawn.}
 
 \item{data}{dataset}
 }
+\value{
+Return an Amchart.
+}
 \description{
 amPlot computes a plot of the given data values (can be a vectorn a dataframe
 or a formula).
@@ -107,12 +114,11 @@ amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-Y
 # notice that by default 'parseDates = FALSE'
 
 # 'data.frame'
-amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE)
+amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE, legend = TRUE)
 
 # 'formula':
 amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
 
-# Other examples available which can be time consuming depending on your configuration.
 
 \donttest{
 # Other examples available which can be time consuming depending on your configuration.

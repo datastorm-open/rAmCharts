@@ -1,4 +1,4 @@
-#' @include utils_classUnion.R utils_sharedGenerics.R class_CategoryAxis.R
+#' @include classUnions.R utils_sharedGenerics.R class_CategoryAxis.R
 NULL
 
 #' @rdname initialize-AmChart
@@ -409,28 +409,6 @@ setMethod(f = "setDataProvider", signature = c("AmChart", "ANY", "logicalOrMissi
             return(.Object)
           })
 
-#' @examples 
-#' \donttest{
-#' setExport(.Object = amSerialChart())
-#' }
-#' \dontshow{
-#' amchart <- setExport(.Object = amSerialChart())
-#' print(amchart)
-#' amchart <- setExport(.Object = amchart, enabled = FALSE)
-#' print(amchart)
-#' }
-#' @rdname initialize-AmChart
-#' 
-setMethod(f = "setExport", signature = c("AmChart"),
-          definition = function(.Object, enabled = TRUE, ...)
-          {
-            .Object@otherProperties["export"] <- NULL
-            
-            .Object <- setProperties(.Object, export = list(enabled = enabled, ...))
-            validObject(.Object)
-            return(.Object)
-          })
-
 # > @graphs : setters ####
 
 #' @examples
@@ -575,26 +553,6 @@ setMethod(f = "setLegend", signature = c("AmChart", "AmLegendOrMissing"),
             } else {}
             
             .Object@legend <- listProperties(amLegend)
-            validObject(.Object)
-            return(.Object)
-          })
-
-#' @param enabled \code{logical}, default \code{TRUE}.
-#' @examples
-#' \donttest{
-#' setResponsive(.Object = amSerialChart(), enabled = FALSE)
-#' }
-#' # ---
-#' @rdname initialize-AmChart
-#' @export
-setGeneric(name = "setResponsive",
-           def = function(.Object, enabled = TRUE, ...) {standardGeneric("setResponsive")})
-#' @rdname initialize-AmChart
-setMethod(f = "setResponsive", signature = c("AmChart", "logicalOrMissing"),
-          definition = function(.Object, enabled = TRUE, ...)
-          {
-            .Object@otherProperties["responsive"] <- NULL
-            .Object <- setProperties(.Object = .Object, responsive = list(enabled = enabled, ...))
             validObject(.Object)
             return(.Object)
           })
