@@ -1,6 +1,7 @@
 #' @include classUnions.R
 NULL
 
+#' @param valueAxis A \linkS4class{ValueAxis} for the property 'drawnOnAxis'.
 #' @examples
 #' valueAxis_obj <- valueAxis(id = "valueAxis1")
 #' setDrawOnAxis(.Object = stockPanel(), valueAxis = valueAxis_obj)

@@ -113,6 +113,8 @@ Run \code{api("AmLegend")} for more informations.}
 theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
 See \url{http://www.amcharts.com/tutorials/working-with-themes/}.}
 
+\item{title}{A title of a panel. Note, StockLegend should be added in order title to be displayed.}
+
 \item{titles}{\code{list} of \linkS4class{Title}.
 Run \code{api("Title")} for more informations.}
 
@@ -143,6 +145,8 @@ Each element must be have been created with stockGraph(*)}
 Each element must be have been created with stockLegend(*)}
 
 \item{...}{other properties of StockPanel.}
+
+\item{valueAxis}{A \linkS4class{ValueAxis} for the property 'drawnOnAxis'.}
 
 \item{stockGraph}{\linkS4class{AmGraph}, created with stockGraph(...).
 Argument for method \code{addStockGraph}.}

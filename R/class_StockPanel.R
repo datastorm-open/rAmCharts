@@ -125,6 +125,8 @@ setClass(Class = "StockPanel", contains = "AmChart",
 #' @param stockLegend \code{list} of \linkS4class{AmLegend}.
 #' Each element must be have been created with stockLegend(*)
 #' 
+#' @param title A title of a panel. Note, StockLegend should be added in order title to be displayed.
+#' 
 #' @template amchart_param
 #' 
 #' @param ... other properties of StockPanel.
@@ -168,7 +170,7 @@ setMethod(f = "initialize", signature = "StockPanel",
             if (!missing(trendLines)) .Object <- setTrendLines(.Object, trendLines)
             if (!missing(type)) .Object <- setType(.Object, type)
             if (!missing(valueAxes)) .Object <- setValueAxes(.Object, valueAxes)
-
+            
             # specific setters for "StockPanel"
             if (!missing(drawOnAxis)) .Object <- setDrawOnAxis(.Object, drawOnAxis)
             if (!missing(stockGraphs)) .Object <- setStockGraphs(.Object, stockGraphs)
@@ -185,19 +187,10 @@ setMethod(f = "initialize", signature = "StockPanel",
 #' @examples
 #' stockPanel(stockLegend = legend(useGraphSettings = TRUE))
 #' @export
-stockPanel <- function(drawOnAxis, stockGraphs, stockLegend, ...) {
+stockPanel <- function(drawOnAxis, stockGraphs, stockLegend, ...)
+{
   list_call <- c(list(Class = "StockPanel"), as.list(match.call())[-1])
   .Object <- do.call(what = "new", list_call)
-  # if (!missing(drawOnAxis)) {
-  #   .Object <- setDrawOnAxis(.Object, drawOnAxis)
-  # } else {}
-  # if (!missing(stockGraphs)) {
-  #   .Object <- setStockGraphs(.Object, stockGraphs)
-  # } else {}
-  # if (!missing(stockLegend)) {
-  #   .Object <- setStockLegend(.Object, stockLegend)
-  # } else {}
-  # .Object <- setProperties(.Object, ...)
   validObject(.Object)
   return(.Object)
 }
@@ -216,12 +209,12 @@ panel <- function(drawOnAxis, stockGraphs, stockLegend, ...)
 #' stockPanel(drawnOnAxis = "axis1") 
 #' @rdname listProperties-AmObject
 setMethod(f = "listProperties", signature = "StockPanel",
-           definition = function(.Object)
-           { 
-             ls <- callNextMethod()
-             if (length(.Object@drawOnAxis)) ls$drawOnAxis <- .Object@drawOnAxis
-             if (length(.Object@stockGraphs)) ls$stockGraphs <- .Object@stockGraphs
-             if (length(.Object@stockLegend)) ls$stockLegend <- .Object@stockLegend
-             if (length(.Object@title)) ls$title <- .Object@title
-             return(ls)
-           })
+          definition = function(.Object)
+          { 
+            ls <- callNextMethod()
+            if (length(.Object@drawOnAxis)) ls$drawOnAxis <- .Object@drawOnAxis
+            if (length(.Object@stockGraphs)) ls$stockGraphs <- .Object@stockGraphs
+            if (length(.Object@stockLegend)) ls$stockLegend <- .Object@stockLegend
+            if (length(.Object@title)) ls$title <- .Object@title
+            return(ls)
+          })
