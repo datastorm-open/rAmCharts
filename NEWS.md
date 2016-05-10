@@ -2,6 +2,7 @@
 
 ### rAmCharts 2.0.1 (based on [amcharts][amcharts_url] version **3.18.3**)
 
+  * add ``getAmChart()`` javascript function to use and update chart within shiny
   * fix ``runExamples()`` bug
   * add ``dataLoader`` control for stock
   

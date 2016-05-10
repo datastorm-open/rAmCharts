@@ -1,3 +1,13 @@
+// function to get amChart chart with div id
+function getAmChart(id) {
+    var allCharts = AmCharts.charts;
+    for (var i = (allCharts.length - 1); i > -1; i--) {
+        if (id == allCharts[i].div.id) {
+            return allCharts[i];
+        }
+    }
+}
+
 HTMLWidgets.widget({
   
   name: 'ramcharts_base',
@@ -10,8 +20,12 @@ HTMLWidgets.widget({
   
   renderValue: function(el, x, instance) {
     document.getElementById(el.id).style.background = x.background;
+    // clear previous amChart graph in this div if existed
+    var existing_chart = getAmChart(el.id);
+    if (existing_chart) existing_chart.clear();
+    // make chart
     instance.amchart = AmCharts.makeChart(el.id, x.chartData);
-    
+
     // add chart listeners
     for (var key in x.listeners) {
       instance.amchart.addListener(key, x.listeners[key]);
