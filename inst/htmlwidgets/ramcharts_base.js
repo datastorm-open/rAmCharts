@@ -1,10 +1,14 @@
 // function to get amChart chart with div id
 function getAmChart(id) {
     var allCharts = AmCharts.charts;
-    for (var i = (allCharts.length - 1); i > -1; i--) {
-        if (id == allCharts[i].div.id) {
+    if(allCharts !== undefined){
+      for (var i = (allCharts.length - 1); i > -1; i--) {
+        if(allCharts[i].div !== undefined){ // for markdown bug ?
+          if (id == allCharts[i].div.id) {
             return allCharts[i];
+          }
         }
+      }
     }
 }
 

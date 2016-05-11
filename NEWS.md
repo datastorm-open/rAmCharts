@@ -1,6 +1,10 @@
 ## LOG CHANGE
 
-### rAmCharts 2.0.1 (based on [amcharts][amcharts_url] version **3.18.3**)
+### rAmCharts 2.0.3 (based on [amcharts][amcharts_url] version **3.20.3**)
+
+  * fix ``getAmChart()`` clean using markdown
+  
+### rAmCharts 2.0.2 (based on [amcharts][amcharts_url] version **3.20.3**)
 
   * add ``getAmChart()`` javascript function to use and update chart within shiny
   * fix ``runExamples()`` bug
