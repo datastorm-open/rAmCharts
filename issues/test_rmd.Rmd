@@ -1,0 +1,16 @@
+```{r, echo=FALSE, message=FALSE}
+library(rAmCharts)
+library(magrittr)
+```
+
+```{r, echo=TRUE, eval=FALSE}
+amBoxplot(Sepal.Length ~ Species, data = iris)
+```
+
+```{r, echo=FALSE}
+amBoxplot(Sepal.Length ~ Species, data = iris) %>% plot(width="500px", height = "400")
+```
+
+```{r, echo=FALSE}
+amBoxplot(Sepal.Length ~ Species, data = iris) %>% plot(width="500px", height = "400")
+```

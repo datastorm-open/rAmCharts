@@ -21,8 +21,8 @@ HTMLWidgets.widget({
   renderValue: function(el, x, instance) {
     document.getElementById(el.id).style.background = x.background;
     // clear previous amChart graph in this div if existed
-    var existing_chart = getAmChart(el.id);
-    if (existing_chart) existing_chart.clear();
+    //var existing_chart = getAmChart(el.id);
+    //if (existing_chart) existing_chart.clear();
     // make chart
     instance.amchart = AmCharts.makeChart(el.id, x.chartData);
 
