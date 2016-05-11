@@ -1,28 +1,10 @@
-# times <- as.POSIXct(seq(-60 * 60 *10* 24 * 50 + 1, 0, by = 3600), origin = Sys.time(), tz = 'UTC')
-# times <- round(times,'hours')
-# times <- data.frame(times)
-# times$Mesure <- 1:length(times$times) + rep(cos(seq(-pi,pi,length.out = 100)), 12) * 500 + runif(length(times$times)) * 200
-# amStock(times, "times","Mesure")
-# 
-# 
-# data <- times
-# col_date = "times"
-# col_series = c("Mesure", "test")
-# ZoomButton <- data.frame(unit = c("MM","DD","MAX"), multiple = c(1,4,1), label = c("1 Month", "3 Days","Max"))
-# 
-# 
-# times$test <- runif(nrow(times))*1000
-# amStock(times, "times",c("Mesure", "test"), aggregation = "Sum", ZoomButton = ZoomButton)
-# bullet 
-#   c("round", "square", "triangleUp", "triangleDown",
-#     "triangleLeft", "triangleRight", "none")
-#aggregation %in% c('Average', 'Low', 'High', 'Sum')
-
-
+#' @title Plotting times series which aggregation
+#' @description  amStockAggreg computes a stock chart.
+#' 
 #' @param data \code{data.frame}, data of graph.
 #' @param col_date \code{character} name of date column
 #' @param col_series \code{character} names of series columns
-#' @param color \code{character}, color for positive values (in hexadecimal).
+#' @param color \code{character}, color of series (in hexadecimal).
 #' @param bullet \code{character}, point shape. Possible values are : "diamond", "square", 
 #' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp", 
 #' @param aggregation \code{character}, aggregation type. Possible values are : 
@@ -40,33 +22,47 @@
 #' Unit, times unit
 #' multiple : multiple*unit 
 #' label : button's label
+#' @param precision \code{numeric}, digits precision
 
-data("data_stock_2")
-amStock(data_stock_2, "date", c("ts1", "ts2"))
-
-amStock(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
-amStock(data_stock_2, "date", c("ts1", "ts2"), bullet = "round", groupToPeriods = c('hh', 'DD', '7DD'))
-
-ZoomButton <- data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 7 ,1),
-                         label = c("Day","Week", "MAX"))
-amStock(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
-      ZoomButton = ZoomButton, main = "pzejki", ylab = "eevok")
-
-data = data_stock_2
-col_date = "date"
-col_series = c("ts1", "ts2")
-main = ""
-ylab = ""
-color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404")
-bullet = NULL
-aggregation = "Average"
-maxSeries = 300
-groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY')
-ZoomButton = NULL
-precision = 1
-
-
-amStock <- function(data, col_date,
+#' @examples
+#' data("data_stock_2")
+#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"))
+#' 
+#' \donttest{
+#'
+#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
+#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+#'               groupToPeriods = c('hh', 'DD', '10DD'),)
+#' 
+#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+#'               groupToPeriods = c('12hh', 'DD', '10DD'),
+#'               maxSeries = 50)
+#' 
+#' 
+#' 
+#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+#'               groupToPeriods = c('12hh', 'DD', '10DD'),
+#'               maxSeries = 50, precision = 5)
+#' 
+#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet =  c("diamond", "square"),
+#'              groupToPeriods = c('12hh', 'DD', '10DD'),
+#'              maxSeries = 50, aggregation = "Sum")
+#' 
+#' 
+#' ZoomButton <- data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 2 ,1),
+#'                         label = c("Day","2 days", "MAX"))
+#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+#'              ZoomButton = ZoomButton, main = "My title", ylab = "Interest")
+#'              
+#' }
+#' @seealso 
+#' \itemize{
+#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
+#' }
+#'
+#' @export
+#'
+amStockAggreg <- function(data, col_date,
                     col_series,
                     main = "",
                     ylab = "",
@@ -117,6 +113,8 @@ amStock <- function(data, col_date,
     .testNumeric(num = ZoomButton$multiple)
   }
   
+  #precision
+  .testNumericLength1(precision)
   
   mycategoryBalloonDateFormat <- list(list(period = 'YYYY', format = 'YYYY'),
                                       list(period='MM', format = 'YYYY-MM'), 
@@ -159,7 +157,7 @@ amStock <- function(data, col_date,
   
   
   stockgraph <- apply(graph_maker,1 , function(x) {
-    stockGraph(
+    stockGraph(title =  x["column"][[1]],
       id = x["column"][[1]] , connect = FALSE, valueField = x["column"][[1]],
       comparable = TRUE, periodValue = x["aggregation"][[1]],
       compareField = x["column"][[1]],
@@ -202,7 +200,7 @@ amStock <- function(data, col_date,
 
   
   ## Plot
-  pipeR::pipeline(
+  graph <- pipeR::pipeline(
     amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE) ,
     addDataSet(pipeR::pipeline(
       dataSet(categoryField = col_date) ,
@@ -218,7 +216,7 @@ amStock <- function(data, col_date,
       addPanel(panel(
         title = ylab, 
         stockGraphs = stockgraph,
-        stockLegend = stockLegend()
+        stockLegend = stockLegend(labelText = "[[title]]", useGraphSettings = TRUE)
       )),
     #addTitle(title(text = main)),
     setChartCursorSettings( valueBalloonsEnabled = TRUE, fullWidth = TRUE,
@@ -228,6 +226,11 @@ amStock <- function(data, col_date,
     setPeriodSelector(periodZoom, position = "bottom", inputFieldsEnabled = FALSE),
     setCategoryAxesSettings(parseDates = TRUE, minPeriod = 'fff',
                             groupToPeriods = groupToPeriods, maxSeries = maxSeries),
+    setPanelsSettings(marginTop = 30),
+    setLegendSettings(position = "bottom"),
     plot
   )
+  graph[[1]]$chartData$panels[[1]]$titles <- list(title(text = main))
+  graph
+  
 }
