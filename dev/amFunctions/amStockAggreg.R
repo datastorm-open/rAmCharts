@@ -63,16 +63,16 @@
 #' @export
 #'
 amStockAggreg <- function(data, col_date,
-                    col_series,
-                    main = "",
-                    ylab = "",
-                    color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"),
-                    bullet = NULL, 
-                    aggregation = "Average",
-                    maxSeries = 300,
-                    groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'),
-                    ZoomButton = NULL,
-                    precision = 1){
+                          col_series,
+                          main = "",
+                          ylab = "",
+                          color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"),
+                          bullet = NULL, 
+                          aggregation = "Average",
+                          maxSeries = 300,
+                          groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'),
+                          ZoomButton = NULL,
+                          precision = 1){
   
   
   ##Test args
@@ -162,14 +162,14 @@ amStockAggreg <- function(data, col_date,
   
   stockgraph <- apply(graph_maker,1 , function(x) {
     stockGraph(title =  x["column"][[1]],
-      id = x["column"][[1]] , connect = FALSE, valueField = x["column"][[1]],
-      comparable = TRUE, periodValue = x["aggregation"][[1]],
-      compareField = x["column"][[1]],
-      balloonText = paste0(x["column"][[1]], ' : <b>[[value]]</b>'),
-      lineColor = x["color"][[1]],
-      useDataSetColors = FALSE,
-      bullet = ifelse(is.na(x["bullet"]), "none"[[1]], x["bullet"])[[1]],
-      precision = precision
+               id = x["column"][[1]] , connect = FALSE, valueField = x["column"][[1]],
+               comparable = TRUE, periodValue = x["aggregation"][[1]],
+               compareField = x["column"][[1]],
+               balloonText = paste0(x["column"][[1]], ' : <b>[[value]]</b>'),
+               lineColor = x["color"][[1]],
+               useDataSetColors = FALSE,
+               bullet = ifelse(is.na(x["bullet"]), "none"[[1]], x["bullet"])[[1]],
+               precision = precision
     )
   })
   
@@ -183,7 +183,7 @@ amStockAggreg <- function(data, col_date,
     {
       if(i == 1){
         
-
+        
         periodZoom <- pipeR::pipeline(periodZoom,
                                       addPeriod( period = ZoomButton$Unit[i],
                                                  selected = TRUE, count = ZoomButton$multiple[i],
@@ -199,9 +199,6 @@ amStockAggreg <- function(data, col_date,
       
     }
   }
-
-  
-
   
   ## Plot
   graph <- pipeR::pipeline(
@@ -210,19 +207,12 @@ amStockAggreg <- function(data, col_date,
       dataSet(categoryField = col_date) ,
       setDataProvider(data, keepNA = FALSE),
       
-      # setDataSets(
-      #   dataSet(
-      #     
-      #   )
-      # )
-      # 
       setFieldMappings(fieldMapping))),
-      addPanel(panel(
-        title = ylab, 
-        stockGraphs = stockgraph,
-        stockLegend = stockLegend(labelText = "[[title]]", useGraphSettings = TRUE)
-      )),
-    #addTitle(title(text = main)),
+    addPanel(panel(
+      title = ylab, 
+      stockGraphs = stockgraph,
+      stockLegend = stockLegend(labelText = "[[title]]", useGraphSettings = TRUE)
+    )),
     setChartCursorSettings( valueBalloonsEnabled = TRUE, fullWidth = TRUE,
                             cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
                             valueLineEnabled = TRUE, valueLineAlpha = 0.5,
