@@ -116,6 +116,10 @@ amStockAggreg <- function(data, col_date,
   #precision
   .testNumericLength1(precision)
   
+  .testCharacterLength1(ylab)
+  .testCharacterLength1(main)
+  
+  
   mycategoryBalloonDateFormat <- list(list(period = 'YYYY', format = 'YYYY'),
                                       list(period='MM', format = 'YYYY-MM'), 
                                       list(period = 'WW', format = 'YYYY-MM-DD'),
@@ -230,6 +234,7 @@ amStockAggreg <- function(data, col_date,
     setLegendSettings(position = "bottom"),
     plot
   )
+  
   graph[[1]]$chartData$panels[[1]]$titles <- list(title(text = main))
   graph
   
