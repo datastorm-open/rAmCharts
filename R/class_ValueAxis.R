@@ -73,11 +73,8 @@ setMethod(f = "initialize", signature = c("ValueAxis"),
 #' @export
 #' 
 valueAxis <- function(title, ...) {
-  .Object <- new(Class="ValueAxis")
-  if (!missing(title)) {
-    .Object@title <- title
-  } else {}
-  .Object <- setProperties(.Object, ...)
+  .Object <- do.call(what = new, list(Class = "ValueAxis", ...))
+  validObject(.Object)
   return(.Object)
 }
 

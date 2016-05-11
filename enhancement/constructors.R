@@ -5,13 +5,10 @@
 #' @rdname initialize-AmChart
 #' @export
 #' 
-amChart <- function(allLabels, arrows, axes, balloon, categoryAxis, categoryField,
-                    chartCursor, chartScrollbar, creditsPosition, dataProvider,
-                    graph, graphs, guides, legend, segmentsField, theme, titles,
-                    trendLines, type, valueAxes, valueAxis,...)
+amChart <- function(...)
 {
   # "http://www.amcharts.com/lib/3/images/"
-  list_call <- c(list(Class = "AmChart"), as.list(match.call())[-1])
+  list_call <- list(Class = "AmChart", ...)
   .Object <- do.call(what = "new", list_call)
   return(.Object)
 }
@@ -23,11 +20,11 @@ amChart <- function(allLabels, arrows, axes, balloon, categoryAxis, categoryFiel
 #' }
 #' @rdname initialize-AmChart
 #' @export
-amAngularGaugeChart <- function(arrows, titles, axes, ...)
+amAngularGaugeChart <- function(...)
 {
   # object <- amChart(arrows = arrows, titles = titles, axes = axes, type = "gauge", ...)
   # validObject(object)
-  list_call <- c(list(type = "gauge"), as.list(match.call())[-1])
+  list_call <- list(type = "gauge", ...)
   .Object <- do.call(what = "amChart", list_call)
   return(.Object)
 }
@@ -44,8 +41,8 @@ amAngularGaugeChart <- function(arrows, titles, axes, ...)
 #' @export
 amFunnelChart <- function(dataProvider, marginLeft = 10, marginRight = 10,...)
 {
-  list_call <- c(list(type = "funnel"), as.list(match.call())[-1])
-  .Object <- do.call(what = "amChart", list_call)
+  list_call <- list(type = "funnel", marginLeft = marginLeft, marginRight = marginRight, ...)
+  .Object <- do.call(what = amChart, list_call)
   return(.Object)
 }
 
@@ -57,10 +54,9 @@ amFunnelChart <- function(dataProvider, marginLeft = 10, marginRight = 10,...)
 #' }
 #' @rdname initialize-AmChart
 #' @export
-amRadarChart <- function(allLabels, balloon, categoryField, creditsPosition, dataProvider,
-                         graphs, guides, legend, titles, valueAxes, ...)
+amRadarChart <- function(...)
 {
-  list_call <- c(list(type = "radar"), as.list(match.call())[-1])
+  list_call <- list(type = "radar", ...)
   .Object <- do.call(what = "amChart", list_call)
   return(.Object)
 }
@@ -73,11 +69,9 @@ amRadarChart <- function(allLabels, balloon, categoryField, creditsPosition, dat
 #' }
 #' @rdname initialize-AmChart
 #' @export
-amSerialChart <- function(allLabels, balloon, categoryAxis, categoryField, chartCursor,
-                          chartScrollbar, creditsPosition, dataProvider, graphs, guides,
-                          legend, titles, trendLines, valueAxes, ...)
+amSerialChart <- function(...)
 {
-  list_call <- c(list(type = "serial"), as.list(match.call())[-1])
+  list_call <- list(type = "serial", ...)
   .Object <- do.call(what = "amChart", list_call)
   return(.Object)
 }
@@ -90,10 +84,9 @@ amSerialChart <- function(allLabels, balloon, categoryAxis, categoryField, chart
 #' }
 #' @rdname initialize-AmChart
 #' @export
-amPieChart <- function(allLabels, balloon, creditsPosition,
-                       dataProvider, legend, titles, ...)
+amPieChart <- function(...)
 {
-  list_call <- c(list(type = "pie"), as.list(match.call())[-1])
+  list_call <- list(type = "pie", ...)
   .Object <- do.call(what = "amChart", list_call)
   return(.Object)
 }
@@ -106,10 +99,9 @@ amPieChart <- function(allLabels, balloon, creditsPosition,
 #' }
 #' @rdname initialize-AmChart
 #' @export
-amGanttChart <- function(categoryField, dataProvider, graph,
-                         segmentsField, valueAxis, ...)
+amGanttChart <- function(...)
 {
-  list_call <- c(list(type = "gantt"), as.list(match.call())[-1])
+  list_call <- list(type = "gantt", ...)
   .Object <- do.call(what = "amChart", list_call)
   return(.Object)
 }
@@ -122,9 +114,9 @@ amGanttChart <- function(categoryField, dataProvider, graph,
 #' }
 #' @rdname initialize-AmChart
 #' @export
-amXYChart <- function(creditsPosition, dataProvider, graphs, ...)
+amXYChart <- function(...)
 {
-  list_call <- c(list(type = "xy"), as.list(match.call())[-1])
+  list_call <- list(type = "xy", ...)
   .Object <- do.call(what = "amChart", list_call)
   return(.Object)
 }

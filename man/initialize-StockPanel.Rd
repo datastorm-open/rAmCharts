@@ -20,9 +20,9 @@
   dataProvider, graphs, graph, guides, legend, theme, title, titles, trendLines,
   type, valueAxes, drawOnAxis, stockGraphs, stockLegend, ...)
 
-stockPanel(drawOnAxis, stockGraphs, stockLegend, ...)
+stockPanel(...)
 
-panel(drawOnAxis, stockGraphs, stockLegend, ...)
+panel(...)
 
 setDrawOnAxis(.Object, valueAxis = NULL, ...)
 

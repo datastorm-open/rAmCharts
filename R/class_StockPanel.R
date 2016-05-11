@@ -187,10 +187,11 @@ setMethod(f = "initialize", signature = "StockPanel",
 #' @examples
 #' stockPanel(stockLegend = legend(useGraphSettings = TRUE))
 #' @export
-stockPanel <- function(drawOnAxis, stockGraphs, stockLegend, ...)
+stockPanel <- function(...)
 {
-  list_call <- c(list(Class = "StockPanel"), as.list(match.call())[-1])
-  .Object <- do.call(what = "new", list_call)
+  # print(as.list(match.call()))
+  # list_call <- c(list(Class = "StockPanel"), as.list(match.call())[-1])
+  .Object <- do.call(what = new, list(Class = "StockPanel", ...))
   validObject(.Object)
   return(.Object)
 }
@@ -200,9 +201,9 @@ stockPanel <- function(drawOnAxis, stockGraphs, stockLegend, ...)
 #' panel(creditsPosition = "top-right")
 #' panel(title = "top-right")
 #' @export
-panel <- function(drawOnAxis, stockGraphs, stockLegend, ...)
+panel <- function(...)
 {
-  do.call(what = "stockPanel", as.list(match.call())[-1])
+  do.call(what = stockPanel, list(...))
 }
 
 #' @examples
