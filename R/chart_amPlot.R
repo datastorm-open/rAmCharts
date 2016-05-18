@@ -650,7 +650,8 @@ amLines <- function(chart, x = NULL, y = NULL,
     dataProvider[[i]]
   })
   
-  balloonText <- paste0("x:<b>[[x]]</b><br>y:<b>[[y]]</b><br>")
+  balloonText <- ifelse(chart@type == "xy",  paste0("x:<b>[[x]]</b><br>", title," :<b>[[", name, "]]</b><br>"), 
+                        paste0(title," :<b>[[", name, "]]</b><br>"))
   
   # initialize the graph object
   graph_obj <- graph(title = title, valueField = name,
@@ -663,6 +664,8 @@ amLines <- function(chart, x = NULL, y = NULL,
   
   if (type == "points")
     graph_obj <- setProperties(.Object = graph_obj, bullet = "round", maxBulletSize = 5)
+  if(type != "points")
+    graph_obj <- setProperties(.Object = graph_obj, bullet = "round", maxBulletSize = 5, bulletAlpha = 0)
   # set the type if necessary
   if (type == "smoothedLine")
     graph_obj <- setType(.Object = graph_obj, type = "smoothedLine")
