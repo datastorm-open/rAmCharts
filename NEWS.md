@@ -3,6 +3,8 @@
 ### rAmCharts 2.0.3 (based on [amcharts][amcharts_url] version **3.20.3**)
 
   * fix ``getAmChart()`` clean using markdown
+  * fix bug on ``stockpanel``
+  * fix use data.frame with no checked colnames
   
 ### rAmCharts 2.0.2 (based on [amcharts][amcharts_url] version **3.20.3**)
 

@@ -151,7 +151,7 @@
   
   if(inherits(data, 'data.frame')){
     if(format == "data.frame"){
-      return(data.frame(data))
+      return(data.frame(data, check.names = FALSE))
     } else {}
     if(format == "data.table"){
       data <- data.table(data)
