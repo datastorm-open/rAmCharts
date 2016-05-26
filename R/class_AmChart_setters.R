@@ -878,9 +878,9 @@ addValueAxis_def <- function(.Object, valueAxis = NULL, ...)
 #' @details For method \code{addValueAxis}: valueAxis is optional. Method \code{addValueAxes} is deprecated.
 #' @examples
 #' \donttest{
-#' addValueAxis(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10)
+#' print(addValueAxis(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10, title = "foo"))
 #' # equivalent to:
-#' valueAxis_obj <- valueAxis(axisTitleOffset = 12, tickLength = 10)
+#' valueAxis_obj <- valueAxis(axisTitleOffset = 12, tickLength = 10, title = "foo")
 #' addValueAxis(.Object = amSerialChart(), valueAxis = valueAxis_obj)
 #' }
 #' # ---
