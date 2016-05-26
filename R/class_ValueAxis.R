@@ -72,8 +72,8 @@ setMethod(f = "initialize", signature = c("ValueAxis"),
 #' 
 #' @export
 #' 
-valueAxis <- function(title, ...) {
-  .Object <- do.call(what = new, list(Class = "ValueAxis", ...))
+valueAxis <- function(...) {
+  .Object <- new("ValueAxis", ...)
   validObject(.Object)
   return(.Object)
 }

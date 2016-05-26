@@ -9,7 +9,7 @@
 \usage{
 \S4method{initialize}{ValueAxis}(.Object, title, guides, ...)
 
-valueAxis(title, ...)
+valueAxis(...)
 
 \S4method{setTitle}{ValueAxis,character}(.Object, title)
 }
