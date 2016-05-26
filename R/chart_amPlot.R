@@ -650,8 +650,8 @@ amLines <- function(chart, x = NULL, y = NULL,
     dataProvider[[i]]
   })
   
-  balloonText <- ifelse(chart@type == "xy",  paste0("x:<b>[[x]]</b><br>", title," :<b>[[", name, "]]</b><br>"), 
-                        paste0(title," :<b>[[", name, "]]</b><br>"))
+  balloonText <- ifelse(chart@type == "xy",  paste0("x:<b>[[x]]</b><br>", title,": <b>[[", name, "]]</b><br>"), 
+                        paste0(title,": <b>[[", name, "]]</b><br>"))
   
   # initialize the graph object
   graph_obj <- graph(title = title, valueField = name,
