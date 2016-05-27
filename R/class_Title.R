@@ -53,17 +53,14 @@ setMethod(f = "initialize", signature = "Title",
 # CONSTRUCTOR ####
 #' @rdname Title
 #' @examples
-#' title(text = "bonjour")
+#' title(text = "Main", size = 10)
+#' title(text = "Main", bold = TRUE)
 #' @export
 title <- function(text, size, ...) {
-  .Object <- new("Title")
-  if (!missing(text)) {
-    .Object@text <- text
-  }
-  if (!missing(size)) {
-    .Object@size <- size
-  }
-  .Object <- setProperties(.Object, ...)
+  .Object <- new("Title", ...)
+  if (!missing(text)) .Object@text <- text
+  if (!missing(size)) .Object@size <- size
+
   validObject(.Object)
   return(.Object)
 }

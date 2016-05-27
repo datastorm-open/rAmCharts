@@ -427,7 +427,7 @@ For method \code{addValueAxis}: valueAxis is optional. Method \code{addValueAxes
 Method \code{setValueAxis} is only valid for Gantt charts.
 }
 \examples{
-new("AmChart", valueField = "value")
+new("AmChart", valueField = "value", theme = "patterns")
 
 \donttest{
 amChart(type = "pie")

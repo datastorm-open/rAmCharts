@@ -101,30 +101,11 @@ setMethod(f = "initialize", signature = "TrendLine",
 #' @examples
 #' trendLine(initialValue = 1, finalValue = 11)
 #' @export
-trendLine <- function(.Object,
-                      initialValue, initialXValue,
-                      finalValue, finalXValue,
-                      valueAxis, valueAxisX, ...) {
-  .Object <- new("TrendLine")
-  if (!missing(initialValue)) {
-    .Object@initialValue <- initialValue
-  } else {}
-  if (!missing(initialXValue)) {
-    .Object@initialXValue <- initialXValue
-  } else {}
-  if (!missing(finalValue)) {
-    .Object@finalValue <- finalValue
-  } else {}
-  if (!missing(finalXValue)) {
-    .Object@finalXValue <- finalXValue
-  } else {}
-  if (!missing(valueAxis)) {
-    .Object <- setValueAxis(.Object, valueAxis)
-  } else {}
-  if (!missing(valueAxisX)) {
-    .Object <- setValueAxisX(.Object, valueAxisX)
-  } else {}
-  .Object <- setProperties(.Object, ...)
+trendLine <- function(.Object, initialValue, initialXValue, finalValue,
+                      finalXValue, valueAxis, valueAxisX, ...)
+{
+  .Object <- new(Class = "TrendLine", initialValue = initialValue, initialXValue = initialXValue, finalValue = finalValue,
+                 finalXValue = finalXValue, valueAxis = valueAxis, valueAxisX = valueAxisX, ...)
   validObject(.Object)
   return(.Object)
 }

@@ -37,7 +37,8 @@ or update an existing one with the setters.
 }
 \examples{
 new("Title", size = 10)
-title(text = "bonjour")
+title(text = "Main", size = 10)
+title(text = "Main", bold = TRUE)
 setText(.Object = title(), text = "Bonjour")
 library(pipeR)
 title() \%>>\% setSize(16)

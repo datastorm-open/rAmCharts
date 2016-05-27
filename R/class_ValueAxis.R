@@ -52,12 +52,8 @@ setClass(Class = "ValueAxis", contains = "AxisBase",
 setMethod(f = "initialize", signature = c("ValueAxis"),
           definition = function(.Object, title, guides, ...)
           {            
-            if (!missing(title)) {
-              .Object@title <- title
-            } else {}
-            if (!missing(guides) && is.list(guides)) {
-              .Object@guides <- lapply(guides, listProperties)
-            } else {}
+            if (!missing(title)) .Object@title <- title
+            if (!missing(guides) && is.list(guides)) .Object@guides <- lapply(guides, listProperties)
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
@@ -72,7 +68,8 @@ setMethod(f = "initialize", signature = c("ValueAxis"),
 #' 
 #' @export
 #' 
-valueAxis <- function(...) {
+valueAxis <- function(...)
+{
   .Object <- new("ValueAxis", ...)
   validObject(.Object)
   return(.Object)

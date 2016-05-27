@@ -205,7 +205,7 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' @return (updated) \linkS4class{AmChart} with given properties.
 #' 
 #' @examples
-#' new("AmChart", valueField = "value")
+#' new("AmChart", valueField = "value", theme = "patterns")
 #' 
 #' @seealso Refer to \url{http://docs.amcharts.com/3/javascriptcharts/}.
 #' @rdname initialize-AmChart
@@ -238,6 +238,8 @@ setMethod(f = "initialize", signature = "AmChart",
             if (!missing(type)) .Object <- setType(.Object, type)
             if (!missing(valueAxes)) .Object <- setValueAxes(.Object, valueAxes)
             if (!missing(valueAxis)) .Object <- setValueAxis(.Object, valueAxis)
+            
+            .Object@otherProperties <- list(...)
             
             validObject(.Object)
             return(.Object)
