@@ -93,23 +93,3 @@ guide <- function(fillAlpha, valueAxis, value, ...) {
   return(.Object)
 }
 
-#' @examples
-#' # --- signature 'Guide'
-#' lapply(list(guide(fillAlpha = .4, value = 1), guide(fillAlpha = .5)), listProperties)
-#' @rdname listProperties-AmObject
-#' 
-setMethod(f = "listProperties", signature = "Guide",
-          definition = function(.Object)
-          { 
-            ls <- callNextMethod()
-            if (length(.Object@fillAlpha)) {
-              ls <- rlist::list.append(ls, fillAlpha = .Object@fillAlpha)
-            } else {}
-            if (length(.Object@valueAxis)) {
-              ls <- rlist::list.append(ls, valueAxis = .Object@valueAxis)
-            } else {}
-            if (length(.Object@value)) {
-              ls <- rlist::list.append(ls, value = .Object@value)
-            }
-            return(ls)
-          })

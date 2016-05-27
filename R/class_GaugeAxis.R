@@ -67,15 +67,3 @@ gaugeAxis <- function(axisAlpha = 1, bands, ...) {
   return(.Object )
 }
 
-#' @examples
-#' listProperties(gaugeAxis())
-#' @rdname listProperties-AmObject
-setMethod(f = "listProperties", signature = "GaugeAxis",
-           definition = function(.Object)
-           {
-             ls <- callNextMethod()
-             if (length(.Object@bands)) {
-               ls <- rlist::list.append(ls, bands = .Object@bands)
-             } else {}
-             return(ls)
-           })

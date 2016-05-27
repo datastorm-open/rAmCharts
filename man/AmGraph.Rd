@@ -66,8 +66,12 @@ You can update properties with setters.
 new("AmGraph", valueField = "value")
 
 # constructor
-amGraph(balloonText = "balloonText", "type" = "column",
-        valueField = "value", animationPlayed = TRUE)
+amGraph(balloonText = "My text")
+\dontrun{
+amGraph(balloonText = "balloonText", "type" = "column", title = "myGraph!",
+        valueField = "value", animationPlayed = TRUE, other = TRUE)
+}
+amGraph(balloonText = "some text")
 # --- shortcut constructor
 graph(balloonText = "balloonText", "type" = "column",
       valueField = "value", animationPlayed = TRUE)

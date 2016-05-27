@@ -68,18 +68,11 @@ setClass(Class = "AmBalloon", contains = "AmObject",
 setMethod(f = "initialize", signature = "AmBalloon",
           definition = function(.Object, adjustBorderColor, color, cornerRadius, fillColor, ...)
           {  
-            if (!missing(adjustBorderColor)) {
-              .Object <- setAdjustBorderColor(.Object = .Object, adjustBorderColor = adjustBorderColor)
-            } else {}
-            if (!missing(color)) {
-              .Object <- setColor(.Object = .Object, color = color)
-            } else {}
-            if (!missing(cornerRadius)) {
-              .Object <- setCornerRadius(.Object = .Object, cornerRadius = cornerRadius)
-            } else {}
-            if (!missing(fillColor)) {
-              .Object <- setFillColor(.Object = .Object, fillColor = fillColor)
-            } else {}
+            if (!missing(adjustBorderColor)) .Object <- setAdjustBorderColor(.Object = .Object, adjustBorderColor = adjustBorderColor)
+            if (!missing(color)) .Object <- setColor(.Object = .Object, color = color)
+            if (!missing(cornerRadius)) .Object <- setCornerRadius(.Object = .Object, cornerRadius = cornerRadius)
+            if (!missing(fillColor)) .Object <- setFillColor(.Object = .Object, fillColor = fillColor)
+            
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
@@ -90,24 +83,16 @@ setMethod(f = "initialize", signature = "AmBalloon",
 #' @rdname AmBalloon
 #' 
 #' @examples
-#' amBalloon(adjustBorderColor = TRUE, color = "#000000")
+#' amBalloon(adjustBorderColor = TRUE, color = "#000000", other = TRUE)
 #' 
 #' @export
 amBalloon <- function(adjustBorderColor, color, cornerRadius, fillColor, ...) {
-  .Object <- new("AmBalloon")
-  if (!missing(adjustBorderColor)) {
-    .Object@adjustBorderColor <- adjustBorderColor
-  } else {}
-  if (!missing(color)) {
-    .Object@color<- color
-  } else {}
-  if (!missing(cornerRadius)) {
-    .Object@cornerRadius <- cornerRadius
-  } else {}
-  if (!missing(fillColor)) {
-    .Object@fillColor <- fillColor
-  } else {}
-  .Object <- setProperties(.Object, ...)
+  .Object <- new("AmBalloon", ...)
+  if (!missing(adjustBorderColor)) .Object@adjustBorderColor <- adjustBorderColor
+  if (!missing(color)) .Object@color<- color
+  if (!missing(cornerRadius)) .Object@cornerRadius <- cornerRadius
+  if (!missing(fillColor)) .Object@fillColor <- fillColor
+
   validObject(.Object)
   return(.Object )
 }
@@ -187,29 +172,4 @@ setMethod(f = "setFillColor", signature = c("AmBalloon", "character"),
             .Object@fillColor <- fillColor
             validObject(.Object)
             return(.Object)
-          })
-
-# listProperties ####
-
-#' @rdname listProperties-AmObject
-#' 
-#' @examples
-#' amBalloon(adjustBorderColor = TRUE)
-setMethod(f = "listProperties", signature = "AmBalloon",
-          definition = function(.Object)
-          {
-            ls <- callNextMethod()
-            if (length(.Object@adjustBorderColor)) {
-              ls <- rlist::list.append(ls, adjustBorderColor = .Object@adjustBorderColor)
-            } else {}
-            if (length(.Object@color)) {
-              ls <- rlist::list.append(ls, color = .Object@color)
-            } else {}
-            if (length(.Object@cornerRadius)) {
-              ls <- rlist::list.append(ls, cornerRadius = .Object@cornerRadius)
-            } else {}
-            if (length(.Object@fillColor)) {
-              ls <- rlist::list.append(ls, fillColor = .Object@fillColor)
-            } else {}
-            return (ls)
           })

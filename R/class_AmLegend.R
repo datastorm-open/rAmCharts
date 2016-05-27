@@ -111,18 +111,3 @@ setMethod(f = "setUseGraphSettings", signature = c("AmLegend", "logical"),
             validObject(.Object)
             return(.Object)
           })
-
-#' @rdname listProperties-AmObject
-#' @examples
-#' # --- signature 'AmLegend'
-#' listProperties(amLegend(useGraphSettings = TRUE))
-#' 
-setMethod(f = "listProperties", signature = "AmLegend",
-           definition = function(.Object)
-           { 
-             ls <- callNextMethod()
-             if (length(.Object@useGraphSettings)) {
-               ls <- rlist::list.append(ls, useGraphSettings = .Object@useGraphSettings)
-             } else {}
-             return(ls)
-           })

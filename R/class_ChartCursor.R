@@ -89,21 +89,3 @@ chartCursor <- function(animationDuration = .3, oneBalloonOnly, valueLineAxis,..
   validObject(.Object)
   return( .Object )
 }
-
-#' @rdname listProperties-AmObject
-#' 
-#' @examples
-#' new("ChartCursor", oneBalloonOnly = TRUE)
-#' 
-setMethod(f = "listProperties", signature = "ChartCursor",
-          definition = function(.Object)
-          { 
-            ls <- callNextMethod()
-            if (length(.Object@oneBalloonOnly)) {
-              ls <- rlist::list.append(ls, oneBalloonOnly = .Object@oneBalloonOnly)
-            } else {}
-            if(length(.Object@valueLineAxis)){
-              ls <- rlist::list.append(ls, valueLineAxis = .Object@valueLineAxis)
-            } else {}
-            return(ls)
-          })

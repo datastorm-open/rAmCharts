@@ -85,16 +85,3 @@ setMethod(f = "setPosition", signature = c("DataSetSelector", "character"),
             validObject(.Object)
             return(.Object)
           })
-
-#' @examples
-#' dataSetSelector(position = "left")
-#' @rdname listProperties-AmObject
-setMethod(f = "listProperties", signature = "DataSetSelector",
-          definition = function(.Object)
-          { 
-            ls <- callNextMethod()
-            if (length(.Object@position)) {
-              ls <- rlist::list.append(ls, position = .Object@position)
-            } else{}
-            return(ls)
-          })

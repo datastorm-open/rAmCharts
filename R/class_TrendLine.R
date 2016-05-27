@@ -128,31 +128,3 @@ trendLine <- function(.Object,
   validObject(.Object)
   return(.Object)
 }
-
-#' @examples
-#' trendLine(initialValue = 1, valueAxis = valueAxis(axisTitleOffset = 12, tickLength = 10))
-#' @rdname listProperties-AmObject
-setMethod(f = "listProperties", signature = "TrendLine",
-           definition = function(.Object)
-           { 
-             ls <- callNextMethod()
-             if (length(.Object@initialValue)) {
-               ls <- rlist::list.append(ls, initialValue = .Object@initialValue)
-             } else {}
-             if (length(.Object@initialXValue)) {
-               ls <- rlist::list.append(ls, initialXValue = .Object@initialXValue)
-             } else {}
-             if (length(.Object@finalValue)) {
-               ls <- rlist::list.append(ls, finalValue = .Object@finalValue)
-             } else {}
-             if (length(.Object@initialXValue)) {
-               ls <- rlist::list.append(ls, finalXValue = .Object@finalXValue)
-             } else {}
-             if (length(.Object@valueAxis)) {
-               ls <- rlist::list.append(ls, valueAxis = .Object@valueAxis)
-             } else {}
-             if (length(.Object@valueAxisX)) {
-               ls <- rlist::list.append(ls, valueAxisX = .Object@valueAxisX)
-             } else {}
-             return(ls)
-           })

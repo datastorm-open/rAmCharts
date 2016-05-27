@@ -82,17 +82,3 @@ setMethod(f = "setID", signature = "GaugeBand",
     return(.Object)
   })
 
-#' @rdname listProperties-AmObject
-#' @examples
-#' # --- signature 'GaugeBand'
-#' lapply(list(gaugeBand(fillAlpha = .4, value = 1), gaugeBand(fillAlpha = .5)), listProperties)
-#' 
-setMethod(f = "listProperties", signature = "GaugeBand",
-           definition = function(.Object)
-           { 
-             ls <- callNextMethod()
-             if (length(.Object@id)) {
-               ls <- rlist::list.append(ls, id = .Object@id)
-             } else {}
-             return(ls)
-           })

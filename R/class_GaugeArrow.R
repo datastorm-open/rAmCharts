@@ -67,16 +67,3 @@ gaugeArrow <- function(alpha = 1,  axis, ...){
   validObject(.Object)
   return(.Object)
 }
-
-#' @rdname listProperties-AmObject
-#' @examples
-#' lapply(list(gaugeArrow(alpha = .4, value = 1), gaugeArrow(alpha = .5)), listProperties)
-setMethod(f = "listProperties", signature = "GaugeArrow",
-           definition = function(.Object)
-           { 
-             ls <- callNextMethod()
-             if (length(.Object@axis)) {
-               ls <- rlist::list.append(ls, axis = .Object@axis)
-             } else {}
-             return(ls)
-           })

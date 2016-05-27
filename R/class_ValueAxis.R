@@ -93,24 +93,3 @@ setMethod(f = "setTitle", signature = c("ValueAxis", "character"),
             return(.Object)
           })
 
-#' @rdname listProperties-AmObject
-#' 
-#' @examples
-#' library(pipeR)
-#' \dontshow{
-#' valueAxis(axisTitleOffset = 12, tickLength = 10) %>>% listProperties %>>% class
-#' }
-#' valueAxis(axisTitleOffset = 12, tickLength = 10, axisTitleOffset = 12) %>>%
-#' addGuide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1) %>>% listProperties
-#' 
-#' @export
-#' 
-setMethod(f = "listProperties", signature = "ValueAxis",
-          definition = function(.Object)
-          { 
-            ls <- callNextMethod()
-            if (length(.Object@title)) {
-              ls <- rlist::list.append(ls, title = .Object@title)
-            } else {}
-            return(ls)
-          })

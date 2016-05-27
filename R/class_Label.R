@@ -163,25 +163,3 @@ setMethod(f = "setY", signature = c("Label", "numericOrCharacter"),
             validObject(.Object)
             return(.Object)
           })
-
-#' @examples
-#' listProperties(label(text = "balloonText"))
-#' @rdname listProperties-AmObject
-setMethod(f = "listProperties", signature = "Label",
-          definition = function(.Object)
-          { 
-            ls <- callNextMethod()
-            if (length( .Object@text )) {
-              ls <- rlist::list.append(ls, text = .Object@text)
-            } else {}
-            if (length( .Object@bold )) {
-              ls <- rlist::list.append(ls, bold = .Object@bold)
-            } else {}
-            if (length( .Object@x )) {
-              ls <- rlist::list.append(ls, x = .Object@x)
-            } else {}
-            if (length( .Object@y )) {
-              ls <- rlist::list.append(ls, y = .Object@y)
-            } else {}
-            return(ls)
-          })

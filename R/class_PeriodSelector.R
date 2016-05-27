@@ -62,13 +62,10 @@ setMethod(f = "initialize", signature = c("PeriodSelector"),
 #' periodSelector(fillAlpha = .4, value = 1)
 #' periodSelector(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
 #' @export
-periodSelector <- function(periods, ...){
-  .Object <- new(Class="PeriodSelector")
-  if (!missing(periods)) {
-    .Object@period <- periods
-  } else {}
-  .Object <-  setProperties(.Object, ...)
-  return( .Object )
+periodSelector <- function(periods, ...)
+{
+  .Object <- new(Class="PeriodSelector", ...)
+  return(.Object)
 }
 
 #' @rdname initialize-PeriodSelector
@@ -87,15 +84,3 @@ setMethod( f = "addPeriod", signature = c("PeriodSelector"),
              return(.Object)
            })
 
-#' @rdname listProperties-AmObject
-#' @examples
-#' listProperties(periodSelector(fillAlpha = .4, value = 1))
-setMethod( f = "listProperties", signature = "PeriodSelector",
-           definition = function(.Object)
-           { 
-             ls <- callNextMethod()
-             if (length(.Object@periods)) {
-               ls <- rlist::list.append(ls, periods = .Object@periods)
-             } else {}
-             return(ls)
-           })

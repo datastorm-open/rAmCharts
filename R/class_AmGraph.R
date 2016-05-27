@@ -33,18 +33,10 @@ setClass (Class = "AmGraph", contains = "AmObject",
   ),
   validity = function(object)
   {
-    if (length(object@balloonText) > 1) {
-      stop("[AmGraph : validation] : argument 'balloonText' must be of length 1")
-    } else {}
-    if (length(object@type) > 1) {
-      stop("[AmGraph : validation] : argument 'type' must be of length 1")
-    } else {}
-    if (length(object@title) > 1) {
-      stop("[AmGraph : validation] : argument 'title' must be of length 1")
-    } else {}
-    if (length(object@valueField) > 1) {
-      stop("[AmGraph : validation] : argument 'valueField' must be of length 1")
-    } else {}
+    if (length(object@balloonText) > 1) stop("[AmGraph : validation] : argument 'balloonText' must be of length 1")
+    if (length(object@type) > 1) stop("[AmGraph : validation] : argument 'type' must be of length 1")
+    if (length(object@title) > 1) stop("[AmGraph : validation] : argument 'title' must be of length 1")
+    if (length(object@valueField) > 1) stop("[AmGraph : validation] : argument 'valueField' must be of length 1")
     return(TRUE)
   })
 
@@ -79,18 +71,10 @@ setMethod(f = "initialize", signature = "AmGraph",
           definition = function(.Object, animationPlayed = FALSE, balloonText,
                                 title, type, valueField, ...)
           {  
-            if (!missing(balloonText)) {
-              .Object@balloonText <- balloonText
-            } else {}
-            if (!missing(title)) {
-              .Object@title <- title
-            } else {}
-            if (!missing(type)) {
-              .Object@type <- type
-            } else {}
-            if (!missing(valueField)) {
-              .Object@valueField <- valueField
-            } else {}
+            if (!missing(balloonText)) .Object@balloonText <- balloonText
+            if (!missing(title)) .Object@title <- title
+            if (!missing(type)) .Object@type <- type
+            if (!missing(valueField)) .Object@valueField <- valueField
             .Object@otherProperties <- list (animationPlayed = animationPlayed, ...)
             validObject(.Object)
             return(.Object)
@@ -100,26 +84,23 @@ setMethod(f = "initialize", signature = "AmGraph",
 #' 
 #' @examples
 #' # constructor
-#' amGraph(balloonText = "balloonText", "type" = "column",
-#'         valueField = "value", animationPlayed = TRUE)
+#' amGraph(balloonText = "My text")
+#' \dontrun{
+#' amGraph(balloonText = "balloonText", "type" = "column", title = "myGraph!",
+#'         valueField = "value", animationPlayed = TRUE, other = TRUE)
+#' }
+#' amGraph(balloonText = "some text")
 #' @export
 #' 
 amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 {
-  .Object <- new(Class="AmGraph", animationPlayed = animationPlayed)
-  if (!missing(balloonText)) {
-    .Object@balloonText <- balloonText
-  } else {}
-  if (!missing(title)) {
-    .Object@title <- title
-  } else {}
-  if (!missing(type)) {
-    .Object@type <- type
-  } else {}
-  if (!missing(valueField)) {
-    .Object@valueField <- valueField
-  } else {}
-  .Object@otherProperties <- list(...)
+  .Object <- new(Class="AmGraph", animationPlayed = animationPlayed, balloonText = balloonText,
+                 title = title, type = type, valueField = valueField, ...)
+  # if (!missing(balloonText)) .Object@balloonText <- balloonText
+  # if (!missing(title)) .Object@title <- title
+  # if (!missing(type)) .Object@type <- type
+  # if (!missing(valueField)) .Object@valueField <- valueField
+  
   validObject(.Object)
   return(.Object)
 }
@@ -134,22 +115,8 @@ amGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueFiel
 #' 
 graph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 {
-  .Object <- new(Class="AmGraph", animationPlayed = animationPlayed)
-  if (!missing(balloonText)) {
-    .Object@balloonText <- balloonText
-  } else {}
-  if (!missing(title)) {
-    .Object@title <- title
-  } else {}
-  if (!missing(type)) {
-    .Object@type <- type
-  } else {}
-  if (!missing(valueField)) {
-    .Object@valueField <- valueField
-  } else {}
-  .Object@otherProperties <- list(...)
-  validObject(.Object)
-  return(.Object)
+  amGraph(animationPlayed = animationPlayed, balloonText = balloonText,
+          title = title, type = type, valueField = valueField, ...)
 }
 
 #' @title Constructor for a stockGraph (class AmGraph)
@@ -171,13 +138,13 @@ graph <- function(animationPlayed = FALSE, balloonText, title, type, valueField,
 #' 
 #' @examples
 #' # --- constructor
-#' stockGraph(balloonText = "balloonText", "type" = "column",
-#'            valueField = "value", animationPlayed = TRUE)
+#' stockGraph(balloonText = "balloonText",valueField = "value", animationPlayed = TRUE)
 #'            
 #' @export 
 stockGraph <- function(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 {
-  amGraph(animationPlayed, balloonText, title, type, valueField, ...)
+  amGraph(animationPlayed = animationPlayed, balloonText = balloonText,
+          title = title, type = type, valueField = valueField, ...)
 }
 
 # > @balloonText ####
@@ -244,33 +211,4 @@ setMethod(f = "setValueField", signature = c("AmGraph", "character"),
             .Object@valueField <- valueField
             validObject(.Object)
             return(.Object)
-          })
-
-# > METHODS ###
-
-# listProperties ####
-
-#' @rdname listProperties-AmObject
-#' @examples
-#' # --- signature 'AmGraph'
-#' listProperties(amGraph(balloonText = "toto", type = "type", valueField = "valueField"))
-#' listProperties(amGraph(balloonText = "toto", type = "type"))
-#' 
-setMethod(f = "listProperties", signature = "AmGraph",
-          definition = function(.Object)
-          {
-            ls <- callNextMethod()
-            if (length(.Object@balloonText)) {
-              ls <- rlist::list.append(ls, balloonText = .Object@balloonText)
-            } else {}
-            if (length(.Object@title)) {
-              ls <- rlist::list.append(ls, title = .Object@title)
-            } else {}
-            if (length(.Object@type)) {
-              ls <- rlist::list.append(ls, type = .Object@type)
-            } else {}
-            if (length(.Object@valueField)) {
-              ls <- rlist::list.append(ls, valueField = .Object@valueField)
-            } else {}
-            return (ls)
           })

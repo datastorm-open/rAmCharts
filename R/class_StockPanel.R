@@ -189,9 +189,7 @@ setMethod(f = "initialize", signature = "StockPanel",
 #' @export
 stockPanel <- function(...)
 {
-  # print(as.list(match.call()))
-  # list_call <- c(list(Class = "StockPanel"), as.list(match.call())[-1])
-  .Object <- do.call(what = new, list(Class = "StockPanel", ...))
+  .Object <- new(Class = "StockPanel", ...)
   validObject(.Object)
   return(.Object)
 }
@@ -203,19 +201,5 @@ stockPanel <- function(...)
 #' @export
 panel <- function(...)
 {
-  do.call(what = stockPanel, list(...))
+  new(Class = "StockPanel", ...)
 }
-
-#' @examples
-#' stockPanel(drawnOnAxis = "axis1") 
-#' @rdname listProperties-AmObject
-setMethod(f = "listProperties", signature = "StockPanel",
-          definition = function(.Object)
-          { 
-            ls <- callNextMethod()
-            if (length(.Object@drawOnAxis)) ls$drawOnAxis <- .Object@drawOnAxis
-            if (length(.Object@stockGraphs)) ls$stockGraphs <- .Object@stockGraphs
-            if (length(.Object@stockLegend)) ls$stockLegend <- .Object@stockLegend
-            if (length(.Object@title)) ls$title <- .Object@title
-            return(ls)
-          })

@@ -187,14 +187,21 @@ setMethod(f = "listProperties", signature = "AmObject",
               properties <- list()
             }
             
-            if (length(.Object@value)) {
-              properties <- rlist::list.append(properties, value = .Object@value)
-            } else {}
+            if (length(.Object@value)) properties[["value"]] <- .Object@value
             
             if (length(.Object@listeners)) {
               properties <- rlist::list.append(properties, listeners = .Object@listeners)
             } else {}
             
+            # get all slot declared in the class except the package specific ones
+            slot_names <- names(getSlots(class(.Object)))
+            real_slots_i <- grep("properties", slot_names, ignore.case = TRUE, invert = TRUE)
+            # iterate over all slots which can be passed to htmlwidgets as is
+            for (i in real_slots_i) {
+              slot_name_loop <-  slot_names[i]
+              slot_value_loop <- slot(object = .Object, name = slot_name_loop)
+              if (length(slot_value_loop)) properties[[slot_name_loop]] <- slot_value_loop
+            }
             
             return(properties)
           })

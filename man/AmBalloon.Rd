@@ -66,7 +66,7 @@ Initializes or updates an object \linkS4class{AmBalloon}.
 
 new("AmBalloon", cornerRadius = 10)
 
-amBalloon(adjustBorderColor = TRUE, color = "#000000")
+amBalloon(adjustBorderColor = TRUE, color = "#000000", other = TRUE)
 
 setAdjustBorderColor(.Object = amBalloon(), adjustBorderColor = TRUE)
 

@@ -88,19 +88,3 @@ chartScrollbarSettings <- function(graph, enabled = TRUE,...){
   validObject(.Object)
   return( .Object )
 }
-
-#' @rdname listProperties-AmObject
-#' @examples
-#' listProperties(chartScrollbar(enabled = TRUE))
-setMethod( f = "listProperties", signature = "ChartScrollbar",
-           definition = function(.Object)
-           { 
-             ls <- callNextMethod()
-             if (length(.Object@graph)) {
-               ls <- rlist::list.append(ls, graph = .Object@graph)
-             } else {}
-             if (length(.Object@enabled)) {
-               ls <- rlist::list.append(ls, enabled = .Object@enabled)
-             } else {}
-             return(ls)
-           })

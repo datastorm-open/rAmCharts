@@ -95,23 +95,3 @@ setMethod(f = "setGridPosition", signature = c("CategoryAxis", "character"),
             validObject(.Object)
             return(.Object)
           })
-
-#' @rdname listProperties-AmObject
-#' 
-#' @examples
-#' \dontshow{
-#' library(pipeR)
-#' categoryAxis(ignoreAxisWidth = TRUE) %>>% listProperties() %>>% class
-#' categoryAxis(ignoreAxisWidth = TRUE) %>>% listProperties() %>>% length
-#' categoryAxis(ignoreAxisWidth = TRUE) %>>% setGridPosition("start") %>>% listProperties()
-#' }
-#' 
-setMethod(f = "listProperties", signature = "CategoryAxis",
-          definition = function(.Object)
-          { 
-            ls <- callNextMethod()
-            if (length(.Object@gridPosition)) {
-              ls <- rlist::list.append(ls, gridPosition = .Object@gridPosition)
-            } else {}
-            return(ls)
-          })

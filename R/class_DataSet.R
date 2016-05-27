@@ -100,20 +100,3 @@ dataSet <- function(compared = FALSE, dataProvider, fieldMappings, stockEvents,.
   validObject(.Object)
   return( .Object )
 }
-
-#' @rdname listProperties-AmObject
-setMethod( f = "listProperties", signature = "DataSet",
-           definition = function(.Object)
-           { 
-             ls <- callNextMethod()
-             if (length( .Object@dataProvider)) {
-               ls <- rlist::list.append(ls, dataProvider = .Object@dataProvider)
-             } else {}
-             if (length( .Object@fieldMappings)) {
-               ls <- rlist::list.append(ls, fieldMappings = .Object@fieldMappings)
-             } else {}
-             if (length( .Object@stockEvents)) {
-               ls <- rlist::list.append(ls, stockEvents = .Object@stockEvents)
-             } else {}
-             return(ls)
-           })

@@ -97,19 +97,3 @@ setMethod(f = "setSize", signature = c("Title", "numeric"),
             validObject(.Object)
             return(.Object)
           })
-
-#' @examples
-#' title(text = "foo")
-#' @rdname listProperties-AmObject
-setMethod(f = "listProperties", signature = "Title",
-          definition = function(.Object)
-          { 
-            ls <- callNextMethod()
-            if (length(.Object@text)) {
-              ls <- rlist::list.append(ls, text = .Object@text)
-            } else{}
-            if (length(.Object@size)) {
-              ls <- rlist::list.append(ls, size = .Object@size)
-            } else{}
-            return(ls)
-          })

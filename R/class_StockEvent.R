@@ -64,16 +64,3 @@ stockEvent <- function(backgroundAlpha = 1, stockGraph,...){
   validObject(.Object)
   return( .Object )
 }
-
-#' @examples
-#' listProperties(stockEvent())
-#' @rdname listProperties-AmObject
-setMethod( f = "listProperties", signature = "StockEvent",
-           definition = function(.Object)
-           { 
-             ls <- callNextMethod()
-             if (length(.Object@stockGraph)) {
-               ls <- rlist::list.append(ls, stockGraph = .Object@stockGraph)
-             } else {}
-             return(ls)
-           })
