@@ -185,7 +185,7 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL,
 #'           xlab = "spray", col = c("darkblue", "gray"))
 #' 
 #' # Transpose
-#' amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50), xlab = "spray", horiz = TRUE)
+#' amBoxplot(count ~ spray, data = InsectSprays, ylim = c(0,50), xlab = "spray", horiz = FALSE)
 #' 
 #' # Using a custom colum to identify outliers
 #' InsectSprays$id <- paste0("ID : ", 1:nrow(InsectSprays))
@@ -245,13 +245,13 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
              lineColor = "#7f8da9", lineAlpha = 1, lowField = "low",
              fillAlphas = "0.9", negativeLineColor = "#7f8da9",
              openField = "open", title = "Price:", valueField = "close",
-             fixedColumnWidth = 20),
+             columnWidth = 0.4),
     addGraph(id = "g2", type = "step", valueField = "median",lineColor = "black",
-             noStepRisers = TRUE, balloonText = "", periodSpan = 0.80, lineThickness = 3),
+             noStepRisers = TRUE, balloonText = "", lineThickness = 3, periodSpan = 0.4),
     addGraph(id = "g3", type = "step", valueField = "low_outlier",lineColor = "black",
-             noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
+             noStepRisers = TRUE, balloonText = "", periodSpan = 0.3),
     addGraph(id = "g4", type = "step", valueField = "high_outlier",lineColor = "black",
-             noStepRisers = TRUE, balloonText = "", periodSpan = 0.5),
+             noStepRisers = TRUE, balloonText = "", periodSpan = 0.3),
     addGraph(id = "g5", type = "line", valueField = "real_outlier",lineColor = "black",
              lineAlpha = 0, bullet = "round", noStepRisers = TRUE, balloonText = "", periodSpan = 0.5)
   )
