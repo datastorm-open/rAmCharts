@@ -5,6 +5,7 @@
   * fix ``getAmChart()`` clean using markdown
   * fix bug on ``stockpanel``
   * fix use data.frame with no checked colnames
+  * new outliers treatments on boxplot + precision + fix data.frame
   
 ### rAmCharts 2.0.2 (based on [amcharts][amcharts_url] version **3.20.3**)
 

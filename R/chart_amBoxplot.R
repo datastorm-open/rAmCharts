@@ -78,7 +78,13 @@ amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
   
   res <- data[, list(.dtBoxplotStat(list(value, id))), by = "group"]
   
-  final.outliers <- .finalDataBoxplot(res, col = col)
+  sup_options <- list(...)
+  if("precision" %in% names(sup_options)){
+    precision <- sup_options$precision
+  } else {
+    precision <- 2
+  }
+  final.outliers <- .finalDataBoxplot(res, col = col, precision = precision)
   
   chart <- .plotAmBoxplot(final.outliers, xlab = xlab, 
                           ylab = ylab, ylim = ylim, horiz = horiz)
@@ -98,7 +104,12 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
                                  ylim = NULL, col = NULL, horiz = FALSE, ...)
 {
   x <- object
-  xx <- x[, colnames(x)[!colnames(x)%in%id], drop = FALSE]
+  
+  # quantitative variables
+  num_variables <- sapply(x, class)
+  num_variables <- names(num_variables)[!num_variables %in% c("character", "factor", "logical")]
+  
+  xx <- x[, num_variables[!num_variables%in%id], drop = FALSE]
   value <- do.call("c", xx)
   if (is.null(colnames(xx))) {
     group <- rep(1:ncol(x), each = nrow(xx))
@@ -115,7 +126,13 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
   
   res <- data[, list(.dtBoxplotStat(list(value, id))), by = group]
   
-  final.outliers <- .finalDataBoxplot(res, col = col)
+  sup_options <- list(...)
+  if("precision" %in% names(sup_options)){
+    precision <- sup_options$precision
+  } else {
+    precision <- 2
+  }
+  final.outliers <- .finalDataBoxplot(res, col = col, precision = precision)
   
   chart <- .plotAmBoxplot(dp = final.outliers, xlab = xlab, ylab = ylab, ylim = ylim, horiz = horiz)
   
@@ -165,7 +182,13 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL,
   
   res <- data[, list(.dtBoxplotStat(list(value, id))), by = group]
   
-  final.outliers <- .finalDataBoxplot(res, col = col)
+  sup_options <- list(...)
+  if("precision" %in% names(sup_options)){
+    precision <- sup_options$precision
+  } else {
+    precision <- 2
+  }
+  final.outliers <- .finalDataBoxplot(res, col = col, precision = precision)
   
   chart <- .plotAmBoxplot(dp = final.outliers,xlab = xlab, ylab = ylab,
                           ylim = ylim, horiz = horiz)
@@ -218,8 +241,15 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   y <- as.character(formula)[3]
   
   res <- data[, list(.dtBoxplotStat(list(eval(parse(text = x)), id))), by = y]
+  res <- res[order(res[, eval(parse(text = y))])]
   
-  final.outliers <- .finalDataBoxplot(res, col = col)
+  sup_options <- list(...)
+  if("precision" %in% names(sup_options)){
+    precision <- sup_options$precision
+  } else {
+    precision <- 2
+  }
+  final.outliers <- .finalDataBoxplot(res, col = col, precision = precision)
   
   chart <- .plotAmBoxplot(dp = final.outliers, xlab = xlab, 
                           ylab = ylab, ylim = ylim, horiz = horiz)
@@ -260,7 +290,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
     for (i in 1:(ncol(dp)-8)) {
       chart <- addGraph(chart, type = "line", valueField = paste0("real_outlier_", i) ,lineColor = "black",
                         lineAlpha = 0, bullet = "round", noStepRisers = TRUE, periodSpan = 0.5,
-                        balloonText = paste0("<b> Individual </b>: [[individual_",i,"]]<br/><b> Value </b>: [[real_outlier_",i,"]]"))
+                        balloonText = paste0("[[individual_",i,"]]<br/><b> Value </b>: [[real_outlier_",i,"]]"))
     }
   }
   
@@ -306,6 +336,13 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
     if (nrow(out) > 0) {
       stats[1] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "min(x)"))]
       stats[5] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "max(x)"))]
+      
+      out <- out[ ,list(N = .N, id), by = "x"]
+      out[N == 1, label := "<b> Individual </b>: "]
+      out[N > 1, label := "<b> Number of outliers </b>: "]
+      out <- unique(out[, c("x", "id", "label"), with = FALSE])
+      out[, `:=`(id = paste0(label, id), label = NULL)]
+      out
     }
   }
   
@@ -325,7 +362,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   }
 }
 
-.finalDataBoxplot <- function(res, col = NULL)
+.finalDataBoxplot <- function(res, col = NULL, precision = 2)
 {
   
   dp <- data.table(cat = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[1]))]), 
@@ -343,13 +380,17 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   cat <- as.character(outliers[[1]])
   
   addcat <- sapply(1:length(outliers[[2]]), function(x){
-    outliers[[2]][[x]]$cat <<- cat[x]
+    if(nrow(outliers[[2]][[x]]) > 0){
+      outliers[[2]][[x]]$cat <<- cat[x]
+    } else {
+      outliers[[2]][[x]] <<- data.table(x = 1, id = 1, cat = "")[x == 0]
+    }
   })
   
   outliers <- do.call("rbind", outliers[[2]])
   
   if(nrow(outliers) > 0){
-    outliers[, eval(parse(text = "x := list(round(x, 2))"))]
+    outliers[, eval(parse(text = paste0("x := list(round(x, ", precision, "))")))]
     
     split.outliers <- split(outliers, outliers$cat)
     
