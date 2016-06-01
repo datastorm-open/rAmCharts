@@ -17,13 +17,13 @@ amPlot(x, ...)
 \method{amPlot}{numeric}(x, y, bullet = c("round", "diamond", "square",
   "bubble", "yError", "xError", "triangleLeft", "triangleRight", "triangleUp",
   "triangleDown"), type = c("points", "line", "smoothedLine", "step", "both"),
-  col = "gray", weights = NULL, precision = 2, id, error, xlab, ylab, lty,
-  cex, lwd, xlim, ylim, ...)
+  col = "#0066cc", weights = NULL, precision = 2, id, error, xlab, ylab,
+  lty, cex, lwd, xlim, ylim, ...)
 
 \method{amPlot}{character}(x, y, bullet = c("round", "diamond", "square",
   "bubble", "yError", "xError", "triangleLeft", "triangleRight", "triangleUp",
   "triangleDown"), type = c("points", "line", "smoothedLine", "step", "both"),
-  col = "gray", weights = NULL, precision = 2, parseDates = FALSE,
+  col = "#0066cc", weights = NULL, precision = 2, parseDates = FALSE,
   dataDateFormat, id, error, xlab, ylab, lty, cex, lwd, xlim, ylim, ...)
 
 \method{amPlot}{factor}(x, y, bullet = "round", type = "p", col = "gray",
@@ -55,7 +55,7 @@ Default set to "p".}
 
 \item{col}{either a \code{factor} or a \code{character}, default set to "gray".}
 
-\item{weights}{\code{numeric}, weights for x/y charts only. Default set to rep(1, x).}
+\item{weights}{\code{numeric}, weights for x/y charts only. Small values are prefered for lisibility.}
 
 \item{precision}{\code{numeric}, precision you wish to display. Default set to 2.}
 
@@ -132,9 +132,9 @@ x <- rnorm(100)
 amPlot(x = x, main = "Title", col = "lightblue", type = "b")
 
 x <- sort(rnorm(100))
-y <- rnorm(100, sd = 10)
-weights <- rnorm(100)
-amPlot(x = x, y = y, type = "l", weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
+y <- runif(100)
+weights <- runif(100, 0, 15)
+amPlot(x = x, y = y, weights = weights)
 }
 }
 \seealso{

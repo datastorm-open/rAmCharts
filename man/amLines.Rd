@@ -5,7 +5,7 @@
 \title{amLines adds a serie to a graph.}
 \usage{
 amLines(chart, x = NULL, y = NULL, type = c("points", "line",
-  "smoothedLine"), col, title)
+  "smoothedLine"), col = "#0066cc", title)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}. Chart you wish to add the new serie.}

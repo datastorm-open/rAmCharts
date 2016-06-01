@@ -72,13 +72,13 @@ testthat::test_that("amPlot: formula", {
 
 testthat::test_that("amLines", {
   testthat::expect_silent({ 
-    chart <- amPlot(x = rnorm(100), type = 'sl')
+    chart <- amPlot(x = rnorm(100), type = 'sm')
     chart %>>% amLines(x = rnorm(100), type = "p")
     
     
     chart <- chart %>>% amLines(x = rnorm(100), col = "blue")
     chart %>>%
-      amLines(x = rnorm(100), type = "sl") %>>%
+      amLines(x = rnorm(100), type = "sm") %>>%
       amLines(x = rnorm(100), type = "p")
     
     # For an XY chart

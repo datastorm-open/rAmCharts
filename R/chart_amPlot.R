@@ -18,7 +18,7 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' for a smoothed line (deprecated), "st" for steps, "p" for points, and "b" for line and points.
 #' Default set to "p".
 #' @param col either a \code{factor} or a \code{character}, default set to "gray".
-#' @param weights \code{numeric}, weights for x/y charts only. Default set to rep(1, x).
+#' @param weights \code{numeric}, weights for x/y charts only. Small values are prefered for lisibility.
 #' @param id \code{numeric}, point id, for x/y charts only. Default 1:length(x).
 #' @param precision \code{numeric}, precision you wish to display. Default set to 2.
 #' @param dataDateFormat \code{character}, default set to NULL. Even if your chart parses dates,
@@ -91,9 +91,9 @@ amPlot.default <- function(x, ...) "Wrong class"
 #' amPlot(x = x, main = "Title", col = "lightblue", type = "b")
 #' 
 #' x <- sort(rnorm(100))
-#' y <- rnorm(100, sd = 10)
-#' weights <- rnorm(100)
-#' amPlot(x = x, y = y, type = "l", weights = weights, lty = 2, cex = 1, scrollbar = TRUE)
+#' y <- runif(100)
+#' weights <- runif(100, 0, 15)
+#' amPlot(x = x, y = y, weights = weights)
 #' }
 #' @import data.table
 #' @import pipeR
@@ -105,7 +105,7 @@ amPlot.numeric <- function(x, y,
                                       "triangleLeft", "triangleRight",
                                       "triangleUp", "triangleDown"),
                            type = c("points", "line", "smoothedLine", "step", "both"),
-                           col = "gray", 
+                           col = "#0066cc", 
                            weights = NULL, precision = 2, id, error, xlab, ylab,
                            lty, cex, lwd, xlim, ylim, ...)
 {
@@ -187,13 +187,6 @@ amPlot.numeric <- function(x, y,
     if (missing(ylab)) ylab <- deparse(substitute(y))
     graphTitle <- deparse(substitute(y))
     
-    # width of bullets
-    if (missing(cex) && missing(weights)) cex <- 0
-    else if (missing(cex) && !missing(weights)) cex <- max(weights)
-    
-    # opacity of bullets
-    bulletAlpha <- ifelse (!cex, 0, 1)
-    
     # initialize dataProvider
     if (!missing(id)) {
       dt <- data.table(x = x, y = y, id = id, col = col)
@@ -207,25 +200,30 @@ amPlot.numeric <- function(x, y,
       .testLength(weights, length(x))
       # width of bullets
       weights <- round(weights, precision)
+      # weights <- sapply(weights, function (w) (w-min(weights)) / (max(weights) - min(weights))) * 10
+      cex <- max(weights)
       dt <- cbind(dt, weights = weights)
       weighted <- TRUE
       labelWeights <- "weights:<b>[[weights]]</b>"
     } else {
       weighted <- FALSE
       labelWeights <- NULL
+      if (missing(cex)) cex <- 0
     }
+    # opacity of bullets
+    bulletAlpha <- ifelse (!cex, 0, 1)
     
     balloonText <- paste0(labelId, "x:<b>[[x]]</b><br>y:<b>[[y]]</b><br>", labelWeights)
     
     # Add common valueAxis
-    valueAxis_bottom <- if (!missing(xlim)) {
+    if (!missing(xlim)) {
       .testNumeric(xlim)
       .testLength(xlim, 2)
-      valueAxis(title = xlab, position = "bottom", axisAlpha = 0,
-                minimum = xlim[1], maximum = xlim[2])
     } else {
-      valueAxis(title = xlab, position = "bottom", axisAlpha = 0)
+      xlim <- range(x)
     }
+    valueAxis_bottom <- valueAxis(title = xlab, position = "bottom", axisAlpha = 0,
+                                  minimum = xlim[1], maximum = xlim[2])
     
     graph_obj <- getGraphXY(type = type, bullet = bullet, cex = cex, title = graphTitle,
                             lwd = lwd, lty = lty, bulletAlpha = bulletAlpha, col = col,
@@ -245,14 +243,18 @@ amPlot.numeric <- function(x, y,
   }
   
   # Add common valueAxis at the left
-  valueAxis_left <- if (!missing(ylim)) {
+  if (!missing(ylim)) {
     .testNumeric(ylim)
     .testLength(ylim, 2)
-    valueAxis(title = ylab, position = "left", axisAlpha = 0,
-              minimum = ylim[1], maximum = ylim[2], id = "y")
+  } else if (!missing(y)) {
+    ylim <- range(y)
+    valueAxis_left <- valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y",
+                                minimum = ylim[1], maximum = ylim[2])
   } else {
-    valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y")
+    valueAxis_left <- valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y")
   }
+
+ 
   
   chart <- addValueAxis(.Object = chart, valueAxis = valueAxis_left)
   
@@ -271,7 +273,7 @@ amPlot.character <- function(x, y,
                                         "triangleLeft", "triangleRight",
                                         "triangleUp", "triangleDown"),
                              type = c("points", "line", "smoothedLine", "step", "both"),
-                             col = "gray", 
+                             col = "#0066cc", 
                              weights = NULL,
                              precision = 2,
                              parseDates = FALSE, dataDateFormat,
@@ -322,12 +324,12 @@ amPlot.character <- function(x, y,
     
     # define the graph object depending on the type
     graph_obj <- getGraph(type = type, col = col, bullet = bullet,
-                          title = deparse(substitute(x)),
+                          title = deparse(substitute(y)),
                           cex = cex, lwd = lwd, lty = lty)
     
     # define axes label
     if (missing(xlab)) xlab <- "index"
-    if (missing(ylab)) ylab <- deparse(substitute(x))
+    if (missing(ylab)) ylab <- deparse(substitute(y))
     
     if (parseDates) {
       stopifnot(!missing(dataDateFormat))
@@ -541,8 +543,10 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
                                lineThickness = lwd, dashLength = lty)
                        })
   
-  if (weighted) setProperties(graph_obj, maxBulletSize = cex)
-  else setProperties(graph_obj, bulletSize = cex)
+  if (weighted) 
+    graph_obj <- setProperties(graph_obj, maxBulletSize = cex)
+  else
+    graph_obj <- setProperties(graph_obj, bulletSize = cex)
   
   if (nlevels(col) == 1) 
     setProperties(.Object = graph_obj, lineColor = levels(col))
@@ -591,7 +595,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' 
 amLines <- function(chart, x = NULL, y = NULL,
                     type = c("points", "line", "smoothedLine"),
-                    col, title)
+                    col = "#0066cc", title)
 {
   
   
