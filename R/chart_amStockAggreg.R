@@ -22,14 +22,15 @@
 #' Unit, times unit
 #' multiple : multiple*unit 
 #' label : button's label
+#' @param main \code{character}, title.
+#' @param ylab \code{character}, value axis label.
 #' @param precision \code{numeric}, digits precision
-
+#' @param ... other first level attributes
 #' @examples
 #' data("data_stock_2")
 #' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"))
 #' 
 #' \donttest{
-#'
 #' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
 #' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
 #'               groupToPeriods = c('hh', 'DD', '10DD'),)
@@ -72,9 +73,9 @@ amStockAggreg <- function(data, col_date,
                           maxSeries = 300,
                           groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'),
                           ZoomButton = NULL,
-                          precision = 1){
-  
-  
+                          precision = 1,
+                          ...)
+{
   ##Test args
   
   #data
@@ -91,14 +92,12 @@ amStockAggreg <- function(data, col_date,
   .testCharacter(char = color)
   
   # aggregation
-  aggregation <- match.args(aggregation)
+  aggregation <- match.arg(aggregation)
   
   #bullet
   if (!is.null(bullet))
-  {
     .testIn(bullet, c("diamond", "square", "bubble",  "yError", "xError",
                       "round", "triangleLeft", "triangleRight", "triangleUp"))
-  }
   
   # maxSeries
   .testNumericLength1(num = maxSeries)
@@ -106,8 +105,7 @@ amStockAggreg <- function(data, col_date,
   #.testIn(vect = groupToPeriods, control = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'))
   
   #ZoomButton
-  if(!is.null(ZoomButton))
-  {
+  if (!is.null(ZoomButton)) {
     .testIn(vect = names(ZoomButton),control =  c("Unit","multiple","label"))
     #.testIn(vect = ZoomButton$Unit,control =  c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY', 'MAX'))
     .testNumeric(num = ZoomButton$multiple)
@@ -116,6 +114,7 @@ amStockAggreg <- function(data, col_date,
   #precision
   .testNumericLength1(precision)
   
+  # labels
   .testCharacterLength1(ylab)
   .testCharacterLength1(main)
   
@@ -129,36 +128,27 @@ amStockAggreg <- function(data, col_date,
                                       list(period = 'ss', format = 'YYYY-MM-DD JJ:NN:ss'),
                                       list(period='fff', format = 'YYYY-MM-DD JJ:NN:ss'))
   
-  
-  
   data$date <- data$date + (as.POSIXlt(as.character(data$date), tz = "UTC") - data$date)
-  
   
   fieldMapping <- lapply(col_series, function(x) {
     list(fromField=x, toField=x, title = x)
   })
   
-  
-  
   graph_maker <- data.frame(column = col_series)
   
-  
-  if(length(color) >= nrow(graph_maker))
-  {
+  if (length(color) >= nrow(graph_maker)) {
     graph_maker$color <- color[1:nrow(graph_maker)]
-  }else{
+  } else {
     graph_maker$color <- color
   }
   
-  if(length(bullet) >= nrow(graph_maker))
-  {
+  if (length(bullet) >= nrow(graph_maker)) {
     graph_maker$bullet <- bullet[1:nrow(graph_maker)]
-  }else{
+  } else {
     graph_maker$bullet <- bullet
   }
   
   graph_maker$aggregation <- aggregation
-  
   
   stockgraph <- apply(graph_maker,1 , function(x) {
     stockGraph(title =  x["column"][[1]],
@@ -173,59 +163,45 @@ amStockAggreg <- function(data, col_date,
     )
   })
   
-  
-  
   periodZoom <- periodSelector( position = 'bottom' ,inputFieldsEnabled = FALSE)
   
-  if(!is.null(ZoomButton))
-  {
-    for(i in 1:nrow(ZoomButton))
-    {
-      if(i == 1){
-        
-        
+  if (!is.null(ZoomButton)) {
+    for (i in 1:nrow(ZoomButton)) {
+      if (i == 1) {
         periodZoom <- pipeR::pipeline(periodZoom,
-                                      addPeriod( period = ZoomButton$Unit[i],
-                                                 selected = TRUE, count = ZoomButton$multiple[i],
-                                                 label =  ZoomButton$label[i])
+                                      addPeriod(period = ZoomButton$Unit[i],
+                                                selected = TRUE, count = ZoomButton$multiple[i],
+                                                label =  ZoomButton$label[i])
         )
-      }else{
+      } else {
         periodZoom <- pipeR::pipeline(periodZoom,
-                                      addPeriod( period = ZoomButton$Unit[i],
-                                                 count = ZoomButton$multiple[i],
-                                                 label =  ZoomButton$label[i])
+                                      addPeriod(period = ZoomButton$Unit[i],
+                                                count = ZoomButton$multiple[i],
+                                                label =  ZoomButton$label[i])
         )
       }
-      
     }
   }
   
+  dataset_obj <- pipeR::pipeline(dataSet(categoryField = col_date) ,
+                                 setDataProvider(data, keepNA = FALSE),
+                                 setFieldMappings(fieldMapping))
+  panel_obj <- pipeR::pipeline(panel(title = ylab,  stockGraphs = stockgraph),
+                               setStockLegend(labelText = "[[title]]", useGraphSettings = TRUE),
+                               addTitle(text = main))
   ## Plot
-  graph <- pipeR::pipeline(
-    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE) ,
-    addDataSet(pipeR::pipeline(
-      dataSet(categoryField = col_date) ,
-      setDataProvider(data, keepNA = FALSE),
-      
-      setFieldMappings(fieldMapping))),
-    addPanel(panel(
-      title = ylab, 
-      stockGraphs = stockgraph,
-      stockLegend = stockLegend(labelText = "[[title]]", useGraphSettings = TRUE)
-    )),
-    setChartCursorSettings( valueBalloonsEnabled = TRUE, fullWidth = TRUE,
-                            cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
-                            valueLineEnabled = TRUE, valueLineAlpha = 0.5,
-                            categoryBalloonDateFormats = mycategoryBalloonDateFormat),
+  pipeR::pipeline(
+    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE, ...) ,
+    addDataSet(dataset_obj),
+    addPanel(panel_obj),
+    setChartCursorSettings(valueBalloonsEnabled = TRUE, fullWidth = TRUE,
+                           cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
+                           valueLineEnabled = TRUE, valueLineAlpha = 0.5,
+                           categoryBalloonDateFormats = mycategoryBalloonDateFormat),
     setPeriodSelector(periodZoom, position = "bottom", inputFieldsEnabled = FALSE),
     setCategoryAxesSettings(parseDates = TRUE, minPeriod = 'fff',
                             groupToPeriods = groupToPeriods, maxSeries = maxSeries),
     setPanelsSettings(marginTop = 30),
-    setLegendSettings(position = "bottom"),
-    plot
+    setLegendSettings(position = "bottom")
   )
-  
-  graph[[1]]$chartData$panels[[1]]$titles <- list(title(text = main))
-  graph
-  
 }
