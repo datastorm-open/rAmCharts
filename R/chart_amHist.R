@@ -139,8 +139,6 @@ amHist.numeric <- function(x, col = "#1e90ff", border = "#1e90ff",
     addGraph(balloonText = "<b>[[value]]</b> <br/> [[cut]] ", type = "column",
              valueField = "y", fillAlphas = .8, lineAlpha = 1,
              fillColorsField = "color", lineColor = border, labelText = amLabels),
-    addGraph(valueField = "y", type = "smoothedLine", lineColor = "black",
-             balloonText = "", id = "graph-line"),
     addValueAxes(title = ylab, minimum = ylim[1], maximum = ylim[2]),
     setCategoryAxis(title = xlab),
     setProperties(RType_ = "histogram")
