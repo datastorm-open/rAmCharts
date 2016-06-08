@@ -68,7 +68,7 @@ amStockAggreg <- function(data, col_date,
                           ylab = "",
                           color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"),
                           bullet = NULL, 
-                          aggregation = "Average",
+                          aggregation = c("Average", "Low", "High", "Sum"),
                           maxSeries = 300,
                           groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'),
                           ZoomButton = NULL,
@@ -90,17 +90,17 @@ amStockAggreg <- function(data, col_date,
   #color
   .testCharacter(char = color)
   
+  # aggregation
+  aggregation <- match.args(aggregation)
+  
   #bullet
-  if(!is.null(bullet))
+  if (!is.null(bullet))
   {
-    .testIn(bullet, c("diamond", "square", 
-                      "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"))
+    .testIn(bullet, c("diamond", "square", "bubble",  "yError", "xError",
+                      "round", "triangleLeft", "triangleRight", "triangleUp"))
   }
   
-  #aggregation
-  .testIn(vect = aggregation,control =  c("Low", "High", "Average", "Sum"))
-  
-  #maxSeries
+  # maxSeries
   .testNumericLength1(num = maxSeries)
   
   #.testIn(vect = groupToPeriods, control = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'))
