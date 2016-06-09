@@ -6,7 +6,9 @@
 #' @param col_series \code{character} names of series columns
 #' @param color \code{character}, color of series (in hexadecimal).
 #' @param bullet \code{character}, point shape. Possible values are : "diamond", "square", 
-#' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp", 
+#' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"
+#' @param bulletSize : \code{numeric}, size of bullet.
+#' @param linetype : \code{numeric}, line type, 0 : solid, number : dashed length 
 #' @param aggregation \code{character}, aggregation type. Possible values are : 
 #' "Low", "High", "Average" and "Sum"
 #' @param maxSeries \code{numeric} Maximum series shown at a time.
@@ -46,6 +48,7 @@
 #'               maxSeries = 50, precision = 5)
 #' 
 #' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet =  c("diamond", "square"),
+#'              linetype = 0, bulletSize = c(5, 10),
 #'              groupToPeriods = c('12hh', 'DD', '10DD'),
 #'              maxSeries = 50, aggregation = "Sum")
 #' 
@@ -69,6 +72,8 @@ amTimeSeries <- function(data, col_date,
                           ylab = "",
                           color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"),
                           bullet = NULL, 
+                          bulletSize = 2, 
+                          linetype  = c(0, 5, 10, 15, 20),
                           aggregation = c("Average", "Low", "High", "Sum"),
                           maxSeries = 300,
                           groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'),
@@ -148,15 +153,29 @@ amTimeSeries <- function(data, col_date,
     graph_maker$bullet <- bullet
   }
   
+  if (length(linetype) >= nrow(graph_maker)) {
+    graph_maker$dashLength <- linetype[1:nrow(graph_maker)]
+  } else {
+    graph_maker$dashLength <- linetype
+  }
+  
+  if (length(bulletSize) >= nrow(graph_maker)) {
+    graph_maker$bulletSize <- bulletSize[1:nrow(graph_maker)]
+  } else {
+    graph_maker$bulletSize <- bulletSize
+  }
+  
   graph_maker$aggregation <- aggregation
   
-  stockgraph <- apply(graph_maker,1 , function(x) {
+  stockgraph <- apply(graph_maker, 1, function(x) {
     stockGraph(title =  x["column"][[1]],
                id = x["column"][[1]] , connect = FALSE, valueField = x["column"][[1]],
                comparable = TRUE, periodValue = x["aggregation"][[1]],
                compareField = x["column"][[1]],
                balloonText = paste0(x["column"][[1]], ' : <b>[[value]]</b>'),
                lineColor = x["color"][[1]],
+               bulletSize = x["bulletSize"][[1]],
+               dashLength = x["dashLength"][[1]],
                useDataSetColors = FALSE,
                bullet = ifelse(is.na(x["bullet"]), "none"[[1]], x["bullet"])[[1]],
                precision = precision
