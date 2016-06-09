@@ -337,11 +337,11 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
       stats[1] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "min(x)"))]
       stats[5] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "max(x)"))]
       
-      out <- out[ ,list(N = .N, id), by = "x"]
-      out[N == 1, label := "<b> Individual </b>: "]
-      out[N > 1, label := "<b> Number of outliers </b>: "]
+      out <- out[ , eval(parse(text = "list(N = .N, id)")), by = "x"]
+      out[eval(parse(text = 'N == 1')), eval(parse(text = 'label := "<b> Individual </b>: "'))]
+      out[eval(parse(text = 'N > 1')), eval(parse(text = '`:=`(label = "<b> Number of outliers </b>: ", id = N)'))]
       out <- unique(out[, c("x", "id", "label"), with = FALSE])
-      out[, `:=`(id = paste0(label, id), label = NULL)]
+      out[, eval(parse(text = '`:=`(id = paste0(label, id), label = NULL)'))]
       out
     }
   }
