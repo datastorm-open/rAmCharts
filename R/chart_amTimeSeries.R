@@ -1,5 +1,5 @@
 #' @title Plotting times series which aggregation
-#' @description  amStockAggreg computes a stock chart.
+#' @description  amTimeSeries computes a stock chart.
 #' 
 #' @param data \code{data.frame}, data of graph.
 #' @param col_date \code{character} name of date column
@@ -28,31 +28,31 @@
 #' @param ... other first level attributes
 #' @examples
 #' data("data_stock_2")
-#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"))
+#' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"))
 #' 
 #' \donttest{
-#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
-#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+#' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
+#' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
 #'               groupToPeriods = c('hh', 'DD', '10DD'),)
 #' 
-#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+#' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
 #'               groupToPeriods = c('12hh', 'DD', '10DD'),
 #'               maxSeries = 50)
 #' 
 #' 
 #' 
-#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+#' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
 #'               groupToPeriods = c('12hh', 'DD', '10DD'),
 #'               maxSeries = 50, precision = 5)
 #' 
-#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet =  c("diamond", "square"),
+#' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet =  c("diamond", "square"),
 #'              groupToPeriods = c('12hh', 'DD', '10DD'),
 #'              maxSeries = 50, aggregation = "Sum")
 #' 
 #' 
 #' ZoomButton <- data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 2 ,1),
 #'                         label = c("Day","2 days", "MAX"))
-#' amStockAggreg(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+#' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
 #'              ZoomButton = ZoomButton, main = "My title", ylab = "Interest")
 #'              
 #' }
@@ -63,7 +63,7 @@
 #'
 #' @export
 #'
-amStockAggreg <- function(data, col_date,
+amTimeSeries <- function(data, col_date,
                           col_series,
                           main = "",
                           ylab = "",

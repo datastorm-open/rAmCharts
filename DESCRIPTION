@@ -44,7 +44,7 @@ Collate:
     'chart_amPie.R'
     'chart_amPlot.R'
     'chart_amRadar.R'
-    'chart_amStockAggreg.R'
+    'chart_amTimeSeries.R'
     'chart_amWaterfall.R'
     'chart_amWind.R'
     'utils_sharedGenerics.R'
