@@ -246,7 +246,7 @@ amTimeSeries <- function(data, col_date,
                bulletSize = x["bulletSize"][[1]],
                dashLength = x["dashLength"][[1]],
                useDataSetColors = FALSE,
-               bullet = ifelse(is.na(x["bullet"]), "none"[[1]], x["bullet"])[[1]],
+               bullet = ifelse(is.na(x["bullet"]), "none", x["bullet"])[[1]],
                precision = precision,
                lineThickness = x["linewidth"][[1]]
     )
