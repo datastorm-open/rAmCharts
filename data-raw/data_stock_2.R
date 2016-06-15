@@ -1,5 +1,5 @@
 {
-  dateseq <- seq(as.POSIXct("2015-01-01"), as.POSIXct("2016-01-01"), by = "hour")
+  dateseq <- seq(as.POSIXct("2015-01-01"), as.POSIXct("2015-03-01"), by = "hour")
   
   ts1 <- cos(seq(-pi, pi, length.out = 24))*500
   ts2 <- sin(seq(-pi, pi, length.out = 24))*500

@@ -6,9 +6,13 @@
 \usage{
 amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"), bullet = NULL,
-  aggregation = c("Average", "Low", "High", "Sum"), maxSeries = 300,
-  groupToPeriods = c("ss", "mm", "hh", "DD", "MM", "YYYY"),
-  ZoomButton = NULL, precision = 1, ...)
+  bulletSize = 2, linetype = c(0, 5, 10, 15, 20), linewidth = c(1, 1, 1,
+  1, 1, 1), aggregation = c("Average", "Low", "High", "Sum"),
+  maxSeries = 300, groupToPeriods = c("ss", "mm", "hh", "DD", "MM", "YYYY"),
+  ZoomButton = data.frame(Unit = "MAX", multiple = 1, label = "All"),
+  ZoomButtonPosition = "bottom", precision = 1, export = FALSE,
+  legendPosition = "bottom", scrollbarPosition = "bottom",
+  scrollbarHeight = 40, creditsPosition = "top-right", ...)
 }
 \arguments{
 \item{data}{\code{data.frame}, data of graph.}
@@ -24,7 +28,13 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
 \item{color}{\code{character}, color of series (in hexadecimal).}
 
 \item{bullet}{\code{character}, point shape. Possible values are : "diamond", "square", 
-"bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp",}
+"bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"}
+
+\item{bulletSize}{: \code{numeric}, size of bullet.}
+
+\item{linetype}{: \code{numeric}, line type, 0 : solid, number : dashed length}
+
+\item{linewidth}{: \code{numeric}, line width.}
 
 \item{aggregation}{\code{character}, aggregation type. Possible values are : 
 "Low", "High", "Average" and "Sum"}
@@ -45,7 +55,23 @@ Unit, times unit
 multiple : multiple*unit 
 label : button's label}
 
+\item{ZoomButtonPosition}{\code{character}, zoom button position. Possible values are :
+"left", "right", "bottom", "top"}
+
 \item{precision}{\code{numeric}, digits precision}
+
+\item{export}{\code{logical}, default set to  FALSE. TRUE to display export feature.}
+
+\item{legendPosition}{\code{character}, legend position. Possible values are :
+"left", "right", "bottom", "top"}
+
+\item{scrollbarPosition}{\code{character}, scrollbar position. Possible values are :
+"left", "right", "bottom", "top"}
+
+\item{scrollbarHeight}{\code{numeric}, height of scroll bar. Default : 40.}
+
+\item{creditsPosition}{\code{character}, credits position. Possible values are :
+"top-right", "top-left", "bottom-right", "bottom-left"}
 
 \item{...}{other first level attributes}
 }
@@ -59,11 +85,15 @@ amTimeSeries(data_stock_2, "date", c("ts1", "ts2"))
 \donttest{
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
-              groupToPeriods = c('hh', 'DD', '10DD'),)
+              groupToPeriods = c('hh', 'DD', '10DD'))
 
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
               groupToPeriods = c('12hh', 'DD', '10DD'),
               maxSeries = 50)
+              
+amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+             groupToPeriods = c('hh', 'DD', '10DD'),
+             linewidth = c(3, 1))
 
 
 
@@ -72,6 +102,7 @@ amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
               maxSeries = 50, precision = 5)
 
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet =  c("diamond", "square"),
+             linetype = 0, bulletSize = c(5, 10),
              groupToPeriods = c('12hh', 'DD', '10DD'),
              maxSeries = 50, aggregation = "Sum")
 
@@ -80,6 +111,16 @@ ZoomButton <- data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 2 ,1),
                         label = c("Day","2 days", "MAX"))
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
              ZoomButton = ZoomButton, main = "My title", ylab = "Interest")
+             
+amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+             ZoomButton = ZoomButton, main = "My title", ylab = "Interest",
+             export = TRUE, ZoomButtonPosition = "right",
+             legendPosition = "bottom", scrollbarPosition = "top")
+         
+amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
+             ZoomButton = ZoomButton, main = "My title",
+             ylab = "Interest", export = TRUE,
+             creditsPosition = "bottom-left")
              
 }
 }
