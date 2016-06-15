@@ -146,33 +146,33 @@ amStockChart <- function(balloon, comparedDataSets, dataSets,
   return(.Object)
 }
 
-#' @rdname listProperties-AmObject
-#' @examples
-#' # --- signature 'AmStockChart'
-#' listProperties(amStockChart(test = 1))
-#' 
-setMethod(f = "listProperties", signature = "AmStockChart",
-          definition = function(.Object)
-          {
-            ls <- callNextMethod()
-            if (length(.Object@balloon))
-              ls <- rlist::list.append(ls, balloon = .Object@balloon)
-            if (length(.Object@comparedDataSets))
-              ls <- rlist::list.append(ls, comparedDataSets = .Object@comparedDataSets)
-            if (length(.Object@dataSets))
-              ls <- rlist::list.append(ls, dataSets = .Object@dataSets)
-            if (length(.Object@dataSetSelector))
-              ls <- rlist::list.append(ls, dataSetSelector = .Object@dataSetSelector)
-            if (length(.Object@mainDataSet))
-              ls <- rlist::list.append(ls, mainDataSet = .Object@mainDataSet)
-            if (length(.Object@panels))
-              ls <- rlist::list.append(ls, panels = .Object@panels)
-            if (length(.Object@periodSelector))
-              ls <- rlist::list.append(ls, periodSelector = .Object@periodSelector)
-            if (length(.Object@type))
-              ls <- rlist::list.append(ls, type = .Object@type)
-            if (length(.Object@theme))
-              ls <- rlist::list.append(ls, theme = .Object@theme)
-            
-            return(ls)
-          })
+#' #' @rdname listProperties-AmObject
+#' #' @examples
+#' #' # --- signature 'AmStockChart'
+#' #' listProperties(amStockChart(test = 1))
+#' #' 
+#' setMethod(f = "listProperties", signature = "AmStockChart",
+#'           definition = function(.Object)
+#'           {
+#'             ls <- callNextMethod()
+#'             if (length(.Object@balloon))
+#'               ls <- rlist::list.append(ls, balloon = .Object@balloon)
+#'             if (length(.Object@comparedDataSets))
+#'               ls <- rlist::list.append(ls, comparedDataSets = .Object@comparedDataSets)
+#'             if (length(.Object@dataSets))
+#'               ls <- rlist::list.append(ls, dataSets = .Object@dataSets)
+#'             if (length(.Object@dataSetSelector))
+#'               ls <- rlist::list.append(ls, dataSetSelector = .Object@dataSetSelector)
+#'             if (length(.Object@mainDataSet))
+#'               ls <- rlist::list.append(ls, mainDataSet = .Object@mainDataSet)
+#'             if (length(.Object@panels))
+#'               ls <- rlist::list.append(ls, panels = .Object@panels)
+#'             if (length(.Object@periodSelector))
+#'               ls <- rlist::list.append(ls, periodSelector = .Object@periodSelector)
+#'             if (length(.Object@type))
+#'               ls <- rlist::list.append(ls, type = .Object@type)
+#'             if (length(.Object@theme))
+#'               ls <- rlist::list.append(ls, theme = .Object@theme)
+#'             
+#'             return(ls)
+#'           })
