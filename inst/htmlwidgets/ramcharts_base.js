@@ -23,6 +23,10 @@ HTMLWidgets.widget({
   },
   
   renderValue: function(el, x, instance) {
+    
+    // add little processDelay
+    AmCharts.processDelay = 10;
+    
     document.getElementById(el.id).style.background = x.background;
     // clear previous amChart graph in this div if existed
     var existing_chart = getAmChart(el.id);
