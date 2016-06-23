@@ -14,7 +14,7 @@ Description: API for using 'AmCharts' Library. Based on the 'htmlwidgets'
     licence, and thus support its creators and get a period of Priority Support.
     See also <http://www.amcharts.com/about/> for more information about 'AmCharts'
     company.
-Version: 2.0.3
+Version: 2.0.4
 Authors@R: c(
     person(given = "Jeffery", family = "Petit", email = "jeffery.petit@datastorm.fr", role = c("aut", "cre")),
     person(given = "Antanas", family = " Marcelionis", role = c("aut", "cph"),

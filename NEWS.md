@@ -1,5 +1,9 @@
 ## LOG CHANGE
 
+### rAmCharts 2.0.4 (based on [amcharts][amcharts_url] version **3.20.3**)
+
+  * fix some ``rmarkdown`` bugs
+  
 ### rAmCharts 2.0.3 (based on [amcharts][amcharts_url] version **3.20.3**)
 
   * fix ``getAmChart()`` clean using markdown
