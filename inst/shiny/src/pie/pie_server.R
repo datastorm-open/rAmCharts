@@ -82,9 +82,12 @@ output$pie04 <- rAmCharts::renderAmCharts({
                dataProvider = data_gdp, theme = 'light'),
     addTitle(text = '10 Richest Countries in the World by 2015 GDP'),
     addTitle(text = 'data from http://www.insidermonkey.com', size = 10, color = 'blue'),
-    setLegend(amLegend(markerType = 'circle', position = 'right',
-                       marginRight = 80, autoMargins = FALSE) %>>%
+    setLegend(
+      pipeR::pipeline(
+      amLegend(markerType = 'circle', position = 'right',
+                       marginRight = 80, autoMargins = FALSE) ,
                 addListener('hideItem' , 'function(event){alert(\"hide\");}'))
+    )
   )
 })
 
@@ -98,9 +101,12 @@ output$code_pie04 <- renderText({
                dataProvider = data_gdp, theme = 'light'),
     addTitle(text = '10 Richest Countries in the World by 2015 GDP'),
     addTitle(text = 'data from http://www.insidermonkey.com', size = 10, color = 'blue'),
-    setLegend(amLegend(markerType = 'circle', position = 'right',
-                       marginRight = 80, autoMargins = FALSE) %>>%
-                addListener('hideItem' , 'function(event){alert(\"hide\");}'))
+    setLegend(
+      pipeR::pipeline(
+        amLegend(markerType = 'circle', position = 'right',
+                 marginRight = 80, autoMargins = FALSE) ,
+        addListener('hideItem' , 'function(event){alert(\"hide\");}'))
+    )
   )
   "
 })
@@ -115,7 +121,7 @@ output$pie05 <- rAmCharts::renderAmCharts({
     addTitle(text = '10 Richest Countries in the World by 2015 GDP'),
     addTitle(text = 'data from http://www.insidermonkey.com', size = 10, color = 'blue'),
     setLegend(markerType = 'circle', position = 'right', marginRight = 80, autoMargins = FALSE),
-    addListener('clickSlice' , 'function(event){alert(\'Click slice !\');}')
+    addListener('clickSlice' , 'function(event){alert(\"Click slice !\");}')
   )
 })
 
@@ -130,7 +136,7 @@ output$code_pie05 <- renderText({
     addTitle(text = '10 Richest Countries in the World by 2015 GDP'),
     addTitle(text = 'data from http://www.insidermonkey.com', size = 10, color = 'blue'),
     setLegend(markerType = 'circle', position = 'right', marginRight = 80, autoMargins = FALSE),
-    addListener('clickSlice' , 'function(event){alert(\'Click slice !\');}')
+    addListener('clickSlice' , 'function(event){alert(\"Click slice !\");}')
   )
   "
 })

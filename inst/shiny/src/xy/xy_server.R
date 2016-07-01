@@ -2,7 +2,7 @@
 
 output$xy0 <- rAmCharts::renderAmCharts({
   ##Data
-  dp <- data.table(x = round(runif(10), 2), y = round(runif(10), 2))
+  dp <- data.frame(x = round(runif(10), 2), y = round(runif(10), 2))
   ##Plot
   pipeR::pipeline(
     amXYChart(dataProvider = dp),
@@ -16,7 +16,7 @@ output$xy0 <- rAmCharts::renderAmCharts({
 output$code_xy0 <- renderText({
   "
   ##Data
-  dp <- data.table(x = round(runif(10), 2), y = round(runif(10), 2))
+  dp <- data.frame(x = round(runif(10), 2), y = round(runif(10), 2))
   ##Plot
   pipeR::pipeline(
     amXYChart(dataProvider = dp),
@@ -31,7 +31,7 @@ output$code_xy0 <- renderText({
 
 output$xy1 <- rAmCharts::renderAmCharts({
   ##Data
-  dp <- data.table(y = c(10, 5, -10, -6, 15, 13, 1),
+  dp <- data.frame(y = c(10, 5, -10, -6, 15, 13, 1),
                    x = c(14, 3, 8, 5, -4, 1, 6),
                    value = c(59, 50, 19, 65, 92, 8, 16),
                    y2 = c(-5, -15, -4, -5, -10, -2, 0),
@@ -58,7 +58,7 @@ output$xy1 <- rAmCharts::renderAmCharts({
 output$code_xy1 <- renderText({
   "
   ##Data
-  dp <- data.table(y = c(10, 5, -10, -6, 15, 13, 1),
+  dp <- data.frame(y = c(10, 5, -10, -6, 15, 13, 1),
                    x = c(14, 3, 8, 5, -4, 1, 6),
                    value = c(59, 50, 19, 65, 92, 8, 16),
                    y2 = c(-5, -15, -4, -5, -10, -2, 0),
@@ -91,7 +91,7 @@ output$code_xy1 <- renderText({
 
 output$xy2 <- rAmCharts::renderAmCharts({
   ##Data
-  dp <- data.table(y = c(1, -4, 5, 9),
+  dp <- data.frame(y = c(1, -4, 5, 9),
                    x = c(-10, 5, 14, 8),
                    errorY = c(1, 2, 3, 1),
                    errorX = c( 2, 3, 1, 10))
@@ -114,7 +114,7 @@ output$xy2 <- rAmCharts::renderAmCharts({
 output$code_xy2 <- renderText({
   "
   ##Data
-  dp <- data.table(y = c(1, -4, 5, 9),
+  dp <- data.frame(y = c(1, -4, 5, 9),
                    x = c(-10, 5, 14, 8),
                    errorY = c(1, 2, 3, 1),
                    errorX = c( 2, 3, 1, 10))

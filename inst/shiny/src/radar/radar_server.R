@@ -71,7 +71,7 @@ output$code_radar3 <- renderText({
 output$radar2 <- rAmCharts::renderAmCharts({
   ## Data
   data('data_wind')
-  data_wind$category <- c("N", "NE", "E", "SE", "S", "SW", "W", "NO")
+  data_wind$category <- c('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NO')
   
   ## Plot
   pipeR::pipeline(
@@ -93,12 +93,14 @@ output$radar2 <- rAmCharts::renderAmCharts({
 
 output$code_radar2 <- renderText({
   "
-##Data
+  ## Data
   data('data_wind')
-  ##Plot
+  data_wind$category <- c('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NO')
+  
+  ## Plot
   pipeR::pipeline(
-    amRadarChart(theme = 'light', startDuration = 0, categoryField  =  'direction'),
-    setDataProvider(data_wind),
+    amRadarChart(theme = 'light', startDuration = 0, categoryField = 'category',
+                 dataProvider = data_wind),
     addValueAxis(gridType = 'circles', minimum = 0, autoGridCount = FALSE,
                  axisAlpha = 0.2, fillAlpha = 0.05, fillColor = '#FFFFFF',
                  gridAlpha = 0.08, position = 'left'),
@@ -109,7 +111,7 @@ output$code_radar2 <- renderText({
              tickLength = 0, toAngle = 135, toValue = 5, value = 0,
              lineAlpha = 0),
     addGraph(balloonText = '[[category]]: [[value]] m/s', bullet = 'round',
-             fillAlphas = 0.3, valueField = 'value')
+             fillAlphas = 0.3, valueField = 'weak')
   )
   "
 })

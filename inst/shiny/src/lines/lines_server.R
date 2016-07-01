@@ -131,13 +131,13 @@ output$lines4 <- rAmCharts::renderAmCharts({
     amLegend(equalWidths = FALSE, position = 'bottom', valueAlign = 'left', valueWidth = 100),
     addListener('hideItem' , paste0('function(event) {
                                         var id = event.dataItem.id;
-                                        event.chart.hideGraph(event.chart.getGraphById(id + \'down\'));
-                                        event.chart.hideGraph(event.chart.getGraphById(id + \'up\'));
+                                        event.chart.hideGraph(event.chart.getGraphById(id + \"down\"));
+                                        event.chart.hideGraph(event.chart.getGraphById(id + \"up\"));
                                       }')),
     addListener('showItem' , paste0('function(event){
                                         var id = event.dataItem.id;
-                                        event.chart.showGraph(event.chart.getGraphById(id + \'down\'));
-                                        event.chart.showGraph(event.chart.getGraphById(id + \'up\'));
+                                        event.chart.showGraph(event.chart.getGraphById(id + \"down\"));
+                                        event.chart.showGraph(event.chart.getGraphById(id + \"up\"));
                                       }')),
     (~legend),
     invisible()
@@ -176,13 +176,13 @@ output$code_lines4 <- renderText({
     amLegend(equalWidths = FALSE, position = 'bottom', valueAlign = 'left', valueWidth = 100),
     addListener('hideItem' , paste0('function(event) {
                                     var id = event.dataItem.id;
-                                    event.chart.hideGraph(event.chart.getGraphById(id + \'down\'));
-                                    event.chart.hideGraph(event.chart.getGraphById(id + \'up\'));
+                                    event.chart.hideGraph(event.chart.getGraphById(id + \"down\"));
+                                    event.chart.hideGraph(event.chart.getGraphById(id + \"up\"));
 }')),
     addListener('showItem' , paste0('function(event){
                                     var id = event.dataItem.id;
-                                    event.chart.showGraph(event.chart.getGraphById(id + \'down\'));
-                                    event.chart.showGraph(event.chart.getGraphById(id + \'up\'));
+                                    event.chart.showGraph(event.chart.getGraphById(id + \"down\"));
+                                    event.chart.showGraph(event.chart.getGraphById(id + \"up\"));
     }')),
     (~legend),
     invisible()
@@ -215,7 +215,7 @@ output$code_lines4 <- renderText({
 
 output$lines5 <- rAmCharts::renderAmCharts({
   ##Data
-  dp <- data.table(year = 1994:2012, 
+  dp <- data.frame(year = 1994:2012, 
                    cars = rnorm(length(1994:2012), mean = 10), 
                    motorcycles = rnorm(length(1994:2012), mean = 15), 
                    bicycles = rnorm(length(1994:2012), mean = 20))
@@ -225,9 +225,9 @@ output$lines5 <- rAmCharts::renderAmCharts({
   url_motorcycle <- 'http://www.amcharts.com/lib/3/images/motorcycle.png'
   url_bicycle <- 'http://www.amcharts.com/lib/3/images/bicycle.png'
   pref <- '<img src = '
-  suf <- paste('style = \'vertical-align:bottom;',
-               'margin-right: 10px; width:28px; height:21px;\'>',
-               '<span style = \'font-size:14px; color:#000000;\'>',
+  suf <- paste('style = \"vertical-align:bottom;',
+               'margin-right: 10px; width:28px; height:21px;\">',
+               '<span style = \"font-size:14px; color:#000000;\">',
                '<b>[[value]]</b></span>')
   ##Plot
   pipeR::pipeline(
@@ -259,7 +259,7 @@ output$lines5 <- rAmCharts::renderAmCharts({
 output$code_lines5 <- renderText({
   "
   ##Data
-  dp <- data.table(year = 1994:2012, 
+  dp <- data.frame(year = 1994:2012, 
     cars = rnorm(length(1994:2012), mean = 10), 
     motorcycles = rnorm(length(1994:2012), mean = 15), 
     bicycles = rnorm(length(1994:2012), mean = 20)
@@ -270,9 +270,9 @@ output$code_lines5 <- renderText({
   url_motorcycle <- 'http://www.amcharts.com/lib/3/images/motorcycle.png'
   url_bicycle <- 'http://www.amcharts.com/lib/3/images/bicycle.png'
   pref <- '<img src = '
-  suf <- paste('style = \'vertical-align:bottom;',
-  'margin-right: 10px; width:28px; height:21px;\'>',
-  '<span style = \'font-size:14px; color:#000000;\'>',
+  suf <- paste('style = \"vertical-align:bottom;',
+  'margin-right: 10px; width:28px; height:21px;\">',
+  '<span style = \"font-size:14px; color:#000000;\">',
   '<b>[[value]]</b></span>')
   ##Plot
   pipeR::pipeline(
