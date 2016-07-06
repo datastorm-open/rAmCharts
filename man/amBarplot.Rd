@@ -4,10 +4,11 @@
 \alias{amBarplot}
 \title{Plotting bar chart using rAmCharts}
 \usage{
-amBarplot(x, y, data, xlab = "", ylab = "", groups_color = NULL,
-  horiz = FALSE, stack_type = "none", layered = FALSE,
-  show_values = FALSE, depth = 0, dataDateFormat = NULL,
-  minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
+amBarplot(x, y, data, xlab = "", ylab = "", ylim = NULL,
+  groups_color = NULL, horiz = FALSE, stack_type = c("none", "regular",
+  "100"), layered = FALSE, show_values = FALSE, depth = 0,
+  dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD",
+  ""), ...)
 }
 \arguments{
 \item{x}{\code{character}, column name for x-axis or \code{numeric}, value of the corresponding column.
@@ -26,6 +27,8 @@ and \link{data_gbar}.}
 \item{xlab}{\code{character}, label for x-axis.}
 
 \item{ylab}{\code{character}, label for y-axis.}
+
+\item{ylim}{limits for the y axis.}
 
 \item{groups_color}{\code{character}, vector of colors in hexadecimal, 
 same length as y.}
@@ -76,17 +79,17 @@ You can also add a cursor to your chart...
 data(data_bar)
 data(data_gbar)
 
-amBarplot(x = "country", y = "visits", data = data_bar)
-amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
-\dontrun{
-# shortcut
-amBarplot(x = "year", y = c("inc", "exp"), data = data_gbar)
-}
+amBarplot(x = "country", y = "visits", data = data_bar, main = "example")
+
 \donttest{
 
 # Other examples available which can be time consuming depending on your configuration.
 
 library(pipeR)
+
+# fixed value axis
+amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, ylim = c(0, 26))
+amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "100")
 
 # Test with label rotation
 amBarplot(x = "country", y = "visits", data = data_bar, labelRotation = -45) 
@@ -108,15 +111,18 @@ amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar,
           dataDateFormat = "YYYY", minPeriod = "YYYY")
 
+# Default label: first day of each month
 amBarplot(x = "month", y = c("income", "expenses"), data = data_gbar,
           dataDateFormat = "MM/YYYY", minPeriod = "MM")
 
 amBarplot(x = "day", y = c("income", "expenses"), data = data_gbar,
           dataDateFormat = "DD/MM/YYYY")
+          
+# Change groups colors
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, 
           groups_color = c("#87cefa", "#c7158"))
 
-# Stacked bars
+# Regular stacked bars
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "regular")
 
 # 100\% stacked bars
@@ -129,15 +135,12 @@ amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, layered = T
 dataset <- data.frame(get(x = "USArrests", pos = "package:datasets"))
 amBarplot(y = c("Murder", "Assault", "UrbanPop", "Rape"), data = dataset, stack_type = "regular")
 
-
 # Round values
 amBarplot(x = "year", y = c("in", "ex"), data = data_gbar, precision = 0)
 }
 
 }
 \seealso{
-\itemize{
-\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-}
+\url{https://datastorm-open.github.io/introduction_ramcharts/}
 }
 

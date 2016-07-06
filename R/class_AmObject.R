@@ -19,12 +19,10 @@ setClass(Class = "AmObject",
 #' @description Display the object in the console.
 #' @param object \linkS4class{AmObject}.
 #' @examples
-#' pipeR::pipeline(
-#'   rAmCharts::amPieChart(valueField = "value", titleField = "key", creditsPosition = "top-right",
-#'                         backgroundColor = "#7870E8"),
-#'   rAmCharts::setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))),
-#'   rAmCharts::setExport(position = "bottom-left")
-#' )
+#' library(pipeR)
+#' amPieChart(valueField = "value", titleField = "key", backgroundColor = "#7870E8") %>>%
+#'   setDataProvider(data.frame(key = c("FR", "US"), value = c(20,10))) %>>%
+#'   setExport(position = "bottom-left")
 #' @export
 #' 
 setMethod(f = "show", signature = "AmObject",
@@ -45,26 +43,26 @@ setMethod(f = "show", signature = "AmObject",
 #' @details If the object possess a 'dataProvider' property, it will be hidden in the console.
 #' To see if it's correctly registered use '@dataProvider'.
 #' @export
+#' 
 setMethod(f = "print", signature = "AmObject",
-          definition = function(x, withDetail = TRUE,...) {
+          definition = function(x, withDetail = TRUE,...)
+          {
             if (withDetail) {
               cat("~ ", class(x)," object (with detail) ~\n\n")
               
               cat("Referenced properties:\n")
               ls <- listProperties(x)
-              cat(paste(names(ls), collapse = ", "), "\n\n")
+              cat(paste(grep(pattern = "RType_", x = names(ls), value = TRUE, invert = TRUE), collapse = ", "))
               
-              cat("   - Detail:\n")
-              if (exists(x = "dataProvider", where = ls)) {
+              cat("\n- Detail:\n")
+              if (exists(x = "dataProvider", where = ls))
                 ls["dataProvider"] <- NULL
-              } else {}
-                
               print(ls)
             } else {
               cat("~ ", class(x)," object (without detail)~\n\n")
               cat("Referenced properties:\n")
               ls <- listProperties(x)
-              cat(paste(names(ls), collapse = ", "))
+              cat(paste(grep(pattern = "RType_", x = names(ls), value = TRUE, invert = TRUE), collapse = ", "))
             }
             cat("\n")
           })
@@ -73,11 +71,9 @@ setMethod(f = "print", signature = "AmObject",
 
 #' @title AmObject methods
 #' @description Methods for inherited classes.
-#' 
 #' @param .Object \code{\linkS4class{AmObject}}.
 #' @param name \code{character}, name of the listener.
 #' @param expression \code{character}, associated function event.
-#' 
 #' @return The updated object.
 #' @examples
 #' addListener(.Object = amPieChart(),
@@ -91,6 +87,7 @@ setMethod(f = "print", signature = "AmObject",
 #'                                 "}"))
 #' @rdname methods-AmObject
 #' @export
+#' 
 setGeneric(name = "addListener", def = function(.Object, name, expression) { standardGeneric("addListener")})
 #' @rdname methods-AmObject
 setMethod(f = "addListener", signature = c("AmObject", "character", "character"),
@@ -102,14 +99,35 @@ setMethod(f = "addListener", signature = c("AmObject", "character", "character")
           })
 
 
+# > @otherProperties: resetProperties ####
+
+
+#' @examples
+#' library(pipeR)
+#' amPlot(runif(10)) %>>% resetProperties("categoryAxis") %>>% print(withDetail = FALSE)
+#' @details Former properties will be overwritten.
+#' @rdname methods-AmObject
+#' @export
+#' 
+setGeneric(name = "resetProperties", def = function(.Object, ...) {standardGeneric("resetProperties")})
+#' @rdname methods-AmObject
+setMethod(f = "resetProperties", signature = c(.Object = "AmObject"),
+          definition = function(.Object, ...)
+          {
+            invisible(sapply(X = ..., FUN = function (slot_name) {
+              new_value <- new(class(slot(object = .Object, name = slot_name)))
+              slot(object = .Object, name = slot_name, check = TRUE) <<- new_value
+            }))
+            validObject(.Object)
+            return(.Object)
+          })
+
 # > @otherProperties: setProperties ####
 
 #' @param list_prop (Optional) \code{list} containing properties to set.
 #' The former properties will be overwritten.
 #' @param ... other properties
-#' 
 #' @examples
-#' 
 #' library(pipeR)
 #' # either you can set a list
 #' ls <- list(categoryAxis = list(gridPosition = "start"), fontSize = 15)
@@ -128,9 +146,7 @@ setMethod(f = "addListener", signature = c("AmObject", "character", "character")
 #' }
 #' 
 #' amPieChart() %>>% setExport()
-#' 
 #' @details Former properties will be overwritten.
-#' 
 #' @rdname methods-AmObject
 #' @export
 #' 
@@ -146,16 +162,16 @@ setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
               lapply(X = names(newProperties), FUN = function(prop) {
                 if (prop %in% slotNames(.Object)) {
                   # if it's a slot and the prop is not "value", a warning is sent
-                  if (prop != "value") warning("You should use setter for property '", prop, "'")
+                  if (prop != "value")
+                    warning("You should use setter for property '", prop, "'")
                   slot(.Object, prop, check = TRUE) <<- newProperties[[prop]]
                 } else {
                   .Object@otherProperties[[prop]] <<- newProperties[[prop]]
                 }
                 invisible()
               })
-            } else if (is.list(list_prop)) {
+            } else if (is.list(list_prop))
               .Object@otherProperties <- list_prop
-            } else {}
             
             validObject(.Object)
             return(.Object)
@@ -166,32 +182,28 @@ setMethod(f = "setProperties", signature = c(.Object = "AmObject"),
 #' @title List properties of an S4 object
 #' @description Each S4 class implements the method to list its properties
 #' (usefull to update complex properties).
-#' 
 #' @param .Object any class object of the package
-#' 
 #' @return A list containing all the chart's properties.
-#' 
 #' @examples
 #' amChart(type = "serial")
-#' 
 #' @rdname listProperties-AmObject
 #' @export
-setGeneric(name = "listProperties", def = function(.Object){standardGeneric("listProperties")})
+#' 
+setGeneric(name = "listProperties", def = function(.Object) {standardGeneric("listProperties")})
 #' @rdname listProperties-AmObject
 setMethod(f = "listProperties", signature = "AmObject",
-          definition = function(.Object) {
-            
-            if (length(.Object@otherProperties)) {
+          definition = function(.Object)
+            {
+            if (length(.Object@otherProperties))
               properties <- .Object@otherProperties
-            } else {
+            else
               properties <- list()
-            }
             
-            if (length(.Object@value)) properties[["value"]] <- .Object@value
+            if (length(.Object@value))
+              properties[["value"]] <- .Object@value
             
-            if (length(.Object@listeners)) {
+            if (length(.Object@listeners)) 
               properties <- rlist::list.append(properties, listeners = .Object@listeners)
-            } else {}
             
             # get all slot declared in the class except the package specific ones
             slot_names <- names(getSlots(class(.Object)))
@@ -200,7 +212,8 @@ setMethod(f = "listProperties", signature = "AmObject",
             for (i in real_slots_i) {
               slot_name_loop <-  slot_names[i]
               slot_value_loop <- slot(object = .Object, name = slot_name_loop)
-              if (length(slot_value_loop)) properties[[slot_name_loop]] <- slot_value_loop
+              if (length(slot_value_loop))
+                properties[[slot_name_loop]] <- slot_value_loop
             }
             
             return(properties)

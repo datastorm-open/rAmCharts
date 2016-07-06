@@ -46,7 +46,7 @@ for example - you have 250 days in the selection,
 and maxSeries is 150 - the chart will group data to weeks.}
 
 \item{groupToPeriods}{\code{character}, Periods to which data will
-be gruoped in case there are more data items in the selected
+be grouped in case there are more data items in the selected
 period than specified in maxSeries property. Possible value are :
 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm".}
 

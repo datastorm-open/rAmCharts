@@ -4,6 +4,8 @@
 \name{addListener}
 \alias{addListener}
 \alias{addListener,AmObject,character,character-method}
+\alias{resetProperties}
+\alias{resetProperties,AmObject-method}
 \alias{setProperties}
 \alias{setProperties,AmObject-method}
 \title{AmObject methods}
@@ -11,6 +13,10 @@
 addListener(.Object, name, expression)
 
 \S4method{addListener}{AmObject,character,character}(.Object, name, expression)
+
+resetProperties(.Object, ...)
+
+\S4method{resetProperties}{AmObject}(.Object, ...)
 
 setProperties(.Object, list_prop, ...)
 
@@ -23,10 +29,10 @@ setProperties(.Object, list_prop, ...)
 
 \item{expression}{\code{character}, associated function event.}
 
+\item{...}{other properties}
+
 \item{list_prop}{(Optional) \code{list} containing properties to set.
 The former properties will be overwritten.}
-
-\item{...}{other properties}
 }
 \value{
 The updated object.
@@ -35,6 +41,8 @@ The updated object.
 Methods for inherited classes.
 }
 \details{
+Former properties will be overwritten.
+
 Former properties will be overwritten.
 }
 \examples{
@@ -47,7 +55,8 @@ addListener(.Object = amLegend(),
             expression = paste0("function onSelect (properties) {",
                                 "alert('selected nodes: ' + properties.nodes);",
                                 "}"))
-
+library(pipeR)
+amPlot(runif(10)) \%>>\% resetProperties("categoryAxis") \%>>\% print(withDetail = FALSE)
 library(pipeR)
 # either you can set a list
 ls <- list(categoryAxis = list(gridPosition = "start"), fontSize = 15)
@@ -66,6 +75,5 @@ amPieChart() \%>>\% setProperties(type = "serial") \%>>\% print()
 }
 
 amPieChart() \%>>\% setExport()
-
 }
 

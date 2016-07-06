@@ -34,6 +34,7 @@
 #' fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, YYYY - years.
 #' It's also possible to supply a number for increments, i.e. '15mm'
 #' which will instruct the chart that your data is supplied in 15 minute increments.
+#' @param ylim limits for the y axis.
 #' @param ... see \link{amOptions} for more options.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
@@ -51,17 +52,17 @@
 #' data(data_bar)
 #' data(data_gbar)
 #' 
-#' amBarplot(x = "country", y = "visits", data = data_bar)
-#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar)
-#' \dontrun{
-#' # shortcut
-#' amBarplot(x = "year", y = c("inc", "exp"), data = data_gbar)
-#' }
+#' amBarplot(x = "country", y = "visits", data = data_bar, main = "example")
+#' 
 #' \donttest{
 #' 
 #' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' library(pipeR)
+#' 
+#' # fixed value axis
+#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, ylim = c(0, 26))
+#' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "100")
 #' 
 #' # Test with label rotation
 #' amBarplot(x = "country", y = "visits", data = data_bar, labelRotation = -45) 
@@ -83,17 +84,18 @@
 #' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar,
 #'           dataDateFormat = "YYYY", minPeriod = "YYYY")
 #' 
-# Default label: first day of each month
+#' # Default label: first day of each month
 #' amBarplot(x = "month", y = c("income", "expenses"), data = data_gbar,
 #'           dataDateFormat = "MM/YYYY", minPeriod = "MM")
 #' 
 #' amBarplot(x = "day", y = c("income", "expenses"), data = data_gbar,
 #'           dataDateFormat = "DD/MM/YYYY")
-# Change groups colors
+#'           
+#' # Change groups colors
 #' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, 
 #'           groups_color = c("#87cefa", "#c7158"))
 #' 
-#' # Stacked bars
+#' # Regular stacked bars
 #' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "regular")
 #' 
 #' # 100% stacked bars
@@ -106,26 +108,29 @@
 #' dataset <- data.frame(get(x = "USArrests", pos = "package:datasets"))
 #' amBarplot(y = c("Murder", "Assault", "UrbanPop", "Rape"), data = dataset, stack_type = "regular")
 #' 
-#' 
 #' # Round values
 #' amBarplot(x = "year", y = c("in", "ex"), data = data_gbar, precision = 0)
 #' }
 #' 
 #' @seealso 
-#' \itemize{
-#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-#' }
+#' \url{https://datastorm-open.github.io/introduction_ramcharts/}
 #' 
 #' @export
 #' 
-amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,horiz = FALSE,
-                      stack_type = "none", layered = FALSE, show_values = FALSE, depth = 0,
-                      dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
+amBarplot <- function(x, y, data, xlab = "", ylab = "", ylim = NULL, groups_color = NULL,
+                      horiz = FALSE, stack_type = c("none", "regular", "100"),
+                      layered = FALSE, show_values = FALSE, depth = 0, dataDateFormat = NULL,
+                      minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 {
-  
-  
   #data
   data <- .testFormatData(data)
+  stack_type <- match.arg(stack_type)
+  .testCharacterLength1(char = xlab)
+  .testCharacterLength1(char = ylab)
+  .testLogicalLength1(logi = layered)
+  .testLogicalLength1(logi = horiz)
+  .testLogicalLength1(logi = show_values)
+  .testInterval(num = depth, binf = 0, bsup = 100)
   
   # check argument x
   if (missing(x) && !length(rownames(data))) {
@@ -140,11 +145,11 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   } else {}
   
   # convert x into character if necessary
-  if (is.numeric(x)) x <- colnames(data)[x]
+  if (is.numeric(x))
+    x <- colnames(data)[x]
   # check if the column is compatible
-  if (is.factor(data[,x])) {
+  if (is.factor(data[,x]))
     data[,x] <- as.character(data[,x])
-  }
   .testCharacter(char = data[,x])
   
   # check argument y
@@ -152,7 +157,8 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
   
   sapply(1:length(y), FUN = function(i) {
     if (is.numeric(y[i])) {
-      if (y[i] > ncol(data)) stop("Error in argument x")
+      if (y[i] > ncol(data))
+        stop("Error in argument x")
       # convert y into character if necessary
       y[i] <<- colnames(data)[y[i]]
     } else if(is.character(y) && !all(y %in% colnames(data))) {
@@ -163,128 +169,95 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", groups_color = NULL,hori
       stop(paste("The column ", y[i], "of the dataframe must be numeric."))
   })
   
-  .testCharacterLength1(char = xlab)
-  .testCharacterLength1(char = ylab)
-  .testLogicalLength1(logi = layered)
-  
-  if(layered && stack_type != "none") {
+  if (layered && stack_type != "none")
     stop("You have to choose : layered or stacked. If layered
          is set to TRUE, stack_type must be equal to 'none'")
-  }
   
-  .testLogicalLength1(logi = horiz)
-  .testLogicalLength1(logi = show_values)
-  .testInterval(num = depth, binf = 0, bsup = 100)
-  
-  
-  if(!is.null(stack_type)) {
+  if (!is.null(stack_type)) {
     .testCharacter(char = stack_type)
     .testIn(vect = stack_type, control = c("regular", "100", "none"))
   }
   
-  if(stack_type == "100") stack_type = "100%"
+  stack_type <- switch(stack_type, "100" = "100%", stack_type)
   
-  if(!"color" %in% colnames(data)) {
-    if(length(y) == 1) {
-      if(!is.null(groups_color)) {
+  color_palette = c("#67b7dc", "#fdd400", "#84b761", "#cc4748", "#cd82ad", "#2f4074",
+                    "#448e4d", "#b7b83f", "#b9783f", "#b93e3d", "#913167")
+  
+  if (!"color" %in% colnames(data)) {
+    if (length(y) == 1) {
+      if (!is.null(groups_color)) {
         data$color <- groups_color[1]
       } else {
-        vec_col <- tolower(utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
-                                             "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
-                                             "#b9783f", "#b93e3d", "#913167"), 5), 
-                                       nrow(data)))
-        data$color <- vec_col
+        data$color <- rep(x = color_palette, length.out = nrow(data))
       }
     } 
   } else {
-    if(!is.null(groups_color)) {
+    if (!is.null(groups_color)) {
       vec_col <- rep(groups_color, nrow(data))
       data$color <- vec_col[1:nrow(data)]
     }
   }
   
-  if (depth > 0) {
-    depth3D = depth
-    angle = 30
+  if ((depth3D <- depth) > 0) {
+    angle <- 30
   } else {
-    depth3D = 0
-    angle = 0
+    angle <- 0
   }
-  
+
   if (show_values) {
     label_text <- "[[value]]"
   } else {
     label_text <- ""
   }
-  
-  parseDates <- !is.null(dataDateFormat)
-  
+
+  if (!is.null(ylim)) {
+    ymin <- ylim[1]
+    ymax <- ylim[2]
+  } else {
+    ymin <- NULL
+    ymax <- NULL
+  }
   chart <- pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = x, rotate = horiz, 
                   depth3D = depth3D, angle = angle, dataDateFormat = dataDateFormat),
-    addValueAxis(title = ylab, position = 'left', stackType = stack_type),
-    setCategoryAxis(title = xlab, gridPosition = 'start',
-                    axisAlpha = 0, gridAlpha = 0,
-                    parseDates = parseDates, minPeriod = minPeriod)
+    addValueAxis(title = ylab, position = 'left', stackType = stack_type,
+                 minimum = ymin, maximum = ymax, strictMinMax = !is.null(ylim)),
+    setCategoryAxis(title = xlab, gridPosition = 'start', axisAlpha = 0, gridAlpha = 0,
+                    parseDates = !is.null(dataDateFormat), minPeriod = minPeriod)
   )
   
-  if(length(y) == 1) {
-    if("description" %in% colnames(data)) {
+  if (length(y) == 1) {
+    if ("description" %in% colnames(data)) {
       tooltip <- '<b>[[description]]</b>'
-    } else {
+    } else { 
       tooltip <- '<b>[[value]]</b>'
     }
-    chart <- addGraph(chart, balloonText = tooltip, fillColorsField = 'color', 
-                      fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y,
-                      labelText = label_text)
-  } else if(length(y) > 1) {
-    if(!is.null(groups_color)) {
-      if(length(groups_color) == length(y)) {
-        v_col <- groups_color
-      } else {
-        v_col <- utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
-                                   "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
-                                   "#b9783f", "#b93e3d", "#913167"), 5), 
-                             length(y))
-      }
-    } else {
-      v_col <- utils::head(rep(c("#67b7dc", "#fdd400", "#84b761", "#cc4748", 
-                                 "#cd82ad", "#2f4074", "#448e4d", "#b7b83f", 
-                                 "#b9783f", "#b93e3d", "#913167"), 5), 
-                           length(y))
-    }
     
-    if(layered) {
-      col_height <- rep(1, length = length(y))
-      sapply(2:length(col_height), FUN = function(i) {
-        col_height[i] <<- col_height[i-1]/2
-      })
-      col_height[1] <- 0.9
-      sapply(1:length(y), FUN = function(i) {
-        if("description" %in% colnames(data)) {
-          tooltip2 <- '<b>[[description]]</b>'
-        } else {
-          tooltip2 <- paste0(as.character(y[i])," : [[value]]")
-        }
-        chart <<- addGraph(chart, id = paste0("AmGraph-",i),
-                           balloonText = tooltip2, fillColors = v_col[i], legendColor = v_col[i],
-                           fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y[i],
-                           title = y[i], labelText = label_text, clustered = FALSE, 
-                           columnWidth = col_height[i])
-      })
+    chart <- addGraph(chart, balloonText = tooltip, fillColorsField = 'color',  fillAlphas = 0.85,
+                      lineAlpha = 0.1, type = 'column', valueField = y, labelText = label_text)
+  } else {
+    if (!is.null(groups_color)) {
+      v_col <- rep(x = groups_color, length.out = length(y))
     } else {
-      sapply(1:length(y), FUN = function(i) {
-        if("description" %in% colnames(data)) {
-          tooltip2 <- '<b>[[description]]</b>'
-        } else {
-          tooltip2 <- paste0(as.character(y[i])," : [[value]]")
-        }
-        chart <<- addGraph(chart, id = paste0("AmGraph-",i),
-                           balloonText = tooltip2, fillColors = v_col[i], legendColor = v_col[i],
-                           fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y[i],
-                           title = y[i], labelText = label_text)
-      })
+      v_col <- rep(x = color_palette, length.out = length(y))
     }
+  
+    graphs_list <- lapply(X = seq(length(y)), FUN = function (i) {
+      if ("description" %in% colnames(data)) {
+        tooltip2 <- '<b>[[description]]</b>'
+      } else {
+        tooltip2 <- paste0(as.character(y[i]),": [[value]]")
+      }
+      graph_obj <- graph(chart, id = paste0("AmGraph-",i), balloonText = tooltip2, fillColors = v_col[i],
+                         legendColor = v_col[i], fillAlphas = 0.85, lineAlpha = 0.1, type = 'column', valueField = y[i],
+                         title = y[i], labelText = label_text)
+      if (layered) {
+        return(setProperties(graph_obj, clustered = FALSE, columnWidth = 0.9/(1.8^(i-1))))
+      } else {
+        return(graph_obj)
+      }
+    })
+    chart <- setGraphs(chart, graphs = graphs_list)
   }
   
   chart <- setProperties(.Object = chart, RType_ = "barplot")
