@@ -53,6 +53,9 @@ amRadar(data_radar, type = "circles")
 # Change pch
 amRadar(data_radar,  pch = "triangleRight")
 amRadar(data_radar,  pch = "triangleLeft")
+
+#Min-Max
+amRadar(data_radar, xlim = c(0, 8))
 }
 
 }

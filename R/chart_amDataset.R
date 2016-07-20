@@ -13,6 +13,9 @@
 #' @param precision \code{numeric}, digits precision
 #' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
 #' @param percentHeightPanel \code{numeric}, vector of size panel, same length than data
+#' @param creditsPosition \code{character}, credits position. Possible values are :
+#' "top-right", "top-left", "bottom-right", "bottom-left"
+#' @param ... other first level attributes
 #' 
 #' @examples 
 #' data(data_stock1)
@@ -42,17 +45,28 @@
 #' 
 #' 
 #' @export
-#'
-amStockMultiSet <- function(data, panelColumn = NULL, ZoomButtonPosition = "bottom",
-                            ZoomButton = data.frame(Unit = "MAX", multiple = 1, label ="All"),
+amStockMultiSet <- function(data,
+                            panelColumn = NULL,
+                            ZoomButtonPosition = "bottom",
+                            ZoomButton = data.frame(Unit = "MAX",
+                                                    multiple = 1,
+                                                    label ="All"),
                             color = c("#2E2EFE", "#31B404", "#FF4000"),
-                            precision = 1, export = FALSE,
-                            percentHeightPanel = NULL){
+                            precision = 1,
+                            export = FALSE,
+                            percentHeightPanel = NULL,
+                            creditsPosition = "top-right",
+                            ...){
+
   
   
+  #creditsPosition
+  .testCharacterLength1(creditsPosition)
+  .testIn(creditsPosition, c("top-right", "top-left", "bottom-right", "bottom-left"))
   
   
-  
+  .testNumericLength1(precision)
+  .testCharacterLength1(ZoomButtonPosition)
   
   #color
   .testCharacter(char = color)
@@ -166,7 +180,7 @@ amStockMultiSet <- function(data, panelColumn = NULL, ZoomButtonPosition = "bott
       periodZoom
     ),
     setDataSetSelector(position = 'left'),
-    setPanelsSettings(recalculateToPercents = FALSE),
+    setPanelsSettings(recalculateToPercents = FALSE ,creditsPosition = creditsPosition),
     setExport(enabled = export)
   )
   

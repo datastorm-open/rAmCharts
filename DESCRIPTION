@@ -35,6 +35,7 @@ Collate:
     'chart_amBoxplot.R'
     'chart_amBullet.R'
     'chart_amCandlestick.R'
+    'chart_amDataset.R'
     'chart_amFloatingBar.R'
     'chart_amFunnel.R'
     'chart_amGauge.R'
