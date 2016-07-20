@@ -9,6 +9,7 @@
 #' @param pch \code{character}, points symbols. Possible values are : "round", "square", "triangleUp", 
 #' "triangleDown", "triangleLeft", "triangleRight", "bubble", 
 #' "diamond", "xError", "yError". 
+#' @param xlim \code{numeric}, x range.
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @examples
@@ -36,6 +37,9 @@
 #' # Change pch
 #' amRadar(data_radar,  pch = "triangleRight")
 #' amRadar(data_radar,  pch = "triangleLeft")
+#' 
+#' #Min-Max
+#' amRadar(data_radar, xlim = c(0, 8))
 #' }
 #' 
 #' @seealso 
@@ -48,7 +52,8 @@
 #' @rdname amRadar
 #' @export
 #' 
-amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons", pch = "round", ...) {
+amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons", pch = "round",
+                    xlim = NULL, ...) {
   #data
   data <- .testFormatData(data)
   
@@ -60,6 +65,9 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
   invisible(sapply(names(datavalue),function(X){
     .testNumeric(datavalue[,X], arg = X)
   }))
+  
+  
+  
   
   #Test
   .testCharacter(data$label)
@@ -86,6 +94,11 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
                                    "triangleRight", "bubble", "diamond", "xError", "yError"))
   .testLength(param = pch, len = c(1, ncol(data) - 1))
   
+  if(!is.null(xlim))
+  {
+  .testNumeric(num = xlim)
+  }
+  
   if(is.null(col)){col <- ""}
   
   constructGraph <- cbind(names(datavalue),col, backTransparency, pch)
@@ -97,11 +110,21 @@ amRadar <- function(data, col = NULL,  backTransparency = 0.5, type = "polygons"
             bullet = as.character(x[4]))
   })
   
-
+  if(is.null(xlim))
+  {
+  valueaxe <- valueAxis(gridType = type)
+  }else{
+    if(length(xlim) == 1){
+      valueaxe <- valueAxis(gridType = type, minimum = xlim)
+    }
+    if(length(xlim) == 2){
+      valueaxe <- valueAxis(gridType = type, minimum = xlim[1], maximum = xlim[2])
+    }
+  }
 
   res <- amRadarChart(dataProvider = data, categoryField = "label") %>>% 
     setGraphs(graphs) %>>% 
-    addValueAxes(gridType = type)
+    addValueAxis(valueaxe)
   
 
   res <- amOptions(res, ...)

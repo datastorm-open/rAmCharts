@@ -3,6 +3,12 @@
 #' 
 #' @param data \code{list}, list of data.frame (same structure) first column is date, others are values
 #' @param panelColumn \code{vector}, numeric vector, controle panel adding for selected series
+#' @param ZoomButtonPosition \code{character}, zoom button position. Possible values are :
+#' "left", "right", "bottom", "top"
+#' @param ZoomButton \code{data.frame}, 3 columns : 
+#' Unit, times unit
+#' multiple : multiple*unit 
+#' label : button's label
 #' 
 #' @examples 
 #' data(data_stock1)
@@ -20,9 +26,20 @@
 #' amStockMultiSet(data = data_stock1, panelColumn = c(1,2,1,1))
 #' amStockMultiSet(data = data_stock1, panelColumn = c(1,2,3,4))
 #' 
+#' ZoomButton <- data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 2 ,1),
+#'                    label = c("Day","2 days", "MAX"))
+#'                    ZoomButtonPosition <- "bottom"
+#' amStockMultiSet(data = data_stock1, panelColumn = c(1,2,1,1), ZoomButton = ZoomButton,
+#' ZoomButtonPosition = "top")
+#' 
+#' 
+#' 
+#' 
+#' 
 #' @export
 #'
-amStockMultiSet <- function(data, panelColumn = NULL){
+amStockMultiSet <- function(data, panelColumn = NULL, ZoomButtonPosition = "bottom",
+                            ZoomButton = data.frame(Unit = "MAX", multiple = 1, label ="All")){
   dataset <- list()
   for(i in 1:length(data))
   {
@@ -42,6 +59,32 @@ amStockMultiSet <- function(data, panelColumn = NULL){
   if(is.null(panelColumn)){
     panelColumn <- rep(1, ncol(data[[1]]) - 1)
   }
+  
+  
+  
+  
+  periodZoom <- periodSelector( position = ZoomButtonPosition ,inputFieldsEnabled = FALSE)
+  
+  if (!is.null(ZoomButton)) {
+    for (i in 1:nrow(ZoomButton)) {
+      if (i == 1) {
+        periodZoom <- pipeR::pipeline(periodZoom,
+                                      addPeriod(period = ZoomButton$Unit[i],
+                                                selected = TRUE, count = ZoomButton$multiple[i],
+                                                label =  ZoomButton$label[i])
+        )
+      } else {
+        periodZoom <- pipeR::pipeline(periodZoom,
+                                      addPeriod(period = ZoomButton$Unit[i],
+                                                count = ZoomButton$multiple[i],
+                                                label =  ZoomButton$label[i])
+        )
+      }
+    }
+  }
+  
+  
+  
   
   panels <- list()
   w <- 0
@@ -80,9 +123,7 @@ amStockMultiSet <- function(data, panelColumn = NULL){
                            cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
                            valueLineEnabled = TRUE, valueLineAlpha = 0.5),
     setPeriodSelector(
-      pipeR::pipeline(periodSelector(position = 'left'),
-                      addPeriod(period = 'DD', selected = TRUE, count = 7, label = '1 week'),
-                      addPeriod(period = 'MAX', label = 'MAX'))
+      periodZoom
     ),
     setDataSetSelector(position = 'left'),
     setPanelsSettings(recalculateToPercents = FALSE)

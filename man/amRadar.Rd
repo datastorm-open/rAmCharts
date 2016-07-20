@@ -5,7 +5,7 @@
 \title{Plotting radar using rAmCharts}
 \usage{
 amRadar(data, col = NULL, backTransparency = 0.5, type = "polygons",
-  pch = "round", ...)
+  pch = "round", xlim = NULL, ...)
 }
 \arguments{
 \item{data}{\code{data.frame} first column is named "label" (character), other columns are series of values,
@@ -20,6 +20,8 @@ see \link{data_radar}.}
 \item{pch}{\code{character}, points symbols. Possible values are : "round", "square", "triangleUp", 
 "triangleDown", "triangleLeft", "triangleRight", "bubble", 
 "diamond", "xError", "yError".}
+
+\item{xlim}{\code{numeric}, x range.}
 
 \item{...}{see \code{\link{amOptions}} for more options.}
 }
