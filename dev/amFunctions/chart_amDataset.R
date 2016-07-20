@@ -5,10 +5,14 @@
 #' @param panelColumn \code{vector}, numeric vector, controle panel adding for selected series
 #' @param ZoomButtonPosition \code{character}, zoom button position. Possible values are :
 #' "left", "right", "bottom", "top"
+#' @param color \code{character}, color of data-sets (in hexadecimal).
 #' @param ZoomButton \code{data.frame}, 3 columns : 
 #' Unit, times unit
 #' multiple : multiple*unit 
 #' label : button's label
+#' @param precision \code{numeric}, digits precision
+#' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
+#' @param percentHeightPanel \code{numeric}, vector of size panel, same length than data
 #' 
 #' @examples 
 #' data(data_stock1)
@@ -26,26 +30,66 @@
 #' amStockMultiSet(data = data_stock1, panelColumn = c(1,2,1,1))
 #' amStockMultiSet(data = data_stock1, panelColumn = c(1,2,3,4))
 #' 
-#' ZoomButton <- data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 2 ,1),
-#'                    label = c("Day","2 days", "MAX"))
+#' ZoomButton <- data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 10 ,1),
+#'                    label = c("Day","10 days", "MAX"))
 #'                    ZoomButtonPosition <- "bottom"
 #' amStockMultiSet(data = data_stock1, panelColumn = c(1,2,1,1), ZoomButton = ZoomButton,
 #' ZoomButtonPosition = "top")
 #' 
+#' amStockMultiSet(data = data_stock1, precision = 2)
 #' 
-#' 
+#' amStockMultiSet(data = data_stock1, panelColumn = c(1,2,1,1), percentHeightPanel = c(3,1))
 #' 
 #' 
 #' @export
 #'
 amStockMultiSet <- function(data, panelColumn = NULL, ZoomButtonPosition = "bottom",
-                            ZoomButton = data.frame(Unit = "MAX", multiple = 1, label ="All")){
+                            ZoomButton = data.frame(Unit = "MAX", multiple = 1, label ="All"),
+                            color = c("#2E2EFE", "#31B404", "#FF4000"),
+                            precision = 1, export = FALSE,
+                            percentHeightPanel = NULL){
+  
+  
+  
+  
+  
+  
+  #color
+  .testCharacter(char = color)
+  
+  #Export
+  .testLogicalLength1(logi = export)
+  
+  
+  if(is.null(panelColumn)){
+    panelColumn <- rep(1, ncol(data[[1]]) - 1)
+  }
+  
+  
+  if(is.null(percentHeightPanel)){
+    percentHeightPanel <- rep(100/length(unique(panelColumn)), length(unique(panelColumn)))
+  }else{
+    .testNumeric(percentHeightPanel)
+    percentHeightPanel <-percentHeightPanel/sum(percentHeightPanel) * 100
+    
+  }
+
+  
+  
+  
+  
+  
+  
+  
+  
   dataset <- list()
   for(i in 1:length(data))
   {
+    
   dataset[[i]] <-dataSet(
     title = names(data)[i], categoryField = 'date',
-    dataProvider = data[[i]])
+    
+    dataProvider = data[[i]], color = color[(i - 1)%%(length(data) - 1) + 1])
     
     fieldmap <- list()
     for(j in 2:ncol(data[[i]]))
@@ -56,10 +100,7 @@ amStockMultiSet <- function(data, panelColumn = NULL, ZoomButtonPosition = "bott
     dataset[[i]]@fieldMappings <- fieldmap
   }
 
-  if(is.null(panelColumn)){
-    panelColumn <- rep(1, ncol(data[[1]]) - 1)
-  }
-  
+
   
   
   
@@ -84,7 +125,7 @@ amStockMultiSet <- function(data, panelColumn = NULL, ZoomButtonPosition = "bott
   }
   
   
-  
+ 
   
   panels <- list()
   w <- 0
@@ -108,13 +149,12 @@ amStockMultiSet <- function(data, panelColumn = NULL, ZoomButtonPosition = "bott
                                                               names(data[[1]])[rowinclude[k] + 1],
                                                               ' = <b>[[value]]</b>'))
     
-    
   }
   w <- w + 1
-  panels[[w]] <- panel(showCategoryAxis = FALSE, percentHeight = 100/length(unique(panelColumn)),
-                       stockGraphs = stockGraphs)
+  panels[[w]] <- panel(showCategoryAxis = FALSE, percentHeight = percentHeightPanel[w],
+                       stockGraphs = stockGraphs,
+                       precision = precision)
   }
-  
   pipeR::pipeline(
     amStockChart(startDuration = 0),
     setDataSets(dataset),
@@ -126,7 +166,8 @@ amStockMultiSet <- function(data, panelColumn = NULL, ZoomButtonPosition = "bott
       periodZoom
     ),
     setDataSetSelector(position = 'left'),
-    setPanelsSettings(recalculateToPercents = FALSE)
+    setPanelsSettings(recalculateToPercents = FALSE),
+    setExport(enabled = export)
   )
   
   
