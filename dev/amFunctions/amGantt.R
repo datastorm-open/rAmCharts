@@ -1,5 +1,5 @@
 #' @title Plotting Gantt chart
-#' @description  amStockMultiSet compute a Gantt chart, still in dev
+#' @description  amGantt compute a Gantt chart, still in dev
 #' 
 #' @param data \code{data.frame}, dataframe with values to display.
 #' You must add column category, should be date.
