@@ -15,6 +15,9 @@
 #' @examples
 #' data(data_gantt)
 #' 
+#' amGantt(data_gantt)
+#' amGantt(data_gantt, zoom = TRUE)
+#' 
 #' @export
 amGantt <- function(data, horiz = TRUE, datelim = NULL, ...){
   
@@ -40,7 +43,7 @@ amGantt <- function(data, horiz = TRUE, datelim = NULL, ...){
   data_end <- lapply(unique(data$category), function(X){
     data1 <- data[which(X == data$category),]
     select <- data.frame(category = data1$category)
-    select$begin <- as.numeric(data1$begin - firstdate)
+    select$begin <- as.numeric(data1$begin - datelim[1])
     select$end <- as.numeric(data1$end - data1$begin)
     select$color <- data1$color
     select$description <- data1$description
@@ -54,7 +57,7 @@ amGantt <- function(data, horiz = TRUE, datelim = NULL, ...){
                startField = "begin",
                segmentsField = "segments",
                dataDateFormat = "YYYY-MM-DD",
-               startDate = as.character(firstdate),
+               startDate = as.character(datelim[1]),
                period = period,
                categoryField = "category",
                durationField = "end",
