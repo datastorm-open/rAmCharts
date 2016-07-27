@@ -225,9 +225,31 @@ amOptions <- function(chart, theme = c("none", "light", "dark", "patterns", "cha
   
   ## Set zoom cursor
   if (zoom)
-    chart <- setChartCursor(.Object = chart)
+  {
+    if(length(chart@otherProperties$RType_) > 0)
+    {
+      if(chart@otherProperties$RType_ == "gantt")
+      {
+        chart <- setChartCursor(.Object = chart,
+                                valueZoomable = TRUE,
+                                valueLineEnabled = TRUE,
+                                zoomable = FALSE,
+                                valueLineBalloonEnabled = TRUE,
+                                valueBalloonsEnabled = FALSE)
+        
+      }
+      else{
+        chart <- setChartCursor(.Object = chart)
+      }
+    }
+    else{
+      chart <- setChartCursor(.Object = chart)
+    }
+  }
   else
+  {
     slot(object = chart, name = "chartCursor", check = TRUE) <- list()
+  }
   
   ## Set scrollbar
   if (scrollbar) 

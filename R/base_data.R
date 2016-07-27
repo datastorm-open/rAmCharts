@@ -208,3 +208,16 @@
 #'   \item{color}{\code{character}}
 #' }
 "data_fbar"
+
+#' @title Random data for plotting gantt chart examples
+#' @description This dataset is used in the examples,
+#' moreover it can be used as a reference if you notice a bug.
+#' 
+#' @format Dataset of 5 columns and 4 rows
+#' \describe{
+#'   \item{category}{\code{character}}
+#'   \item{begin}{\code{date}}
+#'   \item{end}{\code{date}}
+#'   \item{color}{\code{character}}
+#' }
+"data_gantt"

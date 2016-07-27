@@ -78,7 +78,7 @@ amStockMultiSet <- function(data,
   if(is.null(panelColumn)){
     panelColumn <- rep(1, ncol(data[[1]]) - 1)
   }
-  
+  .testNumeric(panelColumn)
   
   if(is.null(percentHeightPanel)){
     percentHeightPanel <- rep(100/length(unique(panelColumn)), length(unique(panelColumn)))
