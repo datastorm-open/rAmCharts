@@ -211,13 +211,14 @@ amFloatingBar <- function(x, y_inf, y_sup, data, xlab = "", ylab = "", groups_co
   
   parseDates <- !is.null(dataDateFormat)
   
-  chart <- pipeR::pipeline(
+  pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = x, rotate = horiz, 
                   depth3D = depth3D, angle = angle, dataDateFormat = dataDateFormat),
     addValueAxis(title = ylab, position = 'left'),
     setCategoryAxis(title = xlab, gridPosition = 'start',
                     axisAlpha = 0, gridAlpha = 0,
-                    parseDates = parseDates, minPeriod = minPeriod)
+                    parseDates = parseDates, minPeriod = minPeriod),
+    (~ chart)
   )
   
   if("description" %in% colnames(data)) {

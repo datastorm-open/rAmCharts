@@ -176,13 +176,9 @@ amStockMultiSet <- function(data,
     setChartCursorSettings(valueBalloonsEnabled = TRUE, fullWidth = TRUE,
                            cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
                            valueLineEnabled = TRUE, valueLineAlpha = 0.5),
-    setPeriodSelector(
-      periodZoom
-    ),
+    setPeriodSelector(periodZoom),
     setDataSetSelector(position = 'left'),
     setPanelsSettings(recalculateToPercents = FALSE ,creditsPosition = creditsPosition),
     setExport(enabled = export)
   )
-  
-  
 }

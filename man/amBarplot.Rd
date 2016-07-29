@@ -85,8 +85,6 @@ amBarplot(x = "country", y = "visits", data = data_bar, main = "example")
 
 # Other examples available which can be time consuming depending on your configuration.
 
-library(pipeR)
-
 # fixed value axis
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, ylim = c(0, 26))
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "100")

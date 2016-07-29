@@ -126,14 +126,15 @@ amCandlestick <- function(data, xlab = "", ylab = "", horiz = FALSE,
                                            names[1], ": <b>[[low]]</b><br>"))
   
   
-  chart <- pipeR::pipeline(
+  pipeR::pipeline(
     amSerialChart(categoryField = "category", precision = 2,
                   dataDateFormat = dataDateFormat, rotate = horiz),
     setDataProvider(dataProvider = data, keepNA = FALSE),
     addValueAxis(title = ylab, position = 'left', gridAlpha = 0.1),
     setCategoryAxis(title = xlab, axisAlpha = 0, gridAlpha = 0.1,
                     parseDates = parseDates, minPeriod = minPeriod),
-    addGraph(graph_obj)
+    addGraph(graph_obj),
+    (~ chart)
   )
   
   # add argupment 'RType_' for amOptions

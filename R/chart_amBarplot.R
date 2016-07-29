@@ -58,8 +58,6 @@
 #' 
 #' # Other examples available which can be time consuming depending on your configuration.
 #' 
-#' library(pipeR)
-#' 
 #' # fixed value axis
 #' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, ylim = c(0, 26))
 #' amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "100")
@@ -217,13 +215,14 @@ amBarplot <- function(x, y, data, xlab = "", ylab = "", ylim = NULL, groups_colo
     ymin <- NULL
     ymax <- NULL
   }
-  chart <- pipeR::pipeline(
+  pipeR::pipeline(
     amSerialChart(dataProvider = data, categoryField = x, rotate = horiz, 
                   depth3D = depth3D, angle = angle, dataDateFormat = dataDateFormat),
     addValueAxis(title = ylab, position = 'left', stackType = stack_type,
                  minimum = ymin, maximum = ymax, strictMinMax = !is.null(ylim)),
     setCategoryAxis(title = xlab, gridPosition = 'start', axisAlpha = 0, gridAlpha = 0,
-                    parseDates = !is.null(dataDateFormat), minPeriod = minPeriod)
+                    parseDates = !is.null(dataDateFormat), minPeriod = minPeriod),
+    (~ chart)
   )
   
   if (length(y) == 1) {

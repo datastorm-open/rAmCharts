@@ -135,16 +135,15 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
     radius1 <- "100%"
   }
   
-  res <- pipeR::pipeline(
+  chart <- pipeR::pipeline(
     amAngularGaugeChart(startValue = start, endValue = end, valueInterval = step),
     addArrow(value = x),
     addAxis(startValue = start, endValue = end, valueInterval = step, bands = bands_1,
             bottomText = paste(x, text), bottomTextFontSize = textSize, radius = radius1)
-    
   )
   if(secondAxe == TRUE) {
-    res <- addAxis(res, startValue = start2, endValue = end2, valueInterval = step2,
-                   bands = bands_2, inside = FALSE, gridInside = FALSE, radius = "100%")
+    chart <- addAxis(chart, startValue = start2, endValue = end2, valueInterval = step2,
+                     bands = bands_2, inside = FALSE, gridInside = FALSE, radius = "100%")
   }
   
   #   if (isTRUE(getOption('knitr.in.progress'))) {
@@ -153,8 +152,7 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
   #     return(res)
   #   }
   
-  res <- amOptions(res, ...)
-  res
+  amOptions(chart, ...)
 }
 
 
@@ -257,7 +255,7 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
   bands[[1]] <- gaugeBand(startValue = 0, endValue = max, color = "#e0eeee", innerRadius = innerRadius)
   bands[[2]] <- gaugeBand(startValue = 0, endValue = x, color = col, innerRadius = innerRadius)
   
-  res <- pipeR::pipeline(
+  chart <- pipeR::pipeline(
     amAngularGaugeChart(startValue = min, endValue = max, valueInterval = max,
                         labelsEnabled = FALSE),
     addAxis(startAngle = startAngle, endAngle = endAngle,
@@ -273,7 +271,6 @@ amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
   #   }
   
   
-  res <- amOptions(res, ...)
-  res
+  amOptions(chart, ...)
 }
 
