@@ -17,3 +17,14 @@ amSerialChart(categoryField = "xlab", precision = 2) %>%
   addGraph(valueField = "y2", lineColor = "grey") %>%
   setChartCursor()
 
+xlab <- 1:150
+y <- rnorm(150)
+color <- numeric(150L)
+color[c(100, 110, 125)] <- "red"
+dataProvider <- data.frame(xlab, y, color)
+
+amSerialChart(categoryField = "xlab", dataProvider = dataProvider, precision = 2) %>%
+  addGraph(valueField = "y", colorField = "color", bullet = "round", lineAlpha = 0) %>%
+  setExport()
+
+  
