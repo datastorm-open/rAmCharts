@@ -9,7 +9,8 @@ amOptions(chart, theme = c("none", "light", "dark", "patterns", "chalk"),
   export = FALSE, exportFormat = character(),
   creditsPosition = "top-left", main = character(), mainColor = "#000000",
   mainSize = 15, zoom = FALSE, scrollbar = FALSE, scrollbarHeight = 20,
-  labelRotation = 0, ...)
+  valuescrollbar = FALSE, valuescrollbarHeight = 20, labelRotation = 0,
+  ...)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}
@@ -44,6 +45,10 @@ default set to "right".}
 \item{scrollbar}{\code{logical}, default \code{FALSE}, TRUE to display scrollbar.}
 
 \item{scrollbarHeight}{\code{numeric}, height in pixels, must be > 0.}
+
+\item{valuescrollbar}{\code{logical}, default \code{FALSE}, TRUE to display valuescrollbar.}
+
+\item{valuescrollbarHeight}{\code{numeric}, height in pixels, must be > 0.}
 
 \item{labelRotation}{\code{numeric}, rotation angle of a label. Only horizontal axis' values 
 can be rotated. Value must be between -90 and 90.}

@@ -51,6 +51,8 @@ amGantt <- function(data, horiz = TRUE, datelim = NULL, ...){
   })
 
     period = "DD"
+    
+    
   
   chart <- amGanttChart(brightnessStep = 20,
                 rotate = horiz,
@@ -71,7 +73,24 @@ amGantt <- function(data, horiz = TRUE, datelim = NULL, ...){
     addSegment(1:length(data_end), data_end) 
   
   
+  if("legend" %in% names(data)){
+    datalegend <- unique(data.frame(color = as.character(data_gantt$color),
+                                    legend = data_gantt$legend))
+    datalegend <- unname(apply(datalegend, 1, function(X){
+      title = as.character(X["legend"])
+      color = as.character(X["color"])
+      list(title = title, color = color)
+    }))
+    
+    chart <- chart %>>% setLegend(data = datalegend)
+  }
+  
+  
+  
+  
+  
+  
   chart@otherProperties$RType_ <- "gantt"
- amOptions(chart, ...)
+  amOptions(chart, ...)
    
 }

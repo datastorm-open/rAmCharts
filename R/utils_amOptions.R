@@ -21,7 +21,9 @@
 #' @param mainSize \code{numeric}, main size, default set to 15.
 #' @param zoom \code{logical}, TRUE to add a chart cursor, default set to FALSE.
 #' @param scrollbar \code{logical}, default \code{FALSE}, TRUE to display scrollbar.
+#' @param valuescrollbar \code{logical}, default \code{FALSE}, TRUE to display valuescrollbar.
 #' @param scrollbarHeight \code{numeric}, height in pixels, must be > 0.
+#' @param valuescrollbarHeight \code{numeric}, height in pixels, must be > 0.
 #' @param labelRotation \code{numeric}, rotation angle of a label. Only horizontal axis' values 
 #' can be rotated. Value must be between -90 and 90.
 #' @param ... Other properties added to the chart using \code{setProperties}.
@@ -84,6 +86,7 @@ amOptions <- function(chart, theme = c("none", "light", "dark", "patterns", "cha
                       legendAlign = "left", export = FALSE, exportFormat = character(),
                       creditsPosition = "top-left", main = character(), mainColor = "#000000",
                       mainSize = 15, zoom = FALSE, scrollbar = FALSE, scrollbarHeight = 20,
+                      valuescrollbar = FALSE, valuescrollbarHeight = 20,
                       labelRotation = 0, ...)
 {
   # Control parameters
@@ -127,9 +130,18 @@ amOptions <- function(chart, theme = c("none", "light", "dark", "patterns", "cha
     # scrollbar
     .testLogicalLength1(logi = scrollbar)
     
+    # valuescrollbar
+    .testLogicalLength1(logi = valuescrollbar)
+    
     # scrollbarHeight
     .testNumericLength1(num = scrollbarHeight)
     .testInterval(num = scrollbarHeight, binf = 0)
+    
+    # valuescrollbarHeight
+    .testNumericLength1(num = valuescrollbarHeight)
+    .testInterval(num = valuescrollbarHeight, binf = 0)
+    
+    
     
     # labelRotation
     .testNumericLength1(num = labelRotation)
@@ -251,11 +263,24 @@ amOptions <- function(chart, theme = c("none", "light", "dark", "patterns", "cha
     slot(object = chart, name = "chartCursor", check = TRUE) <- list()
   }
   
-  ## Set scrollbar
-  if (scrollbar) 
+  ## Set scroll bar
+  if (scrollbar)
     chart <- setChartScrollbar(.Object = chart, enabled = scrollbar, scrollbarHeight = scrollbarHeight)
   else 
     slot(object = chart, name = "chartScrollbar", check = TRUE) <- list()
+  
+  
+  ## Set value scroll bar
+  if (valuescrollbar)
+  {
+    if (chart@type %in% c("serial", "gantt"))
+    {
+    chart <- setValueScrollbar(.Object = chart,
+                               valueScrollbar = chartScrollbar(enabled = valuescrollbar,
+                                                               scrollbarHeight = scrollbarHeight))
+    }
+  }
+  
   
   ## Rotate label
   if (labelRotation !=0) {
