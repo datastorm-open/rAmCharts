@@ -53,6 +53,7 @@ data_stock1$chartData4$value3 <- as.numeric(data_stock1$chartData4$value) - 10
 
 amStockMultiSet(data = data_stock1)
 amStockMultiSet(data = data_stock1, panelColumn = c(1,2,1,1))
+\donttest{
 amStockMultiSet(data = data_stock1, panelColumn = c(1,2,3,4))
 
 ZoomButton <- data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 10 ,1),
@@ -64,7 +65,7 @@ ZoomButtonPosition = "top")
 amStockMultiSet(data = data_stock1, precision = 2)
 
 amStockMultiSet(data = data_stock1, panelColumn = c(1,2,1,1), percentHeightPanel = c(3,1))
-
+}
 
 }
 

@@ -73,12 +73,14 @@
 \alias{setValueAxes}
 \alias{setValueAxes,AmChart,list-method}
 \alias{setValueAxis,AmChart,ValueAxisOrMissing-method}
+\alias{setValueScrollbar}
+\alias{setValueScrollbar,AmChart,ChartScrollbarOrMissing-method}
 \title{Creates an AmChart}
 \usage{
 \S4method{initialize}{AmChart}(.Object, allLabels, arrows, axes, balloon,
   categoryAxis, categoryField, chartCursor, chartScrollbar, creditsPosition,
   dataProvider, graphs, graph, guides, legend, segmentsField, theme, titles,
-  trendLines, type, valueAxes, valueAxis, ...)
+  trendLines, type, valueAxes, valueAxis, valueScrollbar, ...)
 
 amChart(allLabels, arrows, axes, balloon, categoryAxis, categoryField,
   chartCursor, chartScrollbar, creditsPosition, dataProvider, graph, graphs,
@@ -234,6 +236,11 @@ addValueAxis(.Object, valueAxis = NULL, ...)
 
 \S4method{setValueAxis}{AmChart,ValueAxisOrMissing}(.Object, valueAxis = NULL,
   ...)
+
+setValueScrollbar(.Object, valueScrollbar, ...)
+
+\S4method{setValueScrollbar}{AmChart,ChartScrollbarOrMissing}(.Object,
+  valueScrollbar, ...)
 }
 \arguments{
 \item{.Object}{\linkS4class{AmChart}.}
@@ -333,6 +340,9 @@ Run \code{api("ValueAxis")} for more informations.}
 Only valid for Gantt Charts.
 Set it's type to "date" if your data is date or time based.
 Run \code{api("ValueAxis")} for more informations.}
+
+\item{valueScrollbar}{\linkS4class{ChartScrollbar}.
+Value scrollbar, enables scrolling value axes.}
 
 \item{...}{In case of constructor \code{new("AmChart")} or \code{amChart()}
 Dots represent other properties to set to the \linkS4class{AmChart} object.
@@ -660,6 +670,14 @@ addValueAxis(.Object = amSerialChart(), valueAxis = valueAxis_obj)
 setValueAxis(.Object = amGanttChart())
 setValueAxis(.Object = amGanttChart(), type = "date")
 }
+\donttest{
+valueScrollbar_obj <- chartScrollbar(updateOnReleaseOnly = FALSE)
+chart <- setValueScrollbar(.Object = amSerialChart(), valueScrollbar = valueScrollbar_obj)
+print(chart)
+# or...
+amSerialChart(updateOnReleaseOnly = FALSE)
+}
+# ---
 }
 \seealso{
 Refer to \url{http://docs.amcharts.com/3/javascriptcharts/}.

@@ -147,7 +147,7 @@ setMethod(f = "initialize", signature = "StockPanel",
                                 categoryField, chartCursor, chartScrollbar,
                                 creditsPosition, dataProvider, graphs, graph,
                                 guides, legend, theme, title, titles,
-                                trendLines, type, valueAxes,
+                                trendLines, type, valueAxes, valueScrollbar,
                                 drawOnAxis, stockGraphs, stockLegend,...)
           { 
             # specific setters for "AmChart"
@@ -170,6 +170,7 @@ setMethod(f = "initialize", signature = "StockPanel",
             if (!missing(trendLines)) .Object <- setTrendLines(.Object, trendLines)
             if (!missing(type)) .Object <- setType(.Object, type)
             if (!missing(valueAxes)) .Object <- setValueAxes(.Object, valueAxes)
+            if (!missing(valueScrollbar)) .Object <- setValueScrollbar(.Object, valueScrollbar)
             
             # specific setters for "StockPanel"
             if (!missing(drawOnAxis)) .Object <- setDrawOnAxis(.Object, drawOnAxis)

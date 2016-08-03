@@ -107,6 +107,9 @@ NULL
 #' Set it's type to "date" if your data is date or time based.
 #' Run \code{api("ValueAxis")} for more informations.
 #' 
+#' @slot valueScrollbar \linkS4class{ChartScrollbar}.
+#' Value scrollbar, enables scrolling value axes.
+#' 
 #' @slot listeners \code{list} containining the listeners to add to the object.
 #' The list must be named as in the official API. Each element must be a character string.
 #' Run \code{runShinyExamples()} for examples.
@@ -150,7 +153,8 @@ setClass(Class = "AmChart", contains = "AmObject",
            trendLines = "list",
            type = "character",
            valueAxes = "list",
-           valueAxis = "list"
+           valueAxis = "list",
+           valueScrollbar = "list"
          ),
          validity = function(object)
          {
@@ -215,7 +219,7 @@ setMethod(f = "initialize", signature = "AmChart",
                                 categoryField, chartCursor, chartScrollbar,
                                 creditsPosition, dataProvider, graphs, graph,
                                 guides, legend, segmentsField, theme,
-                                titles, trendLines, type, valueAxes, valueAxis,...)
+                                titles, trendLines, type, valueAxes, valueAxis, valueScrollbar, ...)
           {
             if (!missing(allLabels)) .Object <- setAllLabels(.Object, allLabels)
             if (!missing(arrows)) .Object <- setArrows(.Object, arrows)
@@ -238,6 +242,7 @@ setMethod(f = "initialize", signature = "AmChart",
             if (!missing(type)) .Object <- setType(.Object, type)
             if (!missing(valueAxes)) .Object <- setValueAxes(.Object, valueAxes)
             if (!missing(valueAxis)) .Object <- setValueAxis(.Object, valueAxis)
+            if (!missing(valueScrollbar)) .Object <- setValueScrollbar(.Object, valueScrollbar)
             
             .Object@otherProperties <- list(...)
             

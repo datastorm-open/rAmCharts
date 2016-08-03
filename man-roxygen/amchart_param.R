@@ -81,3 +81,6 @@
 #' Chart creates one value axis automatically,
 #' so if you need only one value axis, you don't need to create it.
 #' Run \code{api("ValueAxis")} for more informations.
+#' 
+#' @param valueScrollbar \linkS4class{ChartScrollbar}.
+#' Value scrollbar, enables scrolling value axes.

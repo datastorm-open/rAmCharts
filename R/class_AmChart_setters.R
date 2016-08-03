@@ -893,7 +893,7 @@ setMethod(f = "addValueAxes", signature = c("AmChart", "ValueAxisOrMissing"),
           definition = addValueAxis_def)
 #' @rdname initialize-AmChart
 #' @export
-setGeneric(name = "addValueAxis", def = function(.Object, valueAxis = NULL, ... ) { standardGeneric("addValueAxis") } )
+setGeneric(name = "addValueAxis", def = function(.Object, valueAxis = NULL, ... ) {standardGeneric("addValueAxis")})
 #' @rdname initialize-AmChart
 setMethod(f = "addValueAxis", signature = c("AmChart", "ValueAxisOrMissing"),
           definition = addValueAxis_def)
@@ -918,3 +918,30 @@ setMethod(f = "setValueAxis", signature = c("AmChart", "ValueAxisOrMissing"),
             validObject(.Object)
             return(.Object)
           })
+
+#' @examples
+#' \donttest{
+#' valueScrollbar_obj <- chartScrollbar(updateOnReleaseOnly = FALSE)
+#' chart <- setValueScrollbar(.Object = amSerialChart(), valueScrollbar = valueScrollbar_obj)
+#' print(chart)
+#' # or...
+#' amSerialChart(updateOnReleaseOnly = FALSE)
+#' }
+#' # ---
+#' @rdname initialize-AmChart
+#' @export
+setGeneric(name = "setValueScrollbar",
+           def = function(.Object, valueScrollbar, ...) {standardGeneric("setValueScrollbar")})
+#' @rdname initialize-AmChart
+setMethod(f = "setValueScrollbar", signature = c("AmChart", "ChartScrollbarOrMissing"),
+          definition = function(.Object, valueScrollbar, ...)
+          {
+            if (!length(valueScrollbar))
+              valueScrollbar <- chartScrollbar(...)
+            
+            .Object@valueScrollbar <- listProperties(valueScrollbar)
+            validObject(.Object)
+            return(.Object)
+          })
+
+

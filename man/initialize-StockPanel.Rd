@@ -18,7 +18,7 @@
 \S4method{initialize}{StockPanel}(.Object, allLabels, axes, balloon,
   categoryAxis, categoryField, chartCursor, chartScrollbar, creditsPosition,
   dataProvider, graphs, graph, guides, legend, theme, title, titles, trendLines,
-  type, valueAxes, drawOnAxis, stockGraphs, stockLegend, ...)
+  type, valueAxes, valueScrollbar, drawOnAxis, stockGraphs, stockLegend, ...)
 
 stockPanel(...)
 
@@ -131,6 +131,9 @@ See details about using argument type.
 Chart creates one value axis automatically,
 so if you need only one value axis, you don't need to create it.
 Run \code{api("ValueAxis")} for more informations.}
+
+\item{valueScrollbar}{\linkS4class{ChartScrollbar}.
+Value scrollbar, enables scrolling value axes.}
 
 \item{drawOnAxis}{\linkS4class{ValueAxis}.
 Specifies on which value axis user can draw trend lines.

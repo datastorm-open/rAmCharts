@@ -112,6 +112,9 @@ Only valid for Gantt Charts.
 Set it's type to "date" if your data is date or time based.
 Run \code{api("ValueAxis")} for more informations.}
 
+\item{\code{valueScrollbar}}{\linkS4class{ChartScrollbar}.
+Value scrollbar, enables scrolling value axes.}
+
 \item{\code{listeners}}{\code{list} containining the listeners to add to the object.
 The list must be named as in the official API. Each element must be a character string.
 Run \code{runShinyExamples()} for examples.}
