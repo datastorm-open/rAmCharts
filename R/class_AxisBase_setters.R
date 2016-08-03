@@ -27,7 +27,7 @@ setMethod(f = "addGuide", signature = c("AxisBase", "GuideOrMissing"),
               stop("You must give either argument 'guide' or its properties")
             } else {}
             
-            .Object@guides <- rlist::list.append(.Object@guides, listProperties(guide))
+            .Object@guides <- c(.Object@guides, list(listProperties(guide)))
             validObject(.Object)
             return(.Object)
           })

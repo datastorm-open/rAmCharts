@@ -1,5 +1,4 @@
 #' @include class_AmObject.R
-#' @import rlist
 #' @import methods
 NULL
 

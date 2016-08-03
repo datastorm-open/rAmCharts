@@ -175,8 +175,9 @@ stockGraphs <- list(stockGraph(comparable = TRUE), stockGraph(comparable = FALSE
 setStockGraphs(.Object =  stockPanel(), stockGraphs = stockGraphs)
 stockPanel(stockGraphs = stockGraphs)
 # ---
-addStockGraph(.Object = stockPanel(), comparable = FALSE)
-addStockGraph(.Object = stockPanel(), stockGraph = stockGraph(comparable = FALSE))
+stock_panel <- addStockGraph(.Object = stockPanel(), comparable = FALSE); print(stock_panel)
+# or...
+stock_panel <- addStockGraph(.Object = stockPanel(), stockGraph = stockGraph(comparable = FALSE))
 # ---
 setStockLegend(.Object = stockPanel(), valueTextRegular = "[[value]]")
 # equivalent to:

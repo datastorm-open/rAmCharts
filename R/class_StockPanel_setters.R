@@ -58,8 +58,9 @@ setMethod(f = "setStockGraphs", signature = c("StockPanel", "list"),
 #' @param stockGraph \linkS4class{AmGraph}, created with stockGraph(...).
 #' Argument for method \code{addStockGraph}.
 #' @examples
-#' addStockGraph(.Object = stockPanel(), comparable = FALSE)
-#' addStockGraph(.Object = stockPanel(), stockGraph = stockGraph(comparable = FALSE))
+#' stock_panel <- addStockGraph(.Object = stockPanel(), comparable = FALSE); print(stock_panel)
+#' # or...
+#' stock_panel <- addStockGraph(.Object = stockPanel(), stockGraph = stockGraph(comparable = FALSE))
 #' # ---
 #' @rdname initialize-StockPanel
 #' @export
@@ -76,8 +77,7 @@ setMethod(f = "addStockGraph", signature = c("StockPanel", "AmGraphOrMissing"),
             } else {}
             
             
-            .Object@stockGraphs <- rlist::list.append(.Object@stockGraphs,
-                                                      listProperties(stockGraph))
+            .Object@stockGraphs <- c(.Object@stockGraphs, list(listProperties(stockGraph)))
             validObject(.Object)
             return(.Object)
           })

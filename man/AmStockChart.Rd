@@ -260,7 +260,7 @@ setPanels(.Object = amStockChart(), panels = panels_ls)
 }
 \donttest{
 # Dummy example
-addPanel(.Object = amStockChart(), allowTurningOff = TRUE)
+chart <- addPanel(.Object = amStockChart(), allowTurningOff = TRUE); print(chart)
 # equivalent to:
 panel_obj <- panel(allowTurningOff = TRUE)
 addPanel(.Object = amStockChart(), panel = panel_obj)
