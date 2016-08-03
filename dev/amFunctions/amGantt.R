@@ -7,6 +7,7 @@
 #' You can add a column "color" (character, colors in hexadecimal). You can
 #' also add a column "description" (character) containing the text you want to
 #' display when mouse is on the graphic ('<br>' for a new line).
+#' You can add a column to specify legend label
 #' @param horiz \code{logical}, TRUE for an horizontal chart, FALSE for a vertical one
 #' @param firstdate \code{date}, Date to initialing chart, (minimum), if null take value : min(data[,"begin"])
 #' @param ... see \code{\link{amOptions}} for more options.
