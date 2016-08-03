@@ -18,7 +18,9 @@
 #' 
 #' amGantt(data_gantt)
 #' amGantt(data_gantt, zoom = TRUE)
-#' 
+#' data_gantt$legend <- c("category 1", "category 2", "category 1", "category 2", "category 1")
+#' amGantt(data_gantt, valuescrollbar = TRUE)
+#' amGantt(data_gantt, valuescrollbar = TRUE, valuescrollbarHeight = 50)
 #' @export
 amGantt <- function(data, horiz = TRUE, datelim = NULL, ...){
   

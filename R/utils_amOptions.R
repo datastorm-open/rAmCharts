@@ -277,7 +277,7 @@ amOptions <- function(chart, theme = c("none", "light", "dark", "patterns", "cha
     {
     chart <- setValueScrollbar(.Object = chart,
                                valueScrollbar = chartScrollbar(enabled = valuescrollbar,
-                                                               scrollbarHeight = scrollbarHeight))
+                                                               scrollbarHeight = valuescrollbarHeight))
     }
   }
   
