@@ -1,4 +1,4 @@
-amcharts_version : "3.18.2"
+amcharts_version : "3.20.10"
 styles:
   amstockcharts:
     name: "amstockcharts_style"

@@ -53,7 +53,7 @@ setMethod(f = "addLabel", signature = c("AmChart", "LabelOrMissing"),
               stop("You must either provide argument label or give its properties")
             } else {}
             
-            .Object@allLabels <- rlist::list.append(.Object@allLabels, listProperties(label))
+            .Object@allLabels <- c(.Object@allLabels, list(listProperties(label)))
             validObject(.Object)
             return(.Object)
           })
@@ -75,7 +75,7 @@ setGeneric(name = "setArrows", def = function(.Object, arrows = NULL) {standardG
 setMethod(f = "setArrows", signature = c("AmChart"),
           definition = function(.Object, arrows = NULL)
           {
-            rightClassElements <- prod(sapply(arrows, function(element) {is(element, "GaugeArrow")}))
+            rightClassElements <- all(sapply(arrows, function(element) {is(element, "GaugeArrow")}))
             if (!rightClassElements) {
               stop("[setArrows]: each element of arrows must be of class GaugeArrow")
             } else {}
@@ -94,7 +94,7 @@ setMethod(f = "setArrows", signature = c("AmChart"),
 #' Argument of method \code{addArrow}.
 #' @examples
 #' \donttest{
-#' addArrow(.Object = amAngularGaugeChart(), value = 10)
+#' chart <- addArrow(.Object = amAngularGaugeChart(), value = 10); print(chart)
 #' # equivalent to:
 #' gaugeArrow_obj <- gaugeArrow(value = 10)
 #' addArrow(.Object = amAngularGaugeChart(), arrow = gaugeArrow_obj)
@@ -113,7 +113,7 @@ setMethod(f = "addArrow", signature = c("AmChart", "GaugeArrowOrMissing"),
               stop("You must either provide argument arrow or give its properties")
             } else {}
             
-            .Object@arrows <- rlist::list.append(.Object@arrows, listProperties(arrow))
+            .Object@arrows <- c(.Object@arrows, list(listProperties(arrow)))
             validObject(.Object)
             return(.Object)
           })
@@ -167,7 +167,7 @@ setMethod(f = "addAxe", signature = c("AmChart", "GaugeAxisOrMissing"),
               stop("You must either give 'axis' argement or its properties")
             } else {}
             
-            .Object@axes <- rlist::list.append(.Object@axes, listProperties(axe))
+            .Object@axes <- c(.Object@axes, listProperties(axe))
             validObject(.Object)
             return(.Object)
           })
@@ -180,7 +180,7 @@ addAxis_def <- function(.Object, axis = NULL, ...)
     stop("You must either give 'axe' argement or its properties")
   } else {}
   
-  .Object@axes <- rlist::list.append(.Object@axes, listProperties(axis))
+  .Object@axes <- c(.Object@axes, list(listProperties(axis)))
   validObject(.Object)
   return(.Object)
 }
@@ -454,7 +454,7 @@ setMethod(f = "addGraph", signature = c("AmChart", "AmGraphOrMissing"),
               stop("You must either give arguemnt 'amGraph' or its properties")
             } else {}
             
-            .Object@graphs <- rlist::list.append(.Object@graphs, listProperties(amGraph))
+            .Object@graphs <- c(.Object@graphs, list(listProperties(amGraph)))
             validObject(.Object)
             return(.Object)
           })
@@ -509,11 +509,13 @@ setMethod(f = "setGuides", signature = c("AmChart", "list"),
 #' @param guide (optional) \linkS4class{Guide}.
 #' Argument of method \code{addGuide}.
 #' @examples
-#' addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10)
+#' \donttest{
+#' chart <- addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10)
+#' print(chart)
 #' # equivalent to
 #' guide_obj <- guide(fillAlpha = .1, value = 0, toValue = 10, valueAxis = "1")
 #' addGuide(.Object = amSerialChart(), guide = guide_obj)
-#' # ---
+#' }
 #' @rdname initialize-AmChart
 #' @export
 setMethod(f = "addGuide", signature = c("AmChart", "GuideOrMissing"),
@@ -525,7 +527,7 @@ setMethod(f = "addGuide", signature = c("AmChart", "GuideOrMissing"),
               stop("You must provide either argument 'guide' or its properties")
             } else {}
             
-            .Object@guides <- rlist::list.append(.Object@guides, listProperties(guide))
+            .Object@guides <- c(.Object@guides, list(listProperties(guide)))
             validObject(.Object)
             return(.Object)
           })
@@ -652,12 +654,12 @@ setMethod(f = "addSubData", signature = c("AmChart", "numeric", "ANY"),
               if (is(data, "data.frame")) {
                 #cat("data.frame")
                 data <- .testFormatData(data)
-                .Object@dataProvider [[ eval(categoryID) ]] <- rlist::list.append( .Object@dataProvider[[ eval(categoryID) ]],
-                                                                                   subdata = .toList(data) )
+                .Object@dataProvider [[ eval(categoryID) ]] <- c(.Object@dataProvider[[ eval(categoryID) ]],
+                                                                 subdata = .toList(data))
               } else if (is(data, "list")) {
                 #cat("list")
-                .Object@dataProvider [[ eval(categoryID) ]] <- rlist::list.append( .Object@dataProvider[[ eval(categoryID) ]],
-                                                                                   subdata = data )
+                .Object@dataProvider [[ eval(categoryID) ]] <- c(.Object@dataProvider[[ eval(categoryID) ]],
+                                                                 subdata = data)
               } else {}
               return( .Object )
             }
@@ -761,7 +763,7 @@ setMethod(f = "addTitle", signature = c("AmChart", "TitleOrMissing"),
               stop("You must either give argument 'title' or its properties")
             } else {}
             
-            .Object@titles <- rlist::list.append(.Object@titles, listProperties(title))
+            .Object@titles <- c(.Object@titles, list(listProperties(title)))
             validObject(.Object)
             return(.Object)
           })
@@ -798,7 +800,7 @@ setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
 #'              finalValue = 11, finalXValue = 12)
 #' # equivalent to:
 #' trendLine_obj <- trendLine(initialValue = 1, initialXValue = 1, finalValue = 11, finalXValue = 12)
-#' addTrendLine(.Object = amSerialChart(), trendLine = trendLine_obj)
+#' chart <- addTrendLine(.Object = amSerialChart(), trendLine = trendLine_obj); print(chart)
 #' }
 #' # ---
 #' @rdname initialize-AmChart
@@ -815,7 +817,7 @@ setMethod(f = "addTrendLine", signature = c("AmChart", "TrendLineOrMissing"),
               stop("You must provide either argument 'trendline' or its properties")
             } else {}
             
-            .Object@trendLines <- rlist::list.append(.Object@trendLines, listProperties(trendLine))
+            .Object@trendLines <- c(.Object@trendLines, list(listProperties(trendLine)))
             validObject(.Object)
             return(.Object)
           })
@@ -870,7 +872,7 @@ addValueAxis_def <- function(.Object, valueAxis = NULL, ...)
     stop("You must provide argument 'valueAxis' or its properties")
   } else {}
   
-  .Object@valueAxes <- rlist::list.append(.Object@valueAxes, listProperties(valueAxis))
+  .Object@valueAxes <- c(.Object@valueAxes, list(listProperties(valueAxis)))
   validObject(.Object)
   return(.Object)
 }

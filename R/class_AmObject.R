@@ -203,7 +203,7 @@ setMethod(f = "listProperties", signature = "AmObject",
               properties[["value"]] <- .Object@value
             
             if (length(.Object@listeners)) 
-              properties <- rlist::list.append(properties, listeners = .Object@listeners)
+              properties <- c(properties, listeners = .Object@listeners)
             
             # get all slot declared in the class except the package specific ones
             slot_names <- names(getSlots(class(.Object)))

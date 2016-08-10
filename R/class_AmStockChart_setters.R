@@ -149,8 +149,7 @@ setMethod(f = "addComparedDataSet", signature = c("AmStockChart", "DataSetOrMiss
               stop("You must either give argument 'dataSet' or its properties")
             } else {}
             
-            .Object@comparedDataSets <- rlist::list.append(.Object@comparedDataSets,
-                                                           listProperties(dataSet))
+            .Object@comparedDataSets <- c(.Object@comparedDataSets, list(listProperties(dataSet)))
             validObject(.Object)
             return(.Object)
           })
@@ -199,8 +198,7 @@ setMethod(f = "addDataSet", signature = c("AmStockChart", "DataSetOrMissing"),
               stop("You must either give argument 'dataSet' or its properties")
             } else {}
             
-            .Object@dataSets <- rlist::list.append(.Object@dataSets,
-                                                   listProperties(dataSet))
+            .Object@dataSets <- c(.Object@dataSets, list(listProperties(dataSet)))
             validObject(.Object)
             return(.Object)
           })
@@ -303,7 +301,7 @@ setMethod(f = "setPanels", signature = c("AmStockChart", "list"),
 #' @examples
 #' \donttest{
 #' # Dummy example
-#' addPanel(.Object = amStockChart(), allowTurningOff = TRUE)
+#' chart <- addPanel(.Object = amStockChart(), allowTurningOff = TRUE); print(chart)
 #' # equivalent to:
 #' panel_obj <- panel(allowTurningOff = TRUE)
 #' addPanel(.Object = amStockChart(), panel = panel_obj)
@@ -320,7 +318,7 @@ setMethod(f = "addPanel", signature = c("AmStockChart", "StockPanelOrMissing"),
             } else if (is.null(panel) && !missing(...)) {
               stop("You must either give panel argument or its properties")
             } else {}
-            .Object@panels <- rlist::list.append(.Object@panels, listProperties(panel))
+            .Object@panels <- c(.Object@panels, list(listProperties(panel)))
             validObject(.Object)
             return(.Object)
           })

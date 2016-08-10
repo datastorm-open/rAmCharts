@@ -12,70 +12,29 @@ amChart <- function(allLabels, arrows, axes, balloon, categoryAxis, categoryFiel
 {
   # "http://www.amcharts.com/lib/3/images/"
   object <- new(Class="AmChart")
-  if (!missing(allLabels)) {
-    object <-setAllLabels( object, allLabels )
-  } else {}
-  if (!missing(arrows)) {
-    object <-setArrows( object, arrows )
-  } else {}
-  if (!missing(axes)) {
-    object <-setAxes( object, axes)
-  } else {}
-  if (!missing(balloon)) {
-    object <- setBalloon( object, balloon )
-  } else {}
-  if (!missing(categoryAxis)) {
-    object <- setCategoryAxis( object, categoryAxis )
-  } else {}
-  if (!missing(categoryField)) {
-    object<- setCategoryField( object, categoryField )
-  } else {}
-  if (!missing(creditsPosition)) {
-    object <- setCreditsPosition( object, creditsPosition )
-  } else {}
-  if (!missing(chartCursor)) {
-    object <- setChartCursor( object, chartCursor )
-  } else {}
-  if (!missing(chartScrollbar)) {
-    object <- setChartScrollbar( object, chartScrollbar )
-  } else {}
-  if (!missing(dataProvider)) {
-    object <- setDataProvider( object, dataProvider )
-  } else {}
-  if (!missing(graph)) {
-    object <- setGraph( object, graph )
-  } else {}
-  if (!missing(graphs)) {
-    object <- setGraphs(object, graphs)
-  } else {}
-  if (!missing(guides)) {
-    object <- setGuides(object, guides)
-  } else {}
-  if (!missing(legend)) {
-    object <- setLegend( object, legend )
-  } else {}
-  if (!missing(segmentsField)) {
-    object@segmentsField <- segmentsField
-  } else {}
-  if (!missing(type)) {
-    object <- setType( object, type)
-  } else {}
-  if (!missing(theme)) {
-    object@theme <- theme
-  } else {}
-  if (!missing(titles)) {
-    object <- setTitles(object, titles)
-  } else {}
-  if (!missing(trendLines)) {
-    object <- setTrendLines(object, trendLines)
-  } else {}
-  if (!missing(valueAxes)) {
-    object <- setValueAxes(object, valueAxes)
-  } else {}
-  if (!missing(valueAxis)) {
-    object <- setValueAxis(object, valueAxis)
-  } else {}
-  object@otherProperties <- rlist::list.append(object@otherProperties, ...)
+  if (!missing(allLabels)) object <- setAllLabels(object, allLabels)
+  if (!missing(arrows)) object <- setArrows(object, arrows)
+  if (!missing(axes)) object <- setAxes(object, axes)
+  if (!missing(balloon)) object <- setBalloon( object, balloon)
+  if (!missing(categoryAxis)) object <- setCategoryAxis(object, categoryAxis)
+  if (!missing(categoryField)) object<- setCategoryField(object, categoryField)
+  if (!missing(creditsPosition)) object <- setCreditsPosition(object, creditsPosition)
+  if (!missing(chartCursor)) object <- setChartCursor(object, chartCursor)
+  if (!missing(chartScrollbar)) object <- setChartScrollbar(object, chartScrollbar)
+  if (!missing(dataProvider)) object <- setDataProvider(object, dataProvider)
+  if (!missing(graph)) object <- setGraph( object, graph)
+  if (!missing(graphs)) object <- setGraphs(object, graphs)
+  if (!missing(guides)) object <- setGuides(object, guides)
+  if (!missing(legend)) object <- setLegend( object, legend)
+  if (!missing(segmentsField)) object@segmentsField <- segmentsField
+  if (!missing(type)) object <- setType( object, type)
+  if (!missing(theme)) object@theme <- theme
+  if (!missing(titles)) object <- setTitles(object, titles)
+  if (!missing(trendLines)) object <- setTrendLines(object, trendLines)
+  if (!missing(valueAxes)) object <- setValueAxes(object, valueAxes)
+  if (!missing(valueAxis)) object <- setValueAxis(object, valueAxis)
+  
+  object@otherProperties <- c(object@otherProperties, ...)
   validObject(object)
   return(object)
 }

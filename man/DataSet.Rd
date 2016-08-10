@@ -79,11 +79,14 @@ dataSet(categoryField = "categoryField")
 
 setDataProvider(.Object = dataSet(), data.frame(key = c("FR", "US"), value = c(20,10)))
 
-addFieldMapping(.Object = dataSet(), fieldMappings = list(fromField ="val1", toField ="value"))
-addFieldMapping(.Object = dataSet(), fromField ="val1", toField ="value")
+dataset <- addFieldMapping(.Object = dataSet(),
+                           fieldMappings = list(fromField ="val1", toField ="value"))
+print(dataset)
+dataset <- addFieldMapping(.Object = dataSet(), fromField ="val1", toField ="value")
+print(dataset)
 addStockEvent(.Object = dataSet(), backgroundAlpha = 1, backgroundColor = "#DADADA")
 # equivalent to:
 stockEvent_obj <- stockEvent(backgroundAlpha = 1, backgroundColor = "#DADADA")
-addStockEvent(.Object = dataSet(), stockEvent = stockEvent_obj)
+chart <- addStockEvent(.Object = dataSet(), stockEvent = stockEvent_obj); print(chart)
 }
 

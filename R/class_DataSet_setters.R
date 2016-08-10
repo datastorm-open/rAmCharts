@@ -22,7 +22,9 @@ setMethod(f = "setDataProvider", signature = c("DataSet", "ANY"),
 #' @export
 setGeneric(name = "setFieldMappings", def = function(.Object, fieldMappings) {standardGeneric("setFieldMappings")})
 #' @examples
-#' addFieldMapping(.Object = dataSet(), fieldMappings = list(fromField ="val1", toField ="value"))
+#' dataset <- addFieldMapping(.Object = dataSet(),
+#'                            fieldMappings = list(fromField ="val1", toField ="value"))
+#' print(dataset)
 #' @rdname DataSet
 setMethod(f = "setFieldMappings", signature = c("DataSet", "list"),
           definition = function(.Object, fieldMappings)
@@ -36,12 +38,13 @@ setMethod(f = "setFieldMappings", signature = c("DataSet", "list"),
 #' @export
 setGeneric(name = "addFieldMapping", def = function(.Object, ...) {standardGeneric("addFieldMapping")})
 #' @examples
-#' addFieldMapping(.Object = dataSet(), fromField ="val1", toField ="value")
+#' dataset <- addFieldMapping(.Object = dataSet(), fromField ="val1", toField ="value")
+#' print(dataset)
 #' @rdname DataSet
 setMethod(f = "addFieldMapping", signature = c("DataSet"),
           definition = function(.Object, ...)
           {
-            .Object@fieldMappings <- rlist::list.append(.Object@fieldMappings, list(...))
+            .Object@fieldMappings <- c(.Object@fieldMappings, list(list(...)))
             validObject(.Object)
             return(.Object)
           })
@@ -55,11 +58,11 @@ setGeneric(name = "setStockEvents", def = function(.Object, stockEvents) {standa
 setMethod(f = "setStockEvents", signature = c("DataSet", "list"),
           definition = function(.Object, stockEvents)
           {
-            rightClassElements <- prod(sapply(stockEvents, function(element) {is(element, "StockEvent")}))
+            rightClassElements <- all(sapply(stockEvents, function(element) {is(element, "StockEvent")}))
             if (!rightClassElements) {
               stop("Each element of setStockEvents must be of class StockEvent")
             } else {}
-            .Object@stockEvents <- lapply( stockEvents, listProperties )
+            .Object@stockEvents <- lapply(stockEvents, listProperties)
             validObject(.Object)
             return(.Object)
           })
@@ -70,7 +73,7 @@ setMethod(f = "setStockEvents", signature = c("DataSet", "list"),
 #' addStockEvent(.Object = dataSet(), backgroundAlpha = 1, backgroundColor = "#DADADA")
 #' # equivalent to:
 #' stockEvent_obj <- stockEvent(backgroundAlpha = 1, backgroundColor = "#DADADA")
-#' addStockEvent(.Object = dataSet(), stockEvent = stockEvent_obj)
+#' chart <- addStockEvent(.Object = dataSet(), stockEvent = stockEvent_obj); print(chart)
 #' @rdname DataSet
 #' @export
 setGeneric(name = "addStockEvent", def = function(.Object, stockEvent = NULL, ...) {standardGeneric("addStockEvent")})
@@ -84,8 +87,7 @@ setMethod(f = "addStockEvent", signature = c("DataSet", "StockEventOrMissing"),
               stop("You must provide either argument 'stockEvent' or its properties")
             } else {}
             
-            .Object@stockEvents <- rlist::list.append(.Object@stockEvents,
-                                                      listProperties(stockEvent))
+            .Object@stockEvents <- c(.Object@stockEvents, list(listProperties(stockEvent)))
             validObject(.Object)
             return(.Object)
           })

@@ -174,7 +174,7 @@ setMethod(f = "plot", signature = "AmCharts",
             if (exists("subChartProperties", where = chart_ls)) {
               
               jsFile <- "amDrillChart"
-              chart_ls <- rlist::list.remove(chart_ls, "subChartProperties")
+              chart_ls["subChartProperties"] <- NULL
               data <- list(main = chart_ls,
                            subProperties = x@subChartProperties,
                            background = background)
@@ -443,7 +443,8 @@ substituteListener <- function(chart, obj)
       exists("listeners", where = chart[[eval(obj)]])) {
     chart_obj <- chart[[eval(obj)]]
     listeners <- chart_obj[["listeners"]]
-    chart[[eval(obj)]] <- rlist::list.remove(chart_obj, "listeners")
+    chart_obj["listeners"] <- NULL
+    chart[[eval(obj)]] <- chart_obj
   } else {
     listeners <- NULL
   }
@@ -481,7 +482,8 @@ substituteMultiListeners <- function(chart, obj)
       listeners_ls <- lapply(indices, function(i) {
         chart_obji <- chart[[eval(obj)]][[i]]
         listeners <- chart_obji[["listeners"]]
-        chart[[eval(obj)]][[i]] <<- rlist::list.remove(chart_obji, "listeners")
+        chart_obji["listeners"] <- NULL
+        chart[[eval(obj)]][[i]] <<- chart_obji
         return(listeners)
       })
       

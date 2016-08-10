@@ -79,7 +79,7 @@ setGeneric("addPeriod", def = function(.Object, ...) { standardGeneric("addPerio
 setMethod( f = "addPeriod", signature = c("PeriodSelector"),
            definition = function(.Object, ...)
            {
-             .Object@periods <- rlist::list.append(.Object@periods, list(...) )
+             .Object@periods <- c(.Object@periods, list(list(...)))
              validObject(.Object)
              return(.Object)
            })

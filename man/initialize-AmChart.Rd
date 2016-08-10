@@ -481,7 +481,7 @@ amAngularGaugeChart(arrows = arrows_ls)
 }
 # ---
 \donttest{
-addArrow(.Object = amAngularGaugeChart(), value = 10)
+chart <- addArrow(.Object = amAngularGaugeChart(), value = 10); print(chart)
 # equivalent to:
 gaugeArrow_obj <- gaugeArrow(value = 10)
 addArrow(.Object = amAngularGaugeChart(), arrow = gaugeArrow_obj)
@@ -575,11 +575,13 @@ guides_ls <- list(guide(fillAlpha = .1), guide(fillAlpha = .5))
 amSerialChart(guides = guides_ls)
 }
 # ---
-addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10)
+\donttest{
+chart <- addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10)
+print(chart)
 # equivalent to
 guide_obj <- guide(fillAlpha = .1, value = 0, toValue = 10, valueAxis = "1")
 addGuide(.Object = amSerialChart(), guide = guide_obj)
-# ---
+}
 \donttest{
 setLegend(.Object = amChart(), amLegend = amLegend(useGraphSettings = TRUE))
 # equivalent to:
@@ -643,7 +645,7 @@ addTrendLine(.Object = amSerialChart(), initialValue = 1, initialXValue = 1,
              finalValue = 11, finalXValue = 12)
 # equivalent to:
 trendLine_obj <- trendLine(initialValue = 1, initialXValue = 1, finalValue = 11, finalXValue = 12)
-addTrendLine(.Object = amSerialChart(), trendLine = trendLine_obj)
+chart <- addTrendLine(.Object = amSerialChart(), trendLine = trendLine_obj); print(chart)
 }
 # ---
 \donttest{

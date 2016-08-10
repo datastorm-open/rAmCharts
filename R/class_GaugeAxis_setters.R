@@ -49,6 +49,6 @@ setMethod(f = "addBand", signature = c("GaugeAxis", "GaugeBandOrMissing"),
               stop("You must provide either argument 'band' or its properties")
             } else {}
             
-            .Object@bands <- rlist::list.append(.Object@bands, listProperties(band))
+            .Object@bands <- c(.Object@bands, list(listProperties(band)))
             return(.Object)
           })
