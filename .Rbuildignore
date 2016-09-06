@@ -11,3 +11,4 @@
 ^inst/htmlwidgets/NOTICE.Rmd
 ^man-roxygen
 ^faq
+^\.travis\.yml$
