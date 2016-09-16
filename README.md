@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/datastorm-open/rAmCharts.svg?branch=master)](https://travis-ci.org/datastorm-open/rAmCharts)
+
 ## Introduction
 
 This package allows to draw interactive charts from the *JavaScript* library [AmCharts][url_amcharts] using [Hmlwidgets][url_htmlwidgets].
