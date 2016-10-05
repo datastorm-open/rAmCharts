@@ -164,7 +164,7 @@ or update an existing one with the setters.
 \examples{
 new("StockPanel", title = "Volume")
 
-stockPanel(stockLegend = legend(useGraphSettings = TRUE))
+stockPanel(stockLegend = amLegend(useGraphSettings = TRUE))
 panel(creditsPosition = "top-right")
 panel(title = "top-right")
 valueAxis_obj <- valueAxis(id = "valueAxis1")

@@ -132,7 +132,7 @@ testthat::test_that("setLegend method", {
 })
 
 testthat::test_that("setTitles method", {
-  titles_ls <- list(title(text = "balloonText"), text = "column")
+  titles_ls <- list(amTitle(text = "balloonText"), text = "column")
   testthat::expect_error(amPieChart(titles = titles_ls))
   testthat::expect_error(setTitles(.Object = amPieChart, titles = titles_ls))
 })

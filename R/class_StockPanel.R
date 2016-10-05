@@ -186,7 +186,7 @@ setMethod(f = "initialize", signature = "StockPanel",
 
 #' @rdname initialize-StockPanel
 #' @examples
-#' stockPanel(stockLegend = legend(useGraphSettings = TRUE))
+#' stockPanel(stockLegend = amLegend(useGraphSettings = TRUE))
 #' @export
 stockPanel <- function(...)
 {

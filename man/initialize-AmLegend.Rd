@@ -35,7 +35,7 @@ Constructor for an AmLegend.
 \examples{
 new("AmLegend", useGraphSettings = TRUE)
 amLegend(useGraphSettings = FALSE)
-legend(useGraphSettings = FALSE)
+rAmCharts:::legend(useGraphSettings = FALSE)
 setUseGraphSettings(.Object = amLegend(), useGraphSettings = TRUE)
 }
 

@@ -61,9 +61,8 @@ amLegend <- function(useGraphSettings, ...) {
 
 
 #' @examples 
-#' legend(useGraphSettings = FALSE)
+#' rAmCharts:::legend(useGraphSettings = FALSE)
 #' @rdname initialize-AmLegend
-#' @export
 legend <- function(useGraphSettings, ...) {
   .Object <- new("AmLegend")
   if (!missing(useGraphSettings)) {

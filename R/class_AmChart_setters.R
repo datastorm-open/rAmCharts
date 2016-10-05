@@ -718,7 +718,7 @@ setMethod(f = "setTheme", signature = c("AmChart", "character"),
 
 #' @examples
 #' \donttest{
-#' titles_ls <- list(title(text = "balloonText"), title(text = "column"))
+#' titles_ls <- list(amTitle(text = "balloonText"), amTitle(text = "column"))
 #' setTitles(.Object = amXYChart(), titles = titles_ls)
 #' # or...
 #' amXYChart(titles = titles_ls)
@@ -745,7 +745,7 @@ setMethod(f = "setTitles", signature = c("AmChart", "list"),
 #' \donttest{
 #' addTitle(.Object = amPieChart(), text = "balloonText", size = 15)
 #' # equivalent to
-#' title_obj <- title(text = "balloonText", size = 15)
+#' title_obj <- amTitle(text = "balloonText", size = 15)
 #' addTitle(.Object = amPieChart(), title = title_obj)
 #' }
 #' # ---
@@ -758,7 +758,7 @@ setMethod(f = "addTitle", signature = c("AmChart", "TitleOrMissing"),
           definition = function(.Object, title = NULL, ...)
           {
             if (is.null(title) && !missing(...)) {
-              title <- title(...)
+              title <- amTitle(...)
             } else if (is.null(title) && missing(...)) {
               stop("You must either give argument 'title' or its properties")
             } else {}

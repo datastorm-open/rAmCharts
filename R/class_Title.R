@@ -53,9 +53,8 @@ setMethod(f = "initialize", signature = "Title",
 # CONSTRUCTOR ####
 #' @rdname Title
 #' @examples
-#' title(text = "Main", size = 10)
-#' title(text = "Main", bold = TRUE)
-#' @export
+#' rAmCharts:::title(text = "Main", size = 10)
+#' rAmCharts:::title(text = "Main", bold = TRUE)
 title <- function(text, size, ...) {
   .Object <- new("Title", ...)
   if (!missing(text)) .Object@text <- text
@@ -65,10 +64,25 @@ title <- function(text, size, ...) {
   return(.Object)
 }
 
+# CONSTRUCTOR ####
+#' @rdname Title
+#' @examples
+#' amTitle(text = "Main", size = 10)
+#' amTitle(text = "Main", bold = TRUE)
+#' @export
+amTitle <- function(text, size, ...) {
+  .Object <- new("Title", ...)
+  if (!missing(text)) .Object@text <- text
+  if (!missing(size)) .Object@size <- size
+  
+  validObject(.Object)
+  return(.Object)
+}
+
 # > @text : setters ####
 
 #' @examples
-#' setText(.Object = title(), text = "Bonjour")
+#' setText(.Object = amTitle(), text = "Bonjour")
 #' @rdname Title
 setMethod(f = "setText", signature = c("Title", "character"),
           definition = function(.Object, text)
@@ -84,8 +98,7 @@ setMethod(f = "setText", signature = c("Title", "character"),
 #' @export
 setGeneric(name = "setSize", def = function(.Object, size) { standardGeneric("setSize") })
 #' @examples
-#' library(pipeR)
-#' title() %>>% setSize(16)
+#' setSize(amTitle(), 16)
 #' @rdname Title
 setMethod(f = "setSize", signature = c("Title", "numeric"),
           definition = function(.Object, size)

@@ -2,6 +2,7 @@
 % Please edit documentation in R/class_Title.R
 \docType{methods}
 \name{initialize,Title-method}
+\alias{amTitle}
 \alias{initialize,Title-method}
 \alias{setSize}
 \alias{setSize,Title,numeric-method}
@@ -12,6 +13,8 @@
 \S4method{initialize}{Title}(.Object, text, size, ...)
 
 title(text, size, ...)
+
+amTitle(text, size, ...)
 
 \S4method{setText}{Title,character}(.Object, text)
 
@@ -37,10 +40,11 @@ or update an existing one with the setters.
 }
 \examples{
 new("Title", size = 10)
-title(text = "Main", size = 10)
-title(text = "Main", bold = TRUE)
-setText(.Object = title(), text = "Bonjour")
-library(pipeR)
-title() \%>>\% setSize(16)
+rAmCharts:::title(text = "Main", size = 10)
+rAmCharts:::title(text = "Main", bold = TRUE)
+amTitle(text = "Main", size = 10)
+amTitle(text = "Main", bold = TRUE)
+setText(.Object = amTitle(), text = "Bonjour")
+setSize(amTitle(), 16)
 }
 

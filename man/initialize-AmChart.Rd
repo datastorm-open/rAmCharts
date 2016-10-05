@@ -619,7 +619,7 @@ setTheme(.Object = amPieChart(), theme = "dark")
 }
 # ---
 \donttest{
-titles_ls <- list(title(text = "balloonText"), title(text = "column"))
+titles_ls <- list(amTitle(text = "balloonText"), amTitle(text = "column"))
 setTitles(.Object = amXYChart(), titles = titles_ls)
 # or...
 amXYChart(titles = titles_ls)
@@ -628,7 +628,7 @@ amXYChart(titles = titles_ls)
 \donttest{
 addTitle(.Object = amPieChart(), text = "balloonText", size = 15)
 # equivalent to
-title_obj <- title(text = "balloonText", size = 15)
+title_obj <- amTitle(text = "balloonText", size = 15)
 addTitle(.Object = amPieChart(), title = title_obj)
 }
 # ---
