@@ -1,5 +1,9 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.2 (based on [amcharts][amcharts_url] version **3.20.10**)
+
+  * fix bug with ``addListener``
+  
 ### rAmCharts 2.1.1 (based on [amcharts][amcharts_url] version **3.20.10**)
 
   * fix bad interactions with the base package ``graphics``. Methods ``title()`` and ``legend()`` have become ``amTitle()`` and ``amLegend()``.
