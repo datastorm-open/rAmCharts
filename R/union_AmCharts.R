@@ -51,7 +51,7 @@ setMethod(f = "setResponsive", signature = c("AmCharts", "logicalOrMissing"),
 #' Test wether a chart can be plotted (or printed)
 #' @noRd
 #' 
-.plot_or_print <- function (object)
+.plot_or_print <- function(object)
 {
   if (length(object@type)) {
     # cat("Plotting...")
@@ -121,7 +121,7 @@ setMethod(f = "plot", signature = "AmCharts",
             # listeners on chart
             if (exists("listeners", where = chart_ls)) {
               listeners <- chart_ls$listeners
-              chart_ls["listeners"] <- NULL
+              chart_ls[grep(x = names(chart_ls), pattern = "^listeners")] <- NULL
             } else {
               listeners <- NULL
             }
@@ -178,9 +178,7 @@ setMethod(f = "plot", signature = "AmCharts",
               data <- list(main = chart_ls,
                            subProperties = x@subChartProperties,
                            background = background)
-              
             } else {
-              
               jsFile <- "ramcharts_base"
               data <- list(chartData = chart_ls,
                            background = background,
@@ -215,7 +213,7 @@ setMethod(f = "plot", signature = "AmCharts",
             widget <- .add_dataloader_dependency(widget = widget, data = data)
             widget <- .add_responsive_dependency(widget = widget, data = data)
             
-            return (widget) 
+            return(widget) 
           })
 
 #' Add dependency for chart type
