@@ -1,6 +1,6 @@
 ## LOG CHANGE
 
-### rAmCharts 2.1.2 (based on [amcharts][amcharts_url] version **3.20.10**)
+### rAmCharts 2.1.2 (based on [amcharts][amcharts_url] version **3.20.18**)
 
   * fix bug with ``addListener``
   

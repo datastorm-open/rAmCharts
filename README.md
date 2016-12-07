@@ -36,6 +36,7 @@ devtools::install_github("datastorm-open/rAmCharts")
 * Version 2.0.0 is based on [AmCharts][url_amcharts] v3.18.2
 * Version 2.0.2 is based on [AmCharts][url_amcharts] v3.20.3
 * Version 2.1.0 is based on [AmCharts][url_amcharts] v3.20.10
+* Version 2.1.2 is based on [AmCharts][url_amcharts] v3.20.18
 
 ### Known issues
 

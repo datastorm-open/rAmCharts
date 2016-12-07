@@ -1,6 +1,6 @@
 dependencies:
   - name: amcharts
-    version: 3.20.10
+    version: 3.20.18
     src: htmlwidgets/lib
     script:
       - amcharts.js

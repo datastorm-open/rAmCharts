@@ -40,9 +40,9 @@ HTMLWidgets.widget({
 
                 // add chart listeners
                 for (var key in x.listeners) {
-                    //if (x.listener.hasOwnProperty(key)) {
+                    if (x.listeners.hasOwnProperty(key)) {
                         amchart.addListener(key, x.listeners[key]);
-                    //}
+                    }
                 }
 
                 if (window.Shiny) {
