@@ -1,3 +1,4 @@
+[![Rdoc](http://www.rdocumentation.org/badges/version/rAmCharts)](http://www.rdocumentation.org/packages/rAmCharts)
 [![Build Status](https://travis-ci.org/datastorm-open/rAmCharts.svg?branch=master)](https://travis-ci.org/datastorm-open/rAmCharts)
 
 ## Introduction
