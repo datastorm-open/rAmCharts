@@ -40,10 +40,11 @@
 \title{Initializes an AmStockChart}
 \usage{
 \S4method{initialize}{AmStockChart}(.Object, balloon, comparedDataSets,
-  dataSets, dataSetSelector, mainDataSet, panels, periodSelector, theme, ...)
+  dataSets, dataSetSelector, mainDataSet, panels, periodSelector, theme, group,
+  ...)
 
 amStockChart(balloon, comparedDataSets, dataSets, dataSetSelector, mainDataSet,
-  panels, periodSelector, theme, ...)
+  panels, periodSelector, theme, group, ...)
 
 \S4method{setBalloon}{AmStockChart,AmBalloonOrMissing}(.Object,
   amBalloon = NULL, ...)

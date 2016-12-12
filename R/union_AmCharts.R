@@ -169,6 +169,16 @@ setMethod(f = "plot", signature = "AmCharts",
             valueAxes_listeners <- ls_temp$listeners_ls
             valueAxes_listenersIndices <- ls_temp$indices
             
+            # group (Stock synchronisation)
+            if (exists("group", where = chart_ls)) {
+              group <- chart_ls$group
+              chart_ls[grep(x = names(chart_ls), pattern = "^group")] <- NULL
+              if(group == ""){
+                group <- NULL
+              }
+            } else {
+              group <- NULL
+            }
             
             # case for drilldown chart
             if (exists("subChartProperties", where = chart_ls)) {
@@ -195,7 +205,8 @@ setMethod(f = "plot", signature = "AmCharts",
                            panels_listenersIndices = panels_listenersIndices,
                            periodSelector_listeners = periodSelector_listeners,
                            valueAxes_listeners = valueAxes_listeners,
-                           valueAxes_listenersIndices = valueAxes_listenersIndices)
+                           valueAxes_listenersIndices = valueAxes_listenersIndices, 
+                           group = group)
               
             }
             

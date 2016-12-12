@@ -12,6 +12,27 @@ function getAmChart(id) {
     }
 }
 
+var amStock_ref_group = {};
+
+function addAmStockRefGroup(group, id){
+  if (amStock_ref_group.hasOwnProperty(group)) {
+    if(amStock_ref_group[group].indexOf(id) === -1){
+          amStock_ref_group[group].push(id);
+    }
+  }else {
+    amStock_ref_group[group]= [id];
+  }
+}
+
+function findAmStockRefGroup(id){
+  for (var gr in amStock_ref_group) {
+    if(amStock_ref_group[gr].indexOf(id) !== -1){
+      return amStock_ref_group[gr];
+    }
+  }
+  return undefined;
+}
+
 HTMLWidgets.widget({
 
     name: 'ramcharts_base',
@@ -37,7 +58,24 @@ HTMLWidgets.widget({
                 document.getElementById(el.id).style.background = x.background;
                 amchart = AmCharts.makeChart(el.id, x.chartData);
 
-
+                if(x.group !== null){
+                    addAmStockRefGroup(x.group, el.id);
+                    amchart.panels[0].addListener("zoomed", function(event){
+                      var linked_chart = findAmStockRefGroup(el.id);
+                      if(linked_chart !== undefined){
+                        for(var tmp_id in linked_chart){
+                          if(linked_chart[tmp_id] !== el.id){
+                            var tmp_am = getAmChart(linked_chart[tmp_id]);
+                              if(tmp_am !== undefined){
+                                tmp_am.panels[0].zoomToDates(event.startDate, event.endDate);
+                              }
+                          }   
+                        }
+                      }
+                    });
+                }
+                
+                
                 // add chart listeners
                 for (var key in x.listeners) {
                     if (x.listeners.hasOwnProperty(key)) {

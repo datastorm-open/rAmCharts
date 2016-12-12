@@ -7,12 +7,13 @@
 amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"), bullet = NULL,
   bulletSize = 2, linetype = c(0, 5, 10, 15, 20), linewidth = c(1, 1, 1,
-  1, 1, 1), aggregation = c("Average", "Low", "High", "Sum"),
-  maxSeries = 300, groupToPeriods = c("ss", "mm", "hh", "DD", "MM", "YYYY"),
-  ZoomButton = data.frame(Unit = "MAX", multiple = 1, label = "All"),
-  ZoomButtonPosition = "bottom", precision = 1, export = FALSE,
-  legendPosition = "bottom", scrollbarPosition = "bottom",
-  scrollbarHeight = 40, creditsPosition = "top-right", ...)
+  1, 1, 1), fillAlphas = 0, precision = 1, export = FALSE,
+  legend = TRUE, legendPosition = "bottom", aggregation = c("Average",
+  "Low", "High", "Sum"), maxSeries = 300, groupToPeriods = c("ss", "mm",
+  "hh", "DD", "MM", "YYYY"), ZoomButton = data.frame(Unit = "MAX", multiple =
+  1, label = "All"), ZoomButtonPosition = "bottom", scrollbar = TRUE,
+  scrollbarPosition = "bottom", scrollbarHeight = 40,
+  creditsPosition = "top-right", group = NULL, ...)
 }
 \arguments{
 \item{data}{\code{data.frame}, data of graph.}
@@ -36,6 +37,15 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
 
 \item{linewidth}{: \code{numeric}, line width.}
 
+\item{fillAlphas}{: \code{numeric}, fill. Between 0 (no fill) to 1.}
+
+\item{precision}{\code{numeric}, default set to  1.}
+
+\item{export}{\code{logical}, default set to  FALSE. TRUE to display export feature.}
+
+\item{legendPosition}{\code{character}, legend position. Possible values are :
+"left", "right", "bottom", "top"}
+
 \item{aggregation}{\code{character}, aggregation type. Possible values are : 
 "Low", "High", "Average" and "Sum"}
 
@@ -58,13 +68,6 @@ label : button's label}
 \item{ZoomButtonPosition}{\code{character}, zoom button position. Possible values are :
 "left", "right", "bottom", "top"}
 
-\item{precision}{\code{numeric}, digits precision}
-
-\item{export}{\code{logical}, default set to  FALSE. TRUE to display export feature.}
-
-\item{legendPosition}{\code{character}, legend position. Possible values are :
-"left", "right", "bottom", "top"}
-
 \item{scrollbarPosition}{\code{character}, scrollbar position. Possible values are :
 "left", "right", "bottom", "top"}
 
@@ -73,7 +76,13 @@ label : button's label}
 \item{creditsPosition}{\code{character}, credits position. Possible values are :
 "top-right", "top-left", "bottom-right", "bottom-left"}
 
+\item{group}{\code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.}
+
 \item{...}{other first level attributes}
+
+\item{legend\code{boolean}, }{enabled or not legend ? Defaut to TRUE.}
+
+\item{scrollbar\code{boolean}, }{enabled or not scrollbar ? Defaut to TRUE.}
 }
 \description{
 amTimeSeries computes a stock chart.

@@ -4,6 +4,7 @@
 
   * fix bug with ``addListener``
   * Shiny module to export rAmCharts on server-side
+  * improve amTimeSeries (synchronization)
   
 ### rAmCharts 2.1.1 (based on [amcharts][amcharts_url] version **3.20.10**)
 

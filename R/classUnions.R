@@ -57,3 +57,5 @@ setClassUnion("ValueAxisOrMissing", c("ValueAxis", "missing"))
 
 #' @include class_ValueAxis.R
 setClassUnion("ValueAxisOrCharacterOrMissing", c("ValueAxis", "character", "missing"))
+
+setClassUnion("characterOrNULL",members=c("character", "NULL"))

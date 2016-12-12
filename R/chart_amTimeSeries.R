@@ -4,12 +4,20 @@
 #' @param data \code{data.frame}, data of graph.
 #' @param col_date \code{character} name of date column
 #' @param col_series \code{character} names of series columns
+#' @param main \code{character}, title.
+#' @param ylab \code{character}, value axis label.
 #' @param color \code{character}, color of series (in hexadecimal).
 #' @param bullet \code{character}, point shape. Possible values are : "diamond", "square", 
 #' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"
 #' @param bulletSize : \code{numeric}, size of bullet.
 #' @param linetype : \code{numeric}, line type, 0 : solid, number : dashed length 
 #' @param linewidth : \code{numeric}, line width.
+#' @param fillAlphas : \code{numeric}, fill. Between 0 (no fill) to 1.
+#' @param precision \code{numeric}, default set to  1.
+#' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
+#' @param legend\code{boolean}, enabled or not legend ? Defaut to TRUE.
+#' @param legendPosition \code{character}, legend position. Possible values are :
+#' "left", "right", "bottom", "top"
 #' @param aggregation \code{character}, aggregation type. Possible values are : 
 #' "Low", "High", "Average" and "Sum"
 #' @param maxSeries \code{numeric} Maximum series shown at a time.
@@ -21,24 +29,21 @@
 #' be grouped in case there are more data items in the selected
 #' period than specified in maxSeries property. Possible value are :
 #' 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm".
+#' @param ZoomButton \code{data.frame}, 3 columns : 
+#' Unit, times unit
+#' multiple : multiple*unit 
+#' label : button's label
 #' @param ZoomButtonPosition \code{character}, zoom button position. Possible values are :
 #' "left", "right", "bottom", "top"
-#' @param legendPosition \code{character}, legend position. Possible values are :
-#' "left", "right", "bottom", "top"
+#' @param scrollbar\code{boolean}, enabled or not scrollbar ? Defaut to TRUE.
 #' @param scrollbarPosition \code{character}, scrollbar position. Possible values are :
 #' "left", "right", "bottom", "top"
 #' @param scrollbarHeight \code{numeric}, height of scroll bar. Default : 40.
 #' @param creditsPosition \code{character}, credits position. Possible values are :
 #' "top-right", "top-left", "bottom-right", "bottom-left"
-#' @param ZoomButton \code{data.frame}, 3 columns : 
-#' Unit, times unit
-#' multiple : multiple*unit 
-#' label : button's label
-#' @param main \code{character}, title.
-#' @param ylab \code{character}, value axis label.
-#' @param precision \code{numeric}, digits precision
-#' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
+#' @param group \code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.
 #' @param ... other first level attributes
+#' 
 #' @examples
 #' data("data_stock_2")
 #' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"))
@@ -100,17 +105,21 @@ amTimeSeries <- function(data, col_date,
                          bulletSize = 2, 
                          linetype  = c(0, 5, 10, 15, 20),
                          linewidth = c(1, 1, 1, 1, 1, 1),
+                         fillAlphas = 0,
+                         precision = 1,
+                         export = FALSE,
+                         legend = TRUE,
+                         legendPosition = "bottom",
                          aggregation = c("Average", "Low", "High", "Sum"),
                          maxSeries = 300,
                          groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'),
                          ZoomButton = data.frame(Unit = "MAX", multiple = 1, label ="All"),
                          ZoomButtonPosition = "bottom",
-                         precision = 1,
-                         export = FALSE,
-                         legendPosition = "bottom",
+                         scrollbar = TRUE,
                          scrollbarPosition = "bottom",
                          scrollbarHeight = 40,
                          creditsPosition = "top-right",
+                         group = NULL,
                          ...)
 {
   ##Test args
@@ -135,12 +144,18 @@ amTimeSeries <- function(data, col_date,
   .testCharacterLength1(ZoomButtonPosition)
   .testIn(ZoomButtonPosition, c("left", "right", "bottom", "top"))
   
-  # Position jegend
+  # legend
+  .testLogicalLength1(logi = legend)
+  
+  # Position legend
   .testCharacterLength1(legendPosition)
   .testIn(legendPosition, c("left", "right", "bottom", "top"))
   
   #scrollbarHeight
   .testNumericLength1(scrollbarHeight)
+  
+  # scrollbar
+  .testLogicalLength1(logi = scrollbar)
   
   # Scroll bar position
   .testCharacterLength1(scrollbarPosition)
@@ -150,13 +165,13 @@ amTimeSeries <- function(data, col_date,
   .testCharacterLength1(creditsPosition)
   .testIn(creditsPosition, c("top-right", "top-left", "bottom-right", "bottom-left"))
   
-  
-
-  
   #bullet
   if (!is.null(bullet))
     .testIn(bullet, c("diamond", "square", "bubble",  "yError", "xError",
                       "round", "triangleLeft", "triangleRight", "triangleUp"))
+  
+  #fillAlphas
+  .testNumeric(fillAlphas)
   
   #linewidth
   .testNumeric(linewidth)
@@ -165,7 +180,7 @@ amTimeSeries <- function(data, col_date,
   .testNumericLength1(num = maxSeries)
   
   #.testIn(vect = groupToPeriods, control = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'))
-  
+
   #ZoomButton
   if (!is.null(ZoomButton)) {
     .testIn(vect = names(ZoomButton),control =  c("Unit","multiple","label"))
@@ -193,7 +208,11 @@ amTimeSeries <- function(data, col_date,
                                       list(period = 'ss', format = 'YYYY-MM-DD JJ:NN:ss'),
                                       list(period='fff', format = 'YYYY-MM-DD JJ:NN:ss'))
   
-  data$date <- data$date + (as.POSIXlt(as.character(data$date), tz = "UTC") - data$date)
+  data[,col_date] <- data[,col_date] + (as.POSIXlt(as.character(data[,col_date]), tz = "UTC") - data[,col_date])
+  
+  # groupToPeriods control
+  difft <- as.numeric(difftime(data[2,col_date], data[1,col_date], units = "secs"))
+  groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
   
   fieldMapping <- lapply(col_series, function(x) {
     list(fromField=x, toField=x, title = x)
@@ -215,7 +234,6 @@ amTimeSeries <- function(data, col_date,
   }
   
   
-  
   if (length(bullet) >= nrow(graph_maker)) {
     graph_maker$bullet <- bullet[1:nrow(graph_maker)]
   } else {
@@ -234,6 +252,12 @@ amTimeSeries <- function(data, col_date,
     graph_maker$bulletSize <- bulletSize
   }
   
+  if (length(fillAlphas) >= nrow(graph_maker)) {
+    graph_maker$fillAlphas <- fillAlphas[1:nrow(graph_maker)]
+  } else {
+    graph_maker$fillAlphas <- fillAlphas
+  }
+  
   graph_maker$aggregation <- aggregation
   
   stockgraph <- apply(graph_maker, 1, function(x) {
@@ -243,6 +267,7 @@ amTimeSeries <- function(data, col_date,
                compareField = x["column"][[1]],
                balloonText = paste0(x["column"][[1]], ' : <b>[[value]]</b>'),
                lineColor = x["color"][[1]],
+               fillAlphas = x["fillAlphas"][[1]],
                bulletSize = x["bulletSize"][[1]],
                dashLength = x["dashLength"][[1]],
                useDataSetColors = FALSE,
@@ -275,11 +300,11 @@ amTimeSeries <- function(data, col_date,
                                  setDataProvider(data, keepNA = FALSE),
                                  setFieldMappings(fieldMapping))
   panel_obj <- pipeR::pipeline(panel(title = ylab,  stockGraphs = stockgraph),
-                               setStockLegend(labelText = "[[title]]", useGraphSettings = TRUE),
+                               setStockLegend(enabled = legend, labelText = "[[title]]", useGraphSettings = TRUE),
                                addTitle(text = main))
   ## Plot
   pipeR::pipeline(
-    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE, ...) ,
+    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE, group = group,...),
     setExport(enabled = export),
     addDataSet(dataset_obj),
     addPanel(panel_obj),
@@ -291,7 +316,27 @@ amTimeSeries <- function(data, col_date,
     setCategoryAxesSettings(parseDates = TRUE, minPeriod = 'fff',
                             groupToPeriods = groupToPeriods, maxSeries = maxSeries),
     setPanelsSettings(marginTop = 30, creditsPosition = creditsPosition),
-    setChartScrollbarSettings(position = scrollbarPosition, height = scrollbarHeight),
-    setLegendSettings(position = legendPosition)
+    setLegendSettings(position = legendPosition),
+    setChartScrollbarSettings(enabled = scrollbar, graph = "ts1", graphType = "line", 
+                              position = scrollbarPosition, height = scrollbarHeight)
   )
+
+}
+
+controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'), 
+                                  diffTime = 30){
+  
+  number <- as.numeric(gsub("ss|mm|hh|DD|MM|YYYY", "", groupToPeriods))
+  number[is.na(number)] <- 1
+  
+  period <- gsub("^[[:digit:]]*", "", groupToPeriods)
+  
+  ref_period <- data.frame(periode = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'), 
+                           seconds = c(1, 60, 3600, 24*3600, 31*24*3600, 365*24*3600))
+  rownames(ref_period) <- ref_period$periode
+  
+  period <- ref_period[period, "seconds"]
+  
+  groupToPeriods[period*number >= diffTime]
+  
 }

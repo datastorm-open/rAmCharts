@@ -35,6 +35,8 @@ date ranges or zoom chart with predefined period buttons.}
 
 \item{\code{type}}{equals "stock"}
 
+\item{\code{group}}{\code{character} for synchronization}
+
 \item{\code{listeners}}{\code{list} containining the listeners to add to the chart.
 The list must be named as in the official API. Each element must be a character string.}
 
