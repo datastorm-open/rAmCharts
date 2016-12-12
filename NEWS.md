@@ -3,6 +3,7 @@
 ### rAmCharts 2.1.2 (based on [amcharts][amcharts_url] version **3.20.18**)
 
   * fix bug with ``addListener``
+  * Shiny module to export rAmCharts on server-side
   
 ### rAmCharts 2.1.1 (based on [amcharts][amcharts_url] version **3.20.10**)
 
