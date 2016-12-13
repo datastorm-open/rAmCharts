@@ -147,6 +147,8 @@ date ranges or zoom chart with predefined period buttons.}
 
 \item{theme}{\code{character}.}
 
+\item{group}{\code{character} for synchronization}
+
 \item{...}{other properties of AmStockChart.}
 
 \item{amBalloon}{\linkS4class{AmBalloon}.

@@ -15,7 +15,7 @@
 #' @param fillAlphas : \code{numeric}, fill. Between 0 (no fill) to 1.
 #' @param precision \code{numeric}, default set to  1.
 #' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
-#' @param legend\code{boolean}, enabled or not legend ? Defaut to TRUE.
+#' @param legend \code{boolean}, enabled or not legend ? Defaut to TRUE.
 #' @param legendPosition \code{character}, legend position. Possible values are :
 #' "left", "right", "bottom", "top"
 #' @param aggregation \code{character}, aggregation type. Possible values are : 
@@ -35,7 +35,7 @@
 #' label : button's label
 #' @param ZoomButtonPosition \code{character}, zoom button position. Possible values are :
 #' "left", "right", "bottom", "top"
-#' @param scrollbar\code{boolean}, enabled or not scrollbar ? Defaut to TRUE.
+#' @param scrollbar \code{boolean}, enabled or not scrollbar ? Defaut to TRUE.
 #' @param scrollbarPosition \code{character}, scrollbar position. Possible values are :
 #' "left", "right", "bottom", "top"
 #' @param scrollbarHeight \code{numeric}, height of scroll bar. Default : 40.
@@ -49,6 +49,17 @@
 #' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"))
 #' 
 #' \donttest{
+#' 
+#' # upper /lower
+#' data <- data_stock_2[1:50, ]
+#' data$ts1low <- data$ts1-100
+#' data$ts1up <- data$ts1+100
+#' 
+#' amTimeSeries(data, "date", list(c("ts1low", "ts1", "ts1up"), "ts2"))
+#' amTimeSeries(data, "date", list(c("ts1low", "ts1", "ts1up"), "ts2"), 
+#'  color = c("red", "blue"), bullet = c("round", "square"))
+#' 
+#' 
 #' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
 #' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
 #'               groupToPeriods = c('hh', 'DD', '10DD'))
@@ -132,7 +143,20 @@ amTimeSeries <- function(data, col_date,
   .testIn(vect = col_date, control = names(data))
   
   #col_series
-  .testIn(vect = col_series, control = names(data))
+  if(is.list(col_series)){
+    n_col_series <- sapply(col_series, length)
+    col_series <- do.call("c", col_series)
+    .testIn(vect = col_series, control = names(data))
+    if(any(!n_col_series%in%c(3, 1))){
+      stop("col_series list element must be a vector of length 1 (one curve) or 3 (upper/lower curve).")
+    }
+  } else if(is.vector(col_series)) {
+    .testIn(vect = col_series, control = names(data))
+    n_col_series <- rep(1, length(col_series))
+  } else {
+    stop("col_series must be a vector or a list")
+  }
+
   
   #color
   .testCharacter(char = color)
@@ -218,63 +242,128 @@ amTimeSeries <- function(data, col_date,
     list(fromField=x, toField=x, title = x)
   })
   
-  graph_maker <- data.frame(column = col_series)
+  graph_maker <- data.frame(column = col_series, stringsAsFactors = F)
   
-  if (length(color) >= nrow(graph_maker)) {
-    graph_maker$color <- color[1:nrow(graph_maker)]
+  # color
+  if (length(color) > 1) {
+    graph_maker$color <- rep(color[1:length(n_col_series)], n_col_series)
   } else {
     graph_maker$color <- color
   }
-  
-  
-  if (length(linewidth) >= nrow(graph_maker)) {
-    graph_maker$linewidth <- linewidth[1:nrow(graph_maker)]
+
+  # linewidth
+  if (length(linewidth) > 1) {
+    graph_maker$linewidth <- rep(linewidth[1:length(n_col_series)], n_col_series)
   } else {
     graph_maker$linewidth <- linewidth
   }
-  
-  
-  if (length(bullet) >= nrow(graph_maker)) {
-    graph_maker$bullet <- bullet[1:nrow(graph_maker)]
+
+  # bullet
+  if (length(bullet) > 1) {
+    graph_maker$bullet <- rep(bullet[1:length(n_col_series)], n_col_series)
   } else {
     graph_maker$bullet <- bullet
   }
   
-  if (length(linetype) >= nrow(graph_maker)) {
-    graph_maker$dashLength <- linetype[1:nrow(graph_maker)]
+  # linetype
+  if (length(linetype) > 1) {
+  graph_maker$dashLength <- rep(linetype[1:length(n_col_series)], n_col_series)
   } else {
     graph_maker$dashLength <- linetype
   }
   
-  if (length(bulletSize) >= nrow(graph_maker)) {
-    graph_maker$bulletSize <- bulletSize[1:nrow(graph_maker)]
+  # bulletSize
+  if (length(bulletSize) > 1) {
+    graph_maker$bulletSize <- rep(bulletSize[1:length(n_col_series)], n_col_series)
   } else {
     graph_maker$bulletSize <- bulletSize
   }
   
-  if (length(fillAlphas) >= nrow(graph_maker)) {
-    graph_maker$fillAlphas <- fillAlphas[1:nrow(graph_maker)]
+  # fillAlphas
+  if (length(fillAlphas) > 1) {
+    graph_maker$fillAlphas <- rep(fillAlphas[1:length(n_col_series)], n_col_series)
   } else {
     graph_maker$fillAlphas <- fillAlphas
   }
   
   graph_maker$aggregation <- aggregation
   
-  stockgraph <- apply(graph_maker, 1, function(x) {
-    stockGraph(title =  x["column"][[1]],
-               id = x["column"][[1]] , connect = FALSE, valueField = x["column"][[1]],
-               comparable = TRUE, periodValue = x["aggregation"][[1]],
-               compareField = x["column"][[1]],
-               balloonText = paste0(x["column"][[1]], ' : <b>[[value]]</b>'),
-               lineColor = x["color"][[1]],
-               fillAlphas = x["fillAlphas"][[1]],
-               bulletSize = x["bulletSize"][[1]],
-               dashLength = x["dashLength"][[1]],
-               useDataSetColors = FALSE,
-               bullet = ifelse(is.na(x["bullet"]), "none", x["bullet"])[[1]],
-               precision = precision,
-               lineThickness = x["linewidth"][[1]]
-    )
+  # type (curve or upper/lower)
+  graph_maker$type <- do.call("c", lapply(n_col_series, function(x){
+    if(x == 3){
+      c("low", "curve-uplow", "up")
+    } else {
+      "curve"
+    }
+  }))
+  
+  stockgraph <- lapply(1:nrow(graph_maker), function(x) {
+    if(graph_maker[x, "type"] == "curve"){
+      stockGraph(title =  graph_maker[x, "column"],
+                 id = graph_maker[x, "column"] , connect = FALSE, 
+                 valueField = graph_maker[x, "column"],
+                 comparable = TRUE, periodValue = graph_maker[x, "aggregation"],
+                 compareField = graph_maker[x, "column"],
+                 balloonText = paste0(graph_maker[x, "column"], ' : <b>[[value]]</b>'),
+                 lineColor = graph_maker[x, "color"],
+                 fillAlphas = graph_maker[x, "fillAlphas"],
+                 bulletSize = graph_maker[x, "bulletSize"],
+                 dashLength = graph_maker[x, "dashLength"],
+                 useDataSetColors = FALSE,
+                 bullet = ifelse(is.null(graph_maker[x, "bullet"]), "none", graph_maker[x, "bullet"]),
+                 precision = precision,
+                 lineThickness = graph_maker[x, "linewidth"]
+      )
+    } else if(graph_maker[x, "type"] == "low"){
+      stockGraph(title =  graph_maker[x, "column"],
+                 id = graph_maker[x, "column"] , connect = FALSE, 
+                 valueField = graph_maker[x, "column"],
+                 comparable = TRUE, periodValue = graph_maker[x, "aggregation"],
+                 compareField = graph_maker[x, "column"],
+                 showBalloon = FALSE,
+                 lineAlpha = 0,
+                 lineColor = graph_maker[x, "color"],
+                 fillAlphas = 0,
+                 useDataSetColors = FALSE,
+                 visibleInLegend = FALSE,
+                 precision = precision
+      )
+    } else if(graph_maker[x, "type"] == "curve-uplow"){
+      stockGraph(title =  graph_maker[x, "column"],
+                 id = graph_maker[x, "column"] , connect = FALSE, 
+                 valueField = graph_maker[x, "column"],
+                 comparable = TRUE, periodValue = graph_maker[x, "aggregation"],
+                 compareField = graph_maker[x, "column"],
+                 # balloonText = paste0(graph_maker[x+1, "column"],' : <b> [[', graph_maker[x+1, "column"], ']] </b><br>',
+                 #                      graph_maker[x, "column"], ' : <b> [[value]] </b><br>',
+                 #                      graph_maker[x-1, "column"],' : <b> [[', graph_maker[x-1, "column"], ']] </b>'),
+                 balloonText = paste0(graph_maker[x, "column"], ' : <b> [[value]] </b><br>'),
+                 lineColor = graph_maker[x, "color"],
+                 fillAlphas = graph_maker[x, "fillAlphas"],
+                 bulletSize = graph_maker[x, "bulletSize"],
+                 dashLength = graph_maker[x, "dashLength"],
+                 useDataSetColors = FALSE,
+                 bullet = ifelse(is.null(graph_maker[x, "bullet"]), "none", graph_maker[x, "bullet"]),
+                 precision = precision,
+                 lineThickness = graph_maker[x, "linewidth"]
+      )
+    } else if(graph_maker[x, "type"] == "up"){
+      stockGraph(title =  graph_maker[x, "column"],
+                 id = graph_maker[x, "column"] , connect = FALSE, 
+                 valueField = graph_maker[x, "column"],
+                 comparable = TRUE, periodValue = graph_maker[x, "aggregation"],
+                 compareField = graph_maker[x, "column"],
+                 showBalloon = FALSE,
+                 lineAlpha = 0,
+                 lineColor = graph_maker[x, "color"],
+                 fillAlphas = 0.2,
+                 useDataSetColors = FALSE,
+                 fillToGraph = graph_maker[x-2, "column"],
+                 visibleInLegend = FALSE,
+                 precision = precision
+      )
+    } 
+
   })
   
   periodZoom <- periodSelector( position = ZoomButtonPosition ,inputFieldsEnabled = FALSE)

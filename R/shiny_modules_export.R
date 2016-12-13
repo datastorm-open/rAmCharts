@@ -48,8 +48,8 @@
 #' }
 #' @export
 rAmChartExportServerUI <- function(id) {
-  ns <- NS(id)
-  uiOutput(ns("racems_graphs"))
+  ns <- shiny::NS(id)
+  shiny::uiOutput(ns("racems_graphs"))
 }
 
 #' @rdname rAmCharts-shinymodules
@@ -59,9 +59,9 @@ rAmChartExportServer <- function(input, output, session, list_am_graph, path){
   ns <- session$ns
   
   # plusieurs graphiques
-  observe({
+  shiny::observe({
     list_chart <- list_am_graph()
-    isolate({
+    shiny::isolate({
       # ui
       args_amco <- formals(amChartsOutput)
       to_ui <- lapply(1:length(list_chart), function(x){
@@ -87,17 +87,17 @@ rAmChartExportServer <- function(input, output, session, list_am_graph, path){
                                 width = width, height = height, type = type)
       })
       
-      output$racems_graphs <- renderUI({
-        fluidRow(
-          do.call(tagList, to_ui)
+      output$racems_graphs <- shiny::renderUI({
+        shiny::fluidRow(
+          do.call(shiny::tagList, to_ui)
         )
       })
       
       # server
       all_path_file <- sapply(1:length(list_chart), function(x){
-        callModule(.rAmChartExportServer, paste0("racems_graph_", x), 
-                   reactive(list_chart[[x]]$graph), 
-                   path, reactive(list_chart[[x]]$name))
+        shiny::callModule(.rAmChartExportServer, paste0("racems_graph_", x), 
+                          shiny::reactive(list_chart[[x]]$graph), 
+                          path, shiny::reactive(list_chart[[x]]$name))
       })
     })
   })
@@ -106,16 +106,16 @@ rAmChartExportServer <- function(input, output, session, list_am_graph, path){
 }
 
 .rAmChartExportServerUI <- function(id,  ...) {
-  ns <- NS(id)
-  tagList(
-    div(selectInput(ns("racems_img64"), NULL,choices = NULL), style = "display:none"),
-    div(amChartsOutput(ns("racems_graph"), ...))
+  ns <- shiny::NS(id)
+  shiny::tagList(
+    shiny::div(shiny::selectInput(ns("racems_img64"), NULL,choices = NULL), style = "display:none"),
+    shiny::div(amChartsOutput(ns("racems_graph"), ...))
   )
 }
 
 
 .rAmChartExportServer <- function(input, output, session, am_graph, 
-                                  path = reactive(getwd()), name = reactive("amChart.jpg")){
+                                  path = shiny::reactive(getwd()), name = shiny::reactive("amChart.jpg")){
   ns <- session$ns
   
   output$racems_graph <- renderAmCharts({
@@ -133,11 +133,9 @@ rAmChartExportServer <- function(input, output, session, list_am_graph, path){
       }
       
       if(add_export){
-        cur_am <- cur_am %>%
-          setExport(enabled = TRUE, menu = list())
+        cur_am <- setExport(cur_am, enabled = TRUE, menu = list())
       }
-      cur_am <- cur_am %>%
-        addListener(name = "rendered", expression = paste0('function(e) {
+      cur_am <- addListener(cur_am, name = "rendered", expression = paste0('function(e) {
                                                            // WAIT FOR FABRIC
                                                            var interval = setInterval( function() {
                                                            if ( window.fabric ) {
@@ -164,7 +162,7 @@ rAmChartExportServer <- function(input, output, session, list_am_graph, path){
   
   # outputOptions(output,"am_graph", suspendWhenHidden = FALSE)
   
-  path_file <- reactive({
+  path_file <- shiny::reactive({
     if(!is.null(name())){
       paste0(path(), "/", name())
     } else {
@@ -172,11 +170,11 @@ rAmChartExportServer <- function(input, output, session, list_am_graph, path){
     }
   })
   
-  observe({
+  shiny::observe({
     if(!is.null(input$racems_img64)){
       if(input$racems_img64 != "" & !is.null(path_file()) & !is.null(am_graph())){
         outconn <- file(path_file(), "wb")
-        base64decode(what=gsub("^data:image/jpeg;base64,", "", input$racems_img64), output = outconn)
+        base64enc::base64decode(what=gsub("^data:image/jpeg;base64,", "", input$racems_img64), output = outconn)
         close(outconn)
       }
     }

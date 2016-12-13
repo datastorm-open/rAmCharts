@@ -43,6 +43,8 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
 
 \item{export}{\code{logical}, default set to  FALSE. TRUE to display export feature.}
 
+\item{legend}{\code{boolean}, enabled or not legend ? Defaut to TRUE.}
+
 \item{legendPosition}{\code{character}, legend position. Possible values are :
 "left", "right", "bottom", "top"}
 
@@ -68,6 +70,8 @@ label : button's label}
 \item{ZoomButtonPosition}{\code{character}, zoom button position. Possible values are :
 "left", "right", "bottom", "top"}
 
+\item{scrollbar}{\code{boolean}, enabled or not scrollbar ? Defaut to TRUE.}
+
 \item{scrollbarPosition}{\code{character}, scrollbar position. Possible values are :
 "left", "right", "bottom", "top"}
 
@@ -79,10 +83,6 @@ label : button's label}
 \item{group}{\code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.}
 
 \item{...}{other first level attributes}
-
-\item{legend\code{boolean}, }{enabled or not legend ? Defaut to TRUE.}
-
-\item{scrollbar\code{boolean}, }{enabled or not scrollbar ? Defaut to TRUE.}
 }
 \description{
 amTimeSeries computes a stock chart.
@@ -92,6 +92,17 @@ data("data_stock_2")
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"))
 
 \donttest{
+
+# upper /lower
+data <- data_stock_2[1:50, ]
+data$ts1low <- data$ts1-100
+data$ts1up <- data$ts1+100
+
+amTimeSeries(data, "date", list(c("ts1low", "ts1", "ts1up"), "ts2"))
+amTimeSeries(data, "date", list(c("ts1low", "ts1", "ts1up"), "ts2"), 
+ color = c("red", "blue"), bullet = c("round", "square"))
+
+
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
               groupToPeriods = c('hh', 'DD', '10DD'))

@@ -72,6 +72,7 @@ setClass("AmStockChart", contains = "AmObject",
 #' You can add it if you want user's to be able to enter
 #' date ranges or zoom chart with predefined period buttons.
 #' @param theme \code{character}.
+#' @param group \code{character} for synchronization
 #' @param ... other properties of AmStockChart.
 #' 
 #' @return An object of class \linkS4class{AmStockChart}.

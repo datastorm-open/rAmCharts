@@ -58,21 +58,29 @@ HTMLWidgets.widget({
                 document.getElementById(el.id).style.background = x.background;
                 amchart = AmCharts.makeChart(el.id, x.chartData);
 
+                // group amStock
+                
+                function zoomedGroupEvent(event, elid){
+                  var linked_chart = findAmStockRefGroup(el.id);
+                  var tmp_zoomed_event;
+                    if(linked_chart !== undefined){
+                      for(var tmp_id in linked_chart){
+                        if(linked_chart[tmp_id] !== el.id){
+                          var tmp_am = getAmChart(linked_chart[tmp_id]);
+                            if(tmp_am !== undefined){
+                              tmp_zoomed_event = tmp_am.panels[0].events.zoomed;
+                              tmp_am.panels[0].events.zoomed = [];
+                              tmp_am.panels[0].zoomToDates(event.startDate, event.endDate);
+                              tmp_am.panels[0].events.zoomed = tmp_zoomed_event;
+                            }
+                        }   
+                      }
+                    }
+                  }
+                    
                 if(x.group !== null){
                     addAmStockRefGroup(x.group, el.id);
-                    amchart.panels[0].addListener("zoomed", function(event){
-                      var linked_chart = findAmStockRefGroup(el.id);
-                      if(linked_chart !== undefined){
-                        for(var tmp_id in linked_chart){
-                          if(linked_chart[tmp_id] !== el.id){
-                            var tmp_am = getAmChart(linked_chart[tmp_id]);
-                              if(tmp_am !== undefined){
-                                tmp_am.panels[0].zoomToDates(event.startDate, event.endDate);
-                              }
-                          }   
-                        }
-                      }
-                    });
+                    amchart.panels[0].addListener("zoomed", zoomedGroupEvent);
                 }
                 
                 
