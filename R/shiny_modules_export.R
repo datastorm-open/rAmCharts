@@ -14,7 +14,7 @@
 #'  \item{"height"}{Optionnal, character. Linked to \link{amChartsOutput}}
 #'  \item{"type"}{Optionnal, character. Linked to \link{amChartsOutput}}
 #'}
-#' @param path character, directory
+#' @param path character, directory. tempdir() by Defaut
 #' 
 #' @name rAmCharts-shinymodules
 #' 
@@ -49,136 +49,123 @@
 #' @export
 rAmChartExportServerUI <- function(id) {
   ns <- shiny::NS(id)
-  shiny::uiOutput(ns("racems_graphs"))
+  shiny::uiOutput(ns("racems_graphs_ui"))
 }
+
 
 #' @rdname rAmCharts-shinymodules
 #' @export
-rAmChartExportServer <- function(input, output, session, list_am_graph, path){
-  
+rAmChartExportServer <- function(input, output, session, list_am_graph, 
+                                 path = shiny::reactive(tempdir())){
   ns <- session$ns
   
-  # plusieurs graphiques
+  cpt <- shiny::reactiveValues(ind = -1, max = -1)
+  
   shiny::observe({
     list_chart <- list_am_graph()
-    shiny::isolate({
-      # ui
-      args_amco <- formals(amChartsOutput)
-      to_ui <- lapply(1:length(list_chart), function(x){
-        if("width" %in% names(list_chart[[x]])){
-          width <- list_chart[[x]]$width
+    if(!is.null(list_chart)){
+      cpt$ind = 1
+      cpt$max = length(list_chart)
+    } else {
+      cpt$ind = -1
+    }
+  })
+  
+  output$racems_graphs_ui <- shiny::renderUI({
+    ind_chart <- cpt$ind
+    if(ind_chart != -1 & ind_chart <= cpt$max){
+      
+      shiny::isolate({
+        # chart
+        tmp_chart <- list_am_graph()[[cpt$ind]]
+        
+        # ui
+        args_amco <- formals(amChartsOutput)
+        
+        if("width" %in% names(tmp_chart)){
+          width <- tmp_chart$width
         } else {
           width <- args_amco$width
         }
         
-        if("height" %in% names(list_chart[[x]])){
-          height <- list_chart[[x]]$height
+        if("height" %in% names(tmp_chart)){
+          height <- tmp_chart$height
         } else {
           height <- args_amco$height
         }
         
-        if("type" %in% names(list_chart[[x]])){
-          type <- list_chart[[x]]$type
+        if("type" %in% names(tmp_chart)){
+          type <- tmp_chart$type
         } else {
           type <- args_amco$type
         }
         
-        .rAmChartExportServerUI(ns(paste0("racems_graph_", x)), 
-                                width = width, height = height, type = type)
+        amChartsOutput(ns("racems_graph"), 
+                       width = width, height = height, type = type)
       })
-      
-      output$racems_graphs <- shiny::renderUI({
-        shiny::fluidRow(
-          do.call(shiny::tagList, to_ui)
-        )
-      })
-      
-      # server
-      all_path_file <- sapply(1:length(list_chart), function(x){
-        shiny::callModule(.rAmChartExportServer, paste0("racems_graph_", x), 
-                          shiny::reactive(list_chart[[x]]$graph), 
-                          path, shiny::reactive(list_chart[[x]]$name))
-      })
-    })
+    }
   })
   
-  return()
-}
-
-.rAmChartExportServerUI <- function(id,  ...) {
-  ns <- shiny::NS(id)
-  shiny::tagList(
-    shiny::div(shiny::selectInput(ns("racems_img64"), NULL,choices = NULL), style = "display:none"),
-    shiny::div(amChartsOutput(ns("racems_graph"), ...))
-  )
-}
-
-
-.rAmChartExportServer <- function(input, output, session, am_graph, 
-                                  path = shiny::reactive(getwd()), name = shiny::reactive("amChart.jpg")){
-  ns <- session$ns
   
   output$racems_graph <- renderAmCharts({
-    
-    cur_am <- am_graph()
-    
-    if(!is.null(cur_am)){
-      add_export <- F
-      if(!"export" %in% names(attr(cur_am, "otherProperties"))){
-        add_export <- T
-      } else {
-        if(!attr(cur_am, "otherProperties")$export$enabled){
-          add_export <- T
+    ind_chart <- cpt$ind
+    if(ind_chart != -1 & ind_chart <= cpt$max){
+      shiny::isolate({
+        cur_am <- list_am_graph()[[ind_chart]]$graph
+        if(!is.null(cur_am)){
+          add_export <- F
+          if(!"export" %in% names(attr(cur_am, "otherProperties"))){
+            add_export <- T
+          } else {
+            if(!attr(cur_am, "otherProperties")$export$enabled){
+              add_export <- T
+            }
+          }
+          
+          if(add_export){
+            cur_am <- setExport(cur_am, enabled = TRUE, menu = list())
+          }
+          cur_am <- addListener(cur_am, name = "rendered", expression = paste0('function(e) {
+                                                                               // WAIT FOR FABRIC
+                                                                               var interval = setInterval( function() {
+                                                                               if ( window.fabric ) {
+                                                                               clearTimeout( interval );
+                                                                               // CAPTURE CHART
+                                                                               e.chart["export"].capture( {}, function() {
+                                                                               // SAVE TO JPG
+                                                                               this.toJPG( {}, function( base64 ) {
+                                                                               // LOG IMAGE DATA
+                                                                               Shiny.onInputChange("', ns("racems_img64"), '", base64);
+                                                                               // clean
+                                                                               //e.chart.events.rendered = [];
+                                                                               //e.chart.clear();
+                                                                               //this.setup.chart.div.style = "display:none";
+                                                                               } );
+                                                                               } );
+                                                                               }
+                                                                               }, 100 );}'))
+          cur_am
+        } else {
+          NULL
         }
-      }
-      
-      if(add_export){
-        cur_am <- setExport(cur_am, enabled = TRUE, menu = list())
-      }
-      cur_am <- addListener(cur_am, name = "rendered", expression = paste0('function(e) {
-                                                           // WAIT FOR FABRIC
-                                                           var interval = setInterval( function() {
-                                                           if ( window.fabric ) {
-                                                           clearTimeout( interval );
-                                                           // CAPTURE CHART
-                                                           e.chart["export"].capture( {}, function() {
-                                                           // SAVE TO JPG
-                                                           this.toJPG( {}, function( base64 ) {
-                                                           // LOG IMAGE DATA
-                                                           Shiny.onInputChange("', ns("racems_img64"), '", base64);
-                                                           // clean
-                                                           this.setup.chart.div.style = "display:none";
-                                                           e.chart.clear();
-                                                           } );
-                                                           } );
-                                                           }
-                                                           }, 100 );}'))
-      cur_am
-  } else {
-    NULL
-  }
-    
-    })
-  
-  # outputOptions(output,"am_graph", suspendWhenHidden = FALSE)
-  
-  path_file <- shiny::reactive({
-    if(!is.null(name())){
-      paste0(path(), "/", name())
-    } else {
-      NULL
+      })
     }
   })
   
   shiny::observe({
     if(!is.null(input$racems_img64)){
-      if(input$racems_img64 != "" & !is.null(path_file()) & !is.null(am_graph())){
-        outconn <- file(path_file(), "wb")
-        base64enc::base64decode(what=gsub("^data:image/jpeg;base64,", "", input$racems_img64), output = outconn)
-        close(outconn)
-      }
+      shiny::isolate({
+        if(input$racems_img64 != ""){
+          path_file <- paste0(path(), "/", list_am_graph()[[cpt$ind]]$name)
+          outconn <- file(path_file, "wb")
+          base64enc::base64decode(what=gsub("^data:image/jpeg;base64,", "", input$racems_img64), output = outconn)
+          close(outconn)
+          cpt$ind <- cpt$ind +1
+        }
+      })
+      
     }
   })
   
-  return(path_file)
-  }
+  return(path)
+}

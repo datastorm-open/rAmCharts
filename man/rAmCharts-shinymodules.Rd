@@ -8,7 +8,8 @@
 \usage{
 rAmChartExportServerUI(id)
 
-rAmChartExportServer(input, output, session, list_am_graph, path)
+rAmChartExportServer(input, output, session, list_am_graph,
+  path = shiny::reactive(tempdir()))
 }
 \arguments{
 \item{id}{character, used to specify namesapce, see \code{shiny::\link[shiny]{NS}}}
@@ -28,7 +29,7 @@ rAmChartExportServer(input, output, session, list_am_graph, path)
  \item{"type"}{Optionnal, character. Linked to \link{amChartsOutput}}
 }}
 
-\item{path}{character, directory}
+\item{path}{character, directory. tempdir() by Defaut}
 }
 \description{
 This function need the \code{base64enc} package to save image.
