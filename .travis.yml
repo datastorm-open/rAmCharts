@@ -12,5 +12,5 @@ notifications:
       - titouan.robert@datastorm.fr
       - elena.salette@datastorm.fr
       - benoit.thieurmel@datastorm.fr
-    on_success: always # default: change
+    on_success: change # default: change
     on_failure: always # default: always
