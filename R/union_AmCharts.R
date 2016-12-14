@@ -96,7 +96,7 @@ setMethod(f = "show", signature = "AmStockChart", definition = .plot_or_print)
 #' @export
 setMethod(f = "plot", signature = "AmCharts",
           definition = function(x, y, width = "100%", height = NULL,
-                                background = "#ffffff",...)
+                                background = "#ffffff", ...)
           {
             chart_ls <- listProperties(x)
             # remove temporary parameter

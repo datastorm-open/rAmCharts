@@ -422,10 +422,18 @@ controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', '
   
   ref_period <- data.frame(periode = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'), 
                            seconds = c(1, 60, 3600, 24*3600, 31*24*3600, 365*24*3600))
+  
   rownames(ref_period) <- ref_period$periode
   
   period <- ref_period[period, "seconds"]
   
-  groupToPeriods[period*number >= diffTime]
+  select <- groupToPeriods[period*number >= diffTime]
   
+  #Select min period
+  minperiod <- max(which(ref_period$seconds/diffTime<1))
+  if(length(minperiod)>0){
+    select <- c( paste0(diffTime/ref_period[minperiod + 1,]$seconds *  ref_period[minperiod,]$seconds,
+                         ref_period[minperiod,]$periode), select)
+  }
+  select
 }
