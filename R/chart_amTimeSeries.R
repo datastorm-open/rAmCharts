@@ -137,7 +137,7 @@ amTimeSeries <- function(data, col_date,
   
   #data
   .testFormatData(data)
-  data <- data.frame(data)
+  data <- data.frame(data, check.names = FALSE, stringsAsFactors = FALSE)
   
   #col_date
   .testIn(vect = col_date, control = names(data))
