@@ -1,15 +1,24 @@
 // function to get amChart chart with div id
 function getAmChart(id) {
     var allCharts = AmCharts.charts;
+    var ind = [];
+    var is_push = false;
     if(allCharts !== undefined){
-        for (var i = (allCharts.length - 1); i > -1; i--) {
-            if(allCharts[i].div !== undefined){ // for markdown bug ?
+        for (var i = 0; i < (allCharts.length); i++) {
+          if(allCharts[i] !== undefined){
+              if(allCharts[i].div !== undefined){ // for markdown bug ?
                 if (id == allCharts[i].div.id) {
-                    return allCharts[i];
+                    ind.push(i);
+                    is_push = true;
+                }
+                if(is_push === true && allCharts[i].div.id === ""){
+                  ind.push(i);
                 }
             }
+          }
         }
     }
+    return ind;
 }
 
 var amStock_ref_group = {};
@@ -44,16 +53,22 @@ HTMLWidgets.widget({
         // add little processDelay
         AmCharts.processDelay = 10;
 
-        // clear previous amChart graph in this div if existed
-        var existing_chart = getAmChart(el.id);
-        if (existing_chart) existing_chart.clear();
-
         // init the chart element, empty since we don't have any chart data
         var amchart;
 
         return {
             renderValue: function (x) {
 
+                // clear existing chart if needed
+                var existing_chart = getAmChart(el.id);
+                for(var tmp_ind in existing_chart){
+                  if(tmp_ind !== undefined){
+                    if(AmCharts.charts[tmp_ind] !== undefined){
+                      AmCharts.charts[tmp_ind].clear();
+                      delete AmCharts.charts[tmp_ind];
+                      }
+                  }   
+                }
                 // set the background
                 document.getElementById(el.id).style.background = x.background;
                 amchart = AmCharts.makeChart(el.id, x.chartData);
