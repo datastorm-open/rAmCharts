@@ -8,21 +8,9 @@ warnings_are_errors: true
 notifications:
   email:
     recipients:
+      - jeffery.petit@datastorm.fr
       - titouan.robert@datastorm.fr
       - elena.salette@datastorm.fr
-    on_success: change # default: change
-    on_failure: always # default: always
-
-notifications:
-  email:
-    recipients:
       - benoit.thieurmel@datastorm.fr
-    on_success: never # default: change
-    on_failure: always # default: always
-
-notifications:
-  email:
-    recipients:
-      - jeffery.petit@datastorm.fr
     on_success: always # default: change
     on_failure: always # default: always
