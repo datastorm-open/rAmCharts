@@ -238,6 +238,10 @@ amTimeSeries <- function(data, col_date,
   difft <- as.numeric(difftime(data[2,col_date], data[1,col_date], units = "secs"))
   groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
   
+  # annual data
+  if(isTRUE(all.equal('YYYY', groupToPeriods))){
+    groupToPeriods <- c('DD', 'YYYY')
+  }
   fieldMapping <- lapply(col_series, function(x) {
     list(fromField=x, toField=x, title = x)
   })
