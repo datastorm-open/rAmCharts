@@ -1,6 +1,20 @@
 // function to get amChart chart with div id
 function getAmChart(id) {
     var allCharts = AmCharts.charts;
+    if(allCharts !== undefined){
+        for (var i = (allCharts.length - 1); i > -1; i--) {
+            if(allCharts[i].div !== undefined){ // for markdown bug ?
+                if (id == allCharts[i].div.id) {
+                    return allCharts[i];
+                }
+            }
+        }
+    }
+}
+
+// function to removed amChart chart with div id
+function removeAmChart(id) {
+    var allCharts = AmCharts.charts;
     var ind = [];
     var is_push = false;
     if(allCharts !== undefined){
@@ -10,9 +24,10 @@ function getAmChart(id) {
                 if (id == allCharts[i].div.id) {
                     ind.push(i);
                     is_push = true;
-                }
-                if(is_push === true && allCharts[i].div.id === ""){
+                }else if(is_push === true && allCharts[i].div.id === ""){
                   ind.push(i);
+                }else if(is_push === true){
+                  return ind;
                 }
             }
           }
@@ -60,7 +75,7 @@ HTMLWidgets.widget({
             renderValue: function (x) {
 
                 // clear existing chart if needed
-                var existing_chart = getAmChart(el.id);
+                var existing_chart = removeAmChart(el.id);
                 for(var tmp_ind in existing_chart){
                   if(tmp_ind !== undefined){
                     if(AmCharts.charts[tmp_ind] !== undefined){
@@ -78,14 +93,12 @@ HTMLWidgets.widget({
                 function zoomedGroupEvent(event, elid){
                   var linked_chart = findAmStockRefGroup(el.id);
                   var tmp_zoomed_event;
-                  var tmp_am_ind;
                   var tmp_am;
                     if(linked_chart !== undefined){
                       for(var tmp_id in linked_chart){
                         if(linked_chart[tmp_id] !== el.id){
-                          tmp_am_ind = getAmChart(linked_chart[tmp_id]);
-                            if(tmp_am_ind.length !== 0){
-                              tmp_am = AmCharts.charts[tmp_am_ind[0]];
+                          tmp_am = getAmChart(linked_chart[tmp_id]);
+                            if(tmp_am){
                               tmp_zoomed_event = tmp_am.events.zoomed;
                               tmp_am.events.zoomed = [];
                               tmp_am.zoom(event.startDate, event.endDate);
@@ -98,7 +111,7 @@ HTMLWidgets.widget({
                     
                 if(x.group !== null){
                     addAmStockRefGroup(x.group, el.id);
-                    amchart.panels[0].addListener("zoomed", zoomedGroupEvent);
+                    amchart.addListener("zoomed", zoomedGroupEvent);
                 }
                 
                 
