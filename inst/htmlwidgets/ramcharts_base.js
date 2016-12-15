@@ -78,15 +78,18 @@ HTMLWidgets.widget({
                 function zoomedGroupEvent(event, elid){
                   var linked_chart = findAmStockRefGroup(el.id);
                   var tmp_zoomed_event;
+                  var tmp_am_ind;
+                  var tmp_am;
                     if(linked_chart !== undefined){
                       for(var tmp_id in linked_chart){
                         if(linked_chart[tmp_id] !== el.id){
-                          var tmp_am = getAmChart(linked_chart[tmp_id]);
-                            if(tmp_am !== undefined){
-                              tmp_zoomed_event = tmp_am.panels[0].events.zoomed;
-                              tmp_am.panels[0].events.zoomed = [];
-                              tmp_am.panels[0].zoomToDates(event.startDate, event.endDate);
-                              tmp_am.panels[0].events.zoomed = tmp_zoomed_event;
+                          tmp_am_ind = getAmChart(linked_chart[tmp_id]);
+                            if(tmp_am_ind.length !== 0){
+                              tmp_am = AmCharts.charts[tmp_am_ind[0]];
+                              tmp_zoomed_event = tmp_am.events.zoomed;
+                              tmp_am.events.zoomed = [];
+                              tmp_am.zoom(event.startDate, event.endDate);
+                              tmp_am.events.zoomed = tmp_zoomed_event;
                             }
                         }   
                       }
