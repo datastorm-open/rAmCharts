@@ -77,10 +77,10 @@ HTMLWidgets.widget({
                 // clear existing chart if needed
                 var existing_chart = removeAmChart(el.id);
                 for(var tmp_ind in existing_chart){
-                  if(tmp_ind !== undefined){
-                    if(AmCharts.charts[tmp_ind] !== undefined){
-                      AmCharts.charts[tmp_ind].clear();
-                      delete AmCharts.charts[tmp_ind];
+                  if(existing_chart[tmp_ind] !== undefined){
+                    if(AmCharts.charts[existing_chart[tmp_ind]] !== undefined){
+                      AmCharts.charts[existing_chart[tmp_ind]].clear();
+                      delete AmCharts.charts[existing_chart[tmp_ind]];
                       }
                   }   
                 }
