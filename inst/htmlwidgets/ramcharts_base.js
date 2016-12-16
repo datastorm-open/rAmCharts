@@ -14,26 +14,10 @@ function getAmChart(id) {
 
 // function to removed amChart chart with div id
 function removeAmChart(id) {
-    var allCharts = AmCharts.charts;
-    var ind = [];
-    var is_push = false;
-    if(allCharts !== undefined){
-        for (var i = 0; i < (allCharts.length); i++) {
-          if(allCharts[i] !== undefined){
-              if(allCharts[i].div !== undefined){ // for markdown bug ?
-                if (id == allCharts[i].div.id) {
-                    ind.push(i);
-                    is_push = true;
-                }else if(is_push === true && allCharts[i].div.id === ""){
-                  ind.push(i);
-                }else if(is_push === true){
-                  return ind;
-                }
-            }
-          }
-        }
-    }
-    return ind;
+  var tmp_am = getAmChart(id);
+  if(tmp_am){
+    tmp_am.clear();
+  }
 }
 
 var amStock_ref_group = {};
@@ -75,21 +59,13 @@ HTMLWidgets.widget({
             renderValue: function (x) {
 
                 // clear existing chart if needed
-                var existing_chart = removeAmChart(el.id);
-                for(var tmp_ind in existing_chart){
-                  if(existing_chart[tmp_ind] !== undefined){
-                    if(AmCharts.charts[existing_chart[tmp_ind]] !== undefined){
-                      AmCharts.charts[existing_chart[tmp_ind]].clear();
-                      delete AmCharts.charts[existing_chart[tmp_ind]];
-                      }
-                  }   
-                }
+                var rm_chart = removeAmChart(el.id);
+
                 // set the background
                 document.getElementById(el.id).style.background = x.background;
                 amchart = AmCharts.makeChart(el.id, x.chartData);
 
                 // group amStock
-                
                 function zoomedGroupEvent(event, elid){
                   var linked_chart = findAmStockRefGroup(el.id);
                   var tmp_zoomed_event;
