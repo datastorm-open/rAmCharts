@@ -436,8 +436,8 @@ controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', '
   #Select min period
   minperiod <- max(which(ref_period$seconds/diffTime<1))
   if(length(minperiod)>0 & diffTime < 24*3600){
-    select <- c( paste0(diffTime/ref_period[minperiod + 1,]$seconds *  ref_period[minperiod,]$seconds,
-                        ref_period[minperiod,]$periode), select)
+    select <- c(paste0(diffTime/ref_period[minperiod,]$seconds,
+                       ref_period[minperiod,]$periode), select)
   }
-  select[grepl("^[[:digit:]]*((ss)|(mm)|(hh)|(DD)|(MM)|(YYYY))$", select)]
+  unique(select[grepl("^[[:digit:]]*((ss)|(mm)|(hh)|(DD)|(MM)|(YYYY))$", select)])
 }
