@@ -59,73 +59,92 @@ rAmChartExportServer <- function(input, output, session, list_am_graph,
                                  path = shiny::reactive(tempdir())){
   ns <- session$ns
   
-  cpt <- shiny::reactiveValues(ind = -1, max = -1)
+  # some controls for rendering in order and for stock issue
+  cpt <- shiny::reactiveValues(ind = -1, max = -1, tmp = 0)
   
   shiny::observe({
     list_chart <- list_am_graph()
     if(!is.null(list_chart)){
-      cpt$ind = 1
-      cpt$max = length(list_chart)
+      cpt$ind <- 1
+      cpt$max <- length(list_chart)
+      cpt$tmp <- shiny::isolate(cpt$tmp) + 1
     } else {
       cpt$ind = -1
     }
   })
   
+  # for conditionnalPanel
+  output$racems_n_g_evo <- shiny::reactive({
+    cpt$ind
+  })
+  
+  shiny::outputOptions(output, "racems_n_g_evo", suspendWhenHidden = FALSE)
+  
+  # ui output
   output$racems_graphs_ui <- shiny::renderUI({
-    ind_chart <- cpt$ind
-    if(ind_chart != -1 & ind_chart <= cpt$max){
-      
+    tmp_cpt <- cpt$tmp
+    if(tmp_cpt > 0){
       shiny::isolate({
-        # chart
-        tmp_chart <- list_am_graph()[[cpt$ind]]
-        
-        # ui
+        list_chart <- list_am_graph()
         args_amco <- formals(amChartsOutput)
         
-        if("width" %in% names(tmp_chart)){
-          width <- tmp_chart$width
-        } else {
-          width <- args_amco$width
+        if(length(list_chart) > 0){
+          plot_output_list <- lapply(1:length(list_chart), function(i) {
+            plotname <- ns(paste0("racems_graph_", i, "_", shiny::isolate(cpt$tmp)))
+
+            tmp_chart <- list_chart[[i]]
+            
+            if("width" %in% names(tmp_chart)){
+              width <- tmp_chart$width
+            } else {
+              width <- args_amco$width
+            }
+            
+            if("height" %in% names(tmp_chart)){
+              height <- tmp_chart$height
+            } else {
+              height <- args_amco$height
+            }
+            
+            if("type" %in% names(tmp_chart)){
+              type <- tmp_chart$type
+            } else {
+              type <- args_amco$type
+            }
+            
+            shiny::conditionalPanel(condition = paste0("output['", ns("racems_n_g_evo"), "'] == ", i),
+                                    shiny::div(amChartsOutput(plotname, width = width, height = height, type = type), br(), align = "center")
+            )
+          })
+          shiny::fluidRow(
+            do.call(shiny::tagList, plot_output_list)
+          )
         }
-        
-        if("height" %in% names(tmp_chart)){
-          height <- tmp_chart$height
-        } else {
-          height <- args_amco$height
-        }
-        
-        if("type" %in% names(tmp_chart)){
-          type <- tmp_chart$type
-        } else {
-          type <- args_amco$type
-        }
-        
-        amChartsOutput(ns("racems_graph"), 
-                       width = width, height = height, type = type)
       })
     }
   })
   
-  
-  output$racems_graph <- renderAmCharts({
+  shiny::observe({
     ind_chart <- cpt$ind
     if(ind_chart != -1 & ind_chart <= cpt$max){
       shiny::isolate({
-        cur_am <- list_am_graph()[[ind_chart]]$graph
-        if(!is.null(cur_am)){
-          add_export <- F
-          if(!"export" %in% names(attr(cur_am, "otherProperties"))){
-            add_export <- T
-          } else {
-            if(!attr(cur_am, "otherProperties")$export$enabled){
+        plotname <- paste0("racems_graph_", ind_chart, "_", shiny::isolate(cpt$tmp))
+        output[[plotname]] <- renderAmCharts({
+          cur_am <- list_am_graph()[[ind_chart]]$graph
+          if(!is.null(cur_am)){
+            add_export <- F
+            if(!"export" %in% names(attr(cur_am, "otherProperties"))){
               add_export <- T
+            } else {
+              if(!attr(cur_am, "otherProperties")$export$enabled){
+                add_export <- T
+              }
             }
-          }
-          
-          if(add_export){
-            cur_am <- setExport(cur_am, enabled = TRUE, menu = list())
-          }
-          cur_am <- addListener(cur_am, name = "rendered", expression = paste0('function(e) {
+            
+            if(add_export){
+              cur_am <- setExport(cur_am, enabled = TRUE, menu = list())
+            }
+            cur_am <- addListener(cur_am, name = "rendered", expression = paste0('function(e) {
                                                                                // WAIT FOR FABRIC
                                                                                var interval = setInterval( function() {
                                                                                if ( window.fabric ) {
@@ -144,10 +163,11 @@ rAmChartExportServer <- function(input, output, session, list_am_graph,
                                                                                } );
                                                                                }
                                                                                }, 100 );}'))
-          cur_am
-        } else {
-          NULL
-        }
+            cur_am
+          } else {
+            NULL
+          }
+        })
       })
     }
   })

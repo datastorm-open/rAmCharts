@@ -90,9 +90,7 @@ amTimeSeries computes a stock chart.
 \examples{
 data("data_stock_2")
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"))
-
 \donttest{
-
 # upper /lower
 data <- data_stock_2[1:50, ]
 data$ts1low <- data$ts1-100
