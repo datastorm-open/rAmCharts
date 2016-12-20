@@ -12,3 +12,4 @@
 ^man-roxygen
 ^faq
 ^\.travis\.yml$
+^changelog
