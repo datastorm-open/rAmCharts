@@ -22,6 +22,7 @@ shinydashboard::tabItem(
                title = "Code",
                fluidRow(
                  h2("Stock example", align="center"),
+                 
                  column(
                    width = 12,
                    verbatimTextOutput("code_stock1")
