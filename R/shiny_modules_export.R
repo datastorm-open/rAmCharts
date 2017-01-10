@@ -15,6 +15,11 @@
 #'  \item{"type"}{Optionnal, character. Linked to \link{amChartsOutput}}
 #'}
 #' @param path character, directory. tempdir() by Defaut
+#' @param progress boolean, set a progress bar or not ?
+#' @param message charcter, if progress, message. Defaut to "Calculation in progress" 
+#' @param detail charcter, if progress, detail. Defaut to "This may take a while...'
+#' 
+#' @return a reactive expression
 #' 
 #' @name rAmCharts-shinymodules
 #' 
@@ -56,8 +61,27 @@ rAmChartExportServerUI <- function(id) {
 #' @rdname rAmCharts-shinymodules
 #' @export
 rAmChartExportServer <- function(input, output, session, list_am_graph, 
-                                 path = shiny::reactive(tempdir())){
+                                 path = shiny::reactive(tempdir()), progress = T, 
+                                 message = 'Calculation in progress', 
+                                 detail = 'This may take a while...'){
   ns <- session$ns
+  
+  # init progress if needeed
+  progress_bar <- reactive({
+    list_chart <- list_am_graph()
+    if(!is.null(list_chart)){
+      if(progress){
+        progress <- Progress$new(session, min=0, max=length(list_chart))
+        progress$set(message = message,
+                     detail = detail, value = 0)
+        progress
+      } else {
+        NULL
+      }
+    }else{
+      NULL
+    }
+  })
   
   # some controls for rendering in order and for stock issue
   cpt <- shiny::reactiveValues(ind = -1, max = -1, tmp = 0)
@@ -69,7 +93,8 @@ rAmChartExportServer <- function(input, output, session, list_am_graph,
       cpt$max <- length(list_chart)
       cpt$tmp <- shiny::isolate(cpt$tmp) + 1
     } else {
-      cpt$ind = -1
+      cpt$ind <- -1
+      cpt$max <- -1
     }
   })
   
@@ -91,7 +116,7 @@ rAmChartExportServer <- function(input, output, session, list_am_graph,
         if(length(list_chart) > 0){
           plot_output_list <- lapply(1:length(list_chart), function(i) {
             plotname <- ns(paste0("racems_graph_", i, "_", shiny::isolate(cpt$tmp)))
-
+            
             tmp_chart <- list_chart[[i]]
             
             if("width" %in% names(tmp_chart)){
@@ -180,6 +205,15 @@ rAmChartExportServer <- function(input, output, session, list_am_graph,
           outconn <- file(path_file, "wb")
           base64enc::base64decode(what=gsub("^data:image/jpeg;base64,", "", input$racems_img64), output = outconn)
           close(outconn)
+          
+          # increase/close progress
+          progress_bar <- progress_bar()
+          if(!is.null(progress_bar)){
+            progress_bar$set(cpt$ind)
+            if(cpt$ind == cpt$max){
+              progress_bar$close()
+            }
+          }
           cpt$ind <- cpt$ind +1
         }
       })
@@ -187,5 +221,15 @@ rAmChartExportServer <- function(input, output, session, list_am_graph,
     }
   })
   
-  return(path)
+  info <- reactive({
+    cur_g <- cpt$ind
+    max_g <- cpt$max
+    if(cur_g > max_g){
+      cur_g <- -1
+      max_g <- -1
+    }
+    list(current_graph = cur_g, max_graph = max_g, dir = path())
+  })
+  
+  return(info)
 }
