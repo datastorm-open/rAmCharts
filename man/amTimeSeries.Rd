@@ -60,7 +60,7 @@ and maxSeries is 150 - the chart will group data to weeks.}
 \item{groupToPeriods}{\code{character}, Periods to which data will
 be grouped in case there are more data items in the selected
 period than specified in maxSeries property. Possible value are :
-'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm".}
+'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm". Or NULL to disable.}
 
 \item{ZoomButton}{\code{data.frame}, 3 columns : 
 Unit, times unit

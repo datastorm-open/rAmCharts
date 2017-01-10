@@ -28,7 +28,7 @@
 #' @param groupToPeriods \code{character}, Periods to which data will
 #' be grouped in case there are more data items in the selected
 #' period than specified in maxSeries property. Possible value are :
-#' 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm".
+#' 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm". Or NULL to disable.
 #' @param ZoomButton \code{data.frame}, 3 columns : 
 #' Unit, times unit
 #' multiple : multiple*unit 
@@ -235,7 +235,11 @@ amTimeSeries <- function(data, col_date,
   # groupToPeriods control
   difft <- as.numeric(difftime(data[2,col_date], data[1,col_date], units = "secs"))
   groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
-  
+  minPeriod = groupToPeriods[1]
+  if(length(groupToPeriods) == 1){
+    groupToPeriods <- list(groupToPeriods)
+  }
+
   # annual data
   if(isTRUE(all.equal('YYYY', groupToPeriods))){
     groupToPeriods <- c('DD', 'YYYY')
@@ -404,9 +408,10 @@ amTimeSeries <- function(data, col_date,
                            valueLineEnabled = TRUE, valueLineAlpha = 0.5,
                            categoryBalloonDateFormats = mycategoryBalloonDateFormat),
     setPeriodSelector(periodZoom),
-    setCategoryAxesSettings(parseDates = TRUE, minPeriod = 'fff',
+    setCategoryAxesSettings(parseDates = TRUE, minPeriod = minPeriod,
                             groupToPeriods = groupToPeriods, maxSeries = maxSeries),
     setPanelsSettings(marginTop = 30, creditsPosition = creditsPosition),
+    
     setLegendSettings(position = legendPosition),
     setChartScrollbarSettings(enabled = scrollbar, graph = "ts1", graphType = "line", 
                               position = scrollbarPosition, height = scrollbarHeight)
@@ -417,25 +422,30 @@ amTimeSeries <- function(data, col_date,
 controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'), 
                                   diffTime = 30){
   
-  number <- as.numeric(gsub("ss|mm|hh|DD|MM|YYYY", "", groupToPeriods))
-  number[is.na(number)] <- 1
-  
-  period <- gsub("^[[:digit:]]*", "", groupToPeriods)
-  
   ref_period <- data.frame(periode = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'), 
                            seconds = c(1, 60, 3600, 24*3600, 31*24*3600, 365*24*3600))
-  
   rownames(ref_period) <- ref_period$periode
   
-  period <- ref_period[period, "seconds"]
-  
-  select <- groupToPeriods[period*number >= diffTime]
-  
+  if(!is.null(groupToPeriods)){
+    number <- as.numeric(gsub("ss|mm|hh|DD|MM|YYYY", "", groupToPeriods))
+    number[is.na(number)] <- 1
+    
+    period <- gsub("^[[:digit:]]*", "", groupToPeriods)
+    
+    period <- ref_period[period, "seconds"]
+    
+    select <- groupToPeriods[period*number >= diffTime]
+  } else {
+    select <- c(as.character(ref_period$periode)[ref_period$seconds == diffTime])
+  }
+
   #Select min period
   minperiod <- max(which(ref_period$seconds/diffTime<1))
   if(length(minperiod)>0 & diffTime < 24*3600){
-    select <- c(paste0(diffTime/ref_period[minperiod,]$seconds,
-                       ref_period[minperiod,]$periode), select)
+    if(ref_period$seconds[minperiod+1] != diffTime){
+      select <- c(paste0(diffTime/ref_period[minperiod,]$seconds,
+                         ref_period[minperiod,]$periode), select)
+    }
   }
   unique(select[grepl("^[[:digit:]]*((ss)|(mm)|(hh)|(DD)|(MM)|(YYYY))$", select)])
 }

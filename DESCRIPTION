@@ -13,7 +13,7 @@ Description: API for using 'AmCharts' Library. Based on 'htmlwidgets', it
     page <http://www.amcharts.com/online-store/> to purchase a licence, and thus
     support its creators and get a period of Priority Support. See also <http://
     www.amcharts.com/about/> for more information about 'AmCharts' company.
-Version: 2.1.2
+Version: 2.1.3
 Authors@R: c(
     person(given = "Jeffery", family = "Petit", email = "jeffery.petit@datastorm.fr", role = c("aut", "cre")),
     person(given = "Antanas", family = " Marcelionis", role = c("aut", "cph"),
@@ -21,7 +21,7 @@ Authors@R: c(
     person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datastorm.fr", role = c("aut", "ctb")),
     person(given = "Elena", family = "Salette", email = "elena.salette@datastorm.fr", role = c("aut", "ctb")),
     person(given = "Titouan", family = "Robert", email = "titouan.robert@datastorm.fr", role = c("aut", "ctb")))
-Date: 2016-12-20
+Date: 2017-01-10
 License: GPL (>= 2)
 URL: http://datastorm-open.github.io/introduction_ramcharts/
 BugReports: https://github.com/datastorm-open/rAmCharts/issues/
