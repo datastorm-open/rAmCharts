@@ -222,13 +222,12 @@ rAmChartExportServer <- function(input, output, session, list_am_graph,
   })
   
   info <- reactive({
-    cur_g <- cpt$ind
+    cur_g <- cpt$ind-1
     max_g <- cpt$max
-    if(cur_g > max_g){
+    if(cur_g < -1){
       cur_g <- -1
-      max_g <- -1
     }
-    list(current_graph = cur_g, max_graph = max_g, dir = path())
+    list(saved_graphs = cur_g, n_graphs = max_g, dir = path())
   })
   
   return(info)
