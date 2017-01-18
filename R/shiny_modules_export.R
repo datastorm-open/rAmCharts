@@ -68,11 +68,11 @@ rAmChartExportServer <- function(input, output, session, list_am_graph,
   ns <- session$ns
   
   # init progress if needeed
-  progress_bar <- reactive({
+  progress_bar <- shiny::reactive({
     list_chart <- list_am_graph()
     if(!is.null(list_chart)){
       if(progress){
-        progress <- Progress$new(session, min=0, max=length(list_chart))
+        progress <- shiny::Progress$new(session, min=0, max=length(list_chart))
         progress$set(message = message,
                      detail = detail, value = 0)
         progress
@@ -278,11 +278,11 @@ rAmChartExportServer <- function(input, output, session, list_am_graph,
               }
             })
             
-            output[[paste0("save_graph_", ind_chart)]] <- reactive({
+            output[[paste0("save_graph_", ind_chart)]] <- shiny::reactive({
               img64name <- paste0("racems_img64_", ind_chart, "_", shiny::isolate(cpt$tmp))
               if(!is.null(input[[img64name]])){
                 if(input[[img64name]] != ""){
-                  isolate({
+                  shiny::isolate({
                     
                     path_file <- paste0(path(), "/", list_chart[[ind_chart]]$name)
                     outconn <- file(path_file, "wb")
@@ -304,14 +304,14 @@ rAmChartExportServer <- function(input, output, session, list_am_graph,
               NULL
             })
             
-            outputOptions(output, paste0("save_graph_", ind_chart), suspendWhenHidden = FALSE)  
+            shiny::outputOptions(output, paste0("save_graph_", ind_chart), suspendWhenHidden = FALSE)  
           })
         })
       }
     })
   }
 
-  info <- reactive({
+  info <- shiny::reactive({
     cur_g <- cpt$ind-1
     max_g <- cpt$max
     if(cur_g < -1){
