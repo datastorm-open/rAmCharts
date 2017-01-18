@@ -9,7 +9,7 @@
 rAmChartExportServerUI(id)
 
 rAmChartExportServer(input, output, session, list_am_graph,
-  path = shiny::reactive(tempdir()), progress = T,
+  path = shiny::reactive(tempdir()), mode = "single", progress = T,
   message = "Calculation in progress", detail = "This may take a while...")
 }
 \arguments{
@@ -32,11 +32,13 @@ rAmChartExportServer(input, output, session, list_am_graph,
 
 \item{path}{character, directory. tempdir() by Defaut}
 
+\item{mode}{character, 'single' : graphics are rendered and saved one by one. 'multiple' all at same time}
+
 \item{progress}{boolean, set a progress bar or not ?}
 
-\item{message}{charcter, if progress, message. Defaut to "Calculation in progress"}
+\item{message}{character, if progress, message. Defaut to "Calculation in progress"}
 
-\item{detail}{charcter, if progress, detail. Defaut to "This may take a while...'}
+\item{detail}{character, if progress, detail. Defaut to "This may take a while...'}
 }
 \value{
 a reactive expression
