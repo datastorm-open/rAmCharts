@@ -28,7 +28,7 @@
 #' @param groupToPeriods \code{character}, Periods to which data will
 #' be grouped in case there are more data items in the selected
 #' period than specified in maxSeries property. Possible value are :
-#' 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm".
+#' 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm". Or NULL to disable.
 #' @param ZoomButton \code{data.frame}, 3 columns : 
 #' Unit, times unit
 #' multiple : multiple*unit 
@@ -39,6 +39,9 @@
 #' @param scrollbarPosition \code{character}, scrollbar position. Possible values are :
 #' "left", "right", "bottom", "top"
 #' @param scrollbarHeight \code{numeric}, height of scroll bar. Default : 40.
+#' @param scrollbarGraph \code{character}, name of serie (column) to print in scrollbar. Defaut to NULL.
+#' @param cursor \code{boolean}, enabled or not cursor ? Defaut to TRUE.
+#' @param cursorValueBalloonsEnabled \code{boolean}, if cursor, enabled or not balloons on cursor ? Defaut to TRUE.
 #' @param creditsPosition \code{character}, credits position. Possible values are :
 #' "top-right", "top-left", "bottom-right", "bottom-left"
 #' @param group \code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.
@@ -128,6 +131,9 @@ amTimeSeries <- function(data, col_date,
                          scrollbar = TRUE,
                          scrollbarPosition = "bottom",
                          scrollbarHeight = 40,
+                         scrollbarGraph = NULL,
+                         cursor = TRUE,
+                         cursorValueBalloonsEnabled = TRUE,
                          creditsPosition = "top-right",
                          group = NULL,
                          ...)
@@ -155,7 +161,7 @@ amTimeSeries <- function(data, col_date,
   } else {
     stop("col_series must be a vector or a list")
   }
-
+  
   
   #color
   .testCharacter(char = color)
@@ -184,6 +190,10 @@ amTimeSeries <- function(data, col_date,
   .testCharacterLength1(scrollbarPosition)
   .testIn(scrollbarPosition, c("left", "right", "bottom", "top"))
   
+  # scroll bar graph
+  if(!is.null(scrollbarGraph)){
+    stopifnot(scrollbarGraph%in%colnames(data))
+  }
   #creditsPosition
   .testCharacterLength1(creditsPosition)
   .testIn(creditsPosition, c("top-right", "top-left", "bottom-right", "bottom-left"))
@@ -203,7 +213,7 @@ amTimeSeries <- function(data, col_date,
   .testNumericLength1(num = maxSeries)
   
   #.testIn(vect = groupToPeriods, control = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'))
-
+  
   #ZoomButton
   if (!is.null(ZoomButton)) {
     .testIn(vect = names(ZoomButton),control =  c("Unit","multiple","label"))
@@ -234,8 +244,13 @@ amTimeSeries <- function(data, col_date,
   data[,col_date] <- data[,col_date] + (as.POSIXlt(as.character(data[,col_date]), tz = "UTC") - data[,col_date])
   
   # groupToPeriods control
-  difft <- as.numeric(difftime(data[2,col_date], data[1,col_date], units = "secs"))
+  difft <- min(c(as.numeric(difftime(data[2,col_date], data[1,col_date], units = "secs")),
+                 as.numeric(difftime(data[3,col_date], data[2,col_date], units = "secs"))))
   groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
+  minPeriod = groupToPeriods[1]
+  if(length(groupToPeriods) == 1){
+    groupToPeriods <- list(groupToPeriods)
+  }
   
   # annual data
   if(isTRUE(all.equal('YYYY', groupToPeriods))){
@@ -253,33 +268,42 @@ amTimeSeries <- function(data, col_date,
   } else {
     graph_maker$color <- color
   }
-
+  
   # linewidth
   if (length(linewidth) > 1) {
     graph_maker$linewidth <- rep(linewidth[1:length(n_col_series)], n_col_series)
   } else {
     graph_maker$linewidth <- linewidth
   }
-
+  
   # bullet
-  if (length(bullet) > 1) {
-    graph_maker$bullet <- rep(bullet[1:length(n_col_series)], n_col_series)
+  if(!is.null(bullet)){
+    if (length(bullet) > 1) {
+      graph_maker$bullet <- rep(bullet[1:length(n_col_series)], n_col_series)
+    } else {
+      graph_maker$bullet <- bullet
+      graph_maker$bulletAlpha <- 1
+    }
   } else {
-    graph_maker$bullet <- bullet
+    graph_maker$bullet <- "round"
+    graph_maker$bulletSize <- 5
+    graph_maker$bulletAlpha <- 0
+  }
+  
+  # bulletSize
+  if(!is.null(bullet)){
+    if (length(bulletSize) > 1) {
+      graph_maker$bulletSize <- rep(bulletSize[1:length(n_col_series)], n_col_series)
+    } else {
+      graph_maker$bulletSize <- bulletSize
+    }
   }
   
   # linetype
   if (length(linetype) > 1) {
-  graph_maker$dashLength <- rep(linetype[1:length(n_col_series)], n_col_series)
+    graph_maker$dashLength <- rep(linetype[1:length(n_col_series)], n_col_series)
   } else {
     graph_maker$dashLength <- linetype
-  }
-  
-  # bulletSize
-  if (length(bulletSize) > 1) {
-    graph_maker$bulletSize <- rep(bulletSize[1:length(n_col_series)], n_col_series)
-  } else {
-    graph_maker$bulletSize <- bulletSize
   }
   
   # fillAlphas
@@ -314,6 +338,7 @@ amTimeSeries <- function(data, col_date,
                  dashLength = graph_maker[x, "dashLength"],
                  useDataSetColors = FALSE,
                  bullet = ifelse(is.null(graph_maker[x, "bullet"]), "none", graph_maker[x, "bullet"]),
+                 bulletAlpha = graph_maker[x, "bulletAlpha"],
                  precision = precision,
                  lineThickness = graph_maker[x, "linewidth"]
       )
@@ -337,16 +362,16 @@ amTimeSeries <- function(data, col_date,
                  valueField = graph_maker[x, "column"],
                  comparable = TRUE, periodValue = graph_maker[x, "aggregation"],
                  compareField = graph_maker[x, "column"],
-                 # balloonText = paste0(graph_maker[x+1, "column"],' : <b> [[', graph_maker[x+1, "column"], ']] </b><br>',
-                 #                      graph_maker[x, "column"], ' : <b> [[value]] </b><br>',
-                 #                      graph_maker[x-1, "column"],' : <b> [[', graph_maker[x-1, "column"], ']] </b>'),
-                 balloonText = paste0(graph_maker[x, "column"], ' : <b> [[value]] </b><br>'),
+                 balloonText = paste0(graph_maker[x+1, "column"],' : <b> [[', graph_maker[x+1, "column"], ']] </b><br>',
+                                      graph_maker[x, "column"], ' : <b> [[value]] </b><br>',
+                                      graph_maker[x-1, "column"],' : <b> [[', graph_maker[x-1, "column"], ']] </b>'),
                  lineColor = graph_maker[x, "color"],
                  fillAlphas = graph_maker[x, "fillAlphas"],
                  bulletSize = graph_maker[x, "bulletSize"],
                  dashLength = graph_maker[x, "dashLength"],
                  useDataSetColors = FALSE,
                  bullet = ifelse(is.null(graph_maker[x, "bullet"]), "none", graph_maker[x, "bullet"]),
+                 bulletAlpha = graph_maker[x, "bulletAlpha"],
                  precision = precision,
                  lineThickness = graph_maker[x, "linewidth"]
       )
@@ -366,7 +391,7 @@ amTimeSeries <- function(data, col_date,
                  precision = precision
       )
     } 
-
+    
   })
   
   periodZoom <- periodSelector( position = ZoomButtonPosition ,inputFieldsEnabled = FALSE)
@@ -395,48 +420,60 @@ amTimeSeries <- function(data, col_date,
                                setStockLegend(enabled = legend, labelText = "[[title]]", useGraphSettings = TRUE),
                                addTitle(text = main))
   ## Plot
-  pipeR::pipeline(
+  am_output <- pipeR::pipeline(
     amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE, group = group,...),
     setExport(enabled = export),
     addDataSet(dataset_obj),
     addPanel(panel_obj),
-    setChartCursorSettings(valueBalloonsEnabled = TRUE, fullWidth = TRUE,
+    setChartCursorSettings(enabled = cursor, valueBalloonsEnabled = cursorValueBalloonsEnabled, fullWidth = TRUE,
                            cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
-                           valueLineEnabled = TRUE, valueLineAlpha = 0.5,
+                           valueLineEnabled = TRUE, valueLineAlpha = 0.5, 
                            categoryBalloonDateFormats = mycategoryBalloonDateFormat),
     setPeriodSelector(periodZoom),
-    setCategoryAxesSettings(parseDates = TRUE, minPeriod = 'fff',
+    setCategoryAxesSettings(parseDates = TRUE, minPeriod = minPeriod,
                             groupToPeriods = groupToPeriods, maxSeries = maxSeries),
     setPanelsSettings(marginTop = 30, creditsPosition = creditsPosition),
-    setLegendSettings(position = legendPosition),
-    setChartScrollbarSettings(enabled = scrollbar, graph = "ts1", graphType = "line", 
-                              position = scrollbarPosition, height = scrollbarHeight)
+    
+    setLegendSettings(position = legendPosition)
   )
-
+  
+  if(is.null(scrollbarGraph)){
+    am_output <- setChartScrollbarSettings(am_output, enabled = scrollbar,position = scrollbarPosition, 
+                                           height = scrollbarHeight)
+  } else {
+    am_output <- setChartScrollbarSettings(am_output, enabled = scrollbar, graph = scrollbarGraph, graphType = "line", 
+                                           position = scrollbarPosition, height = scrollbarHeight)
+  }
+  am_output
 }
 
 controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'), 
                                   diffTime = 30){
   
-  number <- as.numeric(gsub("ss|mm|hh|DD|MM|YYYY", "", groupToPeriods))
-  number[is.na(number)] <- 1
-  
-  period <- gsub("^[[:digit:]]*", "", groupToPeriods)
-  
   ref_period <- data.frame(periode = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'), 
                            seconds = c(1, 60, 3600, 24*3600, 31*24*3600, 365*24*3600))
-  
   rownames(ref_period) <- ref_period$periode
   
-  period <- ref_period[period, "seconds"]
-  
-  select <- groupToPeriods[period*number >= diffTime]
+  if(!is.null(groupToPeriods)){
+    number <- as.numeric(gsub("ss|mm|hh|DD|MM|YYYY", "", groupToPeriods))
+    number[is.na(number)] <- 1
+    
+    period <- gsub("^[[:digit:]]*", "", groupToPeriods)
+    
+    period <- ref_period[period, "seconds"]
+    
+    select <- groupToPeriods[period*number >= diffTime]
+  } else {
+    select <- c(as.character(ref_period$periode)[ref_period$seconds == diffTime])
+  }
   
   #Select min period
   minperiod <- max(which(ref_period$seconds/diffTime<1))
   if(length(minperiod)>0 & diffTime < 24*3600){
-    select <- c(paste0(diffTime/ref_period[minperiod,]$seconds,
-                       ref_period[minperiod,]$periode), select)
+    if(ref_period$seconds[minperiod+1] != diffTime){
+      select <- c(paste0(diffTime/ref_period[minperiod,]$seconds,
+                         ref_period[minperiod,]$periode), select)
+    }
   }
   unique(select[grepl("^[[:digit:]]*((ss)|(mm)|(hh)|(DD)|(MM)|(YYYY))$", select)])
 }

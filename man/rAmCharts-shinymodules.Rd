@@ -9,7 +9,8 @@
 rAmChartExportServerUI(id)
 
 rAmChartExportServer(input, output, session, list_am_graph,
-  path = shiny::reactive(tempdir()))
+  path = shiny::reactive(tempdir()), mode = "single", progress = T,
+  message = "Calculation in progress", detail = "This may take a while...")
 }
 \arguments{
 \item{id}{character, used to specify namesapce, see \code{shiny::\link[shiny]{NS}}}
@@ -30,6 +31,17 @@ rAmChartExportServer(input, output, session, list_am_graph,
 }}
 
 \item{path}{character, directory. tempdir() by Defaut}
+
+\item{mode}{character, 'single' : graphics are rendered and saved one by one. 'multiple' all at same time}
+
+\item{progress}{boolean, set a progress bar or not ?}
+
+\item{message}{character, if progress, message. Defaut to "Calculation in progress"}
+
+\item{detail}{character, if progress, detail. Defaut to "This may take a while...'}
+}
+\value{
+a reactive expression
 }
 \description{
 This function need the \code{base64enc} package to save image.

@@ -1,5 +1,14 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.4 (based on [amcharts][amcharts_url] version **3.20.18**)
+
+  * fix bug and add arguments on ``amTimeSeries`` 
+  
+### rAmCharts 2.1.3 (based on [amcharts][amcharts_url] version **3.20.18**)
+
+  * fix bug on ``amTimeSeries`` with ``groupToPeriods``
+  * Add control and options to export shiny
+  
 ### rAmCharts 2.1.2 (based on [amcharts][amcharts_url] version **3.20.18**)
 
   * fix bug with ``addListener``

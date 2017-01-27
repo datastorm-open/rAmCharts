@@ -13,6 +13,7 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   "hh", "DD", "MM", "YYYY"), ZoomButton = data.frame(Unit = "MAX", multiple =
   1, label = "All"), ZoomButtonPosition = "bottom", scrollbar = TRUE,
   scrollbarPosition = "bottom", scrollbarHeight = 40,
+  scrollbarGraph = NULL, cursor = TRUE, cursorValueBalloonsEnabled = TRUE,
   creditsPosition = "top-right", group = NULL, ...)
 }
 \arguments{
@@ -60,7 +61,7 @@ and maxSeries is 150 - the chart will group data to weeks.}
 \item{groupToPeriods}{\code{character}, Periods to which data will
 be grouped in case there are more data items in the selected
 period than specified in maxSeries property. Possible value are :
-'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm".}
+'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm". Or NULL to disable.}
 
 \item{ZoomButton}{\code{data.frame}, 3 columns : 
 Unit, times unit
@@ -76,6 +77,12 @@ label : button's label}
 "left", "right", "bottom", "top"}
 
 \item{scrollbarHeight}{\code{numeric}, height of scroll bar. Default : 40.}
+
+\item{scrollbarGraph}{\code{character}, name of serie (column) to print in scrollbar. Defaut to NULL.}
+
+\item{cursor}{\code{boolean}, enabled or not cursor ? Defaut to TRUE.}
+
+\item{cursorValueBalloonsEnabled}{\code{boolean}, if cursor, enabled or not balloons on cursor ? Defaut to TRUE.}
 
 \item{creditsPosition}{\code{character}, credits position. Possible values are :
 "top-right", "top-left", "bottom-right", "bottom-left"}
