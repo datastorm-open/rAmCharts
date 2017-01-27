@@ -107,6 +107,74 @@ shinydashboard::tabItem(
              )
       )
       
+      ,
+      h1("Data sets plot"),
+      tabBox(width=12,
+             
+             tabPanel(
+               title = "Graphic",
+               fluidRow(
+                 h2("Simple example", align="center"),
+                 column(
+                   width = 12,
+                   rAmCharts::amChartsOutput("amstock5"))
+                 
+               )),
+             tabPanel(
+               title = "Code",
+               fluidRow(
+                 h2("Simple example", align="center"),
+                 column(
+                   width = 12,
+                   
+                   verbatimTextOutput("code_amstock5"))
+               )
+             )
+      ),
+      tabBox(width=12,
+             
+             tabPanel(
+               title = "Graphic",
+               fluidRow(
+                 h2("Multi pannels", align="center"),
+                 column(
+                   width = 12,
+                   rAmCharts::amChartsOutput("amstock6"))
+                 
+               )),
+             tabPanel(
+               title = "Code",
+               fluidRow(
+                 h2("Multi pannels", align="center"),
+                 column(
+                   width = 12,
+                   
+                   verbatimTextOutput("code_amstock6"))
+               )
+             )
+      ),
+      tabBox(width=12,
+             
+             tabPanel(
+               title = "Graphic",
+               fluidRow(
+                 h2("Others options", align="center"),
+                 column(
+                   width = 12,
+                   rAmCharts::amChartsOutput("amstock7"))
+                 
+               )),
+             tabPanel(
+               title = "Code",
+               fluidRow(
+                 h2("Others options", align="center"),
+                 column(
+                   width = 12,
+                   
+                   verbatimTextOutput("code_amstock7"))
+               )
+             )
+      )
       
       
       

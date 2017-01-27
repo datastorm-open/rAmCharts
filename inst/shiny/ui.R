@@ -15,6 +15,10 @@ shinydashboard::dashboardPage(
     shinydashboard::tabItems(
       source("./src/Information/information_ui.R", local = TRUE)$value,
       
+      
+      source("./src/hist/hist_ui.R", local = TRUE)$value,
+      source("./src/hist/amhist_ui.R", local = TRUE)$value,
+      
       source("./src/pie/pie_ui.R", local = TRUE)$value,
       source("./src/pie/ampie_ui.R", local = TRUE)$value,
       

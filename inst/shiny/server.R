@@ -7,6 +7,10 @@ library(pipeR)
 library(data.table)
 
 shinyServer(function(input, output) {
+  
+  source("./src/hist/hist_server.R", local = TRUE, encoding = "UTF-8")
+  source("./src/hist/amhist_server.R", local = TRUE, encoding = "UTF-8")
+  
   source("./src/pie/pie_server.R", local = TRUE, encoding = "UTF-8")
   source("./src/pie/ampie_server.R", local = TRUE, encoding = "UTF-8")
   

@@ -2,6 +2,14 @@ shinydashboard::dashboardSidebar(
 shinydashboard::sidebarMenu(id = "tabs",
             menuItem(text ="Information",tabName = "information",icon = icon("search")),
             
+            
+            ##Hist
+            menuItem(text ="Hist",icon = icon("area-chart"),
+                     menuSubItem(text = "Simple Function", tabName = "amhist"),
+                     menuSubItem(text = "Complex Function", tabName = "hist")),
+            
+            
+            
             ##Pie
             menuItem(text ="Pie",icon = icon("pie-chart"),
                      menuSubItem(text = "Simple Function", tabName = "amPie"),
