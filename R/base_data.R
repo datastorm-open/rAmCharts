@@ -14,6 +14,19 @@
 "data_stock_2"
 
 #' @title Random data for example
+#' @description Times Series on 2017, by months
+#' @format List of 4 datasets, 4 variables in each
+#' \describe{
+#'   \item{date}{vector of datesTimes}
+#'   \item{value}{random vector of data}
+#'   \item{volume}{random vector of data}
+#'   \item{value2}{random vector of data}
+#'   \item{value3}{random vector of data}
+#' }
+#'
+"data_stock_3"
+
+#' @title Random data for example
 #' @description A list containing 4 datasets.
 #' @format Each datasetis a data.table with 21 rows and 4 variables:
 #' \describe{

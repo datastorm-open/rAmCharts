@@ -119,7 +119,8 @@ amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
              groupToPeriods = c('hh', 'DD', '10DD'),
              linewidth = c(3, 1))
-
+             
+amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), aggregation = "Sum")
 
 
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",

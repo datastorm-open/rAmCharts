@@ -40,31 +40,22 @@ label : button's label}
 amStockMultiSet compute a stock of multi data-sets, still in dev
 }
 \examples{
-data(data_stock1)
-data_stock1$chartData1$value2 <- as.numeric(data_stock1$chartData1$value) + 10
-data_stock1$chartData2$value2 <- as.numeric(data_stock1$chartData2$value) + 10
-data_stock1$chartData3$value2 <- as.numeric(data_stock1$chartData3$value) + 10
-data_stock1$chartData4$value2 <- as.numeric(data_stock1$chartData4$value) + 10
+data(data_stock_3)
 
-data_stock1$chartData1$value3 <- as.numeric(data_stock1$chartData1$value) - 10
-data_stock1$chartData2$value3 <- as.numeric(data_stock1$chartData2$value) - 10
-data_stock1$chartData3$value3 <- as.numeric(data_stock1$chartData3$value) - 10
-data_stock1$chartData4$value3 <- as.numeric(data_stock1$chartData4$value) - 10
-
-amStockMultiSet(data = data_stock1)
-amStockMultiSet(data = data_stock1, panelColumn = c(1,2,1,1))
+amStockMultiSet(data = data_stock_3)
+amStockMultiSet(data = data_stock_3, panelColumn = c(1,2,1,1))
 \donttest{
-amStockMultiSet(data = data_stock1, panelColumn = c(1,2,3,4))
+amStockMultiSet(data = data_stock_3, panelColumn = c(1,2,3,4))
 
 ZoomButton <- data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 10 ,1),
                    label = c("Day","10 days", "MAX"))
                    ZoomButtonPosition <- "bottom"
-amStockMultiSet(data = data_stock1, panelColumn = c(1,2,1,1), ZoomButton = ZoomButton,
+amStockMultiSet(data = data_stock_3, panelColumn = c(1,2,1,1), ZoomButton = ZoomButton,
 ZoomButtonPosition = "top")
 
-amStockMultiSet(data = data_stock1, precision = 2)
+amStockMultiSet(data = data_stock_3, precision = 2)
 
-amStockMultiSet(data = data_stock1, panelColumn = c(1,2,1,1), percentHeightPanel = c(3,1))
+amStockMultiSet(data = data_stock_3, panelColumn = c(1,2,1,1), percentHeightPanel = c(3,1))
 }
 
 }
