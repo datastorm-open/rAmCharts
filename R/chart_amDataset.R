@@ -2,7 +2,7 @@
 #' @description  amStockMultiSet compute a stock of multi data-sets, still in dev
 #' 
 #' @param data \code{list}, list of data.frame (same structure) first column is date, others are values
-#' @param panelColumn \code{vector}, numeric vector, controle panel adding for selected series
+#' @param panelColumn \code{numeric}, numeric vector, controle panel adding for selected series
 #' @param ZoomButtonPosition \code{character}, zoom button position. Possible values are :
 #' "left", "right", "bottom", "top"
 #' @param color \code{character}, color of data-sets (in hexadecimal).
