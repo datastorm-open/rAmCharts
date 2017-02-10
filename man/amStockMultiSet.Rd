@@ -13,7 +13,7 @@ amStockMultiSet(data, panelColumn = NULL, ZoomButtonPosition = "bottom",
 \arguments{
 \item{data}{\code{list}, list of data.frame (same structure) first column is date, others are values}
 
-\item{panelColumn}{\code{vector}, numeric vector, controle panel adding for selected series}
+\item{panelColumn}{\code{numeric}, numeric vector, controle panel adding for selected series}
 
 \item{ZoomButtonPosition}{\code{character}, zoom button position. Possible values are :
 "left", "right", "bottom", "top"}

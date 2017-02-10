@@ -59,6 +59,11 @@ amBoxplot(rnorm(100))
 # 'formula'
 amBoxplot(count ~ spray, data = InsectSprays)
 
+# 'formula', two group
+data <- InsectSprays
+data$group <- c("H", "F")
+amBoxplot(count ~ spray + group, data = data, col = c("purple", "darkblue"))
+
 # 'matrix'
 x <- matrix(nrow = 10, ncol = 5, rnorm(50))
 amBoxplot(x)

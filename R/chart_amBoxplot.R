@@ -30,6 +30,11 @@
 #' # 'formula'
 #' amBoxplot(count ~ spray, data = InsectSprays)
 #' 
+#' # 'formula', two group
+#' data <- InsectSprays
+#' data$group <- c("H", "F")
+#' amBoxplot(count ~ spray + group, data = data, col = c("purple", "darkblue"))
+#' 
 #' # 'matrix'
 #' x <- matrix(nrow = 10, ncol = 5, rnorm(50))
 #' amBoxplot(x)
@@ -238,10 +243,13 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   }
   
   x <- as.character(formula)[2]
-  y <- as.character(formula)[3]
-  
-  res <- data[, list(.dtBoxplotStat(list(eval(parse(text = x)), id))), by = y]
-  res <- res[order(res[, eval(parse(text = y))])]
+  y <- gsub("^[[:space:]]|[[:space:]]$", "", 
+            unlist(strsplit(as.character(formula)[3], "+", fixed = T)))
+  if(length(y) > 2){
+    stop("Invalid formula. Can only group per one or two variables, not more.")
+  }
+  res <- data[, list(.dtBoxplotStat(list(eval(parse(text = x)), id))), keyby = y]
+  # res <- res[order(res[, eval(parse(text = y))])]
   
   sup_options <- list(...)
   if("precision" %in% names(sup_options)){
@@ -306,8 +314,35 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
     chart <- addValueAxes(chart, minimum = ylim[1], maximum = ylim[length(ylim)])
   }
   
-  if (!is.null(xlab)) {
+  info_guide <- NULL
+  if(all(c("cat1", "cat2") %in% colnames(dp))){
+    info_guide <- dp[, list(category = cat[1], toCategory = cat[.N]),  by = cat1]
+  }
+  
+  if (!is.null(xlab) & is.null(info_guide)) {
     chart <- setCategoryAxis(chart, title = xlab)
+  }
+  if (!is.null(info_guide)) {
+    guides <- lapply(1:nrow(info_guide), function(x){
+      list(category = info_guide[x, category],
+           toCategory = info_guide[x, toCategory],
+           lineAlpha = 0.5,
+           tickLength = 30,
+           expand = TRUE,
+           label = info_guide[x, cat1])
+    })
+    
+    if(is.null(xlab)){
+      xlab = ""
+    }
+    cur_warn <- options("warn")$warn
+    options(warn = -1)
+    chart <- setCategoryAxis(chart, gridPosition = "start",  axisAlpha =  0.5, gridAlpha = 0, 
+                             position = "left", guides = guides, 
+                             labelFunction = htmlwidgets::JS("function( label, item ) {
+                               return item.dataContext.cat2;
+                             }"), title = xlab)
+    options(warn = cur_warn)
   }
   
   # return the chart with argument 'RType_' for amOptions
@@ -364,12 +399,21 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
 
 .finalDataBoxplot <- function(res, col = NULL, precision = 2)
 {
-  
-  dp <- data.table(cat = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[1]))]), 
-                   round(t(data.frame(res[seq(1, nrow(res), by = 2), eval(parse(text = "V1"))]))[, c(1,1:5, 5), drop = FALSE], precision))
-  
-  setnames(dp,  c("cat", "low_outlier", "low", "open", "median", "close", "high", "high_outlier"))
-  
+  if(ncol(res) == 2){
+    dp <- data.table(cat = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[1]))]), 
+                     round(t(data.frame(res[seq(1, nrow(res), by = 2), eval(parse(text = "V1"))]))[, c(1,1:5, 5), drop = FALSE], precision))
+    
+    setnames(dp,  c("cat", "low_outlier", "low", "open", "median", "close", "high", "high_outlier"))
+    
+  } else {
+    dp <- data.table(cat1 = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[1]))]),
+                     cat2 = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[2]))]),
+                     round(t(data.frame(res[seq(1, nrow(res), by = 2), eval(parse(text = "V1"))]))[, c(1,1:5, 5), drop = FALSE], precision))
+    
+    setnames(dp,  c("cat1", "cat2", "low_outlier", "low", "open", "median", "close", "high", "high_outlier"))
+    dp[, cat:= paste(cat1, cat2, sep = "-")]  
+  }
+
   if(is.null(col)){
     col <- "#1e90ff"
   }
@@ -377,17 +421,17 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   
   outliers <- as.list(res[seq(2, nrow(res), by = 2)])
   
-  cat <- as.character(outliers[[1]])
-  
-  addcat <- sapply(1:length(outliers[[2]]), function(x){
-    if(nrow(outliers[[2]][[x]]) > 0){
-      outliers[[2]][[x]]$cat <<- cat[x]
+  # cat <- as.character(outliers[[1]])
+  cat <- dp$cat
+  addcat <- sapply(1:length(outliers[[ncol(res)]]), function(x){
+    if(nrow(outliers[[ncol(res)]][[x]]) > 0){
+      outliers[[ncol(res)]][[x]]$cat <<- cat[x]
     } else {
-      outliers[[2]][[x]] <<- data.table(x = 1, id = 1, cat = "")[x == 0]
+      outliers[[ncol(res)]][[x]] <<- data.table(x = 1, id = 1, cat = "")[x == 0]
     }
   })
   
-  outliers <- do.call("rbind", outliers[[2]])
+  outliers <- do.call("rbind", outliers[[ncol(res)]])
   
   if(nrow(outliers) > 0){
     outliers[, eval(parse(text = paste0("x := list(round(x, ", precision, "))")))]

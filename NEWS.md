@@ -3,6 +3,7 @@
 ### rAmCharts 2.1.4 (based on [amcharts][amcharts_url] version **3.20.18**)
 
   * fix bug and add arguments on ``amTimeSeries`` 
+  * Add multiple grouping on ``amBoxplot`` 
   
 ### rAmCharts 2.1.3 (based on [amcharts][amcharts_url] version **3.20.18**)
 
