@@ -326,7 +326,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
     guides <- lapply(1:nrow(info_guide), function(x){
       list(category = info_guide[x, category],
            toCategory = info_guide[x, toCategory],
-           lineAlpha = 0.5,
+           lineAlpha = 0.15,
            tickLength = 30,
            expand = TRUE,
            label = info_guide[x, cat1])
