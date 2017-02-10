@@ -40,7 +40,7 @@
 #' amBoxplot(x)
 #' 
 #' # 'data.frame'
-#' amBoxplot(iris)
+#' amBoxplot(iris[, 1:4])
 #' 
 #' 
 #' # Other examples available which can be time consuming depending on your configuration.
@@ -316,7 +316,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   
   info_guide <- NULL
   if(all(c("cat1", "cat2") %in% colnames(dp))){
-    info_guide <- dp[, list(category = cat[1], toCategory = cat[.N]),  by = cat1]
+    info_guide <- dp[, eval(parse(text = "list(category = cat[1], toCategory = cat[.N])")),  by = "cat1"]
   }
   
   if (!is.null(xlab) & is.null(info_guide)) {
@@ -324,12 +324,12 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   }
   if (!is.null(info_guide)) {
     guides <- lapply(1:nrow(info_guide), function(x){
-      list(category = info_guide[x, category],
-           toCategory = info_guide[x, toCategory],
+      list(category = info_guide[x, eval(parse(text = "category"))],
+           toCategory = info_guide[x, eval(parse(text = "toCategory"))],
            lineAlpha = 0.15,
            tickLength = 30,
            expand = TRUE,
-           label = info_guide[x, cat1])
+           label = info_guide[x, eval(parse(text = "cat1"))])
     })
     
     if(is.null(xlab)){
@@ -372,7 +372,22 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
       stats[1] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "min(x)"))]
       stats[5] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "max(x)"))]
       
-      out <- out[ , eval(parse(text = "list(N = .N, id)")), by = "x"]
+      # control des outliers
+      if(class(out$x) == "integer"){
+        out[, eval(parse(text = "x := as.numeric(x)"))]
+      }
+      out <- out[, eval(parse(text = "list(N = .N, id)")), by = "x"]
+      signif_n <- 6
+      in_wh <- FALSE
+      while(nrow(out[, eval(parse(text = "list(.N)")), by = "x"]) >= 500){
+        out[, eval(parse(text = "x := signif(x, signif_n)"))]
+        signif_n <- signif_n -1
+        in_wh <- TRUE
+      }
+      if(in_wh){
+        out <- out[, eval(parse(text = "list(N = .N, id)")), by = "x"]
+      }
+      
       out[eval(parse(text = 'N == 1')), eval(parse(text = 'label := "<b> Individual </b>: "'))]
       out[eval(parse(text = 'N > 1')), eval(parse(text = '`:=`(label = "<b> Number of outliers </b>: ", id = N)'))]
       out <- unique(out[, c("x", "id", "label"), with = FALSE])
@@ -411,7 +426,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
                      round(t(data.frame(res[seq(1, nrow(res), by = 2), eval(parse(text = "V1"))]))[, c(1,1:5, 5), drop = FALSE], precision))
     
     setnames(dp,  c("cat1", "cat2", "low_outlier", "low", "open", "median", "close", "high", "high_outlier"))
-    dp[, cat:= paste(cat1, cat2, sep = "-")]  
+    dp[, eval(parse(text = 'cat:= paste(cat1, cat2, sep = "-")'))]  
   }
 
   if(is.null(col)){

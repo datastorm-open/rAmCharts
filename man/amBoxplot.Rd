@@ -69,7 +69,7 @@ x <- matrix(nrow = 10, ncol = 5, rnorm(50))
 amBoxplot(x)
 
 # 'data.frame'
-amBoxplot(iris)
+amBoxplot(iris[, 1:4])
 
 
 # Other examples available which can be time consuming depending on your configuration.
