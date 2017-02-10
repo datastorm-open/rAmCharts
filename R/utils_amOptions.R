@@ -285,7 +285,8 @@ amOptions <- function(chart, theme = c("none", "light", "dark", "patterns", "cha
   ## Rotate label
   if (labelRotation !=0) {
     if (!chart@type == "radar")
-      chart <- setCategoryAxis(.Object = chart, labelRotation = labelRotation)
+      # chart <- setCategoryAxis(.Object = chart, labelRotation = labelRotation)
+      chart@categoryAxis$labelRotation <- labelRotation # to not erase previously setters
     else
       message("Impossible to rotate label for a radar chart !")
   }
