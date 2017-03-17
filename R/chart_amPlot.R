@@ -18,6 +18,7 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' for a smoothed line (deprecated), "st" for steps, "p" for points, and "b" for line and points.
 #' Default set to "p".
 #' @param col either a \code{factor} or a \code{character}, default set to "gray".
+#' @param fill_alphas a \code{numeric} between 0 and 1 for printed area.
 #' @param weights \code{numeric}, weights for x/y charts only. Small values are prefered for lisibility.
 #' @param id \code{numeric}, point id, for x/y charts only. Default 1:length(x).
 #' @param precision \code{numeric}, precision you wish to display. Default set to 2.
@@ -105,7 +106,7 @@ amPlot.numeric <- function(x, y,
                                       "triangleLeft", "triangleRight",
                                       "triangleUp", "triangleDown"),
                            type = c("points", "line", "smoothedLine", "step", "both"),
-                           col = "#0066cc", 
+                           col = "#0066cc", fill_alphas = 0,
                            weights = NULL, precision = 2, id, error, xlab, ylab,
                            lty, cex, lwd, xlim, ylim, ...)
 {
@@ -149,7 +150,8 @@ amPlot.numeric <- function(x, y,
     if (missing(cex)) cex <- 1
     
     # define the graph object depending on the type
-    graph_obj <- getGraph(type = type, col = col, bullet = bullet,
+    graph_obj <- getGraph(type = type, col = col, fill_alphas = fill_alphas,
+                          bullet = bullet,
                           title = deparse(substitute(x)),
                           cex = cex, lwd = lwd, lty = lty)
     
@@ -166,6 +168,9 @@ amPlot.numeric <- function(x, y,
     } else {
       categoryAxis(title = xlab, position = "bottom", id = "x")
     }
+    
+    # test fill_alphas value
+    .testInterval(fill_alphas, 0, 1)
     
     # finally build the chart
     amSerialChart(categoryField = "cat", precision = precision) %>>%
@@ -227,7 +232,8 @@ amPlot.numeric <- function(x, y,
     
     graph_obj <- getGraphXY(type = type, bullet = bullet, cex = cex, title = graphTitle,
                             lwd = lwd, lty = lty, bulletAlpha = bulletAlpha, col = col,
-                            balloonText = balloonText, weighted = weighted)
+                            fill_alphas = fill_alphas, balloonText = balloonText, 
+                            weighted = weighted)
     
     amXYChart(precision = precision) %>>%
       addGraph(amGraph = graph_obj) %>>%
@@ -246,6 +252,8 @@ amPlot.numeric <- function(x, y,
   if (!missing(ylim)) {
     .testNumeric(ylim)
     .testLength(ylim, 2)
+    valueAxis_left <- valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y",
+                                minimum = ylim[1], maximum = ylim[2])
   } else if (!missing(y)) {
     ylim <- range(y)
     valueAxis_left <- valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y",
@@ -253,8 +261,6 @@ amPlot.numeric <- function(x, y,
   } else {
     valueAxis_left <- valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y")
   }
-
- 
   
   chart <- addValueAxis(.Object = chart, valueAxis = valueAxis_left)
   
@@ -273,7 +279,7 @@ amPlot.character <- function(x, y,
                                         "triangleLeft", "triangleRight",
                                         "triangleUp", "triangleDown"),
                              type = c("points", "line", "smoothedLine", "step", "both"),
-                             col = "#0066cc", 
+                             col = "#0066cc", fill_alphas = 0,
                              weights = NULL,
                              precision = 2,
                              parseDates = FALSE, dataDateFormat,
@@ -323,8 +329,8 @@ amPlot.character <- function(x, y,
     if (missing(cex)) cex <- 1
     
     # define the graph object depending on the type
-    graph_obj <- getGraph(type = type, col = col, bullet = bullet,
-                          title = deparse(substitute(y)),
+    graph_obj <- getGraph(type = type, col = col, fill_alphas = fill_alphas, 
+                          bullet = bullet, title = deparse(substitute(y)),
                           cex = cex, lwd = lwd, lty = lty)
     
     # define axes label
@@ -341,6 +347,8 @@ amPlot.character <- function(x, y,
       chart <- amSerialChart(categoryField = "cat", precision = precision)
     }
     
+    # test fill_alphas value
+    .testInterval(fill_alphas, 0, 1)
     
     # finally build the chart
     chart %>>%
@@ -354,13 +362,17 @@ amPlot.character <- function(x, y,
   }
   
   # Add common valueAxis at the left
-  valueAxis_left <- if (!missing(ylim)) {
+  if (!missing(ylim)) {
     .testNumeric(ylim)
     .testLength(ylim, 2)
-    valueAxis(title = ylab, position = "left", axisAlpha = 0,
-              minimum = ylim[1], maximum = ylim[2], id = "y")
+    valueAxis_left <- valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y",
+                                minimum = ylim[1], maximum = ylim[2])
+  } else if (!missing(y)) {
+    ylim <- range(y)
+    valueAxis_left <- valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y",
+                                minimum = ylim[1], maximum = ylim[2])
   } else {
-    valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y")
+    valueAxis_left <- valueAxis(title = ylab, position = "left", axisAlpha = 0, id = "y")
   }
   
   chart <- addValueAxis(.Object = chart, valueAxis = valueAxis_left)
@@ -401,10 +413,13 @@ amPlot.factor <- function(x, y, bullet = "round", type = "p", col = "gray",
 #'
 #' @export
 #' 
-amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab, ...)
+amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab, fill_alphas = 0, ...)
 {
   if (missing(ylab)) ylab <- deparse(substitute(x))
   if (missing(xlab)) xlab <- "index"
+  
+  # test fill_alphas value
+  .testInterval(fill_alphas, 0, 1)
   
   if (missing(columns)) {
     columns <- sapply(x, is.numeric)
@@ -441,6 +456,7 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
       graph(balloonText = "value: <b>[[value]]</b>",
             title = names[i], valueField = names[i],
             lineAlpha = 1, type = type[i], bullet = "round",
+            fill_alphas = fill_alphas,
             bulletAlpha = 0)
     })
     
@@ -469,7 +485,7 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
 #' @import pipeR
 #' @export
 #' 
-amPlot.formula <- function (x, data, type = "p", ...)
+amPlot.formula <- function (x, data, type = "p", fill_alphas = 0, ...)
 {
   y_name <- all.vars(x[-3]) # subset variables in the lhs
   x_name <- all.vars(x[-2]) # subset variables in the rhs
@@ -477,18 +493,18 @@ amPlot.formula <- function (x, data, type = "p", ...)
     y <- data[[eval(y_name)]]
     assign(y_name, y)
     chart <- eval(parse(text = paste0("amPlot(x = data[[eval(x_name)]], y = ", y_name,
-                                      ", xlab = eval(x_name), ylab = eval(y_name), type = type, ...)")))
+                                      ", xlab = eval(x_name), ylab = eval(y_name), type = type, fill_alphas = fill_alphas, ...)")))
   } else {
     i <- 1
     y <- data[[eval(y_name[i])]]
     assign(y_name[i], y)
     chart <- eval(parse(text = paste0("amPlot(x = data[[eval(x_name)]], y = ", y_name[i],
-                                      ", xlab = eval(x_name), ylab = 'multiple series', type = type, ...)")))
+                                      ", xlab = eval(x_name), ylab = 'multiple series', type = type, fill_alphas = fill_alphas, ...)")))
     i <- i + 1
     while(i <= length(y_name)) {
       chart <- chart %>>%
         amLines(y = data[[eval(y_name[i])]], title = eval(y_name[i]), 
-                type = type)
+                type = type, fill_alphas = fill_alphas)
       i <- i + 1
     }
   }
@@ -496,26 +512,31 @@ amPlot.formula <- function (x, data, type = "p", ...)
 }
 
 
-getGraph <- function (type, col, bullet, cex, lwd, lty, title)
+getGraph <- function (type, col, bullet, cex, lwd, lty, title, fill_alphas)
 {
   if (type == "points" && bullet %in% c("xError", "yError"))
     graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
-                       lineAlpha = 0, errorField = "error", title = title,
+                       lineAlpha = 0, fillAlphas = fill_alphas,
+                       errorField = "error", title = title,
                        bulletAxis = "y", bullet = bullet, bulletSize = cex)
   else if (type == "points")
     graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
-                       lineAlpha = 0, bullet = bullet, bulletSize = cex, title = title)
+                       lineAlpha = 0, fillAlphas = fill_alphas,
+                       bullet = bullet, bulletSize = cex, title = title)
   else if (type == "both")
     graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x",
-                       lineAlpha = 1, lineThickness = lwd, title = title,
+                       lineAlpha = 1, fillAlphas = fill_alphas,
+                       lineThickness = lwd, title = title,
                        dashLength = lty, bullet = bullet, bulletSize = cex, type = "smoothedLine")
   else if(type %in% c("line", "smoothedLine", "step"))
     graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x", title = title,
-                       lineAlpha = 1, dashLength = lty, lineThickness = lwd, type = type,
+                       lineAlpha = 1, fillAlphas = fill_alphas,
+                       dashLength = lty, lineThickness = lwd, type = type,
                        bullet = "round", bulletAlpha = 0)
   else
     graph_obj <- graph(balloonText = "value: <b>[[value]]</b>", valueField = "x", title = title,
-                       lineAlpha = 1, dashLength = lty, lineThickness = lwd, type = type)
+                       lineAlpha = 1, fillAlphas = fill_alphas, 
+                       dashLength = lty, lineThickness = lwd, type = type)
   
   if (nlevels(col) == 1) 
     setProperties(.Object = graph_obj, lineColor = levels(col))
@@ -524,7 +545,7 @@ getGraph <- function (type, col, bullet, cex, lwd, lty, title)
 }
 
 getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
-                        bulletAlpha, balloonText, weighted, title)
+                        bulletAlpha, balloonText, weighted, title, fill_alphas)
 {
   graph_obj <- switch (type,
                        "points" = {
@@ -534,13 +555,13 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
                        },
                        "smoothedLine" = {
                          graph(balloonText = balloonText, valueField = "weights", title = title,
-                               xField = "x", yField = "y", bullet = bullet,
+                               xField = "x", yField = "y", bullet = bullet, fillAlphas = fill_alphas,
                                lineThickness = lwd, dashLength = lty, bulletAlpha = bulletAlpha)
                        },
                        "line" = {
                          graph(balloonText = balloonText, valueField = "weights", title = title,
                                xField = "x", yField = "y", bullet = "round", bulletAlpha = 0,
-                               lineThickness = lwd, dashLength = lty)
+                               fillAlphas = fill_alphas, lineThickness = lwd, dashLength = lty)
                        })
   
   if (weighted) 
@@ -595,7 +616,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' 
 amLines <- function(chart, x = NULL, y = NULL,
                     type = c("points", "line", "smoothedLine"),
-                    col = "#0066cc", title)
+                    col = "#0066cc", title, fill_alphas = 0)
 {
   
   
@@ -659,7 +680,8 @@ amLines <- function(chart, x = NULL, y = NULL,
   
   # initialize the graph object
   graph_obj <- graph(title = title, valueField = name,
-                     lineAlpha = lineAlpha, lineColor = col, 
+                     lineAlpha = lineAlpha, fillAlphas = fill_alphas,
+                     lineColor = col, 
                      balloonText = balloonText)
   
   # the field where to find the new values depend on the chart type
