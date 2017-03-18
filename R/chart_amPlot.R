@@ -584,6 +584,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' @param type (optionnal) \code{character}. Possible values are : "l" for line, 
 #' "p" for points, "sl" for smoothed line. 
 #' @param col \code{character}, color of the new serie.
+#' @param fill_alphas a \code{numeric} between 0 and 1 for printed area.
 #' @param title \code{character}, name of the new serie, used when legend is enabled.
 #' 
 #' @examples

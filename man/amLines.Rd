@@ -20,6 +20,8 @@ amLines(chart, x = NULL, y = NULL, type = c("points", "line",
 \item{col}{\code{character}, color of the new serie.}
 
 \item{title}{\code{character}, name of the new serie, used when legend is enabled.}
+
+\item{fill_alphas}{a \code{numeric} between 0 and 1 for printed area.}
 }
 \description{
 amLines adds a new serie to an existing serial chart.
