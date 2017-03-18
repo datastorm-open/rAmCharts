@@ -481,25 +481,38 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
 #' @rdname amPlot
 #' 
 #' @param data dataset
+#' @param main title
 #' 
 #' @import pipeR
 #' @export
 #' 
-amPlot.formula <- function (x, data, type = "p", fill_alphas = 0, ...)
+amPlot.formula <- function (x, data, type = "p", fill_alphas = 0, xlab, ylab, main = "", ...)
 {
+  
   y_name <- all.vars(x[-3]) # subset variables in the lhs
   x_name <- all.vars(x[-2]) # subset variables in the rhs
+  
   if (length(y_name) == 1) {
     y <- data[[eval(y_name)]]
     assign(y_name, y)
-    chart <- eval(parse(text = paste0("amPlot(x = data[[eval(x_name)]], y = ", y_name,
-                                      ", xlab = eval(x_name), ylab = eval(y_name), type = type, fill_alphas = fill_alphas, ...)")))
+    
+    # define axes label
+    if (missing(xlab)) xlab <- x_name
+    if (missing(ylab)) ylab <- y_name
+    
+    chart <- eval(parse(text = paste0("amPlot(x = data[[eval(x_name)]], y = ", y_name, ", main = main", 
+                                      ", xlab = xlab, ylab = ylab, type = type, fill_alphas = fill_alphas, ...)")))
   } else {
     i <- 1
     y <- data[[eval(y_name[i])]]
     assign(y_name[i], y)
-    chart <- eval(parse(text = paste0("amPlot(x = data[[eval(x_name)]], y = ", y_name[i],
-                                      ", xlab = eval(x_name), ylab = 'multiple series', type = type, fill_alphas = fill_alphas, ...)")))
+    
+    # define axes label
+    if (missing(xlab)) xlab <- x_name
+    if (missing(ylab)) ylab <- 'multiple series'
+    
+    chart <- eval(parse(text = paste0("amPlot(x = data[[eval(x_name)]], y = ", y_name[i], ", main = main",
+                                      ", xlab = xlab, ylab = ylab, type = type, fill_alphas = fill_alphas, ...)")))
     i <- i + 1
     while(i <= length(y_name)) {
       chart <- chart %>>%

@@ -35,7 +35,8 @@ amPlot(x, ...)
 \method{amPlot}{data.frame}(x, columns, type = "l", precision = 2, xlab,
   ylab, fill_alphas = 0, ...)
 
-\method{amPlot}{formula}(x, data, type = "p", fill_alphas = 0, ...)
+\method{amPlot}{formula}(x, data, type = "p", fill_alphas = 0, xlab, ylab,
+  main = "", ...)
 }
 \arguments{
 \item{x}{the coordinates of points in the plot : \code{numeric},
@@ -94,6 +95,8 @@ the names of the series to draw, or a \code{numeric} vector of indices.
 By default all numeric columns will be drawn.}
 
 \item{data}{dataset}
+
+\item{main}{title}
 }
 \value{
 Return an Amchart.
