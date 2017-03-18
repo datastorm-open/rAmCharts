@@ -110,4 +110,4 @@ Suggests:
     testthat,
     shinydashboard,
     base64enc
-RoxygenNote: 6.0.1
+RoxygenNote: 5.0.1
