@@ -29,10 +29,13 @@
 #' be grouped in case there are more data items in the selected
 #' period than specified in maxSeries property. Possible value are :
 #' 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm". Or NULL to disable.
-#' @param ZoomButton \code{data.frame}, 3 columns : 
-#' Unit, times unit
-#' multiple : multiple*unit 
-#' label : button's label
+#' @param ZoomButton \code{data.frame}, 3 or 4 columns : 
+#' \itemize{
+#'  \item{"Unit"}{ : Character. Times unit. 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'}
+#'  \item{"multiple"}{ : Numeric. multiple*unit }
+#'  \item{"label"}{ : Character. button's label }
+#'  \item{"selected"}{ : Boolean. Optional. To set initial selection. (One TRUE, others FALSE)}
+#'}
 #' @param ZoomButtonPosition \code{character}, zoom button position. Possible values are :
 #' "left", "right", "bottom", "top"
 #' @param scrollbar \code{boolean}, enabled or not scrollbar ? Defaut to TRUE.
@@ -216,7 +219,7 @@ amTimeSeries <- function(data, col_date,
   
   #ZoomButton
   if (!is.null(ZoomButton)) {
-    .testIn(vect = names(ZoomButton),control =  c("Unit","multiple","label"))
+    .testIn(vect = names(ZoomButton), control =  c("Unit","multiple","label"))
     #.testIn(vect = ZoomButton$Unit,control =  c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY', 'MAX'))
     .testNumeric(num = ZoomButton$multiple)
   }
@@ -397,20 +400,16 @@ amTimeSeries <- function(data, col_date,
   periodZoom <- periodSelector( position = ZoomButtonPosition ,inputFieldsEnabled = FALSE)
   
   if (!is.null(ZoomButton)) {
+    if(!"selected" %in% colnames(ZoomButton)){
+      ZoomButton$selected <- FALSE
+      ZoomButton$selected[1] <- TRUE
+    }
     for (i in 1:nrow(ZoomButton)) {
-      if (i == 1) {
         periodZoom <- pipeR::pipeline(periodZoom,
                                       addPeriod(period = ZoomButton$Unit[i],
-                                                selected = TRUE, count = ZoomButton$multiple[i],
+                                                selected = ZoomButton$selected[i], count = ZoomButton$multiple[i],
                                                 label =  ZoomButton$label[i])
         )
-      } else {
-        periodZoom <- pipeR::pipeline(periodZoom,
-                                      addPeriod(period = ZoomButton$Unit[i],
-                                                count = ZoomButton$multiple[i],
-                                                label =  ZoomButton$label[i])
-        )
-      }
     }
   }
   dataset_obj <- pipeR::pipeline(dataSet(categoryField = col_date) ,

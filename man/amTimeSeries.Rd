@@ -63,10 +63,13 @@ be grouped in case there are more data items in the selected
 period than specified in maxSeries property. Possible value are :
 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm". Or NULL to disable.}
 
-\item{ZoomButton}{\code{data.frame}, 3 columns : 
-Unit, times unit
-multiple : multiple*unit 
-label : button's label}
+\item{ZoomButton}{\code{data.frame}, 3 or 4 columns : 
+\itemize{
+ \item{"Unit"}{ : Character. Times unit. 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'}
+ \item{"multiple"}{ : Numeric. multiple*unit }
+ \item{"label"}{ : Character. button's label }
+ \item{"selected"}{ : Boolean. Optional. To set initial selection. (One TRUE, others FALSE)}
+}}
 
 \item{ZoomButtonPosition}{\code{character}, zoom button position. Possible values are :
 "left", "right", "bottom", "top"}
