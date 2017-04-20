@@ -219,7 +219,7 @@ amTimeSeries <- function(data, col_date,
   
   #ZoomButton
   if (!is.null(ZoomButton)) {
-    .testIn(vect = names(ZoomButton), control =  c("Unit","multiple","label"))
+    .testIn(vect = names(ZoomButton), control =  c("Unit", "multiple", "label", "selected"))
     #.testIn(vect = ZoomButton$Unit,control =  c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY', 'MAX'))
     .testNumeric(num = ZoomButton$multiple)
   }
