@@ -28,4 +28,3 @@ This method is used for \linkS4class{AmStockChart}.
 stockLegend(useGraphSettings = TRUE)
 
 }
-

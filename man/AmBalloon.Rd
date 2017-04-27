@@ -2,8 +2,8 @@
 % Please edit documentation in R/class_AmBalloon.R
 \docType{methods}
 \name{initialize,AmBalloon-method}
-\alias{amBalloon}
 \alias{initialize,AmBalloon-method}
+\alias{amBalloon}
 \alias{setAdjustBorderColor}
 \alias{setAdjustBorderColor,AmBalloon,logical-method}
 \alias{setColor}
@@ -77,4 +77,3 @@ setCornerRadius(.Object = amBalloon(), cornerRadius = 5)
 setFillColor(.Object = amBalloon(), fillColor = "#FFFFFF")
 
 }
-

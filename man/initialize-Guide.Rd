@@ -2,8 +2,8 @@
 % Please edit documentation in R/class_Guide.R, R/class_Guide_setters.R
 \docType{methods}
 \name{initialize,Guide-method}
-\alias{guide}
 \alias{initialize,Guide-method}
+\alias{guide}
 \alias{setFillAlpha}
 \alias{setFillAlpha,Guide,numeric-method}
 \alias{setValueAxis,Guide,ValueAxisOrCharacterOrMissing-method}
@@ -52,4 +52,3 @@ setFillAlpha(.Object = guide(), fillAlpha = 1)
 valueAxis_obj <- valueAxis(test = "foo")
 setValueAxis(.Object = guide(), valueAxis = valueAxis_obj)
 }
-

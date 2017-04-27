@@ -132,4 +132,3 @@ amFloatingBar(x = "day", y_inf = "expenses", y_sup = "income", data = data_gbar,
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

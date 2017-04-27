@@ -17,4 +17,3 @@ data_stock1
 A list containing 4 datasets.
 }
 \keyword{datasets}
-

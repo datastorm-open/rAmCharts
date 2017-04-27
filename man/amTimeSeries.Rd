@@ -11,10 +11,11 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   legend = TRUE, legendPosition = "bottom", aggregation = c("Average",
   "Low", "High", "Sum"), maxSeries = 300, groupToPeriods = c("ss", "mm",
   "hh", "DD", "MM", "YYYY"), ZoomButton = data.frame(Unit = "MAX", multiple =
-  1, label = "All"), ZoomButtonPosition = "bottom", scrollbar = TRUE,
+  1, label = "All"), ZoomButtonPosition = "bottom",
+  periodFieldsSelection = FALSE, scrollbar = TRUE,
   scrollbarPosition = "bottom", scrollbarHeight = 40,
   scrollbarGraph = NULL, cursor = TRUE, cursorValueBalloonsEnabled = TRUE,
-  creditsPosition = "top-right", group = NULL, ...)
+  creditsPosition = "top-right", group = NULL, is_ts_module = FALSE, ...)
 }
 \arguments{
 \item{data}{\code{data.frame}, data of graph.}
@@ -74,6 +75,8 @@ period than specified in maxSeries property. Possible value are :
 \item{ZoomButtonPosition}{\code{character}, zoom button position. Possible values are :
 "left", "right", "bottom", "top"}
 
+\item{periodFieldsSelection}{\code{boolean}, using zoom button, add also two fields to select period ?}
+
 \item{scrollbar}{\code{boolean}, enabled or not scrollbar ? Defaut to TRUE.}
 
 \item{scrollbarPosition}{\code{character}, scrollbar position. Possible values are :
@@ -91,6 +94,8 @@ period than specified in maxSeries property. Possible value are :
 "top-right", "top-left", "bottom-right", "bottom-left"}
 
 \item{group}{\code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.}
+
+\item{is_ts_module}{\code{boolean}. Don't use. For \link{rAmChartTimeSeriesUI}}
 
 \item{...}{other first level attributes}
 }
@@ -158,4 +163,3 @@ amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

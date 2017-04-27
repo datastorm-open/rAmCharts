@@ -28,4 +28,3 @@ guide_obj <- guide(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
 addGuide(.Object = valueAxis(), guide = guide_obj)
 
 }
-

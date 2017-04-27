@@ -2,12 +2,12 @@
 % Please edit documentation in R/class_GaugeAxis.R, R/class_GaugeAxis_setters.R
 \docType{methods}
 \name{initialize,GaugeAxis-method}
-\alias{addBand}
-\alias{addBand,GaugeAxis,GaugeBandOrMissing-method}
-\alias{gaugeAxis}
 \alias{initialize,GaugeAxis-method}
+\alias{gaugeAxis}
 \alias{setBands}
 \alias{setBands,GaugeAxis,list-method}
+\alias{addBand}
+\alias{addBand,GaugeAxis,GaugeBandOrMissing-method}
 \title{Initializes a GaugeAxis}
 \usage{
 \S4method{initialize}{GaugeAxis}(.Object, axisAlpha = 1, bands, ...)
@@ -58,4 +58,3 @@ gaugeBand_obj <- gaugeBand(startValue = 0, endValue = 100)
 addBand(.Object = gaugeAxis(), band = gaugeBand_obj)
 
 }
-

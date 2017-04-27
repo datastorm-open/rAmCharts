@@ -141,4 +141,3 @@ amBarplot(x = "year", y = c("in", "ex"), data = data_gbar, precision = 0)
 \seealso{
 \url{https://datastorm-open.github.io/introduction_ramcharts/}
 }
-

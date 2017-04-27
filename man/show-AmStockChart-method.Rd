@@ -17,4 +17,3 @@ If not the method will trigger the method 'print'.
 \description{
 Display the object in the console.
 }
-

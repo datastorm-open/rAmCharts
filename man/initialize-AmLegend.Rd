@@ -2,8 +2,8 @@
 % Please edit documentation in R/class_AmLegend.R
 \docType{methods}
 \name{initialize,AmLegend-method}
-\alias{amLegend}
 \alias{initialize,AmLegend-method}
+\alias{amLegend}
 \alias{legend}
 \alias{setUseGraphSettings}
 \alias{setUseGraphSettings,AmLegend,logical-method}
@@ -38,4 +38,3 @@ amLegend(useGraphSettings = FALSE)
 rAmCharts:::legend(useGraphSettings = FALSE)
 setUseGraphSettings(.Object = amLegend(), useGraphSettings = TRUE)
 }
-

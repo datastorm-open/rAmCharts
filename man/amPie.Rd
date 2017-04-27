@@ -48,4 +48,3 @@ amPie(data = data_pie, inner_radius = 50, depth = 10, show_values = FALSE)
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

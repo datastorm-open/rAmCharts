@@ -25,4 +25,3 @@ To see if it's correctly registered use '@dataProvider'.
 print(new("AmChart", categoryField = "variables", type = "serial"))
 print(new("AmChart", categoryField = "variables", type = "serial"), withDetail = FALSE)
 }
-

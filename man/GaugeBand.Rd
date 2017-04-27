@@ -2,8 +2,8 @@
 % Please edit documentation in R/class_GaugeBand.R
 \docType{methods}
 \name{initialize,GaugeBand-method}
-\alias{gaugeBand}
 \alias{initialize,GaugeBand-method}
+\alias{gaugeBand}
 \alias{setID}
 \alias{setID,GaugeBand-method}
 \title{Initializes a GaugeBand}
@@ -43,4 +43,3 @@ gaugeBand(alpha = 2, id = "band2")
 setID(.Object = gaugeBand(), id = "1")
 
 }
-

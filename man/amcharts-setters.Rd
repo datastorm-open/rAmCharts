@@ -40,4 +40,3 @@ setResponsive(amSerialChart())
 setResponsive(amStockChart())
 }
 }
-

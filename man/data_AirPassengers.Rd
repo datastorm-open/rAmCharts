@@ -16,4 +16,3 @@ data_AirPassengers
 Based on the dataset 'AirPassengers' from the package 'datasets'.
 }
 \keyword{datasets}
-

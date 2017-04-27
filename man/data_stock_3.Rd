@@ -19,4 +19,3 @@ data_stock_3
 Times Series on 2017, by months
 }
 \keyword{datasets}
-

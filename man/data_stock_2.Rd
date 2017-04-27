@@ -17,4 +17,3 @@ data_stock_2
 Times Series on 2015-2016, one data by hour
 }
 \keyword{datasets}
-

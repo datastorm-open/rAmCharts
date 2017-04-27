@@ -124,6 +124,7 @@ containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}
+
 \examples{
 # Run runShinyExamples() for examples.
 \dontshow{
@@ -135,4 +136,3 @@ showMethods(class="AmChart")
 \seealso{
 \url{http://docs.amcharts.com/3/javascriptcharts/}
 }
-

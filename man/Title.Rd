@@ -2,12 +2,12 @@
 % Please edit documentation in R/class_Title.R
 \docType{methods}
 \name{initialize,Title-method}
-\alias{amTitle}
 \alias{initialize,Title-method}
+\alias{title}
+\alias{amTitle}
+\alias{setText,Title,character-method}
 \alias{setSize}
 \alias{setSize,Title,numeric-method}
-\alias{setText,Title,character-method}
-\alias{title}
 \title{Initializes A Title}
 \usage{
 \S4method{initialize}{Title}(.Object, text, size, ...)
@@ -47,4 +47,3 @@ amTitle(text = "Main", bold = TRUE)
 setText(.Object = amTitle(), text = "Bonjour")
 setSize(amTitle(), 16)
 }
-

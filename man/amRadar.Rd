@@ -64,4 +64,3 @@ amRadar(data_radar, xlim = c(0, 8))
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

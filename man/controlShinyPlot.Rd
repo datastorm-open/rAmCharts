@@ -17,4 +17,3 @@ Only used in 'renderAmCharts'.
 \details{
 This function has only an internal purpose. Never use it.
 }
-

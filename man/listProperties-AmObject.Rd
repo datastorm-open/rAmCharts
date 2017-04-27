@@ -23,4 +23,3 @@ Each S4 class implements the method to list its properties
 \examples{
 amChart(type = "serial")
 }
-

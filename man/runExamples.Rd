@@ -13,4 +13,3 @@ Both 'am' functions and basic functions are illustrated.
 \examples{
 if (interactive()) runExamples()
 }
-

@@ -2,8 +2,8 @@
 % Please edit documentation in R/class_DataSetSelector.R
 \docType{methods}
 \name{initialize,DataSetSelector-method}
-\alias{dataSetSelector}
 \alias{initialize,DataSetSelector-method}
+\alias{dataSetSelector}
 \alias{setPosition}
 \alias{setPosition,DataSetSelector,character-method}
 \title{Creates or updates a DataSetSelector}
@@ -40,4 +40,3 @@ dataSetSelector(position = "left")
 setPosition(.Object = dataSetSelector(), position = "left")
 
 }
-

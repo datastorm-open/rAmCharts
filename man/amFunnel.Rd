@@ -60,4 +60,3 @@ amFunnel(data = data_funnel, depth = 50, inverse = TRUE)
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

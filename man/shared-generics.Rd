@@ -2,13 +2,13 @@
 % Please edit documentation in R/utils_sharedGenerics.R
 \name{Generics functions}
 \alias{Generics functions}
-\alias{addGuide}
 \alias{setBalloon}
 \alias{setDataProvider}
-\alias{setGraph}
-\alias{setText}
 \alias{setTitle}
 \alias{setType}
+\alias{setGraph}
+\alias{addGuide}
+\alias{setText}
 \alias{setValueAxis}
 \title{General shared generic methods}
 \usage{
@@ -77,4 +77,3 @@ setText(...) is shared by Title and Label.
 
 setValueAxis(...) is shared by AmChart(type = "gantt"), TrendLine and Guide.
 }
-

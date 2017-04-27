@@ -3,18 +3,18 @@
 \docType{methods}
 \name{initialize,TrendLine-method}
 \alias{initialize,TrendLine-method}
-\alias{setFinalValue}
-\alias{setFinalValue,TrendLine,numeric-method}
-\alias{setFinalXValue}
-\alias{setFinalXValue,TrendLine,numeric-method}
+\alias{trendLine}
 \alias{setInitialValue}
 \alias{setInitialValue,TrendLine,numeric-method}
 \alias{setInitialXValue}
 \alias{setInitialXValue,TrendLine,numeric-method}
+\alias{setFinalValue}
+\alias{setFinalValue,TrendLine,numeric-method}
+\alias{setFinalXValue}
+\alias{setFinalXValue,TrendLine,numeric-method}
 \alias{setValueAxis,TrendLine,ValueAxisOrCharacterOrMissing-method}
 \alias{setValueAxisX}
 \alias{setValueAxisX,TrendLine,ValueAxisOrCharacterOrMissing-method}
-\alias{trendLine}
 \title{Initializes a TrendLine}
 \usage{
 \S4method{initialize}{TrendLine}(.Object, initialValue, initialXValue,
@@ -107,4 +107,3 @@ trendLine(valueAxisX = "valueAxisX-1")
 # valid if and only if 'valueAxisX_obj' has already been added to the chart
 
 }
-

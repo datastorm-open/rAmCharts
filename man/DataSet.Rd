@@ -2,17 +2,17 @@
 % Please edit documentation in R/class_DataSet.R, R/class_DataSet_setters.R
 \docType{methods}
 \name{initialize,DataSet-method}
-\alias{addFieldMapping}
-\alias{addFieldMapping,DataSet-method}
-\alias{addStockEvent}
-\alias{addStockEvent,DataSet,StockEventOrMissing-method}
-\alias{dataSet}
 \alias{initialize,DataSet-method}
+\alias{dataSet}
 \alias{setDataProvider,DataSet,ANY,ANY-method}
 \alias{setFieldMappings}
 \alias{setFieldMappings,DataSet,list-method}
+\alias{addFieldMapping}
+\alias{addFieldMapping,DataSet-method}
 \alias{setStockEvents}
 \alias{setStockEvents,DataSet,list-method}
+\alias{addStockEvent}
+\alias{addStockEvent,DataSet,StockEventOrMissing-method}
 \title{Creates or updates a DataSet}
 \usage{
 \S4method{initialize}{DataSet}(.Object, compared = FALSE, dataProvider,
@@ -89,4 +89,3 @@ addStockEvent(.Object = dataSet(), backgroundAlpha = 1, backgroundColor = "#DADA
 stockEvent_obj <- stockEvent(backgroundAlpha = 1, backgroundColor = "#DADADA")
 chart <- addStockEvent(.Object = dataSet(), stockEvent = stockEvent_obj); print(chart)
 }
-

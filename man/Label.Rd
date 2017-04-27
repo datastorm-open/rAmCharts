@@ -72,4 +72,3 @@ setX(.Object = label(), x = 16)
 setY(.Object = label(), y = 16)
 
 }
-

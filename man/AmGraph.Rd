@@ -2,9 +2,9 @@
 % Please edit documentation in R/class_AmGraph.R
 \docType{methods}
 \name{initialize,AmGraph-method}
+\alias{initialize,AmGraph-method}
 \alias{amGraph}
 \alias{graph}
-\alias{initialize,AmGraph-method}
 \alias{setBalloonText}
 \alias{setBalloonText,AmGraph,character-method}
 \alias{setTitle,AmGraph,character-method}
@@ -89,4 +89,3 @@ setType(.Object = amGraph(), type = "type")
 setValueField(.Object = amGraph(), valueField = "score")
 
 }
-

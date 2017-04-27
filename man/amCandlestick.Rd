@@ -87,4 +87,3 @@ amCandlestick(data = data_candleStick2, horiz = TRUE) \%>>\%
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-
