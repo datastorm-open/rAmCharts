@@ -38,6 +38,7 @@
 #'}
 #' @param ZoomButtonPosition \code{character}, zoom button position. Possible values are :
 #' "left", "right", "bottom", "top"
+#' @param periodFieldsSelection \code{boolean}, using zoom button, add also two fields to select period ?
 #' @param scrollbar \code{boolean}, enabled or not scrollbar ? Defaut to TRUE.
 #' @param scrollbarPosition \code{character}, scrollbar position. Possible values are :
 #' "left", "right", "bottom", "top"
@@ -48,6 +49,7 @@
 #' @param creditsPosition \code{character}, credits position. Possible values are :
 #' "top-right", "top-left", "bottom-right", "bottom-left"
 #' @param group \code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.
+#' @param is_ts_module \code{boolean}. Don't use. For \link{rAmChartTimeSeriesUI}
 #' @param ... other first level attributes
 #' 
 #' @examples
@@ -131,6 +133,7 @@ amTimeSeries <- function(data, col_date,
                          groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'),
                          ZoomButton = data.frame(Unit = "MAX", multiple = 1, label ="All"),
                          ZoomButtonPosition = "bottom",
+                         periodFieldsSelection = FALSE,
                          scrollbar = TRUE,
                          scrollbarPosition = "bottom",
                          scrollbarHeight = 40,
@@ -139,6 +142,7 @@ amTimeSeries <- function(data, col_date,
                          cursorValueBalloonsEnabled = TRUE,
                          creditsPosition = "top-right",
                          group = NULL,
+                         is_ts_module = FALSE,
                          ...)
 {
   ##Test args
@@ -247,8 +251,8 @@ amTimeSeries <- function(data, col_date,
   data[,col_date] <- data[,col_date] + (as.POSIXlt(as.character(data[,col_date]), tz = "UTC") - data[,col_date])
   
   # groupToPeriods control
-  difft <- min(c(as.numeric(difftime(data[2,col_date], data[1,col_date], units = "secs")),
-                 as.numeric(difftime(data[3,col_date], data[2,col_date], units = "secs"))))
+  difft <- min(c(as.numeric(difftime(data[3,col_date], data[2,col_date], units = "secs")),
+                 as.numeric(difftime(data[4,col_date], data[3,col_date], units = "secs"))))
   groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
   minPeriod = groupToPeriods[1]
   if(length(groupToPeriods) == 1){
@@ -397,7 +401,7 @@ amTimeSeries <- function(data, col_date,
     
   })
   
-  periodZoom <- periodSelector( position = ZoomButtonPosition ,inputFieldsEnabled = FALSE)
+  periodZoom <- periodSelector(position = ZoomButtonPosition, inputFieldsEnabled = periodFieldsSelection)
   
   if (!is.null(ZoomButton)) {
     if(!"selected" %in% colnames(ZoomButton)){
@@ -420,7 +424,7 @@ amTimeSeries <- function(data, col_date,
                                addTitle(text = main))
   ## Plot
   am_output <- pipeR::pipeline(
-    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE, group = group,...),
+    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE, group = group, is_ts_module = is_ts_module, ...),
     setExport(enabled = export),
     addDataSet(dataset_obj),
     addPanel(panel_obj),

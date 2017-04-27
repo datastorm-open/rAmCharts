@@ -180,6 +180,14 @@ setMethod(f = "plot", signature = "AmCharts",
               group <- NULL
             }
             
+            # is_ts_module (Stock synchronisation & module)
+            if (exists("is_ts_module", where = chart_ls)) {
+              is_ts_module <- chart_ls$is_ts_module
+              chart_ls[grep(x = names(chart_ls), pattern = "^is_ts_module")] <- NULL
+            } else {
+              is_ts_module <- FALSE
+            }
+            
             # case for drilldown chart
             if (exists("subChartProperties", where = chart_ls)) {
               
@@ -206,7 +214,7 @@ setMethod(f = "plot", signature = "AmCharts",
                            periodSelector_listeners = periodSelector_listeners,
                            valueAxes_listeners = valueAxes_listeners,
                            valueAxes_listenersIndices = valueAxes_listenersIndices, 
-                           group = group)
+                           group = group, is_ts_module = is_ts_module)
               
             }
             

@@ -27,7 +27,7 @@ URL: http://datastorm-open.github.io/introduction_ramcharts/
 BugReports: https://github.com/datastorm-open/rAmCharts/issues/
 Depends:
     R (>= 3.2.0)
-Collate:
+Collate: 
     'base_data.R'
     'base_startupMessage.R'
     'chart_amBarplot.R'
@@ -89,6 +89,7 @@ Collate:
     'class_TrendLine_setters.R'
     'shiny_examples.R'
     'shiny_modules_export.R'
+    'shiny_modules_timeSeries.R'
     'union_AmCharts.R'
     'utils.R'
     'utils_amOptions.R'
@@ -103,11 +104,12 @@ Imports:
     pipeR,
     knitr,
     grDevices,
-    yaml
+    yaml,
+    zoo
 Suggests:
     magrittr,
     shiny,
     testthat,
     shinydashboard,
     base64enc
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

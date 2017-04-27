@@ -20,6 +20,7 @@ function removeAmChart(id) {
   }
 }
 
+// group for synchronisation
 var amStock_ref_group = {};
 
 function addAmStockRefGroup(group, id){
@@ -39,6 +40,38 @@ function findAmStockRefGroup(id){
     }
   }
   return undefined;
+}
+
+var amStock_is_ts_module = [];
+
+function addAmStockIsTsMod(id){
+    amStock_is_ts_module.push(id);
+}
+
+function findAmStockIsTsMod(id){
+  if(amStock_is_ts_module.indexOf(id) !== -1){
+    return true;
+  }
+  return false;
+}
+//----------------------------------------------------------------
+// Function for shiny module
+//--------------------------------------------------------------- 
+if (HTMLWidgets.shinyMode){
+  Shiny.addCustomMessageHandler('amChartStockModuleChangeData', function(params){
+      // get container id
+      var chart = getAmChart(params[0]);
+      if(chart !== undefined){
+        tmp_zoomed_event = chart.events.zoomed;
+        chart.events.zoomed = [];
+        chart.dataSets[0].dataProvider = params[1];
+        chart.categoryAxesSettings.groupToPeriods = params[2];
+        chart.categoryAxesSettings.minPeriod = params[2][0];
+        chart.validateNow(true, true);
+        chart.zoom(chart.previousStartDate, chart.previousEndDate);
+        chart.events.zoomed = tmp_zoomed_event;
+      }
+  });
 }
 
 HTMLWidgets.widget({
@@ -77,8 +110,16 @@ HTMLWidgets.widget({
                             if(tmp_am){
                               tmp_zoomed_event = tmp_am.events.zoomed;
                               tmp_am.events.zoomed = [];
-                              tmp_am.zoom(event.startDate, event.endDate);
-                              tmp_am.events.zoomed = tmp_zoomed_event;
+                              if(findAmStockIsTsMod(linked_chart[tmp_id])){
+                                tmp_am.zoom(event.chart.previousStartDate, event.chart.previousEndDate);
+                                tmp_am.events.zoomed = tmp_zoomed_event;
+                                tmp_am.previousStartDate = event.startDate;
+                                tmp_am.previousEndDate = event.endDate;
+                                Shiny.onInputChange(linked_chart[tmp_id].replace("am_ts_module", "curve_zoom"), {start : event.startDate, end : event.endDate});
+                              } else {
+                                tmp_am.zoom(event.startDate, event.endDate);
+                                tmp_am.events.zoomed = tmp_zoomed_event;
+                              }
                             }
                         }   
                       }
@@ -90,6 +131,9 @@ HTMLWidgets.widget({
                     amchart.addListener("zoomed", zoomedGroupEvent);
                 }
                 
+                if(x.is_ts_module){
+                    addAmStockIsTsMod(el.id);
+                }
                 
                 // add chart listeners
                 for (var key in x.listeners) {
