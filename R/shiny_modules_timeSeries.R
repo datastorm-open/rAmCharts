@@ -140,10 +140,10 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
   if(!is.null(zoom)){
     start_time <- lubridate::floor_date(as.POSIXct(zoom$start, format = "%Y-%m-%dT%T", tz = "UTC"), "day")
     end_time <- lubridate::ceiling_date(as.POSIXct(zoom$end, format = "%Y-%m-%dT%T", tz = "UTC"), "day")
-    tmp_data <- data[data$date >= start_time & data$date <= end_time, ]
+    tmp_data <- data[data[[col_date]] >= start_time & data[[col_date]] <= end_time, ]
   } else {
-    start_time <- lubridate::floor_date(data$date[1], "day")
-    end_time <- lubridate::ceiling_date(data$date[nrow(data)], "day")
+    start_time <- lubridate::floor_date(data[[col_date]][1], "day")
+    end_time <- lubridate::ceiling_date(data[[col_date]][nrow(data)], "day")
     tmp_data <- data
   }
   
@@ -163,9 +163,19 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
   # nouvelle data amCharts
   am_data <- getAggregateTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
                                    ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
+  print(head(am_data))
+  print(head(data))
+  first_row <- data[1, ]
   
-  am_data <- rbind(data.frame(date = lubridate::floor_date(data$date[1], "day"), value = NA), 
-                   am_data[-c(1, nrow(am_data)), ], data.frame(date = lubridate::ceiling_date(data$date[nrow(data)], "day"), value = NA))
+  print(first_row)
+  lapply(col_series, function(x){
+    first_row[[x]] <<- NA
+  })
+  first_row[[col_date]] <- lubridate::floor_date(data[[col_date]][1], "day")
+  last_row <- first_row
+  last_row[[col_date]] <- lubridate::ceiling_date(data[[col_date]][nrow(data)], "day")
+  
+  am_data <- rbind(first_row, am_data[-c(1, nrow(am_data)), ], last_row)
   
   # ts amCharts
   am_ts <- gsub("sec$", "ss", target_ts)
@@ -229,7 +239,8 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 # maxgap = Inf
 # keep_last = TRUE
 # type_aggr = "first"
-
+# 
+# getAggregateTS(data)
 getAggregateTS <- function(data, col_date  = "date",
                                   col_series = setdiff(colnames(data), col_date),
                                   ts = "10 min", tz = "UTC",
