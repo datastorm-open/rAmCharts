@@ -15,9 +15,10 @@
 #' @param fillAlphas : \code{numeric}, fill. Between 0 (no fill) to 1.
 #' @param precision \code{numeric}, default set to  1.
 #' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
-#' @param legend \code{boolean}, enabled or not legend ? Defaut to TRUE.
+#' @param legend \code{logical}, enabled or not legend ? Defaut to TRUE.
 #' @param legendPosition \code{character}, legend position. Possible values are :
 #' "left", "right", "bottom", "top"
+#' @param legendHidden \code{logical} hide some series on rendering ? Defaut to FALSE
 #' @param aggregation \code{character}, aggregation type. Possible values are : 
 #' "Low", "High", "Average" and "Sum"
 #' @param maxSeries \code{numeric} Maximum series shown at a time.
@@ -128,6 +129,7 @@ amTimeSeries <- function(data, col_date,
                          export = FALSE,
                          legend = TRUE,
                          legendPosition = "bottom",
+                         legendHidden = FALSE,
                          aggregation = c("Average", "Low", "High", "Sum"),
                          maxSeries = 300,
                          groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'),
@@ -331,6 +333,13 @@ amTimeSeries <- function(data, col_date,
     }
   }))
   
+  # hidden init
+  if (length(legendHidden) > 1) {
+    graph_maker$hidden <- rep(legendHidden[1:length(n_col_series)], n_col_series)
+  } else {
+    graph_maker$hidden <- legendHidden
+  }
+  
   stockgraph <- lapply(1:nrow(graph_maker), function(x) {
     if(graph_maker[x, "type"] == "curve"){
       stockGraph(title =  graph_maker[x, "column"],
@@ -347,6 +356,7 @@ amTimeSeries <- function(data, col_date,
                  bullet = ifelse(is.null(graph_maker[x, "bullet"]), "none", graph_maker[x, "bullet"]),
                  bulletAlpha = graph_maker[x, "bulletAlpha"],
                  precision = precision,
+                 hidden = graph_maker[x, "hidden"],
                  lineThickness = graph_maker[x, "linewidth"]
       )
     } else if(graph_maker[x, "type"] == "low"){
@@ -361,6 +371,7 @@ amTimeSeries <- function(data, col_date,
                  fillAlphas = 0,
                  useDataSetColors = FALSE,
                  visibleInLegend = FALSE,
+                 hidden = graph_maker[x, "hidden"],
                  precision = precision
       )
     } else if(graph_maker[x, "type"] == "curve-uplow"){
@@ -380,6 +391,7 @@ amTimeSeries <- function(data, col_date,
                  bullet = ifelse(is.null(graph_maker[x, "bullet"]), "none", graph_maker[x, "bullet"]),
                  bulletAlpha = graph_maker[x, "bulletAlpha"],
                  precision = precision,
+                 hidden = graph_maker[x, "hidden"],
                  lineThickness = graph_maker[x, "linewidth"]
       )
     } else if(graph_maker[x, "type"] == "up"){
@@ -395,6 +407,7 @@ amTimeSeries <- function(data, col_date,
                  useDataSetColors = FALSE,
                  fillToGraph = graph_maker[x-2, "column"],
                  visibleInLegend = FALSE,
+                 hidden = graph_maker[x, "hidden"],
                  precision = precision
       )
     } 

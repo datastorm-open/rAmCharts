@@ -8,12 +8,12 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"), bullet = NULL,
   bulletSize = 2, linetype = c(0, 5, 10, 15, 20), linewidth = c(1, 1, 1,
   1, 1, 1), fillAlphas = 0, precision = 1, export = FALSE,
-  legend = TRUE, legendPosition = "bottom", aggregation = c("Average",
-  "Low", "High", "Sum"), maxSeries = 300, groupToPeriods = c("ss", "mm",
-  "hh", "DD", "MM", "YYYY"), ZoomButton = data.frame(Unit = "MAX", multiple =
-  1, label = "All"), ZoomButtonPosition = "bottom",
-  periodFieldsSelection = FALSE, scrollbar = TRUE,
-  scrollbarPosition = "bottom", scrollbarHeight = 40,
+  legend = TRUE, legendPosition = "bottom", legendHidden = FALSE,
+  aggregation = c("Average", "Low", "High", "Sum"), maxSeries = 300,
+  groupToPeriods = c("ss", "mm", "hh", "DD", "MM", "YYYY"),
+  ZoomButton = data.frame(Unit = "MAX", multiple = 1, label = "All"),
+  ZoomButtonPosition = "bottom", periodFieldsSelection = FALSE,
+  scrollbar = TRUE, scrollbarPosition = "bottom", scrollbarHeight = 40,
   scrollbarGraph = NULL, cursor = TRUE, cursorValueBalloonsEnabled = TRUE,
   creditsPosition = "top-right", group = NULL, is_ts_module = FALSE, ...)
 }
@@ -45,10 +45,12 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
 
 \item{export}{\code{logical}, default set to  FALSE. TRUE to display export feature.}
 
-\item{legend}{\code{boolean}, enabled or not legend ? Defaut to TRUE.}
+\item{legend}{\code{logical}, enabled or not legend ? Defaut to TRUE.}
 
 \item{legendPosition}{\code{character}, legend position. Possible values are :
 "left", "right", "bottom", "top"}
+
+\item{legendHidden}{\code{logical} hide some series on rendering ? Defaut to FALSE}
 
 \item{aggregation}{\code{character}, aggregation type. Possible values are : 
 "Low", "High", "Average" and "Sum"}
