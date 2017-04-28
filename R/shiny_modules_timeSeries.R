@@ -67,10 +67,10 @@ rAmChartTimeSeriesServer <- function(input, output, session, data,
   ctp <- shiny::reactiveVal(0)
   
   output$am_ts_module <- renderAmCharts({
-    init_data <- getCurrentStockData(data, col_date = "date", col_series = "value", maxPoints = maxPoints, tz = tz, ts = ts, 
+    init_data <- getCurrentStockData(data, col_date = col_date, col_series = col_series, maxPoints = maxPoints, tz = tz, ts = ts, 
                                       fun_aggr = fun_aggr, treat_missing = treat_missing, maxgap = maxgap, type_aggr = type_aggr)
     
-    tmp_am <- amTimeSeries(init_data$data, "date", "value", maxSeries = maxPoints+10, groupToPeriods = NULL, is_ts_module = TRUE, ...)
+    tmp_am <- amTimeSeries(init_data$data, col_date, col_series, maxSeries = maxPoints+10, groupToPeriods = NULL, is_ts_module = TRUE, ...)
     tmp_am <- addListener(tmp_am, "zoomed", paste0("function (event) {
                           var zoomed_event = event.chart.events.zoomed;
                           event.chart.events.zoomed = [];
@@ -85,7 +85,7 @@ rAmChartTimeSeriesServer <- function(input, output, session, data,
     input$curve_zoom
     cur_cpt <- shiny::isolate(ctp())
     if(cur_cpt > 0){
-      new_data <- getCurrentStockData(data, zoom = input$curve_zoom, col_date = "date", col_series = "value", 
+      new_data <- getCurrentStockData(data, zoom = input$curve_zoom, col_date = col_date, col_series = col_series, 
                                       maxPoints = maxPoints, tz = tz, ts = ts, fun_aggr = fun_aggr, 
                                       treat_missing = treat_missing, maxgap = maxgap, type_aggr = type_aggr)
       session$sendCustomMessage("amChartStockModuleChangeData", 
