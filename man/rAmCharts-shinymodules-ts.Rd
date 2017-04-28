@@ -50,13 +50,13 @@ see \code{na.approx}}
 \item{maxgap}{: When interpolate missing values with \code{na.approx}.
 Maximum number of consecutive NAs to fill. Defaut to Inf.}
 
-\item{zoom}{: List for init subset. NULL to keep all}
-
-\item{type_aggr:}{Character. Type of aggregation
+\item{type_aggr}{: Character. Type of aggregation
 \itemize{
  \item{"first"}{ : Date/Time result is equal to minimum of sequence, and this minimum is included in aggregation}
  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
 }}
+
+\item{...}{: \link{amTimeSeries} arguments}
 }
 \value{
 a reactive expression with aggregate data and ts

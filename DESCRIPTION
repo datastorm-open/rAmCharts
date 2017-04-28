@@ -111,5 +111,7 @@ Suggests:
     shiny,
     testthat,
     shinydashboard,
-    base64enc
+    base64enc,
+    lubridate,
+    jsonlite
 RoxygenNote: 6.0.1

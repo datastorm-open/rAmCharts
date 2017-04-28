@@ -10,7 +10,6 @@
 #'                   Must be "POSIXct" or "CET24" colum
 #' @param col_series : Column name of quantitative variable(s) to be
 #'                     transformed. Default to setdiff(colnames(data), "date") 
-#' @param zoom : List for init subset. NULL to keep all
 #' @param maxPoints : Maximal number of rows in results
 #' @param ts : All enabled aggregation. Default to c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year").
 #'             Can be a number, in seconds, or a character string
@@ -25,11 +24,13 @@
 #'                        see \code{na.approx}
 #' @param maxgap : When interpolate missing values with \code{na.approx}.
 #'                 Maximum number of consecutive NAs to fill. Defaut to Inf.
-#' @param type_aggr: Character. Type of aggregation
+#' @param type_aggr : Character. Type of aggregation
 #' \itemize{
 #'  \item{"first"}{ : Date/Time result is equal to minimum of sequence, and this minimum is included in aggregation}
 #'  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
 #'}
+#' 
+#' @param ... : \link{amTimeSeries} arguments
 #' 
 #' @return a reactive expression with aggregate data and ts
 #' 
@@ -50,7 +51,7 @@
 #' 
 #' @export
 rAmChartTimeSeriesUI <- function(id) {
-  ns <- NS(id)
+  ns <- shiny::NS(id)
   amChartsOutput(ns("am_ts_module"))  
 }
 
@@ -63,7 +64,7 @@ rAmChartTimeSeriesServer <- function(input, output, session, data,
   
   ns <- session$ns
   
-  ctp <- reactiveVal(0)
+  ctp <- shiny::reactiveVal(0)
   
   output$am_ts_module <- renderAmCharts({
     init_data <- getCurrentStockData(data, col_date = "date", col_series = "value", maxPoints = maxPoints, tz = tz, ts = ts, 
@@ -80,9 +81,9 @@ rAmChartTimeSeriesServer <- function(input, output, session, data,
     tmp_am
   })
   
-  new_data <- reactive({
+  new_data <- shiny::reactive({
     input$curve_zoom
-    cur_cpt <- isolate(ctp())
+    cur_cpt <- shiny::isolate(ctp())
     if(cur_cpt > 0){
       new_data <- getCurrentStockData(data, zoom = input$curve_zoom, col_date = "date", col_series = "value", 
                                       maxPoints = maxPoints, tz = tz, ts = ts, fun_aggr = fun_aggr, 
@@ -123,7 +124,7 @@ rAmChartTimeSeriesServer <- function(input, output, session, data,
 #'                        see \code{na.approx}
 #' @param maxgap : When interpolate missing values with \code{na.approx}.
 #'                 Maximum number of consecutive NAs to fill. Defaut to Inf.
-#' @param type_aggr: Character. Type of aggregation
+#' @param type_aggr : Character. Type of aggregation
 #' \itemize{
 #'  \item{"first"}{ : Date/Time result is equal to minimum of sequence, and this minimum is included in aggregation}
 #'  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
@@ -200,8 +201,8 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 #'                        see \code{na.approx}
 #' @param maxgap : When interpolate missing values with \code{na.approx}.
 #'                 Maximum number of consecutive NAs to fill. Defaut to Inf.
-#' @param keep_last: Boolean. Keep last date/time value after interpolation ?
-#' @param type_aggr: Character. Type of aggregation
+#' @param keep_last : Boolean. Keep last date/time value after interpolation ?
+#' @param type_aggr : Character. Type of aggregation
 #' \itemize{
 #'  \item{"first"}{ : Date/Time result is equal to minimum of sequence, and this minimum is included in aggregation}
 #'  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
@@ -211,7 +212,6 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 #' 
 #' @return a data.frame
 #' 
-#' @examples 
 #' 
 #' 
 #' @export
@@ -319,7 +319,9 @@ getAggregateTS <- function(data, col_date  = "date",
   }
   
   # verification concordante et tz souhaite
-  if (attr(data[[col_date]], "tzone") != tz) {
+  if (is.null(attr(data[[col_date]], "tzone"))) {
+    attr(data[[col_date]], "tzone") <- tz
+  } else if (attr(data[[col_date]], "tzone") != tz) {
     attr(data[[col_date]], "tzone") <- tz
   }
   
@@ -490,25 +492,25 @@ getAggregateTS <- function(data, col_date  = "date",
     res <- data[, eval(expr_transformation), eval(expr_group)] ## ???
     
     if ("mtqdate" %in% colnames(res)) {
-      res[, mtqdate := NULL]
+      res[, c("mtqdate") := NULL]
     }
     
     if ("mtqtime" %in% colnames(res)) {
-      res[, mtqtime := NULL]
+      res[, c("mtqtime") := NULL]
     }
     
     if(showwarn){
       # check first value
-      if(res[2, tmp_N] != res[1, tmp_N]){
+      if(res[2, get("tmp_N")] != res[1, get("tmp_N")]){
         warning("Be carreful : first value seems to be compute on a incomplete sequence")
       }
       
       # check last value
-      if(res[nrow(res), tmp_N] != res[nrow(res)-1, tmp_N]){
+      if(res[nrow(res), get("tmp_N")] != res[nrow(res)-1, get("tmp_N")]){
         warning("Be carreful : last value seems to be compute on a incomplete sequence")
       }
     }
-    res[, tmp_N := NULL]
+    res[, c("tmp_N") := NULL]
     
     if(type_aggr == "last"){
       expr_transform <- paste0(col_date, ":=", col_date, "+", current_time_level)
@@ -523,17 +525,17 @@ getAggregateTS <- function(data, col_date  = "date",
     if (wanted_time_level <= 60 * 60 |
         !current_tz %in% c("CET", "CET24")) {
       new_date_time <- seq.POSIXt(
-        as.POSIXct(paste(data[1, mtqdate], data[1, mtqtime]), tz = current_tz),
-        as.POSIXct(paste(data[nrow(data), mtqdate], data[nrow(data), mtqtime]),
+        as.POSIXct(paste(data[1, get("mtqdate")], data[1, get("mtqtime")]), tz = current_tz),
+        as.POSIXct(paste(data[nrow(data), get("mtqdate")], data[nrow(data), get("mtqtime")]),
                    tz = current_tz),
         by = wanted_time_level)
     } else {
       new_date_time <- (
         computeDateSequenceCET(
-          date = c(as.POSIXct(paste(data[1, mtqdate], data[1, mtqtime]),
+          date = c(as.POSIXct(paste(data[1, get("mtqdate")], data[1, get("mtqtime")]),
                               tz = current_tz),
-                   as.POSIXct(paste(data[nrow(data), mtqdate],
-                                    data[nrow(data), mtqtime]),
+                   as.POSIXct(paste(data[nrow(data), get("mtqdate")],
+                                    data[nrow(data), get("mtqtime")]),
                               tz = current_tz)), 
           ts = wanted_time_level))
       attr(new_date_time, "tzone") <- current_tz
@@ -542,8 +544,8 @@ getAggregateTS <- function(data, col_date  = "date",
     res <- data.frame(tmpdate = new_date_time)
     tmp_function <- function(x) {
       if (!x%in%col_series_na) {
-        res$tmp <<- approx(x    = data[, eval(parse(text = col_date))],
-                           y    = data[, eval(parse(text = x))],
+        res$tmp <<- stats::approx(x = data[, eval(parse(text = col_date))],
+                           y = data[, eval(parse(text = x))],
                            xout = new_date_time)$y
       } else {
         res$tmp <<- NA
@@ -594,17 +596,57 @@ mycut <- function(m, breaks) {
   m
 }
 
-dtISOweekday <- function (date) 
-{
-  return(as.integer(wday(dt_date) + 5)%%7 + 1)
-}
+# dtISOweekday <- function (date) 
+# {
+#   return(as.integer(wday(date) + 5)%%7 + 1)
+# }
 
 dtweekday0 <- function (date) 
 {
-  return(as.integer(wday(date) + 5)%%7)
+  return(as.integer(data.table::wday(date) + 5)%%7)
 }
 
 dtthursday0 <- function (date) 
 {
   return(date - dtweekday0(date) + 3)
+}
+
+computeDateSequenceCET <- function (date, ts){
+  seq_date <- seq(date[1], date[length(date)], by = 60 * 60)
+  regular_day_grid <- format(seq(as.POSIXct("1910-01-01 00:00:00", 
+                                            tz = "UTC"), as.POSIXct("1910-01-01 23:50:00", tz = "UTC"), 
+                                 by = ts), format = "%H:%M:%S")
+  generateSummerTimeDayOfYear <- function(year) {
+    hour_change <- hourChangeYear(year)
+    gsub(" 02:", " 03:", paste(format(hour_change[[2]], "%Y-%m-%d"), 
+                               regular_day_grid))
+  }
+  summer_time_day <- do.call("c", lapply(unique(format(date, 
+                                                       "%Y")), generateSummerTimeDayOfYear))
+  ind_keep <- unique(sort(c(which(format(seq_date, "%H:%M:%S") %in% 
+                                    regular_day_grid), which(seq_date %in% as.POSIXct(summer_time_day, 
+                                                                                      tz = "CET")))))
+  seq_date <- seq_date[ind_keep]
+  ind_dup <- which(duplicated(format(seq_date, "%Y%m%d %H:%M:%S"), 
+                              fromLast = FALSE))
+  if (length(ind_dup) > 0) {
+    seq_date <- seq_date[-ind_dup]
+  }
+  attr(seq_date, "tzone") <- "CET"
+  seq_date
+}
+
+hourChangeYear <- function (year) {
+  start_date <- as.POSIXct(paste0(year, "-01-01"), tz = "CET")
+  end_date <- as.POSIXct(paste0(year, "-12-31"), tz = "CET")
+  dates <- as.POSIXlt(seq(from = start_date, to = end_date, 
+                          by = 60 * 60L))
+  hours <- dates$hour
+  hours_diff <- hours[2:length(hours)] - hours[1:(length(hours) - 
+                                                    1)]
+  ind_winter_time <- which(hours_diff == 0)
+  winter_time <- dates[c(ind_winter_time + 2)]
+  ind_summer_time <- which(hours_diff == 2)
+  summer_time <- dates[c(ind_summer_time + 1)]
+  list(winter_time, summer_time)
 }
