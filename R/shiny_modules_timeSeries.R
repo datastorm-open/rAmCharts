@@ -5,7 +5,7 @@
 #' @param input   standard, \code{shiny} input
 #' @param output  standard, \code{shiny} output
 #' @param session standard, \code{shiny} session
-#' @param data : data.frame to transform
+#' @param data : data.frame to transform. Must be a reactive object.
 #' @param col_date : Date column name, default to "date".
 #'                   Must be "POSIXct" or "CET24" colum
 #' @param col_series : Column name of quantitative variable(s) to be
@@ -64,41 +64,52 @@ rAmChartTimeSeriesServer <- function(input, output, session, data,
   
   ns <- session$ns
   
-  ctp <- shiny::reactiveVal(0)
+  cpt <- shiny::reactiveValues(cpt = 0)
   
   output$am_ts_module <- renderAmCharts({
-    init_data <- getCurrentStockData(data, col_date = col_date, col_series = col_series, maxPoints = maxPoints, tz = tz, ts = ts, 
-                                      fun_aggr = fun_aggr, treat_missing = treat_missing, maxgap = maxgap, type_aggr = type_aggr)
-    
-    tmp_am <- amTimeSeries(init_data$data, col_date, col_series, maxSeries = maxPoints+10, groupToPeriods = NULL, is_ts_module = TRUE, ...)
-    tmp_am <- addListener(tmp_am, "zoomed", paste0("function (event) {
+    data <- data()
+    if(!is.null(data)){
+      init_data <- getCurrentStockData(data, col_date = col_date, col_series = col_series, maxPoints = maxPoints, tz = tz, ts = ts, 
+                                       fun_aggr = fun_aggr, treat_missing = treat_missing, maxgap = maxgap, type_aggr = type_aggr)
+      
+      tmp_am <- amTimeSeries(init_data$data, col_date, col_series, maxSeries = maxPoints+10, groupToPeriods = NULL, is_ts_module = TRUE, ...)
+      tmp_am <- addListener(tmp_am, "zoomed", paste0("function (event) {
                           var zoomed_event = event.chart.events.zoomed;
                           event.chart.events.zoomed = [];
                           event.chart.zoom(event.chart.previousStartDate, event.chart.previousEndDate);
                           event.chart.events.zoomed = zoomed_event;
                           Shiny.onInputChange('", ns("curve_zoom"), "', {start : event.startDate, end : event.endDate});
     }"))
-    tmp_am
+      tmp_am
+    }
+
   })
   
   new_data <- shiny::reactive({
-    input$curve_zoom
-    cur_cpt <- shiny::isolate(ctp())
-    if(cur_cpt > 0){
-      new_data <- getCurrentStockData(data, zoom = input$curve_zoom, col_date = col_date, col_series = col_series, 
+    cur_zoom <- input$curve_zoom
+    cur_cpt <- shiny::isolate(cpt$cpt)
+    data <- shiny::isolate(data())
+    if(cur_cpt > 0 & !is.null(data)){
+      new_data <- getCurrentStockData(data, zoom = cur_zoom, col_date = col_date, col_series = col_series, 
                                       maxPoints = maxPoints, tz = tz, ts = ts, fun_aggr = fun_aggr, 
                                       treat_missing = treat_missing, maxgap = maxgap, type_aggr = type_aggr)
-      session$sendCustomMessage("amChartStockModuleChangeData", 
-                                list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
-      new_data$zoom <- input$curve_zoom
+      new_data$zoom <- cur_zoom
     } else {
       new_data <- NULL
     }
-    ctp(cur_cpt+1)
+    cpt$cpt <- cur_cpt+1
     new_data
     
   })
 
+  shiny::observe({
+    new_data <- new_data()
+    if(!is.null(new_data)){
+      session$sendCustomMessage("amChartStockModuleChangeData", 
+                                list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
+    }
+  })
+  
   return(new_data)
 }
 
@@ -163,11 +174,11 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
   # nouvelle data amCharts
   am_data <- getAggregateTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
                                    ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
-  print(head(am_data))
-  print(head(data))
+  # print(head(am_data))
+  # print(head(data))
   first_row <- data[1, ]
   
-  print(first_row)
+  # print(first_row)
   lapply(col_series, function(x){
     first_row[[x]] <<- NA
   })

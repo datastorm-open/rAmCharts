@@ -22,7 +22,7 @@ rAmChartTimeSeriesServer(input, output, session, data, col_date, col_series,
 
 \item{session}{standard, \code{shiny} session}
 
-\item{data}{: data.frame to transform}
+\item{data}{: data.frame to transform. Must be a reactive object.}
 
 \item{col_date}{: Date column name, default to "date".
 Must be "POSIXct" or "CET24" colum}
