@@ -127,11 +127,15 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
   
   cpt <- shiny::reactiveValues(cpt = 0)
   
-  # init data
-  init_data <- shiny::reactive({
+  shiny::observe({
     data <- data()
     # reset cpt
     cpt$cpt <- 0
+  }, priority = 1)
+  
+  # init data
+  init_data <- shiny::reactive({
+    data <- data()
     if(!is.null(data)){
       init_data <- getCurrentStockData(data, col_date = col_date(), col_series = col_series(), 
                                        maxPoints = maxPoints(), tz = tz(), ts = ts(), 
@@ -186,24 +190,31 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
   
   new_data <- shiny::reactive({
     cur_zoom <- input$curve_zoom
-    data <- data()
-    if(!is.null(data) & isolate(cpt$cpt) > 0){
+    print("cur_zoom")
+    data <- shiny::isolate(data())
+    print("la")
+    if(!is.null(data) & shiny::isolate(cpt$cpt) > 0){
+      print("ici")
       new_data <- getCurrentStockData(data, zoom = cur_zoom, col_date = col_date(), col_series = col_series(), 
                                       maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
                                       treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
       new_data$zoom <- cur_zoom
     } else {
+      print("ici2")
       new_data <- shiny::isolate(init_data())
     }
-    cpt$cpt <- isolate(cpt$cpt)+1
+    cpt$cpt <- shiny::isolate(cpt$cpt)+1
     new_data
     
   })
   
   shiny::observe({
     new_data <- new_data()
+    print("new_data")
+    print(new_data$zoom)
     if(!is.null(new_data)){
       if(!is.null(new_data$zoom)){
+        print("update")
         session$sendCustomMessage("amChartStockModuleChangeData", 
                                   list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
       }
