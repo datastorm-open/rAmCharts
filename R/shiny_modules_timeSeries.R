@@ -92,7 +92,7 @@ rAmChartTimeSeriesServer <- function(input, output, session, data,
     cur_zoom <- input$curve_zoom
     cur_cpt <- shiny::isolate(cpt$cpt)
     data <- shiny::isolate(data())
-    if(cur_cpt > 0 & !is.null(data)){
+    if(!is.null(data)){
       new_data <- getCurrentStockData(data, zoom = cur_zoom, col_date = col_date, col_series = col_series, 
                                       maxPoints = maxPoints, tz = tz, ts = ts, fun_aggr = fun_aggr, 
                                       treat_missing = treat_missing, maxgap = maxgap, type_aggr = type_aggr)
@@ -107,7 +107,8 @@ rAmChartTimeSeriesServer <- function(input, output, session, data,
 
   shiny::observe({
     new_data <- new_data()
-    if(!is.null(new_data)){
+    cur_cpt <- shiny::isolate(cpt$cpt)
+    if(!is.null(new_data) & cur_cpt > 0){
       session$sendCustomMessage("amChartStockModuleChangeData", 
                                 list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
     }
