@@ -125,16 +125,9 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
   
   ns <- session$ns
   
-  cpt <- shiny::reactiveValues(cpt = 0)
+  ctrl_data <- shiny::reactiveValues(data = NULL, ts = NULL, zoom = NULL, cpt = 0)
   
-  shiny::observe({
-    data <- data()
-    # reset cpt
-    cpt$cpt <- 0
-  }, priority = 1)
-  
-  # init data
-  init_data <- shiny::reactive({
+  output$am_ts_module <- renderAmCharts({
     data <- data()
     if(!is.null(data)){
       init_data <- getCurrentStockData(data, col_date = col_date(), col_series = col_series(), 
@@ -142,16 +135,11 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                                        fun_aggr = fun_aggr(), treat_missing = treat_missing(), 
                                        maxgap = maxgap(), type_aggr = type_aggr())
       
-      init_data$zoom <- NULL
-      init_data
-    }else {
-      NULL
-    }
-  })
-  
-  output$am_ts_module <- renderAmCharts({
-    init_data <- init_data()
-    if(!is.null(init_data)){
+      ctrl_data$zoom <- NULL
+      ctrl_data$cpt <- 0
+      ctrl_data$data <- init_data$data
+      ctrl_data$ts <- init_data$ts
+
       tmp_am <- amTimeSeries(data = init_data$data, maxSeries = maxPoints()+10, is_ts_module = TRUE,
                              col_date = col_date(), col_series = col_series(),
                              main = main(), ylab = ylab(), color = color(), bullet = bullet(),
@@ -188,40 +176,33 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
     
   })
   
-  new_data <- shiny::reactive({
+  shiny::observe({
     cur_zoom <- input$curve_zoom
     print("cur_zoom")
-    data <- shiny::isolate(data())
+    all_data <- shiny::isolate(data())
     print("la")
-    if(!is.null(data) & shiny::isolate(cpt$cpt) > 0){
+    print(shiny::isolate(ctrl_data$cpt))
+    if(!is.null(all_data) & shiny::isolate(ctrl_data$cpt) > 0){
       print("ici")
-      new_data <- getCurrentStockData(data, zoom = cur_zoom, col_date = col_date(), col_series = col_series(), 
+      new_data <- getCurrentStockData(all_data, zoom = cur_zoom, col_date = col_date(), col_series = col_series(), 
                                       maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
                                       treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
-      new_data$zoom <- cur_zoom
-    } else {
-      print("ici2")
-      new_data <- shiny::isolate(init_data())
+      ctrl_data$zoom <- cur_zoom
+      ctrl_data$data <- new_data$data
+      ctrl_data$ts <- new_data$ts
+      
+      session$sendCustomMessage("amChartStockModuleChangeData", 
+                                list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
     }
-    cpt$cpt <- shiny::isolate(cpt$cpt)+1
-    new_data
-    
+    ctrl_data$cpt <- shiny::isolate(ctrl_data$cpt) + 1
+
+  })
+
+  res_data <- shiny::reactive({
+    list(data = ctrl_data$data, ts = ctrl_data$ts, zoom = ctrl_data$zoom)
   })
   
-  shiny::observe({
-    new_data <- new_data()
-    print("new_data")
-    print(new_data$zoom)
-    if(!is.null(new_data)){
-      if(!is.null(new_data$zoom)){
-        print("update")
-        session$sendCustomMessage("amChartStockModuleChangeData", 
-                                  list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
-      }
-    }
-  })
-  
-  return(new_data)
+  return(res_data)
 }
 
 #' Get data in shiny module
