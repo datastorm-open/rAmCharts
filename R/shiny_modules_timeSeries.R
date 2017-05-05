@@ -30,6 +30,9 @@
 #'  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
 #'}
 #' 
+#' @param width \code{character}, the width of the chart container. For \code{amChartsOutput}.
+#' @param height \code{character}, the height of the chart container. For \code{amChartsOutput}.
+#' 
 #' @param ... : \link{amTimeSeries} arguments
 #' 
 #' @return a reactive expression with aggregate data and ts
@@ -50,9 +53,9 @@
 #' }
 #' 
 #' @export
-rAmChartTimeSeriesUI <- function(id) {
+rAmChartTimeSeriesUI <- function(id, width = "100%", height = "400px") {
   ns <- shiny::NS(id)
-  amChartsOutput(ns("am_ts_module"))  
+  amChartsOutput(ns("am_ts_module"), width = width, height = height)  
 }
 
 #' @rdname rAmCharts-shinymodules-ts

@@ -6,7 +6,7 @@
 \alias{rAmChartTimeSeriesServer}
 \title{Shiny module to render large time-series data with live server-client aggregation}
 \usage{
-rAmChartTimeSeriesUI(id)
+rAmChartTimeSeriesUI(id, width = "100\%", height = "400px")
 
 rAmChartTimeSeriesServer(input, output, session, data, col_date, col_series,
   maxPoints = 600, tz = "UTC", ts = c("5 min", "10 min", "30 min", "hour",
@@ -15,6 +15,10 @@ rAmChartTimeSeriesServer(input, output, session, data, col_date, col_series,
 }
 \arguments{
 \item{id}{character, used to specify namesapce, see \code{shiny::\link[shiny]{NS}}}
+
+\item{width}{\code{character}, the width of the chart container. For \code{amChartsOutput}.}
+
+\item{height}{\code{character}, the height of the chart container. For \code{amChartsOutput}.}
 
 \item{input}{standard, \code{shiny} input}
 
