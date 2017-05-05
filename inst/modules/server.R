@@ -16,17 +16,17 @@ shinyServer(function(session, input, output) {
                       color = "red", periodFieldsSelection = TRUE, ZoomButton = data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 7 ,1),
                                                               label = c("Day","Week", "MAX"), selected = c(F, F, T)), group = "sh")
   
-  observe({
-    print("res_1")
-    print(str(res_1()))
-  })
+  # observe({
+  #   print("res_1")
+  #   print(str(res_1()))
+  # })
 
   res_2 <- callModule(rAmChartTimeSeriesServer, "ts_2", data, "date", "value", periodFieldsSelection = TRUE, group = "sh")
 
-  observe({
-    print("res_2")
-    print(str(res_2()))
-  })
+  # observe({
+  #   print("res_2")
+  #   print(str(res_2()))
+  # })
   
   output$am1 <- renderAmCharts({
     amTimeSeries(data_stock_2[1:100, ], "date", c("ts1", "ts2"), group = "sh2")

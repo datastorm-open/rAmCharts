@@ -148,6 +148,10 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
                                 ts = c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year"),
                                 fun_aggr = "mean", treat_missing = FALSE, maxgap = Inf, type_aggr = "first"){
   
+  if(!isTRUE(all.equal("data.frame", class(data)))){
+    data <- data.frame(data)
+  }
+  
   if(!is.null(zoom)){
     start_time <- lubridate::floor_date(as.POSIXct(zoom$start, format = "%Y-%m-%dT%T", tz = "UTC"), "day")
     end_time <- lubridate::ceiling_date(as.POSIXct(zoom$end, format = "%Y-%m-%dT%T", tz = "UTC"), "day")
