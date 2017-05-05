@@ -53,14 +53,14 @@
 #' }
 #' 
 #' @export
-rAmChartTimeSeriesUI <- function(id, width = "100%", height = "400px") {
+rAmChartsTimeSeriesUI <- function(id, width = "100%", height = "400px") {
   ns <- shiny::NS(id)
   amChartsOutput(ns("am_ts_module"), width = width, height = height)  
 }
 
 #' @rdname rAmCharts-shinymodules-ts
 #' @export
-rAmChartTimeSeriesServer <- function(input, output, session, data, 
+rAmChartsTimeSeriesServer <- function(input, output, session, data, 
                                      col_date, col_series, maxPoints = 600, tz  = "UTC",
                                      ts = c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year"),
                                      fun_aggr = "mean", treat_missing = FALSE, maxgap = Inf, type_aggr = "first", ...) {
@@ -82,10 +82,10 @@ rAmChartTimeSeriesServer <- function(input, output, session, data,
                           event.chart.zoom(event.chart.previousStartDate, event.chart.previousEndDate);
                           event.chart.events.zoomed = zoomed_event;
                           Shiny.onInputChange('", ns("curve_zoom"), "', {start : event.startDate, end : event.endDate});
-    }"))
+                }"))
       tmp_am
     }
-
+    
   })
   
   new_data <- shiny::reactive({
@@ -104,16 +104,16 @@ rAmChartTimeSeriesServer <- function(input, output, session, data,
     new_data
     
   })
-
+  
   shiny::observe({
     new_data <- new_data()
     cur_cpt <- shiny::isolate(cpt$cpt)
-    if(!is.null(new_data) & cur_cpt > 0){
+    if(!is.null(new_data) & cur_cpt > 1){
       session$sendCustomMessage("amChartStockModuleChangeData", 
                                 list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
     }
   })
-  
+
   return(new_data)
 }
 
@@ -181,7 +181,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
   
   # nouvelle data amCharts
   am_data <- getAggregateTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
-                                   ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
+                            ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
   # print(head(am_data))
   # print(head(data))
   first_row <- data[1, ]
@@ -261,11 +261,11 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 # 
 # getAggregateTS(data)
 getAggregateTS <- function(data, col_date  = "date",
-                                  col_series = setdiff(colnames(data), col_date),
-                                  ts = "10 min", tz = "UTC",
-                                  fun_aggr = "mean", treat_missing = FALSE,
-                                  maxgap = Inf, keep_last = TRUE, type_aggr = "first", 
-                                  showwarn = FALSE){
+                           col_series = setdiff(colnames(data), col_date),
+                           ts = "10 min", tz = "UTC",
+                           fun_aggr = "mean", treat_missing = FALSE,
+                           maxgap = Inf, keep_last = TRUE, type_aggr = "first", 
+                           showwarn = FALSE){
   
   if(treat_missing){
     merge.date <- TRUE
@@ -333,7 +333,7 @@ getAggregateTS <- function(data, col_date  = "date",
   }
   
   # timezone consistency between in- and output
-
+  
   if ("Date" %in% class(data[[col_date]])) {
     tzdate <- tz
     data_check <- data.table(seq(data[[col_date]][1],
@@ -575,8 +575,8 @@ getAggregateTS <- function(data, col_date  = "date",
     tmp_function <- function(x) {
       if (!x%in%col_series_na) {
         res$tmp <<- stats::approx(x = data[, eval(parse(text = col_date))],
-                           y = data[, eval(parse(text = x))],
-                           xout = new_date_time)$y
+                                  y = data[, eval(parse(text = x))],
+                                  xout = new_date_time)$y
       } else {
         res$tmp <<- NA
       }
@@ -602,7 +602,7 @@ getAggregateTS <- function(data, col_date  = "date",
   if (treat_cet_as_utc) {
     attr(res[, col_date], "tzone") <- "CET"
   }
-
+  
   # remove tmp_ before col_series
   tmp_function <- function(x) {
     new_col_series <- gsub("^tmp_", "", x)

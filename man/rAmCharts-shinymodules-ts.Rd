@@ -2,13 +2,13 @@
 % Please edit documentation in R/shiny_modules_timeSeries.R
 \name{rAmCharts-shinymodules-ts}
 \alias{rAmCharts-shinymodules-ts}
-\alias{rAmChartTimeSeriesUI}
-\alias{rAmChartTimeSeriesServer}
+\alias{rAmChartsTimeSeriesUI}
+\alias{rAmChartsTimeSeriesServer}
 \title{Shiny module to render large time-series data with live server-client aggregation}
 \usage{
-rAmChartTimeSeriesUI(id, width = "100\%", height = "400px")
+rAmChartsTimeSeriesUI(id, width = "100\%", height = "400px")
 
-rAmChartTimeSeriesServer(input, output, session, data, col_date, col_series,
+rAmChartsTimeSeriesServer(input, output, session, data, col_date, col_series,
   maxPoints = 600, tz = "UTC", ts = c("5 min", "10 min", "30 min", "hour",
   "3 hour", "12 hour", "day", "week", "month", "year"), fun_aggr = "mean",
   treat_missing = FALSE, maxgap = Inf, type_aggr = "first", ...)

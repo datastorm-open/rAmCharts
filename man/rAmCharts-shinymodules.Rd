@@ -2,13 +2,13 @@
 % Please edit documentation in R/shiny_modules_export.R
 \name{rAmCharts-shinymodules}
 \alias{rAmCharts-shinymodules}
-\alias{rAmChartExportServerUI}
-\alias{rAmChartExportServer}
+\alias{rAmChartsExportServerUI}
+\alias{rAmChartsExportServer}
 \title{Shiny module to export rAmCharts graphics on server-side}
 \usage{
-rAmChartExportServerUI(id)
+rAmChartsExportServerUI(id)
 
-rAmChartExportServer(input, output, session, list_am_graph,
+rAmChartsExportServer(input, output, session, list_am_graph,
   path = shiny::reactive(tempdir()), mode = "single", progress = T,
   message = "Calculation in progress", detail = "This may take a while...")
 }
