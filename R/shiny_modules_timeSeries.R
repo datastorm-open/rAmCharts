@@ -134,9 +134,8 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                                        maxPoints = maxPoints(), tz = tz(), ts = ts(), 
                                        fun_aggr = fun_aggr(), treat_missing = treat_missing(), 
                                        maxgap = maxgap(), type_aggr = type_aggr())
-      
+
       ctrl_data$zoom <- NULL
-      ctrl_data$cpt <- 0
       ctrl_data$data <- init_data$data
       ctrl_data$ts <- init_data$ts
 
@@ -177,25 +176,23 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
   })
   
   shiny::observe({
-    cur_zoom <- input$curve_zoom
-    print("cur_zoom")
+    ctrl_data$zoom <- input$curve_zoom
+  })
+  
+  shiny::observe({
+    cur_zoom <- ctrl_data$zoom
     all_data <- shiny::isolate(data())
-    print("la")
-    print(shiny::isolate(ctrl_data$cpt))
-    if(!is.null(all_data) & shiny::isolate(ctrl_data$cpt) > 0){
-      print("ici")
+    if(!is.null(all_data) & !is.null(cur_zoom)){
       new_data <- getCurrentStockData(all_data, zoom = cur_zoom, col_date = col_date(), col_series = col_series(), 
                                       maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
                                       treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
-      ctrl_data$zoom <- cur_zoom
+
       ctrl_data$data <- new_data$data
       ctrl_data$ts <- new_data$ts
       
       session$sendCustomMessage("amChartStockModuleChangeData", 
                                 list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
     }
-    ctrl_data$cpt <- shiny::isolate(ctrl_data$cpt) + 1
-
   })
 
   res_data <- shiny::reactive({
