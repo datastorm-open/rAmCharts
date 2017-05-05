@@ -97,7 +97,7 @@ period than specified in maxSeries property. Possible value are :
 
 \item{group}{\code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.}
 
-\item{is_ts_module}{\code{boolean}. Don't use. For \link{rAmChartTimeSeriesUI}}
+\item{is_ts_module}{\code{boolean}. Don't use. For \link{rAmChartsTimeSeriesUI}}
 
 \item{...}{other first level attributes}
 }

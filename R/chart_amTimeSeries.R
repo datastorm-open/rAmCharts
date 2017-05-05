@@ -50,7 +50,7 @@
 #' @param creditsPosition \code{character}, credits position. Possible values are :
 #' "top-right", "top-left", "bottom-right", "bottom-left"
 #' @param group \code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.
-#' @param is_ts_module \code{boolean}. Don't use. For \link{rAmChartTimeSeriesUI}
+#' @param is_ts_module \code{boolean}. Don't use. For \link{rAmChartsTimeSeriesUI}
 #' @param ... other first level attributes
 #' 
 #' @examples

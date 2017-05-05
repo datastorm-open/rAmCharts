@@ -150,7 +150,7 @@ date ranges or zoom chart with predefined period buttons.}
 
 \item{group}{\code{character} for synchronization}
 
-\item{is_ts_module}{\code{boolean}. Don't use. For \link{rAmChartTimeSeriesUI}}
+\item{is_ts_module}{\code{boolean}. Don't use. For \link{rAmChartsTimeSeriesUI}}
 
 \item{...}{other properties of AmStockChart.}
 
