@@ -91,7 +91,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
   new_data <- shiny::reactive({
     cur_zoom <- input$curve_zoom
     cur_cpt <- shiny::isolate(cpt$cpt)
-    data <- shiny::isolate(data())
+    data <- data()
     if(!is.null(data)){
       new_data <- getCurrentStockData(data, zoom = cur_zoom, col_date = col_date, col_series = col_series, 
                                       maxPoints = maxPoints, tz = tz, ts = ts, fun_aggr = fun_aggr, 
