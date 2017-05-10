@@ -26,4 +26,3 @@ amPlot(1:10, theme = "dark") \%>>\% plot() \%>>\% add_theme_dependency("light.js
 }
 
 }
-

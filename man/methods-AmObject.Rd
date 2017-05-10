@@ -76,4 +76,3 @@ amPieChart() \%>>\% setProperties(type = "serial") \%>>\% print()
 
 amPieChart() \%>>\% setExport()
 }
-

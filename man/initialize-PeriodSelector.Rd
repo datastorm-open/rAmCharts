@@ -2,10 +2,10 @@
 % Please edit documentation in R/class_PeriodSelector.R
 \docType{methods}
 \name{initialize,PeriodSelector-method}
-\alias{addPeriod}
-\alias{addPeriod,PeriodSelector-method}
 \alias{initialize,PeriodSelector-method}
 \alias{periodSelector}
+\alias{addPeriod}
+\alias{addPeriod,PeriodSelector-method}
 \title{Initializes a PeriodSelector}
 \usage{
 \S4method{initialize}{PeriodSelector}(.Object, periods, ...)
@@ -43,4 +43,3 @@ periodSelector(fillAlpha = .4, adjustBorderColor = TRUE, gridThickness = 1)
 addPeriod(.Object = periodSelector(), period = "MM", selected = TRUE,
           count = 1, label= "1 month")
 }
-

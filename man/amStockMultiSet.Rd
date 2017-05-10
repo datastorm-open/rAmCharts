@@ -59,4 +59,3 @@ amStockMultiSet(data = data_stock_3, panelColumn = c(1,2,1,1), percentHeightPane
 }
 
 }
-

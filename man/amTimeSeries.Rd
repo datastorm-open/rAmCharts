@@ -8,13 +8,14 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"), bullet = NULL,
   bulletSize = 2, linetype = c(0, 5, 10, 15, 20), linewidth = c(1, 1, 1,
   1, 1, 1), fillAlphas = 0, precision = 1, export = FALSE,
-  legend = TRUE, legendPosition = "bottom", aggregation = c("Average",
-  "Low", "High", "Sum"), maxSeries = 300, groupToPeriods = c("ss", "mm",
-  "hh", "DD", "MM", "YYYY"), ZoomButton = data.frame(Unit = "MAX", multiple =
-  1, label = "All"), ZoomButtonPosition = "bottom", scrollbar = TRUE,
-  scrollbarPosition = "bottom", scrollbarHeight = 40,
+  legend = TRUE, legendPosition = "bottom", legendHidden = FALSE,
+  aggregation = c("Average", "Low", "High", "Sum"), maxSeries = 300,
+  groupToPeriods = c("ss", "mm", "hh", "DD", "MM", "YYYY"),
+  ZoomButton = data.frame(Unit = "MAX", multiple = 1, label = "All"),
+  ZoomButtonPosition = "bottom", periodFieldsSelection = FALSE,
+  scrollbar = TRUE, scrollbarPosition = "bottom", scrollbarHeight = 40,
   scrollbarGraph = NULL, cursor = TRUE, cursorValueBalloonsEnabled = TRUE,
-  creditsPosition = "top-right", group = NULL, ...)
+  creditsPosition = "top-right", group = NULL, is_ts_module = FALSE, ...)
 }
 \arguments{
 \item{data}{\code{data.frame}, data of graph.}
@@ -44,10 +45,12 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
 
 \item{export}{\code{logical}, default set to  FALSE. TRUE to display export feature.}
 
-\item{legend}{\code{boolean}, enabled or not legend ? Defaut to TRUE.}
+\item{legend}{\code{logical}, enabled or not legend ? Defaut to TRUE.}
 
 \item{legendPosition}{\code{character}, legend position. Possible values are :
 "left", "right", "bottom", "top"}
+
+\item{legendHidden}{\code{logical} hide some series on rendering ? Defaut to FALSE}
 
 \item{aggregation}{\code{character}, aggregation type. Possible values are : 
 "Low", "High", "Average" and "Sum"}
@@ -63,13 +66,18 @@ be grouped in case there are more data items in the selected
 period than specified in maxSeries property. Possible value are :
 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm". Or NULL to disable.}
 
-\item{ZoomButton}{\code{data.frame}, 3 columns : 
-Unit, times unit
-multiple : multiple*unit 
-label : button's label}
+\item{ZoomButton}{\code{data.frame}, 3 or 4 columns : 
+\itemize{
+ \item{"Unit"}{ : Character. Times unit. 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'}
+ \item{"multiple"}{ : Numeric. multiple*unit }
+ \item{"label"}{ : Character. button's label }
+ \item{"selected"}{ : Boolean. Optional. To set initial selection. (One TRUE, others FALSE)}
+}}
 
 \item{ZoomButtonPosition}{\code{character}, zoom button position. Possible values are :
 "left", "right", "bottom", "top"}
+
+\item{periodFieldsSelection}{\code{boolean}, using zoom button, add also two fields to select period ?}
 
 \item{scrollbar}{\code{boolean}, enabled or not scrollbar ? Defaut to TRUE.}
 
@@ -88,6 +96,8 @@ label : button's label}
 "top-right", "top-left", "bottom-right", "bottom-left"}
 
 \item{group}{\code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.}
+
+\item{is_ts_module}{\code{boolean}. Don't use. For \link{rAmChartsTimeSeriesUI}}
 
 \item{...}{other first level attributes}
 }
@@ -155,4 +165,3 @@ amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

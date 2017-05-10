@@ -89,6 +89,7 @@ Collate:
     'class_TrendLine_setters.R'
     'shiny_examples.R'
     'shiny_modules_export.R'
+    'shiny_modules_timeSeries.R'
     'union_AmCharts.R'
     'utils.R'
     'utils_amOptions.R'
@@ -103,11 +104,14 @@ Imports:
     pipeR,
     knitr,
     grDevices,
-    yaml
+    yaml,
+    zoo
 Suggests:
     magrittr,
     shiny,
     testthat,
     shinydashboard,
-    base64enc
-RoxygenNote: 5.0.1
+    base64enc,
+    lubridate,
+    jsonlite
+RoxygenNote: 6.0.1

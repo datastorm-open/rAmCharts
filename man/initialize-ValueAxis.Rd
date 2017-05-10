@@ -3,8 +3,8 @@
 \docType{methods}
 \name{initialize,ValueAxis-method}
 \alias{initialize,ValueAxis-method}
-\alias{setTitle,ValueAxis,character-method}
 \alias{valueAxis}
+\alias{setTitle,ValueAxis,character-method}
 \title{Initializes ValueAxis}
 \usage{
 \S4method{initialize}{ValueAxis}(.Object, title, guides, ...)
@@ -43,4 +43,3 @@ valueAxis(title = "Hello !", axisTitleOffset = 12)
 setTitle(.Object = valueAxis(), title = "Hello !")
 
 }
-

@@ -22,6 +22,7 @@ NULL
 #' @slot theme \code{character}
 #' @slot type equals "stock"
 #' @slot group \code{character} for synchronization
+#' @slot is_ts_module \code{logicalOrMissing}. Don't use. For \link{rAmChartsTimeSeriesUI}
 #' 
 #' @slot listeners \code{list} containining the listeners to add to the chart.
 #' The list must be named as in the official API. Each element must be a character string.
@@ -42,7 +43,8 @@ setClass("AmStockChart", contains = "AmObject",
                                          periodSelector = "list",
                                          theme = "character",
                                          type = "character",
-                                         group = "characterOrNULL"),
+                                         group = "characterOrNULL",
+                                         is_ts_module = "logicalOrMissing"),
          validity = function(object)
          {
            if (object@type != "stock") {
@@ -73,6 +75,8 @@ setClass("AmStockChart", contains = "AmObject",
 #' date ranges or zoom chart with predefined period buttons.
 #' @param theme \code{character}.
 #' @param group \code{character} for synchronization
+#' @param is_ts_module \code{boolean}. Don't use. For \link{rAmChartsTimeSeriesUI}
+#' 
 #' @param ... other properties of AmStockChart.
 #' 
 #' @return An object of class \linkS4class{AmStockChart}.
@@ -90,7 +94,7 @@ setClass("AmStockChart", contains = "AmObject",
 setMethod(f = "initialize", signature = "AmStockChart",
           definition = function(.Object, balloon, comparedDataSets, dataSets,
                                 dataSetSelector, mainDataSet,
-                                panels, periodSelector, theme, group, ...)
+                                panels, periodSelector, theme, group, is_ts_module, ...)
           {
             .Object@type = "stock"
             if (!missing(balloon))
@@ -111,6 +115,8 @@ setMethod(f = "initialize", signature = "AmStockChart",
               .Object@theme <- theme
             if (!missing(group))
               .Object@group <- group
+            if (!missing(is_ts_module))
+              .Object@is_ts_module <- is_ts_module
             .Object <- setProperties(.Object, ...)
             validObject(.Object)
             return(.Object)
@@ -126,7 +132,7 @@ setMethod(f = "initialize", signature = "AmStockChart",
 #' 
 amStockChart <- function(balloon, comparedDataSets, dataSets,
                          dataSetSelector, mainDataSet,
-                         panels, periodSelector, theme, group, ...)
+                         panels, periodSelector, theme, group, is_ts_module, ...)
 {
   .Object <- new("AmStockChart")
   if (!missing(balloon))
@@ -147,6 +153,8 @@ amStockChart <- function(balloon, comparedDataSets, dataSets,
     .Object@theme <- theme
   if (!missing(group))
     .Object@group <- group
+  if (!missing(is_ts_module))
+    .Object@is_ts_module <- is_ts_module
   .Object <- setProperties(.Object, ...)
   
   validObject(.Object)

@@ -53,7 +53,7 @@
 #' 
 #' }
 #' @export
-rAmChartExportServerUI <- function(id) {
+rAmChartsExportServerUI <- function(id) {
   ns <- shiny::NS(id)
   shiny::uiOutput(ns("racems_graphs_ui"))
 }
@@ -61,7 +61,7 @@ rAmChartExportServerUI <- function(id) {
 
 #' @rdname rAmCharts-shinymodules
 #' @export
-rAmChartExportServer <- function(input, output, session, list_am_graph,
+rAmChartsExportServer <- function(input, output, session, list_am_graph,
                                  path = shiny::reactive(tempdir()), mode = "single", progress = T,
                                  message = 'Calculation in progress',
                                  detail = 'This may take a while...'){

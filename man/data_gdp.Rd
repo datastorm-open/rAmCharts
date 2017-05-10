@@ -19,4 +19,3 @@ data_gdp
 Value in $ trillion
 }
 \keyword{datasets}
-

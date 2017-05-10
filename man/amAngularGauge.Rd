@@ -52,4 +52,3 @@ amAngularGauge computes a gauge of the given value.
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

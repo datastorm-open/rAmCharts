@@ -63,4 +63,3 @@ amSolidGauge(x = 65, text = "\%", textSize = 50)
 }
 
 }
-

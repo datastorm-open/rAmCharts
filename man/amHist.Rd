@@ -84,4 +84,3 @@ amHist(x = x, control_hist = list(breaks = "Scott"))
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

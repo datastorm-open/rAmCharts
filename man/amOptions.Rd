@@ -109,4 +109,3 @@ amPie(data = data_pie) \%>>\%
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

@@ -63,4 +63,3 @@ amBullet(value = 65, min = 20, max = 90)
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

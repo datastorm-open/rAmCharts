@@ -15,9 +15,10 @@
 #' @param fillAlphas : \code{numeric}, fill. Between 0 (no fill) to 1.
 #' @param precision \code{numeric}, default set to  1.
 #' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
-#' @param legend \code{boolean}, enabled or not legend ? Defaut to TRUE.
+#' @param legend \code{logical}, enabled or not legend ? Defaut to TRUE.
 #' @param legendPosition \code{character}, legend position. Possible values are :
 #' "left", "right", "bottom", "top"
+#' @param legendHidden \code{logical} hide some series on rendering ? Defaut to FALSE
 #' @param aggregation \code{character}, aggregation type. Possible values are : 
 #' "Low", "High", "Average" and "Sum"
 #' @param maxSeries \code{numeric} Maximum series shown at a time.
@@ -29,12 +30,16 @@
 #' be grouped in case there are more data items in the selected
 #' period than specified in maxSeries property. Possible value are :
 #' 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm". Or NULL to disable.
-#' @param ZoomButton \code{data.frame}, 3 columns : 
-#' Unit, times unit
-#' multiple : multiple*unit 
-#' label : button's label
+#' @param ZoomButton \code{data.frame}, 3 or 4 columns : 
+#' \itemize{
+#'  \item{"Unit"}{ : Character. Times unit. 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'}
+#'  \item{"multiple"}{ : Numeric. multiple*unit }
+#'  \item{"label"}{ : Character. button's label }
+#'  \item{"selected"}{ : Boolean. Optional. To set initial selection. (One TRUE, others FALSE)}
+#'}
 #' @param ZoomButtonPosition \code{character}, zoom button position. Possible values are :
 #' "left", "right", "bottom", "top"
+#' @param periodFieldsSelection \code{boolean}, using zoom button, add also two fields to select period ?
 #' @param scrollbar \code{boolean}, enabled or not scrollbar ? Defaut to TRUE.
 #' @param scrollbarPosition \code{character}, scrollbar position. Possible values are :
 #' "left", "right", "bottom", "top"
@@ -45,6 +50,7 @@
 #' @param creditsPosition \code{character}, credits position. Possible values are :
 #' "top-right", "top-left", "bottom-right", "bottom-left"
 #' @param group \code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.
+#' @param is_ts_module \code{boolean}. Don't use. For \link{rAmChartsTimeSeriesUI}
 #' @param ... other first level attributes
 #' 
 #' @examples
@@ -123,11 +129,13 @@ amTimeSeries <- function(data, col_date,
                          export = FALSE,
                          legend = TRUE,
                          legendPosition = "bottom",
+                         legendHidden = FALSE,
                          aggregation = c("Average", "Low", "High", "Sum"),
                          maxSeries = 300,
                          groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'),
                          ZoomButton = data.frame(Unit = "MAX", multiple = 1, label ="All"),
                          ZoomButtonPosition = "bottom",
+                         periodFieldsSelection = FALSE,
                          scrollbar = TRUE,
                          scrollbarPosition = "bottom",
                          scrollbarHeight = 40,
@@ -136,6 +144,7 @@ amTimeSeries <- function(data, col_date,
                          cursorValueBalloonsEnabled = TRUE,
                          creditsPosition = "top-right",
                          group = NULL,
+                         is_ts_module = FALSE,
                          ...)
 {
   ##Test args
@@ -216,7 +225,7 @@ amTimeSeries <- function(data, col_date,
   
   #ZoomButton
   if (!is.null(ZoomButton)) {
-    .testIn(vect = names(ZoomButton),control =  c("Unit","multiple","label"))
+    .testIn(vect = names(ZoomButton), control =  c("Unit", "multiple", "label", "selected"))
     #.testIn(vect = ZoomButton$Unit,control =  c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY', 'MAX'))
     .testNumeric(num = ZoomButton$multiple)
   }
@@ -244,8 +253,8 @@ amTimeSeries <- function(data, col_date,
   data[,col_date] <- data[,col_date] + (as.POSIXlt(as.character(data[,col_date]), tz = "UTC") - data[,col_date])
   
   # groupToPeriods control
-  difft <- min(c(as.numeric(difftime(data[2,col_date], data[1,col_date], units = "secs")),
-                 as.numeric(difftime(data[3,col_date], data[2,col_date], units = "secs"))))
+  difft <- min(c(as.numeric(difftime(data[3,col_date], data[2,col_date], units = "secs")),
+                 as.numeric(difftime(data[4,col_date], data[3,col_date], units = "secs"))))
   groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
   minPeriod = groupToPeriods[1]
   if(length(groupToPeriods) == 1){
@@ -324,6 +333,13 @@ amTimeSeries <- function(data, col_date,
     }
   }))
   
+  # hidden init
+  if (length(legendHidden) > 1) {
+    graph_maker$hidden <- rep(legendHidden[1:length(n_col_series)], n_col_series)
+  } else {
+    graph_maker$hidden <- legendHidden
+  }
+  
   stockgraph <- lapply(1:nrow(graph_maker), function(x) {
     if(graph_maker[x, "type"] == "curve"){
       stockGraph(title =  graph_maker[x, "column"],
@@ -340,6 +356,7 @@ amTimeSeries <- function(data, col_date,
                  bullet = ifelse(is.null(graph_maker[x, "bullet"]), "none", graph_maker[x, "bullet"]),
                  bulletAlpha = graph_maker[x, "bulletAlpha"],
                  precision = precision,
+                 hidden = graph_maker[x, "hidden"],
                  lineThickness = graph_maker[x, "linewidth"]
       )
     } else if(graph_maker[x, "type"] == "low"){
@@ -354,6 +371,7 @@ amTimeSeries <- function(data, col_date,
                  fillAlphas = 0,
                  useDataSetColors = FALSE,
                  visibleInLegend = FALSE,
+                 hidden = graph_maker[x, "hidden"],
                  precision = precision
       )
     } else if(graph_maker[x, "type"] == "curve-uplow"){
@@ -373,6 +391,7 @@ amTimeSeries <- function(data, col_date,
                  bullet = ifelse(is.null(graph_maker[x, "bullet"]), "none", graph_maker[x, "bullet"]),
                  bulletAlpha = graph_maker[x, "bulletAlpha"],
                  precision = precision,
+                 hidden = graph_maker[x, "hidden"],
                  lineThickness = graph_maker[x, "linewidth"]
       )
     } else if(graph_maker[x, "type"] == "up"){
@@ -388,29 +407,26 @@ amTimeSeries <- function(data, col_date,
                  useDataSetColors = FALSE,
                  fillToGraph = graph_maker[x-2, "column"],
                  visibleInLegend = FALSE,
+                 hidden = graph_maker[x, "hidden"],
                  precision = precision
       )
     } 
     
   })
   
-  periodZoom <- periodSelector( position = ZoomButtonPosition ,inputFieldsEnabled = FALSE)
+  periodZoom <- periodSelector(position = ZoomButtonPosition, inputFieldsEnabled = periodFieldsSelection)
   
   if (!is.null(ZoomButton)) {
+    if(!"selected" %in% colnames(ZoomButton)){
+      ZoomButton$selected <- FALSE
+      ZoomButton$selected[1] <- TRUE
+    }
     for (i in 1:nrow(ZoomButton)) {
-      if (i == 1) {
         periodZoom <- pipeR::pipeline(periodZoom,
                                       addPeriod(period = ZoomButton$Unit[i],
-                                                selected = TRUE, count = ZoomButton$multiple[i],
+                                                selected = ZoomButton$selected[i], count = ZoomButton$multiple[i],
                                                 label =  ZoomButton$label[i])
         )
-      } else {
-        periodZoom <- pipeR::pipeline(periodZoom,
-                                      addPeriod(period = ZoomButton$Unit[i],
-                                                count = ZoomButton$multiple[i],
-                                                label =  ZoomButton$label[i])
-        )
-      }
     }
   }
   dataset_obj <- pipeR::pipeline(dataSet(categoryField = col_date) ,
@@ -421,7 +437,7 @@ amTimeSeries <- function(data, col_date,
                                addTitle(text = main))
   ## Plot
   am_output <- pipeR::pipeline(
-    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE, group = group,...),
+    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE, group = group, is_ts_module = is_ts_module, ...),
     setExport(enabled = export),
     addDataSet(dataset_obj),
     addPanel(panel_obj),
@@ -469,7 +485,7 @@ controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', '
   
   #Select min period
   minperiod <- max(which(ref_period$seconds/diffTime<1))
-  if(length(minperiod)>0 & diffTime < 24*3600){
+  if(length(minperiod)>0){
     if(ref_period$seconds[minperiod+1] != diffTime){
       select <- c(paste0(diffTime/ref_period[minperiod,]$seconds,
                          ref_period[minperiod,]$periode), select)

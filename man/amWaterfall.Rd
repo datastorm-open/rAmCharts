@@ -40,4 +40,3 @@ amWaterfall(data = data_waterfall, horiz = TRUE)
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

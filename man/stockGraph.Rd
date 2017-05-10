@@ -35,4 +35,3 @@ Constructor used for \linkS4class{AmStockChart}
 stockGraph(balloonText = "balloonText",valueField = "value", animationPlayed = TRUE)
            
 }
-

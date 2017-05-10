@@ -44,4 +44,3 @@ amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparenc
 \item{\link{amRadar}}
 }
 }
-

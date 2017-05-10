@@ -20,4 +20,3 @@ This dataset is used in the examples,
 moreover it can be used as a reference if you notice a bug.
 }
 \keyword{datasets}
-

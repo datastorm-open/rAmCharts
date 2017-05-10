@@ -2,12 +2,12 @@
 % Please edit documentation in R/chart_amPlot.R
 \name{amPlot}
 \alias{amPlot}
-\alias{amPlot.character}
-\alias{amPlot.data.frame}
 \alias{amPlot.default}
-\alias{amPlot.factor}
-\alias{amPlot.formula}
 \alias{amPlot.numeric}
+\alias{amPlot.character}
+\alias{amPlot.factor}
+\alias{amPlot.data.frame}
+\alias{amPlot.formula}
 \title{Plot serial data}
 \usage{
 amPlot(x, ...)
@@ -148,4 +148,3 @@ amPlot(x = x, y = y, weights = weights)
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

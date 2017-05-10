@@ -16,4 +16,3 @@ Return an updated htmlwidget with the dependency.
 Add the 'responsive' dependency to an htmlwidget.
 You can only manipulate the htmlwidget if you call the method 'plot' with an rAmChart.
 }
-

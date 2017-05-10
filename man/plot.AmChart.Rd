@@ -27,4 +27,3 @@ Basic method to plot an AmChart
 \details{
 Plots an object of class \code{\linkS4class{AmChart}}
 }
-

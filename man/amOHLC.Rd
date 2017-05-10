@@ -77,4 +77,3 @@ amOHLC(data = data_candleStick2, zoom = FALSE)
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

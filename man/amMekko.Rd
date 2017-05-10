@@ -52,4 +52,3 @@ amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

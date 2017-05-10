@@ -2,8 +2,8 @@
 % Please edit documentation in R/class_CategoryAxis.R
 \docType{methods}
 \name{initialize,CategoryAxis-method}
-\alias{categoryAxis}
 \alias{initialize,CategoryAxis-method}
+\alias{categoryAxis}
 \alias{setGridPosition}
 \alias{setGridPosition,CategoryAxis,character-method}
 \title{Initializes a CategoryAxis}
@@ -45,4 +45,3 @@ categoryAxis(gridPosition = "start", adjustBorderColor = TRUE)
 
 setGridPosition(.Object = categoryAxis(), gridPosition = "start")
 }
-

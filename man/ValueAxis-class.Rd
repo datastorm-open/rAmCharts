@@ -30,7 +30,7 @@ containing other avalaible properties not yet implemented in the package.}
 \item{\code{value}}{\code{numeric}.
 Guides belonging to this axis. Use addGuide method}
 }}
+
 \author{
 datastorm-open
 }
-

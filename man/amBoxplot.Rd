@@ -2,10 +2,10 @@
 % Please edit documentation in R/chart_amBoxplot.R
 \name{amBoxplot}
 \alias{amBoxplot}
-\alias{amBoxplot.data.frame}
 \alias{amBoxplot.default}
-\alias{amBoxplot.formula}
+\alias{amBoxplot.data.frame}
 \alias{amBoxplot.matrix}
+\alias{amBoxplot.formula}
 \title{Plotting boxplot using rAmCharts}
 \usage{
 amBoxplot(object, ...)
@@ -114,4 +114,3 @@ amBoxplot(count ~ spray, data = InsectSprays, main = "amcharts")
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-

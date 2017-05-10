@@ -14,5 +14,24 @@ plugins:
     name: "amcharts_export"
     script: "export.min.js"
     stylesheet: "export.css"
-    
-    
+  blob:
+    name: "amcharts_export_blob"
+    script: "blob.js"
+  fabric:
+    name: "amcharts_export_fabric"
+    script: "fabric.min.js"
+  FileSaver:
+    name: "amcharts_export_filesaver"
+    script: "FileSaver.min.js"
+  jszip:
+    name: "amcharts_export_jszip"
+    script: "jszip.min.js"
+  pdfmake:
+    name: "amcharts_export_pdfmake"
+    script: "pdfmake.min.js"
+  pdfmake_font:
+    name: "amcharts_export_pdfmake_font"
+    script: "vfs_fonts.js"
+  xlsx:
+    name: "amcharts_export_xlsx"
+    script: "xlsx.min.js"

@@ -19,4 +19,3 @@ under \url{http://docs.amcharts.com/3/javascriptstockchart/}.
 api()
 api("AmChart")
 }
-

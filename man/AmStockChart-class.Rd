@@ -37,6 +37,8 @@ date ranges or zoom chart with predefined period buttons.}
 
 \item{\code{group}}{\code{character} for synchronization}
 
+\item{\code{is_ts_module}}{\code{logicalOrMissing}. Don't use. For \link{rAmChartsTimeSeriesUI}}
+
 \item{\code{listeners}}{\code{list} containining the listeners to add to the chart.
 The list must be named as in the official API. Each element must be a character string.}
 
@@ -45,10 +47,10 @@ containing other avalaible properties not yet implemented in the package.}
 
 \item{\code{value}}{\code{numeric}.}
 }}
-\author{
-datastorm-open
-}
+
 \seealso{
 \url{http://docs.amcharts.com/3/javascriptstockchart/AmStockChart}
 }
-
+\author{
+datastorm-open
+}

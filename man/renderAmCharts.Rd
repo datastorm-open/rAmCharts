@@ -17,4 +17,3 @@ This is useful if you want to save an expression into variable.}
 \description{
 Widget output function to use in Shiny.
 }
-
