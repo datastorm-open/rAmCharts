@@ -7,7 +7,7 @@
 
 shinyUI(fluidPage(
   rAmChartTimeSeriesUI("ts_1"),
-  rAmChartTimeSeriesUI("ts_2"),
+  # rAmChartTimeSeriesUI("ts_2"),
   
   amChartsOutput("am1"),
   amChartsOutput("am2"),
