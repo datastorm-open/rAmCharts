@@ -6,8 +6,8 @@
 \usage{
 getAggregateTS(data, col_date = "date", col_series = setdiff(colnames(data),
   col_date), ts = "10 min", tz = "UTC", fun_aggr = "mean",
-  treat_missing = FALSE, maxgap = Inf, keep_last = TRUE,
-  type_aggr = "first", showwarn = FALSE)
+  treat_missing = FALSE, control_date = TRUE, maxgap = Inf,
+  keep_last = TRUE, type_aggr = "first", showwarn = FALSE)
 }
 \arguments{
 \item{data}{: data.frame to transform}
@@ -32,6 +32,8 @@ Default to "mean".}
 \item{treat_missing}{: Boolean. Default to FALSE
 Whether or not to interpolate missing values ?
 see \code{na.approx}}
+
+\item{control_date}{: Boolean. Control full data sequence ? Defaut to TRUE and set to TRUE if treat_missing}
 
 \item{maxgap}{: When interpolate missing values with \code{na.approx}.
 Maximum number of consecutive NAs to fill. Defaut to Inf.}

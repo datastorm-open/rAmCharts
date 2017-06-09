@@ -209,6 +209,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 #' @param treat_missing : Boolean. Default to FALSE
 #'                        Whether or not to interpolate missing values ?
 #'                        see \code{na.approx}
+#' @param control_date : Boolean. Control full data sequence ? Defaut to TRUE and set to TRUE if treat_missing
 #' @param maxgap : When interpolate missing values with \code{na.approx}.
 #'                 Maximum number of consecutive NAs to fill. Defaut to Inf.
 #' @param keep_last : Boolean. Keep last date/time value after interpolation ?
@@ -245,15 +246,18 @@ getAggregateTS <- function(data, col_date  = "date",
                                   col_series = setdiff(colnames(data), col_date),
                                   ts = "10 min", tz = "UTC",
                                   fun_aggr = "mean", treat_missing = FALSE,
+                                  control_date = TRUE,
                                   maxgap = Inf, keep_last = TRUE, type_aggr = "first", 
                                   showwarn = FALSE){
   
   if(treat_missing){
-    merge.date <- TRUE
-  } else {
-    merge.date <- FALSE
+    control_date <- TRUE
   }
   
+  ## data.table
+  if("data.table" %in% class(data)){
+    data <- data.frame(data)
+  }
   
   ### Check function arguments ----------------------------
   if (!col_date %in% colnames(data)) {
@@ -321,7 +325,7 @@ getAggregateTS <- function(data, col_date  = "date",
                                  data[[col_date]][nrow(data)], by = "day"))
     setnames(data_check, "V1", col_date)
     data <- base::merge(data, data_check, by = col_date, all = TRUE)
-    merge.date <- FALSE
+    control_date <- FALSE
     data[[col_date]] <- as.POSIXct(as.character(data[[col_date]]), tz = tzdate)
   }
   
@@ -357,7 +361,7 @@ getAggregateTS <- function(data, col_date  = "date",
          decreasing = TRUE)[1]))
   
   
-  if (merge.date) {
+  if (control_date) {
     # donnees manquantes -> rajout de NA
     data_check <- data.table(seq(data[[col_date]][1],
                                  data[[col_date]][nrow(data)],
