@@ -22,7 +22,7 @@ NULL
 #' @slot theme \code{character}
 #' @slot type equals "stock"
 #' @slot group \code{character} for synchronization
-#' @slot is_ts_module \code{logicalOrMissing}. Don't use. For \link{rAmChartTimeSeriesUI}
+#' @slot is_ts_module \code{logicalOrMissing}. Don't use. For \link{rAmChartsTimeSeriesUI}
 #' 
 #' @slot listeners \code{list} containining the listeners to add to the chart.
 #' The list must be named as in the official API. Each element must be a character string.
@@ -75,7 +75,7 @@ setClass("AmStockChart", contains = "AmObject",
 #' date ranges or zoom chart with predefined period buttons.
 #' @param theme \code{character}.
 #' @param group \code{character} for synchronization
-#' @param is_ts_module \code{boolean}. Don't use. For \link{rAmChartTimeSeriesUI}
+#' @param is_ts_module \code{boolean}. Don't use. For \link{rAmChartsTimeSeriesUI}
 #' 
 #' @param ... other properties of AmStockChart.
 #' 

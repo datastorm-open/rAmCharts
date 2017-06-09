@@ -50,7 +50,7 @@
 #' @param creditsPosition \code{character}, credits position. Possible values are :
 #' "top-right", "top-left", "bottom-right", "bottom-left"
 #' @param group \code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.
-#' @param is_ts_module \code{boolean}. Don't use. For \link{rAmChartTimeSeriesUI}
+#' @param is_ts_module \code{boolean}. Don't use. For \link{rAmChartsTimeSeriesUI}
 #' @param ... other first level attributes
 #' 
 #' @examples
@@ -171,6 +171,8 @@ amTimeSeries <- function(data, col_date,
     stop("col_series must be a vector or a list")
   }
   
+  # subset column
+  data <- data[, c(col_date, col_series)]
   
   #color
   .testCharacter(char = color)
@@ -467,7 +469,7 @@ controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', '
                                   diffTime = 30){
   
   ref_period <- data.frame(periode = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'), 
-                           seconds = c(1, 60, 3600, 24*3600, 31*24*3600, 365*24*3600))
+                           seconds = c(1, 60, 3600, 24*3600, 28*24*3600, 365*24*3600))
   rownames(ref_period) <- ref_period$periode
   
   if(!is.null(groupToPeriods)){

@@ -5,7 +5,7 @@
 #' @param input   standard, \code{shiny} input
 #' @param output  standard, \code{shiny} output
 #' @param session standard, \code{shiny} session
-#' @param data : data.frame to transform
+#' @param data : data.frame to transform.
 #' @param col_date : Date column name, default to "date".
 #'                   Must be "POSIXct" or "CET24" colum
 #' @param col_series : Column name of quantitative variable(s) to be
@@ -30,7 +30,44 @@
 #'  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
 #'}
 #' 
-#' @param ... : \link{amTimeSeries} arguments
+#' @param width \code{character}, the width of the chart container. For \code{amChartsOutput}.
+#' @param height \code{character}, the height of the chart container. For \code{amChartsOutput}.
+#' 
+#' @param main \code{character}, title.
+#' @param ylab \code{character}, value axis label.
+#' @param color \code{character}, color of series (in hexadecimal).
+#' @param bullet \code{character}, point shape. Possible values are : "diamond", "square", 
+#' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"
+#' @param bulletSize : \code{numeric}, size of bullet.
+#' @param linetype : \code{numeric}, line type, 0 : solid, number : dashed length 
+#' @param linewidth : \code{numeric}, line width.
+#' @param fillAlphas : \code{numeric}, fill. Between 0 (no fill) to 1.
+#' @param precision \code{numeric}, default set to  1.
+#' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
+#' @param legend \code{logical}, enabled or not legend ? Defaut to TRUE.
+#' @param legendPosition \code{character}, legend position. Possible values are :
+#' "left", "right", "bottom", "top"
+#' @param legendHidden \code{logical} hide some series on rendering ? Defaut to FALSE
+#' @param ZoomButton \code{data.frame}, 3 or 4 columns : 
+#' \itemize{
+#'  \item{"Unit"}{ : Character. Times unit. 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'}
+#'  \item{"multiple"}{ : Numeric. multiple*unit }
+#'  \item{"label"}{ : Character. button's label }
+#'  \item{"selected"}{ : Boolean. Optional. To set initial selection. (One TRUE, others FALSE)}
+#'}
+#' @param ZoomButtonPosition \code{character}, zoom button position. Possible values are :
+#' "left", "right", "bottom", "top"
+#' @param periodFieldsSelection \code{boolean}, using zoom button, add also two fields to select period ?
+#' @param scrollbar \code{boolean}, enabled or not scrollbar ? Defaut to TRUE.
+#' @param scrollbarPosition \code{character}, scrollbar position. Possible values are :
+#' "left", "right", "bottom", "top"
+#' @param scrollbarHeight \code{numeric}, height of scroll bar. Default : 40.
+#' @param scrollbarGraph \code{character}, name of serie (column) to print in scrollbar. Defaut to NULL.
+#' @param cursor \code{boolean}, enabled or not cursor ? Defaut to TRUE.
+#' @param cursorValueBalloonsEnabled \code{boolean}, if cursor, enabled or not balloons on cursor ? Defaut to TRUE.
+#' @param creditsPosition \code{character}, credits position. Possible values are :
+#' "top-right", "top-left", "bottom-right", "bottom-left"
+#' @param group \code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.
 #' 
 #' @return a reactive expression with aggregate data and ts
 #' 
@@ -44,62 +81,125 @@
 #' rAmChartTimeSeriesUI("ts_1")
 #' 
 #' # server
-#'callModule(rAmChartTimeSeriesServer, "ts_1", data_stock_2, "date", "value", 
-#'  periodFieldsSelection = TRUE)
+#'callModule(rAmChartTimeSeriesServer, "ts_1", data_stock_2, reactvie("date"), reactvie("value"))
 #' 
 #' }
 #' 
 #' @export
-rAmChartTimeSeriesUI <- function(id) {
+rAmChartsTimeSeriesUI <- function(id, width = "100%", height = "400px") {
   ns <- shiny::NS(id)
-  amChartsOutput(ns("am_ts_module"))  
+  amChartsOutput(ns("am_ts_module"), width = width, height = height)  
 }
 
 #' @rdname rAmCharts-shinymodules-ts
 #' @export
-rAmChartTimeSeriesServer <- function(input, output, session, data, 
-                                     col_date, col_series, maxPoints = 600, tz  = "UTC",
-                                     ts = c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year"),
-                                     fun_aggr = "mean", treat_missing = FALSE, maxgap = Inf, type_aggr = "first", ...) {
+rAmChartsTimeSeriesServer <- function(input, output, session, data, 
+                                      col_date, col_series, maxPoints = shiny::reactive(600), tz  = shiny::reactive("UTC"),
+                                      ts = shiny::reactive(c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year")),
+                                      fun_aggr = shiny::reactive("mean"), treat_missing = shiny::reactive(FALSE), maxgap = shiny::reactive(Inf), 
+                                      type_aggr = shiny::reactive("first"), 
+                                      main = shiny::reactive(""), 
+                                      ylab = shiny::reactive(""),
+                                      color = shiny::reactive(c("#2E2EFE", "#31B404", "#FF4000", "#AEB404")), 
+                                      bullet = shiny::reactive(NULL),
+                                      bulletSize = shiny::reactive(2), 
+                                      linetype = shiny::reactive(c(0, 5, 10, 15, 20)), 
+                                      linewidth = shiny::reactive(c(1, 1, 1, 1, 1, 1)), 
+                                      fillAlphas = shiny::reactive(0), 
+                                      precision = shiny::reactive(1), 
+                                      export = shiny::reactive(FALSE),
+                                      legend = shiny::reactive(TRUE), 
+                                      legendPosition = shiny::reactive("bottom"), 
+                                      legendHidden = shiny::reactive(FALSE),
+                                      ZoomButton = shiny::reactive(data.frame(Unit = "MAX", multiple = 1, label = "All")),
+                                      ZoomButtonPosition = shiny::reactive("bottom"), 
+                                      periodFieldsSelection = shiny::reactive(FALSE),
+                                      scrollbar = shiny::reactive(TRUE), 
+                                      scrollbarPosition = shiny::reactive("bottom"), 
+                                      scrollbarHeight = shiny::reactive(40),
+                                      scrollbarGraph = shiny::reactive(NULL), 
+                                      cursor = shiny::reactive(TRUE), 
+                                      cursorValueBalloonsEnabled = shiny::reactive(TRUE),
+                                      creditsPosition = shiny::reactive("top-right"), 
+                                      group = shiny::reactive(NULL)) {
   
   ns <- session$ns
   
-  ctp <- shiny::reactiveVal(0)
+  ctrl_data <- shiny::reactiveValues(data = NULL, ts = NULL, zoom = NULL, cpt = 0)
   
   output$am_ts_module <- renderAmCharts({
-    init_data <- getCurrentStockData(data, col_date = col_date, col_series = col_series, maxPoints = maxPoints, tz = tz, ts = ts, 
-                                      fun_aggr = fun_aggr, treat_missing = treat_missing, maxgap = maxgap, type_aggr = type_aggr)
-    
-    tmp_am <- amTimeSeries(init_data$data, col_date, col_series, maxSeries = maxPoints+10, groupToPeriods = NULL, is_ts_module = TRUE, ...)
-    tmp_am <- addListener(tmp_am, "zoomed", paste0("function (event) {
-                          var zoomed_event = event.chart.events.zoomed;
-                          event.chart.events.zoomed = [];
-                          event.chart.zoom(event.chart.previousStartDate, event.chart.previousEndDate);
-                          event.chart.events.zoomed = zoomed_event;
-                          Shiny.onInputChange('", ns("curve_zoom"), "', {start : event.startDate, end : event.endDate});
+    data <- data()
+    if(!is.null(data)){
+      init_data <- getCurrentStockData(data, col_date = col_date(), col_series = col_series(), 
+                                       maxPoints = maxPoints(), tz = tz(), ts = ts(), 
+                                       fun_aggr = fun_aggr(), treat_missing = treat_missing(), 
+                                       maxgap = maxgap(), type_aggr = type_aggr())
+
+      ctrl_data$zoom <- NULL
+      ctrl_data$data <- init_data$data
+      ctrl_data$ts <- init_data$ts
+
+      tmp_am <- amTimeSeries(data = init_data$data, maxSeries = maxPoints()+10, is_ts_module = TRUE,
+                             col_date = col_date(), col_series = col_series(),
+                             main = main(), ylab = ylab(), color = color(), bullet = bullet(),
+                             bulletSize = bulletSize(), 
+                             linetype = linetype(), 
+                             linewidth = linewidth(), 
+                             fillAlphas = fillAlphas(), 
+                             precision = precision(), 
+                             export = export(),
+                             legend = legend(), 
+                             legendPosition = legendPosition(), 
+                             legendHidden = legendHidden(),
+                             ZoomButton = ZoomButton(),
+                             ZoomButtonPosition = ZoomButtonPosition(), 
+                             periodFieldsSelection = periodFieldsSelection(),
+                             scrollbar = scrollbar(), 
+                             scrollbarPosition = scrollbarPosition(), 
+                             scrollbarHeight = scrollbarHeight(),
+                             scrollbarGraph = scrollbarGraph(), 
+                             cursor = cursor(), 
+                             cursorValueBalloonsEnabled = cursorValueBalloonsEnabled(),
+                             creditsPosition = creditsPosition(), 
+                             group = group())
+      
+      tmp_am <- addListener(tmp_am, "zoomed", paste0("function (event) {
+                                                     var zoomed_event = event.chart.events.zoomed;
+                                                     event.chart.events.zoomed = [];
+                                                     event.chart.zoom(event.chart.previousStartDate, event.chart.previousEndDate);
+                                                     event.chart.events.zoomed = zoomed_event;
+                                                     Shiny.onInputChange('", ns("curve_zoom"), "', {start : event.startDate, end : event.endDate});
     }"))
-    tmp_am
+      tmp_am
+    }
+    
   })
   
-  new_data <- shiny::reactive({
-    input$curve_zoom
-    cur_cpt <- shiny::isolate(ctp())
-    if(cur_cpt > 0){
-      new_data <- getCurrentStockData(data, zoom = input$curve_zoom, col_date = col_date, col_series = col_series, 
-                                      maxPoints = maxPoints, tz = tz, ts = ts, fun_aggr = fun_aggr, 
-                                      treat_missing = treat_missing, maxgap = maxgap, type_aggr = type_aggr)
+  shiny::observe({
+    ctrl_data$zoom <- input$curve_zoom
+  })
+  
+  shiny::observe({
+    cur_zoom <- ctrl_data$zoom
+    all_data <- shiny::isolate(data())
+    if(!is.null(all_data) & !is.null(cur_zoom)){
+      new_data <- getCurrentStockData(all_data, zoom = cur_zoom, col_date = col_date(), col_series = col_series(), 
+                                      maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
+                                      treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
+
+      ctrl_data$data <- new_data$data
+      ctrl_data$ts <- new_data$ts
+      
       session$sendCustomMessage("amChartStockModuleChangeData", 
                                 list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
-      new_data$zoom <- input$curve_zoom
-    } else {
-      new_data <- NULL
     }
-    ctp(cur_cpt+1)
-    new_data
-    
   })
 
-  return(new_data)
+  res_data <- shiny::reactive({
+    list(data = ctrl_data$data, ts = ctrl_data$ts, zoom = ctrl_data$zoom)
+  })
+  
+  return(res_data)
 }
 
 #' Get data in shiny module
@@ -137,6 +237,10 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
                                 ts = c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year"),
                                 fun_aggr = "mean", treat_missing = FALSE, maxgap = Inf, type_aggr = "first"){
   
+  if(!isTRUE(all.equal("data.frame", class(data)))){
+    data <- data.frame(data)
+  }
+  
   if(!is.null(zoom)){
     start_time <- lubridate::floor_date(as.POSIXct(zoom$start, format = "%Y-%m-%dT%T", tz = "UTC"), "day")
     end_time <- lubridate::ceiling_date(as.POSIXct(zoom$end, format = "%Y-%m-%dT%T", tz = "UTC"), "day")
@@ -162,12 +266,12 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
   
   # nouvelle data amCharts
   am_data <- getAggregateTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
-                                   ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
-  print(head(am_data))
-  print(head(data))
+                            ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
+  # print(head(am_data))
+  # print(head(data))
   first_row <- data[1, ]
   
-  print(first_row)
+  # print(first_row)
   lapply(col_series, function(x){
     first_row[[x]] <<- NA
   })
@@ -249,6 +353,7 @@ getAggregateTS <- function(data, col_date  = "date",
                                   control_date = TRUE,
                                   maxgap = Inf, keep_last = TRUE, type_aggr = "first", 
                                   showwarn = FALSE){
+
   
   if(treat_missing){
     control_date <- TRUE
@@ -318,7 +423,7 @@ getAggregateTS <- function(data, col_date  = "date",
   }
   
   # timezone consistency between in- and output
-
+  
   if ("Date" %in% class(data[[col_date]])) {
     tzdate <- tz
     data_check <- data.table(seq(data[[col_date]][1],
@@ -560,8 +665,8 @@ getAggregateTS <- function(data, col_date  = "date",
     tmp_function <- function(x) {
       if (!x%in%col_series_na) {
         res$tmp <<- stats::approx(x = data[, eval(parse(text = col_date))],
-                           y = data[, eval(parse(text = x))],
-                           xout = new_date_time)$y
+                                  y = data[, eval(parse(text = x))],
+                                  xout = new_date_time)$y
       } else {
         res$tmp <<- NA
       }
@@ -587,7 +692,7 @@ getAggregateTS <- function(data, col_date  = "date",
   if (treat_cet_as_utc) {
     attr(res[, col_date], "tzone") <- "CET"
   }
-
+  
   # remove tmp_ before col_series
   tmp_function <- function(x) {
     new_col_series <- gsub("^tmp_", "", x)

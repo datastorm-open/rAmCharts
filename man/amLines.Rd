@@ -5,7 +5,7 @@
 \title{amLines adds a serie to a graph.}
 \usage{
 amLines(chart, x = NULL, y = NULL, type = c("points", "line",
-  "smoothedLine"), col = "#0066cc", title, fill_alphas = 0)
+  "smoothedLine"), col = "#0066cc", title, fill_alphas = 0, balloon = T)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}. Chart you wish to add the new serie.}
@@ -22,6 +22,8 @@ amLines(chart, x = NULL, y = NULL, type = c("points", "line",
 \item{title}{\code{character}, name of the new serie, used when legend is enabled.}
 
 \item{fill_alphas}{a \code{numeric} between 0 and 1 for printed area.}
+
+\item{balloon}{\code{logical}, add balloon with value or not}
 }
 \description{
 amLines adds a new serie to an existing serial chart.

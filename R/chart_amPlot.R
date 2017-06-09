@@ -599,6 +599,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' @param col \code{character}, color of the new serie.
 #' @param fill_alphas a \code{numeric} between 0 and 1 for printed area.
 #' @param title \code{character}, name of the new serie, used when legend is enabled.
+#' @param balloon \code{logical}, add balloon with value or not
 #' 
 #' @examples
 #' require(pipeR)
@@ -630,7 +631,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' 
 amLines <- function(chart, x = NULL, y = NULL,
                     type = c("points", "line", "smoothedLine"),
-                    col = "#0066cc", title, fill_alphas = 0)
+                    col = "#0066cc", title, fill_alphas = 0, balloon = T)
 {
   
   
@@ -689,8 +690,13 @@ amLines <- function(chart, x = NULL, y = NULL,
     dataProvider[[i]]
   })
   
-  balloonText <- ifelse(chart@type == "xy",  paste0("x:<b>[[x]]</b><br>", title,": <b>[[", name, "]]</b><br>"), 
-                        paste0(title,": <b>[[", name, "]]</b><br>"))
+  if(balloon) {
+    balloonText <- ifelse(chart@type == "xy",  paste0("x:<b>[[x]]</b><br>", title,": <b>[[", name, "]]</b><br>"), 
+                          paste0(title,": <b>[[", name, "]]</b><br>"))
+    
+  } else {
+    balloonText <- ""
+  }
   
   # initialize the graph object
   graph_obj <- graph(title = title, valueField = name,
