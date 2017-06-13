@@ -299,7 +299,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 #' 
 #' @param data : data.frame to transform
 #' @param col_date : Date column name, default to "date".
-#'                   Must be "POSIXct" or "CET24" colum
+#'                   Must be "POSIXct"
 #' @param col_series : Column name of quantitative variable(s) to be
 #'                     transformed. Default to setdiff(colnames(data), "date") 
 #' @param ts : Increment of the sequence. Default to "10 min".

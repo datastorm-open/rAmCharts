@@ -13,7 +13,7 @@ getAggregateTS(data, col_date = "date", col_series = setdiff(colnames(data),
 \item{data}{: data.frame to transform}
 
 \item{col_date}{: Date column name, default to "date".
-Must be "POSIXct" or "CET24" colum}
+Must be "POSIXct"}
 
 \item{col_series}{: Column name of quantitative variable(s) to be
 transformed. Default to setdiff(colnames(data), "date")}
