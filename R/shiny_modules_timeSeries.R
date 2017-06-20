@@ -265,7 +265,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
   target_ts <- ts[which(ts_seconds >= diff_secs/maxPoints)[1]]
   
   # nouvelle data amCharts
-  am_data <- getAggregateTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
+  am_data <- getTransformTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
                             ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
   # print(head(am_data))
   # print(head(data))
@@ -345,8 +345,8 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 # keep_last = TRUE
 # type_aggr = "first"
 # 
-# getAggregateTS(data)
-getAggregateTS <- function(data, col_date  = "date",
+# getTransformTS(data)
+getTransformTS <- function(data, col_date  = "date",
                                   col_series = setdiff(colnames(data), col_date),
                                   ts = "10 min", tz = "UTC",
                                   fun_aggr = "mean", treat_missing = FALSE,
