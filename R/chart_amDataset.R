@@ -18,11 +18,13 @@
 #' @param ... other first level attributes
 #' 
 #' @examples 
+#' 
+#' \dontrun{
 #' data(data_stock_3)
 #' 
 #' amStockMultiSet(data = data_stock_3)
 #' amStockMultiSet(data = data_stock_3, panelColumn = c(1,2,1,1))
-#' \donttest{
+#' 
 #' amStockMultiSet(data = data_stock_3, panelColumn = c(1,2,3,4))
 #' 
 #' ZoomButton <- data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 10 ,1),
