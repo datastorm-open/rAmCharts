@@ -24,6 +24,8 @@
 #' }
 #' 
 #' @examples
+#' 
+#' \dontrun{
 #' # 'numeric' (default)
 #' amBoxplot(rnorm(100))
 #' 
@@ -42,7 +44,7 @@
 #' # 'data.frame'
 #' amBoxplot(iris[, 1:4])
 #' 
-#' 
+#' }
 #' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' @import data.table

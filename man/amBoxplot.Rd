@@ -53,6 +53,8 @@ amBoxplot computes a boxplot of the given data values.
 Can be a vector, a data.frame, or a matrix.
 }
 \examples{
+
+\dontrun{
 # 'numeric' (default)
 amBoxplot(rnorm(100))
 
@@ -71,7 +73,7 @@ amBoxplot(x)
 # 'data.frame'
 amBoxplot(iris[, 1:4])
 
-
+}
 # Other examples available which can be time consuming depending on your configuration.
 
 \donttest{

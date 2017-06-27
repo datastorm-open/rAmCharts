@@ -106,6 +106,8 @@ amPlot computes a plot of the given data values (can be a vectorn a dataframe
 or a formula).
 }
 \examples{
+
+\dontrun{
 # 'numeric':
 amPlot(x = rnorm(100))
 
@@ -124,7 +126,7 @@ amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE, legend
 
 # 'formula':
 amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
-
+}
 
 \donttest{
 # Other examples available which can be time consuming depending on your configuration.

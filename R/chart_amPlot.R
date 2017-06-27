@@ -45,6 +45,8 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' }
 #' 
 #' @examples 
+#' 
+#' \dontrun{
 #' # 'numeric':
 #' amPlot(x = rnorm(100))
 #' 
@@ -63,7 +65,7 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' 
 #' # 'formula':
 #' amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
-#' 
+#' }
 #' 
 #' @import data.table
 #' @rdname amPlot
