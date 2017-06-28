@@ -56,7 +56,8 @@
 #' @examples
 #' data("data_stock_2")
 #' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"))
-#' \donttest{
+#' 
+#' \dontrun{
 #' # upper /lower
 #' data <- data_stock_2[1:50, ]
 #' data$ts1low <- data$ts1-100
@@ -255,8 +256,15 @@ amTimeSeries <- function(data, col_date,
   data[,col_date] <- data[,col_date] + (as.POSIXlt(as.character(data[,col_date]), tz = "UTC") - data[,col_date])
   
   # groupToPeriods control
-  difft <- min(c(as.numeric(difftime(data[3,col_date], data[2,col_date], units = "secs")),
-                 as.numeric(difftime(data[4,col_date], data[3,col_date], units = "secs"))))
+  if(nrow(data) >= 4){
+    difft <- min(c(as.numeric(difftime(data[3,col_date], data[2,col_date], units = "secs")),
+                   as.numeric(difftime(data[4,col_date], data[3,col_date], units = "secs"))))
+  } else if(nrow(data) >= 2){
+    difft <- as.numeric(difftime(data[2,col_date], data[1,col_date], units = "secs"))
+  } else {
+    difft <- 1
+  }
+
   groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
   minPeriod = groupToPeriods[1]
   if(length(groupToPeriods) == 1){
@@ -488,12 +496,17 @@ controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', '
   }
   
   #Select min period
-  minperiod <- max(which(ref_period$seconds/diffTime<1))
+  if(diffTime > 1){
+    minperiod <- max(which(ref_period$seconds/diffTime<1))
+  } else {
+    minperiod <- 1
+  }
+
   if(length(minperiod)>0){
     if(ref_period$seconds[minperiod+1] != diffTime){
       select <- c(paste0(diffTime/ref_period[minperiod,]$seconds,
                          ref_period[minperiod,]$periode), select)
     }
   }
-  unique(select[grepl("^[[:digit:]]*((ss)|(mm)|(hh)|(DD)|(MM)|(YYYY))$", select)])
+  gsub("^0", "", unique(select[grepl("^[[:digit:]]*((ss)|(mm)|(hh)|(DD)|(MM)|(YYYY))$", select)]))
 }
