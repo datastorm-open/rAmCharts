@@ -491,6 +491,10 @@ controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', '
     period <- ref_period[period, "seconds"]
     
     select <- groupToPeriods[period*number >= diffTime]
+    
+    if(length(select) == 0){
+      select <- groupToPeriods[1]
+    }
   } else {
     select <- c(as.character(ref_period$periode)[ref_period$seconds == diffTime])
   }
@@ -501,7 +505,7 @@ controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', '
   } else {
     minperiod <- 1
   }
-
+  
   if(length(minperiod)>0){
     if(ref_period$seconds[minperiod+1] != diffTime){
       select <- c(paste0(diffTime/ref_period[minperiod,]$seconds,
