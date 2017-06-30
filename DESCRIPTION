@@ -22,7 +22,7 @@ Authors@R: c(
     person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datastorm.fr", role = c("aut", "ctb")),
     person(given = "Elena", family = "Salette", email = "elena.salette@datastorm.fr", role = c("aut", "ctb")),
     person(given = "Titouan", family = "Robert", email = "titouan.robert@datastorm.fr", role = c("aut", "ctb")))
-Date: 2017-03-18
+Date: 2017-06-30
 License: GPL (>= 2)
 URL: http://datastorm-open.github.io/introduction_ramcharts/
 BugReports: https://github.com/datastorm-open/rAmCharts/issues/
