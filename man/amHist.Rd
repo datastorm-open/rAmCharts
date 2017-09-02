@@ -9,7 +9,7 @@ amHist(x, ...)
 
 \method{amHist}{numeric}(x, col = "#1e90ff", border = "#1e90ff",
   freq = TRUE, plot = TRUE, labels = FALSE, xlab, ylab, ylim,
-  control_hist, breaks = "Sturges", breaks_precision = 2, ...)
+  control_hist, breaks_precision = 2, ...)
 }
 \arguments{
 \item{x}{\code{numeric}, a vector of values for which the histogram is desired.}
@@ -40,14 +40,6 @@ if labels is a \code{character}, draw itself.}
 \item{ylim}{\code{numeric}, the range of y values with sensible defaults.}
 
 \item{control_hist}{(optional) named \code{list()} containing parameters to compute the histogram.}
-
-\item{breaks}{\code{character} or \code{numeric} : one of:
-- a vector giving the breakpoints between histogram cells,
-- a function to compute the vector of breakpoints,
-- a single number giving the number of cells for the histogram,
-- a character string naming an algorithm to compute the number of cells,
-- a function to compute the number of cells.
-For more informations, see the 'hist' function.}
 
 \item{breaks_precision}{\code{numeric} : precision of the intervals which are shown in the tooltips}
 }
