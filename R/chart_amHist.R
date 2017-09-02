@@ -19,6 +19,14 @@
 #' if TRUE, draw the counts or rounded densities;
 #' if labels is a \code{character}, draw itself.
 #' @param control_hist (optional) named \code{list()} containing parameters to compute the histogram.
+#' @param breaks \code{character} or \code{numeric} : one of:
+#' - a vector giving the breakpoints between histogram cells,
+#' - a function to compute the vector of breakpoints,
+#' - a single number giving the number of cells for the histogram,
+#' - a character string naming an algorithm to compute the number of cells,
+#' - a function to compute the number of cells.
+#' For more informations, see the 'hist' function.
+#' @param breaks_precision \code{numeric} : precision of the intervals which are shown in the tooltips
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
@@ -74,14 +82,15 @@ amHist <- function(x, ...) UseMethod("amHist")
 #' 
 amHist.numeric <- function(x, col = "#1e90ff", border = "#1e90ff",
                            freq = TRUE, plot = TRUE, labels = FALSE,
-                           xlab, ylab, ylim, control_hist,...)
+                           xlab, ylab, ylim, control_hist, breaks = "Sturges", 
+                           breaks_precision = 2, ...)
 {
   .testNumeric(num = x)
   
   if (!missing(control_hist)) {
-    resHist <- do.call(graphics::hist, c(list(x = x, plot = FALSE), control_hist))
+    resHist <- do.call(graphics::hist, c(list(x = x, plot = FALSE, breaks = breaks), control_hist))
   } else {
-    resHist <- graphics::hist(x = x, plot = FALSE)
+    resHist <- graphics::hist(x = x, plot = FALSE, breaks = breaks)
   }
   .testLogicalLength1(logi = plot)
   
@@ -123,7 +132,7 @@ amHist.numeric <- function(x, col = "#1e90ff", border = "#1e90ff",
     
     if (missing(xlab)) xlab <- deparse(substitute(x))
     
-    dp <- .dataAmHist(resHist, y, col)
+    dp <- .dataAmHist(resHist, y, col, breaks_precision)
     chart <- .plotAmHist(dp = dp, amLabels = amLabels, ylim = ylim,
                          ylab = ylab, xlab = xlab, border = border)
     amOptions(chart, ...)
@@ -146,10 +155,10 @@ amHist.numeric <- function(x, col = "#1e90ff", border = "#1e90ff",
 }
 
 #' @import data.table
-.dataAmHist <- function (resHist, y, col)
+.dataAmHist <- function (resHist, y, col, breaks_precision)
 {
   data_DT <- data.table(x = round(resHist$mids, 1), y = y, 
-                        cut = paste0("(from ", round(resHist$breaks[-length(resHist$breaks)], 2),
-                                     " to ", round(resHist$breaks[-1], 2), ")"))
+                        cut = paste0("(from ", round(resHist$breaks[-length(resHist$breaks)], breaks_precision),
+                                     " to ", round(resHist$breaks[-1], breaks_precision), ")"))
   data_DT[, eval(parse(text = "color:=col"))]
 }
