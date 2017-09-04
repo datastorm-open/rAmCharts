@@ -114,4 +114,4 @@ Suggests:
     base64enc,
     lubridate,
     jsonlite
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

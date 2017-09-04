@@ -9,7 +9,7 @@ amHist(x, ...)
 
 \method{amHist}{numeric}(x, col = "#1e90ff", border = "#1e90ff",
   freq = TRUE, plot = TRUE, labels = FALSE, xlab, ylab, ylim,
-  control_hist, breaks_precision = 2, ...)
+  control_hist, ...)
 }
 \arguments{
 \item{x}{\code{numeric}, a vector of values for which the histogram is desired.}
@@ -40,8 +40,6 @@ if labels is a \code{character}, draw itself.}
 \item{ylim}{\code{numeric}, the range of y values with sensible defaults.}
 
 \item{control_hist}{(optional) named \code{list()} containing parameters to compute the histogram.}
-
-\item{breaks_precision}{\code{numeric} : precision of the intervals which are shown in the tooltips}
 }
 \value{
 An object of class \linkS4class{AmChart}.
@@ -86,4 +84,3 @@ amHist(x = x, control_hist = list(breaks = "Scott"))
 \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
 }
 }
-
