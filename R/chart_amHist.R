@@ -19,7 +19,6 @@
 #' if TRUE, draw the counts or rounded densities;
 #' if labels is a \code{character}, draw itself.
 #' @param control_hist (optional) named \code{list()} containing parameters to compute the histogram.
-#' @param breaks_precision \code{numeric} : precision of the intervals which are shown in the tooltips
 #' @param ... see \code{\link{amOptions}} for more options.
 #' 
 #' @return An object of class \linkS4class{AmChart}.
@@ -75,8 +74,7 @@ amHist <- function(x, ...) UseMethod("amHist")
 #' 
 amHist.numeric <- function(x, col = "#1e90ff", border = "#1e90ff",
                            freq = TRUE, plot = TRUE, labels = FALSE,
-                           xlab, ylab, ylim, control_hist, 
-                           breaks_precision = 2, ...)
+                           xlab, ylab, ylim, control_hist, ...)
 {
   .testNumeric(num = x)
   
@@ -125,7 +123,7 @@ amHist.numeric <- function(x, col = "#1e90ff", border = "#1e90ff",
     
     if (missing(xlab)) xlab <- deparse(substitute(x))
     
-    dp <- .dataAmHist(resHist, y, col, breaks_precision)
+    dp <- .dataAmHist(resHist, y, col)
     chart <- .plotAmHist(dp = dp, amLabels = amLabels, ylim = ylim,
                          ylab = ylab, xlab = xlab, border = border)
     amOptions(chart, ...)
@@ -148,10 +146,10 @@ amHist.numeric <- function(x, col = "#1e90ff", border = "#1e90ff",
 }
 
 #' @import data.table
-.dataAmHist <- function (resHist, y, col, breaks_precision)
+.dataAmHist <- function (resHist, y, col)
 {
-  data_DT <- data.table(x = round(resHist$mids, 1), y = y, 
-                        cut = paste0("(from ", round(resHist$breaks[-length(resHist$breaks)], breaks_precision),
-                                     " to ", round(resHist$breaks[-1], breaks_precision), ")"))
+  data_DT <- data.table(x = resHist$mids, y = y, 
+                        cut = paste0("(from ", resHist$breaks[-length(resHist$breaks)],
+                                     " to ", resHist$breaks[-1], ")"))
   data_DT[, eval(parse(text = "color:=col"))]
 }
