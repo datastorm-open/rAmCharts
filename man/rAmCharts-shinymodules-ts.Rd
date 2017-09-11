@@ -49,33 +49,33 @@ rAmChartsTimeSeriesServer(input, output, session, data, col_date, col_series,
 
 \item{data}{: data.frame to transform.}
 
-\item{col_date}{: Date column name, default to "date".
-Must be "POSIXct" or "CET24" colum}
+\item{col_date}{Date column name, default to "date".
+Must be "POSIXct"}
 
-\item{col_series}{: Column name of quantitative variable(s) to be
+\item{col_series}{Column name of quantitative variable(s) to be
 transformed. Default to setdiff(colnames(data), "date")}
 
 \item{maxPoints}{: Maximal number of rows in results}
 
 \item{tz}{: Timezone of result. Defaut to "UTC".}
 
-\item{ts}{: All enabled aggregation. Default to c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year").
+\item{ts}{All enabled aggregation. Default to c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year").
 Can be a number, in seconds, or a character string
 containing one of "min", "hour", "day"....
 This can optionally be preceded by a positive integer
 and a space}
 
-\item{fun_aggr}{: Aggregation function to use ("min", "max", "sum", "mean").
+\item{fun_aggr}{\code{character} Aggregation function to use ("min", "max", "sum", "mean").
 Default to "mean".}
 
 \item{treat_missing}{: Boolean. Default to FALSE
 Whether or not to interpolate missing values ?
 see \code{na.approx}}
 
-\item{maxgap}{: When interpolate missing values with \code{na.approx}.
+\item{maxgap}{When interpolate missing values with \code{na.approx}.
 Maximum number of consecutive NAs to fill. Defaut to Inf.}
 
-\item{type_aggr}{: Character. Type of aggregation
+\item{type_aggr}{\code{character} Type of aggregation
 \itemize{
  \item{"first"}{ : Date/Time result is equal to minimum of sequence, and this minimum is included in aggregation}
  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
@@ -90,13 +90,13 @@ Maximum number of consecutive NAs to fill. Defaut to Inf.}
 \item{bullet}{\code{character}, point shape. Possible values are : "diamond", "square", 
 "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"}
 
-\item{bulletSize}{: \code{numeric}, size of bullet.}
+\item{bulletSize}{\code{numeric}, size of bullet.}
 
-\item{linetype}{: \code{numeric}, line type, 0 : solid, number : dashed length}
+\item{linetype}{\code{numeric}, line type, 0 : solid, number : dashed length}
 
-\item{linewidth}{: \code{numeric}, line width.}
+\item{linewidth}{\code{numeric}, line width.}
 
-\item{fillAlphas}{: \code{numeric}, fill. Between 0 (no fill) to 1.}
+\item{fillAlphas}{\code{numeric}, fill. Between 0 (no fill) to 1.}
 
 \item{precision}{\code{numeric}, default set to  1.}
 
@@ -150,11 +150,43 @@ Shiny module to render large time-series data with live server-client aggregatio
 
 \dontrun{
 
-# ui
-rAmChartTimeSeriesUI("ts_1")
+library(shiny)
+library(rAmCharts)
 
-# server
-callModule(rAmChartTimeSeriesServer, "ts_1", data_stock_2, reactvie("date"), reactvie("value"))
+# number of points
+n <- 1000000
+data <- data.frame(date = seq(c(ISOdate(1999,12,31)), by = "5 min", length.out = n),
+                          value = rnorm(n, 100, 50))
+
+# maximun of points in javascript
+max_points <- 1000
+
+# Call module in UI
+ui <- fluidPage(
+  rAmChartsTimeSeriesUI("ts_1", height = "600px"),
+  h4(textOutput("ts"))
+)
+
+# Define server
+server <- function(input, output) {
+  
+  # Call module in server
+  res <- callModule(rAmChartsTimeSeriesServer, "ts_1", reactive(data), reactive("date"), reactive("value"), 
+                    maxPoints = shiny::reactive(max_points),
+                    main = reactive("Example of rAmChartsTimeSeries module"),
+                    color = reactive("red"), periodFieldsSelection = reactive(TRUE), 
+                    ZoomButton = reactive(data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 7 ,1),
+                                                     label = c("Day","Week", "MAX"), selected = c(F, F, T))))
+  # show module return and print ts
+  output$ts <- renderText({
+    print(res())
+    paste0("Current ts : ", res()$ts)
+  })
+ 
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
 
 }
 

@@ -6,25 +6,25 @@
 #' @param output  standard, \code{shiny} output
 #' @param session standard, \code{shiny} session
 #' @param data : data.frame to transform.
-#' @param col_date : Date column name, default to "date".
-#'                   Must be "POSIXct" or "CET24" colum
-#' @param col_series : Column name of quantitative variable(s) to be
+#' @param col_date Date column name, default to "date".
+#'                   Must be "POSIXct"
+#' @param col_series Column name of quantitative variable(s) to be
 #'                     transformed. Default to setdiff(colnames(data), "date") 
 #' @param maxPoints : Maximal number of rows in results
-#' @param ts : All enabled aggregation. Default to c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year").
+#' @param ts All enabled aggregation. Default to c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year").
 #'             Can be a number, in seconds, or a character string
 #'             containing one of "min", "hour", "day"....
 #'             This can optionally be preceded by a positive integer
 #'             and a space
 #' @param tz : Timezone of result. Defaut to "UTC".
-#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean").
+#' @param fun_aggr \code{character} Aggregation function to use ("min", "max", "sum", "mean").
 #'                   Default to "mean".
 #' @param treat_missing : Boolean. Default to FALSE
 #'                        Whether or not to interpolate missing values ?
 #'                        see \code{na.approx}
-#' @param maxgap : When interpolate missing values with \code{na.approx}.
+#' @param maxgap When interpolate missing values with \code{na.approx}.
 #'                 Maximum number of consecutive NAs to fill. Defaut to Inf.
-#' @param type_aggr : Character. Type of aggregation
+#' @param type_aggr \code{character} Type of aggregation
 #' \itemize{
 #'  \item{"first"}{ : Date/Time result is equal to minimum of sequence, and this minimum is included in aggregation}
 #'  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
@@ -38,10 +38,10 @@
 #' @param color \code{character}, color of series (in hexadecimal).
 #' @param bullet \code{character}, point shape. Possible values are : "diamond", "square", 
 #' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"
-#' @param bulletSize : \code{numeric}, size of bullet.
-#' @param linetype : \code{numeric}, line type, 0 : solid, number : dashed length 
-#' @param linewidth : \code{numeric}, line width.
-#' @param fillAlphas : \code{numeric}, fill. Between 0 (no fill) to 1.
+#' @param bulletSize \code{numeric}, size of bullet.
+#' @param linetype \code{numeric}, line type, 0 : solid, number : dashed length 
+#' @param linewidth \code{numeric}, line width.
+#' @param fillAlphas \code{numeric}, fill. Between 0 (no fill) to 1.
 #' @param precision \code{numeric}, default set to  1.
 #' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
 #' @param legend \code{logical}, enabled or not legend ? Defaut to TRUE.
@@ -77,11 +77,43 @@
 #' 
 #' \dontrun{
 #' 
-#' # ui
-#' rAmChartTimeSeriesUI("ts_1")
+#' library(shiny)
+#' library(rAmCharts)
 #' 
-#' # server
-#'callModule(rAmChartTimeSeriesServer, "ts_1", data_stock_2, reactvie("date"), reactvie("value"))
+#' # number of points
+#' n <- 1000000
+#' data <- data.frame(date = seq(c(ISOdate(1999,12,31)), by = "5 min", length.out = n),
+#'                           value = rnorm(n, 100, 50))
+#' 
+#' # maximun of points in javascript
+#' max_points <- 1000
+#' 
+#' # Call module in UI
+#' ui <- fluidPage(
+#'   rAmChartsTimeSeriesUI("ts_1", height = "600px"),
+#'   h4(textOutput("ts"))
+#' )
+#' 
+#' # Define server
+#' server <- function(input, output) {
+#'   
+#'   # Call module in server
+#'   res <- callModule(rAmChartsTimeSeriesServer, "ts_1", reactive(data), reactive("date"), reactive("value"), 
+#'                     maxPoints = shiny::reactive(max_points),
+#'                     main = reactive("Example of rAmChartsTimeSeries module"),
+#'                     color = reactive("red"), periodFieldsSelection = reactive(TRUE), 
+#'                     ZoomButton = reactive(data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 7 ,1),
+#'                                                      label = c("Day","Week", "MAX"), selected = c(F, F, T))))
+#'   # show module return and print ts
+#'   output$ts <- renderText({
+#'     print(res())
+#'     paste0("Current ts : ", res()$ts)
+#'   })
+#'  
+#'}
+#'
+#'# Run the application 
+#'shinyApp(ui = ui, server = server)
 #' 
 #' }
 #' 
@@ -269,7 +301,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
                             ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
   # print(head(am_data))
   # print(head(data))
-  first_row <- data[1, ]
+  first_row <- data[1, c(col_date, col_series)]
   
   # print(first_row)
   lapply(col_series, function(x){

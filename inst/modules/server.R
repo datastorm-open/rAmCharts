@@ -12,10 +12,13 @@ shinyServer(function(session, input, output) {
     data_global
   })
   
-  res_1 <- callModule(rAmChartTimeSeriesServer, "ts_1", data, "date", "value", main = "Series 1",
-
-                      color = "red", periodFieldsSelection = TRUE, ZoomButton = data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 7 ,1),
-                                                              label = c("Day","Week", "MAX"), selected = c(F, F, T)), group = "sh")
+  res_1 <- callModule(rAmChartsTimeSeriesServer, "ts_1", data, reactive("date"), 
+                      reactive("value"), main = reactive("Series 1"),
+                      color = reactive("red"), group = reactive("sh"))
+  
+  res_2 <- callModule(rAmChartsTimeSeriesServer, "ts_2", data, reactive("date"), 
+                      reactive("value2"), main = reactive("Series 2"),
+                      color = reactive("red"), group = reactive("sh"))
   
 
   output$am1 <- renderAmCharts({

@@ -1,5 +1,10 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.5 (based on [amcharts][amcharts_url] version **3.20.18**)
+
+  * ``amTimeSeries`` : fix bug passing subset on ``col_series``
+  * ``amHist`` : fix label precision
+  
 ### rAmCharts 2.1.4 (based on [amcharts][amcharts_url] version **3.20.18**)
 
   * fix bug and add arguments on ``amTimeSeries`` 
