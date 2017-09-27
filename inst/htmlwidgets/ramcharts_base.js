@@ -72,6 +72,40 @@ if (HTMLWidgets.shinyMode){
         chart.events.zoomed = tmp_zoomed_event;
       }
   });
+  
+    Shiny.addCustomMessageHandler('amSerialUpdateData', function(params){
+      // get container id
+      var chart = getAmChart(params[0]);
+      if(chart !== undefined){
+        if(params[2]){
+          tmp_zoomed_event = chart.events.zoomed;
+          chart.events.zoomed = [];
+        }
+        chart.dataProvider = params[1];
+        chart.validateNow(true, true);
+        if(params[2]){
+          chart.zoom(chart.prevStartIndex, chart.prevEndIndex);
+          chart.events.zoomed = tmp_zoomed_event;
+        }
+      }
+  });
+  
+  Shiny.addCustomMessageHandler('amXYUpdateData', function(params){
+      // get container id
+      var chart = getAmChart(params[0]);
+      if(chart !== undefined){
+        if(params[2]){
+          tmp_zoomed_event = chart.valueAxes[0].events.axisZoomed;
+          chart.valueAxes[0].events.axisZoomed = [];
+        }
+        chart.dataProvider = params[1];
+        chart.validateNow(true, true);
+        if(params[2]){
+          chart.valueAxes[0].zoomToValues(chart.valueAxes[0].prevStartValue, chart.valueAxes[0].prevEndValue);
+          chart.valueAxes[0].events.axisZoomed = tmp_zoomed_event;
+        }
+      }
+  });
 }
 
 HTMLWidgets.widget({
