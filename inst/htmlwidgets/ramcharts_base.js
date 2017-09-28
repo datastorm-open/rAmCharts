@@ -92,7 +92,16 @@ if (HTMLWidgets.shinyMode){
   
   Shiny.addCustomMessageHandler('amXYUpdateData', function(params){
       // get container id
+      console.info('amXYUpdateData');
+      console.info('params');
+      console.info(params);
       var chart = getAmChart(params[0]);
+      console.info('chart');
+      console.info(chart);
+       console.info('chart.valueAxes[0].prevStartValue');
+      console.info(chart.valueAxes[0].prevStartValue);
+      console.info('chart.valueAxes[0].prevEndValue');
+      console.info(chart.valueAxes[0].prevEndValue);
       if(chart !== undefined){
         if(params[2]){
           tmp_zoomed_event = chart.valueAxes[0].events.axisZoomed;
