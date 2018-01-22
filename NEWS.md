@@ -1,5 +1,9 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.6 (based on [amcharts][amcharts_url] version **3.20.18**)
+
+  * ``rAmChartsTimeSeries module`` : fix keeping first and last values
+  
 ### rAmCharts 2.1.5 (based on [amcharts][amcharts_url] version **3.20.18**)
 
   * ``amTimeSeries`` : fix bug passing subset on ``col_series``

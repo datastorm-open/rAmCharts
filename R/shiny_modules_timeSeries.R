@@ -299,11 +299,10 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
   # nouvelle data amCharts
   am_data <- getTransformTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
                             ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
-  # print(head(am_data))
-  # print(head(data))
+
+  # first and last row in days to keep zoom possible
   first_row <- data[1, c(col_date, col_series)]
   
-  # print(first_row)
   lapply(col_series, function(x){
     first_row[[x]] <<- NA
   })
@@ -311,7 +310,13 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
   last_row <- first_row
   last_row[[col_date]] <- lubridate::ceiling_date(data[[col_date]][nrow(data)], "day")
   
-  am_data <- rbind(first_row, am_data[-c(1, nrow(am_data)), ], last_row)
+  am_data <- rbind(first_row, am_data, last_row)
+  if(am_data[[col_date]][1] == am_data[[col_date]][2]){
+    am_data <- am_data[-1, ]
+  }
+  if(am_data[[col_date]][nrow(am_data)] == am_data[[col_date]][nrow(am_data) - 1]){
+    am_data <- am_data[-nrow(am_data), ]
+  }
   
   # ts amCharts
   am_ts <- gsub("sec$", "ss", target_ts)
