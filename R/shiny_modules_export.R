@@ -29,7 +29,7 @@
 #' \dontrun{
 #' 
 #' # ui
-#' rAmChartExportServerUI("export_server_graphs")
+#' rAmChartsExportServerUI("export_server_graphs")
 #' 
 #' # server
 #'
@@ -48,7 +48,7 @@
 #'})
 #'
 #'
-#'callModule(rAmChartExportServer, "export_server_graphs", mult_amgraph, 
+#'callModule(rAmChartsExportServer, "export_server_graphs", mult_amgraph, 
 #'           reactive("/home/benoit/amchart_export"))
 #' 
 #' }

@@ -98,12 +98,15 @@
 #' server <- function(input, output) {
 #'   
 #'   # Call module in server
-#'   res <- callModule(rAmChartsTimeSeriesServer, "ts_1", reactive(data), reactive("date"), reactive("value"), 
-#'                     maxPoints = shiny::reactive(max_points),
-#'                     main = reactive("Example of rAmChartsTimeSeries module"),
-#'                     color = reactive("red"), periodFieldsSelection = reactive(TRUE), 
-#'                     ZoomButton = reactive(data.frame(Unit = c("DD", "DD", "MAX"), multiple = c(1, 7 ,1),
-#'                                                      label = c("Day","Week", "MAX"), selected = c(F, F, T))))
+#'   res <- callModule(rAmChartsTimeSeriesServer, "ts_1", reactive(data), reactive("date"), 
+#'      reactive("value"), maxPoints = shiny::reactive(max_points),
+#'      main = reactive("Example of rAmChartsTimeSeries module"),
+#'      color = reactive("red"), periodFieldsSelection = reactive(TRUE), 
+#'      ZoomButton = reactive(data.frame(Unit = c("DD", "DD", "MAX"), 
+#'          multiple = c(1, 7 ,1), label = c("Day","Week", "MAX"), 
+#'          selected = c(F, F, T)))
+#'    )
+#'    
 #'   # show module return and print ts
 #'   output$ts <- renderText({
 #'     print(res())
