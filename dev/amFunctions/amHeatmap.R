@@ -6,7 +6,7 @@
 #' 
 #' 
 #' @return data.frame compound to original data.frame and associated color data.frame
-colorData <- function(data,nbclasses=NULL,col=c("#FF0000","#FFFFFF","#0000FF"),colorby="all")
+colorData <- function(data, nbclasses=NULL, col=c("#FF0000","#FFFFFF","#0000FF"), colorby="all")
 {
   
   if(colorby=="all")
@@ -90,7 +90,8 @@ constructdata <- function(data){
 #' 
 #' 
 #' @return data.frame compound to original data.frame and associated constructor data.frame
-heatmap <- function(data, classes, labels = TRUE,cex=10,main="",xLabelsRotation=45,colorby="all",col=c("#FF0000","#FFFFFF","#0000FF")){
+heatmap <- function(data, classes, labels = TRUE, cex=10, main="", xLabelsRotation=45, 
+                    colorby="all", col=c("#FF0000","#FFFFFF","#0000FF"), tooltipLabel = "count"){
 
   ncate <-(ncol(data)-1)/3
   
@@ -98,9 +99,8 @@ heatmap <- function(data, classes, labels = TRUE,cex=10,main="",xLabelsRotation=
   
   values <- paste0("['", paste(namecat, collapse = "','"), "']")
   
-  
   chart <- sapply(namecat, function(x) {
-    amGraph(balloonText=paste0("<b>[[title]]-[[category]]</b><br><b> count : </b>[[",x,"]]"),
+    amGraph(balloonText=paste0("<b>[[title]]-[[category]]</b><br><b> ", tooltipLabel, " : </b>[[",x,"]]"),
             fillAlphas=0.8,labelText=if(labels){paste0("[[",x,"]]")}else{""},lineAlpha=0.3,fontSize=cex,
             title=x,type="column",fillColorsField=paste0(x,"col"),valueField=paste0(x,"construct"))},USE.NAMES = FALSE
   )
@@ -108,24 +108,21 @@ heatmap <- function(data, classes, labels = TRUE,cex=10,main="",xLabelsRotation=
   guides = list()
   n <- length(colnames(data[,2:(ncate+1)]))
   k <- 0
-  for(i in 1:n)
-  {
+  for(i in 1:n){
     k <- k +1
     guides[[k]] <- guide(id=paste0("guide",i),value=i,toValue=i,lineAlpha=1,color="#000000",lineThickness=1)
     
   }
+  
   n <- nrow(data)
-  for(i in 1:n)
-  {
-    
+  for(i in 1:n){
     guides[[k]] = guide(id=paste0("guide",k),category=row.names(data)[i],lineAlpha=1,color="#000000",lineThickness=1,above=TRUE,expand=TRUE)
     k <- k +1
   }
 
   legendlist <- list()
 
-  if(colorby=="all")
-  {
+  if(colorby=="all"){
     
     nbclasses <- classes$nclasses
     classes <- classes$labels
@@ -151,14 +148,14 @@ heatmap <- function(data, classes, labels = TRUE,cex=10,main="",xLabelsRotation=
     legendlist[[3]]<-list(title="Large",color = as.character(col)[3])
   }
   
-  
-  amSerialChart()%>>%
+  amSerialChart(categoryField="row")%>>%
     setBalloon(borderThickness = 0) %>>%
     setDataProvider(data) %>>%
-    setProperties(type="serial",theme="light",columnWidth=1,categoryField="row",gridAboveGraphs=TRUE,rotate=TRUE)%>>%
+    setProperties(columnWidth = 1,
+                  gridAboveGraphs=TRUE,rotate=TRUE)%>>%
     setGuides(guides)%>>%
-    addTitle(text=main)%>>%
-    setLegend(data=(legendlist),markerBorderColor="#000000", align = "center")%>>%
+    addTitle(text = main)%>>%
+    setLegend(data=(legendlist), markerBorderColor="#000000", align = "center", position = "right")%>>%
     addValueAxes(stackType="regular",axisAlpha=0,gridThickness=0,gridAlpha=1,position="left",labelRotation=xLabelsRotation,maximum=ncate,
       labelFunction = htmlwidgets::JS(paste0("function(value,valueString,axis){
         Math.trunc = Math.trunc || function(x) {
@@ -262,8 +259,7 @@ heatmap <- function(data, classes, labels = TRUE,cex=10,main="",xLabelsRotation=
                   )
                 )
             
-          ) %>>%
-    plot
+          )
   
 }
 
@@ -283,25 +279,39 @@ heatmap <- function(data, classes, labels = TRUE,cex=10,main="",xLabelsRotation=
 #' 
 #' data(USArrests, "VADeaths")
 #' USArrests <- USArrests [1:10,]
-#' amheatmap(USArrests)
-#' amheatmap(USArrests, nclasses=5, col=c("#FF0000","#FFFFFF","#0000FF"),labels = TRUE, cex=10,main="My title",xLabelsRotation=45,colorby="all",legend = TRUE)
-#' amheatmap(USArrests, nclasses=5, col=c("#FF0000","#FFFFFF","#0000FF"),labels = TRUE, cex=10,main="My title",xLabelsRotation=45,colorby="row",legend = TRUE)
-#' amheatmap(USArrests, nclasses=5, col=c("#FF0000","#FFFFFF","#0000FF"),labels = TRUE, cex=10,main="My title",xLabelsRotation=45,colorby="col",legend = TRUE)
-#' amheatmap(USArrests, nclasses=10, col=c("#00FF00","#FF00FF","#0000FF"),labels = TRUE, cex=10,main="My title",xLabelsRotation=45,colorby="all",legend = TRUE)
+#' 
+#' amHeatmap(USArrests)
+#' 
+#' amHeatmap(USArrests, xLabelsRotation = 0, tooltipLabel = "mape *") %>%
+#'     amOptions(creditsPosition = "top-right", main = "Titre")
+#' 
+#' amHeatmap(USArrests, nclasses=5, col=c("#FF0000","#FFFFFF","#0000FF"),
+#'     labels = TRUE, cex=10, main="My title", xLabelsRotation=45, colorby="all",legend = TRUE)
+#'     
+#' amHeatmap(USArrests, nclasses=5, col=c("#FF0000","#FFFFFF","#0000FF"), labels = TRUE, cex=10,
+#'     main="My title", xLabelsRotation=45, colorby="row",l egend = TRUE)
+#'     
+#' amHeatmap(USArrests, nclasses=5, col=c("#FF0000","#FFFFFF","#0000FF"),labels = TRUE, cex=10,
+#'     main="My title", xLabelsRotation=45, colorby="col", legend = TRUE)
+#'     
+#' amHeatmap(USArrests, nclasses=10, col=c("#00FF00","#FF00FF","#0000FF"),labels = TRUE, cex=10,
+#'     main="My title", xLabelsRotation=45, colorby="all",legend = TRUE)
+#' 
 #' @return data.frame compound to original data.frame and associated constructor data.frame
 #' 
 #' @export
-amheatmap <- function(data, nclasses = 5, col = c("#FF0000","#FFFFFF","#0000FF"), labels = TRUE, cex=10, main="", 
-                      xLabelsRotation=45, colorby="all", legend = TRUE){
-  colordata <- colorData(data,nclasses,col,colorby)
+amHeatmap <- function(data, nclasses = 5, col = c("#FF0000","#FFFFFF","#0000FF"), 
+                      labels = TRUE, cex = 10, main = "", xLabelsRotation = 45, 
+                      colorby = "all", legend = TRUE, tooltipLabel = "count"){
+  colordata <- colorData(data, nclasses, col, colorby)
   data <- constructdata(colordata$data)
-  heatmap(data, colordata$classes, labels, cex, main, xLabelsRotation, colorby,col)
+  heatmap(data, colordata$classes, labels, cex, main, xLabelsRotation, colorby, col, tooltipLabel)
 }
 
 # data <- USArrests
 # 
 # data <- data.frame(a = c(3,0), b = c(2,1))
-# amheatmap(data)
+# amHeatmap(data)
 # 
 # nclasses = 5
 # col = c("#FF0000","#FFFFFF","#0000FF")
