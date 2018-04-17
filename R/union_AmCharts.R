@@ -502,6 +502,31 @@ add_responsive_dependency <- function(widget)
   return(widget)
 }
 
+#' @title Add animate dependency
+#' 
+#' @description Add the 'animate' dependency to an htmlwidget.
+#' You can only manipulate the htmlwidget if you call the method 'plot' with an rAmChart.
+#' 
+#' @param widget An htmlwidget.
+#'
+#' @return Return an updated htmlwidget with the dependency.
+#' 
+#' @export
+#'
+add_animate_dependency <- function(widget)
+{
+  # Load the configuration yaml file into list
+  conf_list <- yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))
+  
+  animate_dep <- htmltools::htmlDependency(name = conf_list$plugins$animate$name,
+                                              version = conf_list$amcharts_version,
+                                              src = system.file("htmlwidgets/lib/plugins/animate", package = "rAmCharts"),
+                                              script = conf_list$plugins$animate$script)
+  widget <- .add_dependency(widget = widget, dependency = animate_dep)
+  
+  return(widget)
+}
+
 #' @title Add language
 #' 
 #' @description Add the javascript file associated to the language if necessary

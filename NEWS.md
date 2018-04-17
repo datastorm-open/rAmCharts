@@ -1,5 +1,9 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.7 (based on [amcharts][amcharts_url] version **3.20.18**)
+
+  * new ``add_animate_dependency`` function
+  
 ### rAmCharts 2.1.6 (based on [amcharts][amcharts_url] version **3.20.18**)
 
   * ``rAmChartsTimeSeries module`` : fix keeping first and last values

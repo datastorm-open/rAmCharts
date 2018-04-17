@@ -35,3 +35,6 @@ plugins:
   xlsx:
     name: "amcharts_export_xlsx"
     script: "xlsx.min.js"
+  animate:
+    name: "amcharts_animate"
+    script: "animate.min.js"
