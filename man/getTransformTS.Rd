@@ -26,7 +26,7 @@ and a space}
 
 \item{tz}{: Timezone of result. Defaut to "UTC".}
 
-\item{fun_aggr}{: Aggregation function to use ("min", "max", "sum", "mean").
+\item{fun_aggr}{: Aggregation function to use ("min", "max", "sum", "mean", "first", "last").
 Default to "mean".}
 
 \item{treat_missing}{: Boolean. Default to FALSE

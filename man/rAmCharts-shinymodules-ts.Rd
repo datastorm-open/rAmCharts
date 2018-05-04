@@ -65,7 +65,7 @@ containing one of "min", "hour", "day"....
 This can optionally be preceded by a positive integer
 and a space}
 
-\item{fun_aggr}{\code{character} Aggregation function to use ("min", "max", "sum", "mean").
+\item{fun_aggr}{: Aggregation function to use ("min", "max", "sum", "mean", "first", "last").
 Default to "mean".}
 
 \item{treat_missing}{: Boolean. Default to FALSE

@@ -17,7 +17,7 @@
 #'             This can optionally be preceded by a positive integer
 #'             and a space
 #' @param tz : Timezone of result. Defaut to "UTC".
-#' @param fun_aggr \code{character} Aggregation function to use ("min", "max", "sum", "mean").
+#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean", "first", "last").
 #'                   Default to "mean".
 #' @param treat_missing : Boolean. Default to FALSE
 #'                        Whether or not to interpolate missing values ?
@@ -169,11 +169,11 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                                        maxPoints = maxPoints(), tz = tz(), ts = ts(), 
                                        fun_aggr = fun_aggr(), treat_missing = treat_missing(), 
                                        maxgap = maxgap(), type_aggr = type_aggr())
-
+      
       ctrl_data$zoom <- NULL
       ctrl_data$data <- init_data$data
       ctrl_data$ts <- init_data$ts
-
+      
       tmp_am <- amTimeSeries(data = init_data$data, maxSeries = maxPoints()+10, is_ts_module = TRUE,
                              col_date = col_date(), col_series = col_series(),
                              main = main(), ylab = ylab(), color = color(), bullet = bullet(),
@@ -221,7 +221,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
       new_data <- getCurrentStockData(all_data, zoom = cur_zoom, col_date = col_date(), col_series = col_series(), 
                                       maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
                                       treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
-
+      
       ctrl_data$data <- new_data$data
       ctrl_data$ts <- new_data$ts
       
@@ -229,7 +229,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                                 list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
     }
   })
-
+  
   res_data <- shiny::reactive({
     list(data = ctrl_data$data, ts = ctrl_data$ts, zoom = ctrl_data$zoom)
   })
@@ -252,7 +252,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
 #'             This can optionally be preceded by a positive integer
 #'             and a space
 #' @param tz : Timezone of result. Defaut to "UTC".
-#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean").
+#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean", "first", "last").
 #'                   Default to "mean".
 #' @param treat_missing : Boolean. Default to FALSE
 #'                        Whether or not to interpolate missing values ?
@@ -302,7 +302,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
   # nouvelle data amCharts
   am_data <- getTransformTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
                             ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
-
+  
   # first and last row in days to keep zoom possible
   first_row <- data[1, c(col_date, col_series)]
   
@@ -348,7 +348,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 #'             This can optionally be preceded by a positive integer
 #'             and a space
 #' @param tz : Timezone of result. Defaut to "UTC".
-#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean").
+#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean", "first", "last").
 #'                   Default to "mean".
 #' @param treat_missing : Boolean. Default to FALSE
 #'                        Whether or not to interpolate missing values ?
@@ -387,13 +387,13 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 # 
 # getTransformTS(data)
 getTransformTS <- function(data, col_date  = "date",
-                                  col_series = setdiff(colnames(data), col_date),
-                                  ts = "10 min", tz = "UTC",
-                                  fun_aggr = "mean", treat_missing = FALSE,
-                                  control_date = TRUE,
-                                  maxgap = Inf, keep_last = TRUE, type_aggr = "first", 
-                                  showwarn = FALSE){
-
+                           col_series = setdiff(colnames(data), col_date),
+                           ts = "10 min", tz = "UTC",
+                           fun_aggr = "mean", treat_missing = FALSE,
+                           control_date = TRUE,
+                           maxgap = Inf, keep_last = TRUE, type_aggr = "first", 
+                           showwarn = FALSE){
+  
   
   if(treat_missing){
     control_date <- TRUE
@@ -549,18 +549,28 @@ getTransformTS <- function(data, col_date  = "date",
   
   ### Aggregation ----------------------------
   if (current_time_level < wanted_time_level) {
-    if (!fun_aggr %in% c("mean", "max", "min", "sum")) {
-      stop("Invalid 'fun_aggr', must be one of 'mean', 'max', 'min' or 'sum'")
+    if (!fun_aggr %in% c("mean", "max", "min", "sum", "first", "last")) {
+      stop("Invalid 'fun_aggr', must be one of 'mean', 'max', 'min', 'sum', 'first' or 'last'")
     }
     
     if(wanted_time_level%%current_time_level != 0){
       stop("Aggregation only available in multiple time level looking initial data")
     }
     timefun <- ifelse(type_aggr == "first", "min", "max")
-    expr_transformation <- parse(
-      text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
-                    paste(paste0(col_series, "=", fun_aggr, "(", col_series,
-                                 ", na.rm = TRUE)"), collapse = ","), ",tmp_N = .N)"))
+    
+    if(fun_aggr %in% c("mean", "max", "min", "sum")){
+      expr_transformation <- parse(text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
+                                                 paste(paste0(col_series, "=", fun_aggr, "(", col_series,
+                                                              ", na.rm = TRUE)"), collapse = ","), ",tmp_N = .N)"))
+    } else if(fun_aggr == "first"){
+      expr_transformation <- parse(text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
+                                                 paste(paste0(col_series, "= head(", col_series,
+                                                              ", n = 1)"), collapse = ","), ",tmp_N = .N)"))
+    } else if(fun_aggr == "last"){
+      expr_transformation <- parse(text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
+                                                 paste(paste0(col_series, "= tail(", col_series,
+                                                              ", n = 1)"), collapse = ","), ",tmp_N = .N)"))
+    }
     
     
     if (wanted_time == "year") {
@@ -761,13 +771,11 @@ mycut <- function(m, breaks) {
 #   return(as.integer(wday(date) + 5)%%7 + 1)
 # }
 
-dtweekday0 <- function (date) 
-{
+dtweekday0 <- function (date) {
   return(as.integer(data.table::wday(date) + 5)%%7)
 }
 
-dtthursday0 <- function (date) 
-{
+dtthursday0 <- function (date) {
   return(date - dtweekday0(date) + 3)
 }
 
