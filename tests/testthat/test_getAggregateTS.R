@@ -12,16 +12,6 @@ data <- data.frame(date=vdate, value=rnorm(length(vdate)))
 data.last <- data
 data.last$date <- data.last$date+600
 
-test_that("getTransformTS & dplyr object", {
-  if (require(dplyr)) {
-    dplyr.ok <- getTransformTS(data = as_data_frame(data), tz="CET", ts = "hour")
-    expect_equal("data.frame", class(dplyr.ok))
-    
-    dplyr.ok <- getTransformTS(data = as_data_frame(data), tz="CET", ts = "5 min")
-    expect_equal("data.frame", class(dplyr.ok))
-  }
-})
-
 test_that("getTransformTS & data.table object", {
   if (require(data.table)) {
     dt.ok <- getTransformTS(data = data.table(data), tz="CET", ts = "hour")
