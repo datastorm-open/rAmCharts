@@ -1,12 +1,16 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.8 (based on [amcharts][amcharts_url] version **3.20.18**)
+
+  * ``rAmChartsTimeSeries module`` : fix keeping first and last values when NA
+  
 ### rAmCharts 2.1.7 (based on [amcharts][amcharts_url] version **3.20.18**)
 
   * new ``add_animate_dependency`` function
   
 ### rAmCharts 2.1.6 (based on [amcharts][amcharts_url] version **3.20.18**)
 
-  * ``rAmChartsTimeSeries module`` : fix keeping first and last values
+  * ``rAmChartsTimeSeries module`` : add keeping first and last values
   
 ### rAmCharts 2.1.5 (based on [amcharts][amcharts_url] version **3.20.18**)
 
