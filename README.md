@@ -2,6 +2,18 @@
 [![Build Status](https://travis-ci.org/datastorm-open/rAmCharts.svg?branch=master)](https://travis-ci.org/datastorm-open/rAmCharts)
 [![Rdoc](http://www.rdocumentation.org/api/badges/Direct/rAmCharts)](http://www.rdocumentation.org/packages/rAmCharts)
 
+## LOG CHANGE
+
+### rAmCharts 2.1.8 (based on [amcharts][amcharts_url] version **3.21.13**)
+
+  * ``rAmChartsTimeSeries module`` : fix keeping first and last values when NA
+  * Update to ``amcharts.js 3.21.13``
+  * Add full javascript API in package & ``amChartsAPI()`` function
+  
+### rAmCharts 2.1.7 (based on [amcharts][amcharts_url] version **3.20.18**)
+
+  * new ``add_animate_dependency`` function
+  
 ## Introduction
 
 This package allows to draw interactive charts from the *JavaScript* library [AmCharts][url_amcharts] using [Hmtlwidgets][url_htmlwidgets].
