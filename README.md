@@ -4,13 +4,13 @@
 
 ## LOG CHANGE
 
-### rAmCharts 2.1.8 (based on [amcharts][amcharts_url] version **3.21.13**)
+### rAmCharts 2.1.8 (dev) (based on [AmCharts][url_amcharts] version **3.21.13**)
 
   * ``rAmChartsTimeSeries module`` : fix keeping first and last values when NA
   * Update to ``amcharts.js 3.21.13``
   * Add full javascript API in package & ``amChartsAPI()`` function
   
-### rAmCharts 2.1.7 (based on [amcharts][amcharts_url] version **3.20.18**)
+### rAmCharts 2.1.7 (based on [AmCharts][url_amcharts] version **3.20.18**)
 
   * new ``add_animate_dependency`` function
   
