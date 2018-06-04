@@ -38,3 +38,6 @@ plugins:
   animate:
     name: "amcharts_animate"
     script: "animate.min.js"
+  classList:
+    name: "amcharts_classList"
+    script: "classList.min.js"

@@ -28,7 +28,8 @@ URL: http://datastorm-open.github.io/introduction_ramcharts/
 BugReports: https://github.com/datastorm-open/rAmCharts/issues/
 Depends:
     R (>= 3.2.0)
-Collate:
+Collate: 
+    'amChartsAPI.R'
     'base_data.R'
     'base_startupMessage.R'
     'chart_amBarplot.R'
