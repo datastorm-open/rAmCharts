@@ -10,7 +10,7 @@ Currently available chart types: funnel, gantt, gauge, pie, radar, serial, stock
 
 Please refer to this page http://datastorm-open.github.io/introduction_ramcharts/, you will find several examples and a quick tutorial.
 
-Moreover, full [AmCharts] API is available in the package using ``amChartsAPI()``.
+Moreover, full [AmCharts][url_amcharts] API is available in the package using ``amChartsAPI()``.
 
 ---
 
