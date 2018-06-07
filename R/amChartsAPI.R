@@ -19,10 +19,10 @@
 amChartsAPI <- function(viewer = getOption("viewer")){
   if (!is.null(viewer)){
     tempDir <- tempdir()
-    ctrl <- file.copy(from = system.file("doc", package = "rAmCharts"), 
+    ctrl <- file.copy(from = system.file("api", package = "rAmCharts"), 
                       to = tempDir, overwrite = TRUE , recursive = TRUE)
-    viewer(paste0(tempDir, "/doc/javascriptcharts/index.html"))
+    viewer(paste0(tempDir, "/api/javascriptcharts/index.html"))
   }else{
-    browseURL(system.file("doc/javascriptcharts/index.html", package = "rAmCharts"))
+    browseURL(system.file("api/javascriptcharts/index.html", package = "rAmCharts"))
   }
 }
