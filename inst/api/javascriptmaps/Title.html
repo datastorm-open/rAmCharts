@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Title | JavaScript Maps v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product " id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product active" id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>Title            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmMap.html">AmMap</a></li><li><a href="AreasSettings.html">AreasSettings</a></li><li><a href="ImagesSettings.html">ImagesSettings</a></li><li><a href="Label.html">Label</a></li><li><a href="LinesSettings.html">LinesSettings</a></li><li><a href="MapArea.html">MapArea</a></li><li><a href="MapData.html">MapData</a></li><li><a href="MapImage.html">MapImage</a></li><li><a href="MapLine.html">MapLine</a></li><li><a href="MapObject.html">MapObject</a></li><li><a href="ObjectList.html">ObjectList</a></li><li><a href="SmallMap.html">SmallMap</a></li><li class="active"><a href="Title.html">Title</a></li><li><a href="ValueLegend.html">ValueLegend</a></li><li><a href="ZoomControl.html">ZoomControl</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Creates a title on above the chart, multiple can be assigned.<br />
+<h3 class="linkable" id="example">Example</h3><pre>var chart = AmCharts.makeChart("chartdiv",{
+	...
+	"titles": [
+		{
+			"text": "Chart Title",
+			"size": 15
+		}
+	]
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="alpha">alpha</td><td>Number</td><td>1</td><td>Opacity of a title.</td></tr><tr><td class="linkable" id="bold">bold</td><td>Boolean</td><td>true</td><td>Specifies if title should be bold or not.</td></tr><tr><td class="linkable" id="color">color</td><td>Color</td><td></td><td>Text color of a title.</td></tr><tr><td class="linkable" id="id">id</td><td>String</td><td></td><td>Unique id of a Title. You don't need to set it, unless you want to.</td></tr><tr><td class="linkable" id="size">size</td><td>Number</td><td></td><td>Text size of a title.</td></tr><tr><td class="linkable" id="tabIndex">tabIndex</td><td>Number</td><td></td><td>In case you set it to some number, the chart will set focus on the title when user clicks tab key. When a focus is set, screen readers like NVDA Screen reader will read the title. Note, not all browsers and readers support this.</td></tr><tr><td class="linkable" id="text">text</td><td>String</td><td></td><td>Text of a title.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <small>Title class does not have any methods.</small>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <small>Title class does not have any events.</small>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

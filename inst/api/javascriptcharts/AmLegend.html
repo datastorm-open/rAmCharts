@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AmLegend | JavaScript Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product active" id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>AmLegend            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li class="active"><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li><a href="AxisBase.html">AxisBase</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li><a href="ChartCursor.html">ChartCursor</a></li><li><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="Slice.html">Slice</a></li><li><a href="Title.html">Title</a></li><li><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Creates the legend for the chart, automatically adapts the color settings of the graphs.<br />
+<h3 class="linkable" id="example">Example</h3><pre>var chart = AmCharts.makeChart("chartdiv",{
+  ...
+  "legend": {
+    "useGraphSettings": true
+  },
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="accessibleLabel">accessibleLabel</td><td>String</td><td>[[title]]</td><td>Text which screen readers will read if user rolls-over the element or sets focus on it using tab key (this is possible only if tabIndex property of AmLegend is set to some number). Text is added as aria-label tag. Note - not all screen readers and browsers support this.</td></tr><tr><td class="linkable" id="align">align</td><td>String</td><td>left</td><td>Alignment of legend entries. Possible values are: "left", "center", "right".</td></tr><tr><td class="linkable" id="autoMargins">autoMargins</td><td>Boolean</td><td>true</td><td>Used if chart is Serial or XY. In case true, margins of the legend are adjusted and made equal to chart's margins.</td></tr><tr><td class="linkable" id="backgroundAlpha">backgroundAlpha</td><td>Number</td><td>0</td><td>Opacity of legend's background. Value range is 0 - 1</td></tr><tr><td class="linkable" id="backgroundColor">backgroundColor</td><td>Color</td><td>#FFFFFF</td><td>Background color. You should set backgroundAlpha to &gt;0 vallue in order background to be visible.</td></tr><tr><td class="linkable" id="borderAlpha">borderAlpha</td><td>Number</td><td>0</td><td>Opacity of chart's border. Value range is 0 - 1.</td></tr><tr><td class="linkable" id="borderColor">borderColor</td><td>Color</td><td>#000000</td><td>Color of legend's border. You should set borderAlpha &gt;0 in order border to be visible.</td></tr><tr><td class="linkable" id="bottom">bottom</td><td>Number</td><td></td><td>In case legend position is set to "absolute", you can set distance from bottom of the chart, in pixels.</td></tr><tr><td class="linkable" id="color">color</td><td>Color</td><td>#000000</td><td>Text color.</td></tr><tr><td class="linkable" id="combineLegend">combineLegend</td><td>Boolean</td><td>false</td><td>If you set it to true, and you have some legend items set using legend.data property, both graph’s entries and those added using data property will be displayed.</td></tr><tr><td class="linkable" id="data">data</td><td>Array[Object]</td><td></td><td>You can pass array of objects with title, color, markerType values, for example: [{title: "One", color: "#3366CC"},{title: "Two", color: "#FFCC33"}]<br />
+</td></tr><tr><td class="linkable" id="divId">divId</td><td>String</td><td></td><td>You can set id of a div or a reference to div object in case you want the legend to be placed in a separate container.</td></tr><tr><td class="linkable" id="enabled">enabled</td><td>Boolean</td><td>true</td><td>Specifies if legend is enabled or not.</td></tr><tr><td class="linkable" id="equalWidths">equalWidths</td><td>Boolean</td><td>true</td><td>Specifies if each of legend entry should be equal to the most wide entry. Won't look good if legend has more than one line.</td></tr><tr><td class="linkable" id="fontSize">fontSize</td><td>Number</td><td>11</td><td>Font size.</td></tr><tr><td class="linkable" id="forceWidth">forceWidth</td><td>Boolean</td><td>false</td><td>If you set this property to true,  width of legend item labels won't be adjusted. Useful when you have more than one chart and want to align all the legends.</td></tr><tr><td class="linkable" id="gradientRotation">gradientRotation</td><td>Number</td><td></td><td>Can be used if legend uses custom data. Set it to 0, 90, 180 or 270.</td></tr><tr><td class="linkable" id="horizontalGap">horizontalGap</td><td>Number</td><td>0</td><td>Horizontal space between legend item and left/right border.</td></tr><tr><td class="linkable" id="labelText">labelText</td><td>String</td><td>[[title]]</td><td>The text which will be displayed in the legend. Tag [[title]] will be replaced with the title of the graph.</td></tr><tr><td class="linkable" id="labelWidth">labelWidth</td><td>Number</td><td></td><td>If width of the label is bigger than labelWidth, it will be wrapped.</td></tr><tr><td class="linkable" id="left">left</td><td>Number</td><td></td><td>In case legend position is set to "absolute", you can set distance from left side of the chart, in pixels.</td></tr><tr><td class="linkable" id="listeners">listeners</td><td>Array[Object]</td><td></td><td>You can add listeners of events using this property. Example: listeners = [{"event":"clickLabel", "method":handleEvent}];</td></tr><tr><td class="linkable" id="marginBottom">marginBottom</td><td>Number</td><td>0</td><td>Bottom margin.</td></tr><tr><td class="linkable" id="marginLeft">marginLeft</td><td>Number</td><td>20</td><td>Left margin. This property will be ignored if chart is Serial or XY and autoMargins property of the legend is true (default).</td></tr><tr><td class="linkable" id="marginRight">marginRight</td><td>Number</td><td>20</td><td>Right margin. This property will be ignored if chart is Serial or XY and autoMargins property of the legend is true (default).</td></tr><tr><td class="linkable" id="marginTop">marginTop</td><td>Number</td><td>0</td><td>Top margin.</td></tr><tr><td class="linkable" id="markerBorderAlpha">markerBorderAlpha</td><td>Number</td><td>1</td><td>Marker border opacity.</td></tr><tr><td class="linkable" id="markerBorderColor">markerBorderColor</td><td>Color</td><td></td><td>Marker border color. If not set, will use the same color as marker.</td></tr><tr><td class="linkable" id="markerBorderThickness">markerBorderThickness</td><td>Number</td><td>1</td><td>Thickness of the legend border. The default value (0) means the line will be a "hairline" (1 px). In case marker type is line, this style will be used for line thickness.</td></tr><tr><td class="linkable" id="markerDisabledColor">markerDisabledColor</td><td>Color</td><td>#AAB3B3</td><td>The color of the disabled marker (when the graph is hidden).</td></tr><tr><td class="linkable" id="markerLabelGap">markerLabelGap</td><td>Number</td><td>5</td><td>Space between legend marker and legend text, in pixels.</td></tr><tr><td class="linkable" id="markerSize">markerSize</td><td>Number</td><td>16</td><td>Size of the legend marker (key).</td></tr><tr><td class="linkable" id="markerType">markerType</td><td>String</td><td>square</td><td>Shape of the legend marker (key). Possible values are: square, circle, diamond, triangleUp, triangleDown, triangleLeft, triangleDown, bubble, line, none. </td></tr><tr><td class="linkable" id="maxColumns">maxColumns</td><td>Number</td><td></td><td>Maximum number of columns in the legend. If Legend's position is set to "right" or "left", maxColumns is automatically set to 1.</td></tr><tr><td class="linkable" id="periodValueText">periodValueText</td><td>String</td><td></td><td>The text which will be displayed in the value portion of the legend when user is not hovering above any data point. The tags should be made out of two parts - the name of a field (value / open / close / high / low) and the value of the period you want to be show - open / close / high / low / sum / average / count. For example: [[value.sum]] means that  sum of all data points of value field in the selected period will be displayed.</td></tr><tr><td class="linkable" id="position">position</td><td>String</td><td>bottom</td><td>Position of a legend. Possible values are: "bottom", "top", "left", "right" and "absolute". In case "absolute", you should set left and top properties too. (this setting is ignored in Stock charts). In case legend is used with AmMap, position is set to "absolute" automatically.</td></tr><tr><td class="linkable" id="reversedOrder">reversedOrder</td><td>Boolean</td><td>false</td><td>Specifies whether legend entries should be placed in reversed order.</td></tr><tr><td class="linkable" id="right">right</td><td>Number</td><td></td><td>In case legend position is set to "absolute", you can set distance from right side of the chart, in pixels.</td></tr><tr><td class="linkable" id="rollOverColor">rollOverColor</td><td>Color</td><td>#CC0000</td><td>Legend item text color on roll-over.</td></tr><tr><td class="linkable" id="rollOverGraphAlpha">rollOverGraphAlpha</td><td>Number</td><td>1</td><td>When you roll-over the legend entry, all other graphs can reduce their opacity, so that the graph you rolled-over would be distinguished. This style specifies the opacity of the non-hovered graphs.</td></tr><tr><td class="linkable" id="showEntries">showEntries</td><td>Boolean</td><td>true</td><td>You can use this property to turn all the legend entries off.</td></tr><tr><td class="linkable" id="spacing">spacing</td><td>Number</td><td>10</td><td>Horizontal space between legend items, in pixels.</td></tr><tr><td class="linkable" id="switchable">switchable</td><td>Boolean</td><td>true</td><td>Whether showing/hiding of graphs by clicking on the legend marker is enabled or not. In case legend is used with AmMap, this is set to false automatically.</td></tr><tr><td class="linkable" id="switchColor">switchColor</td><td>Color</td><td>#FFFFFF</td><td>Legend switch color.</td></tr><tr><td class="linkable" id="switchType">switchType</td><td>String</td><td>x</td><td>Legend switch type (in case the legend is switchable). Possible values are "x" and "v".</td></tr><tr><td class="linkable" id="tabIndex">tabIndex</td><td>Number</td><td></td><td>In case you set it to some number, the chart will set focus on legend entry when user clicks tab key. When a focus is set, screen readers like NVDA Screen reader will read label which is set using accessibleLabel property of AmLegend. If legend has switchable set to true, pressing Enter (Return) key will show/hide the graph. Note, not all browsers and readers support this.</td></tr><tr><td class="linkable" id="textClickEnabled">textClickEnabled</td><td>Boolean</td><td>false</td><td>If true, clicking on the text will show/hide balloon of the graph. Otherwise it will show/hide graph/slice, if switchable is set to true.</td></tr><tr><td class="linkable" id="top">top</td><td>Number</td><td></td><td>In case legend position is set to "absolute", you can set distance from top of the chart, in pixels.</td></tr><tr><td class="linkable" id="useGraphSettings">useGraphSettings</td><td>Boolean</td><td>false</td><td>Legend markers can mirror graph’s settings, displaying a line and a real bullet as in the graph itself. Set this property to true if you want to enable this feature. Note, if you set graph colors in dataProvider, they will not be reflected in the marker.</td></tr><tr><td class="linkable" id="useMarkerColorForLabels">useMarkerColorForLabels</td><td>Boolean</td><td>false</td><td><a href="Label.html">Label</a>s will use marker color if you set this to true.</td></tr><tr><td class="linkable" id="useMarkerColorForValues">useMarkerColorForValues</td><td>Boolean</td><td>false</td><td>Specifies if legend values should be use same color as corresponding markers.</td></tr><tr><td class="linkable" id="valueAlign">valueAlign</td><td>String</td><td>right</td><td>Alignment of the value text. Possible values are "left" and "right".</td></tr><tr><td class="linkable" id="valueFunction">valueFunction</td><td></td><td></td><td>You can use it to format value labels in any way you want. Legend will call this method and will pass <a href="GraphDataItem.html">GraphDataItem</a>  and formatted text of currently hovered item (works only with <a href="ChartCursor.html">ChartCursor</a> added to the chart). This method should return string which will be displayed as value in the legend.</td></tr><tr><td class="linkable" id="valueText">valueText</td><td>String</td><td>[[value]]</td><td>The text which will be displayed in the value portion of the legend. You can use tags like [[value]], [[open]], [[high]], [[low]], [[close]], [[percents]], [[description]].</td></tr><tr><td class="linkable" id="valueWidth">valueWidth</td><td>Number</td><td>50</td><td>Width of the value text.</td></tr><tr><td class="linkable" id="verticalGap">verticalGap</td><td>Number</td><td>10</td><td>Vertical space between legend items also between legend border and first and last legend row.</td></tr><tr><td class="linkable" id="width">width</td><td>Number</td><td></td><td>Width of a legend, when position is set to absolute.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <table class="table table-bordered method-list"><thead><tr><th>Name</th><th>Parameters</th><th>Returns</th><th>Description</th></thead><tr><td class="linkable" id="addListener">addListener(type, handler)</td><td>type - string like 'clickLabel' (should be listed in 'events' section of this class or classes which extend this class). handler - function which is called when event happens</td><td></td><td>Adds event listener to the object.</td></tr><tr><td class="linkable" id="removeListener">removeListener(legend, type, handler)</td><td></td><td></td><td>Removes event listener from the legend object.</td></tr></table>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <table class="table table-bordered event-list"><thead><tr><th>Name</th><th>Event object</th><th>Description</th></thead><tr><td class="linkable" id="clickLabel">clickLabel</td><td>{type:"clickLabel", dataItem:Object, chart:<a href="AmChart.html">AmChart</a>}</td><td>Dispatched when legend label is clicked.</td></tr><tr><td class="linkable" id="clickMarker">clickMarker</td><td>{type:"clickMarker", dataItem:Object, chart:<a href="AmChart.html">AmChart</a>}</td><td>Dispatched when legend marker is clicked.</td></tr><tr><td class="linkable" id="hideItem">hideItem</td><td>{type:"hideItem", dataItem:Object, chart:<a href="AmChart.html">AmChart</a>}</td><td>Dispatched when user clicks on a legend item marker and hides corresponding object.</td></tr><tr><td class="linkable" id="rollOutItem">rollOutItem</td><td>{type:"rollOutItem", dataItem:Object, chart:<a href="AmChart.html">AmChart</a>}</td><td>Dispatched when user rolls-out of the legend item label (or whole item, if switchable is set to false).</td></tr><tr><td class="linkable" id="rollOverItem">rollOverItem</td><td>{type:"rollOverItem", dataItem:Object, chart:<a href="AmChart.html">AmChart</a>}</td><td>Dispatched when user rolls-over the legend item label (or whole item, if switchable is set to false).</td></tr><tr><td class="linkable" id="rollOverMarker">rollOverMarker</td><td>{type:"rollOverMarker", dataItem:Object, chart:<a href="AmChart.html">AmChart</a>}</td><td>Dispatched when user rolls-over the legend item marker.</td></tr><tr><td class="linkable" id="showItem">showItem</td><td>{type:"showItem", dataItem:Object, chart:<a href="AmChart.html">AmChart</a>}</td><td>Dispatched when user clicks on a legend item marker and shows corresponding object.</td></tr></table>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>LegendSettings | JavaScript Stock Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product " id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product active" id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>LegendSettings            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li><a href="AmStockChart.html">AmStockChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li><a href="AxisBase.html">AxisBase</a></li><li><a href="CategoryAxesSettings.html">CategoryAxesSettings</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li><a href="ChartCursor.html">ChartCursor</a></li><li><a href="ChartCursorSettings.html">ChartCursorSettings</a></li><li><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="ChartScrollbarSettings.html">ChartScrollbarSettings</a></li><li><a href="DataSet.html">DataSet</a></li><li><a href="DataSetSelector.html">DataSetSelector</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li class="active"><a href="LegendSettings.html">LegendSettings</a></li><li><a href="PanelsSettings.html">PanelsSettings</a></li><li><a href="PeriodSelector.html">PeriodSelector</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="StockEvent.html">StockEvent</a></li><li><a href="StockEventsSettings.html">StockEventsSettings</a></li><li><a href="StockGraph.html">StockGraph</a></li><li><a href="StockLegend.html">StockLegend</a></li><li><a href="StockPanel.html">StockPanel</a></li><li><a href="Title.html">Title</a></li><li><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxesSettings.html">ValueAxesSettings</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Common settings of legends. If you change a property after the chart is initialized, you should call stockChart.validateNow() method in order for it to work. If there is no default value specified, default value of StockLegend class will be used.</p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="align">align</td><td>String</td><td></td><td>Alignment of legend entries. Possible values are: "left", "right" and "center".</td></tr><tr><td class="linkable" id="equalWidths">equalWidths</td><td>Boolean</td><td>false</td><td>Specifies if each legend entry should take the same space as the longest legend entry. </td></tr><tr><td class="linkable" id="horizontalGap">horizontalGap</td><td>Number</td><td></td><td>Horizontal space between legend item and left/right border.</td></tr><tr><td class="linkable" id="labelText">labelText</td><td>String</td><td></td><td>The text which will be displayed in the legend. Tag [[title]] will be replaced with the title of the graph.</td></tr><tr><td class="linkable" id="marginBottom">marginBottom</td><td>Number</td><td>0</td><td>Space below the last row of the legend, in pixels.</td></tr><tr><td class="linkable" id="marginTop">marginTop</td><td>Number</td><td>0</td><td>Space above the first row of the legend, in pixels.</td></tr><tr><td class="linkable" id="markerBorderAlpha">markerBorderAlpha</td><td>Number</td><td></td><td>Opacity of marker border.</td></tr><tr><td class="linkable" id="markerBorderColor">markerBorderColor</td><td>Color</td><td></td><td>Marker border color.</td></tr><tr><td class="linkable" id="markerBorderThickness">markerBorderThickness</td><td>Number</td><td></td><td>Thickness of the legend border.</td></tr><tr><td class="linkable" id="markerDisabledColor">markerDisabledColor</td><td>Color</td><td></td><td>The color of the disabled marker (when the graph is hidden).</td></tr><tr><td class="linkable" id="markerLabelGap">markerLabelGap</td><td>Number</td><td></td><td>Space between legend marker and legend text, in pixels.</td></tr><tr><td class="linkable" id="markerSize">markerSize</td><td>Number</td><td></td><td>Size of the legend marker (key).</td></tr><tr><td class="linkable" id="markerType">markerType</td><td>String</td><td></td><td>Shape of the legend marker (key). Possible values are: square, circle, diamond, triangleUp, triangleDown, triangleLeft, triangleDown, bubble, none</td></tr><tr><td class="linkable" id="position">position</td><td>String</td><td></td><td>Position of legend in panels. Possible values are: "bottom" and "top".</td></tr><tr><td class="linkable" id="reversedOrder">reversedOrder</td><td>Boolean</td><td></td><td>Specifies whether legend entries should be placed in reversed order.</td></tr><tr><td class="linkable" id="rollOverColor">rollOverColor</td><td>Color</td><td></td><td>Legend item text color on roll-over.</td></tr><tr><td class="linkable" id="rollOverGraphAlpha">rollOverGraphAlpha</td><td>Number</td><td></td><td>When you roll-over the legend entry, all other graphs can reduce their opacity, so that the graph you rolled-over would be distinguished. This property specifies the opacity of the graphs.</td></tr><tr><td class="linkable" id="switchable">switchable</td><td>Boolean</td><td></td><td>Whether showing/hiding of graphs by clicking on the legend marker is enabled or not.</td></tr><tr><td class="linkable" id="switchColor">switchColor</td><td>Color</td><td></td><td>Legend switch color.</td></tr><tr><td class="linkable" id="switchType">switchType</td><td>String</td><td></td><td>Legend switch type (in case the legend is switchable). Possible values are: "x" and "v".</td></tr><tr><td class="linkable" id="textClickEnabled">textClickEnabled</td><td>Boolean</td><td>false</td><td>Specifies whether the legend text is clickable or not. Clicking on legend text can show/hide value balloons if they are enabled.</td></tr><tr><td class="linkable" id="useMarkerColorForLabels">useMarkerColorForLabels</td><td>Boolean</td><td></td><td>Specifies if legend labels should be use same color as corresponding markers.</td></tr><tr><td class="linkable" id="valueTextComparing">valueTextComparing</td><td>String</td><td></td><td>The text which will be displayed in the value portion of the legend when graph is comparable and at least one dataSet is selected for comparing. You can use tags like [[value]], [[open]], [[high]], [[low]], [[close]], [[percents]], [[description]].</td></tr><tr><td class="linkable" id="valueTextRegular">valueTextRegular</td><td>String</td><td></td><td>The text which will be displayed in the value portion of the legend. You can use tags like [[value]], [[open]], [[high]], [[low]], [[close]], [[percents]], [[description]].</td></tr><tr><td class="linkable" id="valueWidth">valueWidth</td><td>Number</td><td></td><td>Width of the value text. Increase this value if your values do not fit in the allocated space.</td></tr><tr><td class="linkable" id="verticalGap">verticalGap</td><td>Number</td><td></td><td>Vertical space between legend items, in pixels.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <small>LegendSettings class does not have any methods.</small>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <small>LegendSettings class does not have any events.</small>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

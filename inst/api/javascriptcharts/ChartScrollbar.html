@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ChartScrollbar | JavaScript Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product active" id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>ChartScrollbar            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li><a href="AxisBase.html">AxisBase</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li><a href="ChartCursor.html">ChartCursor</a></li><li class="active"><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="Slice.html">Slice</a></li><li><a href="Title.html">Title</a></li><li><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Create a scrollbar for <a href="./AmSerialChart.html">AmSerialChart</a> and <a href="./AmXYChart.html">AmXYChart</a> charts.<br />
+<h3 class="linkable" id="example">Example</h3><pre>var chart = AmCharts.makeChart("chartdiv",{
+  ...
+  "pathToImages": "http://cdn.amcharts.com/lib/3/images/", // required for grips
+  "chartScrollbar": {
+    "updateOnReleaseOnly": true
+  }
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="accessibleLabel">accessibleLabel</td><td>String</td><td> Zoom chart using cursor arrows</td><td>Text which screen readers will read if user rolls-over or sets focus using tab key (this is possible only if tabIndex property of <a href="AmGraph.html">AmGraph</a> is set to some number) on the grips or draggable part of a scrollbar. Text is added as aria-label tag. Note - not all screen readers and browsers support this. Note, you should set tabIndex to some number in order it would be possible to zoom chart using cursor keys.</td></tr><tr><td class="linkable" id="autoGridCount">autoGridCount</td><td>Boolean</td><td>false</td><td>Specifies whether number of gridCount is specified automatically, according to the axis size.</td></tr><tr><td class="linkable" id="backgroundAlpha">backgroundAlpha</td><td>Number</td><td>1</td><td>Background opacity.</td></tr><tr><td class="linkable" id="backgroundColor">backgroundColor</td><td>Color</td><td>#D4D4D4</td><td>Background color of the scrollbar.</td></tr><tr><td class="linkable" id="categoryAxis">categoryAxis</td><td><a href="CategoryAxis.html">CategoryAxis</a></td><td></td><td>Read-only. Category axis of the scrollbar.</td></tr><tr><td class="linkable" id="color">color</td><td>Color</td><td>#FFFFFF</td><td>Text color.</td></tr><tr><td class="linkable" id="dragCursorDown">dragCursorDown</td><td>String</td><td>cursor: move; cursor: grab; cursor: -moz-grabbing; cursor: -webkit-grabbing;</td><td>Mouse cursor displayed when clicked on selected part of a scrollbar.</td></tr><tr><td class="linkable" id="dragCursorHover">dragCursorHover</td><td>String</td><td>cursor: move; cursor: grab; cursor: -moz-grab; cursor: -webkit-grab;</td><td>Mouse cursor displayed when hovering over selected part of a scrollbar.</td></tr><tr><td class="linkable" id="dragIcon">dragIcon</td><td>String</td><td>dragIconRoundBig</td><td>File name of scrollbar drag (resize grip) icon. You can find a set of icons in amcharts/images folder - you can choose from these: dragIconRectBig, dragIconRectBigBlack, dragIconRectSmall, dragIconRectSmallBlack, dragIconRoundBig, dragIconRoundBigBlack, dragIconRoundSmall, dragIconRoundSmallBlack. You can also use your own custom icons. Don't forget to change dragIconWidth and dragIconHeight if you change icons.</td></tr><tr><td class="linkable" id="dragIconHeight">dragIconHeight</td><td>Number</td><td>35</td><td>Height of resize grip image. Note, you should also update the image in amcharts/images folder if you don't want it to be distorted because of resizing.</td></tr><tr><td class="linkable" id="dragIconWidth">dragIconWidth</td><td>Number</td><td>35</td><td>Width of resize grip image. Note, you should also update the image in amcharts/images folder if you don't want it to be distorted because of resizing.</td></tr><tr><td class="linkable" id="enabled">enabled</td><td>Boolean</td><td>true</td><td>Specifies if scrollbar is enabled. You can hide/show scrollbar using this property without actually removing it. </td></tr><tr><td class="linkable" id="graph">graph</td><td><a href="AmGraph.html">AmGraph</a></td><td></td><td>Specifies which graph will be displayed in the scrollbar. Only Serial chart's category scrollbar can display a graph.</td></tr><tr><td class="linkable" id="graphFillAlpha">graphFillAlpha</td><td>Number</td><td>1</td><td>Graph fill opacity. Value range is 0 - 1.</td></tr><tr><td class="linkable" id="graphFillColor">graphFillColor</td><td>Color</td><td>#BBBBBB</td><td>Graph fill color.</td></tr><tr><td class="linkable" id="graphLineAlpha">graphLineAlpha</td><td>Number</td><td>0</td><td>Graph line opacity. Value range is 0 - 1.</td></tr><tr><td class="linkable" id="graphLineColor">graphLineColor</td><td>Color</td><td>#BBBBBB</td><td>Graph line color.</td></tr><tr><td class="linkable" id="graphType">graphType</td><td>String</td><td></td><td>by default the graph type is the same as the original graph's type, however in case of candlestick or ohlc you might want to show line graph in the scrollbar. Possible values are: line, column, step, smoothedLine, candlestick, ohlc</td></tr><tr><td class="linkable" id="gridAlpha">gridAlpha</td><td>Number</td><td>0.7</td><td>Grid opacity. Value range is 0 - 1.</td></tr><tr><td class="linkable" id="gridColor">gridColor</td><td>Color</td><td>#FFFFFF</td><td>Grid color.</td></tr><tr><td class="linkable" id="gridCount">gridCount</td><td>Number</td><td>0</td><td>The number of grid lines.</td></tr><tr><td class="linkable" id="hideResizeGrips">hideResizeGrips</td><td>Boolean</td><td>false</td><td>Specifies whether resize grips are hidden when mouse is away from the scrollbar.</td></tr><tr><td class="linkable" id="hResizeCursor">hResizeCursor</td><td>String</td><td>ew-resize</td><td>Mouse cursor type shown when user hovers horizontal cursor's resize grips.</td></tr><tr><td class="linkable" id="hResizeCursorDown">hResizeCursorDown</td><td>String</td><td></td><td>CSS value of cursor displayed when mouse is pressed down over horizontal cursor's resize grip.</td></tr><tr><td class="linkable" id="hResizeCursorHover">hResizeCursorHover</td><td>String</td><td></td><td>CSS value of cursor displayed when hovering over horizontal cursor's resize grip.</td></tr><tr><td class="linkable" id="ignoreCustomColors">ignoreCustomColors</td><td>Boolean</td><td>false</td><td>If you have column type graph in your scrollbar, and this graph has custom colors for one or more columns in data provider, those columns will be colored with this custom color. However you might not want this in some cases. Set this property to true to use scrollbar's graph colors.</td></tr><tr><td class="linkable" id="maximum">maximum</td><td>Number</td><td></td><td>Maximum value of <a href="ValueAxis.html">ValueAxis</a> of ChartScrollbar. Calculated automatically, if not set.</td></tr><tr><td class="linkable" id="minimum">minimum</td><td>Number</td><td></td><td>Minimum value of <a href="ValueAxis.html">ValueAxis</a> of ChartScrollbar. Calculated automatically, if not set.</td></tr><tr><td class="linkable" id="offset">offset</td><td>Number</td><td>0</td><td>Distance from plot area to scrollbar, in pixels.</td></tr><tr><td class="linkable" id="oppositeAxis">oppositeAxis</td><td>Boolean</td><td>true</td><td>By default, scrollbar is in the opsite side of plot area from the axis. If you set this property to false, scrollbar will be placed next to category/value axis. However it won't adjust it's position regarding axis labels, so you might need to use offset property to move scrollbar away from labels.</td></tr><tr><td class="linkable" id="resizeEnabled">resizeEnabled</td><td>Boolean</td><td>true</td><td>If set to <code>false</code> it will prevent the chart scroll bar to change selection scope. The grip images will not be shown as well. The user would still be able to pan / move selection.</td></tr><tr><td class="linkable" id="scrollbarHeight">scrollbarHeight</td><td>Number</td><td>20</td><td>Height (width, if chart is rotated) of a scrollbar.</td></tr><tr><td class="linkable" id="scrollDuration">scrollDuration</td><td>Number</td><td>1</td><td>Duration of scrolling, when the user clicks on scrollbar's background, in seconds. Note, updateOnReleaseOnly should be set to false in order animation to happen.</td></tr><tr><td class="linkable" id="selectedBackgroundAlpha">selectedBackgroundAlpha</td><td>Number</td><td>1</td><td>Selected backround opacity.</td></tr><tr><td class="linkable" id="selectedBackgroundColor">selectedBackgroundColor</td><td>Color</td><td>#EFEFEF</td><td>Selected background color.</td></tr><tr><td class="linkable" id="selectedGraphFillAlpha">selectedGraphFillAlpha</td><td>Number</td><td>1</td><td>Selected graph's fill opacity. Value range is 0 - 1.</td></tr><tr><td class="linkable" id="selectedGraphFillColor">selectedGraphFillColor</td><td>Color</td><td>#888888</td><td>Selected graph's fill color.</td></tr><tr><td class="linkable" id="selectedGraphLineAlpha">selectedGraphLineAlpha</td><td>Number</td><td>0</td><td>Selected graph's line opacity. Value range is 0 - 1.</td></tr><tr><td class="linkable" id="selectedGraphLineColor">selectedGraphLineColor</td><td>Color</td><td>#888888</td><td>Selected graph's line color.</td></tr><tr><td class="linkable" id="tabIndex">tabIndex</td><td>Number</td><td></td><td>In case you set it to some number, the chart will set focus on grips and draggable area of the scrollbar when user clicks tab key. When a focus is set, screen readers like NVDA Screen reader will read label which is set using accessibleLabel property of ChartScrollbar. When a focus is set user can zoom-in, zoom-out or pan the scrollbar using cursor keys. Note, not all browsers and readers support this.</td></tr><tr><td class="linkable" id="updateOnReleaseOnly">updateOnReleaseOnly</td><td>Boolean</td><td>false</td><td>Specifies if the chart should be updated while dragging/resizing the scrollbar or only at the moment when user releases mouse button.</td></tr><tr><td class="linkable" id="vResizeCursor">vResizeCursor</td><td>String</td><td>ns-resize</td><td>Mouse cursor type shown when user hovers vertical cursor's resize grips.</td></tr><tr><td class="linkable" id="vResizeCursorDown">vResizeCursorDown</td><td>String</td><td></td><td>CSS value of cursor displayed when mouse is pressed down over vertical cursor's resize grip.</td></tr><tr><td class="linkable" id="vResizeCursorHover">vResizeCursorHover</td><td>String</td><td></td><td>CSS value of cursor displayed when hovering over vertical cursor's resize grip.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <small>ChartScrollbar class does not have any methods.</small>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <small>ChartScrollbar class does not have any events.</small>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

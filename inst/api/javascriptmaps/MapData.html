@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MapData | JavaScript Maps v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product " id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product active" id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>MapData            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmMap.html">AmMap</a></li><li><a href="AreasSettings.html">AreasSettings</a></li><li><a href="ImagesSettings.html">ImagesSettings</a></li><li><a href="Label.html">Label</a></li><li><a href="LinesSettings.html">LinesSettings</a></li><li><a href="MapArea.html">MapArea</a></li><li class="active"><a href="MapData.html">MapData</a></li><li><a href="MapImage.html">MapImage</a></li><li><a href="MapLine.html">MapLine</a></li><li><a href="MapObject.html">MapObject</a></li><li><a href="ObjectList.html">ObjectList</a></li><li><a href="SmallMap.html">SmallMap</a></li><li><a href="Title.html">Title</a></li><li><a href="ValueLegend.html">ValueLegend</a></li><li><a href="ZoomControl.html">ZoomControl</a></li></ul>        
+        <div class="inside">
+          <p>Inheritance: <strong>MapData</strong> &rarr; <a href="MapObject.html">MapObject</a></p>          
+          <p>Extension for <a href="./MapObject.html">MapObject</a> to define the dataProvider for the map. It's an object which may contain an array of images, areas or lines.<br />
+<h3 class="linkable" id="example">Example</h3><pre>var map = AmCharts.makeChart("mapdiv",{
+  ...
+  "dataProvider": {
+    "map": "worldHigh",
+    "areas": [
+      {
+        "id": "LT",
+        "showAsSelected": true
+      }
+    ],
+    "lines": [
+      {
+        "latitudes": [51.5002, 50.4422],
+        "longitudes": [-0.1262, 30.5367]
+      }
+    ],
+    "images": [
+      {
+        "type": "circle",
+        "top": 100,
+        "left": 100
+      }
+    ]
+  }
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                        <a class="btn btn-small property-list-hide" onclick="hideInherited('property-list')"><i class="icon-chevron-down"></i> Hide inherited</a>
+            <a class="btn btn-small property-list-show" onclick="showInherited('property-list')" style="display: none;"><i class="icon-chevron-up"></i> Show inherited</a>
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr class="inherited"><td class="linkable" id="accessibleLabel"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> accessibleLabel</td><td>String</td><td></td><td>Text which screen readers will read if user rolls-over the object or sets focus using tab key (this is possible only if tabIndex property of object settings or individual object is set to some number). Text is added as aria-label tag. Note - not all screen readers and browsers support this.</td></tr><tr class="inherited"><td class="linkable" id="alpha"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> alpha</td><td>Number</td><td></td><td>Opacity of map object.</td></tr><tr><td class="linkable" id="areas">areas</td><td>Array[<a href="MapArea.html">MapArea</a>]</td><td></td><td>Array of <a href="MapArea.html">MapArea</a> objects.</td></tr><tr class="inherited"><td class="linkable" id="balloonText"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> balloonText</td><td>String</td><td></td><td>Text which is displayed in a roll-over balloon. You can use the following tags: [[title]], [[description]], [[value]] and [[percent]].<br />
+<br />
+To disable the balloons, set it to an empty string.</td></tr><tr><td class="linkable" id="bottomLatitude">bottomLatitude</td><td>Number</td><td>-90</td><td>Latitude of bottom-most point of a map. All maps in amMap package have this information hardcoded in SVG file.</td></tr><tr class="inherited"><td class="linkable" id="bringForwardOnHover"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> bringForwardOnHover</td><td>Boolean</td><td></td><td>Specifies if the object should change it's z-index to the top-most when user hovers it.</td></tr><tr class="inherited"><td class="linkable" id="color"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> color</td><td>Color</td><td></td><td>Color of <a href="MapObject.html">MapObject</a></td></tr><tr class="inherited"><td class="linkable" id="customData"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> customData</td><td>Object</td><td></td><td>A custom data holder.</td></tr><tr class="inherited"><td class="linkable" id="description"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> description</td><td>String</td><td></td><td>Description of <a href="MapObject.html">MapObject</a>. Description is displayed in DescriptionWindow (when user clicks on an object). It can also be displayed in a roll-over balloon. DescriptionWindow can display HTML formatted code.</td></tr><tr class="inherited"><td class="linkable" id="descriptionWindowBottom"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> descriptionWindowBottom</td><td></td><td></td><td>Distance from the bottom side of map container to the description window. In case it is not set (also if descriptionWindowTop is not set), window will be placed near the mouse pointer.</td></tr><tr class="inherited"><td class="linkable" id="descriptionWindowHeight"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> descriptionWindowHeight</td><td>Number</td><td></td><td>Height of description window.</td></tr><tr class="inherited"><td class="linkable" id="descriptionWindowLeft"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> descriptionWindowLeft</td><td>Number</td><td></td><td>Distance from the left side of map container to the description window. In case it is not set (also if descriptionWindowRight is not set), window will be placed near the mouse pointer.</td></tr><tr class="inherited"><td class="linkable" id="descriptionWindowRight"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> descriptionWindowRight</td><td></td><td></td><td>Distance from the right side of map container to the description window. In case it is not set (also if descriptionWindowLeft is not set), window will be placed near the mouse pointer.</td></tr><tr class="inherited"><td class="linkable" id="descriptionWindowTop"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> descriptionWindowTop</td><td>Number</td><td></td><td>Distance from the top side of map container to the description window. In case it is not set (also if descriptionWindowBottom is not set), window will be placed near the mouse pointer.</td></tr><tr class="inherited"><td class="linkable" id="descriptionWindowWidth"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> descriptionWindowWidth</td><td>Number</td><td></td><td>Width of description window.</td></tr><tr class="inherited"><td class="linkable" id="fixedSize"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> fixedSize</td><td>Boolean</td><td>true</td><td>Specifies if the object should change the size together with the map or keep fixed size. This applies for objects with lat and long properties set, as they move together with the map.</td></tr><tr><td class="linkable" id="getAreasFromMap">getAreasFromMap</td><td>Boolean</td><td>false</td><td>If you set this to true, all areas available in SVG map will be created automatically.</td></tr><tr class="inherited"><td class="linkable" id="groupId"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> groupId</td><td>String</td><td></td><td>Id of a group. You can group <a href="MapObject.html">MapObject</a>s to groups. Grouped objects will change color together with this object when you roll-over it or click it. You can show/hide them using showGroup(groupId) and hideGroup(groupId) methods of <a href="AmMap.html">AmMap</a> class. You can also use map.zoomToGroup(groupId) methot to zoom-in the map so that all grouped objects are visible.</td></tr><tr class="inherited"><td class="linkable" id="id"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> id</td><td>String</td><td></td><td>Unique id of the object. In case it's area, id should match svg path id from SVG file. <br />
+Id can be used with linkToObject property of <a href="MapObject.html">MapObject</a> - you can link one object to another using it.</td></tr><tr class="inherited"><td class="linkable" id="images"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> images</td><td>Array[<a href="MapImage.html">MapImage</a>]</td><td></td><td>Array of <a href="MapImage.html">MapImage</a> objects.</td></tr><tr><td class="linkable" id="leftLongitude">leftLongitude</td><td>Number</td><td>-180</td><td>Longitude of left-most point of a map. All maps in amMap package have this information hardcoded in SVG file.</td></tr><tr class="inherited"><td class="linkable" id="lines"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> lines</td><td>Array[<a href="MapLine.html">MapLine</a>]</td><td></td><td>Array of <a href="MapLine.html">MapLine</a> objects.</td></tr><tr class="inherited"><td class="linkable" id="linkToObject"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> linkToObject</td><td><a href="MapObject.html">MapObject</a></td><td></td><td>linkToObject can be a reference or id of some other <a href="MapObject.html">MapObject</a> - <a href="MapArea.html">MapArea</a>, <a href="MapImage.html">MapImage</a> or <a href="MapLine.html">MapLine</a>. It can also be a reference to another DataSet (but not an id). Then user clicks on this object the application would zoom-in to this objects' zoom position (if it is set) and then act as if the linkToObject  was clicked. This can also be used for selecting the object you want to be selected right after the map is initialized, as DataSet extends <a href="MapObject.html">MapObject</a> class, you can specify linkToObject for your DataSet. When you link to another DataSet, you can build drill-down maps.</td></tr><tr><td class="linkable" id="map">map</td><td>String</td><td></td><td>Name of a map. Instead of using mapURL or mapVar you can use name of the map, usualy the same as file name of the map, for example: map = "worldLow".</td></tr><tr><td class="linkable" id="mapURL">mapURL</td><td>String</td><td></td><td>Path to map SVG file. Use it if you don't include map as .js file. Loading SVG is a bit risky, as some browsers might not do this correctly - it depends on server configuration. We recommend to include maps as .js files. Application won't load svg files from hard drive, so you can test this only on web server.</td></tr><tr><td class="linkable" id="mapVar">mapVar</td><td>Variable</td><td></td><td>In case you included map as js file, you should specify variable name of a map. Open your map.js file and copy variable name, for example: <a href="AmCharts.html">AmCharts</a>.maps.worldLow</td></tr><tr class="inherited"><td class="linkable" id="mouseEnabled"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> mouseEnabled</td><td>Boolean</td><td>true</td><td>Set this to false to make the object be irresponsive to any interactions like hover or click events.</td></tr><tr class="inherited"><td class="linkable" id="objectType"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> objectType</td><td>Object</td><td></td><td>Read-only, type of the Object. Possible values are: "DataSet", "MapImage", "MapLine" and "MapArea".</td></tr><tr class="inherited"><td class="linkable" id="passZoomValuesToTarget"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> passZoomValuesToTarget</td><td>Boolean</td><td>false</td><td>Specifies if current zoom values should be passed to target <a href="MapObject.html">MapObject</a>. Useful when building drill down maps.</td></tr><tr class="inherited"><td class="linkable" id="remainVisible"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> remainVisible</td><td>Boolean</td><td>true</td><td>Specifies if the <a href="MapObject.html">MapObject</a> and other objects of the same level should remain visible if it was clicked and it has children <a href="MapObject.html">MapObject</a>s.</td></tr><tr><td class="linkable" id="rightLongitude">rightLongitude</td><td>Number</td><td>180</td><td>Longitude of right-most point of a map. All maps in amMap package have this information hardcoded in SVG file.</td></tr><tr class="inherited"><td class="linkable" id="rollOverColor"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> rollOverColor</td><td>Color</td><td></td><td>Roll over color of of the object.</td></tr><tr class="inherited"><td class="linkable" id="selectable"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> selectable</td><td>Boolean</td><td>false</td><td>Specifies if the object can be selected even if it is not clickable. Map object is clickable if zoom properties are set or it has description or has children objects. Sometimes even non of the listed conditions is met you might need it to be clickable. You should set this property to true in this case.</td></tr><tr class="inherited"><td class="linkable" id="selectedColor"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> selectedColor</td><td>Color</td><td></td><td>Color of an object when it is selected (somebody clicked on it).</td></tr><tr class="inherited"><td class="linkable" id="showAsSelected"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> showAsSelected</td><td>Boolean</td><td>false</td><td>Specifies if selectedColor should be applied to the object. <a href="AmMap.html">AmMap</a> can have only one selected item at a time, however there might be situations when multiple objects (areas, images, lines) have to look like they are selected. By setting this property to true, you will be able to produce this result.</td></tr><tr class="inherited"><td class="linkable" id="showInList"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> showInList</td><td>Boolean</td><td></td><td>Specifies if this object must be displayed in ObjectsList <a href="Title.html">Title</a> should be defined in order the object to appear there.</td></tr><tr class="inherited"><td class="linkable" id="tabIndex"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> tabIndex</td><td>Number</td><td></td><td>In case you set it to some number, the map will set focus on this object when user clicks tab key. When a focus is set, screen readers like NVDA Screen reader will read label which is set using accessibleLabel property of object settings or individual object. If object is clickable, pressing Enter/Return while focus is set will select the object. Note, not all browsers and readers support this.</td></tr><tr class="inherited"><td class="linkable" id="title"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> title</td><td>String</td><td></td><td><a href="Title.html">Title</a> of a <a href="MapObject.html">MapObject</a>. It can be displayed in the roll-over balloon and in the header of description window. All areas in SVG maps distributed with amMap has country names (titles) hard coded in the SVG file.</td></tr><tr><td class="linkable" id="topLatitude">topLatitude</td><td>Number</td><td>90</td><td>Latitude of top-most point of a map. All maps in amMap package have this information hardcoded in SVG file.</td></tr><tr class="inherited"><td class="linkable" id="url"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> url</td><td>String</td><td></td><td>Url of an object. The application will go to this url when you click on the object. </td></tr><tr class="inherited"><td class="linkable" id="urlTarget"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> urlTarget</td><td>String</td><td>_self</td><td>Target of an URL, if URL is a string, for example: "_blank", "_top".</td></tr><tr class="inherited"><td class="linkable" id="useTargetsZoomValues"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> useTargetsZoomValues</td><td>Boolean</td><td>false</td><td>If set to `true` the map will carry over the same zoom values when transitioning to new data provider. Useful when building drill down maps.</td></tr><tr class="inherited"><td class="linkable" id="zoomLatitude"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> zoomLatitude</td><td>Number</td><td></td><td>Specifies latitude to which map should be moved when this object is clicked</td></tr><tr class="inherited"><td class="linkable" id="zoomLevel"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> zoomLevel</td><td>Number</td><td></td><td>Specifies map scale to which map should be rescaled when this object is clicked.</td></tr><tr class="inherited"><td class="linkable" id="zoomLongitude"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> zoomLongitude</td><td>Number</td><td></td><td>Specifies longitude to which map should be moved when this object is clicked.</td></tr><tr class="inherited"><td class="linkable" id="zoomX"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> zoomX</td><td>Number</td><td></td><td>Specifies X position (in percents of stage width) to which map should be moved when this object is clicked. You can also use zoomLat and zoomLong instead of zoomX and zoomY.</td></tr><tr class="inherited"><td class="linkable" id="zoomY"><a href="MapObject.html"><i class="icon-arrow-up" title="Inherited from MapObject"></i></a> zoomY</td><td>Number</td><td></td><td>Specifies Y position (in percents of stage height) to which map should be moved when this object is clicked. You can also use zoomLat and zoomLong instead of zoomX and zoomY.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                            <a class="btn btn-small method-list-hide" onclick="hideInherited('method-list')"><i class="icon-chevron-down"></i> Hide inherited</a>
+              <a class="btn btn-small method-list-show" onclick="showInherited('method-list')" style="display: none;"><i class="icon-chevron-up"></i> Show inherited</a>
+                          </h3>
+            
+            <small>MapData class does not have any methods.</small>            
+            <h3 class="linkable" id="events">
+              Events
+                            <a class="btn btn-small event-list-hide" onclick="hideInherited('event-list')"><i class="icon-chevron-down"></i> Hide inherited</a>
+              <a class="btn btn-small event-list-show" onclick="showInherited('event-list')" style="display: none;"><i class="icon-chevron-up"></i> Show inherited</a>
+                          </h3>
+            
+            <small>MapData class does not have any events.</small>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

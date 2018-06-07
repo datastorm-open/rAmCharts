@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>TrendLine | JavaScript Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product active" id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>TrendLine            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li><a href="AxisBase.html">AxisBase</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li><a href="ChartCursor.html">ChartCursor</a></li><li><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="Slice.html">Slice</a></li><li><a href="Title.html">Title</a></li><li class="active"><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Creates a trendline for <a href="./AmSerialChart.html">AmSerialChart</a> and <a href="./AmXYChart.html">AmXYChart</a> charts which indicates the trend of your data or covers some different purposes. Multiple can be assigned.<br />
+<h3 class="linkable" id="example">Example</h3><pre>var chart = AmCharts.makeChart("chartdiv",{
+	...
+	"trendLines": [
+		{
+			"initialValue": 1,
+			"initialXValue": 1,
+			"finalValue": 11,
+			"finalXValue": 12
+		}
+	]
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="balloonText">balloonText</td><td>String</td><td></td><td>When set, enables displaying a roll-over balloon.</td></tr><tr><td class="linkable" id="dashLength">dashLength</td><td>Number</td><td>0</td><td>Dash length.</td></tr><tr><td class="linkable" id="finalCategory">finalCategory</td><td>String</td><td></td><td>String, equal to category value to which trend line should be drawn. It should be used if chart doesn't parse dates.</td></tr><tr><td class="linkable" id="finalDate">finalDate</td><td>Date</td><td></td><td>Date to which trend line should be drawn. It can be date string (using the same date format as chart.dataDateFormat) or date object.</td></tr><tr><td class="linkable" id="finalImage">finalImage</td><td><a href="Image.html">Image</a></td><td></td><td>Allows to add an image to the end of a trend line.</td></tr><tr><td class="linkable" id="finalValue">finalValue</td><td>Number</td><td></td><td>Value at which trend line should end.</td></tr><tr><td class="linkable" id="finalXValue">finalXValue</td><td>Number</td><td></td><td>Used by XY chart only. X value at which trend line should end.</td></tr><tr><td class="linkable" id="id">id</td><td>String</td><td></td><td>Unique id of a Trend line. You don't need to set it, unless you want to.</td></tr><tr><td class="linkable" id="initialCategory">initialCategory</td><td>String</td><td></td><td>String, equal to category value from which trend line should start. It should be used if chart doesn't parse dates.</td></tr><tr><td class="linkable" id="initialDate">initialDate</td><td>Date</td><td></td><td>Date from which trend line should start. It can be date string (using the same date format as chart.dataDateFormat) or date object.</td></tr><tr><td class="linkable" id="initialImage">initialImage</td><td><a href="Image.html">Image</a></td><td></td><td>Allows to add an image to the beginning of a trend line.</td></tr><tr><td class="linkable" id="initialValue">initialValue</td><td>Number</td><td></td><td>Value from which trend line should start.</td></tr><tr><td class="linkable" id="initialXValue">initialXValue</td><td>Number</td><td></td><td>Used by XY chart only. X value from which trend line should start.</td></tr><tr><td class="linkable" id="isProtected">isProtected</td><td>Boolean</td><td>false</td><td>Used by Stock chart. If this property is set to true, this trend line won't be removed when clicked on eraser tool.</td></tr><tr><td class="linkable" id="lineAlpha">lineAlpha</td><td>Number</td><td>1</td><td>Line opacity.</td></tr><tr><td class="linkable" id="lineColor">lineColor</td><td>Color</td><td>#00CC00</td><td>Line color.</td></tr><tr><td class="linkable" id="lineThickness">lineThickness</td><td>Number</td><td>1</td><td>Line thickness.</td></tr><tr><td class="linkable" id="valueAxis">valueAxis</td><td><a href="ValueAxis.html">ValueAxis</a></td><td><a href="ValueAxis.html">ValueAxis</a></td><td>Value axis of the trend line. Will use first value axis of the chart if not set any. You can use a reference to the value axis object or id of value axis.</td></tr><tr><td class="linkable" id="valueAxisX">valueAxisX</td><td><a href="ValueAxis.html">ValueAxis</a></td><td><a href="ValueAxis.html">ValueAxis</a></td><td>Used by XY chart only. X axis of trend line. Will use first X axis of the chart if not set any. You can use a reference to the value axis object or id of value axis.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <small>TrendLine class does not have any methods.</small>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <table class="table table-bordered event-list"><thead><tr><th>Name</th><th>Event object</th><th>Description</th></thead><tr><td class="linkable" id="click">click</td><td>{type: "click", TrendLine, chart:<a href="AmRectangularChart.html">AmRectangularChart</a>}</td><td>Dispatched when user clicks on a trend line.</td></tr><tr><td class="linkable" id="rollOut">rollOut</td><td>{type: "rollOut", TrendLine, chart:<a href="AmRectangularChart.html">AmRectangularChart</a>}</td><td>Dispatched when user rolls out of a trend line.</td></tr><tr><td class="linkable" id="rollOver">rollOver</td><td>{type: "rollOver", TrendLine, chart:<a href="AmRectangularChart.html">AmRectangularChart</a>}</td><td>Dispatched when user clicks rolls-over a trend line.</td></tr></table>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AreasSettings | JavaScript Maps v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product " id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product active" id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>AreasSettings            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmMap.html">AmMap</a></li><li class="active"><a href="AreasSettings.html">AreasSettings</a></li><li><a href="ImagesSettings.html">ImagesSettings</a></li><li><a href="Label.html">Label</a></li><li><a href="LinesSettings.html">LinesSettings</a></li><li><a href="MapArea.html">MapArea</a></li><li><a href="MapData.html">MapData</a></li><li><a href="MapImage.html">MapImage</a></li><li><a href="MapLine.html">MapLine</a></li><li><a href="MapObject.html">MapObject</a></li><li><a href="ObjectList.html">ObjectList</a></li><li><a href="SmallMap.html">SmallMap</a></li><li><a href="Title.html">Title</a></li><li><a href="ValueLegend.html">ValueLegend</a></li><li><a href="ZoomControl.html">ZoomControl</a></li></ul>        
+        <div class="inside">
+                    
+          <p>AreasSettings is a class which defines the default settings for all <a href="./MapArea.html">MapArea</a> objects.<br />
+<h3 class="linkable" id="example">Example</h3><pre>var map = AmCharts.makeChart("mapdiv",{
+  ...
+  "areasSettings": {
+    "alpha": 0.5
+  }
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="accessibleLabel">accessibleLabel</td><td>String</td><td>[[title]] [[value]] [[description]]</td><td>Text which screen readers will read if user rolls-over the area or sets focus using tab key (this is possible only if tabIndex property of AreasSettings or individual area is set to some number). Text is added as aria-label tag. Note - not all screen readers and browsers support this.</td></tr><tr><td class="linkable" id="adjustOutlineThickness">adjustOutlineThickness</td><td>Boolean</td><td>true</td><td>By default the map will adjust area outlines when zooming in/out so that they will always stay of the same width. This however loads CPU quite a lot. If you set it to false, outlines will scale together with the areas.</td></tr><tr><td class="linkable" id="alpha">alpha</td><td>Number</td><td>1</td><td>Opacity of areas.</td></tr><tr><td class="linkable" id="autoZoom">autoZoom</td><td>Boolean</td><td>false</td><td>Specifies if the areas should be zoomed-in when user clicks on them, event if zoom properties are not set.</td></tr><tr><td class="linkable" id="balloonText">balloonText</td><td>String</td><td>[[title]]</td><td>Text which is displayed in a roll-over balloon. You can use the following tags: [[title]], [[description]], [[value]] and [[percent]].<br />
+<br />
+To disable the balloons, set it to an empty string.</td></tr><tr><td class="linkable" id="bringForwardOnHover">bringForwardOnHover</td><td>Boolean</td><td>true</td><td>Specifies if the area should change it's z-index to the most top when user hovers it.</td></tr><tr><td class="linkable" id="color">color</td><td>Color</td><td>#FFCC00</td><td>Color of the areas.</td></tr><tr><td class="linkable" id="colorSolid">colorSolid</td><td>Color</td><td>#990000</td><td>Color of area with highest value. Colors for areas with values less then highest will be colored with intermediate colors between color and colorSolid. Use colorSteps property of <a href="AmMap.html">AmMap</a> to change the number of intermediate colors.</td></tr><tr><td class="linkable" id="descriptionWindowBottom">descriptionWindowBottom</td><td>Number</td><td></td><td>Distance from the bottom side of map container to the description window. In case it is not set (also if descriptionWindowTop is not set), window will be placed near the mouse pointer.</td></tr><tr><td class="linkable" id="descriptionWindowHeight">descriptionWindowHeight</td><td>Number</td><td></td><td>Height of a description window.</td></tr><tr><td class="linkable" id="descriptionWindowLeft">descriptionWindowLeft</td><td>Number</td><td></td><td>Distance from the left side of map container to the description window. In case it is not set (also if descriptionWindowRight is not set), window will be placed near the mouse pointer.</td></tr><tr><td class="linkable" id="descriptionWindowRight">descriptionWindowRight</td><td>Number</td><td></td><td>Distance from the right side of map container to the description window. In case it is not set (also if descriptionWindowLeft is not set), window will be placed near the mouse pointer.</td></tr><tr><td class="linkable" id="descriptionWindowTop">descriptionWindowTop</td><td>Number</td><td></td><td>Distance from the top side of map container to the description window. In case it is not set (also if descriptionWindowBottom is not set), window will be placed near the mouse pointer.</td></tr><tr><td class="linkable" id="descriptionWindowWidth">descriptionWindowWidth</td><td>Number</td><td>250</td><td>Width of a description window.</td></tr><tr><td class="linkable" id="outlineAlpha">outlineAlpha</td><td>Number</td><td>1</td><td>Opacity of area's outline.</td></tr><tr><td class="linkable" id="outlineColor">outlineColor</td><td>Color</td><td>#FFFFFF</td><td>Color of area's outline.</td></tr><tr><td class="linkable" id="outlineThickness">outlineThickness</td><td>Number</td><td>1</td><td>Thickness of area's outline.</td></tr><tr><td class="linkable" id="rollOverColor">rollOverColor</td><td>Color</td><td></td><td>Color of area when user rolls-over it. You can set this to "undefined" (no quotes) to make the area retain it's original color when hovered.</td></tr><tr><td class="linkable" id="rollOverOutlineAlpha">rollOverOutlineAlpha</td><td>Number</td><td></td><td>Opacity of rolled-over area outline.</td></tr><tr><td class="linkable" id="rollOverOutlineColor">rollOverOutlineColor</td><td>Color</td><td>#CC0000</td><td>Color of area's outline when user rolls-over it.</td></tr><tr><td class="linkable" id="rollOverOutlineThickness">rollOverOutlineThickness</td><td>Number</td><td>1</td><td>Thickness of rolled-over area outline.</td></tr><tr><td class="linkable" id="selectable">selectable</td><td>Boolean</td><td>false</td><td>Specifies if areas are selectable, even no zoom/description/url is set. You can also override this setting for each individual area individually.</td></tr><tr><td class="linkable" id="selectedColor">selectedColor</td><td>Color</td><td>#CC0000</td><td>Color of area which is currently selected. You can set this to "undefined" (no quotes) to make the area retain it's original color when selected.</td></tr><tr><td class="linkable" id="selectedOutlineColor">selectedOutlineColor</td><td>Color</td><td></td><td>Color of selected area's outline.</td></tr><tr><td class="linkable" id="selectedOutlineThickness">selectedOutlineThickness</td><td>Number</td><td></td><td>Thickness of selected area outline.</td></tr><tr><td class="linkable" id="tabIndex">tabIndex</td><td>Number</td><td></td><td>In case you set it to some number, the map will set focus on areas (one by one) when user clicks tab key. When a focus is set, screen readers like NVDA Screen reader will read label which is set using accessibleLabel property of AreasSettings or individual area. If area is clickable, pressing Enter/Return while focus is set will select the area. Note, not all browsers and readers support this.</td></tr><tr><td class="linkable" id="unlistedAreasAlpha">unlistedAreasAlpha</td><td>Number</td><td>1</td><td>Opacity of all areas which are in the map svg file, but not listed as areas in DataSet.</td></tr><tr><td class="linkable" id="unlistedAreasColor">unlistedAreasColor</td><td>Color</td><td>#DDDDDD</td><td>Color of all areas which are in the map svg file, but not listed as areas in DataSet.</td></tr><tr><td class="linkable" id="unlistedAreasOutlineAlpha">unlistedAreasOutlineAlpha</td><td>Number</td><td>1</td><td>Opacity of all areas' outline which are in the map svg file, but not listed as areas in DataSet.</td></tr><tr><td class="linkable" id="unlistedAreasOutlineColor">unlistedAreasOutlineColor</td><td>Color</td><td>#FFFFFF</td><td>Color of all areas' outline which are in the map svg file, but not listed as areas in DataSet.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <small>AreasSettings class does not have any methods.</small>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <small>AreasSettings class does not have any events.</small>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AmStockChart | JavaScript Stock Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product " id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product active" id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>AmStockChart            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li class="active"><a href="AmStockChart.html">AmStockChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li><a href="AxisBase.html">AxisBase</a></li><li><a href="CategoryAxesSettings.html">CategoryAxesSettings</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li><a href="ChartCursor.html">ChartCursor</a></li><li><a href="ChartCursorSettings.html">ChartCursorSettings</a></li><li><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="ChartScrollbarSettings.html">ChartScrollbarSettings</a></li><li><a href="DataSet.html">DataSet</a></li><li><a href="DataSetSelector.html">DataSetSelector</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li><a href="LegendSettings.html">LegendSettings</a></li><li><a href="PanelsSettings.html">PanelsSettings</a></li><li><a href="PeriodSelector.html">PeriodSelector</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="StockEvent.html">StockEvent</a></li><li><a href="StockEventsSettings.html">StockEventsSettings</a></li><li><a href="StockGraph.html">StockGraph</a></li><li><a href="StockLegend.html">StockLegend</a></li><li><a href="StockPanel.html">StockPanel</a></li><li><a href="Title.html">Title</a></li><li><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxesSettings.html">ValueAxesSettings</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>AmStockChart is a main class Stock chart.</p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="addClassNames">addClassNames</td><td>Boolean</td><td>false</td><td>Specifies, if <a href="http://www.amcharts.com/tutorials/css-class-names/">class names</a> should be added to chart elements.</td></tr><tr><td class="linkable" id="amExport">amExport</td><td>AmExport</td><td></td><td>AmExport object.</td></tr><tr><td class="linkable" id="animationPlayed">animationPlayed</td><td>Boolean</td><td></td><td>Specifies if animation was already played. Animation is only played once, when chart is rendered for the first time. If you want the animation to be repeated, set this property to false.</td></tr><tr><td class="linkable" id="autoResize">autoResize</td><td>Boolean</td><td>true</td><td>Set this to false if you don't want chart to resize itself whenever its parent container size changes.</td></tr><tr><td class="linkable" id="balloon">balloon</td><td><a href="AmBalloon.html">AmBalloon</a></td><td><a href="AmBalloon.html">AmBalloon</a></td><td>Balloon object.</td></tr><tr><td class="linkable" id="categoryAxesSettings">categoryAxesSettings</td><td><a href="CategoryAxesSettings.html">CategoryAxesSettings</a></td><td><a href="CategoryAxesSettings.html">CategoryAxesSettings</a></td><td>Settings for category axes.</td></tr><tr><td class="linkable" id="chartCreated">chartCreated</td><td>Boolean</td><td></td><td>Read-only. Indicates if the chart is created.</td></tr><tr><td class="linkable" id="chartCursorSettings">chartCursorSettings</td><td><a href="ChartCursorSettings.html">ChartCursorSettings</a></td><td><a href="ChartCursorSettings.html">ChartCursorSettings</a></td><td>Chart cursor settings.</td></tr><tr><td class="linkable" id="chartScrollbarSettings">chartScrollbarSettings</td><td><a href="ChartScrollbarSettings.html">ChartScrollbarSettings</a></td><td><a href="ChartScrollbarSettings.html">ChartScrollbarSettings</a></td><td>Chart scrollbar settings.</td></tr><tr><td class="linkable" id="classNamePrefix">classNamePrefix</td><td>String</td><td>amcharts</td><td>This prefix is added to all class names which are added to all visual elements of a chart in case addClassNames is set to true.</td></tr><tr><td class="linkable" id="colors">colors</td><td>Array[Color]</td><td>["#FF6600", "#FCD202", "#B0DE09", "#0D8ECF", "#2A0CD0", "#CD0D74", "#CC0000", "#00CC00", "#0000CC", "#DDDDDD", "#999999", "#333333", "#990000"]</td><td>Array of colors used by data sets if no color was set explicitly on data set itself.</td></tr><tr><td class="linkable" id="comparedDataSets">comparedDataSets</td><td>Array[<a href="DataSet.html">DataSet</a>]</td><td></td><td>Array of data sets selected for comparing.</td></tr><tr><td class="linkable" id="dataDateFormat">dataDateFormat</td><td>String</td><td></td><td>Data provider of data set can have dates as Date Objects or as Strings. In case you use strings, you need to set data date format and the chart will parse dates to date objects. Check this <a href="http://www.amcharts.com/tutorials/formatting-dates/">page for date formatting strings</a>.<br />
+<br><strong>Please note that two-digit years (YY) is NOT supported in this setting.</strong></td></tr><tr><td class="linkable" id="dataSets">dataSets</td><td>Array[<a href="DataSet.html">DataSet</a>]</td><td></td><td>Array of <a href="DataSet.html">DataSet</a>s.</td></tr><tr><td class="linkable" id="dataSetSelector">dataSetSelector</td><td><a href="DataSetSelector.html">DataSetSelector</a></td><td></td><td><a href="DataSetSelector.html">DataSetSelector</a> object. You can add it if you have more than one data set and want users to be able to select/compare them.</td></tr><tr><td class="linkable" id="endDate">endDate</td><td></td><td></td><td>Read-only. Current end date of the selected period, get only. To set start/end dates, use stockChart.zoom(startDate, endDate) method.</td></tr><tr><td class="linkable" id="export">export</td><td>Object</td><td></td><td>Export config. Specifies how export to image/data export/print/annotate menu will look and behave. You can find a lot of examples in amcharts/plugins/export folder. More details can be <a href="http://www.amcharts.com/tutorials/intro-exporting-charts/">found here</a>.</td></tr><tr><td class="linkable" id="extendToFullPeriod">extendToFullPeriod</td><td>Boolean</td><td>true</td><td>Specifies if the chart should always display full first and last data item when data is grouped to a longer period if the chart is zoomed from the beginning or end of the data. </td></tr><tr><td class="linkable" id="firstDayOfWeek">firstDayOfWeek</td><td>Number</td><td>1</td><td>Defines on which day week starts. 0 - Sunday, 1 - Monday...</td></tr><tr><td class="linkable" id="glueToTheEnd">glueToTheEnd</td><td>Boolean</td><td>false</td><td>If set to true the scope of the data view will be set to the end after data update.</td></tr><tr><td class="linkable" id="language">language</td><td>String</td><td></td><td>Allows changing language easily.<br />
+<br />
+<strong>Note:</strong> you should include language js file from amcharts/lang or ammap/lang folder and then use variable name used in this file, like chart.language = "de".</td></tr><tr><td class="linkable" id="legendSettings">legendSettings</td><td><a href="LegendSettings.html">LegendSettings</a></td><td><a href="LegendSettings.html">LegendSettings</a></td><td>Legend settings.</td></tr><tr><td class="linkable" id="listeners">listeners</td><td>Array[Object]</td><td></td><td>You can add listeners of events using this property. Example: listeners = [{"event":"dataUpdated", "method":handleEvent}];</td></tr><tr><td class="linkable" id="mainDataSet">mainDataSet</td><td><a href="DataSet.html">DataSet</a></td><td></td><td>Data set selected as main.</td></tr><tr><td class="linkable" id="mouseWheelScrollEnabled">mouseWheelScrollEnabled</td><td>Boolean</td><td>false</td><td>Specifies if scrolling of a chart with mouse wheel is enabled.</td></tr><tr><td class="linkable" id="panels">panels</td><td>Array[<a href="StockPanel.html">StockPanel</a>]</td><td></td><td>Array of <a href="StockPanel.html">StockPanel</a>s (charts).</td></tr><tr><td class="linkable" id="panelsSettings">panelsSettings</td><td><a href="PanelsSettings.html">PanelsSettings</a></td><td><a href="PanelsSettings.html">PanelsSettings</a></td><td>Settings for stock panels.</td></tr><tr><td class="linkable" id="path">path</td><td>String</td><td>amcharts/</td><td>Specifies absolute or relative path to amCharts files, i.e. "amcharts/". (where all .js files are located)<br />
+<br />
+If relative URLs are used, they will be relative to the current web page, displaying the chart.<br />
+<br />
+You can also set path globally, using global JavaScript variable <strong>AmCharts_path</strong>. If this variable is set, and "path" is not set in chart config, the chart will assume the path from the global variable. This allows setting amCharts path globally. I.e.:<br />
+<br />
+<pre>var <a href="AmCharts.html">AmCharts</a>_path = "/libs/amcharts/";</pre><br />
+<br />
+"path" parameter will be used by the charts to locate it's files, like images, plugins or patterns.</td></tr><tr><td class="linkable" id="pathToImages">pathToImages</td><td>String</td><td></td><td>Specifies path to the folder where images like resize grips, lens and similar are.<br />
+<br />
+<b>IMPORTANT:</b> Since V3.4.12, you should use "<a href="#path">path</a>" to point to amCharts directory instead. The "pathToImages" will be automatically set and does not need to be in the chart config, unless you keep your images separately from other amCharts files.</td></tr><tr><td class="linkable" id="periodSelector">periodSelector</td><td><a href="PeriodSelector.html">PeriodSelector</a></td><td></td><td>Period selector object. You can add it if you want user's to be able to enter date ranges or zoom chart with predefined period buttons.</td></tr><tr><td class="linkable" id="processTimeout">processTimeout</td><td>Number</td><td>0</td><td>If you set it to 1 millisecond or some bigger value, chart will be built in chunks instead of all at once. This is useful if you work with a lot of data and the initial build of the chart takes a lot of time, which freezes the whole web application by not allowing other processes to do their job while the chart is busy.</td></tr><tr><td class="linkable" id="scrollbarChart">scrollbarChart</td><td><a href="AmSerialChart.html">AmSerialChart</a></td><td></td><td>Read-only. Scrollbar's chart object.</td></tr><tr><td class="linkable" id="startDate">startDate</td><td></td><td></td><td>Read-only. Current start date of the selected period. To set start/end dates, use stockChart.zoom(startDate, endDate) method.</td></tr><tr><td class="linkable" id="stockEventsSettings">stockEventsSettings</td><td><a href="StockEventsSettings.html">StockEventsSettings</a></td><td><a href="StockEventsSettings.html">StockEventsSettings</a></td><td>Settings for stock events.</td></tr><tr><td class="linkable" id="type">type</td><td>String</td><td></td><td>Read-only. Type of the chart.</td></tr><tr><td class="linkable" id="valueAxesSettings">valueAxesSettings</td><td><a href="ValueAxesSettings.html">ValueAxesSettings</a></td><td><a href="ValueAxesSettings.html">ValueAxesSettings</a></td><td>Settings for value axes.</td></tr><tr><td class="linkable" id="version">version</td><td>String</td><td></td><td>Read-only. Indicates current version of a script.</td></tr><tr><td class="linkable" id="zoomOutOnDataSetChange">zoomOutOnDataSetChange</td><td>Boolean</td><td>false</td><td>Specifies whether the chart should zoom-out when main data set is changed.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <table class="table table-bordered method-list"><thead><tr><th>Name</th><th>Parameters</th><th>Returns</th><th>Description</th></thead><tr><td class="linkable" id="addListener">addListener(type, handler)</td><td>type - string like 'dataUpdated' (should be listed in 'events' section of this class). handler - function which is called when event happens</td><td>Adds event listener to the object.</td><td></td></tr><tr><td class="linkable" id="addPanel">addPanel(panel)</td><td>panel - [[StockPanel]]</td><td>Adds panel to the stock chart. Requires stockChart.validateNow() method to be called after this action.</td><td></td></tr><tr><td class="linkable" id="addPanelAt">addPanelAt(panel, index)</td><td>panel - [[StockPanel]], index - Number</td><td>Adds panel to the stock chart at a specified index. Requires stockChart.validateNow() method to be called after this action.</td><td></td></tr><tr><td class="linkable" id="clear">clear()</td><td></td><td></td><td>Destroys chart, all timeouts and listeners.</td></tr><tr><td class="linkable" id="hideStockEvents">hideStockEvents()</td><td> </td><td>Hides event bullets.</td><td></td></tr><tr><td class="linkable" id="removeListener">removeListener(obj, type, handler)</td><td> </td><td>Removes event listener from the object.</td><td></td></tr><tr><td class="linkable" id="removePanel">removePanel(panel)</td><td>panel - [[StockPanel]]</td><td>Removes panel from the stock chart. Requires stockChart.validateNow() method to be called after this action.</td><td></td></tr><tr><td class="linkable" id="showStockEvents">showStockEvents()</td><td> </td><td>Shows event bullets.</td><td></td></tr><tr><td class="linkable" id="validateData">validateData()</td><td> </td><td>Method which should be called after data was changed.</td><td></td></tr><tr><td class="linkable" id="validateNow">validateNow(validateData, skipEvents)</td><td> </td><td>Method which forces the stock chart to rebuild. Should be called after properties are changed.</td><td>This method should be called after you changed one or more properties of any class. The chart will redraw after this method is called.Both attributes, validateData and skipEvents are optional (false by default).</td></tr><tr><td class="linkable" id="zoom">zoom(startDate, endDate)</td><td>startDate, endDate - Date objects.</td><td>Zooms chart to specified dates.</td><td></td></tr><tr><td class="linkable" id="zoomOut">zoomOut()</td><td> </td><td>Zooms out the chart.</td><td></td></tr></table>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <table class="table table-bordered event-list"><thead><tr><th>Name</th><th>Event object</th><th>Description</th></thead><tr><td class="linkable" id="buildStarted">buildStarted</td><td>{type:"buildStarted", chart:AmStockChart}</td><td> Fired just before the chart starts to build itself for the first time. Note: you might need to set processTimeout to &gt; 0 value in order to register this event properly.</td></tr><tr><td class="linkable" id="clickStockEvent">clickStockEvent</td><td>{type:"clickStockEvent", eventObject:eventObject, graph:graph, date:date, chart:AmStockChart}</td><td>Dispatched when the user clicks on the Stock event (bullet).</td></tr><tr><td class="linkable" id="dataUpdated">dataUpdated</td><td>{type:"dataUpdated", chart:AmStockChart}</td><td>Dispatched when the chart was updated with new data.</td></tr><tr><td class="linkable" id="init">init</td><td>{type:"init", chart:AmStockChart}</td><td>Dispatched when the chart is initialized for the first time. In case you want it to fire again after validateNow() method is called, set chart.chartCreated = false.</td></tr><tr><td class="linkable" id="panelRemoved">panelRemoved</td><td>{type:"panelRemoved", panel:panel, chart:AmStockChart}</td><td>Dispatched when the <a href="StockPanel.html">StockPanel</a> is removed.</td></tr><tr><td class="linkable" id="rendered">rendered</td><td>{type:"init", chart:AmStockChart}</td><td>Dispatched each when chart is rendered.</td></tr><tr><td class="linkable" id="rollOutStockEvent">rollOutStockEvent</td><td>{type:"rollOutStockEvent", eventObject:eventObject, graph:graph, date:date, chart:AmStockChart}</td><td>Dispatched when the user rolls-out of the Stock event (bullet).</td></tr><tr><td class="linkable" id="rollOverStockEvent">rollOverStockEvent</td><td>{type:"rollOverStockEvent", eventObject:eventObject, graph:graph, date:date, chart:AmStockChart}</td><td>Dispatched when the user rolls-over the Stock event (bullet).</td></tr><tr><td class="linkable" id="zoomed">zoomed</td><td>{type:"zoomed", startDate:startDate, endDate:endDate, period:period, chart:AmStockChart}</td><td>Dispatched when the chart is zoomed (even for the first time, when chart is initialized).</td></tr></table>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

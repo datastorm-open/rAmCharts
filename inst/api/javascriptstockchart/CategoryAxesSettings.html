@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CategoryAxesSettings | JavaScript Stock Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product " id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product active" id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>CategoryAxesSettings            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li><a href="AmStockChart.html">AmStockChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li><a href="AxisBase.html">AxisBase</a></li><li class="active"><a href="CategoryAxesSettings.html">CategoryAxesSettings</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li><a href="ChartCursor.html">ChartCursor</a></li><li><a href="ChartCursorSettings.html">ChartCursorSettings</a></li><li><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="ChartScrollbarSettings.html">ChartScrollbarSettings</a></li><li><a href="DataSet.html">DataSet</a></li><li><a href="DataSetSelector.html">DataSetSelector</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li><a href="LegendSettings.html">LegendSettings</a></li><li><a href="PanelsSettings.html">PanelsSettings</a></li><li><a href="PeriodSelector.html">PeriodSelector</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="StockEvent.html">StockEvent</a></li><li><a href="StockEventsSettings.html">StockEventsSettings</a></li><li><a href="StockGraph.html">StockGraph</a></li><li><a href="StockLegend.html">StockLegend</a></li><li><a href="StockPanel.html">StockPanel</a></li><li><a href="Title.html">Title</a></li><li><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxesSettings.html">ValueAxesSettings</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>CategoryAxesSettings settings set's settings common for all CategoryAxes of StockPanels. If you change a property after the chart is initialized, you should call stockChart.validateNow() method in order for it to work. If there is no default value specified, default value of CategoryAxis class will be used.</p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="alwaysGroup">alwaysGroup</td><td>Boolean</td><td>false</td><td>If this is set to true and groupToPeriods doesn't have CategoryAxesSettings.minPeriod value included, chart will always group values to the first period available.</td></tr><tr><td class="linkable" id="autoGridCount">autoGridCount</td><td>Boolean</td><td>true</td><td>Specifies whether number of gridCount is specified automatically, according to the axis size.</td></tr><tr><td class="linkable" id="axisAlpha">axisAlpha</td><td>Number</td><td>0</td><td>Axis opacity.</td></tr><tr><td class="linkable" id="axisColor">axisColor</td><td>Color</td><td></td><td>Axis color.</td></tr><tr><td class="linkable" id="axisHeight">axisHeight</td><td>Number</td><td>28</td><td>Height of category axes. Set it to 0 if you set inside property to true.</td></tr><tr><td class="linkable" id="axisThickness">axisThickness</td><td>Number</td><td></td><td>Thickness of the axis.</td></tr><tr><td class="linkable" id="boldLabels">boldLabels</td><td>Boolean</td><td></td><td>Specifies if axis labels should be bold or not.</td></tr><tr><td class="linkable" id="boldPeriodBeginning">boldPeriodBeginning</td><td>Boolean</td><td>true</td><td>When parse dates is on for the category axis, the chart will try to highlight the beginning of the periods, like month, in bold. Set this to false to disable the functionality.</td></tr><tr><td class="linkable" id="color">color</td><td>Color</td><td></td><td>Text color.</td></tr><tr><td class="linkable" id="dashLength">dashLength</td><td>Number</td><td></td><td>Length of a dash.</td></tr><tr><td class="linkable" id="dateFormats">dateFormats</td><td>Array[Object]</td><td></td><td>Date formats of different periods. Possible period values: fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, WW - weeks, YYYY - years. Check this <a href="http://www.amcharts.com/tutorials/formatting-dates/">page for date formatting strings</a>.</td></tr><tr><td class="linkable" id="equalSpacing">equalSpacing</td><td>Boolean</td><td>false</td><td>If you want data points to be placed at equal intervals (omiting dates with no data), set equalSpacing to true.</td></tr><tr><td class="linkable" id="fillAlpha">fillAlpha</td><td>Number</td><td></td><td>Fill opacity. Every second space between grid lines can be filled with fillColor.</td></tr><tr><td class="linkable" id="fillColor">fillColor</td><td>Color</td><td></td><td>Fill color. Every second space between grid lines can be filled with color. Set fillAlpha to a value greater than 0 to see the fills.</td></tr><tr><td class="linkable" id="fontSize">fontSize</td><td>Number</td><td></td><td>Text size.</td></tr><tr><td class="linkable" id="gridAlpha">gridAlpha</td><td>Number</td><td></td><td>Opacity of grid lines.</td></tr><tr><td class="linkable" id="gridColor">gridColor</td><td>Color</td><td></td><td>Color of grid lines.</td></tr><tr><td class="linkable" id="gridCount">gridCount</td><td>Number</td><td>10</td><td>Approximate number of grid lines. You should set autoGridCount to false in order this property not to be ignored.</td></tr><tr><td class="linkable" id="gridThickness">gridThickness</td><td>Number</td><td></td><td>Thickness of grid lines.</td></tr><tr><td class="linkable" id="groupToPeriods">groupToPeriods</td><td>Array[String]</td><td>["ss", "10ss", "30ss", "mm", "10mm", "30mm", "hh", "DD", "WW", "MM", "YYYY"]</td><td>Periods to which data will be grouped in case there are more data items in the selected period than specified in maxSeries property.</td></tr><tr><td class="linkable" id="inside">inside</td><td>Boolean</td><td>false</td><td>Specifies whether values should be placed inside or outside of plot area.</td></tr><tr><td class="linkable" id="labelOffset">labelOffset</td><td>Number</td><td>0</td><td>You can use it to adjust position of axis labels.</td></tr><tr><td class="linkable" id="labelRotation">labelRotation</td><td>Number</td><td></td><td>Rotation angle of a label.</td></tr><tr><td class="linkable" id="labelsEnabled">labelsEnabled</td><td>Boolean</td><td>true</td><td>Specifies whether axis displays category axis' labels and value axis' values.</td></tr><tr><td class="linkable" id="markPeriodChange">markPeriodChange</td><td>Boolean</td><td>true</td><td>Specifies if period period should be marked with a different date format.</td></tr><tr><td class="linkable" id="maxSeries">maxSeries</td><td>Number</td><td>150</td><td>Maximum series shown at a time. In case there are more data points in the selection than maxSeries, the chart will group data to longer periods, for example - you have 250 days in the selection, and maxSeries is 150 - the chart will group data to weeks.</td></tr><tr><td class="linkable" id="minHorizontalGap">minHorizontalGap</td><td>Number</td><td>75</td><td>This property is used when calculating grid count. It specifies minimum cell width required for one span between grid lines.</td></tr><tr><td class="linkable" id="minorGridAlpha">minorGridAlpha</td><td>Number</td><td></td><td>Opacity of minor grid. In order minor to be visible, you should set minorGridEnabled to true.</td></tr><tr><td class="linkable" id="minorGridEnabled">minorGridEnabled</td><td>Boolean</td><td></td><td>Specifies if minor grid should be displayed.<br />
+<br />
+NOTE: If equalSpacing is set to true, this setting will be ignored.</td></tr><tr><td class="linkable" id="minPeriod">minPeriod</td><td>String</td><td>DD</td><td>Specifies the shortest period of your data. fff - millisecond, ss - second, mm - minute, hh - hour, DD - day, MM - month, YYYY - year.<br />
+<br />
+It's also possible to supply a number for increments, i.e. "15mm" which will instruct the chart that your data is supplied in 15 minute increments.</td></tr><tr><td class="linkable" id="position">position</td><td>String</td><td></td><td>"top" or "bottom".</td></tr><tr><td class="linkable" id="startOnAxis">startOnAxis</td><td>Boolean</td><td>false</td><td>Specifies whether the graph should start on axis or not. In case you display columns, it is recommended to set this to false. startOnAxis can be set to true only if equalSpacing is set to true.</td></tr><tr><td class="linkable" id="tickLength">tickLength</td><td>Number</td><td>0</td><td>Tick length.</td></tr><tr><td class="linkable" id="twoLineMode">twoLineMode</td><td>Boolean</td><td>false</td><td>Works only when parseDates is set to true and equalSpacing is false. If you set it to true, at the position where bigger period changes, category axis will display date strings of bot small and big period, in two rows.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <small>CategoryAxesSettings class does not have any methods.</small>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <small>CategoryAxesSettings class does not have any events.</small>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

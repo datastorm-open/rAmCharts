@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AxisBase | JavaScript Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product active" id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>AxisBase            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li class="active"><a href="AxisBase.html">AxisBase</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li><a href="ChartCursor.html">ChartCursor</a></li><li><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="Slice.html">Slice</a></li><li><a href="Title.html">Title</a></li><li><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Base class for <a href="./ValueAxis.html">ValueAxis</a> and <a href="./CategoryAxis.html">CategoryAxis</a>. It can not be instantiated explicitly.</p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="autoGridCount">autoGridCount</td><td>Boolean</td><td>true</td><td>Specifies whether number of gridCount is specified automatically, acoarding to the axis size.</td></tr><tr><td class="linkable" id="autoRotateAngle">autoRotateAngle</td><td>Number</td><td></td><td>Angle of label rotation, if the number of series exceeds autoRotateCount. Works on horizontal axis only. It is not recommended to use it with charts with zoom/scroll features, as chart adjusts margin only based on initial render.</td></tr><tr><td class="linkable" id="autoRotateCount">autoRotateCount</td><td>Number</td><td></td><td>If the number of category axis items will exceed the autoRotateCount, the labels will be rotated by autoRotateAngle degree. Works on horizontal axis only. Not recommended with scrollable/zoomable charts.</td></tr><tr><td class="linkable" id="axisAlpha">axisAlpha</td><td>Number</td><td>1</td><td>Axis opacity. Value range is 0 - 1.</td></tr><tr><td class="linkable" id="axisColor">axisColor</td><td>Color</td><td>#000000</td><td>Axis color.</td></tr><tr><td class="linkable" id="axisThickness">axisThickness</td><td>Number</td><td>1</td><td>Thickness of the axis.</td></tr><tr><td class="linkable" id="axisX">axisX</td><td>Number</td><td></td><td>Read-only. Returns x coordinate of the axis.</td></tr><tr><td class="linkable" id="axisY">axisY</td><td>Number</td><td></td><td>Read-only. Returns y coordinate of the axis.</td></tr><tr><td class="linkable" id="balloon">balloon</td><td><a href="AmBalloon.html">AmBalloon</a></td><td><a href="AmBalloon.html">AmBalloon</a></td><td>Allows customizing axes balloons individually.</td></tr><tr><td class="linkable" id="boldLabels">boldLabels</td><td>Boolean</td><td>false</td><td>Specifies if axis labels should be bold or not.</td></tr><tr><td class="linkable" id="boldPeriodBeginning">boldPeriodBeginning</td><td>Boolean</td><td>true</td><td>When parse dates is on for the category axis, the chart will try to highlight the beginning of the periods, like month, in bold. Set this to false to disable the functionality.</td></tr><tr><td class="linkable" id="centerLabelOnFullPeriod">centerLabelOnFullPeriod</td><td>Boolean</td><td>true</td><td>This setting works only when parseDates is set to true and equalSpacing is set to false. In case you set it to false,<br />
+labels will never be centered between grid lines.</td></tr><tr><td class="linkable" id="centerLabels">centerLabels</td><td>Boolean</td><td>false</td><td>Force-centers labels of date-based axis (in case it's category axis, equalSpacing must be false)</td></tr><tr><td class="linkable" id="centerRotatedLabels">centerRotatedLabels</td><td>Boolean</td><td>false</td><td>In case you have rotated labels on horizontal axis, you can force-center them using this property.</td></tr><tr><td class="linkable" id="color">color</td><td>Color</td><td></td><td>Color of axis value labels. Will use chart's color if not set.</td></tr><tr><td class="linkable" id="dashLength">dashLength</td><td>Number</td><td>0</td><td>Length of a dash. 0 means line is not dashed.</td></tr><tr><td class="linkable" id="dateFormats">dateFormats</td><td>Array[Object]</td><td>[{"period":"fff","format":"JJ:NN:SS"},{"period":"ss","format":"JJ:NN:SS"},{"period":"mm","format":"JJ:NN"},{"period":"hh","format":"JJ:NN"},{"period":"DD","format":"MMM DD"},{"period":"WW","format":"MMM DD"},{"period":"MM","format":"MMM"},{"period":"YYYY","format":"YYYY"}]</td><td>Date formats of different periods. Possible period values: fff - milliseconds, ss - seconds, mm - minutes, hh - hours, DD - days, MM - months, WW - weeks, YYYY - years. Check this <a href="http://www.amcharts.com/tutorials/formatting-dates/">page for date formatting strings</a>.</td></tr><tr><td class="linkable" id="fillAlpha">fillAlpha</td><td>Number</td><td>0</td><td>Fill opacity. Every second space between grid lines can be filled with color. Set fillAlpha to a value greater than 0 to see the fills.</td></tr><tr><td class="linkable" id="fillColor">fillColor</td><td>Color</td><td>#FFFFFF</td><td>Fill color. Every second space between grid lines can be filled with color. Set fillAlpha to a value greater than 0 to see the fills.</td></tr><tr><td class="linkable" id="firstDayOfWeek">firstDayOfWeek</td><td>Number</td><td>1</td><td>Sets first day of the week. 0 is Sunday, 1 is Monday, etc.</td></tr><tr><td class="linkable" id="fontSize">fontSize</td><td>Number</td><td></td><td>Size of value labels text. Will use chart's fontSize if not set.</td></tr><tr><td class="linkable" id="gridAlpha">gridAlpha</td><td>Number</td><td>0.15</td><td>Opacity of grid lines.</td></tr><tr><td class="linkable" id="gridColor">gridColor</td><td>Color</td><td>#000000</td><td>Color of grid lines.</td></tr><tr><td class="linkable" id="gridCount">gridCount</td><td>Number</td><td>5</td><td>Number of grid lines. In case this is value axis, or your categoryAxis parses dates, the number is approximate. The default value is 5. If you set autoGridCount to true, this property is ignored.</td></tr><tr><td class="linkable" id="gridThickness">gridThickness</td><td>Number</td><td>1</td><td>Thickness of grid lines.</td></tr><tr><td class="linkable" id="guides">guides</td><td>Array[<a href="Guide.html">Guide</a>]</td><td>[]</td><td>The array of guides belonging to this axis.</td></tr><tr><td class="linkable" id="ignoreAxisWidth">ignoreAxisWidth</td><td>Boolean</td><td>false</td><td>If autoMargins of a chart is set to true, but you want this axis not to be measured when calculating margin, set ignoreAxisWidth to true.</td></tr><tr><td class="linkable" id="inside">inside</td><td>Boolean</td><td>false</td><td>Specifies whether values should be placed inside or outside plot area.</td></tr><tr><td class="linkable" id="labelFrequency">labelFrequency</td><td>Number</td><td>1</td><td>Frequency at which labels should be placed. Doesn't work for <a href="CategoryAxis.html">CategoryAxis</a> if parseDates is set to true.</td></tr><tr><td class="linkable" id="labelOffset">labelOffset</td><td>Number</td><td>0</td><td>You can use it to adjust position of axes labels. Works both with <a href="CategoryAxis.html">CategoryAxis</a> and <a href="ValueAxis.html">ValueAxis</a>.</td></tr><tr><td class="linkable" id="labelRotation">labelRotation</td><td>Number</td><td>0</td><td>Rotation angle of a label. Only horizontal axis' values can be rotated. If you set this for vertical axis, the setting will be ignored. Possible values from -90 to 90.</td></tr><tr><td class="linkable" id="labelsEnabled">labelsEnabled</td><td>Boolean</td><td>true</td><td>Specifies whether axis displays category axis' labels and value axis' values.</td></tr><tr><td class="linkable" id="listeners">listeners</td><td>Array[Object]</td><td></td><td>You can add listeners of events using this property. Example: listeners = [{"event":"clickItem", "method":handleEvent}];</td></tr><tr><td class="linkable" id="markPeriodChange">markPeriodChange</td><td>Boolean</td><td>true</td><td>If you set it to false, the start of longer periods won't use a different date format and won't be bold.</td></tr><tr><td class="linkable" id="minHorizontalGap">minHorizontalGap</td><td>Number</td><td>75</td><td>This property is used when calculating grid count (when autoGridCount is true). It specifies minimum cell width required for one span between grid lines.</td></tr><tr><td class="linkable" id="minorGridAlpha">minorGridAlpha</td><td>Number</td><td>0.07</td><td>Opacity of minor grid. In order minor to be visible, you should set minorGridEnabled to true.</td></tr><tr><td class="linkable" id="minorGridEnabled">minorGridEnabled</td><td>Boolean</td><td>false</td><td>Specifies if minor grid should be displayed.<br />
+<br />
+NOTE: If equalSpacing is set to true, this setting will be ignored.</td></tr><tr><td class="linkable" id="minorTickLength">minorTickLength</td><td>Number</td><td>0</td><td>Length of minor grid tick.</td></tr><tr><td class="linkable" id="minVerticalGap">minVerticalGap</td><td>Number</td><td>35</td><td>This property is used when calculating grid count (when autoGridCount is true). It specifies minimum cell height required for one span between grid lines.</td></tr><tr><td class="linkable" id="offset">offset</td><td>Number</td><td>0</td><td>The distance of the axis to the plot area, in pixels. Negative values can also be used.</td></tr><tr><td class="linkable" id="position">position</td><td>String</td><td>bottom</td><td>Possible values are: "top", "bottom", "left", "right". If axis is vertical, default position is "left". If axis is horizontal, default position is "bottom".</td></tr><tr><td class="linkable" id="showFirstLabel">showFirstLabel</td><td>Boolean</td><td>true</td><td>Whether to show first axis label or not. This works properly only on <a href="ValueAxis.html">ValueAxis</a>. With <a href="CategoryAxis.html">CategoryAxis</a> it wont work 100%, it depends on the period, zooming, etc. There is no guaranteed way to force category axis to show or hide first label.</td></tr><tr><td class="linkable" id="showLastLabel">showLastLabel</td><td>Boolean</td><td>true</td><td>Whether to show last axis label or not. This works properly only on <a href="ValueAxis.html">ValueAxis</a>. With <a href="CategoryAxis.html">CategoryAxis</a> it wont work 100%, it depends on the period, zooming, etc. There is no guaranteed way to force category axis to show or hide last label.</td></tr><tr><td class="linkable" id="tickLength">tickLength</td><td>Number</td><td>5</td><td>Length of the tick marks.</td></tr><tr><td class="linkable" id="title">title</td><td>String</td><td></td><td><a href="Title.html">Title</a> of the axis.</td></tr><tr><td class="linkable" id="titleBold">titleBold</td><td>Boolean</td><td>true</td><td>Specifies if title should be bold or not.</td></tr><tr><td class="linkable" id="titleColor">titleColor</td><td>Color</td><td></td><td>Color of axis title. Will use text color of chart if not set any.</td></tr><tr><td class="linkable" id="titleFontSize">titleFontSize</td><td>Number</td><td></td><td>Font size of axis title. Will use font size of chart plus two pixels if not set any.</td></tr><tr><td class="linkable" id="titleRotation">titleRotation</td><td>Number</td><td></td><td>Rotation of axis title. Useful if you want to make vertical axis title to be shown from top to down.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <table class="table table-bordered method-list"><thead><tr><th>Name</th><th>Parameters</th><th>Returns</th><th>Description</th></thead><tr><td class="linkable" id="addGuide">addGuide(guide)</td><td>guide - instance of <a href="Guide.html">Guide</a></td><td></td><td>Adds guide to the axis.</td></tr><tr><td class="linkable" id="removeGuide">removeGuide(guide)</td><td>guide - instance of <a href="Guide.html">Guide</a></td><td></td><td>Removes guide from the axis.</td></tr></table>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <table class="table table-bordered event-list"><thead><tr><th>Name</th><th>Event object</th><th>Description</th></thead><tr><td class="linkable" id="clickGuide">clickGuide</td><td>{type: "clickGuide", guide:<a href="Guide.html">Guide</a>, chart:<a href="AmRectangularChart.html">AmRectangularChart</a>}</td><td>Dispatched when user clicks on a guide.</td></tr><tr><td class="linkable" id="clickItem">clickItem</td><td>{type: "clickItem", value:value, serialDataItem:<a href="SerialDataItem.html">SerialDataItem</a>, axis:AxisBase, target:label, chart:<a href="AmRectangularChart.html">AmRectangularChart</a>, event:MouseEvent}</td><td>Fired if user clicks on axis label.</td></tr><tr><td class="linkable" id="rollOutGuide">rollOutGuide</td><td>{type: "rollOutGuide", guide:<a href="Guide.html">Guide</a>, chart:<a href="AmRectangularChart.html">AmRectangularChart</a>}</td><td>Dispatched when user rolls-out of the guide.</td></tr><tr><td class="linkable" id="rollOutItem">rollOutItem</td><td>{type: "rollOutItem", value:value, serialDataItem:<a href="SerialDataItem.html">SerialDataItem</a>, axis:AxisBase, target:label, chart:<a href="AmRectangularChart.html">AmRectangularChart</a>, event:MouseEvent}</td><td>Fired if user rolls-out of the axis label.</td></tr><tr><td class="linkable" id="rollOutItem">rollOutItem</td><td>{type: "rollOutItem", value:value, serialDataItem:<a href="SerialDataItem.html">SerialDataItem</a>, axis:AxisBase, target:label, chart:<a href="AmRectangularChart.html">AmRectangularChart</a>, event:MouseEvent}</td><td>Fired if user rolls-out of the axis label.</td></tr><tr><td class="linkable" id="rollOverGuide">rollOverGuide</td><td>{type: "rollOverGuide", guide:<a href="Guide.html">Guide</a>, chart:<a href="AmRectangularChart.html">AmRectangularChart</a>}</td><td>Dispatched when user rolls-over some guide.</td></tr><tr><td class="linkable" id="rollOverItem">rollOverItem</td><td>{type: "rollOverItem", value:value, serialDataItem:<a href="SerialDataItem.html">SerialDataItem</a>, axis:AxisBase, target:label, chart:<a href="AmRectangularChart.html">AmRectangularChart</a>, event:MouseEvent}</td><td>Fired if user rolls-over axis label.</td></tr></table>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

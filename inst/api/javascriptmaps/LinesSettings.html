@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>LinesSettings | JavaScript Maps v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product " id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product active" id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>LinesSettings            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmMap.html">AmMap</a></li><li><a href="AreasSettings.html">AreasSettings</a></li><li><a href="ImagesSettings.html">ImagesSettings</a></li><li><a href="Label.html">Label</a></li><li class="active"><a href="LinesSettings.html">LinesSettings</a></li><li><a href="MapArea.html">MapArea</a></li><li><a href="MapData.html">MapData</a></li><li><a href="MapImage.html">MapImage</a></li><li><a href="MapLine.html">MapLine</a></li><li><a href="MapObject.html">MapObject</a></li><li><a href="ObjectList.html">ObjectList</a></li><li><a href="SmallMap.html">SmallMap</a></li><li><a href="Title.html">Title</a></li><li><a href="ValueLegend.html">ValueLegend</a></li><li><a href="ZoomControl.html">ZoomControl</a></li></ul>        
+        <div class="inside">
+                    
+          <p>LinesSettings is a class which defines the default settings for all <a href="./MapLine.html">MapLine</a> objects.<br />
+<h3 class="linkable" id="example">Example</h3><pre>var map = AmCharts.makeChart("mapdiv",{
+  ...
+  linesSettings: {
+    arrowAlpha: 0.5
+  }
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="accessibleLabel">accessibleLabel</td><td>String</td><td></td><td>Text which screen readers will read if user rolls-over the line or sets focus using tab key (this is possible only if tabIndex property of LinesSettings or individual line is set to some number). Text is added as aria-label tag. Note - not all screen readers and browsers support this.</td></tr><tr><td class="linkable" id="alpha">alpha</td><td>Number</td><td>1</td><td>Opacity of the line.</td></tr><tr><td class="linkable" id="arc">arc</td><td>Number</td><td>0</td><td>Using this setting you can make lines to be curved, or actually to make them look like arcs. Note, there is one limitation - this works well with two-point lines only. You can also set arc for <a href="MapLine.html">MapLine</a> individually.</td></tr><tr><td class="linkable" id="arrow">arrow</td><td>String</td><td>none</td><td>Position of the arrows. Possible values are "start", "end", "middle", "both" and "none".</td></tr><tr><td class="linkable" id="arrowAlpha">arrowAlpha</td><td>Number</td><td>1</td><td>Opacity of the arrows.</td></tr><tr><td class="linkable" id="arrowColor">arrowColor</td><td>Color</td><td></td><td>Arrow color. Will use line color if not set.</td></tr><tr><td class="linkable" id="arrowSize">arrowSize</td><td>Number</td><td>10</td><td>Size of the arrows.</td></tr><tr><td class="linkable" id="balloonText">balloonText</td><td>String</td><td>[[title]]</td><td>Text which is displayed in a roll-over balloon. You can use the following tags: [[title]], [[description]], [[value]] and [[percent]].<br />
+<br />
+To disable the balloons, set it to an empty string.</td></tr><tr><td class="linkable" id="bringForwardOnHover">bringForwardOnHover</td><td>Boolean</td><td>true</td><td>Specifies if line should change it's z-index to the most top when user hovers it.</td></tr><tr><td class="linkable" id="color">color</td><td>Color</td><td>#990000</td><td>Line color.</td></tr><tr><td class="linkable" id="dashLength">dashLength</td><td>Number</td><td>0</td><td>Length of a dash. 0 means line is not dashed.</td></tr><tr><td class="linkable" id="descriptionWindowBottom">descriptionWindowBottom</td><td>Number</td><td></td><td>Distance from the bottom side of map container to the description window. In case it is not set (also if descriptionWindowTop is not set), window will be placed near the mouse pointer.</td></tr><tr><td class="linkable" id="descriptionWindowHeight">descriptionWindowHeight</td><td>Number</td><td></td><td>Height of a description window.</td></tr><tr><td class="linkable" id="descriptionWindowLeft">descriptionWindowLeft</td><td>Number</td><td></td><td>Distance from the left side of map container to the description window. In case it is not set (also if descriptionWindowRight is not set), window will be placed near the mouse pointer.</td></tr><tr><td class="linkable" id="descriptionWindowRight">descriptionWindowRight</td><td>Number</td><td></td><td>Distance from the right side of map container to the description window. In case it is not set (also if descriptionWindowLeft is not set), window will be placed near the mouse pointer.</td></tr><tr><td class="linkable" id="descriptionWindowTop">descriptionWindowTop</td><td>Number</td><td></td><td>Distance from the top side of map container to the description window. In case it is not set (also if descriptionWindowBottom is not set), window will be placed near the mouse pointer.</td></tr><tr><td class="linkable" id="descriptionWindowWidth">descriptionWindowWidth</td><td>Number</td><td>250</td><td>Width of a description window.</td></tr><tr><td class="linkable" id="tabIndex">tabIndex</td><td>Number</td><td></td><td>In case you set it to some number, the map will set focus on lines (one by one) when user clicks tab key. When a focus is set, screen readers like NVDA Screen reader will read label which is set using accessibleLabel property of LinesSettings or individual line. If area is clickable, pressing Enter/Return while focus is set will select the line. Note, not all browsers and readers support this.</td></tr><tr><td class="linkable" id="thickness">thickness</td><td>Number</td><td>1</td><td>Line thickness.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <small>LinesSettings class does not have any methods.</small>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <small>LinesSettings class does not have any events.</small>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

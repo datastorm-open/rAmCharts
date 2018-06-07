@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>GaugeAxis | JavaScript Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product active" id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>GaugeAxis            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li><a href="AxisBase.html">AxisBase</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li><a href="ChartCursor.html">ChartCursor</a></li><li><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li class="active"><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="Slice.html">Slice</a></li><li><a href="Title.html">Title</a></li><li><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Creates an axis for <a href="./AmAngularGauge.html">AmAngularGauge</a> charts, multiple can be assigned.<br />
+<h3 class="linkable" id="example">Example</h3><pre>var chart = AmCharts.makeChart("chartdiv",{
+  ...
+  "axes": [
+    {
+      "startValue": 0,
+      "endValue": 100,
+      "valueInterval": 10,
+      "bands": [
+        {
+          "startValue": 0,
+          "endValue": 100
+        }
+      ]
+    }
+  ]
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="axisAlpha">axisAlpha</td><td>Number</td><td>1</td><td>Axis opacity.</td></tr><tr><td class="linkable" id="axisColor">axisColor</td><td>Color</td><td>#000000</td><td>Axis color.</td></tr><tr><td class="linkable" id="axisThickness">axisThickness</td><td>Number</td><td>1</td><td>Thickness of the axis outline.</td></tr><tr><td class="linkable" id="bandAlpha">bandAlpha</td><td>Number</td><td>1</td><td>Opacity of band fills.</td></tr><tr><td class="linkable" id="bandGradientRatio">bandGradientRatio</td><td>Array[Number]</td><td>[]</td><td>Example: [-0.2, 0, -0.2]. Will make bands to be filled with color gradients. Negative value means the color will be darker than the original, and positive number means the color will be lighter.</td></tr><tr><td class="linkable" id="bandOutlineAlpha">bandOutlineAlpha</td><td>Number</td><td>0</td><td>Opacity of band outlines.</td></tr><tr><td class="linkable" id="bandOutlineColor">bandOutlineColor</td><td>Color</td><td>#000000</td><td>Color of band outlines.</td></tr><tr><td class="linkable" id="bandOutlineThickness">bandOutlineThickness</td><td>Number</td><td>0</td><td>Thickness of band outlines.</td></tr><tr><td class="linkable" id="bands">bands</td><td>Array[<a href="GaugeBand.html">GaugeBand</a>]</td><td></td><td>Array of bands - <a href="GaugeBand.html">GaugeBand</a> objects. Bands are used to draw color fills between specified values.</td></tr><tr><td class="linkable" id="bottomText">bottomText</td><td>String</td><td></td><td>Text displayed below the axis center.</td></tr><tr><td class="linkable" id="bottomTextBold">bottomTextBold</td><td>Boolean</td><td>true</td><td>Specifies if text should be bold.</td></tr><tr><td class="linkable" id="bottomTextColor">bottomTextColor</td><td>Color</td><td></td><td>Bottom text color.</td></tr><tr><td class="linkable" id="bottomTextFontSize">bottomTextFontSize</td><td>Number</td><td></td><td>Font size of bottom text.</td></tr><tr><td class="linkable" id="bottomTextYOffset">bottomTextYOffset</td><td>Number</td><td>0</td><td>Y offset of bottom text.</td></tr><tr><td class="linkable" id="centerX">centerX</td><td>Number/String</td><td>0%</td><td>X position of the axis, relative to the center of the gauge.</td></tr><tr><td class="linkable" id="centerY">centerY</td><td>Number/String</td><td>0%</td><td>Y position of the axis, relative to the center of the gauge.</td></tr><tr><td class="linkable" id="color">color</td><td>Color</td><td></td><td>Specifies labels color of the axis.</td></tr><tr><td class="linkable" id="endAngle">endAngle</td><td>Number</td><td>120</td><td>Axis end angle. Valid values are from  - 180 to 180.</td></tr><tr><td class="linkable" id="endValue">endValue</td><td>Number</td><td></td><td>Axis end (max) value</td></tr><tr><td class="linkable" id="fontSize">fontSize</td><td>Number</td><td></td><td>Font size for axis labels.</td></tr><tr><td class="linkable" id="gridCount">gridCount</td><td>Number</td><td>5</td><td>Number of grid lines. Note, GaugeAxis doesn't adjust gridCount, so you should check your values and choose a proper gridCount which would result grids at round numbers.</td></tr><tr><td class="linkable" id="gridInside">gridInside</td><td>Boolean</td><td>true</td><td>Specifies if grid should be drawn inside or outside the axis.</td></tr><tr><td class="linkable" id="id">id</td><td>Number/String</td><td></td><td>Unique id of an axis.</td></tr><tr><td class="linkable" id="inside">inside</td><td>Boolean</td><td>true</td><td>Specifies if labels should be placed inside or outside the axis.</td></tr><tr><td class="linkable" id="labelFrequency">labelFrequency</td><td>Number</td><td>1</td><td>Frequency of labels.</td></tr><tr><td class="linkable" id="labelFunction">labelFunction</td><td></td><td></td><td>You can use this function to format axis labels. This function is called and value is passed as a attribute: labelFunction(value);</td></tr><tr><td class="linkable" id="labelOffset">labelOffset</td><td>Number</td><td>15</td><td>Distance from axis to the labels.</td></tr><tr><td class="linkable" id="labelsEnabled">labelsEnabled</td><td>Boolean</td><td>true</td><td>Specifies if labels on the axis should be shown.</td></tr><tr><td class="linkable" id="listeners">listeners</td><td>Array</td><td></td><td>You can add listeners of events using this property. Example: listeners = [{"event":"clickBand", "method":handleClick}];</td></tr><tr><td class="linkable" id="minorTickInterval">minorTickInterval</td><td>Number</td><td></td><td>Interval, at which minor ticks should be placed.</td></tr><tr><td class="linkable" id="minorTickLength">minorTickLength</td><td>Number</td><td>5</td><td>Length of a minor tick.</td></tr><tr><td class="linkable" id="radius">radius</td><td>Number/String</td><td>95%</td><td>Axis radius.</td></tr><tr><td class="linkable" id="showFirstLabel">showFirstLabel</td><td>Boolean</td><td>true</td><td>Specifies if the first label should be shown.</td></tr><tr><td class="linkable" id="showLastLabel">showLastLabel</td><td>Boolean</td><td>true</td><td>Specifies if the last label should be shown.</td></tr><tr><td class="linkable" id="startAngle">startAngle</td><td>Number</td><td>-120</td><td>Axis start angle. Valid values are from  - 180 to 180.</td></tr><tr><td class="linkable" id="startValue">startValue</td><td>Number</td><td>0</td><td>Axis start (min) value.</td></tr><tr><td class="linkable" id="tickAlpha">tickAlpha</td><td>Number</td><td>1</td><td>Opacity of axis ticks.</td></tr><tr><td class="linkable" id="tickColor">tickColor</td><td>Color</td><td>#555555</td><td>Color of axis ticks.</td></tr><tr><td class="linkable" id="tickLength">tickLength</td><td>Number</td><td>10</td><td>Length of a major tick.</td></tr><tr><td class="linkable" id="tickThickness">tickThickness</td><td>Number</td><td>1</td><td>Tick thickness.</td></tr><tr><td class="linkable" id="topText">topText</td><td>String</td><td></td><td>Text displayed above the axis center.</td></tr><tr><td class="linkable" id="topTextBold">topTextBold</td><td>Boolean</td><td>true</td><td>Specifies if text should be bold.</td></tr><tr><td class="linkable" id="topTextColor">topTextColor</td><td>Color</td><td></td><td>Color of top text.</td></tr><tr><td class="linkable" id="topTextFontSize">topTextFontSize</td><td>Number</td><td></td><td>Font size of top text.</td></tr><tr><td class="linkable" id="topTextYOffset">topTextYOffset</td><td>Number</td><td>0</td><td>Y offset of top text.</td></tr><tr><td class="linkable" id="unit">unit</td><td>String</td><td></td><td>A string which can be placed next to axis labels.</td></tr><tr><td class="linkable" id="unitPosition">unitPosition</td><td>String</td><td>right</td><td>Position of the unit.</td></tr><tr><td class="linkable" id="usePrefixes">usePrefixes</td><td>Boolean</td><td>false</td><td>Specifies if small and big numbers should use prefixes to make them more readable.</td></tr><tr><td class="linkable" id="valueInterval">valueInterval</td><td>Number</td><td></td><td>Interval, at which ticks with values should be placed.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <table class="table table-bordered method-list"><thead><tr><th>Name</th><th>Parameters</th><th>Returns</th><th>Description</th></thead><tr><td class="linkable" id="addListener">addListener(type, handler)</td><td>type - string like 'clickBand' (should be listed in 'events' section of this class or classes which extend this class). handler - function which is called when event happens</td><td></td><td>Adds event listener to the object.</td></tr><tr><td class="linkable" id="removeListener">removeListener(chart, type, handler)</td><td>chart - chart object, type - event name, handler - method</td><td></td><td>Removes event listener from chart object.</td></tr><tr><td class="linkable" id="setBottomText">setBottomText(text)</td><td>text - string</td><td></td><td>Sets bottom text.</td></tr><tr><td class="linkable" id="setTopText">setTopText(text)</td><td>text - string</td><td></td><td>Sets top text.</td></tr><tr><td class="linkable" id="value2angle">value2angle(value)</td><td>value - Number</td><td></td><td>Returns angle of the value.</td></tr></table>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <table class="table table-bordered event-list"><thead><tr><th>Name</th><th>Event object</th><th>Description</th></thead><tr><td class="linkable" id="clickBand">clickBand</td><td>{type: "clickBand", dataItem: <a href="GaugeBand.html">GaugeBand</a>, chart: <a href="AmAngularGauge.html">AmAngularGauge</a>, event: MouseEvent}</td><td>Event which is fired when user clicks on gauge band.</td></tr><tr><td class="linkable" id="rollOutBand">rollOutBand</td><td>{type: "rollOutBand", dataItem: <a href="GaugeBand.html">GaugeBand</a>, chart: <a href="AmAngularGauge.html">AmAngularGauge</a>, event: MouseEvent}</td><td>Event which is fired when user rolls-out gauge band.</td></tr><tr><td class="linkable" id="rollOverBand">rollOverBand</td><td>{type: "rollOverBand", dataItem: <a href="GaugeBand.html">GaugeBand</a>, chart: <a href="AmAngularGauge.html">AmAngularGauge</a>, event: MouseEvent}</td><td>Event which is fired when user rolls-over gauge band.</td></tr></table>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

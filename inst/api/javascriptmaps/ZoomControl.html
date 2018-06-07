@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ZoomControl | JavaScript Maps v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product " id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product active" id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>ZoomControl            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmMap.html">AmMap</a></li><li><a href="AreasSettings.html">AreasSettings</a></li><li><a href="ImagesSettings.html">ImagesSettings</a></li><li><a href="Label.html">Label</a></li><li><a href="LinesSettings.html">LinesSettings</a></li><li><a href="MapArea.html">MapArea</a></li><li><a href="MapData.html">MapData</a></li><li><a href="MapImage.html">MapImage</a></li><li><a href="MapLine.html">MapLine</a></li><li><a href="MapObject.html">MapObject</a></li><li><a href="ObjectList.html">ObjectList</a></li><li><a href="SmallMap.html">SmallMap</a></li><li><a href="Title.html">Title</a></li><li><a href="ValueLegend.html">ValueLegend</a></li><li class="active"><a href="ZoomControl.html">ZoomControl</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Creates the controls for the map to change the zoom level and pan around the map.<br />
+<h3 class=&quot;linkable&quot; id=&quot;example&quot;>Example</h3><pre>var map = AmCharts.makeChart(&quot;mapdiv&quot;,{
+	...
+	&quot;zoomControl&quot;: {
+		&quot;zoomControlEnabled&quot;: true
+	}
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="bottom">bottom</td><td>Number</td><td></td><td>Distance from left side of map container to the zoom control.</td></tr><tr><td class="linkable" id="buttonBorderAlpha">buttonBorderAlpha</td><td>Number</td><td>0.1</td><td>Button border opacity.</td></tr><tr><td class="linkable" id="buttonBorderColor">buttonBorderColor</td><td>Color</td><td>#000000</td><td>Color of button borders.</td></tr><tr><td class="linkable" id="buttonBorderThickness">buttonBorderThickness</td><td>Number</td><td>1</td><td>Button border thickness.</td></tr><tr><td class="linkable" id="buttonColorHover">buttonColorHover</td><td>Color</td><td>#FF0000</td><td>Button roll-over color.</td></tr><tr><td class="linkable" id="buttonCornerRadius">buttonCornerRadius</td><td>Number</td><td>2</td><td>Button corner radius.</td></tr><tr><td class="linkable" id="buttonFillAlpha">buttonFillAlpha</td><td>Number</td><td>1</td><td>Button fill opacity.</td></tr><tr><td class="linkable" id="buttonFillColor">buttonFillColor</td><td>Color</td><td>#FFFFFF</td><td>Button fill color.</td></tr><tr><td class="linkable" id="buttonIconAlpha">buttonIconAlpha</td><td>Number</td><td>1</td><td>Opacity of button icons.</td></tr><tr><td class="linkable" id="buttonIconColor">buttonIconColor</td><td>Color</td><td>#000000</td><td>Button icon color.</td></tr><tr><td class="linkable" id="buttonRollOverColor">buttonRollOverColor</td><td>Color</td><td>#DADADA</td><td>Button roll-over color.</td></tr><tr><td class="linkable" id="buttonSize">buttonSize</td><td>Number</td><td>31</td><td>Size of buttons.</td></tr><tr><td class="linkable" id="draggerAlpha">draggerAlpha</td><td>Number</td><td>0</td><td>Opacity of a dragger.</td></tr><tr><td class="linkable" id="gridAlpha">gridAlpha</td><td>Number</td><td>0</td><td>Opacity of zoom-grid.</td></tr><tr><td class="linkable" id="gridBackgroundAlpha">gridBackgroundAlpha</td><td>Number</td><td>0</td><td>Opacity of background under zoom-grid.</td></tr><tr><td class="linkable" id="gridBackgroundColor">gridBackgroundColor</td><td>Color</td><td>#000000</td><td>Color of background under zoom-grid.</td></tr><tr><td class="linkable" id="gridColor">gridColor</td><td>Color</td><td>#000000</td><td>Grid color.</td></tr><tr><td class="linkable" id="gridHeight">gridHeight</td><td>Number</td><td>5</td><td>Zoom grid height in pixels.</td></tr><tr><td class="linkable" id="homeButtonEnabled">homeButtonEnabled</td><td>Boolean</td><td>true</td><td>Specifies if home button is visible or not.</td></tr><tr><td class="linkable" id="homeIconColor">homeIconColor</td><td>Color</td><td>#FFFFFF</td><td>Home icon color.</td></tr><tr><td class="linkable" id="homeIconFile">homeIconFile</td><td>String</td><td>homeIcon.gif</td><td>File name of home icon. You can also find homeIconWhite.gif in the images folder, or you can create your own image.</td></tr><tr><td class="linkable" id="iconSize">iconSize</td><td>Number</td><td>11</td><td>Size of icons. You might need to change size of icon gif files if you change this property.</td></tr><tr><td class="linkable" id="left">left</td><td>Number</td><td>10</td><td>Distance from left side of map container to the zoom control.</td></tr><tr><td class="linkable" id="maxZoomLevel">maxZoomLevel</td><td>Number</td><td>64</td><td>Max zoom level.</td></tr><tr><td class="linkable" id="minZoomLevel">minZoomLevel</td><td>Number</td><td>1</td><td>Min zoom level.</td></tr><tr><td class="linkable" id="panControlEnabled">panControlEnabled</td><td>Boolean</td><td>false</td><td>Specifies if pan control is enabled.</td></tr><tr><td class="linkable" id="panStepSize">panStepSize</td><td>Number</td><td>0.1</td><td>Specifies by what part of a map container width/height the map will be moved when user clicks on pan arrows.</td></tr><tr><td class="linkable" id="right">right</td><td>Number</td><td></td><td>Distance from right side of map container to the zoom control.</td></tr><tr><td class="linkable" id="roundButtons">roundButtons</td><td>Boolean</td><td>true</td><td>Specifies if buttons should be round or not (rectangular).</td></tr><tr><td class="linkable" id="top">top</td><td>Number</td><td>10</td><td>Distance from top of map container to the zoom control.</td></tr><tr><td class="linkable" id="zoomControlEnabled ">zoomControlEnabled </td><td>Boolean</td><td>true</td><td>Specifies if zoom control is enabled.</td></tr><tr><td class="linkable" id="zoomFactor">zoomFactor</td><td>Number</td><td>2</td><td>zoomFactor is a number by which current scale will be multiplied when user clicks on zoom in button or divided when user clicks on zoom-out button.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <small>ZoomControl class does not have any methods.</small>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <small>ZoomControl class does not have any events.</small>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AmCharts | JavaScript Stock Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product " id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product active" id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>AmCharts            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li class="active"><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li><a href="AmStockChart.html">AmStockChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li><a href="AxisBase.html">AxisBase</a></li><li><a href="CategoryAxesSettings.html">CategoryAxesSettings</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li><a href="ChartCursor.html">ChartCursor</a></li><li><a href="ChartCursorSettings.html">ChartCursorSettings</a></li><li><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="ChartScrollbarSettings.html">ChartScrollbarSettings</a></li><li><a href="DataSet.html">DataSet</a></li><li><a href="DataSetSelector.html">DataSetSelector</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li><a href="LegendSettings.html">LegendSettings</a></li><li><a href="PanelsSettings.html">PanelsSettings</a></li><li><a href="PeriodSelector.html">PeriodSelector</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="StockEvent.html">StockEvent</a></li><li><a href="StockEventsSettings.html">StockEventsSettings</a></li><li><a href="StockGraph.html">StockGraph</a></li><li><a href="StockLegend.html">StockLegend</a></li><li><a href="StockPanel.html">StockPanel</a></li><li><a href="Title.html">Title</a></li><li><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxesSettings.html">ValueAxesSettings</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Namespace of the framework which holds the general settings, gets automatically injected to document since the source has been included.<br />
+<h3 class="linkable" id="example">Example</h3><pre>AmCharts.useUTC = true;
+AmCharts.processDelay = 100;</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="baseHref">baseHref</td><td>Boolean</td><td>false</td><td>Set it to true if you have <strong>base href</strong> set in your web page header. This will fix rendering issues caused by this feature, like masks filters not working, causing graphs to protrude from plot area.</td></tr><tr><td class="linkable" id="charts">charts</td><td>Array[<a href="AmChart.html">AmChart</a>]</td><td></td><td>This array will hold references to all instances of the charts or maps created on the same page.</td></tr><tr><td class="linkable" id="dayNames">dayNames</td><td>Array[String]</td><td>['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']</td><td>Array of day names, used when formatting dates (if categoryAxis.parseDates is set to true)</td></tr><tr><td class="linkable" id="monthNames">monthNames</td><td>Array[String]</td><td>['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']</td><td>Array of month names, used when formatting dates (if categoryAxis.parseDates is set to true)</td></tr><tr><td class="linkable" id="processDelay">processDelay</td><td>Number</td><td>0</td><td>Delay in ms at which each chart on the page should be rendered. This is very handy if you have a lot of charts on the page and do not want to overload the device CPU. </td></tr><tr><td class="linkable" id="shortDayNames">shortDayNames</td><td>Array[String]</td><td>['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']</td><td>Array of short versions of day names, used when formatting dates (if categoryAxis.parseDates is set to true)</td></tr><tr><td class="linkable" id="shortMonthNames">shortMonthNames</td><td>Array[String]</td><td>['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']</td><td>Array of short versions of month names, used when formatting dates (if categoryAxis.parseDates is set to true)</td></tr><tr><td class="linkable" id="theme">theme</td><td>String</td><td></td><td>You can set theme for all the charts on your page by setting: <a href="AmChart.html">AmChart</a>s.theme = <a href="AmChart.html">AmChart</a>s.themes.light;  // or some other theme. If you are creating charts using JavaScript API, not JSON, then this is quite a comfortable way, as you won't need to pass theme to each object you create. Note, you should set theme before write method is called. There is no way to change theme of already created chart, you have to create chart's instance once more if you want to change theme.</td></tr><tr><td class="linkable" id="useUTC">useUTC</td><td>Boolean</td><td>false</td><td>Set it to true if you want UTC time to be used instead of local time.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <table class="table table-bordered method-list"><thead><tr><th>Name</th><th>Parameters</th><th>Returns</th><th>Description</th></thead><tr><td class="linkable" id="addInitHandler">addInitHandler(handler,  [types]) </td><td></td><td></td><td>  handler is a method which will be called before initializing the chart. types is array of strings, specifying which chart types should call this method. If you don't set any type, all the charts will call this method.  When handler method is called, chart instance is passed as an attribute.  You can use this feature to preprocess chart data or do some other things you need before initializing the chart.</td></tr><tr><td class="linkable" id="addPrefix">addPrefix(value, prefixesBig, prefixesSmall, numberFormatter)</td><td></td><td></td><td>Format the number according to rules set in prefixesBig, prefixesSmall and numberFormatter.<br />
+<br />
+You can use chart instance's "prefixesOfSmallNumbers", "prefixesOfBigNumbers" as well as "precision", "decimalSeparator" and "thousandsSeparator" properties to form your request.<br />
+<br />
+<pre>var formatted = <a href="AmChart.html">AmChart</a>s.addPrefix(
+  value,
+  chart.prefixesOfBigNumbers, 
+  chart.prefixesOfSmallNumbers, {
+    precision: chart.precision,
+    decimalSeparator: chart.decimalSeparator,
+    thousandsSeparator: chart.thousandsSeparator
+  });
+</pre></td></tr><tr><td class="linkable" id="clear">clear()</td><td></td><td></td><td>Clears all the charts on page, removes listeners and intervals.</td></tr><tr><td class="linkable" id="formatDate">formatDate(date, format)</td><td></td><td></td><td>You can use this method to format date object into date string.</td></tr><tr><td class="linkable" id="formatNumber">formatNumber(number, formatter, zeroCount)</td><td></td><td></td><td>Returns string formatter with the provided settings. Formatter is an object with precision, decimalSeparator and thousandsSeparator defined, like: {precision: 2, decimalSeparator: '.', thousandsSeparator: ','}; If you don't need to adjust precision set it to -1. zeroCount defines how many zeros should be added after comma (useful when formatting currencies).</td></tr><tr><td class="linkable" id="makeChart">makeChart(container, chartConfig, delay)</td><td></td><td></td><td>Creates chart. <b>container</b> can be either id or the reference to the element you want the chart to be placed in, <b>chartConfig</b> is JSON object with chart properties defined and <b>delay</b> is time in ms, in which the chart should be rendered (renders instantly if not set).</td></tr><tr><td class="linkable" id="stringToDate">stringToDate(string, format)</td><td></td><td></td><td>You can use this method to convert date string to date object. Please note, that literal name codes such as MMM or MMMM are not supported.</td></tr></table>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <small>AmCharts class does not have any events.</small>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ChartCursor | JavaScript Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product active" id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>ChartCursor            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li><a href="AxisBase.html">AxisBase</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li class="active"><a href="ChartCursor.html">ChartCursor</a></li><li><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="Slice.html">Slice</a></li><li><a href="Title.html">Title</a></li><li><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Creates a cursor for the chart which follows the mouse movements. In case of <a href="./AmSerialChart.html">AmSerialChart</a> charts it shows the balloons of hovered data points.<br />
+<h3 class="linkable" id="example">Example</h3><pre>var chart = AmCharts.makeChart("chartdiv",{
+  ...
+  "chartCursor": {
+    "oneBalloonOnly": true
+  }
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="adjustment">adjustment</td><td>Number</td><td>0</td><td>If you set adjustment to -1, the balloon will be shown near previous, if you set it to 1 - near next data point.</td></tr><tr><td class="linkable" id="animationDuration">animationDuration</td><td>Number</td><td>0.3</td><td>Duration of animation of a line, in seconds.</td></tr><tr><td class="linkable" id="avoidBalloonOverlapping">avoidBalloonOverlapping</td><td>Boolean</td><td>true</td><td>Specifies if cursor should arrange balloons so they won't overlap. If chart is rotated, it might be good idea to turn this off.</td></tr><tr><td class="linkable" id="balloonPointerOrientation">balloonPointerOrientation</td><td>String</td><td>horizontal</td><td>defines if the balloon should be shown above the datapoint or sideways</td></tr><tr><td class="linkable" id="bulletsEnabled">bulletsEnabled</td><td>Boolean</td><td>false</td><td>Specifies if bullet for each graph will follow the cursor.</td></tr><tr><td class="linkable" id="bulletSize">bulletSize</td><td>Number</td><td>8</td><td>Size of bullets, following the cursor.</td></tr><tr><td class="linkable" id="categoryBalloonAlpha">categoryBalloonAlpha</td><td>Number</td><td>1</td><td>Opacity of the category balloon.</td></tr><tr><td class="linkable" id="categoryBalloonColor">categoryBalloonColor</td><td>Color</td><td></td><td>Color of the category balloon. cursorColor is used if not set.</td></tr><tr><td class="linkable" id="categoryBalloonDateFormat">categoryBalloonDateFormat</td><td>String</td><td>MMM DD, YYYY</td><td>Category balloon date format (used only if category axis parses dates). Check <a href="http://www.amcharts.com/tutorials/formatting-dates/">this page</a> for instructions on how to format dates.</td></tr><tr><td class="linkable" id="categoryBalloonEnabled">categoryBalloonEnabled</td><td>Boolean</td><td>true</td><td>Specifies whether category balloon is enabled.</td></tr><tr><td class="linkable" id="categoryBalloonFunction">categoryBalloonFunction</td><td></td><td></td><td>Allows formatting any category balloon text you want. categoryBalloonFunction should return a string which will be displayed in a balloon. When categoryBalloonFunction is called, category value (or date) is passed as an argument.</td></tr><tr><td class="linkable" id="categoryBalloonText">categoryBalloonText</td><td>String</td><td>[[category]]</td><td>You can have [[category]] - [[toCategory]] tags in there and show category ranges this way.</td></tr><tr><td class="linkable" id="color">color</td><td>Color</td><td>#FFFFFF</td><td>Text color.</td></tr><tr><td class="linkable" id="cursorAlpha">cursorAlpha</td><td>Number</td><td>1</td><td>Opacity of the cursor line.</td></tr><tr><td class="linkable" id="cursorColor">cursorColor</td><td>Color</td><td>#CC0000</td><td>Color of the cursor line.</td></tr><tr><td class="linkable" id="cursorPosition">cursorPosition</td><td>String</td><td>middle</td><td>Specifies where the cursor line should be placed - on the beginning of the period (day, hour, etc) or in the middle (only when parseDates property of categoryAxis is set to true). If you want the cursor to follow mouse and not to glue to the nearest data point, set "mouse" here. Possible values are: start, middle, mouse.</td></tr><tr><td class="linkable" id="enabled">enabled</td><td>Boolean</td><td>true</td><td>Specifies whether cursor is enabled.</td></tr><tr><td class="linkable" id="fullWidth">fullWidth</td><td>Boolean</td><td>false</td><td>If set to true, instead of a cursor line user will see a fill which width will always be equal to the width of one data item. We'd recommend setting cursorAlpha to 0.1 or some other small number if using this feature.</td></tr><tr><td class="linkable" id="graphBulletAlpha">graphBulletAlpha</td><td>Number</td><td></td><td> If you make graph's bullets invisible by setting their opacity to 0 and will set graphBulletAlpha to 1, the bullets will only appear at the cursor's position. </td></tr><tr><td class="linkable" id="graphBulletSize">graphBulletSize</td><td>Number</td><td>1.7</td><td>Size of a graph's bullet (if available) at the cursor position. If you don't want the bullet to change it's size, set this property to 1.</td></tr><tr><td class="linkable" id="leaveAfterTouch">leaveAfterTouch</td><td>Boolean</td><td>true</td><td>This makes cursor and balloons to remain after user touches the chart.</td></tr><tr><td class="linkable" id="leaveCursor">leaveCursor</td><td>Boolean</td><td>false</td><td>Specifies if cursor should be left at it's last position. Useful for touch devices - user might want to see the balloons after he moves finger away.</td></tr><tr><td class="linkable" id="limitToGraph">limitToGraph</td><td><a href="AmGraph.html">AmGraph</a></td><td></td><td>If set to an id or a reference to <a href="AmGraph.html">AmGraph</a> object, <a href="CategoryAxis.html">CategoryAxis</a> cursor line will be limited to this graph instead of being drawn through full height of plot area. Note, this works with serial chart only. Also, cursorPosition of ChartCursor must be set to middle.</td></tr><tr><td class="linkable" id="listeners">listeners</td><td>Array[Object]</td><td></td><td>You can add listeners of events using this property. Example: listeners = [{"event":"changed", "method":handleEvent}];</td></tr><tr><td class="linkable" id="oneBalloonOnly">oneBalloonOnly</td><td>Boolean</td><td>false</td><td>If this is set to true, only one balloon at a time will be displayed. Note, this is quite CPU consuming.</td></tr><tr><td class="linkable" id="pan">pan</td><td>Boolean</td><td>false</td><td>If this is set to true, the user will be able to pan the chart instead of zooming.</td></tr><tr><td class="linkable" id="selectionAlpha">selectionAlpha</td><td>Number</td><td>0.2</td><td>Opacity of the selection.</td></tr><tr><td class="linkable" id="selectWithoutZooming">selectWithoutZooming</td><td>Boolean</td><td>false</td><td>Specifies if cursor should only mark selected area but not zoom-in after user releases mouse button.</td></tr><tr><td class="linkable" id="showNextAvailable">showNextAvailable</td><td>Boolean</td><td>false</td><td>If true, the graph will display balloon on next available data point if currently hovered item doesn't have value for this graph.</td></tr><tr><td class="linkable" id="tabIndex">tabIndex</td><td>Number</td><td></td><td>In case you set it to some number, the chart will set focus on chart cursor (works only with serial chart) when user clicks tab key. When a focus is set user can move cursor using cursor keys. Note, not all browsers and readers support this.</td></tr><tr><td class="linkable" id="valueBalloonsEnabled">valueBalloonsEnabled</td><td>Boolean</td><td>true</td><td>Specifies whether value balloons are enabled. In case they are not, the balloons might be displayed anyway, when the user rolls-over the column or bullet.</td></tr><tr><td class="linkable" id="valueLineAlpha">valueLineAlpha</td><td>Number</td><td></td><td>Opacity of value line. Will use cursorAlpha value if not set.</td></tr><tr><td class="linkable" id="valueLineBalloonEnabled">valueLineBalloonEnabled</td><td>Boolean</td><td>false</td><td>Specifies if value balloon next to value axes labels should be displayed.</td></tr><tr><td class="linkable" id="valueLineEnabled">valueLineEnabled</td><td>Boolean</td><td>false</td><td>Specifies if cursor of Serial chart should display horizontal (or vertical if chart is rotated) line. This line might help users to compare distant values of a chart. You can also enable value balloons on this line by setting valueLineBalloonEnabled to true.</td></tr><tr><td class="linkable" id="valueZoomable">valueZoomable</td><td>Boolean</td><td>false</td><td>Specifies if the user can zoom-in value axess of a serial chart.</td></tr><tr><td class="linkable" id="zoomable">zoomable</td><td>Boolean</td><td>true</td><td>Specifies if the user can zoom-in the chart. If pan is set to true, zoomable is switched to false automatically.</td></tr><tr><td class="linkable" id="zooming">zooming</td><td>Boolean</td><td></td><td>Read-only. Indicates if currently user is selecting some chart area to zoom-in.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <table class="table table-bordered method-list"><thead><tr><th>Name</th><th>Parameters</th><th>Returns</th><th>Description</th></thead><tr><td class="linkable" id="addListener">addListener(type, handler)</td><td>type - string like 'changed' (should be listed in 'events' section of this class or classes which extend this class). handler - function which is called when event happens</td><td></td><td>Adds event listener to the object.</td></tr><tr><td class="linkable" id="clearSelection">clearSelection()</td><td></td><td></td><td>This method can be used when selectWithoutZooming is set to true and you need to clear the selection made by user.</td></tr><tr><td class="linkable" id="hideCursor">hideCursor()</td><td> </td><td></td><td>Hides cursor.</td></tr><tr><td class="linkable" id="removeListener">removeListener(obj, type, handler)</td><td> </td><td></td><td>Removes event listener from the object.</td></tr><tr><td class="linkable" id="showCursorAt">showCursorAt(category)</td><td></td><td></td><td>You can force cursor to appear at specified cateogry or date.</td></tr><tr><td class="linkable" id="syncWithCursor">syncWithCursor(cursor)</td><td></td><td></td><td>Allows to sync one serial chart’s cursor with another chart’s cursor.<br />
+<br />
+<strong>Important!</strong> This method will work correctly only if plot area of both charts is identically equal in width.</td></tr></table>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <table class="table table-bordered event-list"><thead><tr><th>Name</th><th>Event object</th><th>Description</th></thead><tr><td class="linkable" id="changed">changed</td><td>{type:"changed", index:Number, zooming:Boolean, mostCloseGraph:<a href="AmGraph.html">AmGraph</a>, chart:<a href="AmChart.html">AmChart</a>, target:ChartCursor}</td><td>Dispatched when cursor position is changed. "index" is a series index over which chart cursors currently is. "zooming" specifies if user is currently zooming (is selecting) the chart. mostCloseGraph property is set only when oneBalloonOnly is set to true.</td></tr><tr><td class="linkable" id="draw">draw</td><td>{type: "draw", target: ChartCursor, chart: <a href="AmChart.html">AmChart</a>, initialX: Number, initialY: Number, finalX: Number, finalY: Number, target:ChartCursor}</td><td>Dispatched when user draws a trend line with mouse.</td></tr><tr><td class="linkable" id="moved">moved</td><td>{type:"moved", x:Number, y:Number, zooming:Boolean, chart:<a href="AmChart.html">AmChart</a>, target:ChartCursor}</td><td>Dispatched when mouse is moved over the chart. X and Y are coordinates of the mouse, relative to the plot area of the chart.</td></tr><tr><td class="linkable" id="onHideCursor">onHideCursor</td><td>{type:"onHideCursor", chart:<a href="AmChart.html">AmChart</a>, target:ChartCursor}</td><td>Dispatched when cursor is hidden.</td></tr><tr><td class="linkable" id="onShowCursor">onShowCursor</td><td>{type:"onShowCursor", chart:<a href="AmChart.html">AmChart</a>, target:ChartCursor}</td><td>Dispatched when cursor is shown.</td></tr><tr><td class="linkable" id="panning">panning</td><td>{type:"zoomStarted", x:Number, y:Number, index:Number, chart:<a href="AmChart.html">AmChart</a>, target:ChartCursor, index:Number, deltaX:Number, deltaY:Number, delta2X:Number, delta2Y:Number}</td><td>Dispatched when user pans the chart (also when user pinch-zooms the chart). deltaX, deltaY, delta2X, delta2Y are relative values. delta2X and delta2Y has values when pinching with two fingers.</td></tr><tr><td class="linkable" id="selected">selected</td><td>{type:"changed", start:Number, end:Number, chart:<a href="AmChart.html">AmChart</a>, target:ChartCursor}</td><td>Dispatched if selectWithoutZooming is set to true and when user selects some period. start and end are indices or time stamp (when categoryAxis.parseDates is true) of selection start/end.</td></tr><tr><td class="linkable" id="zoomed">zoomed</td><td>{type:"changed", start:Number, end:Number, chart:<a href="AmChart.html">AmChart</a>, target:ChartCursor}</td><td>Dispatched when user zooms to some period. start and end are indices or time stamp (when categoryAxis.parseDates is true) of selection start/end.</td></tr><tr><td class="linkable" id="zoomStarted">zoomStarted</td><td>{type:"zoomStarted", x:Number, y:Number, index:Number, chart:<a href="AmChart.html">AmChart</a>, target:ChartCursor}</td><td>Dispatched when user starts selecting chart area to zoom-in. x and y are relative values (0-1). Index is current category index (of Serial chart)</td></tr></table>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>

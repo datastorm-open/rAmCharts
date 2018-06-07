@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AmBalloon | JavaScript Charts v. 3 | amCharts</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=0.6; minimum-scale=0.6; user-scalable=yes;">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Le styles -->
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/style.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/antanas/docs2gen/lib/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        #header h2 {
+          filter: none;
+        }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>  
+    <div id="header" class="navbar-fixed-top">
+      <div id="header-top">
+        <div class="inside">
+          <div id="line"></div>
+          <a href="../index.html" id="logo"></a>
+          <div id="back">Go to <a href="https://www.amcharts.com/"><strong>amcharts.com</strong></a> | Online version of <a href="https://docs.amcharts.com/3/"><strong>docs.amcharts.com</strong></a></div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div class="inside">
+          <div id="pick">Pick a product:</div>
+          <ul id="products">
+            <li class="product active" id="javascriptcharts">
+              <a title="JavaScript Charts" href="../javascriptcharts/index.html"><i class="product-icon javascript-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Charts</strong></a>
+            </li>
+            <li class="product " id="javascriptstockchart">
+              <a title="JavaScript Charts" href="../javascriptstockchart/index.html"><i class="product-icon stock-charts"></i><span>JavaScript</span><strong class="app-font transform-uppercase">Stock Charts</strong>
+            </a>
+            <li class="product " id="javascriptmaps">
+              <a title="JavaScript Charts" href="../javascriptmaps/index.html"><i class="product-icon javascript-charts"></i><span>Interactive JavaScript</span><strong class="app-font transform-uppercase">Maps</strong>
+            </a>
+          </ul>
+          
+                    <h2>AmBalloon            <small>
+              <a href="#properties">Properties</a>
+              <a href="#methods">Methods</a>
+              <a href="#events">Events</a>
+            </small>
+          </h2>
+                  </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+              <ul class="nav nav-list left">
+  <li class="nav-header">Select a class</li>
+  <li><a href="AmAngularGauge.html">AmAngularGauge</a></li><li class="active"><a href="AmBalloon.html">AmBalloon</a></li><li><a href="AmChart.html">AmChart</a></li><li><a href="AmCharts.html">AmCharts</a></li><li><a href="AmCoordinateChart.html">AmCoordinateChart</a></li><li><a href="AmFunnelChart.html">AmFunnelChart</a></li><li><a href="AmGanttChart.html">AmGanttChart</a></li><li><a href="AmGraph.html">AmGraph</a></li><li><a href="AmLegend.html">AmLegend</a></li><li><a href="AmPieChart.html">AmPieChart</a></li><li><a href="AmRadarChart.html">AmRadarChart</a></li><li><a href="AmRectangularChart.html">AmRectangularChart</a></li><li><a href="AmSerialChart.html">AmSerialChart</a></li><li><a href="AmSlicedChart.html">AmSlicedChart</a></li><li><a href="AmXYChart.html">AmXYChart</a></li><li><a href="AxisBase.html">AxisBase</a></li><li><a href="CategoryAxis.html">CategoryAxis</a></li><li><a href="ChartCursor.html">ChartCursor</a></li><li><a href="ChartScrollbar.html">ChartScrollbar</a></li><li><a href="GaugeArrow.html">GaugeArrow</a></li><li><a href="GaugeAxis.html">GaugeAxis</a></li><li><a href="GaugeBand.html">GaugeBand</a></li><li><a href="GraphDataItem.html">GraphDataItem</a></li><li><a href="Guide.html">Guide</a></li><li><a href="Image.html">Image</a></li><li><a href="Label.html">Label</a></li><li><a href="SerialDataItem.html">SerialDataItem</a></li><li><a href="Slice.html">Slice</a></li><li><a href="Title.html">Title</a></li><li><a href="TrendLine.html">TrendLine</a></li><li><a href="ValueAxis.html">ValueAxis</a></li></ul>        
+        <div class="inside">
+                    
+          <p>Creates the balloons ( tooltips ) of the chart, It follows the mouse cursor when you roll-over the data items.<br />
+The framework generates the instances automatically you only need to adjust the appearance to your needs.<br />
+<h3 class="linkable" id="example">Example</h3><pre>var chart = AmCharts.makeChart("chartdiv", {
+  ...
+  "balloon": {
+    "adjustBorderColor": true,
+    "color": "#000000",
+    "cornerRadius": 5,
+    "fillColor": "#FFFFFF"
+  }
+});</pre></p>
+          
+          <h3 class="linkable" id="properties">
+            Properties
+                      </h3>
+          
+          <div style="position: relative; overflow: hidden;">
+            <table class="table table-bordered property-list"><thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></thead><tr><td class="linkable" id="adjustBorderColor">adjustBorderColor</td><td>Boolean</td><td>true</td><td>If this is set to true, border color instead of background color will be changed when user rolls-over the slice, graph, etc.</td></tr><tr><td class="linkable" id="animationDuration">animationDuration</td><td>Number</td><td>0.3</td><td>Duration of balloon movement from previous point to current point, in seconds.</td></tr><tr><td class="linkable" id="borderAlpha">borderAlpha</td><td>Number</td><td>1</td><td>Balloon border opacity. Value range is 0 - 1.</td></tr><tr><td class="linkable" id="borderColor">borderColor</td><td>Color</td><td>#FFFFFF</td><td>Balloon border color. Will only be used of adjustBorderColor is false.</td></tr><tr><td class="linkable" id="borderThickness">borderThickness</td><td>Number</td><td>2</td><td>Balloon border thickness.</td></tr><tr><td class="linkable" id="color">color</td><td>Color</td><td>#000000</td><td>Color of text in the balloon.</td></tr><tr><td class="linkable" id="cornerRadius">cornerRadius</td><td>Number</td><td>0</td><td>Balloon corner radius.</td></tr><tr><td class="linkable" id="disableMouseEvents">disableMouseEvents</td><td>Boolean</td><td>true</td><td>If your balloon has links, you have to set this to false in order for those links to be clickable. </td></tr><tr><td class="linkable" id="drop">drop</td><td>Boolean</td><td>false</td><td>Allows having drop-shaped balloons. Note, these balloons will not check for overlapping with other balloons, or if they go outside plot area. It also does not change pointer orientation automatically based on its vertical position like regular balloons do. You can use pointerOrientation property if you want it to point to different direction. Not supported by IE8.</td></tr><tr><td class="linkable" id="enabled">enabled</td><td>Boolean</td><td>true</td><td>Use this property to disable balloons for certain value axes. I.e.:<br />
+<br />
+<pre>"valueAxes": [{
+  // ...
+  // value balloons are shown
+}, {
+  // ...
+  "balloon": {
+    "enabled": false
+  }
+  // value balloons are not shown
+}]
+</pre></td></tr><tr><td class="linkable" id="fadeOutDuration">fadeOutDuration</td><td>Number</td><td>0.3</td><td>Duration of a fade out animation, in seconds.</td></tr><tr><td class="linkable" id="fillAlpha">fillAlpha</td><td>Number</td><td>0.8</td><td>Balloon background opacity.</td></tr><tr><td class="linkable" id="fillColor">fillColor</td><td>Color</td><td>#FFFFFF</td><td>Balloon background color. Usually balloon background color is set by the chart. Only if "adjustBorderColor" is "true" this color will be used.</td></tr><tr><td class="linkable" id="fixedPosition">fixedPosition</td><td>Boolean</td><td>true</td><td>Specifies if balloon should follow mouse when hovering the slice/column/bullet or stay in fixed position (this does not affect balloon behavior if <a href="ChartCursor.html">ChartCursor</a> is used).<br />
+<br />
+<strong>Note:</strong> This setting is ignored in JavaScript Maps.</td></tr><tr><td class="linkable" id="fontSize">fontSize</td><td>Number</td><td></td><td>Size of text in the balloon. Chart's fontSize is used by default.</td></tr><tr><td class="linkable" id="horizontalPadding">horizontalPadding</td><td>Number</td><td>8</td><td>Horizontal padding of the balloon.</td></tr><tr><td class="linkable" id="maxWidth">maxWidth</td><td>Number</td><td></td><td>Maximum width of a balloon.</td></tr><tr><td class="linkable" id="offsetX">offsetX</td><td>Number</td><td>1</td><td>Defines horizontal distance from mouse pointer to balloon pointer. If you set it to a small value, the balloon might flicker, as mouse might lose focus on hovered object.<br />
+<br />
+NOTE: this setting is ignored unless fixedPosition is set to false or Chart Cursor is enabled.</td></tr><tr><td class="linkable" id="offsetY">offsetY</td><td>Number</td><td>6</td><td>Defines vertical distance from mouse pointer to balloon pointer. If you set it to a small value, the balloon might flicker, as mouse might lose focus on hovered object.<br />
+<br />
+NOTE: this setting is ignored unless fixedPosition is set to false or Chart Cursor is enabled.</td></tr><tr><td class="linkable" id="pointerOrientation">pointerOrientation</td><td>String</td><td>down</td><td>Works only if balloon.drop set to true, specifies direction of a pointer.</td></tr><tr><td class="linkable" id="pointerWidth">pointerWidth</td><td>Number</td><td>6</td><td>The width of the pointer (arrow) "root". Only used if cornerRadius is 0.</td></tr><tr><td class="linkable" id="shadowAlpha">shadowAlpha</td><td>Number</td><td>0.4</td><td>Opacity of a shadow.</td></tr><tr><td class="linkable" id="shadowColor">shadowColor</td><td>Color</td><td>#000000</td><td>Color of a shadow.</td></tr><tr><td class="linkable" id="showBullet">showBullet</td><td>Boolean</td><td>false</td><td>If cornerRadius of a balloon is &gt;0, showBullet is set to true for value balloons when <a href="ChartCursor.html">ChartCursor</a> is used. If you don't want the bullet near the balloon, set it to false: chart.balloon.showBullet = false</td></tr><tr><td class="linkable" id="textAlign">textAlign</td><td>String</td><td>middle</td><td>Text alignment, possible values "left", "middle" and "right"</td></tr><tr><td class="linkable" id="verticalPadding">verticalPadding</td><td>Number</td><td>4</td><td>Vertical padding of the balloon.</td></tr></table>            
+            <h3 class="linkable" id="methods">
+              Methods
+                          </h3>
+            
+            <table class="table table-bordered method-list"><thead><tr><th>Name</th><th>Parameters</th><th>Returns</th><th>Description</th></thead><tr><td class="linkable" id="hide">hide()</td><td></td><td></td><td>Hides balloon.</td></tr><tr><td class="linkable" id="setBounds">setBounds(left, top, right, bottom)</td><td></td><td></td><td>Defines a square within which the balloon should appear. Bounds are set by chart class, you don't need to call this method yourself.</td></tr><tr><td class="linkable" id="setPosition">setPosition(x, y)</td><td></td><td></td><td>Sets coordinates the balloon should point to.</td></tr></table>            
+            <h3 class="linkable" id="events">
+              Events
+                          </h3>
+            
+            <small>AmBalloon class does not have any events.</small>          </div>
+          
+        </div>
+        
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/antanas/docs2gen/lib/jquery-1.7.2.min.js"></script>
+    <script src="/antanas/docs2gen/lib/jquery.scrollTo-min.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/antanas/docs2gen/lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    
+    <script src="/antanas/docs2gen/lib/common.js"></script>  </body>
+</html>
