@@ -474,7 +474,7 @@ getTransformTS <- function(data, col_date  = "date",
     data_check <- data.table(seq(data[[col_date]][1],
                                  data[[col_date]][nrow(data)], by = "day"))
     setnames(data_check, "V1", col_date)
-    data <- base::merge(data, data_check, by = col_date, all = TRUE)
+    data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
     control_date <- FALSE
     data[[col_date]] <- as.POSIXct(as.character(data[[col_date]]), tz = tzdate)
   }
@@ -517,7 +517,7 @@ getTransformTS <- function(data, col_date  = "date",
                                  data[[col_date]][nrow(data)],
                                  by = current_time_level))
     setnames(data_check, "V1", col_date)  
-    data <- base::merge(data, data_check, by = col_date, all = TRUE)
+    data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
   }
   
   if(type_aggr == "last"){
