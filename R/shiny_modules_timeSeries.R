@@ -675,12 +675,12 @@ getTransformTS <- function(data, col_date  = "date",
     }
     
     # check first value
-    if(res[2, get("tmp_N")] != res[1, get("tmp_N")]){
+    if(res[2, get("tmp_N")] != res[1, get("tmp_N")] & showwarn){
       warning("Be carreful : first value seems to be compute on a incomplete sequence")
     }
     
     # check last value
-    if(res[nrow(res), get("tmp_N")] != res[nrow(res)-1, get("tmp_N")]){
+    if(res[nrow(res), get("tmp_N")] != res[nrow(res)-1, get("tmp_N")] & showwarn){
       warning("Be carreful : last value seems to be compute on a incomplete sequence")
     }
     
