@@ -256,9 +256,9 @@ amTimeSeries <- function(data, col_date,
   data[,col_date] <- data[,col_date] + (as.POSIXlt(as.character(data[,col_date]), tz = "UTC") - data[,col_date])
   
   # groupToPeriods control
-  if(nrow(data) >= 4){
-    difft <- min(c(as.numeric(difftime(data[3,col_date], data[2,col_date], units = "secs")),
-                   as.numeric(difftime(data[4,col_date], data[3,col_date], units = "secs"))))
+  if(nrow(data) >= 5){
+    difft <- min(c(as.numeric(difftime(data[4,col_date], data[3,col_date], units = "secs")),
+                   as.numeric(difftime(data[5,col_date], data[4,col_date], units = "secs"))))
   } else if(nrow(data) >= 2){
     difft <- as.numeric(difftime(data[2,col_date], data[1,col_date], units = "secs"))
   } else {
