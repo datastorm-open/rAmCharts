@@ -5,6 +5,7 @@
   * ``rAmChartsTimeSeries module`` : fix keeping first and last values when NA
   * Update to ``amcharts.js 3.21.13``
   * Add full javascript API in package & ``amChartsAPI()`` function
+  * ``getTransformTS`` : improve control date
   
 ### rAmCharts 2.1.7 (based on [amcharts][amcharts_url] version **3.20.18**)
 
