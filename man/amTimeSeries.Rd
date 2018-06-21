@@ -2,7 +2,7 @@
 % Please edit documentation in R/chart_amTimeSeries.R
 \name{amTimeSeries}
 \alias{amTimeSeries}
-\title{Plotting times series which aggregation}
+\title{Plotting times series (with or without aggregation)}
 \usage{
 amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"), bullet = NULL,
@@ -160,9 +160,15 @@ amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
              creditsPosition = "bottom-left")
              
 }
+
+}
+\references{
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+and \link{amChartsAPI}
 }
 \seealso{
-\itemize{
-\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-}
+\link{rAmChartsTimeSeriesUI} for shiny module, \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+\link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+\link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+\link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 }

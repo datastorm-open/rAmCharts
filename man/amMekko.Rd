@@ -2,7 +2,7 @@
 % Please edit documentation in R/chart_amMekko.R
 \name{amMekko}
 \alias{amMekko}
-\title{Plotting mekko chart (quali vs quali) using rAmCharts}
+\title{Plotting mekko chart (quali vs quali)}
 \usage{
 amMekko(x, y, data, xlab = "", ylab = "", groups_color = NULL,
   horiz = FALSE, show_values = FALSE, ...)
@@ -46,9 +46,15 @@ amMekko(x = "var1", y = "var2", data = data_mekko, horiz = TRUE)
 amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)
 }
 
+
+}
+\references{
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+and \link{amChartsAPI}
 }
 \seealso{
-\itemize{
-\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-}
+\link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+\link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+\link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+\link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 }

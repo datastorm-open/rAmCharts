@@ -35,13 +35,17 @@
 #' }
 #' 
 #' 
-#' @seealso 
-#' \itemize{
-#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-#' }
-#'
+#' 
+#' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
+#' 
 #' @export
-
+#'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
+#' 
 amFunnel <- function(data, inverse = FALSE, neck_height = NULL, neck_width = NULL, 
                      depth = 0, label_side = "right", margin_right = 200,
                      margin_left = 200, ...)

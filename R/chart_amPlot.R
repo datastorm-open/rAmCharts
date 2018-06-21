@@ -2,8 +2,7 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 
 #' @title Plot serial data
 #' 
-#' @description  amPlot computes a plot of the given data values (can be a vectorn a dataframe
-#' or a formula).
+#' @description  amPlot computes a plot of the given data values (can be a vector,  dataframe or formula).
 #' 
 #' @param x the coordinates of points in the plot : \code{numeric},
 #' \code{data.frame}, or \code{formula}.
@@ -39,17 +38,16 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' 
 #' @return Return an Amchart.
 #' 
-#' @seealso 
-#' \itemize{
-#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-#' }
-#' 
 #' @examples 
 #' 
 #' \dontrun{
 #' # 'numeric':
 #' amPlot(x = rnorm(100))
 #' 
+#' # add line
+#'  amPlot(x = rnorm(100), type = 'sl', legend = T) %>>%
+#'     amLines(x = rnorm(100), type = "p")
+#'     
 #' # 'character':
 #' start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
 #' end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
@@ -70,7 +68,16 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' @import data.table
 #' @rdname amPlot
 #' 
+#' 
+#' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
+#' 
 #' @export
+#'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
 #' 
 amPlot <- function(x, ...) UseMethod("amPlot")
 

@@ -1,4 +1,5 @@
-#' @title Plotting wind using rAmCharts
+#' @title Plotting wind
+#' 
 #' @description  amWind computes a windplot of the given data values.
 #' 
 #' @param data \code{data.frame}, a dataframe which columns are series of values, 
@@ -28,13 +29,16 @@
 #' @import data.table
 #' @import pipeR
 #' 
-#' @export
-#' @seealso 
 #' 
-#' \itemize{
-#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-#' \item{\link{amRadar}}
-#' }
+#' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
+#' 
+#' @export
+#'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
 #' 
 amWind <- function(data, col = NULL,  backTransparency = 0.5, ...) {
   

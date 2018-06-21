@@ -1,4 +1,5 @@
-#' @title Plotting OHLC chart using rAmCharts
+#' @title Plotting OHLC chart
+#' 
 #' @description  amOHLC computes an OHLC chart of the given value.
 #' 
 #' @param data \code{data.frame}, dataframe with at least 5 columns : 
@@ -32,8 +33,6 @@
 #' # Other examples available which can be time consuming depending on your configuration.
 #' require(pipeR)
 #' 
-#' 
-#' 
 #' # Change colors
 #' amOHLC(data = data_candleStick2, positiveColor = "green", negativeColor = "red")
 #' 
@@ -49,12 +48,17 @@
 #' # Use amOptions
 #' amOHLC(data = data_candleStick2, zoom = FALSE)
 #' }
-#' @seealso 
-#' \itemize{
-#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-#' }
+#' 
+#' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 #' 
 #' @export
+#'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
+#' 
 
 amOHLC <- function(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,
                    positiveColor = "#7f8da9", negativeColor = "#db4c3c",

@@ -1,4 +1,5 @@
 #' @title Plotting gauge using rAmCharts
+#' 
 #' @description  amAngularGauge computes a gauge of the given value.
 #' 
 #' @param x \code{numeric}, value for which the angular gauge is desired.
@@ -21,13 +22,21 @@
 #' set to 10. 
 #' @param ... see \link{amOptions} for more options.
 #' 
-#' @seealso 
-#' \itemize{
-#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-#' }
+#' @examples 
+#' 
+#' amAngularGauge(10)
 #' 
 #' @import pipeR
+#' 
+#' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
+#' 
 #' @export
+#'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
 #' 
 amAngularGauge <- function(x, start = 0, end = 100, step = 20, 
                            bands = data.frame(start = numeric(), end = numeric(),
@@ -205,7 +214,16 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
 #' @import data.table
 #' @import pipeR
 #' @import grDevices
+#' 
+#' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
+#' 
 #' @export
+#'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
 #' 
 amSolidGauge <- function(x, min = 0, max = 100, type = "full", width = 20,
                          color = "", text = "", textSize = 20, ...)

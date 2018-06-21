@@ -2,7 +2,7 @@
 % Please edit documentation in R/chart_amRadar.R
 \name{amRadar}
 \alias{amRadar}
-\title{Plotting radar using rAmCharts}
+\title{Plotting radar}
 \usage{
 amRadar(data, col = NULL, backTransparency = 0.5, type = "polygons",
   pch = "round", xlim = NULL, ...)
@@ -33,6 +33,7 @@ data("data_radar")
 amRadar(data_radar)
 
 \donttest{
+
 # Other examples available which can be time consuming depending on your configuration.
 
 require(pipeR)
@@ -54,13 +55,19 @@ amRadar(data_radar, type = "circles")
 amRadar(data_radar,  pch = "triangleRight")
 amRadar(data_radar,  pch = "triangleLeft")
 
-#Min-Max
+# Min-Max
 amRadar(data_radar, xlim = c(0, 8))
 }
 
+
+}
+\references{
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+and \link{amChartsAPI}
 }
 \seealso{
-\itemize{
-\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-}
+\link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+\link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+\link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+\link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 }

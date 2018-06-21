@@ -2,7 +2,7 @@
 % Please edit documentation in R/chart_amPie.R
 \name{amPie}
 \alias{amPie}
-\title{Plotting pie chart using rAmCharts}
+\title{Plotting pie chart}
 \usage{
 amPie(data, show_values = TRUE, depth = 0, inner_radius = 0, ...)
 }
@@ -43,8 +43,13 @@ amPie(data = data_pie, inner_radius = 50)
 amPie(data = data_pie, inner_radius = 50, depth = 10, show_values = FALSE)
 }
 }
-\seealso{
-\itemize{
-\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
+\references{
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+and \link{amChartsAPI}
 }
+\seealso{
+\link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+\link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+\link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+\link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 }

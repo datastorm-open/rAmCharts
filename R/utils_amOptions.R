@@ -1,4 +1,5 @@
 #' @title amOptions
+#' 
 #' @description amOptions sets the most common options for chart customization.
 #' You can set other properties with the method \link{setProperties}.
 #' See details for exception.
@@ -73,13 +74,17 @@
 #'             creditsPosition = "bottom-right" )
 #' }
 #' 
-#' @seealso 
-#' \itemize{
-#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-#' }
-#' 
 #' @rdname amOptions
+#' 
+#' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
+#' 
 #' @export
+#'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
 #' 
 amOptions <- function(chart, theme = c("none", "light", "dark", "patterns", "chalk"),
                       legend = FALSE, legendPosition = "right",

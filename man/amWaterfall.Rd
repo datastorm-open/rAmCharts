@@ -2,7 +2,7 @@
 % Please edit documentation in R/chart_amWaterfall.R
 \name{amWaterfall}
 \alias{amWaterfall}
-\title{Plotting waterfall chart using rAmCharts}
+\title{Plotting waterfall}
 \usage{
 amWaterfall(data, start = 0, horiz = FALSE, show_values = FALSE, ...)
 }
@@ -28,15 +28,22 @@ amWaterfall computes a waterfall chart of the given value.
 \examples{
 data("data_waterfall")
 amWaterfall(data = data_waterfall, show_values = TRUE)
+
 \donttest{
 # Other examples available which can be time consuming depending on your configuration.
 
 # Change the orientation :
 amWaterfall(data = data_waterfall, horiz = TRUE)         
 }
+
+}
+\references{
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+and \link{amChartsAPI}
 }
 \seealso{
-\itemize{
-\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-}
+\link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+\link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+\link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+\link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 }

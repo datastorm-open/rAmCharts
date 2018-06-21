@@ -37,7 +37,7 @@ label : button's label}
 \item{...}{other first level attributes}
 }
 \description{
-amStockMultiSet compute a stock of multi data-sets, still in dev
+amStockMultiSet compute a stock of multi data-sets
 }
 \examples{
 
@@ -60,4 +60,15 @@ amStockMultiSet(data = data_stock_3, precision = 2)
 amStockMultiSet(data = data_stock_3, panelColumn = c(1,2,1,1), percentHeightPanel = c(3,1))
 }
 
+
+}
+\references{
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+and \link{amChartsAPI}
+}
+\seealso{
+\link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+\link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+\link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+\link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 }

@@ -1,4 +1,5 @@
-#' @title Plotting histogram using rAmCharts
+#' @title Plotting histogram
+#' 
 #' @description  amHist computes a histogram of the given data values.
 #' 
 #' @param x \code{numeric}, a vector of values for which the histogram is desired.
@@ -54,15 +55,20 @@
 #' amHist(x = x, control_hist = list(breaks = "Scott"))
 #' }
 #' 
-#' @seealso 
-#' \itemize{
-#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-#' }
 #'        
 #' @rdname amHist     
 #' @import data.table
 #' @importFrom graphics hist
+#' 
+#' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
+#' 
 #' @export
+#'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
 #' 
 amHist <- function(x, ...) UseMethod("amHist")
 

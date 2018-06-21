@@ -102,8 +102,7 @@ By default all numeric columns will be drawn.}
 Return an Amchart.
 }
 \description{
-amPlot computes a plot of the given data values (can be a vectorn a dataframe
-or a formula).
+amPlot computes a plot of the given data values (can be a vector,  dataframe or formula).
 }
 \examples{
 
@@ -111,6 +110,10 @@ or a formula).
 # 'numeric':
 amPlot(x = rnorm(100))
 
+# add line
+ amPlot(x = rnorm(100), type = 'sl', legend = T) \%>>\%
+    amLines(x = rnorm(100), type = "p")
+    
 # 'character':
 start <- as.POSIXct('01-01-2015', format = '\%d-\%m-\%Y')
 end <- as.POSIXct('31-12-2015', format = '\%d-\%m-\%Y')
@@ -145,8 +148,13 @@ weights <- runif(100, 0, 15)
 amPlot(x = x, y = y, weights = weights)
 }
 }
-\seealso{
-\itemize{
-\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
+\references{
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+and \link{amChartsAPI}
 }
+\seealso{
+\link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+\link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+\link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+\link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 }

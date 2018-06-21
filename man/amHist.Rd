@@ -3,7 +3,7 @@
 \name{amHist}
 \alias{amHist}
 \alias{amHist.numeric}
-\title{Plotting histogram using rAmCharts}
+\title{Plotting histogram}
 \usage{
 amHist(x, ...)
 
@@ -78,9 +78,15 @@ amHist(x = x, main = "Histogram", ylab = "y-axis", xlab = "x-axis")
 amHist(x = x, control_hist = list(breaks = "Scott"))
 }
 
+       
+}
+\references{
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+and \link{amChartsAPI}
 }
 \seealso{
-\itemize{
-\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-}
+\link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+\link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+\link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+\link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 }

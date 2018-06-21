@@ -2,7 +2,7 @@
 % Please edit documentation in R/chart_amWind.R
 \name{amWind}
 \alias{amWind}
-\title{Plotting wind using rAmCharts}
+\title{Plotting wind}
 \usage{
 amWind(data, col = NULL, backTransparency = 0.5, ...)
 }
@@ -38,9 +38,13 @@ amWind(data = data_wind, col = c("#0404B4","#01DF01","#FFBF00"), backTransparenc
 }
 
 }
-\seealso{
-\itemize{
-\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-\item{\link{amRadar}}
+\references{
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+and \link{amChartsAPI}
 }
+\seealso{
+\link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+\link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+\link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+\link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 }

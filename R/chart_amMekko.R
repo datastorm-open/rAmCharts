@@ -1,4 +1,5 @@
-#' @title Plotting mekko chart (quali vs quali) using rAmCharts
+#' @title Plotting mekko chart (quali vs quali)
+#' 
 #' @description  amMekko computes a mekko chart of the given values.
 #' @param x \code{character}, column name for x-axis.
 #' @param y \code{character}, column name for y-axis.
@@ -27,12 +28,17 @@
 #' amMekko(x = "var1", y = "var2", data = data_mekko, show_values = TRUE)
 #' }
 #' 
-#' @seealso 
-#' \itemize{
-#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-#' }
+#' 
+#' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 #' 
 #' @export
+#'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
+#' 
 amMekko <- function(x, y, data, xlab = "", 
                     ylab = "", groups_color = NULL,
                     horiz = FALSE, show_values = FALSE, ...)

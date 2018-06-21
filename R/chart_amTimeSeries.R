@@ -1,4 +1,5 @@
-#' @title Plotting times series which aggregation
+#' @title Plotting times series (with or without aggregation)
+#' 
 #' @description  amTimeSeries computes a stock chart.
 #' 
 #' @param data \code{data.frame}, data of graph.
@@ -109,13 +110,17 @@
 #'              creditsPosition = "bottom-left")
 #'              
 #' }
-#' @seealso 
-#' \itemize{
-#' \item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-#' }
-#'
+#' 
+#' @seealso \link{rAmChartsTimeSeriesUI} for shiny module, \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
+#' 
 #' @export
 #'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
+#' 
 amTimeSeries <- function(data, col_date,
                          col_series,
                          main = "",

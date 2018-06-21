@@ -1,5 +1,6 @@
 #' @title Plotting multi data-sets
-#' @description  amStockMultiSet compute a stock of multi data-sets, still in dev
+#' 
+#' @description  amStockMultiSet compute a stock of multi data-sets
 #' 
 #' @param data \code{list}, list of data.frame (same structure) first column is date, others are values
 #' @param panelColumn \code{numeric}, numeric vector, controle panel adding for selected series
@@ -38,7 +39,17 @@
 #' amStockMultiSet(data = data_stock_3, panelColumn = c(1,2,1,1), percentHeightPanel = c(3,1))
 #' }
 #' 
+#' 
+#' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+#' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+#' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+#' \link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
+#' 
 #' @export
+#'
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+#' and \link{amChartsAPI}
+#' 
 amStockMultiSet <- function(data,
                             panelColumn = NULL,
                             ZoomButtonPosition = "bottom",

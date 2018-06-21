@@ -2,7 +2,7 @@
 % Please edit documentation in R/chart_amOHLC.R
 \name{amOHLC}
 \alias{amOHLC}
-\title{Plotting OHLC chart using rAmCharts}
+\title{Plotting OHLC chart}
 \usage{
 amOHLC(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,
   positiveColor = "#7f8da9", negativeColor = "#db4c3c", names = c("low",
@@ -54,8 +54,6 @@ amOHLC(data = data_candleStick2)
 # Other examples available which can be time consuming depending on your configuration.
 require(pipeR)
 
-
-
 # Change colors
 amOHLC(data = data_candleStick2, positiveColor = "green", negativeColor = "red")
 
@@ -71,9 +69,15 @@ amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max")) \%>>\%
 # Use amOptions
 amOHLC(data = data_candleStick2, zoom = FALSE)
 }
+
+}
+\references{
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
+and \link{amChartsAPI}
 }
 \seealso{
-\itemize{
-\item{\url{https://datastorm-open.github.io/introduction_ramcharts/}}
-}
+\link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
+\link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
+\link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
+\link{amCandlestick}, \link{amFloatingBar}, \link{amOHLC}, \link{amWaterfall}
 }
