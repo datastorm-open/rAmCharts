@@ -165,7 +165,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
   output$am_ts_module <- renderAmCharts({
     data <- data()
     if(!is.null(data)){
-      init_data <- getCurrentStockData(data, col_date = col_date(), col_series = col_series(), 
+      init_data <- getCurrentStockData(data, col_date = col_date(), col_series = unlist(col_series()), 
                                        maxPoints = maxPoints(), tz = tz(), ts = ts(), 
                                        fun_aggr = fun_aggr(), treat_missing = treat_missing(), 
                                        maxgap = maxgap(), type_aggr = type_aggr())
@@ -218,9 +218,17 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
     cur_zoom <- ctrl_data$zoom
     all_data <- shiny::isolate(data())
     if(!is.null(all_data) & !is.null(cur_zoom)){
-      new_data <- getCurrentStockData(all_data, zoom = cur_zoom, col_date = col_date(), col_series = col_series(), 
+      
+      # tmp <- list(data = all_data, zoom = cur_zoom, col_date = col_date(), col_series = col_series(), 
+      #             maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
+      #             treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
+      # saveRDS(tmp, "tmp.RDS")
+      new_data <- getCurrentStockData(all_data, zoom = cur_zoom, col_date = col_date(), col_series = unlist(col_series()), 
                                       maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
                                       treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
+      
+      # print(head(new_data$data))
+      # print(tail(new_data$data))
       
       ctrl_data$data <- new_data$data
       ctrl_data$ts <- new_data$ts
