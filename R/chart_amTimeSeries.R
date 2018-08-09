@@ -270,11 +270,17 @@ amTimeSeries <- function(data, col_date,
     difft <- 1
   }
 
-  groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
-  minPeriod = groupToPeriods[1]
   if(length(groupToPeriods) == 1){
+    minPeriod = groupToPeriods
     groupToPeriods <- list(groupToPeriods)
+  } else {
+    groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
+    minPeriod = groupToPeriods[1]
+    if(length(groupToPeriods) == 1){
+      groupToPeriods <- list(groupToPeriods)
+    }
   }
+
   
   # annual data
   if(isTRUE(all.equal('YYYY', groupToPeriods))){
@@ -465,7 +471,7 @@ amTimeSeries <- function(data, col_date,
     setPeriodSelector(periodZoom),
     setCategoryAxesSettings(parseDates = TRUE, minPeriod = minPeriod,
                             groupToPeriods = groupToPeriods, maxSeries = maxSeries),
-    setPanelsSettings(marginTop = 30, creditsPosition = creditsPosition),
+    setPanelsSettings(marginTop = 30, creditsPosition = creditsPosition, thousandsSeparator = " "),
     
     setLegendSettings(position = legendPosition)
   )
