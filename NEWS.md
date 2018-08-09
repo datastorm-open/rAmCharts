@@ -1,5 +1,12 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.9 (based on [amcharts][amcharts_url] version **3.21.13**)
+
+  * ``rAmChartsTimeSeries module`` : enabled multiple ``col_series`` in a ``list``
+  * ``amTimeSeries`` : fix passing one ``groupToPeriods`` + update thousandsSeparator
+  * Update Docomentation and add full javascript API in package & ``amChartsAPI()`` function
+  * ``rAmChartsTimeSeries module`` : fix bug zooming on missing value
+
 ### rAmCharts 2.1.8 (based on [amcharts][amcharts_url] version **3.21.13**)
 
   * ``rAmChartsTimeSeries module`` : fix keeping first and last values when NA
