@@ -73,7 +73,7 @@ if (HTMLWidgets.shinyMode){
       }
   });
   
-    Shiny.addCustomMessageHandler('amSerialUpdateData', function(params){
+  Shiny.addCustomMessageHandler('amSerialUpdateData', function(params){
       // get container id
       var chart = getAmChart(params[0]);
       if(chart !== undefined){

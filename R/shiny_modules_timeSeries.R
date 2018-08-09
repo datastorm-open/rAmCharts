@@ -101,10 +101,7 @@
 #'   res <- callModule(rAmChartsTimeSeriesServer, "ts_1", reactive(data), reactive("date"), 
 #'      reactive("value"), maxPoints = shiny::reactive(max_points),
 #'      main = reactive("Example of rAmChartsTimeSeries module"),
-#'      color = reactive("red"), periodFieldsSelection = reactive(TRUE), 
-#'      ZoomButton = reactive(data.frame(Unit = c("DD", "DD", "MAX"), 
-#'          multiple = c(1, 7 ,1), label = c("Day","Week", "MAX"), 
-#'          selected = c(F, F, T)))
+#'      color = reactive("red"), periodFieldsSelection = reactive(TRUE)
 #'    )
 #'    
 #'   # show module return and print ts
@@ -196,7 +193,8 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                              cursor = cursor(), 
                              cursorValueBalloonsEnabled = cursorValueBalloonsEnabled(),
                              creditsPosition = creditsPosition(), 
-                             group = group())
+                             group = group(), 
+                             groupToPeriods = init_data$ts)
       
       tmp_am <- addListener(tmp_am, "zoomed", paste0("function (event) {
                                                      var zoomed_event = event.chart.events.zoomed;
@@ -218,23 +216,23 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
     cur_zoom <- ctrl_data$zoom
     all_data <- shiny::isolate(data())
     if(!is.null(all_data) & !is.null(cur_zoom)){
-      
-      # tmp <- list(data = all_data, zoom = cur_zoom, col_date = col_date(), col_series = col_series(), 
-      #             maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
-      #             treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
-      # saveRDS(tmp, "tmp.RDS")
       new_data <- getCurrentStockData(all_data, zoom = cur_zoom, col_date = col_date(), col_series = unlist(col_series()), 
                                       maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
                                       treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
-      
-      # print(head(new_data$data))
-      # print(tail(new_data$data))
-      
-      ctrl_data$data <- new_data$data
-      ctrl_data$ts <- new_data$ts
-      
-      session$sendCustomMessage("amChartStockModuleChangeData", 
-                                list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
+
+      if(!is.null(new_data)){
+        ctrl_data$data <- new_data$data
+        ctrl_data$ts <- new_data$ts
+        
+        session$sendCustomMessage("amChartStockModuleChangeData", 
+                                  list(ns("am_ts_module"), jsonlite::toJSON(new_data$data), jsonlite::toJSON(new_data$ts)))
+      } else {
+        shiny::showModal(shiny::modalDialog(
+          title = "Aggregation : no data available into subset",
+          "Use directly mouse zoom rather than zoom button", 
+          easyClose = TRUE, footer = NULL
+        ))
+      }
     }
   })
   
@@ -294,52 +292,56 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
     tmp_data <- data
   }
   
-  # ts to second
-  ts_seconds <- sapply(ts, function(x){
-    tmp_range <- seq(c(ISOdate(2000,3,20)), by = x, length.out = 2)
-    difftime(tmp_range[2], tmp_range[1], units = "secs")
-  })
-  
-  difft <- difftime(end_time, start_time)
-  
-  # difference en secondes
-  diff_secs <- as.numeric(difft, units = "secs")
-  
-  target_ts <- ts[which(ts_seconds >= diff_secs/maxPoints)[1]]
-  
-  # nouvelle data amCharts
-  am_data <- getTransformTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
-                            ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
-  
-  # first and last row in days to keep zoom possible
-  first_row <- data[1, c(col_date, col_series)]
-  
-  lapply(col_series, function(x){
-    first_row[[x]] <<- NA
-  })
-  first_row[[col_date]] <- lubridate::floor_date(data[[col_date]][1], "day")
-  last_row <- first_row
-  last_row[[col_date]] <- lubridate::ceiling_date(data[[col_date]][nrow(data)], "day")
-  
-  am_data <- rbind(first_row, am_data, last_row)
-  if(am_data[[col_date]][1] == am_data[[col_date]][2]){
-    am_data <- am_data[-1, ]
+  if(nrow(tmp_data) > 0){
+    # ts to second
+    ts_seconds <- sapply(ts, function(x){
+      tmp_range <- seq(c(ISOdate(2000,3,20)), by = x, length.out = 2)
+      difftime(tmp_range[2], tmp_range[1], units = "secs")
+    })
+    
+    difft <- difftime(end_time, start_time)
+    
+    # difference en secondes
+    diff_secs <- as.numeric(difft, units = "secs")
+    
+    target_ts <- ts[which(ts_seconds >= diff_secs/maxPoints)[1]]
+    
+    # nouvelle data amCharts
+    am_data <- getTransformTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
+                              ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
+    
+    # first and last row in days to keep zoom possible
+    first_row <- data[1, c(col_date, col_series)]
+    
+    lapply(col_series, function(x){
+      first_row[[x]] <<- NA
+    })
+    first_row[[col_date]] <- lubridate::floor_date(data[[col_date]][1], "day")
+    last_row <- first_row
+    last_row[[col_date]] <- lubridate::ceiling_date(data[[col_date]][nrow(data)], "day")
+    
+    am_data <- rbind(first_row, am_data, last_row)
+    if(am_data[[col_date]][1] == am_data[[col_date]][2]){
+      am_data <- am_data[-1, ]
+    }
+    if(am_data[[col_date]][nrow(am_data)] == am_data[[col_date]][nrow(am_data) - 1]){
+      am_data <- am_data[-nrow(am_data), ]
+    }
+    
+    # ts amCharts
+    am_ts <- gsub("sec$", "ss", target_ts)
+    am_ts <- gsub("min$", "mm", am_ts)
+    am_ts <- gsub("hour$", "hh", am_ts)
+    am_ts <- gsub("day$", "DD", am_ts)
+    am_ts <- gsub("week$", "WW", am_ts)
+    am_ts <- gsub("month$", "MM", am_ts)
+    am_ts <- gsub("year$", "YY", am_ts)
+    am_ts <- gsub("[[:space:]]*", "", am_ts)
+    
+    return(list(data = am_data, ts = am_ts))
+  } else {
+    return(NULL)
   }
-  if(am_data[[col_date]][nrow(am_data)] == am_data[[col_date]][nrow(am_data) - 1]){
-    am_data <- am_data[-nrow(am_data), ]
-  }
-  
-  # ts amCharts
-  am_ts <- gsub("sec$", "ss", target_ts)
-  am_ts <- gsub("min$", "mm", am_ts)
-  am_ts <- gsub("hour$", "hh", am_ts)
-  am_ts <- gsub("day$", "DD", am_ts)
-  am_ts <- gsub("week$", "WW", am_ts)
-  am_ts <- gsub("month$", "MM", am_ts)
-  am_ts <- gsub("year$", "YY", am_ts)
-  am_ts <- gsub("[[:space:]]*", "", am_ts)
-  
-  list(data = am_data, ts = am_ts)
 }
 #' Transform quantitative variables.
 #' 
