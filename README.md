@@ -4,11 +4,21 @@
 
 ## LOG CHANGE
 
-### rAmCharts 2.1.8 (dev) (based on [AmCharts][url_amcharts] version **3.21.13**)
+### rAmCharts 2.1.10 (based on [amcharts][amcharts_url] version **3.21.13**)
+
+  * recycle dp$color to pass ``data.table 1.12.2``
+  
+### rAmCharts 2.1.9 (based on [amcharts][amcharts_url] version **3.21.13**)
+
+  * ``rAmChartsTimeSeries module`` : enabled multiple ``col_series`` in a ``list``
+  * ``amTimeSeries`` : fix passing one ``groupToPeriods`` + update thousandsSeparator
+  * Update Docomentation and add full javascript API in package & ``amChartsAPI()`` function
+  * ``rAmChartsTimeSeries module`` : fix bug zooming on missing value
+  
+### rAmCharts 2.1.8 (based on [AmCharts][url_amcharts] version **3.21.13**)
 
   * ``rAmChartsTimeSeries module`` : fix keeping first and last values when NA
   * Update to ``amcharts.js 3.21.13``
-  * Add full javascript API in package & ``amChartsAPI()`` function
   
 ### rAmCharts 2.1.7 (based on [AmCharts][url_amcharts] version **3.20.18**)
 

@@ -1,5 +1,9 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.10 (based on [amcharts][amcharts_url] version **3.21.13**)
+
+  * recycle dp$color to pass ``data.table 1.12.2``
+  
 ### rAmCharts 2.1.9 (based on [amcharts][amcharts_url] version **3.21.13**)
 
   * ``rAmChartsTimeSeries module`` : enabled multiple ``col_series`` in a ``list``
