@@ -437,8 +437,8 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   if(is.null(col)){
     col <- "#1e90ff"
   }
-  dp$color <- col
-  
+  dp$color <- rep(col, length.out=nrow(dp))  # recyle colors such as c("blue", "red") in test_amBoxplot.R
+
   outliers <- as.list(res[seq(2, nrow(res), by = 2)])
   
   # cat <- as.character(outliers[[1]])
