@@ -14,13 +14,14 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp", 
 #' "triangleDown". Default set to "round".
 #' @param type \code{character}, type of plot. Possible values are : "l" for a line, "sl" 
-#' for a smoothed line (deprecated), "st" for steps, "p" for points, and "b" for line and points.
+#' for a smoothed line, "st" for step, "p" for points, and "b" for line and points.
 #' Default set to "p".
 #' @param col either a \code{factor} or a \code{character}, default set to "gray".
 #' @param fill_alphas a \code{numeric} between 0 and 1 for printed area.
 #' @param weights \code{numeric}, weights for x/y charts only. Small values are prefered for lisibility.
 #' @param id \code{numeric}, point id, for x/y charts only. Default 1:length(x).
 #' @param precision \code{numeric}, precision you wish to display. Default set to 2.
+#' @param title \code{character}, name of the new serie, used when legend is enabled.
 #' @param dataDateFormat \code{character}, default set to NULL. Even if your chart parses dates,
 #' you can pass them as strings in your dataframe - 
 #' all you need to do is to set data date format and the chart will parse dates to date objects.
@@ -116,7 +117,7 @@ amPlot.numeric <- function(x, y,
                                       "triangleUp", "triangleDown"),
                            type = c("points", "line", "smoothedLine", "step", "both"),
                            col = "#0066cc", fill_alphas = 0,
-                           weights = NULL, precision = 2, id, error, xlab, ylab,
+                           weights = NULL, precision = 2, title = NULL, id, error, xlab, ylab,
                            lty, cex, lwd, xlim, ylim, ...)
 {
   # check arguments validity
@@ -158,10 +159,13 @@ amPlot.numeric <- function(x, y,
     # define width of bullet
     if (missing(cex)) cex <- 1
     
+    if(is.null(title)){
+      title = deparse(substitute(x))
+    }
     # define the graph object depending on the type
     graph_obj <- getGraph(type = type, col = col, fill_alphas = fill_alphas,
                           bullet = bullet,
-                          title = deparse(substitute(x)),
+                          title = title,
                           cex = cex, lwd = lwd, lty = lty)
     
     # define axes label
@@ -192,14 +196,17 @@ amPlot.numeric <- function(x, y,
   } else if (is.numeric(y)) {
     # the user plot an XY chart
     
+    if(is.null(title)){
+      title = deparse(substitute(y))
+    }
+    
     if (length(x) != length(y)) stop("'x' and 'y' lengths differ")
     
-    type <- match.arg(arg = type, choices = c("points", "line"))
+    type <- match.arg(arg = type, choices = c("points", "line", "both"))
     
     # axes label
     if (missing(xlab)) xlab <- deparse(substitute(x))
     if (missing(ylab)) ylab <- deparse(substitute(y))
-    graphTitle <- deparse(substitute(y))
     
     # initialize dataProvider
     if (!missing(id)) {
@@ -239,7 +246,7 @@ amPlot.numeric <- function(x, y,
     valueAxis_bottom <- valueAxis(title = xlab, position = "bottom", axisAlpha = 0,
                                   minimum = xlim[1], maximum = xlim[2])
     
-    graph_obj <- getGraphXY(type = type, bullet = bullet, cex = cex, title = graphTitle,
+    graph_obj <- getGraphXY(type = type, bullet = bullet, cex = cex, title = title,
                             lwd = lwd, lty = lty, bulletAlpha = bulletAlpha, col = col,
                             fill_alphas = fill_alphas, balloonText = balloonText, 
                             weighted = weighted)
@@ -291,7 +298,7 @@ amPlot.character <- function(x, y,
                              col = "#0066cc", fill_alphas = 0,
                              weights = NULL,
                              precision = 2,
-                             parseDates = FALSE, dataDateFormat,
+                             parseDates = FALSE, title = NULL, dataDateFormat,
                              id, error, xlab, ylab,
                              lty, cex, lwd, xlim, ylim, ...)
 {
@@ -337,9 +344,12 @@ amPlot.character <- function(x, y,
     # define width of bullet
     if (missing(cex)) cex <- 1
     
+    if(is.null(title)){
+      title = deparse(substitute(y))
+    }
     # define the graph object depending on the type
     graph_obj <- getGraph(type = type, col = col, fill_alphas = fill_alphas, 
-                          bullet = bullet, title = deparse(substitute(y)),
+                          bullet = bullet, title = title,
                           cex = cex, lwd = lwd, lty = lty)
     
     # define axes label
@@ -453,7 +463,7 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
       if (t == "sl") # exception to remove for the next submission
         return ("smoothedLine")
       else 
-        return (match.arg(t, c("line", "step")))
+        return (match.arg(t, c("points", "line", "smoothedLine", "step", "both")))
     })
     
     if (length(type) == 1) type <- rep(type, ncol(x))
@@ -462,11 +472,19 @@ amPlot.data.frame <- function(x, columns, type = "l", precision = 2, xlab, ylab,
     names(type) <- NULL
     
     graphs_ls <- lapply(1:ncol(x), FUN = function (i) {
+      
+      lineAlpha <- ifelse(type[i] == "points", yes = 0, no = 1)
+      bulletAlpha <- ifelse(type[i] %in% c("points", "both"), yes = 1, no = 0)
+      maxBulletSize<- ifelse(type[i] %in% c("points", "both"), yes = 5, no = 0)
+      
+      type <- type[i]
+      if(!type %in% c("smoothedLine", "step")) type <- "line"
       graph(balloonText = "value: <b>[[value]]</b>",
             title = names[i], valueField = names[i],
-            lineAlpha = 1, type = type[i], bullet = "round",
+            lineAlpha = lineAlpha, type = type, bullet = "round",
             fill_alphas = fill_alphas,
-            bulletAlpha = 0)
+            bulletAlpha = bulletAlpha, 
+            maxBulletSize = maxBulletSize)
     })
     
     x <- cbind(x, amCategory = paste("Obs.", 1:nrow(x)))
@@ -569,6 +587,7 @@ getGraph <- function (type, col, bullet, cex, lwd, lty, title, fill_alphas)
 getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
                         bulletAlpha, balloonText, weighted, title, fill_alphas)
 {
+
   graph_obj <- switch (type,
                        "points" = {
                          graph(balloonText = balloonText, valueField = "weights",
@@ -577,12 +596,24 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
                        },
                        "smoothedLine" = {
                          graph(balloonText = balloonText, valueField = "weights", title = title,
+                               type = "smoothedLine",
+                               xField = "x", yField = "y", bullet = bullet, fillAlphas = fill_alphas,
+                               lineThickness = lwd, dashLength = lty, bulletAlpha = bulletAlpha)
+                       },
+                       "step" = {
+                         graph(balloonText = balloonText, valueField = "weights", title = title,
+                               type = "step",
                                xField = "x", yField = "y", bullet = bullet, fillAlphas = fill_alphas,
                                lineThickness = lwd, dashLength = lty, bulletAlpha = bulletAlpha)
                        },
                        "line" = {
                          graph(balloonText = balloonText, valueField = "weights", title = title,
                                xField = "x", yField = "y", bullet = "round", bulletAlpha = 0,
+                               fillAlphas = fill_alphas, lineThickness = lwd, dashLength = lty)
+                       },
+                       "both" = {
+                         graph(balloonText = balloonText, valueField = "weights", title = title,
+                               xField = "x", yField = "y", bullet = "round", bulletAlpha = 1,
                                fillAlphas = fill_alphas, lineThickness = lwd, dashLength = lty)
                        })
   
@@ -604,7 +635,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' @param x \code{numeric}, equivalent to y, deprecated.
 #' @param y \code{numeric}.
 #' @param type (optionnal) \code{character}. Possible values are : "l" for line, 
-#' "p" for points, "b" for both, "sl" for smoothed line. 
+#' "p" for points, "b" for both, "sl" for smoothed line, "st" for step
 #' @param col \code{character}, color of the new serie.
 #' @param fill_alphas a \code{numeric} between 0 and 1 for printed area.
 #' @param title \code{character}, name of the new serie, used when legend is enabled.
@@ -639,7 +670,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' sense to give the y argument.
 #' 
 amLines <- function(chart, x = NULL, y = NULL,
-                    type = c("points", "line", "smoothedLine", "both"),
+                    type = c("points", "line", "smoothedLine", "both", "step"),
                     col = "#0066cc", title, fill_alphas = 0, balloon = T)
 {
   
@@ -722,8 +753,8 @@ amLines <- function(chart, x = NULL, y = NULL,
   if(!type %in% c("points", "both"))
     graph_obj <- setProperties(.Object = graph_obj, bullet = "round", maxBulletSize = 5, bulletAlpha = 0)
   # set the type if necessary
-  if (type == "smoothedLine")
-    graph_obj <- setType(.Object = graph_obj, type = "smoothedLine")
+  if (type %in% c("smoothedLine", "step"))
+    graph_obj <- setType(.Object = graph_obj, type = type)
   
   # add the graph
   addGraph(.Object = chart, amGraph = graph_obj)

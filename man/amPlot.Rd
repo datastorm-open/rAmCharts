@@ -18,15 +18,15 @@ amPlot(x, ...)
   "bubble", "yError", "xError", "triangleLeft", "triangleRight",
   "triangleUp", "triangleDown"), type = c("points", "line",
   "smoothedLine", "step", "both"), col = "#0066cc", fill_alphas = 0,
-  weights = NULL, precision = 2, id, error, xlab, ylab, lty, cex, lwd,
-  xlim, ylim, ...)
+  weights = NULL, precision = 2, title = NULL, id, error, xlab, ylab,
+  lty, cex, lwd, xlim, ylim, ...)
 
 \method{amPlot}{character}(x, y, bullet = c("round", "diamond", "square",
   "bubble", "yError", "xError", "triangleLeft", "triangleRight",
   "triangleUp", "triangleDown"), type = c("points", "line",
   "smoothedLine", "step", "both"), col = "#0066cc", fill_alphas = 0,
-  weights = NULL, precision = 2, parseDates = FALSE, dataDateFormat,
-  id, error, xlab, ylab, lty, cex, lwd, xlim, ylim, ...)
+  weights = NULL, precision = 2, parseDates = FALSE, title = NULL,
+  dataDateFormat, id, error, xlab, ylab, lty, cex, lwd, xlim, ylim, ...)
 
 \method{amPlot}{factor}(x, y, bullet = "round", type = "p",
   col = "gray", weights = NULL, precision = 2, parseDates = FALSE,
@@ -53,7 +53,7 @@ optional if x is an appropriate structure.}
 "triangleDown". Default set to "round".}
 
 \item{type}{\code{character}, type of plot. Possible values are : "l" for a line, "sl" 
-for a smoothed line (deprecated), "st" for steps, "p" for points, and "b" for line and points.
+for a smoothed line, "st" for step, "p" for points, and "b" for line and points.
 Default set to "p".}
 
 \item{col}{either a \code{factor} or a \code{character}, default set to "gray".}
@@ -63,6 +63,8 @@ Default set to "p".}
 \item{weights}{\code{numeric}, weights for x/y charts only. Small values are prefered for lisibility.}
 
 \item{precision}{\code{numeric}, precision you wish to display. Default set to 2.}
+
+\item{title}{\code{character}, name of the new serie, used when legend is enabled.}
 
 \item{id}{\code{numeric}, point id, for x/y charts only. Default 1:length(x).}
 
