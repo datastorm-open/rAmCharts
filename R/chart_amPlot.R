@@ -604,7 +604,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' @param x \code{numeric}, equivalent to y, deprecated.
 #' @param y \code{numeric}.
 #' @param type (optionnal) \code{character}. Possible values are : "l" for line, 
-#' "p" for points, "sl" for smoothed line. 
+#' "p" for points, "b" for both, "sl" for smoothed line. 
 #' @param col \code{character}, color of the new serie.
 #' @param fill_alphas a \code{numeric} between 0 and 1 for printed area.
 #' @param title \code{character}, name of the new serie, used when legend is enabled.
@@ -639,7 +639,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' sense to give the y argument.
 #' 
 amLines <- function(chart, x = NULL, y = NULL,
-                    type = c("points", "line", "smoothedLine"),
+                    type = c("points", "line", "smoothedLine", "both"),
                     col = "#0066cc", title, fill_alphas = 0, balloon = T)
 {
   
@@ -717,9 +717,9 @@ amLines <- function(chart, x = NULL, y = NULL,
   if (chart@type != "serial")
     graph_obj <- setProperties(.Object = graph_obj, xField = "x", yField = name)
   
-  if (type == "points")
+  if (type %in% c("points", "both"))
     graph_obj <- setProperties(.Object = graph_obj, bullet = "round", maxBulletSize = 5)
-  if(type != "points")
+  if(!type %in% c("points", "both"))
     graph_obj <- setProperties(.Object = graph_obj, bullet = "round", maxBulletSize = 5, bulletAlpha = 0)
   # set the type if necessary
   if (type == "smoothedLine")

@@ -5,7 +5,8 @@
 \title{amLines adds a serie to a graph.}
 \usage{
 amLines(chart, x = NULL, y = NULL, type = c("points", "line",
-  "smoothedLine"), col = "#0066cc", title, fill_alphas = 0, balloon = T)
+  "smoothedLine", "both"), col = "#0066cc", title, fill_alphas = 0,
+  balloon = T)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}. Chart you wish to add the new serie.}
@@ -15,7 +16,7 @@ amLines(chart, x = NULL, y = NULL, type = c("points", "line",
 \item{y}{\code{numeric}.}
 
 \item{type}{(optionnal) \code{character}. Possible values are : "l" for line, 
-"p" for points, "sl" for smoothed line.}
+"p" for points, "b" for both, "sl" for smoothed line.}
 
 \item{col}{\code{character}, color of the new serie.}
 

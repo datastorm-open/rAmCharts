@@ -3,6 +3,7 @@
 ### rAmCharts 2.1.11 (based on [amcharts][amcharts_url] version **3.21.13**)
 
   * fix export pdf using new pandoc version
+  * amLines : add both option
   
 ### rAmCharts 2.1.10 (based on [amcharts][amcharts_url] version **3.21.13**)
 
