@@ -7,10 +7,10 @@
 amOptions(chart, theme = c("none", "light", "dark", "patterns", "chalk"),
   legend = FALSE, legendPosition = "right", legendAlign = "left",
   export = FALSE, exportFormat = character(),
-  creditsPosition = "top-left", main = character(), mainColor = "#000000",
-  mainSize = 15, zoom = FALSE, scrollbar = FALSE, scrollbarHeight = 20,
-  valuescrollbar = FALSE, valuescrollbarHeight = 20, labelRotation = 0,
-  ...)
+  creditsPosition = "top-left", main = character(),
+  mainColor = "#000000", mainSize = 15, zoom = FALSE,
+  scrollbar = FALSE, scrollbarHeight = 20, valuescrollbar = FALSE,
+  valuescrollbarHeight = 20, labelRotation = 0, ...)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}.}

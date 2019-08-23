@@ -5,9 +5,9 @@
 \title{Plotting floating bar chart using rAmCharts}
 \usage{
 amFloatingBar(x, y_inf, y_sup, data, xlab = "", ylab = "",
-  groups_color = NULL, horiz = FALSE, show_values = FALSE, depth = 0,
-  dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD",
-  ""), ...)
+  groups_color = NULL, horiz = FALSE, show_values = FALSE,
+  depth = 0, dataDateFormat = NULL,
+  minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 }
 \arguments{
 \item{x}{\code{character}, column name for x-axis or \code{numeric} value of the corresponding column.

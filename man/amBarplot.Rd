@@ -5,10 +5,10 @@
 \title{Plotting bar chart using rAmCharts}
 \usage{
 amBarplot(x, y, data, xlab = "", ylab = "", ylim = NULL,
-  groups_color = NULL, horiz = FALSE, stack_type = c("none", "regular",
-  "100"), layered = FALSE, show_values = FALSE, depth = 0,
-  dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat), "DD",
-  ""), ...)
+  groups_color = NULL, horiz = FALSE, stack_type = c("none",
+  "regular", "100"), layered = FALSE, show_values = FALSE, depth = 0,
+  dataDateFormat = NULL, minPeriod = ifelse(!is.null(dataDateFormat),
+  "DD", ""), ...)
 }
 \arguments{
 \item{x}{\code{character}, column name for x-axis or \code{numeric}, value of the corresponding column.

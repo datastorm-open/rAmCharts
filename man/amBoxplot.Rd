@@ -10,8 +10,8 @@
 \usage{
 amBoxplot(object, ...)
 
-\method{amBoxplot}{default}(object, xlab = NULL, ylab = NULL, ylim = NULL,
-  names = NULL, col = "#1e90ff", horiz = FALSE, ...)
+\method{amBoxplot}{default}(object, xlab = NULL, ylab = NULL,
+  ylim = NULL, names = NULL, col = "#1e90ff", horiz = FALSE, ...)
 
 \method{amBoxplot}{data.frame}(object, id = NULL, xlab = NULL,
   ylab = NULL, ylim = NULL, col = NULL, horiz = FALSE, ...)
@@ -19,8 +19,9 @@ amBoxplot(object, ...)
 \method{amBoxplot}{matrix}(object, use.cols = TRUE, xlab = NULL,
   ylab = NULL, ylim = NULL, col = NULL, horiz = FALSE, ...)
 
-\method{amBoxplot}{formula}(object, data = NULL, id = NULL, xlab = NULL,
-  ylab = NULL, ylim = NULL, col = NULL, horiz = FALSE, ...)
+\method{amBoxplot}{formula}(object, data = NULL, id = NULL,
+  xlab = NULL, ylab = NULL, ylim = NULL, col = NULL,
+  horiz = FALSE, ...)
 }
 \arguments{
 \item{object}{a vector, data.frame, a matrix, or a formula.}

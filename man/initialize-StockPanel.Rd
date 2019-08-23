@@ -17,9 +17,10 @@
 \title{Initialize a StockPanel}
 \usage{
 \S4method{initialize}{StockPanel}(.Object, allLabels, axes, balloon,
-  categoryAxis, categoryField, chartCursor, chartScrollbar, creditsPosition,
-  dataProvider, graphs, graph, guides, legend, theme, title, titles, trendLines,
-  type, valueAxes, valueScrollbar, drawOnAxis, stockGraphs, stockLegend, ...)
+  categoryAxis, categoryField, chartCursor, chartScrollbar,
+  creditsPosition, dataProvider, graphs, graph, guides, legend, theme,
+  title, titles, trendLines, type, valueAxes, valueScrollbar, drawOnAxis,
+  stockGraphs, stockLegend, ...)
 
 stockPanel(...)
 
@@ -27,7 +28,8 @@ panel(...)
 
 setDrawOnAxis(.Object, valueAxis = NULL, ...)
 
-\S4method{setDrawOnAxis}{StockPanel,ValueAxisOrCharacterOrMissing}(.Object,
+
+  \S4method{setDrawOnAxis}{StockPanel,ValueAxisOrCharacterOrMissing}(.Object,
   valueAxis = NULL, ...)
 
 setStockGraphs(.Object, stockGraphs)

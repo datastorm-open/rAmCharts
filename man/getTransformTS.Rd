@@ -4,10 +4,11 @@
 \alias{getTransformTS}
 \title{Transform quantitative variables.}
 \usage{
-getTransformTS(data, col_date = "date", col_series = setdiff(colnames(data),
-  col_date), ts = "10 min", tz = "UTC", fun_aggr = "mean",
-  treat_missing = FALSE, control_date = TRUE, maxgap = Inf,
-  keep_last = TRUE, type_aggr = "first", showwarn = FALSE)
+getTransformTS(data, col_date = "date",
+  col_series = setdiff(colnames(data), col_date), ts = "10 min",
+  tz = "UTC", fun_aggr = "mean", treat_missing = FALSE,
+  control_date = TRUE, maxgap = Inf, keep_last = TRUE,
+  type_aggr = "first", showwarn = FALSE)
 }
 \arguments{
 \item{data}{: data.frame to transform}

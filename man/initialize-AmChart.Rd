@@ -79,30 +79,32 @@
 \title{Creates an AmChart}
 \usage{
 \S4method{initialize}{AmChart}(.Object, allLabels, arrows, axes, balloon,
-  categoryAxis, categoryField, chartCursor, chartScrollbar, creditsPosition,
-  dataProvider, graphs, graph, guides, legend, segmentsField, theme, titles,
-  trendLines, type, valueAxes, valueAxis, valueScrollbar, ...)
+  categoryAxis, categoryField, chartCursor, chartScrollbar,
+  creditsPosition, dataProvider, graphs, graph, guides, legend,
+  segmentsField, theme, titles, trendLines, type, valueAxes, valueAxis,
+  valueScrollbar, ...)
 
 amChart(allLabels, arrows, axes, balloon, categoryAxis, categoryField,
-  chartCursor, chartScrollbar, creditsPosition, dataProvider, graph, graphs,
-  guides, legend, segmentsField, theme, titles, trendLines, type, valueAxes,
-  valueAxis, ...)
+  chartCursor, chartScrollbar, creditsPosition, dataProvider, graph,
+  graphs, guides, legend, segmentsField, theme, titles, trendLines, type,
+  valueAxes, valueAxis, ...)
 
 amAngularGaugeChart(arrows, titles, axes, ...)
 
 amFunnelChart(dataProvider, marginLeft = 10, marginRight = 10, ...)
 
-amRadarChart(allLabels, balloon, categoryField, creditsPosition, dataProvider,
-  graphs, guides, legend, titles, valueAxes, ...)
+amRadarChart(allLabels, balloon, categoryField, creditsPosition,
+  dataProvider, graphs, guides, legend, titles, valueAxes, ...)
 
 amSerialChart(allLabels, balloon, categoryAxis, categoryField, chartCursor,
-  chartScrollbar, creditsPosition, dataProvider, graphs, guides, legend, titles,
-  trendLines, valueAxes, ...)
+  chartScrollbar, creditsPosition, dataProvider, graphs, guides, legend,
+  titles, trendLines, valueAxes, ...)
 
-amPieChart(allLabels, balloon, creditsPosition, dataProvider, legend, titles,
+amPieChart(allLabels, balloon, creditsPosition, dataProvider, legend,
+  titles, ...)
+
+amGanttChart(categoryField, dataProvider, graph, segmentsField, valueAxis,
   ...)
-
-amGanttChart(categoryField, dataProvider, graph, segmentsField, valueAxis, ...)
 
 amXYChart(creditsPosition, dataProvider, graphs, ...)
 
@@ -120,7 +122,8 @@ setArrows(.Object, arrows = NULL)
 
 addArrow(.Object, arrow = NULL, ...)
 
-\S4method{addArrow}{AmChart,GaugeArrowOrMissing}(.Object, arrow = NULL, ...)
+\S4method{addArrow}{AmChart,GaugeArrowOrMissing}(.Object, arrow = NULL,
+  ...)
 
 setAxes(.Object, axes, ...)
 
@@ -134,8 +137,8 @@ addAxis(.Object, axis = NULL, ...)
 
 \S4method{addAxis}{AmChart,GaugeAxisOrMissing}(.Object, axis = NULL, ...)
 
-\S4method{setBalloon}{AmChart,AmBalloonOrMissing}(.Object, amBalloon = NULL,
-  ...)
+\S4method{setBalloon}{AmChart,AmBalloonOrMissing}(.Object,
+  amBalloon = NULL, ...)
 
 setCategoryAxis(.Object, categoryAxis = NULL, ...)
 
@@ -161,10 +164,11 @@ setCreditsPosition(.Object, creditsPosition)
 
 setDataLoader(.Object, url, format, ...)
 
-\S4method{setDataLoader}{AmChart,character,character}(.Object, url, format, ...)
+\S4method{setDataLoader}{AmChart,character,character}(.Object, url, format,
+  ...)
 
-\S4method{setDataProvider}{AmChart,ANY,logicalOrMissing}(.Object, dataProvider,
-  keepNA = TRUE)
+\S4method{setDataProvider}{AmChart,ANY,logicalOrMissing}(.Object,
+  dataProvider, keepNA = TRUE)
 
 setGraphs(.Object, graphs)
 
@@ -172,7 +176,8 @@ setGraphs(.Object, graphs)
 
 addGraph(.Object, amGraph = NULL, ...)
 
-\S4method{addGraph}{AmChart,AmGraphOrMissing}(.Object, amGraph = NULL, ...)
+\S4method{addGraph}{AmChart,AmGraphOrMissing}(.Object, amGraph = NULL,
+  ...)
 
 \S4method{setGraph}{AmChart,AmGraphOrMissing}(.Object, graph = NULL, ...)
 
@@ -184,7 +189,8 @@ setGuides(.Object, guides)
 
 setLegend(.Object, amLegend = NULL, ...)
 
-\S4method{setLegend}{AmChart,AmLegendOrMissing}(.Object, amLegend = NULL, ...)
+\S4method{setLegend}{AmChart,AmLegendOrMissing}(.Object, amLegend = NULL,
+  ...)
 
 addSegment(.Object, categoryIDs, sgts)
 
@@ -196,7 +202,8 @@ addSubData(.Object, categoryIDs, data)
 
 setSubChartProperties(.Object, .subObject = NULL, ...)
 
-\S4method{setSubChartProperties}{AmChart}(.Object, .subObject = NULL, ...)
+\S4method{setSubChartProperties}{AmChart}(.Object, .subObject = NULL,
+  ...)
 
 setTheme(.Object, theme)
 
@@ -216,8 +223,8 @@ setTrendLines(.Object, trendLines)
 
 addTrendLine(.Object, trendLine = NULL, ...)
 
-\S4method{addTrendLine}{AmChart,TrendLineOrMissing}(.Object, trendLine = NULL,
-  ...)
+\S4method{addTrendLine}{AmChart,TrendLineOrMissing}(.Object,
+  trendLine = NULL, ...)
 
 \S4method{setType}{AmChart,character}(.Object, type)
 
@@ -227,16 +234,16 @@ setValueAxes(.Object, valueAxes)
 
 addValueAxes(.Object, valueAxis = NULL, ...)
 
-\S4method{addValueAxes}{AmChart,ValueAxisOrMissing}(.Object, valueAxis = NULL,
-  ...)
+\S4method{addValueAxes}{AmChart,ValueAxisOrMissing}(.Object,
+  valueAxis = NULL, ...)
 
 addValueAxis(.Object, valueAxis = NULL, ...)
 
-\S4method{addValueAxis}{AmChart,ValueAxisOrMissing}(.Object, valueAxis = NULL,
-  ...)
+\S4method{addValueAxis}{AmChart,ValueAxisOrMissing}(.Object,
+  valueAxis = NULL, ...)
 
-\S4method{setValueAxis}{AmChart,ValueAxisOrMissing}(.Object, valueAxis = NULL,
-  ...)
+\S4method{setValueAxis}{AmChart,ValueAxisOrMissing}(.Object,
+  valueAxis = NULL, ...)
 
 setValueScrollbar(.Object, valueScrollbar, ...)
 

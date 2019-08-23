@@ -20,7 +20,8 @@ setBands(.Object, bands)
 
 addBand(.Object, band = NULL, ...)
 
-\S4method{addBand}{GaugeAxis,GaugeBandOrMissing}(.Object, band = NULL, ...)
+\S4method{addBand}{GaugeAxis,GaugeBandOrMissing}(.Object, band = NULL,
+  ...)
 }
 \arguments{
 \item{.Object}{\linkS4class{GaugeAxis}.}

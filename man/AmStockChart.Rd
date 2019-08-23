@@ -41,11 +41,11 @@
 \title{Initializes an AmStockChart}
 \usage{
 \S4method{initialize}{AmStockChart}(.Object, balloon, comparedDataSets,
-  dataSets, dataSetSelector, mainDataSet, panels, periodSelector, theme, group,
-  is_ts_module, ...)
+  dataSets, dataSetSelector, mainDataSet, panels, periodSelector, theme,
+  group, is_ts_module, ...)
 
-amStockChart(balloon, comparedDataSets, dataSets, dataSetSelector, mainDataSet,
-  panels, periodSelector, theme, group, is_ts_module, ...)
+amStockChart(balloon, comparedDataSets, dataSets, dataSetSelector,
+  mainDataSet, panels, periodSelector, theme, group, is_ts_module, ...)
 
 \S4method{setBalloon}{AmStockChart,AmBalloonOrMissing}(.Object,
   amBalloon = NULL, ...)
@@ -79,13 +79,13 @@ setDataSets(.Object, dataSets)
 
 addDataSet(.Object, dataSet = NULL, ...)
 
-\S4method{addDataSet}{AmStockChart,DataSetOrMissing}(.Object, dataSet = NULL,
-  ...)
+\S4method{addDataSet}{AmStockChart,DataSetOrMissing}(.Object,
+  dataSet = NULL, ...)
 
 setDataSetSelector(.Object, dataSetSelector = NULL, ...)
 
-\S4method{setDataSetSelector}{AmStockChart}(.Object, dataSetSelector = NULL,
-  ...)
+\S4method{setDataSetSelector}{AmStockChart}(.Object,
+  dataSetSelector = NULL, ...)
 
 setLegendSettings(.Object, ...)
 
@@ -102,8 +102,8 @@ setPanels(.Object, panels)
 
 addPanel(.Object, panel = NULL, ...)
 
-\S4method{addPanel}{AmStockChart,StockPanelOrMissing}(.Object, panel = NULL,
-  ...)
+\S4method{addPanel}{AmStockChart,StockPanelOrMissing}(.Object,
+  panel = NULL, ...)
 
 setPanelsSettings(.Object, ...)
 
@@ -111,7 +111,8 @@ setPanelsSettings(.Object, ...)
 
 setPeriodSelector(.Object, periodSelector = NULL, ...)
 
-\S4method{setPeriodSelector}{AmStockChart,PeriodSelectorOrMissing}(.Object,
+
+  \S4method{setPeriodSelector}{AmStockChart,PeriodSelectorOrMissing}(.Object,
   periodSelector = NULL, ...)
 
 setStockEventsSettings(.Object, ...)

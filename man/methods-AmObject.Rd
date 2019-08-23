@@ -12,7 +12,8 @@
 \usage{
 addListener(.Object, name, expression)
 
-\S4method{addListener}{AmObject,character,character}(.Object, name, expression)
+\S4method{addListener}{AmObject,character,character}(.Object, name,
+  expression)
 
 resetProperties(.Object, ...)
 

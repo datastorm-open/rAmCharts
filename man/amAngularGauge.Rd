@@ -5,11 +5,11 @@
 \title{Plotting gauge using rAmCharts}
 \usage{
 amAngularGauge(x, start = 0, end = 100, step = 20,
-  bands = data.frame(start = numeric(), end = numeric(), color = character(),
-  width = numeric(), stringsAsFactors = FALSE), text = "", textSize = 25,
-  secondAxe = FALSE, start2 = 0, end2 = 100, step2 = 20,
-  bands2 = data.frame(start = numeric(), end = numeric(), color = character(),
-  stringsAsFactors = FALSE), ...)
+  bands = data.frame(start = numeric(), end = numeric(), color =
+  character(), width = numeric(), stringsAsFactors = FALSE), text = "",
+  textSize = 25, secondAxe = FALSE, start2 = 0, end2 = 100,
+  step2 = 20, bands2 = data.frame(start = numeric(), end = numeric(),
+  color = character(), stringsAsFactors = FALSE), ...)
 }
 \arguments{
 \item{x}{\code{numeric}, value for which the angular gauge is desired.}

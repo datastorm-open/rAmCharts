@@ -4,7 +4,8 @@
 \alias{stockGraph}
 \title{Constructor for a stockGraph (class AmGraph)}
 \usage{
-stockGraph(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
+stockGraph(animationPlayed = FALSE, balloonText, title, type, valueField,
+  ...)
 }
 \arguments{
 \item{animationPlayed}{\code{logical}.}

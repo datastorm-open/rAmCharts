@@ -5,8 +5,8 @@
 \title{Plotting candlestick chart using rAmCharts}
 \usage{
 amCandlestick(data, xlab = "", ylab = "", horiz = FALSE,
-  positiveColor = "#7f8da9", negativeColor = "#db4c3c", names = c("low",
-  "open", "close", "high"), dataDateFormat = NULL,
+  positiveColor = "#7f8da9", negativeColor = "#db4c3c",
+  names = c("low", "open", "close", "high"), dataDateFormat = NULL,
   minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 }
 \arguments{

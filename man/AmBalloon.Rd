@@ -21,7 +21,8 @@ amBalloon(adjustBorderColor, color, cornerRadius, fillColor, ...)
 
 setAdjustBorderColor(.Object, adjustBorderColor)
 
-\S4method{setAdjustBorderColor}{AmBalloon,logical}(.Object, adjustBorderColor)
+\S4method{setAdjustBorderColor}{AmBalloon,logical}(.Object,
+  adjustBorderColor)
 
 setColor(.Object, color)
 

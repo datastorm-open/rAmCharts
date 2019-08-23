@@ -10,12 +10,13 @@
 \usage{
 setExport(.Object, enabled = TRUE, ...)
 
-\S4method{setExport}{AmCharts,logicalOrMissing}(.Object, enabled = TRUE, ...)
+\S4method{setExport}{AmCharts,logicalOrMissing}(.Object, enabled = TRUE,
+  ...)
 
 setResponsive(.Object, enabled = TRUE, ...)
 
-\S4method{setResponsive}{AmCharts,logicalOrMissing}(.Object, enabled = TRUE,
-  ...)
+\S4method{setResponsive}{AmCharts,logicalOrMissing}(.Object,
+  enabled = TRUE, ...)
 }
 \arguments{
 \item{.Object}{\linkS4class{AmChart} or \linkS4class{AmStockChart}.}

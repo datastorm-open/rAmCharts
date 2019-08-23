@@ -5,8 +5,8 @@
 \title{Plotting OHLC chart}
 \usage{
 amOHLC(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,
-  positiveColor = "#7f8da9", negativeColor = "#db4c3c", names = c("low",
-  "open", "close", "high"), dataDateFormat = NULL,
+  positiveColor = "#7f8da9", negativeColor = "#db4c3c",
+  names = c("low", "open", "close", "high"), dataDateFormat = NULL,
   minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
 }
 \arguments{

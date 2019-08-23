@@ -13,10 +13,11 @@
 \alias{setValueField,AmGraph,character-method}
 \title{Initializes an AmGraph}
 \usage{
-\S4method{initialize}{AmGraph}(.Object, animationPlayed = FALSE, balloonText,
-  title, type, valueField, ...)
+\S4method{initialize}{AmGraph}(.Object, animationPlayed = FALSE,
+  balloonText, title, type, valueField, ...)
 
-amGraph(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
+amGraph(animationPlayed = FALSE, balloonText, title, type, valueField,
+  ...)
 
 graph(animationPlayed = FALSE, balloonText, title, type, valueField, ...)
 

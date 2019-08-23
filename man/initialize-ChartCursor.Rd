@@ -11,7 +11,8 @@
 \alias{setValueLineAxis,ChartCursor,ValueAxisOrCharacterOrMissing-method}
 \title{Initializes a ChartCursor}
 \usage{
-\S4method{initialize}{ChartCursor}(.Object, oneBalloonOnly, valueLineAxis, ...)
+\S4method{initialize}{ChartCursor}(.Object, oneBalloonOnly, valueLineAxis,
+  ...)
 
 chartCursor(animationDuration = 0.3, oneBalloonOnly, valueLineAxis, ...)
 
@@ -21,7 +22,8 @@ setOneBalloonOnly(.Object, oneBalloonOnly)
 
 setValueLineAxis(.Object, valueLineAxis = NULL, ...)
 
-\S4method{setValueLineAxis}{ChartCursor,ValueAxisOrCharacterOrMissing}(.Object,
+
+  \S4method{setValueLineAxis}{ChartCursor,ValueAxisOrCharacterOrMissing}(.Object,
   valueLineAxis = NULL, ...)
 }
 \arguments{

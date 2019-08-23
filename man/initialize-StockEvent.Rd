@@ -9,8 +9,8 @@
 \alias{setStockGraph,StockEvent,AmGraphOrCharacterOrMissing-method}
 \title{Initialize a StockEvent}
 \usage{
-\S4method{initialize}{StockEvent}(.Object, backgroundAlpha = 1, stockGraph,
-  ...)
+\S4method{initialize}{StockEvent}(.Object, backgroundAlpha = 1,
+  stockGraph, ...)
 
 stockEvent(backgroundAlpha = 1, stockGraph, ...)
 

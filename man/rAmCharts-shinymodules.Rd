@@ -10,7 +10,8 @@ rAmChartsExportServerUI(id)
 
 rAmChartsExportServer(input, output, session, list_am_graph,
   path = shiny::reactive(tempdir()), mode = "single", progress = T,
-  message = "Calculation in progress", detail = "This may take a while...")
+  message = "Calculation in progress",
+  detail = "This may take a while...")
 }
 \arguments{
 \item{id}{character, used to specify namesapce, see \code{shiny::\link[shiny]{NS}}}

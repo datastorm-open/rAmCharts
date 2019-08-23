@@ -15,28 +15,29 @@ amPlot(x, ...)
 \method{amPlot}{default}(x, ...)
 
 \method{amPlot}{numeric}(x, y, bullet = c("round", "diamond", "square",
-  "bubble", "yError", "xError", "triangleLeft", "triangleRight", "triangleUp",
-  "triangleDown"), type = c("points", "line", "smoothedLine", "step", "both"),
-  col = "#0066cc", fill_alphas = 0, weights = NULL, precision = 2, id,
-  error, xlab, ylab, lty, cex, lwd, xlim, ylim, ...)
-
-\method{amPlot}{character}(x, y, bullet = c("round", "diamond", "square",
-  "bubble", "yError", "xError", "triangleLeft", "triangleRight", "triangleUp",
-  "triangleDown"), type = c("points", "line", "smoothedLine", "step", "both"),
-  col = "#0066cc", fill_alphas = 0, weights = NULL, precision = 2,
-  parseDates = FALSE, dataDateFormat, id, error, xlab, ylab, lty, cex, lwd,
+  "bubble", "yError", "xError", "triangleLeft", "triangleRight",
+  "triangleUp", "triangleDown"), type = c("points", "line",
+  "smoothedLine", "step", "both"), col = "#0066cc", fill_alphas = 0,
+  weights = NULL, precision = 2, id, error, xlab, ylab, lty, cex, lwd,
   xlim, ylim, ...)
 
-\method{amPlot}{factor}(x, y, bullet = "round", type = "p", col = "gray",
-  weights = NULL, precision = 2, parseDates = FALSE,
-  dataDateFormat = NULL, id, error, xlab, ylab, lty, cex, lwd, xlim, ylim,
-  ...)
+\method{amPlot}{character}(x, y, bullet = c("round", "diamond", "square",
+  "bubble", "yError", "xError", "triangleLeft", "triangleRight",
+  "triangleUp", "triangleDown"), type = c("points", "line",
+  "smoothedLine", "step", "both"), col = "#0066cc", fill_alphas = 0,
+  weights = NULL, precision = 2, parseDates = FALSE, dataDateFormat,
+  id, error, xlab, ylab, lty, cex, lwd, xlim, ylim, ...)
 
-\method{amPlot}{data.frame}(x, columns, type = "l", precision = 2, xlab,
-  ylab, fill_alphas = 0, ...)
+\method{amPlot}{factor}(x, y, bullet = "round", type = "p",
+  col = "gray", weights = NULL, precision = 2, parseDates = FALSE,
+  dataDateFormat = NULL, id, error, xlab, ylab, lty, cex, lwd, xlim,
+  ylim, ...)
 
-\method{amPlot}{formula}(x, data, type = "p", fill_alphas = 0, xlab, ylab,
-  main = "", ...)
+\method{amPlot}{data.frame}(x, columns, type = "l", precision = 2,
+  xlab, ylab, fill_alphas = 0, ...)
+
+\method{amPlot}{formula}(x, data, type = "p", fill_alphas = 0, xlab,
+  ylab, main = "", ...)
 }
 \arguments{
 \item{x}{the coordinates of points in the plot : \code{numeric},

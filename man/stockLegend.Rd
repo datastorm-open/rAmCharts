@@ -4,8 +4,8 @@
 \alias{stockLegend}
 \title{Constructor for StockLegend.}
 \usage{
-stockLegend(useGraphSettings, valueTextComparing = "[[percents.value]]\%",
-  ...)
+stockLegend(useGraphSettings,
+  valueTextComparing = "[[percents.value]]\%", ...)
 }
 \arguments{
 \item{useGraphSettings}{\code{logical}
