@@ -306,7 +306,7 @@ add_export_dependency <- function (widget)
 {
   # Load the configuration yaml file into list
   conf_list <- yaml::yaml.load_file(system.file("conf.yaml", package = "rAmCharts"))
-  
+
   # export module
   export_dep <- htmltools::htmlDependency(name = conf_list$plugins$export$name,
                                           version = conf_list$amcharts_version,
@@ -314,54 +314,61 @@ add_export_dependency <- function (widget)
                                           stylesheet = conf_list$plugins$export$stylesheet,
                                           script = conf_list$plugins$export$script)
   widget <- .add_dependency(widget = widget, dependency = export_dep)
-  
+
   # blob module
   export_blob_dep <- htmltools::htmlDependency(name = conf_list$plugins$blob$name,
                                           version = conf_list$amcharts_version,
                                           src = system.file("htmlwidgets/lib/plugins/export/libs/blob.js", package = "rAmCharts"),
                                           script = conf_list$plugins$blob$script)
   widget <- .add_dependency(widget = widget, dependency = export_blob_dep)
-  
+
   # fabric module
   export_fabric_dep <- htmltools::htmlDependency(name = conf_list$plugins$fabric$name,
                                                version = conf_list$amcharts_version,
                                                src = system.file("htmlwidgets/lib/plugins/export/libs/fabric.js", package = "rAmCharts"),
                                                script = conf_list$plugins$fabric$script)
   widget <- .add_dependency(widget = widget, dependency = export_fabric_dep)
-  
+
   # filesaver module
   export_filesaver_dep <- htmltools::htmlDependency(name = conf_list$plugins$FileSaver$name,
                                                version = conf_list$amcharts_version,
                                                src = system.file("htmlwidgets/lib/plugins/export/libs/FileSaver.js", package = "rAmCharts"),
                                                script = conf_list$plugins$FileSaver$script)
   widget <- .add_dependency(widget = widget, dependency = export_filesaver_dep)
-  
+
   # jszip module
   export_jszip_dep <- htmltools::htmlDependency(name = conf_list$plugins$jszip$name,
                                                version = conf_list$amcharts_version,
                                                src = system.file("htmlwidgets/lib/plugins/export/libs/jszip", package = "rAmCharts"),
                                                script = conf_list$plugins$jszip$script)
   widget <- .add_dependency(widget = widget, dependency = export_jszip_dep)
-  
+
   # pdfmake module
   export_pdfmake_dep <- htmltools::htmlDependency(name = conf_list$plugins$pdfmake$name,
                                                version = conf_list$amcharts_version,
                                                src = system.file("htmlwidgets/lib/plugins/export/libs/pdfmake", package = "rAmCharts"),
                                                script = conf_list$plugins$pdfmake$script)
   widget <- .add_dependency(widget = widget, dependency = export_pdfmake_dep)
-  
+
   export_pdfmake_font_dep <- htmltools::htmlDependency(name = conf_list$plugins$pdfmake_font$name,
                                                   version = conf_list$amcharts_version,
                                                   src = system.file("htmlwidgets/lib/plugins/export/libs/pdfmake", package = "rAmCharts"),
                                                   script = conf_list$plugins$pdfmake_font$script)
   widget <- .add_dependency(widget = widget, dependency = export_pdfmake_font_dep)
-  
+
   # xlsx module
   export_xlsx_dep <- htmltools::htmlDependency(name = conf_list$plugins$xlsx$name,
                                                version = conf_list$amcharts_version,
                                                src = system.file("htmlwidgets/lib/plugins/export/libs/xlsx", package = "rAmCharts"),
                                                script = conf_list$plugins$xlsx$script)
   widget <- .add_dependency(widget = widget, dependency = export_xlsx_dep)
+
+  # class list
+  export_classlist <- htmltools::htmlDependency(name = conf_list$plugins$classList$name,
+                                               version = conf_list$amcharts_version,
+                                               src = system.file("htmlwidgets/lib/plugins/export/libs/classList.js", package = "rAmCharts"),
+                                               script = conf_list$plugins$classList$script)
+  widget <- .add_dependency(widget = widget, dependency = export_classlist)
   
   return (widget)
 }

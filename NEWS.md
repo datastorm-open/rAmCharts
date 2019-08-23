@@ -1,5 +1,9 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.11 (based on [amcharts][amcharts_url] version **3.21.13**)
+
+  * fix export pdf using new pandoc version
+  
 ### rAmCharts 2.1.10 (based on [amcharts][amcharts_url] version **3.21.13**)
 
   * recycle dp$color to pass ``data.table 1.12.2``

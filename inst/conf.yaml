@@ -28,7 +28,7 @@ plugins:
     script: "jszip.min.js"
   pdfmake:
     name: "amcharts_export_pdfmake"
-    script: "pdfmake.min.js"
+    script: "pdfmake.js"
   pdfmake_font:
     name: "amcharts_export_pdfmake_font"
     script: "vfs_fonts.js"
