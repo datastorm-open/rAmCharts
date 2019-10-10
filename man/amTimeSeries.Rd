@@ -12,10 +12,11 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   legendPosition = "bottom", legendHidden = FALSE,
   aggregation = c("Average", "Low", "High", "Sum"), maxSeries = 300,
   groupToPeriods = c("ss", "mm", "hh", "DD", "MM", "YYYY"),
-  ZoomButton = data.frame(Unit = "MAX", multiple = 1, label = "All"),
-  ZoomButtonPosition = "bottom", periodFieldsSelection = FALSE,
-  scrollbar = TRUE, scrollbarPosition = "bottom",
-  scrollbarHeight = 40, scrollbarGraph = NULL, cursor = TRUE,
+  checkGroupToPeriods = TRUE, ZoomButton = data.frame(Unit = "MAX",
+  multiple = 1, label = "All"), ZoomButtonPosition = "bottom",
+  periodFieldsSelection = FALSE, scrollbar = TRUE,
+  scrollbarPosition = "bottom", scrollbarHeight = 40,
+  scrollbarGraph = NULL, cursor = TRUE,
   cursorValueBalloonsEnabled = TRUE, creditsPosition = "top-right",
   group = NULL, is_ts_module = FALSE,
   dataDateFormat = "YYYY-MM-DD JJ:NN:ss",
@@ -83,6 +84,9 @@ and maxSeries is 150 - the chart will group data to weeks.}
 be grouped in case there are more data items in the selected
 period than specified in maxSeries property. Possible value are :
 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm". Or NULL to disable.}
+
+\item{checkGroupToPeriods}{\code{logical}. Check groupToPeriods ? Default to TRUE then check validity
+between data and groupToPeriods, else use directly groupToPeriods}
 
 \item{ZoomButton}{\code{data.frame}, 3 or 4 columns : 
 \itemize{

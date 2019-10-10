@@ -33,6 +33,8 @@
 #' be grouped in case there are more data items in the selected
 #' period than specified in maxSeries property. Possible value are :
 #' 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'. It's also possible to add multiple like "30mm". Or NULL to disable.
+#' @param checkGroupToPeriods \code{logical}. Check groupToPeriods ? Default to TRUE then check validity
+#' between data and groupToPeriods, else use directly groupToPeriods
 #' @param ZoomButton \code{data.frame}, 3 or 4 columns : 
 #' \itemize{
 #'  \item{"Unit"}{ : Character. Times unit. 'ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'}
@@ -210,6 +212,7 @@ amTimeSeries <- function(data, col_date,
                          aggregation = c("Average", "Low", "High", "Sum"),
                          maxSeries = 300,
                          groupToPeriods = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'),
+                         checkGroupToPeriods = TRUE,
                          ZoomButton = data.frame(Unit = "MAX", multiple = 1, label ="All"),
                          ZoomButtonPosition = "bottom",
                          periodFieldsSelection = FALSE,
@@ -350,17 +353,18 @@ amTimeSeries <- function(data, col_date,
     difft <- 1
   }
 
-  if(length(groupToPeriods) == 1){
-    minPeriod = groupToPeriods
-    groupToPeriods <- list(groupToPeriods)
-  } else {
-    groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
-    minPeriod = groupToPeriods[1]
+  if(checkGroupToPeriods){
     if(length(groupToPeriods) == 1){
+      minPeriod = groupToPeriods
       groupToPeriods <- list(groupToPeriods)
+    } else {
+      groupToPeriods <- controlgroupToPeriods(groupToPeriods, difft)
+      minPeriod = groupToPeriods[1]
+      if(length(groupToPeriods) == 1){
+        groupToPeriods <- list(groupToPeriods)
+      }
     }
   }
-
   
   # annual data
   if(isTRUE(all.equal('YYYY', groupToPeriods))){
@@ -612,7 +616,7 @@ controlgroupToPeriods <- function(groupToPeriods = c('30ss', 'mm', 'hh', 'DD', '
                                   diffTime = 30){
   
   ref_period <- data.frame(periode = c('ss', 'mm', 'hh', 'DD', 'MM', 'YYYY'), 
-                           seconds = c(1, 60, 3600, 24*3600, 28*24*3600, 365*24*3600))
+                           seconds = c(1, 60, 3600, 24*3600, 31*24*3600, 365*24*3600))
   rownames(ref_period) <- ref_period$periode
   
   if(!is.null(groupToPeriods)){
