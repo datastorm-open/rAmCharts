@@ -5,10 +5,11 @@
 \title{Plotting times series (with or without aggregation)}
 \usage{
 amTimeSeries(data, col_date, col_series, main = "", ylab = "",
-  color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"), bullet = NULL,
-  bulletSize = 2, linetype = c(0, 5, 10, 15, 20), linewidth = c(1, 1,
-  1, 1, 1, 1), fillAlphas = 0, precision = 1, export = FALSE,
-  legend = TRUE, legendPosition = "bottom", legendHidden = FALSE,
+  color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"),
+  type = c("line"), bullet = NULL, bulletSize = 2, linetype = c(0,
+  5, 10, 15, 20), linewidth = c(1, 1, 1, 1, 1, 1), fillAlphas = 0,
+  precision = 1, export = FALSE, legend = TRUE,
+  legendPosition = "bottom", legendHidden = FALSE,
   aggregation = c("Average", "Low", "High", "Sum"), maxSeries = 300,
   groupToPeriods = c("ss", "mm", "hh", "DD", "MM", "YYYY"),
   ZoomButton = data.frame(Unit = "MAX", multiple = 1, label = "All"),
@@ -16,7 +17,20 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   scrollbar = TRUE, scrollbarPosition = "bottom",
   scrollbarHeight = 40, scrollbarGraph = NULL, cursor = TRUE,
   cursorValueBalloonsEnabled = TRUE, creditsPosition = "top-right",
-  group = NULL, is_ts_module = FALSE, ...)
+  group = NULL, is_ts_module = FALSE,
+  dataDateFormat = "YYYY-MM-DD JJ:NN:ss",
+  categoryBalloonDateFormats = list(list(period = "YYYY", format =
+  "YYYY"), list(period = "MM", format = "YYYY-MM"), list(period = "WW",
+  format = "YYYY-MM-DD"), list(period = "DD", format = "YYYY-MM-DD"),
+  list(period = "hh", format = "YYYY-MM-DD JJ:NN"), list(period = "mm",
+  format = "YYYY-MM-DD JJ:NN"), list(period = "ss", format =
+  "YYYY-MM-DD JJ:NN:ss"), list(period = "fff", format =
+  "YYYY-MM-DD JJ:NN:ss")), dateFormats = list(list(period = "YYYY",
+  format = "YYYY"), list(period = "MM", format = "MMM"), list(period =
+  "WW", format = "MMM DD"), list(period = "DD", format = "MMM DD"),
+  list(period = "hh", format = "JJ:NN"), list(period = "mm", format =
+  "JJ:NN"), list(period = "ss", format = "JJ:NN:ss"), list(period = "fff",
+  format = "JJ:NN:ss")), ...)
 }
 \arguments{
 \item{data}{\code{data.frame}, data of graph.}
@@ -30,6 +44,9 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
 \item{ylab}{\code{character}, value axis label.}
 
 \item{color}{\code{character}, color of series (in hexadecimal).}
+
+\item{type}{\code{character}, Type of graph. Possible values are : "line" (default),
+"column", "step", "smoothedLine"}
 
 \item{bullet}{\code{character}, point shape. Possible values are : "diamond", "square", 
 "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"}
@@ -100,10 +117,54 @@ period than specified in maxSeries property. Possible value are :
 
 \item{is_ts_module}{\code{boolean}. Don't use. For \link{rAmChartsTimeSeriesUI}}
 
+\item{dataDateFormat}{\code{character} Data date format. Default to 'YYYY-MM-DD JJ:NN:ss'. See details.}
+
+\item{categoryBalloonDateFormats}{\code{list} Date format objects for chart cursor. See details.}
+
+\item{dateFormats}{\code{list} Date format objects for x-axis. See details.}
+
 \item{...}{other first level attributes}
 }
 \description{
 amTimeSeries computes a stock chart.
+}
+\details{
+For dateFormats & categoryBalloonDateFormats
+
+Available periods are: fff - millisecond, ss - second, mm - minute, hh - hour, DD - date, WW - week, MM - month, YYYY - year
+
+Available formats : 
+
+Year. The number of Y letters represents digits in the resulting number. I.e.:
+YY = 05 (always two digits), YYYY = 2005
+
+Month of the year. The output depends on the number of M's:
+M = 8 (one or two digits), MM = 08 (always two digits),
+MMM = Aug (3-letter month abbreviation), 
+MMMM = August (full month name)
+
+Week of the year W
+
+Day of the month: D = 7 (one or two digits), DD = 07 (always two digits)
+
+Day of week: E = 2 (single digit day of week), EE = 02 (two-digit day of week), 
+EEE = Tue (3-letter abbreviation of the literal representation of the day of week), 
+EEEE = Tuesday (full day of week name)
+
+	Hour: 0-23: J = 3 (one or two digits), JJ = 03 (always two digits)
+	
+	Hour: 1-24: H = 3 (one or two digits), HH = 03 (always two digits)
+	K 	Hour in am/pm: 0-11
+	L 	Hour in am/pm: 1-12 *
+	
+	Minute in hour: N = 8 (one or two digits), NN = 08 (always two digits)
+	
+	Second in minute: S = 5 (one or two digits), SS = 05 (always two digits)
+	
+	Milliseconds: QQ = 51, QQQ = 051
+	
+	Other characters 	Other characters will be displayed as they are without changing 
+	them. I.e.:YYYY-MM-DD = 2013-03-01
 }
 \examples{
 data("data_stock_2")
@@ -117,9 +178,14 @@ data$ts1up <- data$ts1+100
 
 amTimeSeries(data, "date", list(c("ts1low", "ts1", "ts1up"), "ts2"))
 amTimeSeries(data, "date", list(c("ts1low", "ts1", "ts1up"), "ts2"), 
- color = c("red", "blue"), bullet = c("round", "square"))
+              color = c("red", "blue"), bullet = c("round", "square"))
 
-
+# column / step
+amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), 
+              type = c("column", "step"), fillAlphas = c(1, 0),
+              linewidth = c(0, 1))
+ 
+# some paramters
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
               groupToPeriods = c('hh', 'DD', '10DD'))
@@ -159,6 +225,28 @@ amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
              ZoomButton = ZoomButton, main = "My title",
              ylab = "Interest", export = TRUE,
              creditsPosition = "bottom-left")
+             
+# date formats
+
+amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), 
+  type = "column", fillAlphas = 1, 
+  linewidth = 0, legendHidden = T, 
+  categoryBalloonDateFormats = list(list(period = 'YYYY', format = 'YYYY'),
+                                    list(period='MM', format = 'MM'), 
+                                    list(period = 'WW', format = 'MM-DD'),
+                                    list(period='DD', format = 'MM-DD'), 
+                                    list(period = 'hh', format = 'MM-DD JJ:NN'),
+                                    list(period='mm', format = 'MM-DD JJ:NN'), 
+                                    list(period = 'ss', format = 'MM-DD JJ:NN:ss'),
+                                    list(period='fff', format = 'MM-DD JJ:NN:ss')),
+  dateFormats = list(list(period = 'YYYY', format = 'YYYY'),
+                     list(period='MM', format = 'MMMM'), 
+                     list(period = 'WW', format = 'MMMM-DD'),
+                     list(period='DD', format = 'MMMM-DD'), 
+                     list(period = 'hh', format = 'MM-DD JJ:NN'),
+                     list(period='mm', format = 'MM-DD JJ:NN'), 
+                     list(period = 'ss', format = 'MM-DD JJ:NN:ss'),
+                     list(period='fff', format = 'MM-DD JJ:NN:ss')))              
              
 }
 

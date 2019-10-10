@@ -17,9 +17,9 @@ rAmChartsTimeSeriesServer(input, output, session, data, col_date,
   maxgap = shiny::reactive(Inf), type_aggr = shiny::reactive("first"),
   main = shiny::reactive(""), ylab = shiny::reactive(""),
   color = shiny::reactive(c("#2E2EFE", "#31B404", "#FF4000", "#AEB404")),
-  bullet = shiny::reactive(NULL), bulletSize = shiny::reactive(2),
-  linetype = shiny::reactive(c(0, 5, 10, 15, 20)),
-  linewidth = shiny::reactive(c(1, 1, 1, 1, 1, 1)),
+  type = shiny::reactive(c("line")), bullet = shiny::reactive(NULL),
+  bulletSize = shiny::reactive(2), linetype = shiny::reactive(c(0, 5,
+  10, 15, 20)), linewidth = shiny::reactive(c(1, 1, 1, 1, 1, 1)),
   fillAlphas = shiny::reactive(0), precision = shiny::reactive(1),
   export = shiny::reactive(FALSE), legend = shiny::reactive(TRUE),
   legendPosition = shiny::reactive("bottom"),
@@ -34,7 +34,20 @@ rAmChartsTimeSeriesServer(input, output, session, data, col_date,
   cursor = shiny::reactive(TRUE),
   cursorValueBalloonsEnabled = shiny::reactive(TRUE),
   creditsPosition = shiny::reactive("top-right"),
-  group = shiny::reactive(NULL))
+  group = shiny::reactive(NULL),
+  dataDateFormat = shiny::reactive("YYYY-MM-DD JJ:NN:ss"),
+  categoryBalloonDateFormats = shiny::reactive(list(list(period = "YYYY",
+  format = "YYYY"), list(period = "MM", format = "YYYY-MM"), list(period =
+  "WW", format = "YYYY-MM-DD"), list(period = "DD", format = "YYYY-MM-DD"),
+  list(period = "hh", format = "YYYY-MM-DD JJ:NN"), list(period = "mm",
+  format = "YYYY-MM-DD JJ:NN"), list(period = "ss", format =
+  "YYYY-MM-DD JJ:NN:ss"), list(period = "fff", format =
+  "YYYY-MM-DD JJ:NN:ss"))),
+  dateFormats = shiny::reactive(list(list(period = "YYYY", format =
+  "YYYY"), list(period = "MM", format = "MMM"), list(period = "WW", format
+  = "MMM DD"), list(period = "DD", format = "MMM DD"), list(period = "hh",
+  format = "JJ:NN"), list(period = "mm", format = "JJ:NN"), list(period =
+  "ss", format = "JJ:NN:ss"), list(period = "fff", format = "JJ:NN:ss"))))
 }
 \arguments{
 \item{id}{character, used to specify namesapce, see \code{shiny::\link[shiny]{NS}}}
@@ -89,6 +102,9 @@ Maximum number of consecutive NAs to fill. Defaut to Inf.}
 
 \item{color}{\code{character}, color of series (in hexadecimal).}
 
+\item{type}{\code{character}, Type of graph. Possible values are : "line" (default),
+"column", "step", "smoothedLine"}
+
 \item{bullet}{\code{character}, point shape. Possible values are : "diamond", "square", 
 "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"}
 
@@ -141,6 +157,12 @@ Maximum number of consecutive NAs to fill. Defaut to Inf.}
 "top-right", "top-left", "bottom-right", "bottom-left"}
 
 \item{group}{\code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.}
+
+\item{dataDateFormat}{\code{character} Data date format. Default to 'YYYY-MM-DD JJ:NN:ss'. See \code{\link{amTimeSeries}}.}
+
+\item{categoryBalloonDateFormats}{\code{list} Date format objects for chart cursor. See \code{\link{amTimeSeries}}.}
+
+\item{dateFormats}{\code{list} Date format objects for x-axis. See \code{\link{amTimeSeries}}.}
 }
 \value{
 a reactive expression with aggregate data and ts

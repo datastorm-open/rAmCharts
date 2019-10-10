@@ -36,6 +36,8 @@
 #' @param main \code{character}, title.
 #' @param ylab \code{character}, value axis label.
 #' @param color \code{character}, color of series (in hexadecimal).
+#' @param type \code{character}, Type of graph. Possible values are : "line" (default),
+#'  "column", "step", "smoothedLine"
 #' @param bullet \code{character}, point shape. Possible values are : "diamond", "square", 
 #' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"
 #' @param bulletSize \code{numeric}, size of bullet.
@@ -68,6 +70,9 @@
 #' @param creditsPosition \code{character}, credits position. Possible values are :
 #' "top-right", "top-left", "bottom-right", "bottom-left"
 #' @param group \code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.
+#' @param dataDateFormat \code{character} Data date format. Default to 'YYYY-MM-DD JJ:NN:ss'. See \code{\link{amTimeSeries}}.
+#' @param categoryBalloonDateFormats \code{list} Date format objects for chart cursor. See \code{\link{amTimeSeries}}.
+#' @param dateFormats \code{list} Date format objects for x-axis. See \code{\link{amTimeSeries}}.
 #' 
 #' @return a reactive expression with aggregate data and ts
 #' 
@@ -133,6 +138,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                                       main = shiny::reactive(""), 
                                       ylab = shiny::reactive(""),
                                       color = shiny::reactive(c("#2E2EFE", "#31B404", "#FF4000", "#AEB404")), 
+                                      type = shiny::reactive(c("line")),
                                       bullet = shiny::reactive(NULL),
                                       bulletSize = shiny::reactive(2), 
                                       linetype = shiny::reactive(c(0, 5, 10, 15, 20)), 
@@ -153,7 +159,25 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                                       cursor = shiny::reactive(TRUE), 
                                       cursorValueBalloonsEnabled = shiny::reactive(TRUE),
                                       creditsPosition = shiny::reactive("top-right"), 
-                                      group = shiny::reactive(NULL)) {
+                                      group = shiny::reactive(NULL),
+                                      dataDateFormat = shiny::reactive('YYYY-MM-DD JJ:NN:ss'),
+                                      categoryBalloonDateFormats = shiny::reactive(list(list(period = 'YYYY', format = 'YYYY'),
+                                                                        list(period='MM', format = 'YYYY-MM'), 
+                                                                        list(period = 'WW', format = 'YYYY-MM-DD'),
+                                                                        list(period='DD', format = 'YYYY-MM-DD'), 
+                                                                        list(period = 'hh', format = 'YYYY-MM-DD JJ:NN'),
+                                                                        list(period='mm', format = 'YYYY-MM-DD JJ:NN'), 
+                                                                        list(period = 'ss', format = 'YYYY-MM-DD JJ:NN:ss'),
+                                                                        list(period='fff', format = 'YYYY-MM-DD JJ:NN:ss'))),
+                                      
+                                      dateFormats = shiny::reactive(list(list(period = 'YYYY', format = 'YYYY'),
+                                                         list(period='MM', format = 'MMM'), 
+                                                         list(period = 'WW', format = 'MMM DD'),
+                                                         list(period='DD', format = 'MMM DD'), 
+                                                         list(period = 'hh', format = 'JJ:NN'),
+                                                         list(period='mm', format = 'JJ:NN'), 
+                                                         list(period = 'ss', format = 'JJ:NN:ss'),
+                                                         list(period='fff', format = 'JJ:NN:ss')))) {
   
   ns <- session$ns
   
@@ -173,7 +197,9 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
       
       tmp_am <- amTimeSeries(data = init_data$data, maxSeries = maxPoints()+10, is_ts_module = TRUE,
                              col_date = col_date(), col_series = col_series(),
-                             main = main(), ylab = ylab(), color = color(), bullet = bullet(),
+                             main = main(), ylab = ylab(), color = color(), 
+                             type = type(), 
+                             bullet = bullet(),
                              bulletSize = bulletSize(), 
                              linetype = linetype(), 
                              linewidth = linewidth(), 
@@ -194,6 +220,9 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                              cursorValueBalloonsEnabled = cursorValueBalloonsEnabled(),
                              creditsPosition = creditsPosition(), 
                              group = group(), 
+                             dataDateFormat = dataDateFormat(),
+                             categoryBalloonDateFormats = categoryBalloonDateFormats(), 
+                             dateFormats = dateFormats(),
                              groupToPeriods = init_data$ts)
       
       tmp_am <- addListener(tmp_am, "zoomed", paste0("function (event) {

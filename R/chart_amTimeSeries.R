@@ -8,6 +8,8 @@
 #' @param main \code{character}, title.
 #' @param ylab \code{character}, value axis label.
 #' @param color \code{character}, color of series (in hexadecimal).
+#' @param type \code{character}, Type of graph. Possible values are : "line" (default),
+#'  "column", "step", "smoothedLine"
 #' @param bullet \code{character}, point shape. Possible values are : "diamond", "square", 
 #' "bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"
 #' @param bulletSize : \code{numeric}, size of bullet.
@@ -52,6 +54,9 @@
 #' "top-right", "top-left", "bottom-right", "bottom-left"
 #' @param group \code{character}, like in \code{dygraphs}, for synchronization in \code{shiny} or \code{rmarkdown}.
 #' @param is_ts_module \code{boolean}. Don't use. For \link{rAmChartsTimeSeriesUI}
+#' @param dataDateFormat \code{character} Data date format. Default to 'YYYY-MM-DD JJ:NN:ss'. See details.
+#' @param categoryBalloonDateFormats \code{list} Date format objects for chart cursor. See details.
+#' @param dateFormats \code{list} Date format objects for x-axis. See details.
 #' @param ... other first level attributes
 #' 
 #' @examples
@@ -66,9 +71,14 @@
 #' 
 #' amTimeSeries(data, "date", list(c("ts1low", "ts1", "ts1up"), "ts2"))
 #' amTimeSeries(data, "date", list(c("ts1low", "ts1", "ts1up"), "ts2"), 
-#'  color = c("red", "blue"), bullet = c("round", "square"))
+#'               color = c("red", "blue"), bullet = c("round", "square"))
 #' 
-#' 
+#' # column / step
+#' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), 
+#'               type = c("column", "step"), fillAlphas = c(1, 0),
+#'               linewidth = c(0, 1))
+#'  
+#' # some paramters
 #' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
 #' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
 #'               groupToPeriods = c('hh', 'DD', '10DD'))
@@ -109,8 +119,68 @@
 #'              ylab = "Interest", export = TRUE,
 #'              creditsPosition = "bottom-left")
 #'              
+#' # date formats
+#' 
+#' amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), 
+#'   type = "column", fillAlphas = 1, 
+#'   linewidth = 0, legendHidden = T, 
+#'   categoryBalloonDateFormats = list(list(period = 'YYYY', format = 'YYYY'),
+#'                                     list(period='MM', format = 'MM'), 
+#'                                     list(period = 'WW', format = 'MM-DD'),
+#'                                     list(period='DD', format = 'MM-DD'), 
+#'                                     list(period = 'hh', format = 'MM-DD JJ:NN'),
+#'                                     list(period='mm', format = 'MM-DD JJ:NN'), 
+#'                                     list(period = 'ss', format = 'MM-DD JJ:NN:ss'),
+#'                                     list(period='fff', format = 'MM-DD JJ:NN:ss')),
+#'   dateFormats = list(list(period = 'YYYY', format = 'YYYY'),
+#'                      list(period='MM', format = 'MMMM'), 
+#'                      list(period = 'WW', format = 'MMMM-DD'),
+#'                      list(period='DD', format = 'MMMM-DD'), 
+#'                      list(period = 'hh', format = 'MM-DD JJ:NN'),
+#'                      list(period='mm', format = 'MM-DD JJ:NN'), 
+#'                      list(period = 'ss', format = 'MM-DD JJ:NN:ss'),
+#'                      list(period='fff', format = 'MM-DD JJ:NN:ss')))              
+#'              
 #' }
 #' 
+#' @details
+#' For dateFormats & categoryBalloonDateFormats
+#' 
+#' Available periods are: fff - millisecond, ss - second, mm - minute, hh - hour, DD - date, WW - week, MM - month, YYYY - year
+#' 
+#' Available formats : 
+#' 
+#' Year. The number of Y letters represents digits in the resulting number. I.e.:
+#' YY = 05 (always two digits), YYYY = 2005
+#' 
+#' Month of the year. The output depends on the number of M's:
+#' M = 8 (one or two digits), MM = 08 (always two digits),
+#' MMM = Aug (3-letter month abbreviation), 
+#' MMMM = August (full month name)
+#' 
+#' Week of the year W
+#' 
+#' Day of the month: D = 7 (one or two digits), DD = 07 (always two digits)
+#' 
+#' Day of week: E = 2 (single digit day of week), EE = 02 (two-digit day of week), 
+#' EEE = Tue (3-letter abbreviation of the literal representation of the day of week), 
+#' EEEE = Tuesday (full day of week name)
+#' 
+#' 	Hour: 0-23: J = 3 (one or two digits), JJ = 03 (always two digits)
+#' 	
+#' 	Hour: 1-24: H = 3 (one or two digits), HH = 03 (always two digits)
+#' 	K 	Hour in am/pm: 0-11
+#' 	L 	Hour in am/pm: 1-12 *
+#' 	
+#' 	Minute in hour: N = 8 (one or two digits), NN = 08 (always two digits)
+#' 	
+#' 	Second in minute: S = 5 (one or two digits), SS = 05 (always two digits)
+#' 	
+#' 	Milliseconds: QQ = 51, QQQ = 051
+#' 	
+#' 	Other characters 	Other characters will be displayed as they are without changing 
+#' 	them. I.e.:YYYY-MM-DD = 2013-03-01
+#' 	
 #' @seealso \link{rAmChartsTimeSeriesUI} for shiny module, \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},
 #' \link{amPlot}, \link{amTimeSeries}, \link{amStockMultiSet}, \link{amBullet}, \link{amRadar}, 
 #' \link{amWind}, \link{amFunnel}, \link{amAngularGauge}, \link{amSolidGauge}, \link{amMekko},
@@ -126,6 +196,7 @@ amTimeSeries <- function(data, col_date,
                          main = "",
                          ylab = "",
                          color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"),
+                         type = c("line"),
                          bullet = NULL, 
                          bulletSize = 2, 
                          linetype  = c(0, 5, 10, 15, 20),
@@ -151,6 +222,24 @@ amTimeSeries <- function(data, col_date,
                          creditsPosition = "top-right",
                          group = NULL,
                          is_ts_module = FALSE,
+                         dataDateFormat = 'YYYY-MM-DD JJ:NN:ss',
+                         categoryBalloonDateFormats = list(list(period = 'YYYY', format = 'YYYY'),
+                                                           list(period='MM', format = 'YYYY-MM'), 
+                                                           list(period = 'WW', format = 'YYYY-MM-DD'),
+                                                           list(period='DD', format = 'YYYY-MM-DD'), 
+                                                           list(period = 'hh', format = 'YYYY-MM-DD JJ:NN'),
+                                                           list(period='mm', format = 'YYYY-MM-DD JJ:NN'), 
+                                                           list(period = 'ss', format = 'YYYY-MM-DD JJ:NN:ss'),
+                                                           list(period='fff', format = 'YYYY-MM-DD JJ:NN:ss')),
+                         
+                         dateFormats = list(list(period = 'YYYY', format = 'YYYY'),
+                                                          list(period='MM', format = 'MMM'), 
+                                                          list(period = 'WW', format = 'MMM DD'),
+                                                          list(period='DD', format = 'MMM DD'), 
+                                                          list(period = 'hh', format = 'JJ:NN'),
+                                                          list(period='mm', format = 'JJ:NN'), 
+                                                          list(period = 'ss', format = 'JJ:NN:ss'),
+                                                          list(period='fff', format = 'JJ:NN:ss')),
                          ...)
 {
   ##Test args
@@ -248,16 +337,6 @@ amTimeSeries <- function(data, col_date,
   #Export
   .testLogicalLength1(logi = export)
   
-  
-  mycategoryBalloonDateFormat <- list(list(period = 'YYYY', format = 'YYYY'),
-                                      list(period='MM', format = 'YYYY-MM'), 
-                                      list(period = 'WW', format = 'YYYY-MM-DD'),
-                                      list(period='DD', format = 'YYYY-MM-DD'), 
-                                      list(period = 'hh', format = 'YYYY-MM-DD JJ:NN'),
-                                      list(period='mm', format = 'YYYY-MM-DD JJ:NN'), 
-                                      list(period = 'ss', format = 'YYYY-MM-DD JJ:NN:ss'),
-                                      list(period='fff', format = 'YYYY-MM-DD JJ:NN:ss'))
-  
   data[,col_date] <- data[,col_date] + (as.POSIXlt(as.character(data[,col_date]), tz = "UTC") - data[,col_date])
   
   # groupToPeriods control
@@ -297,6 +376,13 @@ amTimeSeries <- function(data, col_date,
     graph_maker$color <- rep(color[1:length(n_col_series)], n_col_series)
   } else {
     graph_maker$color <- color
+  }
+  
+  # type
+  if (length(type) > 1) {
+    graph_maker$type <- rep(type[1:length(n_col_series)], n_col_series)
+  } else {
+    graph_maker$type <- type
   }
   
   # linewidth
@@ -346,7 +432,7 @@ amTimeSeries <- function(data, col_date,
   graph_maker$aggregation <- aggregation
   
   # type (curve or upper/lower)
-  graph_maker$type <- do.call("c", lapply(n_col_series, function(x){
+  graph_maker$am_type <- do.call("c", lapply(n_col_series, function(x){
     if(x == 3){
       c("low", "curve-uplow", "up")
     } else {
@@ -362,7 +448,7 @@ amTimeSeries <- function(data, col_date,
   }
   
   stockgraph <- lapply(1:nrow(graph_maker), function(x) {
-    if(graph_maker[x, "type"] == "curve"){
+    if(graph_maker[x, "am_type"] == "curve"){
       stockGraph(title =  graph_maker[x, "column"],
                  id = graph_maker[x, "column"] , connect = FALSE, 
                  valueField = graph_maker[x, "column"],
@@ -372,6 +458,7 @@ amTimeSeries <- function(data, col_date,
                  lineColor = graph_maker[x, "color"],
                  fillAlphas = graph_maker[x, "fillAlphas"],
                  bulletSize = graph_maker[x, "bulletSize"],
+                 type = graph_maker[x, "type"],
                  minBulletSize = 0,
                  dashLength = graph_maker[x, "dashLength"],
                  useDataSetColors = FALSE,
@@ -381,7 +468,7 @@ amTimeSeries <- function(data, col_date,
                  hidden = graph_maker[x, "hidden"],
                  lineThickness = graph_maker[x, "linewidth"]
       )
-    } else if(graph_maker[x, "type"] == "low"){
+    } else if(graph_maker[x, "am_type"] == "low"){
       stockGraph(title =  graph_maker[x, "column"],
                  id = graph_maker[x, "column"] , connect = FALSE, 
                  valueField = graph_maker[x, "column"],
@@ -390,13 +477,14 @@ amTimeSeries <- function(data, col_date,
                  showBalloon = FALSE,
                  lineAlpha = 0,
                  lineColor = graph_maker[x, "color"],
+                 type = graph_maker[x, "type"],
                  fillAlphas = 0,
                  useDataSetColors = FALSE,
                  visibleInLegend = FALSE,
                  hidden = graph_maker[x, "hidden"],
                  precision = precision
       )
-    } else if(graph_maker[x, "type"] == "curve-uplow"){
+    } else if(graph_maker[x, "am_type"] == "curve-uplow"){
       stockGraph(title =  graph_maker[x, "column"],
                  id = graph_maker[x, "column"] , connect = FALSE, 
                  valueField = graph_maker[x, "column"],
@@ -406,6 +494,7 @@ amTimeSeries <- function(data, col_date,
                                       graph_maker[x, "column"], ' : <b> [[value]] </b><br>',
                                       graph_maker[x-1, "column"],' : <b> [[', graph_maker[x-1, "column"], ']] </b>'),
                  lineColor = graph_maker[x, "color"],
+                 type = graph_maker[x, "type"],
                  fillAlphas = graph_maker[x, "fillAlphas"],
                  bulletSize = graph_maker[x, "bulletSize"],
                  minBulletSize = 0,
@@ -417,12 +506,13 @@ amTimeSeries <- function(data, col_date,
                  hidden = graph_maker[x, "hidden"],
                  lineThickness = graph_maker[x, "linewidth"]
       )
-    } else if(graph_maker[x, "type"] == "up"){
+    } else if(graph_maker[x, "am_type"] == "up"){
       stockGraph(title =  graph_maker[x, "column"],
                  id = graph_maker[x, "column"] , connect = FALSE, 
                  valueField = graph_maker[x, "column"],
                  comparable = TRUE, periodValue = graph_maker[x, "aggregation"],
                  compareField = graph_maker[x, "column"],
+                 type = graph_maker[x, "type"],
                  showBalloon = FALSE,
                  lineAlpha = 0,
                  lineColor = graph_maker[x, "color"],
@@ -460,17 +550,19 @@ amTimeSeries <- function(data, col_date,
                                addTitle(text = main))
   ## Plot
   am_output <- pipeR::pipeline(
-    amStockChart(dataDateFormat = 'YYYY-MM-DD JJ:NN:ss', useUTC = TRUE, group = group, is_ts_module = is_ts_module, ...),
+    amStockChart(dataDateFormat = dataDateFormat, useUTC = TRUE, group = group, is_ts_module = is_ts_module, ...),
     setExport(enabled = export),
     addDataSet(dataset_obj),
     addPanel(panel_obj),
     setChartCursorSettings(enabled = cursor, valueBalloonsEnabled = cursorValueBalloonsEnabled, fullWidth = TRUE,
                            cursorAlpha = 0.1, valueLineBalloonEnabled = TRUE,
                            valueLineEnabled = TRUE, valueLineAlpha = 0.5, 
-                           categoryBalloonDateFormats = mycategoryBalloonDateFormat),
+                           categoryBalloonDateFormats = categoryBalloonDateFormats),
     setPeriodSelector(periodZoom),
     setCategoryAxesSettings(parseDates = TRUE, minPeriod = minPeriod,
-                            groupToPeriods = groupToPeriods, maxSeries = maxSeries),
+                            groupToPeriods = groupToPeriods, 
+                            maxSeries = maxSeries,
+                            dateFormats = dateFormats),
     setPanelsSettings(marginTop = 30, creditsPosition = creditsPosition, thousandsSeparator = " "),
     
     setLegendSettings(position = legendPosition)

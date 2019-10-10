@@ -1,5 +1,9 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.12 (based on [amcharts][amcharts_url] version **3.21.13**)
+
+  * amTimesSeries : add type options + date format
+  
 ### rAmCharts 2.1.11 (based on [amcharts][amcharts_url] version **3.21.13**)
 
   * fix export pdf using new pandoc version
