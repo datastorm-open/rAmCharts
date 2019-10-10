@@ -19,19 +19,19 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   scrollbarGraph = NULL, cursor = TRUE,
   cursorValueBalloonsEnabled = TRUE, creditsPosition = "top-right",
   group = NULL, is_ts_module = FALSE,
-  dataDateFormat = "YYYY-MM-DD JJ:NN:ss",
+  dataDateFormat = "YYYY-MM-DD JJ:NN:SS",
   categoryBalloonDateFormats = list(list(period = "YYYY", format =
   "YYYY"), list(period = "MM", format = "YYYY-MM"), list(period = "WW",
   format = "YYYY-MM-DD"), list(period = "DD", format = "YYYY-MM-DD"),
   list(period = "hh", format = "YYYY-MM-DD JJ:NN"), list(period = "mm",
   format = "YYYY-MM-DD JJ:NN"), list(period = "ss", format =
-  "YYYY-MM-DD JJ:NN:ss"), list(period = "fff", format =
-  "YYYY-MM-DD JJ:NN:ss")), dateFormats = list(list(period = "YYYY",
+  "YYYY-MM-DD JJ:NN:SS"), list(period = "fff", format =
+  "YYYY-MM-DD JJ:NN:SS")), dateFormats = list(list(period = "YYYY",
   format = "YYYY"), list(period = "MM", format = "MMM"), list(period =
   "WW", format = "MMM DD"), list(period = "DD", format = "MMM DD"),
   list(period = "hh", format = "JJ:NN"), list(period = "mm", format =
-  "JJ:NN"), list(period = "ss", format = "JJ:NN:ss"), list(period = "fff",
-  format = "JJ:NN:ss")), ...)
+  "JJ:NN"), list(period = "ss", format = "JJ:NN:SS"), list(period = "fff",
+  format = "JJ:NN:SS")), ...)
 }
 \arguments{
 \item{data}{\code{data.frame}, data of graph.}

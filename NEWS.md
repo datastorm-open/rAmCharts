@@ -4,6 +4,7 @@
 
   * amTimesSeries : add type options + date format
   * amTimesSeries : fix legend show/hide for range
+  * amTimesSeries : fix ts less than minute
   
 ### rAmCharts 2.1.11 (based on [amcharts][amcharts_url] version **3.21.13**)
 
