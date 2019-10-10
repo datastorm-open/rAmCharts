@@ -252,6 +252,7 @@ amTimeSeries <- function(data, col_date,
   .testIn(vect = col_date, control = names(data))
   
   #col_series
+  init_col_series <- col_series
   if(is.list(col_series)){
     n_col_series <- sapply(col_series, length)
     col_series <- do.call("c", col_series)
@@ -440,6 +441,34 @@ amTimeSeries <- function(data, col_date,
     }
   }))
   
+  # legend for upper / lower
+  event_hide <- ""
+  event_show <- ""
+  if(is.list(init_col_series)){
+    for(i in 1:length(init_col_series)){
+      if(length(init_col_series[[i]]) == 3){
+        
+        event_hide <- paste0(event_hide, 
+                             'if(id === "', init_col_series[[i]][2], '"){\n', 
+                             'event.chart.hideGraph(event.chart.getGraphById("', init_col_series[[i]][1], '"));\n',
+                             'event.chart.hideGraph(event.chart.getGraphById("', init_col_series[[i]][3], '"));}')
+
+        event_show <- paste0(event_show, 
+                             'if(id === "', init_col_series[[i]][2], '"){\n', 
+                             'event.chart.showGraph(event.chart.getGraphById("', init_col_series[[i]][1], '"));\n',
+                             'event.chart.showGraph(event.chart.getGraphById("', init_col_series[[i]][3], '"));}')
+        
+      }
+    }
+  }
+    
+  if(event_hide != ""){
+    st_legend <- stockLegend(enabled = legend, labelText = "[[title]]", useGraphSettings = TRUE) %>>% addListener("hideItem", paste0('function(event) {console.info(event);var id = event.dataItem.id;\n', event_hide, '}')) %>>%
+      addListener("showItem", paste0('function(event) {var id = event.dataItem.id;\n',event_show, '}'))
+  } else {
+    st_legend <- stockLegend(enabled = legend, labelText = "[[title]]", useGraphSettings = TRUE)
+  }
+  
   # hidden init
   if (length(legendHidden) > 1) {
     graph_maker$hidden <- rep(legendHidden[1:length(n_col_series)], n_col_series)
@@ -546,11 +575,12 @@ amTimeSeries <- function(data, col_date,
                                  setDataProvider(data, keepNA = FALSE),
                                  setFieldMappings(fieldMapping))
   panel_obj <- pipeR::pipeline(panel(title = ylab,  stockGraphs = stockgraph),
-                               setStockLegend(enabled = legend, labelText = "[[title]]", useGraphSettings = TRUE),
+                               setStockLegend(st_legend),
                                addTitle(text = main))
   ## Plot
   am_output <- pipeR::pipeline(
-    amStockChart(dataDateFormat = dataDateFormat, useUTC = TRUE, group = group, is_ts_module = is_ts_module, ...),
+    amStockChart(dataDateFormat = dataDateFormat, useUTC = TRUE, group = group, 
+                 is_ts_module = is_ts_module, ...),
     setExport(enabled = export),
     addDataSet(dataset_obj),
     addPanel(panel_obj),
@@ -564,7 +594,6 @@ amTimeSeries <- function(data, col_date,
                             maxSeries = maxSeries,
                             dateFormats = dateFormats),
     setPanelsSettings(marginTop = 30, creditsPosition = creditsPosition, thousandsSeparator = " "),
-    
     setLegendSettings(position = legendPosition)
   )
   
@@ -575,6 +604,7 @@ amTimeSeries <- function(data, col_date,
     am_output <- setChartScrollbarSettings(am_output, enabled = scrollbar, graph = scrollbarGraph, graphType = "line", 
                                            position = scrollbarPosition, height = scrollbarHeight)
   }
+
   am_output
 }
 

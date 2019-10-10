@@ -219,6 +219,10 @@ HTMLWidgets.widget({
                         }
                     }
 
+                    for (key_handle in x.stockLegend_listeners) {
+                        amchart.panels[0].stockLegend.addListener(key_handle, x.stockLegend_listeners[key_handle]);
+                    }
+
                     for (key_handle in x.periodSelector_listeners) {
                         amchart.periodSelector.addListener(key_handle, x.periodSelector_listeners[key_handle]);
                     }

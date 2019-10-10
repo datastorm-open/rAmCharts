@@ -158,6 +158,15 @@ setMethod(f = "plot", signature = "AmCharts",
             panels_listeners <- ls_temp$listeners_ls
             panels_listenersIndices <- ls_temp$indices
             
+            # listeners on stockLegend
+            stockLegend_listeners <- NULL
+            if(!is.null(chart_ls$panels) && "stockLegend" %in% names(chart_ls$panels[[1]])){
+              if(!is.null(chart_ls$panels[[1]]$stockLegend$listeners)){
+                stockLegend_listeners <- chart_ls$panels[[1]]$stockLegend$listeners
+                chart_ls$panels[[1]]$stockLegend$listeners <- NULL
+              }
+            }
+            
             # listeners on periodSelector
             ls_temp <- substituteListener(chart_ls, "periodSelector")
             chart_ls <- ls_temp$chart
@@ -214,6 +223,7 @@ setMethod(f = "plot", signature = "AmCharts",
                            periodSelector_listeners = periodSelector_listeners,
                            valueAxes_listeners = valueAxes_listeners,
                            valueAxes_listenersIndices = valueAxes_listenersIndices, 
+                           stockLegend_listeners = stockLegend_listeners,
                            group = group, is_ts_module = is_ts_module)
               
             }
