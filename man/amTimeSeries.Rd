@@ -50,7 +50,7 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
 "column", "step", "smoothedLine"}
 
 \item{bullet}{\code{character}, point shape. Possible values are : "diamond", "square", 
-"bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp"}
+"bubble",  "yError", "xError", "round", "triangleLeft", "triangleRight", "triangleUp", "triangleDown"}
 
 \item{bulletSize}{: \code{numeric}, size of bullet.}
 
@@ -155,20 +155,20 @@ Day of week: E = 2 (single digit day of week), EE = 02 (two-digit day of week),
 EEE = Tue (3-letter abbreviation of the literal representation of the day of week), 
 EEEE = Tuesday (full day of week name)
 
-	Hour: 0-23: J = 3 (one or two digits), JJ = 03 (always two digits)
+Hour: 0-23: J = 3 (one or two digits), JJ = 03 (always two digits)
 	
-	Hour: 1-24: H = 3 (one or two digits), HH = 03 (always two digits)
-	K 	Hour in am/pm: 0-11
-	L 	Hour in am/pm: 1-12 *
+Hour: 1-24: H = 3 (one or two digits), HH = 03 (always two digits)
+K 	Hour in am/pm: 0-11
+L 	Hour in am/pm: 1-12 *
 	
-	Minute in hour: N = 8 (one or two digits), NN = 08 (always two digits)
+Minute in hour: N = 8 (one or two digits), NN = 08 (always two digits)
 	
-	Second in minute: S = 5 (one or two digits), SS = 05 (always two digits)
+Second in minute: S = 5 (one or two digits), SS = 05 (always two digits)
 	
-	Milliseconds: QQ = 51, QQQ = 051
+Milliseconds: QQ = 51, QQQ = 051
 	
-	Other characters 	Other characters will be displayed as they are without changing 
-	them. I.e.:YYYY-MM-DD = 2013-03-01
+Other characters 	Other characters will be displayed as they are without changing 
+them. I.e.:YYYY-MM-DD = 2013-03-01
 }
 \examples{
 data("data_stock_2")
@@ -241,16 +241,16 @@ amTimeSeries(data_stock_2, "date", c("ts1", "ts2"),
                                     list(period='DD', format = 'MM-DD'), 
                                     list(period = 'hh', format = 'MM-DD JJ:NN'),
                                     list(period='mm', format = 'MM-DD JJ:NN'), 
-                                    list(period = 'ss', format = 'MM-DD JJ:NN:ss'),
-                                    list(period='fff', format = 'MM-DD JJ:NN:ss')),
+                                    list(period = 'ss', format = 'MM-DD JJ:NN:SS'),
+                                    list(period='fff', format = 'MM-DD JJ:NN:SS')),
   dateFormats = list(list(period = 'YYYY', format = 'YYYY'),
                      list(period='MM', format = 'MMMM'), 
                      list(period = 'WW', format = 'MMMM-DD'),
                      list(period='DD', format = 'MMMM-DD'), 
                      list(period = 'hh', format = 'MM-DD JJ:NN'),
                      list(period='mm', format = 'MM-DD JJ:NN'), 
-                     list(period = 'ss', format = 'MM-DD JJ:NN:ss'),
-                     list(period='fff', format = 'MM-DD JJ:NN:ss')))              
+                     list(period = 'ss', format = 'MM-DD JJ:NN:SS'),
+                     list(period='fff', format = 'MM-DD JJ:NN:SS')))              
              
 }
 
