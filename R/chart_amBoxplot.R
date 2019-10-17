@@ -464,7 +464,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
       if(is.null(final.outliers)){
         final.outliers <<- inter
       }else{
-        final.outliers <<- rbind.data.frame(final.outliers, inter, fill = TRUE)
+        final.outliers <<- rbind(final.outliers, inter, fill = TRUE)
       }
       NULL
     })
