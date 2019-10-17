@@ -5,6 +5,7 @@
   * amTimesSeries : add type options + date format
   * amTimesSeries : fix legend show/hide for range
   * amTimesSeries : fix ts less than minute
+  * #93 fix for data.table 1.12.6 in R-devel 4.0.0 
   
 ### rAmCharts 2.1.11 (based on [amcharts][amcharts_url] version **3.21.13**)
 
