@@ -626,6 +626,7 @@ getTransformTS <- function(data,
     if (length(treat_col_series) > 0 ) {
       ind_na <- unique(which(is.na(data[, treat_col_series, with = FALSE]), arr.ind = T)[, 1])
       ind_na <- sort(unique(c(ind_na - 1, ind_na, ind_na + 1))) 
+      ind_na <- ind_na[ind_na >= 1 & ind_na <= nrow(data)]
       if(length(ind_na) > 0){
         if(is.null(col_by)){
           data <- data[ind_na, c(treat_col_series) := lapply(.SD, function(x, mg){
@@ -633,7 +634,11 @@ getTransformTS <- function(data,
           }, maxgap), .SDcols = treat_col_series]
         } else {
           data <- data[ind_na, c(treat_col_series) := lapply(.SD, function(x, mg){
-            zoo::na.approx(x, maxgap = mg, na.rm = FALSE)
+            if(!all(is.na(x))){
+              tryCatch(zoo::na.approx(x, maxgap = mg, na.rm = FALSE), error =  function(e) x)
+            } else {
+              x
+            }
           }, maxgap), .SDcols = treat_col_series, by = col_by]
         }
       }
