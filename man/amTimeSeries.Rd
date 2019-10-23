@@ -8,7 +8,7 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
   color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"),
   type = c("line"), bullet = NULL, bulletSize = 2, linetype = c(0,
   5, 10, 15, 20), linewidth = c(1, 1, 1, 1, 1, 1), fillAlphas = 0,
-  precision = 1, export = FALSE, legend = TRUE,
+  precision = 1, connect = FALSE, export = FALSE, legend = TRUE,
   legendPosition = "bottom", legendHidden = FALSE,
   aggregation = c("Average", "Low", "High", "Sum"), maxSeries = 300,
   groupToPeriods = c("ss", "mm", "hh", "DD", "MM", "YYYY"),
@@ -61,6 +61,8 @@ amTimeSeries(data, col_date, col_series, main = "", ylab = "",
 \item{fillAlphas}{: \code{numeric}, fill. Between 0 (no fill) to 1.}
 
 \item{precision}{\code{numeric}, default set to  1.}
+
+\item{connect}{\code{logical}, default set to  FALSE. Specifies whether to connect data points if data is missing.}
 
 \item{export}{\code{logical}, default set to  FALSE. TRUE to display export feature.}
 

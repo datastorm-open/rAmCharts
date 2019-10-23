@@ -1,5 +1,9 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.13 (based on [amcharts][amcharts_url] version **3.21.13**)
+
+  * amTimesSeries : add connect options + date format
+  
 ### rAmCharts 2.1.12 (based on [amcharts][amcharts_url] version **3.21.13**)
 
   * amTimesSeries : add type options + date format

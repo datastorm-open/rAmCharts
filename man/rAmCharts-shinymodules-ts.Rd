@@ -21,7 +21,8 @@ rAmChartsTimeSeriesServer(input, output, session, data, col_date,
   bulletSize = shiny::reactive(2), linetype = shiny::reactive(c(0, 5,
   10, 15, 20)), linewidth = shiny::reactive(c(1, 1, 1, 1, 1, 1)),
   fillAlphas = shiny::reactive(0), precision = shiny::reactive(1),
-  export = shiny::reactive(FALSE), legend = shiny::reactive(TRUE),
+  connect = shiny::reactive(FALSE), export = shiny::reactive(FALSE),
+  legend = shiny::reactive(TRUE),
   legendPosition = shiny::reactive("bottom"),
   legendHidden = shiny::reactive(FALSE),
   ZoomButton = shiny::reactive(data.frame(Unit = "MAX", multiple = 1,
@@ -117,6 +118,8 @@ Maximum number of consecutive NAs to fill. Defaut to Inf.}
 \item{fillAlphas}{\code{numeric}, fill. Between 0 (no fill) to 1.}
 
 \item{precision}{\code{numeric}, default set to  1.}
+
+\item{connect}{\code{logical}, default set to  FALSE. Specifies whether to connect data points if data is missing.}
 
 \item{export}{\code{logical}, default set to  FALSE. TRUE to display export feature.}
 

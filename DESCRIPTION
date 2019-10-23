@@ -13,7 +13,7 @@ Description: Provides an R interface for using 'AmCharts' Library. Based on
     to this page <http://www.amcharts.com/online-store/> to purchase a licence,
     and thus support its creators and get a period of Priority Support. See also
     <http://www.amcharts.com/about/> for more information about 'AmCharts' company.
-Version: 2.1.12
+Version: 2.1.13
 Authors@R: c(
     person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datastorm.fr", role = c("aut", "cre")),
     person(given = "Antanas", family = " Marcelionis", role = c("aut", "cph"),

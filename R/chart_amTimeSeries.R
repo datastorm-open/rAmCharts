@@ -17,6 +17,7 @@
 #' @param linewidth : \code{numeric}, line width.
 #' @param fillAlphas : \code{numeric}, fill. Between 0 (no fill) to 1.
 #' @param precision \code{numeric}, default set to  1.
+#' @param connect \code{logical}, default set to  FALSE. Specifies whether to connect data points if data is missing. 
 #' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
 #' @param legend \code{logical}, enabled or not legend ? Defaut to TRUE.
 #' @param legendPosition \code{character}, legend position. Possible values are :
@@ -205,6 +206,7 @@ amTimeSeries <- function(data, col_date,
                          linewidth = c(1, 1, 1, 1, 1, 1),
                          fillAlphas = 0,
                          precision = 1,
+                         connect = FALSE,
                          export = FALSE,
                          legend = TRUE,
                          legendPosition = "bottom",
@@ -483,7 +485,7 @@ amTimeSeries <- function(data, col_date,
   stockgraph <- lapply(1:nrow(graph_maker), function(x) {
     if(graph_maker[x, "am_type"] == "curve"){
       stockGraph(title =  graph_maker[x, "column"],
-                 id = graph_maker[x, "column"] , connect = FALSE, 
+                 id = graph_maker[x, "column"] , connect = connect, 
                  valueField = graph_maker[x, "column"],
                  comparable = TRUE, periodValue = graph_maker[x, "aggregation"],
                  compareField = graph_maker[x, "column"],
@@ -503,7 +505,7 @@ amTimeSeries <- function(data, col_date,
       )
     } else if(graph_maker[x, "am_type"] == "low"){
       stockGraph(title =  graph_maker[x, "column"],
-                 id = graph_maker[x, "column"] , connect = FALSE, 
+                 id = graph_maker[x, "column"] , connect = connect, 
                  valueField = graph_maker[x, "column"],
                  comparable = TRUE, periodValue = graph_maker[x, "aggregation"],
                  compareField = graph_maker[x, "column"],
@@ -519,7 +521,7 @@ amTimeSeries <- function(data, col_date,
       )
     } else if(graph_maker[x, "am_type"] == "curve-uplow"){
       stockGraph(title =  graph_maker[x, "column"],
-                 id = graph_maker[x, "column"] , connect = FALSE, 
+                 id = graph_maker[x, "column"] , connect = connect, 
                  valueField = graph_maker[x, "column"],
                  comparable = TRUE, periodValue = graph_maker[x, "aggregation"],
                  compareField = graph_maker[x, "column"],
@@ -541,7 +543,7 @@ amTimeSeries <- function(data, col_date,
       )
     } else if(graph_maker[x, "am_type"] == "up"){
       stockGraph(title =  graph_maker[x, "column"],
-                 id = graph_maker[x, "column"] , connect = FALSE, 
+                 id = graph_maker[x, "column"] , connect = connect, 
                  valueField = graph_maker[x, "column"],
                  comparable = TRUE, periodValue = graph_maker[x, "aggregation"],
                  compareField = graph_maker[x, "column"],

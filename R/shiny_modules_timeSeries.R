@@ -45,6 +45,7 @@
 #' @param linewidth \code{numeric}, line width.
 #' @param fillAlphas \code{numeric}, fill. Between 0 (no fill) to 1.
 #' @param precision \code{numeric}, default set to  1.
+#' @param connect \code{logical}, default set to  FALSE. Specifies whether to connect data points if data is missing.
 #' @param export \code{logical}, default set to  FALSE. TRUE to display export feature.
 #' @param legend \code{logical}, enabled or not legend ? Defaut to TRUE.
 #' @param legendPosition \code{character}, legend position. Possible values are :
@@ -145,6 +146,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                                       linewidth = shiny::reactive(c(1, 1, 1, 1, 1, 1)), 
                                       fillAlphas = shiny::reactive(0), 
                                       precision = shiny::reactive(1), 
+                                      connect = shiny::reactive(FALSE),
                                       export = shiny::reactive(FALSE),
                                       legend = shiny::reactive(TRUE), 
                                       legendPosition = shiny::reactive("bottom"), 
@@ -205,6 +207,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                              linewidth = linewidth(), 
                              fillAlphas = fillAlphas(), 
                              precision = precision(), 
+                             connect = connect(),
                              export = export(),
                              legend = legend(), 
                              legendPosition = legendPosition(), 
