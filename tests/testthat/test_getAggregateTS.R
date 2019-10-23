@@ -8,9 +8,21 @@ vdate <- seq.POSIXt(as.POSIXct(date.begin, tz=tz),
                     by="10 min")
 data <- data.frame(date=vdate, value=rnorm(length(vdate)))
 
+# for checking col_by
+data_1 <- data.frame(date=vdate, id = "1", value=rnorm(length(vdate)))
+data_2 <- data.frame(date=vdate, id = "2", value=rnorm(length(vdate)))
+
 # for check type.aggre
 data.last <- data
 data.last$date <- data.last$date+600
+
+data.last_1 <- data_1
+data.last_1$date <- data.last_1$date+600
+data.last_2 <- data_2
+data.last_2$date <- data.last_2$date+600
+
+data_1_mult <- data.frame(date=vdate, id = "1", value_1=rnorm(length(vdate)), value_2=rnorm(length(vdate)))
+data_2_mult <- data.frame(date=vdate, id = "2", value_1=rnorm(length(vdate)), value_2=rnorm(length(vdate)))
 
 test_that("getTransformTS & data.table object", {
   if (require(data.table)) {
@@ -62,7 +74,7 @@ test_that("getTransformTS NA", {
 
 test_that("getTransformTS function", {
   data.mean <- getTransformTS(data, tz = "CET", ts = "30 min",
-                                     fun_aggr = "mean")
+                              fun_aggr = "mean")
   expect_equal(mean(data[1:3, 2]), data.mean[1, 2])
   
   data.sum <- getTransformTS(data, tz = "CET", ts = "30 min",
@@ -87,13 +99,82 @@ test_that("getTransformTS full", {
     ts <- test[x, 2]
     
     data.check.first <- getTransformTS(data, tz = "CET", ts = ts,
-                                              fun_aggr = stats, type_aggr = "first")
+                                       fun_aggr = stats, type_aggr = "first")
     
     data.check.last <- getTransformTS(data.last, tz = "CET", ts = ts,
-                                             fun_aggr = stats, type_aggr = "last")
+                                      fun_aggr = stats, type_aggr = "last")
     
     expect_equal(data.check.first[1:nrow(data.check.first), "value"], 
                  data.check.last[1:nrow(data.check.first), "value"])
+    
+    data.check.first_1 <- getTransformTS(data_1, col_series = "value", tz = "CET", ts = ts,
+                                         fun_aggr = stats, type_aggr = "first")
+    
+    data.check.first_2 <- getTransformTS(data_2, col_series = "value", tz = "CET", ts = ts,
+                                         fun_aggr = stats, type_aggr = "first")
+    
+    data.check.first_12 <- getTransformTS(rbindlist(list(data_1, data_2)), col_by = "id", 
+                                          tz = "CET", ts = ts,
+                                          fun_aggr = stats, type_aggr = "first")
+    
+    expect_equivalent(data.check.first_1, 
+                      data.check.first_12[data.check.first_12$id == "1", c("date", "value")])
+    
+    expect_equivalent(data.check.first_2, 
+                      data.check.first_12[data.check.first_12$id == "2", c("date", "value")])
+    
+    data.check.last_1 <- getTransformTS(data.last_1, col_series = "value", tz = "CET", ts = ts,
+                                        fun_aggr = stats, type_aggr = "last")
+    
+    data.check.last_2 <- getTransformTS(data.last_2, col_series = "value", tz = "CET", ts = ts,
+                                        fun_aggr = stats, type_aggr = "last")
+    
+    data.check.last_12 <- getTransformTS(rbindlist(list(data.last_1, data.last_2)), col_by = "id", 
+                                         tz = "CET", ts = ts,
+                                         fun_aggr = stats, type_aggr = "last")
+    
+    expect_equivalent(data.check.last_1, 
+                      data.check.last_12[data.check.last_12$id == "1", c("date", "value")])
+    
+    expect_equivalent(data.check.last_2, 
+                      data.check.last_12[data.check.last_12$id == "2", c("date", "value")])
+    
+    expect_equal(data.check.first_12[1:nrow(data.check.first_12), "value"], 
+                 data.check.last_12[1:nrow(data.check.first_12), "value"])
+    
+    
+    data.check.first_1_mult <- getTransformTS(data_1_mult, col_series = c("value_1", "value_2"), tz = "CET", ts = ts,
+                                              fun_aggr = stats, type_aggr = "first")
+    
+    data.check.first_2_mult <- getTransformTS(data_2_mult, col_series = c("value_1", "value_2"), tz = "CET", ts = ts,
+                                              fun_aggr = stats, type_aggr = "first")
+    
+    data.check.first_12_mult <- getTransformTS(rbindlist(list(data_1_mult, data_2_mult)), col_by = "id", 
+                                               tz = "CET", ts = ts,
+                                               fun_aggr = stats, type_aggr = "first")
+    
+    data.check.first_12_mult_one <- getTransformTS(rbindlist(list(data_1_mult, data_2_mult)), col_by = "id", 
+                                                   col_series = "value_1",
+                                                   tz = "CET", ts = ts,
+                                                   fun_aggr = stats, type_aggr = "first")
+    
+    data.check.first_12_mult_two <- getTransformTS(rbindlist(list(data_1_mult, data_2_mult)), col_by = "id", 
+                                                   col_series = "value_2",
+                                                   tz = "CET", ts = ts,
+                                                   fun_aggr = stats, type_aggr = "first")
+    
+    expect_equivalent(data.check.first_1_mult, 
+                      data.check.first_12_mult[data.check.first_12_mult$id == "1", c("date", "value_1", "value_2")])
+    
+    expect_equivalent(data.check.first_2_mult, 
+                      data.check.first_12_mult[data.check.first_12_mult$id == "2", c("date", "value_1", "value_2")])
+    
+    expect_equivalent(data.check.first_12_mult[, c("date", "value_1")], 
+                      data.check.first_12_mult_one[, c("date", "value_1")])
+    
+    expect_equivalent(data.check.first_12_mult[, c("date", "value_2")], 
+                      data.check.first_12_mult_two[, c("date", "value_2")])
+    
   })
 })
 
@@ -118,9 +199,54 @@ test_that("getTransformTS interpolation", {
   data.5.min <- getTransformTS(data, tz = "CET", ts = "5 min")
   expect_equal(mean(data[1:2, 2]), data.5.min[2, 2])
   
+  data_1_5m <- getTransformTS(data_1, col_series = "value", tz = "CET", ts = "5 min")
+  expect_equal(mean(data_1[1:2, 3]), data_1_5m[2, 2])
+  
+  data_2_5m <- getTransformTS(data_2, col_series = "value", tz = "CET", ts = "5 min")
+  expect_equal(mean(data_2[1:2, 3]), data_2_5m[2, 2])
+  
+  data_12_5m <- getTransformTS(rbindlist(list(data_1, data_2)), col_by = "id", 
+                               col_series = "value", tz = "CET", ts = "5 min")
+  expect_equivalent(data_1_5m, 
+                    data_12_5m[data_12_5m$id == "1", c("date", "value")])
+  
+  expect_equivalent(data_2_5m, 
+                    data_12_5m[data_12_5m$id == "2", c("date", "value")])
+  
   vdate <- seq.POSIXt(as.POSIXct(date.begin, tz = tz),
                       as.POSIXct(date.end, tz = tz),
                       by = "2 hour")
+  
+  data_1_5m_mult <- getTransformTS(data_1_mult, col_series = c("value_1", "value_2"), tz = "CET", ts = "5 min")
+  expect_equal(mean(data_1_mult[1:2, 3]), data_1_5m_mult[2, 2])
+  expect_equal(mean(data_1_mult[1:2, 4]), data_1_5m_mult[2, 3])
+  
+  data_2_5m_mult <- getTransformTS(data_2_mult, col_series = c("value_1", "value_2"), tz = "CET", ts = "5 min")
+  expect_equal(mean(data_2_mult[1:2, 3]), data_2_5m_mult[2, 2])
+  expect_equal(mean(data_2_mult[1:2, 4]), data_2_5m_mult[2, 3])
+  
+  data_12_5m_mult <- getTransformTS(rbindlist(list(data_1_mult, data_2_mult)), col_by = "id", 
+                               col_series = c("value_1", "value_2"), tz = "CET", ts = "5 min")
+  
+  data_12_5m_mult_one <- getTransformTS(rbindlist(list(data_1_mult, data_2_mult)), col_by = "id", 
+                                    col_series = c("value_1"), tz = "CET", ts = "5 min")
+  
+  data_12_5m_mult_two <- getTransformTS(rbindlist(list(data_1_mult, data_2_mult)), col_by = "id", 
+                                        col_series = c("value_2"), tz = "CET", ts = "5 min")
+  
+  expect_equivalent(data_1_5m_mult, 
+                    data_12_5m_mult[data_12_5m_mult$id == "1", c("date", "value_1", "value_2")])
+  
+  expect_equivalent(data_2_5m_mult, 
+                    data_12_5m_mult[data_12_5m_mult$id == "2", c("date", "value_1", "value_2")])
+  
+  expect_equivalent(data_12_5m_mult[, c("date", "value_1")], 
+                    data_12_5m_mult_one[, c("date", "value_1")])
+  
+  expect_equivalent(data_12_5m_mult[, c("date", "value_2")], 
+                    data_12_5m_mult_two[, c("date", "value_2")])
+  
+  
   data <- data.frame(date = vdate, value = rnorm(length(vdate)))
   data.hour <- getTransformTS(data, tz = "CET", ts = "hour")
   expect_equal(mean(data[1:2, 2]), data.hour[2, 2])

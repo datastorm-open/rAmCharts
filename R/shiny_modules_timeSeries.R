@@ -164,22 +164,22 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                                       group = shiny::reactive(NULL),
                                       dataDateFormat = shiny::reactive('YYYY-MM-DD JJ:NN:ss'),
                                       categoryBalloonDateFormats = shiny::reactive(list(list(period = 'YYYY', format = 'YYYY'),
-                                                                        list(period='MM', format = 'YYYY-MM'), 
-                                                                        list(period = 'WW', format = 'YYYY-MM-DD'),
-                                                                        list(period='DD', format = 'YYYY-MM-DD'), 
-                                                                        list(period = 'hh', format = 'YYYY-MM-DD JJ:NN'),
-                                                                        list(period='mm', format = 'YYYY-MM-DD JJ:NN'), 
-                                                                        list(period = 'ss', format = 'YYYY-MM-DD JJ:NN:ss'),
-                                                                        list(period='fff', format = 'YYYY-MM-DD JJ:NN:ss'))),
+                                                                                        list(period='MM', format = 'YYYY-MM'), 
+                                                                                        list(period = 'WW', format = 'YYYY-MM-DD'),
+                                                                                        list(period='DD', format = 'YYYY-MM-DD'), 
+                                                                                        list(period = 'hh', format = 'YYYY-MM-DD JJ:NN'),
+                                                                                        list(period='mm', format = 'YYYY-MM-DD JJ:NN'), 
+                                                                                        list(period = 'ss', format = 'YYYY-MM-DD JJ:NN:ss'),
+                                                                                        list(period='fff', format = 'YYYY-MM-DD JJ:NN:ss'))),
                                       
                                       dateFormats = shiny::reactive(list(list(period = 'YYYY', format = 'YYYY'),
-                                                         list(period='MM', format = 'MMM'), 
-                                                         list(period = 'WW', format = 'MMM DD'),
-                                                         list(period='DD', format = 'MMM DD'), 
-                                                         list(period = 'hh', format = 'JJ:NN'),
-                                                         list(period='mm', format = 'JJ:NN'), 
-                                                         list(period = 'ss', format = 'JJ:NN:ss'),
-                                                         list(period='fff', format = 'JJ:NN:ss')))) {
+                                                                         list(period='MM', format = 'MMM'), 
+                                                                         list(period = 'WW', format = 'MMM DD'),
+                                                                         list(period='DD', format = 'MMM DD'), 
+                                                                         list(period = 'hh', format = 'JJ:NN'),
+                                                                         list(period='mm', format = 'JJ:NN'), 
+                                                                         list(period = 'ss', format = 'JJ:NN:ss'),
+                                                                         list(period='fff', format = 'JJ:NN:ss')))) {
   
   ns <- session$ns
   
@@ -251,7 +251,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
       new_data <- getCurrentStockData(all_data, zoom = cur_zoom, col_date = col_date(), col_series = unlist(col_series()), 
                                       maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
                                       treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
-
+      
       if(!is.null(new_data)){
         ctrl_data$data <- new_data$data
         ctrl_data$ts <- new_data$ts
@@ -384,6 +384,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 #'                   Must be "POSIXct"
 #' @param col_series : Column name of quantitative variable(s) to be
 #'                     transformed. Default to setdiff(colnames(data), "date") 
+#' @param col_by : Column name of a optionnal grouping variable. Default to NULL
 #' @param ts : Increment of the sequence. Default to "10 min".
 #'             Can be a number, in seconds, or a character string
 #'             containing one of "min", "hour", "day".
@@ -428,12 +429,18 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 # type_aggr = "first"
 # 
 # getTransformTS(data)
-getTransformTS <- function(data, col_date  = "date",
-                           col_series = setdiff(colnames(data), col_date),
-                           ts = "10 min", tz = "UTC",
-                           fun_aggr = "mean", treat_missing = FALSE,
+getTransformTS <- function(data, 
+                           col_date  = "date",
+                           col_series = setdiff(colnames(data), c(col_date, col_by)),
+                           col_by = NULL, 
+                           ts = "10 min", 
+                           tz = "UTC",
+                           fun_aggr = "mean", 
+                           treat_missing = FALSE,
                            control_date = TRUE,
-                           maxgap = Inf, keep_last = TRUE, type_aggr = "first", 
+                           maxgap = Inf, 
+                           keep_last = TRUE, 
+                           type_aggr = "first", 
                            showwarn = FALSE){
   
   
@@ -458,6 +465,10 @@ getTransformTS <- function(data, col_date  = "date",
   
   if (any(!col_series %in% colnames(data))) {
     stop("Invalid 'col_series' argument")
+  }
+  
+  if (!is.null(col_by) && (any(!col_by %in% colnames(data)) | length(col_by) > 1)) {
+    stop("Invalid 'col_by' argument")
   }
   
   check_quanti <- sapply(data[, col_series, drop=FALSE], class)
@@ -513,10 +524,23 @@ getTransformTS <- function(data, col_date  = "date",
   
   if ("Date" %in% class(data[[col_date]])) {
     tzdate <- tz
-    data_check <- data.table(seq(data[[col_date]][1],
-                                 data[[col_date]][nrow(data)], by = "day"))
-    setnames(data_check, "V1", col_date)
-    data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
+    
+    # donnees manquantes -> rajout de NA
+    v_date <- seq(data[[col_date]][1],
+                  data[[col_date]][nrow(data)], by = "day")
+    
+    if(is.null(col_by)){
+      data_check <- data.table(v_date)
+      colnames(data_check)[1] <- col_date
+      data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
+    } else {
+      v_id <- unique(data[[col_by]])
+      data_check <- data.table(rep(v_date, length(v_id)), rep(v_id, each = length(v_date)))
+      colnames(data_check) <-  c(col_date, col_by)  
+      data <- merge(data.table(data), data_check, by = c(col_date, col_by), all = TRUE)
+      setorder(data, col_by, col_date)
+      data <- data.frame(data)
+    }
     control_date <- FALSE
     data[[col_date]] <- as.POSIXct(as.character(data[[col_date]]), tz = tzdate)
   }
@@ -540,7 +564,7 @@ getTransformTS <- function(data, col_date  = "date",
   
   initial_column_order <- colnames(data) 
   initial_column_order <- initial_column_order[initial_column_order
-                                               %in% c(col_date, col_series)]
+                                               %in% c(col_date, col_by, col_series)]
   current_tz <- attr(data[[col_date]], "tzone")
   
   # control time level, en faisant attention au chgmt d'heure
@@ -555,11 +579,22 @@ getTransformTS <- function(data, col_date  = "date",
   
   if (control_date) {
     # donnees manquantes -> rajout de NA
-    data_check <- data.table(seq(data[[col_date]][1],
-                                 data[[col_date]][nrow(data)],
-                                 by = current_time_level))
-    setnames(data_check, "V1", col_date)  
-    data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
+    v_date <- seq(data[[col_date]][1],
+                  data[[col_date]][nrow(data)],
+                  by = current_time_level)
+    
+    if(is.null(col_by)){
+      data_check <- data.table(v_date)
+      colnames(data_check)[1] <- col_date
+      data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
+    } else {
+      v_id <- unique(data[[col_by]])
+      data_check <- data.table(rep(v_date, length(v_id)), rep(v_id, each = length(v_date)))
+      colnames(data_check) <-  c(col_date, col_by)
+      data <- merge(data.table(data), data_check, by = c(col_date, col_by), all = TRUE)
+      setorderv(data, c(col_by, col_date), c(1, 1))
+      data <- data.frame(data)
+    }
   }
   
   if(type_aggr == "last"){
@@ -569,7 +604,7 @@ getTransformTS <- function(data, col_date  = "date",
   data <- data.table(data[[col_date]],
                      mtqdate = as.IDate(data[[col_date]], tz = current_tz),
                      mtqtime = as.ITime(data[[col_date]], tz = current_tz),
-                     data[, col_series, drop = FALSE])
+                     data[, c(col_by, col_series), drop = FALSE])
   
   setnames(data, "V1", col_date)
   
@@ -590,7 +625,11 @@ getTransformTS <- function(data, col_date  = "date",
                       paste(paste0("zoo::na.approx(", treat_col_series,
                                    ", maxgap = ", maxgap, ", na.rm = FALSE)"),
                             collapse = ","), ")"))
-      data <- data[, eval(expr_extrapolation)]
+      if(is.null(col_by)){
+        data <- data[, eval(expr_extrapolation)]
+      } else {
+        data <- data[, eval(expr_extrapolation), by = col_by]
+      }
     }
   } 
   
@@ -625,14 +664,14 @@ getTransformTS <- function(data, col_date  = "date",
         stop("Can't set 'year' superior to 1")
       }
       
-      expr_group <- parse(text = "list(year(mtqdate))")
+      expr_group <- "list(year(mtqdate))"
     } else
       if (wanted_time == "month") {
         if(number_time > 1){
           stop("Can't set 'month' superior to 1")
         }
         
-        expr_group <- parse(text = "list(year(mtqdate), month(mtqdate))")
+        expr_group <- "list(year(mtqdate), month(mtqdate))"
         
       } else if (wanted_time == "week") {
         if(number_time > 1){
@@ -650,7 +689,7 @@ getTransformTS <- function(data, col_date  = "date",
         week2 <- as.integer(diffdays2)%/%7 + 1
         
         data[, c('isoy', 'isow') := list(year2, week2)]
-        expr_group <- parse(text = "list(isoy, isow)")
+        expr_group <- "list(isoy, isow)"
         
         # expr_group <- parse(text = "list(year(mtqdate), isoweek(mtqdate))")
         # expr_group <- parse(text = "list(ISOweek(mtqdate))")
@@ -661,14 +700,13 @@ getTransformTS <- function(data, col_date  = "date",
           stop("Can't set 'day' superior to 366")
         }
         if (number_time == 1) {
-          expr_group <- parse(text = "list(mtqdate)")
+          expr_group <- "list(mtqdate)"
         } else {    
-          expr_group <- parse(
-            text = paste0("list(year(mtqdate), ",
-                          "ctrl = mycut(as.data.table(yday(mtqdate)), ",
-                          "breaks = c(",
-                          paste(seq(1, 368, by = number_time), collapse = ","),
-                          "))[, V1])"))
+          expr_group <- paste0("list(year(mtqdate), ",
+                               "ctrl = mycut(as.data.table(yday(mtqdate)), ",
+                               "breaks = c(",
+                               paste(seq(1, 368, by = number_time), collapse = ","),
+                               "))[, V1])")
         }
       } else if (wanted_time == "hour") {
         if(number_time > 24){
@@ -678,14 +716,13 @@ getTransformTS <- function(data, col_date  = "date",
           stop("Only accept regular sequence")
         }
         if (number_time == 1) {
-          expr_group <- parse(text = "list(mtqdate, hour(mtqtime))")
+          expr_group <- "list(mtqdate, hour(mtqtime))"
         } else {    
-          expr_group <- parse(
-            text = paste0("list(mtqdate, ",
-                          "ctrl = mycut(as.data.table(hour(mtqtime)), ",
-                          "breaks = c(",
-                          paste(seq(0, 24, by = number_time), collapse = ","),
-                          "))[, V1])"))
+          expr_group <- paste0("list(mtqdate, ",
+                               "ctrl = mycut(as.data.table(hour(mtqtime)), ",
+                               "breaks = c(",
+                               paste(seq(0, 24, by = number_time), collapse = ","),
+                               "))[, V1])")
         }
       } else if (wanted_time == "min") {
         if(number_time > 60){
@@ -695,18 +732,23 @@ getTransformTS <- function(data, col_date  = "date",
           stop("Only accept regular sequence")
         }
         if (number_time == 1) {
-          expr_group <- parse(
-            text = "list(mtqdate, hour(mtqtime), as.POSIXlt(mtqtime)$min)")
+          expr_group <- "list(mtqdate, hour(mtqtime), as.POSIXlt(mtqtime)$min)"
         } else {    
-          expr_group <- parse(
-            text = paste0("list(mtqdate,hour(mtqtime), ",
-                          "ctrl = mycut(as.data.table(as.POSIXlt(mtqtime)$min),",
-                          "breaks = c(",
-                          paste(seq(0, 60, by = number_time), collapse = ","),
-                          "))[, V1])"))
+          expr_group <- paste0("list(mtqdate,hour(mtqtime), ",
+                               "ctrl = mycut(as.data.table(as.POSIXlt(mtqtime)$min),",
+                               "breaks = c(",
+                               paste(seq(0, 60, by = number_time), collapse = ","),
+                               "))[, V1])")
         }
       }
-    res <- data[, eval(expr_transformation), eval(expr_group)] ## ???
+    
+    if(is.null(col_by)){
+      res <- data[, eval(expr_transformation), eval(parse(text = expr_group))]
+    } else {
+      expr_group <- gsub("list(", paste0("list(", col_by, ","), expr_group, fixed = TRUE)
+      res <- data[, eval(expr_transformation), eval(parse(text = expr_group))]
+    }
+    
     
     if ("mtqdate" %in% colnames(res)) {
       res[, c("mtqdate") := NULL]
@@ -734,43 +776,42 @@ getTransformTS <- function(data, col_date  = "date",
     }
     
     # tri
-    setorderv(res, col_date, 1)
+    if(is.null(col_by)){
+      setorderv(res, col_date, 1)
+    } else {
+      setorderv(res, c(col_by, col_date), c(1, 1))
+    }
+    
     res <- as.data.frame(res)
     
   } else if (current_time_level > wanted_time_level) {
-    if (wanted_time_level <= 60 * 60 |
-        !current_tz %in% c("CET", "CET24")) {
+    if (wanted_time_level <= 60 * 60 | !current_tz %in% c("CET", "CET24")) {
       new_date_time <- seq.POSIXt(
         as.POSIXct(paste(data[1, get("mtqdate")], data[1, get("mtqtime")]), tz = current_tz),
         as.POSIXct(paste(data[nrow(data), get("mtqdate")], data[nrow(data), get("mtqtime")]),
-                   tz = current_tz),
-        by = wanted_time_level)
+                   tz = current_tz), by = wanted_time_level)
     } else {
       new_date_time <- (
         computeDateSequenceCET(
-          date = c(as.POSIXct(paste(data[1, get("mtqdate")], data[1, get("mtqtime")]),
-                              tz = current_tz),
+          date = c(as.POSIXct(paste(data[1, get("mtqdate")], data[1, get("mtqtime")]), tz = current_tz),
                    as.POSIXct(paste(data[nrow(data), get("mtqdate")],
-                                    data[nrow(data), get("mtqtime")]),
-                              tz = current_tz)), 
+                                    data[nrow(data), get("mtqtime")]), tz = current_tz)), 
           ts = wanted_time_level))
       attr(new_date_time, "tzone") <- current_tz
     }
     
-    res <- data.frame(tmpdate = new_date_time)
-    tmp_function <- function(x) {
-      if (!x%in%col_series_na) {
-        res$tmp <<- stats::approx(x = data[, eval(parse(text = col_date))],
-                                  y = data[, eval(parse(text = x))],
-                                  xout = new_date_time)$y
-      } else {
-        res$tmp <<- NA
-      }
-      colnames(res)[ncol(res)] <<- x
+
+    tmp_compute <- paste(col_series, " = ", ifelse(col_series %in% col_series_na, "NA", 
+                                     paste0("stats::approx(x = ", col_date, ", y = ", col_series, ",xout = new_date_time)$y")))
+    eval_transformation <- paste0("list(date = new_date_time, ", paste(tmp_compute, collapse = ", "), ")")
+
+    if(is.null(col_by)){
+      res <- data[, eval(parse(text = eval_transformation))]
+    } else {
+      res <- data[, eval(parse(text = eval_transformation)), by = col_by]
     }
-    sapply(col_series, tmp_function)
-    colnames(res)[1] <- col_date
     
+    res <- as.data.frame(res)
     if (!keep_last) {
       res <- res[-nrow(res), ]
     }

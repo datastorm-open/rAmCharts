@@ -5,10 +5,10 @@
 \title{Transform quantitative variables.}
 \usage{
 getTransformTS(data, col_date = "date",
-  col_series = setdiff(colnames(data), col_date), ts = "10 min",
-  tz = "UTC", fun_aggr = "mean", treat_missing = FALSE,
-  control_date = TRUE, maxgap = Inf, keep_last = TRUE,
-  type_aggr = "first", showwarn = FALSE)
+  col_series = setdiff(colnames(data), c(col_date, col_by)),
+  col_by = NULL, ts = "10 min", tz = "UTC", fun_aggr = "mean",
+  treat_missing = FALSE, control_date = TRUE, maxgap = Inf,
+  keep_last = TRUE, type_aggr = "first", showwarn = FALSE)
 }
 \arguments{
 \item{data}{: data.frame to transform}
@@ -18,6 +18,8 @@ Must be "POSIXct"}
 
 \item{col_series}{: Column name of quantitative variable(s) to be
 transformed. Default to setdiff(colnames(data), "date")}
+
+\item{col_by}{: Column name of a optionnal grouping variable. Default to NULL}
 
 \item{ts}{: Increment of the sequence. Default to "10 min".
 Can be a number, in seconds, or a character string
