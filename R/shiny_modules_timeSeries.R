@@ -530,16 +530,20 @@ getTransformTS <- function(data,
                   data[[col_date]][nrow(data)], by = "day")
     
     if(is.null(col_by)){
-      data_check <- data.table(v_date)
-      colnames(data_check)[1] <- col_date
-      data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
+      if(!all(v_date %in% data[[col_date]]) | nrow(data) != length(v_date)){
+        data_check <- data.table(v_date)
+        colnames(data_check)[1] <- col_date
+        data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
+      }
     } else {
       v_id <- unique(data[[col_by]])
-      data_check <- data.table(rep(v_date, length(v_id)), rep(v_id, each = length(v_date)))
-      colnames(data_check) <-  c(col_date, col_by)  
-      data <- merge(data.table(data), data_check, by = c(col_date, col_by), all = TRUE)
-      setorder(data, col_by, col_date)
-      data <- data.frame(data)
+      if(!all(v_date %in% data[[col_date]]) | nrow(data) != (length(v_date) * length(v_id))){
+        data_check <- data.table(rep(v_date, length(v_id)), rep(v_id, each = length(v_date)))
+        colnames(data_check)[c(1:2)] <- c(col_date, col_by) 
+        data <- merge(data.table(data), data_check, by = c(col_date, col_by), all = TRUE)
+        setorder(data, col_by, col_date)
+        data <- data.frame(data)
+      }
     }
     control_date <- FALSE
     data[[col_date]] <- as.POSIXct(as.character(data[[col_date]]), tz = tzdate)
@@ -584,16 +588,20 @@ getTransformTS <- function(data,
                   by = current_time_level)
     
     if(is.null(col_by)){
-      data_check <- data.table(v_date)
-      colnames(data_check)[1] <- col_date
-      data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
+      if(!all(v_date %in% data[[col_date]]) | nrow(data) != length(v_date)){
+        data_check <- data.table(v_date)
+        colnames(data_check)[1] <- col_date
+        data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
+      }
     } else {
       v_id <- unique(data[[col_by]])
-      data_check <- data.table(rep(v_date, length(v_id)), rep(v_id, each = length(v_date)))
-      colnames(data_check) <-  c(col_date, col_by)
-      data <- merge(data.table(data), data_check, by = c(col_date, col_by), all = TRUE)
-      setorderv(data, c(col_by, col_date), c(1, 1))
-      data <- data.frame(data)
+      if(!all(v_date %in% data[[col_date]]) | nrow(data) != (length(v_date) * length(v_id))){
+        data_check <- data.table(rep(v_date, length(v_id)), rep(v_id, each = length(v_date)))
+        colnames(data_check) <-  c(col_date, col_by)
+        data <- merge(data.table(data), data_check, by = c(col_date, col_by), all = TRUE)
+        setorderv(data, c(col_by, col_date), c(1, 1))
+        data <- data.frame(data)
+      }
     }
   }
   
@@ -609,26 +617,25 @@ getTransformTS <- function(data,
   setnames(data, "V1", col_date)
   
   # we compute only on columns with at least two non missing values
-  tmp_function <- function(x) {
-    data[!is.na(eval(parse(text = x))), .N]
-  }
-  col_series_na <- col_series[which(sapply(col_series, tmp_function) < 2)]
+  check_na <- data[, sapply(.SD, function(x) sum(!is.na(x))), .SDcols = col_series]
+  col_series_na <- names(check_na)[which(check_na < 2)]
   
   # donnees manquantes -> extrapolation lineaire
   if (treat_missing) {
     treat_col_series <- setdiff(col_series, col_series_na)
     if (length(treat_col_series) > 0 ) {
-      expr_extrapolation <- parse(
-        text = paste0("c('", col_date, "','mtqdate', 'mtqtime', ",
-                      paste(paste0("'", treat_col_series,"'"), collapse = ","),
-                      ") := list(", col_date, ", mtqdate, mtqtime, ",
-                      paste(paste0("zoo::na.approx(", treat_col_series,
-                                   ", maxgap = ", maxgap, ", na.rm = FALSE)"),
-                            collapse = ","), ")"))
-      if(is.null(col_by)){
-        data <- data[, eval(expr_extrapolation)]
-      } else {
-        data <- data[, eval(expr_extrapolation), by = col_by]
+      ind_na <- unique(which(is.na(data[, treat_col_series, with = FALSE]), arr.ind = T)[, 1])
+      ind_na <- sort(unique(c(ind_na - 1, ind_na, ind_na + 1))) 
+      if(length(ind_na) > 0){
+        if(is.null(col_by)){
+          data <- data[ind_na, c(treat_col_series) := lapply(.SD, function(x, mg){
+            zoo::na.approx(x, maxgap = mg, na.rm = FALSE)
+          }, maxgap), .SDcols = treat_col_series]
+        } else {
+          data <- data[ind_na, c(treat_col_series) := lapply(.SD, function(x, mg){
+            zoo::na.approx(x, maxgap = mg, na.rm = FALSE)
+          }, maxgap), .SDcols = treat_col_series, by = col_by]
+        }
       }
     }
   } 
@@ -800,11 +807,11 @@ getTransformTS <- function(data,
       attr(new_date_time, "tzone") <- current_tz
     }
     
-
+    
     tmp_compute <- paste(col_series, " = ", ifelse(col_series %in% col_series_na, "NA", 
-                                     paste0("stats::approx(x = ", col_date, ", y = ", col_series, ",xout = new_date_time)$y")))
+                                                   paste0("stats::approx(x = ", col_date, ", y = ", col_series, ",xout = new_date_time)$y")))
     eval_transformation <- paste0("list(date = new_date_time, ", paste(tmp_compute, collapse = ", "), ")")
-
+    
     if(is.null(col_by)){
       res <- data[, eval(parse(text = eval_transformation))]
     } else {
