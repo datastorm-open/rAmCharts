@@ -31,6 +31,7 @@
 #' 
 #' \donttest{
 #' # Other examples available which can be time consuming depending on your configuration.
+#' if (requireNamespace("pipeR", quietly = TRUE)) {
 #' require(pipeR)
 #' 
 #' # Change colors
@@ -47,6 +48,7 @@
 #' 
 #' # Use amOptions
 #' amOHLC(data = data_candleStick2, zoom = FALSE)
+#' }
 #' }
 #' 
 #' @seealso \link{amOptions}, \link{amBarplot}, \link{amBoxplot}, \link{amHist}, \link{amPie},

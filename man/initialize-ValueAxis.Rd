@@ -29,13 +29,6 @@ Creates a ValuesAxis or updates its properties.
 guides <- list(guide(fillAlpha = .4), guide(fillAlpha = .5))
 new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)
 
-\dontrun{
-new("ValueAxis", title = "Hello !", 1) # 1 is not take into account
-
-# If one element of guides is not a Guide object, it shows an error
-guides <- list(guide(fillAlpha = .4), b = 1)
-new("ValueAxis", title = "Hello !",  gridThickness = 1, guides = guides)
-}
 
 valueAxis(title = "Hello !", axisTitleOffset = 12)
 

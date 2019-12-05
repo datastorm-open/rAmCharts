@@ -4,8 +4,10 @@
 #' Both 'am' functions and basic functions are illustrated.
 #' 
 #' @examples 
+#' 
+#' \dontrun{
 #' if (interactive()) runExamples()
-# 
+#' }
 #' @export 
 #' 
 runExamples <- function ()

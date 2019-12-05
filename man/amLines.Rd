@@ -42,10 +42,12 @@ is automatically linked to the x values of the chart "chart". That is why it mak
 sense to give the y argument.
 }
 \examples{
+if (requireNamespace("pipeR", quietly = TRUE)) {
 require(pipeR)
 amPlot(x = rnorm(100), type = 'sl') \%>>\%
   amLines(x = rnorm(100), type = "p")
-  
+}
+
 \donttest{
 amPlot(x = rnorm(100), type = 'sl') %>>%
   amLines(x = rnorm(100), col = "blue") %>>%

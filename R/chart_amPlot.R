@@ -46,17 +46,17 @@ setClassUnion(name = "characterOrFactor", members = c("character", "factor"))
 #' amPlot(x = rnorm(100))
 #' 
 #' # add line
-#'  amPlot(x = rnorm(100), type = 'sl', legend = T) %>>%
-#'     amLines(x = rnorm(100), type = "p")
+#' chart <- amPlot(x = rnorm(100), type = 'sl', legend = T)
+#' amLines(chart, x = rnorm(100), type = "p")
 #'     
 #' # 'character':
-#' start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
-#' end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
+#' start <- as.POSIXct('2015-01-01')
+#' end <- as.POSIXct('2015-12-31')
 #' date <- seq.POSIXt(from = start, to = end, by = 'day')
-#' date <- format(date, '%m-%d-%Y')
+#' date <- format(date)
 #' 
 #' y <- rnorm(length(date))
-#' amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")
+#' amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "YYYY-DD-MM")
 #' # notice that by default 'parseDates = FALSE'
 #' 
 #' # 'data.frame'
@@ -642,10 +642,12 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #' @param balloon \code{logical}, add balloon with value or not
 #' 
 #' @examples
+#' if (requireNamespace("pipeR", quietly = TRUE)) {
 #' require(pipeR)
 #' amPlot(x = rnorm(100), type = 'sl') %>>%
 #'   amLines(x = rnorm(100), type = "p")
-#'   
+#' }
+#' 
 #' \donttest{
 #' amPlot(x = rnorm(100), type = 'sl') %>>%
 #'   amLines(x = rnorm(100), col = "blue") %>>%

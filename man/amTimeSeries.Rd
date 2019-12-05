@@ -211,7 +211,7 @@ amTimeSeries(data_stock_2, "date", c("ts1", "ts2"),
               type = c("column", "step"), fillAlphas = c(1, 0),
               linewidth = c(0, 1))
  
-# some paramters
+# some parameters
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round")
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"), bullet = "round",
               groupToPeriods = c('hh', 'DD', '10DD'))

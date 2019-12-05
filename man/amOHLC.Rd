@@ -61,6 +61,7 @@ amOHLC(data = data_candleStick2)
 
 \donttest{
 # Other examples available which can be time consuming depending on your configuration.
+if (requireNamespace("pipeR", quietly = TRUE)) {
 require(pipeR)
 
 # Change colors
@@ -77,6 +78,7 @@ amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max")) %>>% s
 
 # Use amOptions
 amOHLC(data = data_candleStick2, zoom = FALSE)
+}
 }
 
 }

@@ -43,6 +43,7 @@ amRadar(data_radar)
 
 # Other examples available which can be time consuming depending on your configuration.
 
+if (requireNamespace("pipeR", quietly = TRUE)) {
 require(pipeR)
 
 # Change color
@@ -64,6 +65,7 @@ amRadar(data_radar,  pch = "triangleLeft")
 
 # Min-Max
 amRadar(data_radar, xlim = c(0, 8))
+}
 }
 
 
