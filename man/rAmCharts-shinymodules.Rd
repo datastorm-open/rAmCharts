@@ -8,10 +8,17 @@
 \usage{
 rAmChartsExportServerUI(id)
 
-rAmChartsExportServer(input, output, session, list_am_graph,
-  path = shiny::reactive(tempdir()), mode = "single", progress = T,
+rAmChartsExportServer(
+  input,
+  output,
+  session,
+  list_am_graph,
+  path = shiny::reactive(tempdir()),
+  mode = "single",
+  progress = T,
   message = "Calculation in progress",
-  detail = "This may take a while...")
+  detail = "This may take a while..."
+)
 }
 \arguments{
 \item{id}{character, used to specify namesapce, see \code{shiny::\link[shiny]{NS}}}
@@ -61,7 +68,7 @@ mult_amgraph <- reactive({
    isolate({
      list(
        list(graph = amPie(data = data_pie), name = "pie.jpg", height = "200px", width = "300px"),
-       list(graph = amBarplot(x = "country", y = "visits", data = data_bar, main = "example") \%>\%
+       list(graph = amBarplot(x = "country", y = "visits", data = data_bar, main = "example") %>%
          setExport(), name = "bar.jpg", height = "600px")
      )
    })

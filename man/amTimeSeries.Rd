@@ -4,34 +4,54 @@
 \alias{amTimeSeries}
 \title{Plotting times series (with or without aggregation)}
 \usage{
-amTimeSeries(data, col_date, col_series, main = "", ylab = "",
+amTimeSeries(
+  data,
+  col_date,
+  col_series,
+  main = "",
+  ylab = "",
   color = c("#2E2EFE", "#31B404", "#FF4000", "#AEB404"),
-  type = c("line"), bullet = NULL, bulletSize = 2, linetype = c(0,
-  5, 10, 15, 20), linewidth = c(1, 1, 1, 1, 1, 1), fillAlphas = 0,
-  precision = 1, connect = FALSE, export = FALSE, legend = TRUE,
-  legendPosition = "bottom", legendHidden = FALSE,
-  aggregation = c("Average", "Low", "High", "Sum"), maxSeries = 300,
+  type = c("line"),
+  bullet = NULL,
+  bulletSize = 2,
+  linetype = c(0, 5, 10, 15, 20),
+  linewidth = c(1, 1, 1, 1, 1, 1),
+  fillAlphas = 0,
+  precision = 1,
+  connect = FALSE,
+  export = FALSE,
+  legend = TRUE,
+  legendPosition = "bottom",
+  legendHidden = FALSE,
+  aggregation = c("Average", "Low", "High", "Sum"),
+  maxSeries = 300,
   groupToPeriods = c("ss", "mm", "hh", "DD", "MM", "YYYY"),
-  checkGroupToPeriods = TRUE, ZoomButton = data.frame(Unit = "MAX",
-  multiple = 1, label = "All"), ZoomButtonPosition = "bottom",
-  periodFieldsSelection = FALSE, scrollbar = TRUE,
-  scrollbarPosition = "bottom", scrollbarHeight = 40,
-  scrollbarGraph = NULL, cursor = TRUE,
-  cursorValueBalloonsEnabled = TRUE, creditsPosition = "top-right",
-  group = NULL, is_ts_module = FALSE,
+  checkGroupToPeriods = TRUE,
+  ZoomButton = data.frame(Unit = "MAX", multiple = 1, label = "All"),
+  ZoomButtonPosition = "bottom",
+  periodFieldsSelection = FALSE,
+  scrollbar = TRUE,
+  scrollbarPosition = "bottom",
+  scrollbarHeight = 40,
+  scrollbarGraph = NULL,
+  cursor = TRUE,
+  cursorValueBalloonsEnabled = TRUE,
+  creditsPosition = "top-right",
+  group = NULL,
+  is_ts_module = FALSE,
   dataDateFormat = "YYYY-MM-DD JJ:NN:SS",
-  categoryBalloonDateFormats = list(list(period = "YYYY", format =
-  "YYYY"), list(period = "MM", format = "YYYY-MM"), list(period = "WW",
-  format = "YYYY-MM-DD"), list(period = "DD", format = "YYYY-MM-DD"),
-  list(period = "hh", format = "YYYY-MM-DD JJ:NN"), list(period = "mm",
-  format = "YYYY-MM-DD JJ:NN"), list(period = "ss", format =
-  "YYYY-MM-DD JJ:NN:SS"), list(period = "fff", format =
-  "YYYY-MM-DD JJ:NN:SS")), dateFormats = list(list(period = "YYYY",
-  format = "YYYY"), list(period = "MM", format = "MMM"), list(period =
-  "WW", format = "MMM DD"), list(period = "DD", format = "MMM DD"),
-  list(period = "hh", format = "JJ:NN"), list(period = "mm", format =
-  "JJ:NN"), list(period = "ss", format = "JJ:NN:SS"), list(period = "fff",
-  format = "JJ:NN:SS")), ...)
+  categoryBalloonDateFormats = list(list(period = "YYYY", format = "YYYY"), list(period
+    = "MM", format = "YYYY-MM"), list(period = "WW", format = "YYYY-MM-DD"), list(period =
+    "DD", format = "YYYY-MM-DD"), list(period = "hh", format = "YYYY-MM-DD JJ:NN"),
+    list(period = "mm", format = "YYYY-MM-DD JJ:NN"), list(period = "ss", format =
+    "YYYY-MM-DD JJ:NN:SS"), list(period = "fff", format = "YYYY-MM-DD JJ:NN:SS")),
+  dateFormats = list(list(period = "YYYY", format = "YYYY"), list(period = "MM", format
+    = "MMM"), list(period = "WW", format = "MMM DD"), list(period = "DD", format =
+    "MMM DD"), list(period = "hh", format = "JJ:NN"), list(period = "mm", format =
+    "JJ:NN"), list(period = "ss", format = "JJ:NN:SS"), list(period = "fff", format =
+    "JJ:NN:SS")),
+  ...
+)
 }
 \arguments{
 \item{data}{\code{data.frame}, data of graph.}

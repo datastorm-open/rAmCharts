@@ -4,8 +4,15 @@
 \alias{amRadar}
 \title{Plotting radar}
 \usage{
-amRadar(data, col = NULL, backTransparency = 0.5, type = "polygons",
-  pch = "round", xlim = NULL, ...)
+amRadar(
+  data,
+  col = NULL,
+  backTransparency = 0.5,
+  type = "polygons",
+  pch = "round",
+  xlim = NULL,
+  ...
+)
 }
 \arguments{
 \item{data}{\code{data.frame} first column is named "label" (character), other columns are series of values,

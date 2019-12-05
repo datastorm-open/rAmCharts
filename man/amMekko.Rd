@@ -4,8 +4,17 @@
 \alias{amMekko}
 \title{Plotting mekko chart (quali vs quali)}
 \usage{
-amMekko(x, y, data, xlab = "", ylab = "", groups_color = NULL,
-  horiz = FALSE, show_values = FALSE, ...)
+amMekko(
+  x,
+  y,
+  data,
+  xlab = "",
+  ylab = "",
+  groups_color = NULL,
+  horiz = FALSE,
+  show_values = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{\code{character}, column name for x-axis.}

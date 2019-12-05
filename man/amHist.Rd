@@ -7,9 +7,19 @@
 \usage{
 amHist(x, ...)
 
-\method{amHist}{numeric}(x, col = "#1e90ff", border = "#1e90ff",
-  freq = TRUE, plot = TRUE, labels = FALSE, xlab, ylab, ylim,
-  control_hist, ...)
+\method{amHist}{numeric}(
+  x,
+  col = "#1e90ff",
+  border = "#1e90ff",
+  freq = TRUE,
+  plot = TRUE,
+  labels = FALSE,
+  xlab,
+  ylab,
+  ylim,
+  control_hist,
+  ...
+)
 }
 \arguments{
 \item{x}{\code{numeric}, a vector of values for which the histogram is desired.}

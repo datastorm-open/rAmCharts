@@ -4,11 +4,18 @@
 \alias{amStockMultiSet}
 \title{Plotting multi data-sets}
 \usage{
-amStockMultiSet(data, panelColumn = NULL,
-  ZoomButtonPosition = "bottom", ZoomButton = data.frame(Unit = "MAX",
-  multiple = 1, label = "All"), color = c("#2E2EFE", "#31B404",
-  "#FF4000"), precision = 1, export = FALSE,
-  percentHeightPanel = NULL, creditsPosition = "top-right", ...)
+amStockMultiSet(
+  data,
+  panelColumn = NULL,
+  ZoomButtonPosition = "bottom",
+  ZoomButton = data.frame(Unit = "MAX", multiple = 1, label = "All"),
+  color = c("#2E2EFE", "#31B404", "#FF4000"),
+  precision = 1,
+  export = FALSE,
+  percentHeightPanel = NULL,
+  creditsPosition = "top-right",
+  ...
+)
 }
 \arguments{
 \item{data}{\code{list}, list of data.frame (same structure) first column is date, others are values}

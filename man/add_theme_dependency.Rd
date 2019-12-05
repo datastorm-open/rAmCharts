@@ -4,8 +4,10 @@
 \alias{add_theme_dependency}
 \title{Add theme dependency}
 \usage{
-add_theme_dependency(widget, theme_js = c("light.js", "patterns.js",
-  "dark.js", "chalk.js"))
+add_theme_dependency(
+  widget,
+  theme_js = c("light.js", "patterns.js", "dark.js", "chalk.js")
+)
 }
 \arguments{
 \item{widget}{An htmlwidget.}
@@ -22,7 +24,7 @@ You can only manipulate the htmlwidget if you call the method 'plot' with an rAm
 \examples{
 \donttest{
 library(pipeR)
-amPlot(1:10, theme = "dark") \%>>\% plot() \%>>\% add_theme_dependency("light.js")
+amPlot(1:10, theme = "dark") %>>% plot() %>>% add_theme_dependency("light.js")
 }
 
 }

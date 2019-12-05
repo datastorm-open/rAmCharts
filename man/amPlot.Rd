@@ -14,30 +14,79 @@ amPlot(x, ...)
 
 \method{amPlot}{default}(x, ...)
 
-\method{amPlot}{numeric}(x, y, bullet = c("round", "diamond", "square",
-  "bubble", "yError", "xError", "triangleLeft", "triangleRight",
-  "triangleUp", "triangleDown"), type = c("points", "line",
-  "smoothedLine", "step", "both"), col = "#0066cc", fill_alphas = 0,
-  weights = NULL, precision = 2, title = NULL, id, error, xlab, ylab,
-  lty, cex, lwd, xlim, ylim, ...)
+\method{amPlot}{numeric}(
+  x,
+  y,
+  bullet = c("round", "diamond", "square", "bubble", "yError", "xError", "triangleLeft",
+    "triangleRight", "triangleUp", "triangleDown"),
+  type = c("points", "line", "smoothedLine", "step", "both"),
+  col = "#0066cc",
+  fill_alphas = 0,
+  weights = NULL,
+  precision = 2,
+  title = NULL,
+  id,
+  error,
+  xlab,
+  ylab,
+  lty,
+  cex,
+  lwd,
+  xlim,
+  ylim,
+  ...
+)
 
-\method{amPlot}{character}(x, y, bullet = c("round", "diamond", "square",
-  "bubble", "yError", "xError", "triangleLeft", "triangleRight",
-  "triangleUp", "triangleDown"), type = c("points", "line",
-  "smoothedLine", "step", "both"), col = "#0066cc", fill_alphas = 0,
-  weights = NULL, precision = 2, parseDates = FALSE, title = NULL,
-  dataDateFormat, id, error, xlab, ylab, lty, cex, lwd, xlim, ylim, ...)
+\method{amPlot}{character}(
+  x,
+  y,
+  bullet = c("round", "diamond", "square", "bubble", "yError", "xError", "triangleLeft",
+    "triangleRight", "triangleUp", "triangleDown"),
+  type = c("points", "line", "smoothedLine", "step", "both"),
+  col = "#0066cc",
+  fill_alphas = 0,
+  weights = NULL,
+  precision = 2,
+  parseDates = FALSE,
+  title = NULL,
+  dataDateFormat,
+  id,
+  error,
+  xlab,
+  ylab,
+  lty,
+  cex,
+  lwd,
+  xlim,
+  ylim,
+  ...
+)
 
-\method{amPlot}{factor}(x, y, bullet = "round", type = "p",
-  col = "gray", weights = NULL, precision = 2, parseDates = FALSE,
-  dataDateFormat = NULL, id, error, xlab, ylab, lty, cex, lwd, xlim,
-  ylim, ...)
+\method{amPlot}{factor}(
+  x,
+  y,
+  bullet = "round",
+  type = "p",
+  col = "gray",
+  weights = NULL,
+  precision = 2,
+  parseDates = FALSE,
+  dataDateFormat = NULL,
+  id,
+  error,
+  xlab,
+  ylab,
+  lty,
+  cex,
+  lwd,
+  xlim,
+  ylim,
+  ...
+)
 
-\method{amPlot}{data.frame}(x, columns, type = "l", precision = 2,
-  xlab, ylab, fill_alphas = 0, ...)
+\method{amPlot}{data.frame}(x, columns, type = "l", precision = 2, xlab, ylab, fill_alphas = 0, ...)
 
-\method{amPlot}{formula}(x, data, type = "p", fill_alphas = 0, xlab,
-  ylab, main = "", ...)
+\method{amPlot}{formula}(x, data, type = "p", fill_alphas = 0, xlab, ylab, main = "", ...)
 }
 \arguments{
 \item{x}{the coordinates of points in the plot : \code{numeric},
@@ -114,14 +163,14 @@ amPlot computes a plot of the given data values (can be a vector,  dataframe or 
 amPlot(x = rnorm(100))
 
 # add line
- amPlot(x = rnorm(100), type = 'sl', legend = T) \%>>\%
+ amPlot(x = rnorm(100), type = 'sl', legend = T) %>>%
     amLines(x = rnorm(100), type = "p")
     
 # 'character':
-start <- as.POSIXct('01-01-2015', format = '\%d-\%m-\%Y')
-end <- as.POSIXct('31-12-2015', format = '\%d-\%m-\%Y')
+start <- as.POSIXct('01-01-2015', format = '%d-%m-%Y')
+end <- as.POSIXct('31-12-2015', format = '%d-%m-%Y')
 date <- seq.POSIXt(from = start, to = end, by = 'day')
-date <- format(date, '\%m-\%d-\%Y')
+date <- format(date, '%m-%d-%Y')
 
 y <- rnorm(length(date))
 amPlot(x = date, y = y, type = 'l', parseDates = TRUE, dataDateFormat = "MM-DD-YYYY")

@@ -4,11 +4,20 @@
 \alias{getCurrentStockData}
 \title{Get data in shiny module}
 \usage{
-getCurrentStockData(data, col_date, col_series, zoom = NULL,
-  maxPoints = 1000, tz = "UTC", ts = c("5 min", "10 min", "30 min",
-  "hour", "3 hour", "12 hour", "day", "week", "month", "year"),
-  fun_aggr = "mean", treat_missing = FALSE, maxgap = Inf,
-  type_aggr = "first")
+getCurrentStockData(
+  data,
+  col_date,
+  col_series,
+  zoom = NULL,
+  maxPoints = 1000,
+  tz = "UTC",
+  ts = c("5 min", "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week",
+    "month", "year"),
+  fun_aggr = "mean",
+  treat_missing = FALSE,
+  maxgap = Inf,
+  type_aggr = "first"
+)
 }
 \arguments{
 \item{data}{: data.frame to transform}

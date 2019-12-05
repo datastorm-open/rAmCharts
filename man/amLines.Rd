@@ -4,9 +4,16 @@
 \alias{amLines}
 \title{amLines adds a serie to a graph.}
 \usage{
-amLines(chart, x = NULL, y = NULL, type = c("points", "line",
-  "smoothedLine", "both", "step"), col = "#0066cc", title,
-  fill_alphas = 0, balloon = T)
+amLines(
+  chart,
+  x = NULL,
+  y = NULL,
+  type = c("points", "line", "smoothedLine", "both", "step"),
+  col = "#0066cc",
+  title,
+  fill_alphas = 0,
+  balloon = T
+)
 }
 \arguments{
 \item{chart}{\linkS4class{AmChart}. Chart you wish to add the new serie.}
@@ -40,9 +47,9 @@ amPlot(x = rnorm(100), type = 'sl') \%>>\%
   amLines(x = rnorm(100), type = "p")
   
 \donttest{
-amPlot(x = rnorm(100), type = 'sl') \%>>\%
-  amLines(x = rnorm(100), col = "blue") \%>>\%
-  amLines(x = rnorm(100), type = "sl") \%>>\%
+amPlot(x = rnorm(100), type = 'sl') %>>%
+  amLines(x = rnorm(100), col = "blue") %>>%
+  amLines(x = rnorm(100), type = "sl") %>>%
   amLines(x = rnorm(100), type = "p")
 
 # For an XY chart
@@ -50,8 +57,8 @@ x <- sort(rnorm(100))
 y1 <- rnorm(100, sd = 10)
 y2 <- rnorm(100, sd = 10)
 y3 <- rnorm(100, sd = 10)
-amPlot(x = x, y = y1) \%>>\%
-  amLines(x = y2, col = "blue") \%>>\%
+amPlot(x = x, y = y1) %>>%
+  amLines(x = y2, col = "blue") %>>%
   amLines(x = y3, type = "p")
 }
 

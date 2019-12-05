@@ -4,10 +4,19 @@
 \alias{amOHLC}
 \title{Plotting OHLC chart}
 \usage{
-amOHLC(data, xlab = "", ylab = "", horiz = FALSE, zoom = TRUE,
-  positiveColor = "#7f8da9", negativeColor = "#db4c3c",
-  names = c("low", "open", "close", "high"), dataDateFormat = NULL,
-  minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
+amOHLC(
+  data,
+  xlab = "",
+  ylab = "",
+  horiz = FALSE,
+  zoom = TRUE,
+  positiveColor = "#7f8da9",
+  negativeColor = "#db4c3c",
+  names = c("low", "open", "close", "high"),
+  dataDateFormat = NULL,
+  minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""),
+  ...
+)
 }
 \arguments{
 \item{data}{\code{data.frame}, dataframe with at least 5 columns : 
@@ -58,13 +67,13 @@ require(pipeR)
 amOHLC(data = data_candleStick2, positiveColor = "green", negativeColor = "red")
 
 # Naming the axes
-amOHLC(data = data_candleStick2, xlab = "categories", ylab = "values") \%>>\% setChartCursor()
+amOHLC(data = data_candleStick2, xlab = "categories", ylab = "values") %>>% setChartCursor()
 
 # Rotate the labels for x axis
 amOHLC(data = data_candleStick2, labelRotation = 90)
 
 # Change names
-amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max")) \%>>\% setChartCursor()
+amOHLC(data = data_candleStick2, names = c("min", "begin", "end", "max")) %>>% setChartCursor()
 
 # Use amOptions
 amOHLC(data = data_candleStick2, zoom = FALSE)

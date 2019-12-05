@@ -4,9 +4,17 @@
 \alias{amFunnel}
 \title{Plotting funnel chart using rAmCharts}
 \usage{
-amFunnel(data, inverse = FALSE, neck_height = NULL,
-  neck_width = NULL, depth = 0, label_side = "right",
-  margin_right = 200, margin_left = 200, ...)
+amFunnel(
+  data,
+  inverse = FALSE,
+  neck_height = NULL,
+  neck_width = NULL,
+  depth = 0,
+  label_side = "right",
+  margin_right = 200,
+  margin_left = 200,
+  ...
+)
 }
 \arguments{
 \item{data}{\code{data.frame} of at least 2 columns : value (numeric, positive), 

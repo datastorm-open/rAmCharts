@@ -4,8 +4,7 @@
 \alias{amChartsOutput}
 \title{SHINY}
 \usage{
-amChartsOutput(outputId, type = NULL, width = "100\%",
-  height = "400px")
+amChartsOutput(outputId, type = NULL, width = "100\%", height = "400px")
 }
 \arguments{
 \item{outputId}{\code{character}, output variable to read the chart from.}

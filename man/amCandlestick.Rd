@@ -4,10 +4,18 @@
 \alias{amCandlestick}
 \title{Plotting candlestick chart using rAmCharts}
 \usage{
-amCandlestick(data, xlab = "", ylab = "", horiz = FALSE,
-  positiveColor = "#7f8da9", negativeColor = "#db4c3c",
-  names = c("low", "open", "close", "high"), dataDateFormat = NULL,
-  minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""), ...)
+amCandlestick(
+  data,
+  xlab = "",
+  ylab = "",
+  horiz = FALSE,
+  positiveColor = "#7f8da9",
+  negativeColor = "#db4c3c",
+  names = c("low", "open", "close", "high"),
+  dataDateFormat = NULL,
+  minPeriod = ifelse(!is.null(dataDateFormat), "DD", ""),
+  ...
+)
 }
 \arguments{
 \item{data}{\code{data.frame}, dataframe with at least 5 columns: 
@@ -77,7 +85,7 @@ amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD", minPeriod
 
 # Decimal precision
 require(pipeR)
-amCandlestick(data = data_candleStick2, horiz = TRUE) \%>>\%
+amCandlestick(data = data_candleStick2, horiz = TRUE) %>>%
   setProperties(precision = 2) 
 }
 

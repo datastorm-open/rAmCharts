@@ -4,9 +4,19 @@
 \alias{amBullet}
 \title{Plotting bullet chart using rAmCharts}
 \usage{
-amBullet(value, min = 0, max = 100, val_color = "#000000",
-  limit = 85, limit_color = "#000000", steps = TRUE, label = "",
-  horiz = TRUE, rates, ...)
+amBullet(
+  value,
+  min = 0,
+  max = 100,
+  val_color = "#000000",
+  limit = 85,
+  limit_color = "#000000",
+  steps = TRUE,
+  label = "",
+  horiz = TRUE,
+  rates,
+  ...
+)
 }
 \arguments{
 \item{value}{\code{numeric}, value to display.}

@@ -8,25 +8,38 @@
 \usage{
 rAmChartsTimeSeriesUI(id, width = "100\%", height = "400px")
 
-rAmChartsTimeSeriesServer(input, output, session, data, col_date,
-  col_series, maxPoints = shiny::reactive(600),
-  tz = shiny::reactive("UTC"), ts = shiny::reactive(c("5 min",
-  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month",
-  "year")), fun_aggr = shiny::reactive("mean"),
+rAmChartsTimeSeriesServer(
+  input,
+  output,
+  session,
+  data,
+  col_date,
+  col_series,
+  maxPoints = shiny::reactive(600),
+  tz = shiny::reactive("UTC"),
+  ts = shiny::reactive(c("5 min", "10 min", "30 min", "hour", "3 hour", "12 hour",
+    "day", "week", "month", "year")),
+  fun_aggr = shiny::reactive("mean"),
   treat_missing = shiny::reactive(FALSE),
-  maxgap = shiny::reactive(Inf), type_aggr = shiny::reactive("first"),
-  main = shiny::reactive(""), ylab = shiny::reactive(""),
+  maxgap = shiny::reactive(Inf),
+  type_aggr = shiny::reactive("first"),
+  main = shiny::reactive(""),
+  ylab = shiny::reactive(""),
   color = shiny::reactive(c("#2E2EFE", "#31B404", "#FF4000", "#AEB404")),
-  type = shiny::reactive(c("line")), bullet = shiny::reactive(NULL),
-  bulletSize = shiny::reactive(2), linetype = shiny::reactive(c(0, 5,
-  10, 15, 20)), linewidth = shiny::reactive(c(1, 1, 1, 1, 1, 1)),
-  fillAlphas = shiny::reactive(0), precision = shiny::reactive(1),
-  connect = shiny::reactive(FALSE), export = shiny::reactive(FALSE),
+  type = shiny::reactive(c("line")),
+  bullet = shiny::reactive(NULL),
+  bulletSize = shiny::reactive(2),
+  linetype = shiny::reactive(c(0, 5, 10, 15, 20)),
+  linewidth = shiny::reactive(c(1, 1, 1, 1, 1, 1)),
+  fillAlphas = shiny::reactive(0),
+  precision = shiny::reactive(1),
+  connect = shiny::reactive(FALSE),
+  export = shiny::reactive(FALSE),
   legend = shiny::reactive(TRUE),
   legendPosition = shiny::reactive("bottom"),
   legendHidden = shiny::reactive(FALSE),
-  ZoomButton = shiny::reactive(data.frame(Unit = "MAX", multiple = 1,
-  label = "All")), ZoomButtonPosition = shiny::reactive("bottom"),
+  ZoomButton = shiny::reactive(data.frame(Unit = "MAX", multiple = 1, label = "All")),
+  ZoomButtonPosition = shiny::reactive("bottom"),
   periodFieldsSelection = shiny::reactive(FALSE),
   scrollbar = shiny::reactive(TRUE),
   scrollbarPosition = shiny::reactive("bottom"),
@@ -37,18 +50,18 @@ rAmChartsTimeSeriesServer(input, output, session, data, col_date,
   creditsPosition = shiny::reactive("top-right"),
   group = shiny::reactive(NULL),
   dataDateFormat = shiny::reactive("YYYY-MM-DD JJ:NN:ss"),
-  categoryBalloonDateFormats = shiny::reactive(list(list(period = "YYYY",
-  format = "YYYY"), list(period = "MM", format = "YYYY-MM"), list(period =
-  "WW", format = "YYYY-MM-DD"), list(period = "DD", format = "YYYY-MM-DD"),
-  list(period = "hh", format = "YYYY-MM-DD JJ:NN"), list(period = "mm",
-  format = "YYYY-MM-DD JJ:NN"), list(period = "ss", format =
-  "YYYY-MM-DD JJ:NN:ss"), list(period = "fff", format =
-  "YYYY-MM-DD JJ:NN:ss"))),
-  dateFormats = shiny::reactive(list(list(period = "YYYY", format =
-  "YYYY"), list(period = "MM", format = "MMM"), list(period = "WW", format
-  = "MMM DD"), list(period = "DD", format = "MMM DD"), list(period = "hh",
-  format = "JJ:NN"), list(period = "mm", format = "JJ:NN"), list(period =
-  "ss", format = "JJ:NN:ss"), list(period = "fff", format = "JJ:NN:ss"))))
+  categoryBalloonDateFormats = shiny::reactive(list(list(period = "YYYY", format =
+    "YYYY"), list(period = "MM", format = "YYYY-MM"), list(period = "WW", format =
+    "YYYY-MM-DD"), list(period = "DD", format = "YYYY-MM-DD"), list(period = "hh", format
+    = "YYYY-MM-DD JJ:NN"), list(period = "mm", format = "YYYY-MM-DD JJ:NN"), list(period =
+    "ss", format = "YYYY-MM-DD JJ:NN:ss"), list(period = "fff", format =
+    "YYYY-MM-DD JJ:NN:ss"))),
+  dateFormats = shiny::reactive(list(list(period = "YYYY", format = "YYYY"), list(period
+    = "MM", format = "MMM"), list(period = "WW", format = "MMM DD"), list(period = "DD",
+    format = "MMM DD"), list(period = "hh", format = "JJ:NN"), list(period = "mm", format
+    = "JJ:NN"), list(period = "ss", format = "JJ:NN:ss"), list(period = "fff", format =
+    "JJ:NN:ss")))
+)
 }
 \arguments{
 \item{id}{character, used to specify namesapce, see \code{shiny::\link[shiny]{NS}}}
