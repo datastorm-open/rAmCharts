@@ -815,7 +815,7 @@ getTransformTS <- function(data,
     
     tmp_compute <- paste(col_series, " = ", ifelse(col_series %in% col_series_na, "NA", 
                                                    paste0("stats::approx(x = ", col_date, ", y = ", col_series, ",xout = new_date_time)$y")))
-    eval_transformation <- paste0("list(date = new_date_time, ", paste(tmp_compute, collapse = ", "), ")")
+    eval_transformation <- paste0("list(", col_date, " = new_date_time, ", paste(tmp_compute, collapse = ", "), ")")
     
     if(is.null(col_by)){
       res <- data[, eval(parse(text = eval_transformation))]
