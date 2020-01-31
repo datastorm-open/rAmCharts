@@ -17,7 +17,7 @@
 #'             This can optionally be preceded by a positive integer
 #'             and a space
 #' @param tz : Timezone of result. Defaut to "UTC".
-#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean", "first", "last").
+#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean", "first", "last", "minabs", "maxabs").
 #'                   Default to "mean".
 #' @param treat_missing : Boolean. Default to FALSE
 #'                        Whether or not to interpolate missing values ?
@@ -85,6 +85,7 @@
 #' 
 #' library(shiny)
 #' library(rAmCharts)
+#' library(data.table)
 #' 
 #' # number of points
 #' n <- 1000000
@@ -186,6 +187,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
   ctrl_data <- shiny::reactiveValues(data = NULL, ts = NULL, zoom = NULL, cpt = 0)
   
   output$am_ts_module <- renderAmCharts({
+
     data <- data()
     if(!is.null(data)){
       init_data <- getCurrentStockData(data, col_date = col_date(), col_series = unlist(col_series()), 
@@ -290,7 +292,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
 #'             This can optionally be preceded by a positive integer
 #'             and a space
 #' @param tz : Timezone of result. Defaut to "UTC".
-#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean", "first", "last").
+#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean", "first", "last", "minabs", "maxabs").
 #'                   Default to "mean".
 #' @param treat_missing : Boolean. Default to FALSE
 #'                        Whether or not to interpolate missing values ?
@@ -647,8 +649,8 @@ getTransformTS <- function(data,
   
   ### Aggregation ----------------------------
   if (current_time_level < wanted_time_level) {
-    if (!fun_aggr %in% c("mean", "max", "min", "sum", "first", "last")) {
-      stop("Invalid 'fun_aggr', must be one of 'mean', 'max', 'min', 'sum', 'first' or 'last'")
+    if (!fun_aggr %in% c("mean", "max", "min", "sum", "first", "last", "minabs", "maxabs")) {
+      stop("Invalid 'fun_aggr', must be one of 'mean', 'max', 'min', 'sum', 'minabs', 'maxabs', 'first' or 'last'")
     }
     
     if(wanted_time_level%%current_time_level != 0){
@@ -657,6 +659,7 @@ getTransformTS <- function(data,
     timefun <- ifelse(type_aggr == "first", "min", "max")
     
     if(fun_aggr %in% c("mean", "max", "min", "sum")){
+
       expr_transformation <- parse(text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
                                                  paste(paste0(col_series, "=", fun_aggr, "(", col_series,
                                                               ", na.rm = TRUE)"), collapse = ","), ",tmp_N = .N)"))
@@ -668,6 +671,16 @@ getTransformTS <- function(data,
       expr_transformation <- parse(text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
                                                  paste(paste0(col_series, "= tail(", col_series,
                                                               "[!is.na(", col_series, ")], n = 1)"), collapse = ","), ",tmp_N = .N)"))
+    } else if (fun_aggr %in% c("minabs", "maxabs")) {
+      aggreg <- ifelse(fun_aggr == "minabs", "min", "max")
+      
+      expr_transformation <- parse(text = paste0(
+        "list(", col_date, "=", timefun, "(", col_date, "),",
+        paste(paste0(col_series, "=", "sign(", col_series, 
+                     "[which.", aggreg, "(", "abs", "(", col_series, ")", ")])*", 
+                     "",
+                     aggreg, "(", "abs", "(", col_series, ")",
+                     ", na.rm = TRUE)"), collapse = ","), ",tmp_N = .N)"))
     }
     
     
