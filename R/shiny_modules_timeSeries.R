@@ -617,8 +617,8 @@ getTransformTS <- function(data,
   }
   
   data <- data.table(data[[col_date]],
-                     mtqdate = as.IDate(data[[col_date]], tz = current_tz),
-                     mtqtime = as.ITime(data[[col_date]], tz = current_tz),
+                     mtq__date__ = as.IDate(data[[col_date]], tz = current_tz),
+                     mtq__datetime__ = data[[col_date]],
                      data[, c(col_by, col_series), drop = FALSE])
   
   setnames(data, "V1", col_date)
@@ -683,21 +683,21 @@ getTransformTS <- function(data,
         stop("Can't set 'year' superior to 1")
       }
       
-      expr_group <- "list(year(mtqdate))"
+      expr_group <- "list(year(mtq__date__))"
     } else
       if (wanted_time == "month") {
         if(number_time > 1){
           stop("Can't set 'month' superior to 1")
         }
         
-        expr_group <- "list(year(mtqdate), month(mtqdate))"
+        expr_group <- "list(year(mtq__date__), month(mtq__date__))"
         
       } else if (wanted_time == "week") {
         if(number_time > 1){
           stop("Can't set 'week' superior to 1")
         }
         
-        nearest_thursday2 <- dtthursday0(data$mtqdate)
+        nearest_thursday2 <- dtthursday0(data$mtq__date__)
         year2 <- year(nearest_thursday2)
         uni_january04 <- as.IDate(paste0(unique(year2), "-01-04"))
         uni_thursday2 <- dtthursday0(uni_january04)
@@ -719,10 +719,10 @@ getTransformTS <- function(data,
           stop("Can't set 'day' superior to 366")
         }
         if (number_time == 1) {
-          expr_group <- "list(mtqdate)"
+          expr_group <- "list(mtq__date__)"
         } else {    
-          expr_group <- paste0("list(year(mtqdate), ",
-                               "ctrl = mycut(as.data.table(yday(mtqdate)), ",
+          expr_group <- paste0("list(year(mtq__date__), ",
+                               "ctrl = mycut(as.data.table(yday(mtq__date__)), ",
                                "breaks = c(",
                                paste(seq(1, 368, by = number_time), collapse = ","),
                                "))[, V1])")
@@ -735,10 +735,10 @@ getTransformTS <- function(data,
           stop("Only accept regular sequence")
         }
         if (number_time == 1) {
-          expr_group <- "list(mtqdate, hour(mtqtime))"
+          expr_group <- "list(mtq__date__, hour(mtq__datetime__))"
         } else {    
-          expr_group <- paste0("list(mtqdate, ",
-                               "ctrl = mycut(as.data.table(hour(mtqtime)), ",
+          expr_group <- paste0("list(mtq__date__, ",
+                               "ctrl = mycut(as.data.table(hour(mtq__datetime__)), ",
                                "breaks = c(",
                                paste(seq(0, 24, by = number_time), collapse = ","),
                                "))[, V1])")
@@ -751,10 +751,10 @@ getTransformTS <- function(data,
           stop("Only accept regular sequence")
         }
         if (number_time == 1) {
-          expr_group <- "list(mtqdate, hour(mtqtime), as.POSIXlt(mtqtime)$min)"
+          expr_group <- "list(mtq__date__, hour(mtq__datetime__), minute(mtq__datetime__))"
         } else {    
-          expr_group <- paste0("list(mtqdate,hour(mtqtime), ",
-                               "ctrl = mycut(as.data.table(as.POSIXlt(mtqtime)$min),",
+          expr_group <- paste0("list(mtq__date__,hour(mtq__datetime__), ",
+                               "ctrl = mycut(as.data.table(minute(mtq__datetime__)),",
                                "breaks = c(",
                                paste(seq(0, 60, by = number_time), collapse = ","),
                                "))[, V1])")
@@ -769,12 +769,12 @@ getTransformTS <- function(data,
     }
     
     
-    if ("mtqdate" %in% colnames(res)) {
-      res[, c("mtqdate") := NULL]
+    if ("mtq__date__" %in% colnames(res)) {
+      res[, c("mtq__date__") := NULL]
     }
     
-    if ("mtqtime" %in% colnames(res)) {
-      res[, c("mtqtime") := NULL]
+    if ("mtq__datetime__" %in% colnames(res)) {
+      res[, c("mtq__datetime__") := NULL]
     }
     
     # check first value
@@ -806,22 +806,21 @@ getTransformTS <- function(data,
   } else if (current_time_level > wanted_time_level) {
     if (wanted_time_level <= 60 * 60 | !current_tz %in% c("CET", "CET24")) {
       new_date_time <- seq.POSIXt(
-        as.POSIXct(paste(data[1, get("mtqdate")], data[1, get("mtqtime")]), tz = current_tz),
-        as.POSIXct(paste(data[nrow(data), get("mtqdate")], data[nrow(data), get("mtqtime")]),
-                   tz = current_tz), by = wanted_time_level)
+        as.POSIXct(min(data[[col_date]]), tz = current_tz),
+        as.POSIXct(max(data[[col_date]]), tz = current_tz), 
+        by = wanted_time_level
+      )
     } else {
       new_date_time <- (
         computeDateSequenceCET(
-          date = c(as.POSIXct(paste(data[1, get("mtqdate")], data[1, get("mtqtime")]), tz = current_tz),
-                   as.POSIXct(paste(data[nrow(data), get("mtqdate")],
-                                    data[nrow(data), get("mtqtime")]), tz = current_tz)), 
+          date = c(as.POSIXct(min(data[[col_date]]), tz = current_tz), as.POSIXct(max(data[[col_date]]), tz = current_tz)),
           ts = wanted_time_level))
       attr(new_date_time, "tzone") <- current_tz
     }
     
     
     tmp_compute <- paste0("'", col_series, "' = ", ifelse(col_series %in% col_series_na, "NA", 
-                                                   paste0("stats::approx(x = ", col_date, ", y = `", col_series, "`, xout = new_date_time)$y")))
+                                                          paste0("stats::approx(x = ", col_date, ", y = `", col_series, "`, xout = new_date_time)$y")))
     eval_transformation <- paste0("list(", col_date, " = new_date_time, ", paste(tmp_compute, collapse = ", "), ")")
     
     if(is.null(col_by)){
