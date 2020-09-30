@@ -53,14 +53,14 @@ rAmChartsTimeSeriesServer(
   categoryBalloonDateFormats = shiny::reactive(list(list(period = "YYYY", format =
     "YYYY"), list(period = "MM", format = "YYYY-MM"), list(period = "WW", format =
     "YYYY-MM-DD"), list(period = "DD", format = "YYYY-MM-DD"), list(period = "hh", format
-    = "YYYY-MM-DD JJ:NN"), list(period = "mm", format = "YYYY-MM-DD JJ:NN"), list(period =
-    "ss", format = "YYYY-MM-DD JJ:NN:ss"), list(period = "fff", format =
+    = "YYYY-MM-DD JJ:NN"), list(period = "mm", format = "YYYY-MM-DD JJ:NN"), list(period
+    = "ss", format = "YYYY-MM-DD JJ:NN:ss"), list(period = "fff", format =
     "YYYY-MM-DD JJ:NN:ss"))),
-  dateFormats = shiny::reactive(list(list(period = "YYYY", format = "YYYY"), list(period
-    = "MM", format = "MMM"), list(period = "WW", format = "MMM DD"), list(period = "DD",
-    format = "MMM DD"), list(period = "hh", format = "JJ:NN"), list(period = "mm", format
-    = "JJ:NN"), list(period = "ss", format = "JJ:NN:ss"), list(period = "fff", format =
-    "JJ:NN:ss")))
+  dateFormats = shiny::reactive(list(list(period = "YYYY", format = "YYYY"),
+    list(period = "MM", format = "MMM"), list(period = "WW", format = "MMM DD"),
+    list(period = "DD", format = "MMM DD"), list(period = "hh", format = "JJ:NN"),
+    list(period = "mm", format = "JJ:NN"), list(period = "ss", format = "JJ:NN:ss"),
+    list(period = "fff", format = "JJ:NN:ss")))
 )
 }
 \arguments{

@@ -4,12 +4,14 @@
 \name{data_stock1}
 \alias{data_stock1}
 \title{Random data for example}
-\format{Each datasetis a data.table with 21 rows and 4 variables:
+\format{
+Each datasetis a data.table with 21 rows and 4 variables:
 \describe{
   \item{date}{vector of dates}
   \item{a}{random vector of data}
   \item{b}{random vector of data}
-}}
+}
+}
 \usage{
 data_stock1
 }

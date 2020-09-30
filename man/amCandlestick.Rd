@@ -87,7 +87,7 @@ amCandlestick(data = data_candleStick2, dataDateFormat = "YYYY-MM-DD", minPeriod
 if (requireNamespace("pipeR", quietly = TRUE)) {
 require(pipeR)
 
-amCandlestick(data = data_candleStick2, horiz = TRUE) %>>%
+amCandlestick(data = data_candleStick2, horiz = TRUE) \%>>\%
   setProperties(precision = 2) 
 }
 }

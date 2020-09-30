@@ -70,7 +70,7 @@ amPieChart() \%>>\%  setProperties(fontSize = 15) \%>>\%  setProperties(fontSize
 # Carefull if you try to set a property which is a slot...
 # in that case, use the setter methods 'setXX' or 'addXX' which check the validity
 \dontrun{
-amPieChart() %>>% setProperties(type = "serial") %>>% print()
+amPieChart() \%>>\% setProperties(type = "serial") \%>>\% print()
 }
 
 amPieChart() \%>>\% setExport()

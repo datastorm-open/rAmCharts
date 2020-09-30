@@ -4,12 +4,14 @@
 \name{data_bar}
 \alias{data_bar}
 \title{Random data for plotting bar chart examples}
-\format{Dataset of 3 columns and 12 rows
+\format{
+Dataset of 3 columns and 12 rows
 \describe{
   \item{country}{\code{character}}
   \item{visits}{\code{numeric}}
   \item{color}{\code{character}}
-}}
+}
+}
 \usage{
 data_bar
 }

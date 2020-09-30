@@ -4,11 +4,13 @@
 \name{data_AirPassengers}
 \alias{data_AirPassengers}
 \title{Air passengers for example}
-\format{2 column, 144 rows :
+\format{
+2 column, 144 rows :
 \describe{
   \item{AirPassengers}{\code{numeric}}
   \item{Period}{\code{character}, MM/YYYY}
-}}
+}
+}
 \usage{
 data_AirPassengers
 }

@@ -68,7 +68,7 @@ mult_amgraph <- reactive({
    isolate({
      list(
        list(graph = amPie(data = data_pie), name = "pie.jpg", height = "200px", width = "300px"),
-       list(graph = amBarplot(x = "country", y = "visits", data = data_bar, main = "example") %>%
+       list(graph = amBarplot(x = "country", y = "visits", data = data_bar, main = "example") \%>\%
          setExport(), name = "bar.jpg", height = "600px")
      )
    })

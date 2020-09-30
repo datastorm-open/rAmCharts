@@ -4,13 +4,15 @@
 \name{data_radar}
 \alias{data_radar}
 \title{Random data for plotting radar chart examples}
-\format{Dataset of 4 columns and 5 rows
+\format{
+Dataset of 4 columns and 5 rows
 \describe{
   \item{label}{\code{character}}
   \item{Product1}{\code{numeric}}
   \item{Product2}{\code{numeric}}
   \item{Product3}{\code{numeric}}
-}}
+}
+}
 \usage{
 data_radar
 }

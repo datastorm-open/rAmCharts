@@ -24,7 +24,7 @@ You can only manipulate the htmlwidget if you call the method 'plot' with an rAm
 \examples{
 \donttest{
 library(pipeR)
-amPlot(1:10, theme = "dark") %>>% plot() %>>% add_theme_dependency("light.js")
+amPlot(1:10, theme = "dark") \%>>\% plot() \%>>\% add_theme_dependency("light.js")
 }
 
 }

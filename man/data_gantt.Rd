@@ -4,13 +4,15 @@
 \name{data_gantt}
 \alias{data_gantt}
 \title{Random data for plotting gantt chart examples}
-\format{Dataset of 5 columns and 4 rows
+\format{
+Dataset of 5 columns and 4 rows
 \describe{
   \item{category}{\code{character}}
   \item{begin}{\code{date}}
   \item{end}{\code{date}}
   \item{color}{\code{character}}
-}}
+}
+}
 \usage{
 data_gantt
 }

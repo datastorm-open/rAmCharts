@@ -4,11 +4,13 @@
 \name{data_funnel}
 \alias{data_funnel}
 \title{Random data for plotting funnel chart examples}
-\format{Dataset of 2 columns and 7 rows
+\format{
+Dataset of 2 columns and 7 rows
 \describe{
   \item{description}{\code{character}}
   \item{value}{\code{numeric}}
-}}
+}
+}
 \usage{
 data_funnel
 }

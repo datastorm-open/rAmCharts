@@ -213,7 +213,7 @@ library(pipeR)
 
 \donttest{
 # Dummy example
-amStockChart() %>>% setBalloon(gridPosition = "start")
+amStockChart() \%>>\% setBalloon(gridPosition = "start")
 }
 \donttest{
 # Dummy example

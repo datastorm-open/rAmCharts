@@ -17,8 +17,8 @@ amPlot(x, ...)
 \method{amPlot}{numeric}(
   x,
   y,
-  bullet = c("round", "diamond", "square", "bubble", "yError", "xError", "triangleLeft",
-    "triangleRight", "triangleUp", "triangleDown"),
+  bullet = c("round", "diamond", "square", "bubble", "yError", "xError",
+    "triangleLeft", "triangleRight", "triangleUp", "triangleDown"),
   type = c("points", "line", "smoothedLine", "step", "both"),
   col = "#0066cc",
   fill_alphas = 0,
@@ -40,8 +40,8 @@ amPlot(x, ...)
 \method{amPlot}{character}(
   x,
   y,
-  bullet = c("round", "diamond", "square", "bubble", "yError", "xError", "triangleLeft",
-    "triangleRight", "triangleUp", "triangleDown"),
+  bullet = c("round", "diamond", "square", "bubble", "yError", "xError",
+    "triangleLeft", "triangleRight", "triangleUp", "triangleDown"),
   type = c("points", "line", "smoothedLine", "step", "both"),
   col = "#0066cc",
   fill_alphas = 0,

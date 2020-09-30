@@ -135,7 +135,7 @@ amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar,
 # Regular stacked bars
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "regular")
 
-# 100% stacked bars
+# 100\% stacked bars
 amBarplot(x = "year", y = c("income", "expenses"), data = data_gbar, stack_type = "100")
 
 # Layered bars

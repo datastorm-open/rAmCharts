@@ -4,12 +4,14 @@
 \name{data_waterfall}
 \alias{data_waterfall}
 \title{Random data for plotting candlestick chart examples}
-\format{Dataset of 3 columns and 15 rows
+\format{
+Dataset of 3 columns and 15 rows
 \describe{
   \item{label}{\code{character}, can be parsed as a date}
   \item{value}{\code{numeric}}
   \item{operation}{\code{numeric}}
-}}
+}
+}
 \usage{
 data_waterfall
 }

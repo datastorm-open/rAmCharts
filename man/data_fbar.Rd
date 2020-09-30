@@ -4,13 +4,15 @@
 \name{data_fbar}
 \alias{data_fbar}
 \title{Random data for plotting floating bar chart examples}
-\format{Dataset of 2 columns and 1000 rows
+\format{
+Dataset of 2 columns and 1000 rows
 \describe{
   \item{country}{\code{character}}
   \item{visits_inf}{\code{numeric}}
   \item{visits_sup}{\code{numeric}}
   \item{color}{\code{character}}
-}}
+}
+}
 \usage{
 data_fbar
 }
