@@ -74,6 +74,8 @@
 #' @param dataDateFormat \code{character} Data date format. Default to 'YYYY-MM-DD JJ:NN:ss'. See \code{\link{amTimeSeries}}.
 #' @param categoryBalloonDateFormats \code{list} Date format objects for chart cursor. See \code{\link{amTimeSeries}}.
 #' @param dateFormats \code{list} Date format objects for x-axis. See \code{\link{amTimeSeries}}.
+#' @param thousandsSeparator \code{character}, default set to " " 
+#' @param decimalSeparator \code{character}, default set to ".",
 #' 
 #' @return a reactive expression with aggregate data and ts
 #' 
@@ -89,7 +91,7 @@
 #' # number of points
 #' n <- 1000000
 #' data <- data.frame(date = seq(c(ISOdate(1999,12,31)), by = "5 min", length.out = n),
-#'                           value = rnorm(n, 100, 50))
+#'                           value = rnorm(n, 100, 50), check.names = FALSE)
 #' 
 #' # maximun of points in javascript
 #' max_points <- 1000
@@ -179,7 +181,9 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                                                                          list(period = 'hh', format = 'JJ:NN'),
                                                                          list(period='mm', format = 'JJ:NN'), 
                                                                          list(period = 'ss', format = 'JJ:NN:ss'),
-                                                                         list(period='fff', format = 'JJ:NN:ss')))) {
+                                                                         list(period='fff', format = 'JJ:NN:ss'))), 
+                                      thousandsSeparator = shiny::reactive(" "), 
+                                      decimalSeparator = shiny::reactive(".")) {
   
   ns <- session$ns
   
@@ -226,6 +230,8 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                              dataDateFormat = dataDateFormat(),
                              categoryBalloonDateFormats = categoryBalloonDateFormats(), 
                              dateFormats = dateFormats(),
+                             thousandsSeparator = thousandsSeparator(),
+                             decimalSeparator = decimalSeparator(),
                              groupToPeriods = init_data$ts)
       
       tmp_am <- addListener(tmp_am, "zoomed", paste0("function (event) {
@@ -416,17 +422,18 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 #' @importFrom zoo na.approx
 #' @import data.table
 #'
-
-# data
+# 
+# data <- data_bad_name
 # col_date  = "date"
 # col_series = setdiff(colnames(data), col_date)
-# ts = "week"
+# ts = "5 min"
 # tz = "UTC"
 # fun_aggr = "mean"
 # treat_missing = TRUE
 # maxgap = Inf
 # keep_last = TRUE
 # type_aggr = "first"
+# col_by = NULL
 # 
 # getTransformTS(data)
 getTransformTS <- function(data, 
@@ -455,7 +462,7 @@ getTransformTS <- function(data,
   
   ## data.table
   if("data.table" %in% class(data)){
-    data <- data.frame(data)
+    data <- data.frame(data, check.names = FALSE)
   }
   
   ### Check function arguments ----------------------------
@@ -484,7 +491,7 @@ getTransformTS <- function(data,
     new_col_series
   }
   
-  col_series <- sapply(col_series, tmp_function)
+  col_series <- unname(sapply(col_series, tmp_function))
   
   # wanted time
   if ("character" %in% class(ts)) {
@@ -591,7 +598,7 @@ getTransformTS <- function(data,
       if(!all(v_date %in% data[[col_date]]) | nrow(data) != length(v_date)){
         data_check <- data.table(v_date)
         colnames(data_check)[1] <- col_date
-        data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE))
+        data <- data.frame(merge(data.table(data), data_check, by = col_date, all = TRUE), check.names = FALSE)
       }
     } else {
       v_id <- unique(data[[col_by]])
@@ -600,7 +607,7 @@ getTransformTS <- function(data,
         colnames(data_check) <-  c(col_date, col_by)
         data <- merge(data.table(data), data_check, by = c(col_date, col_by), all = TRUE)
         setorderv(data, c(col_by, col_date), c(1, 1))
-        data <- data.frame(data)
+        data <- data.frame(data, check.names = FALSE)
       }
     }
   }
@@ -658,16 +665,16 @@ getTransformTS <- function(data,
     
     if(fun_aggr %in% c("mean", "max", "min", "sum")){
       expr_transformation <- parse(text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
-                                                 paste(paste0(col_series, "=", fun_aggr, "(", col_series,
-                                                              ", na.rm = TRUE)"), collapse = ","), ",tmp_N = .N)"))
+                                                 paste(paste0("'", col_series, "'=", fun_aggr, "(`", col_series,
+                                                              "`, na.rm = TRUE)"), collapse = ","), ",tmp_N = .N)"))
     } else if(fun_aggr == "first"){
       expr_transformation <- parse(text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
-                                                 paste(paste0(col_series, "= head(", col_series,
-                                                              "[!is.na(", col_series, ")], n = 1)"), collapse = ","), ",tmp_N = .N)"))
+                                                 paste(paste0("'",col_series, "'= head(`", col_series,
+                                                              "`[!is.na(`", col_series, "`)], n = 1)"), collapse = ","), ",tmp_N = .N)"))
     } else if(fun_aggr == "last"){
       expr_transformation <- parse(text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
-                                                 paste(paste0(col_series, "= tail(", col_series,
-                                                              "[!is.na(", col_series, ")], n = 1)"), collapse = ","), ",tmp_N = .N)"))
+                                                 paste(paste0("'", col_series, "= tail(`", col_series,
+                                                              "`[!is.na(`", col_series, "`)], n = 1)"), collapse = ","), ",tmp_N = .N)"))
     }
     
     
@@ -794,7 +801,7 @@ getTransformTS <- function(data,
       setorderv(res, c(col_by, col_date), c(1, 1))
     }
     
-    res <- as.data.frame(res)
+    res <- as.data.frame(res, check.names = FALSE)
     
   } else if (current_time_level > wanted_time_level) {
     if (wanted_time_level <= 60 * 60 | !current_tz %in% c("CET", "CET24")) {
@@ -813,8 +820,8 @@ getTransformTS <- function(data,
     }
     
     
-    tmp_compute <- paste(col_series, " = ", ifelse(col_series %in% col_series_na, "NA", 
-                                                   paste0("stats::approx(x = ", col_date, ", y = ", col_series, ",xout = new_date_time)$y")))
+    tmp_compute <- paste0("'", col_series, "' = ", ifelse(col_series %in% col_series_na, "NA", 
+                                                   paste0("stats::approx(x = ", col_date, ", y = `", col_series, "`, xout = new_date_time)$y")))
     eval_transformation <- paste0("list(", col_date, " = new_date_time, ", paste(tmp_compute, collapse = ", "), ")")
     
     if(is.null(col_by)){
@@ -823,13 +830,13 @@ getTransformTS <- function(data,
       res <- data[, eval(parse(text = eval_transformation)), by = col_by]
     }
     
-    res <- as.data.frame(res)
+    res <- as.data.frame(res, check.names = FALSE)
     if (!keep_last) {
       res <- res[-nrow(res), ]
     }
     
   } else {
-    res <- as.data.frame(data)
+    res <- as.data.frame(data, check.names = FALSE)
     if (!keep_last) {
       res <- res[-nrow(res), ]
     }
