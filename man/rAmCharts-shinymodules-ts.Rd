@@ -62,7 +62,9 @@ rAmChartsTimeSeriesServer(
     list(period = "mm", format = "JJ:NN"), list(period = "ss", format = "JJ:NN:ss"),
     list(period = "fff", format = "JJ:NN:ss"))),
   thousandsSeparator = shiny::reactive(" "),
-  decimalSeparator = shiny::reactive(".")
+  decimalSeparator = shiny::reactive("."),
+  balloonFontSize = shiny::reactive(10),
+  balloonMaxWidth = shiny::reactive(400)
 )
 }
 \arguments{
@@ -185,6 +187,10 @@ Maximum number of consecutive NAs to fill. Defaut to Inf.}
 \item{thousandsSeparator}{\code{character}, default set to " "}
 
 \item{decimalSeparator}{\code{character}, default set to ".",}
+
+\item{balloonFontSize}{\code{numeric}, text font size on balloon. Default : 10.}
+
+\item{balloonMaxWidth}{\code{numeric}. Default : 400.}
 }
 \value{
 a reactive expression with aggregate data and ts

@@ -62,6 +62,8 @@
 #' @param dateFormats \code{list} Date format objects for x-axis. See details.
 #' @param thousandsSeparator \code{character}, default set to " " 
 #' @param decimalSeparator \code{character}, default set to ".",
+#' @param balloonFontSize \code{numeric}, text font size on balloon. Default : 10.
+#' @param balloonMaxWidth \code{numeric}. Default : 400.
 #' @param ... other first level attributes
 #' 
 #' @examples
@@ -249,7 +251,8 @@ amTimeSeries <- function(data, col_date,
                                                           list(period='fff', format = 'JJ:NN:SS')),
                          thousandsSeparator = " ", 
                          decimalSeparator = ".",
-                         
+                         balloonFontSize = 10,
+                         balloonMaxWidth = 400,
                          ...)
 {
   ##Test args
@@ -640,6 +643,8 @@ amTimeSeries <- function(data, col_date,
                                            position = scrollbarPosition, height = scrollbarHeight)
   }
 
+  am_output@balloon <- list(maxWidth = balloonMaxWidth, fontSize = balloonFontSize)
+  
   am_output
 }
 

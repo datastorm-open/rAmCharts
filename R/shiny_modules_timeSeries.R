@@ -76,6 +76,8 @@
 #' @param dateFormats \code{list} Date format objects for x-axis. See \code{\link{amTimeSeries}}.
 #' @param thousandsSeparator \code{character}, default set to " " 
 #' @param decimalSeparator \code{character}, default set to ".",
+#' @param balloonFontSize \code{numeric}, text font size on balloon. Default : 10.
+#' @param balloonMaxWidth \code{numeric}. Default : 400.
 #' 
 #' @return a reactive expression with aggregate data and ts
 #' 
@@ -183,7 +185,9 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                                                                          list(period = 'ss', format = 'JJ:NN:ss'),
                                                                          list(period='fff', format = 'JJ:NN:ss'))), 
                                       thousandsSeparator = shiny::reactive(" "), 
-                                      decimalSeparator = shiny::reactive(".")) {
+                                      decimalSeparator = shiny::reactive("."), 
+                                      balloonFontSize = shiny::reactive(10), 
+                                      balloonMaxWidth = shiny::reactive(400)) {
   
   ns <- session$ns
   
@@ -232,6 +236,8 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
                              dateFormats = dateFormats(),
                              thousandsSeparator = thousandsSeparator(),
                              decimalSeparator = decimalSeparator(),
+                             balloonFontSize = balloonFontSize(),
+                             balloonMaxWidth = balloonMaxWidth(),
                              groupToPeriods = init_data$ts)
       
       tmp_am <- addListener(tmp_am, "zoomed", paste0("function (event) {

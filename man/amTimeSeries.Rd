@@ -52,6 +52,8 @@ amTimeSeries(
     "JJ:NN:SS")),
   thousandsSeparator = " ",
   decimalSeparator = ".",
+  balloonFontSize = 10,
+  balloonMaxWidth = 400,
   ...
 )
 }
@@ -154,6 +156,10 @@ between data and groupToPeriods, else use directly groupToPeriods}
 \item{thousandsSeparator}{\code{character}, default set to " "}
 
 \item{decimalSeparator}{\code{character}, default set to ".",}
+
+\item{balloonFontSize}{\code{numeric}, text font size on balloon. Default : 10.}
+
+\item{balloonMaxWidth}{\code{numeric}. Default : 400.}
 
 \item{...}{other first level attributes}
 }
