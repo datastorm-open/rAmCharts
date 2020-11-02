@@ -253,7 +253,8 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   if(length(y) > 2){
     stop("Invalid formula. Can only group per one or two variables, not more.")
   }
-  res <- data[, list(.dtBoxplotStat(list(eval(parse(text = x)), id))), keyby = y]
+
+  res <- data[, list(.dtBoxplotStat(list(get(x), id))), keyby = y]
   # res <- res[order(res[, eval(parse(text = y))])]
   
   sup_options <- list(...)
@@ -273,7 +274,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
 
 .plotAmBoxplot <- function(dp, xlab = NULL, ylab = NULL, ylim = NULL, horiz = FALSE)
 {
-  
+
   if (!requireNamespace(package = "pipeR")) {
     warning("Please install the package pipeR for running this function")
     return (NULL)
@@ -321,7 +322,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   
   info_guide <- NULL
   if(all(c("cat1", "cat2") %in% colnames(dp))){
-    info_guide <- dp[, eval(parse(text = "list(category = cat[1], toCategory = cat[.N])")),  by = "cat1"]
+    info_guide <- dp[, list(category = cat[1], toCategory = cat[.N]),  by = "cat1"]
   }
   
   if (!is.null(xlab) & is.null(info_guide)) {
@@ -329,12 +330,12 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   }
   if (!is.null(info_guide)) {
     guides <- lapply(1:nrow(info_guide), function(x){
-      list(category = info_guide[x, eval(parse(text = "category"))],
-           toCategory = info_guide[x, eval(parse(text = "toCategory"))],
+      list(category = info_guide[x, category],
+           toCategory = info_guide[x, toCategory],
            lineAlpha = 0.15,
            tickLength = 30,
            expand = TRUE,
-           label = info_guide[x, eval(parse(text = "cat1"))])
+           label = info_guide[x, cat1])
     })
     
     if(is.null(xlab)){
@@ -356,10 +357,12 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
 
 .dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE)
 {
-  xx <- data.table(x = data[[1]], id = data[[2]])[eval(parse(text = "!is.na(x)"))]
+
+  xx <- data.table(x = data[[1]], id = data[[2]])[!is.na(x)]
   setkeyv(xx, "x")
   
-  n <- xx[, eval(parse(text = "sum(x)"))]
+  # n <- xx[, eval(parse(text = "sum(x)"))]
+  n <- xx[, sum(x)]
   stats <- .dtFivenum(xx, na.rm = TRUE)
   
   iqr <- diff(stats[c(2, 4)])
@@ -367,36 +370,36 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
     do.out <- FALSE
   } else {
     out <- if (!is.na(iqr)) {
-      xx[eval(parse(text = "x < (stats[2L] - coef * iqr) | x > (stats[4L] + coef * 
-                                               iqr)")), eval(parse(text = "list(x, id)"))]
+      xx[x < (stats[2L] - coef * iqr) | x > (stats[4L] + coef * iqr),
+         list(x, id)]
       
     } else {
       data.table()
     }
     if (nrow(out) > 0) {
-      stats[1] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "min(x)"))]
-      stats[5] <- xx[eval(parse(text = "!id%in%out[, id]"))][, eval(parse(text = "max(x)"))]
+      stats[1] <- xx[!id %in% out[, id]][, min(x)]
+      stats[5] <- xx[!id %in% out[, id]][, max(x)]
       
       # control des outliers
       if(class(out$x) == "integer"){
-        out[, eval(parse(text = "x := as.numeric(x)"))]
+        out[, x := as.numeric(x)]
       }
-      out <- out[, eval(parse(text = "list(N = .N, id)")), by = "x"]
+      out <- out[, list(N = .N, id), by = "x"]
       signif_n <- 6
       in_wh <- FALSE
-      while(nrow(out[, eval(parse(text = "list(.N)")), by = "x"]) >= 500){
-        out[, eval(parse(text = "x := signif(x, signif_n)"))]
+      while(nrow(out[, list(.N), by = "x"]) >= 500){
+        out[, x := signif(x, signif_n)]
         signif_n <- signif_n -1
         in_wh <- TRUE
       }
       if(in_wh){
-        out <- out[, eval(parse(text = "list(N = .N, id)")), by = "x"]
+        out <- out[, list(N = .N, id), by = "x"]
       }
       
-      out[eval(parse(text = 'N == 1')), eval(parse(text = 'label := "<b> Individual </b>: "'))]
-      out[eval(parse(text = 'N > 1')), eval(parse(text = '`:=`(label = "<b> Number of outliers </b>: ", id = N)'))]
+      out[N == 1, label := "<b> Individual </b>: "]
+      out[N > 1, `:=`(label = "<b> Number of outliers </b>: ", id = N)]
       out <- unique(out[, c("x", "id", "label"), with = FALSE])
-      out[, eval(parse(text = '`:=`(id = paste0(label, id), label = NULL)'))]
+      out[, `:=`(id = paste0(label, id), label = NULL)]
       out
     }
   }
@@ -406,6 +409,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
 
 .dtFivenum <- function (xx, na.rm = TRUE)
 {
+
   n <- nrow(xx)
   
   if (n == 0) {
@@ -413,31 +417,32 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   } else {
     n4 <- floor((n + 3)/2)/2
     d <- c(1, n4, (n + 1)/2, n + 1 - n4, n)
-    0.5 * (xx[floor(d), eval(parse(text = "x"))] + xx[ceiling(d), eval(parse(text = "x"))])
+    0.5 * (xx[floor(d), x] + xx[ceiling(d), x])
   }
 }
 
 .finalDataBoxplot <- function(res, col = NULL, precision = 2)
 {
   if(ncol(res) == 2){
-    dp <- data.table(cat = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[1]))]), 
-                     round(t(data.frame(res[seq(1, nrow(res), by = 2), eval(parse(text = "V1"))]))[, c(1,1:5, 5), drop = FALSE], precision))
+
+    dp <- data.table(cat = as.character(res[seq(1, nrow(res), by = 2), get(colnames(res)[1])]), 
+                     round(t(data.frame(res[seq(1, nrow(res), by = 2), V1]))[, c(1,1:5, 5), drop = FALSE], precision))
     
     setnames(dp,  c("cat", "low_outlier", "low", "open", "median", "close", "high", "high_outlier"))
     
   } else {
-    dp <- data.table(cat1 = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[1]))]),
-                     cat2 = as.character(res[seq(1, nrow(res), by = 2), eval(parse(text = colnames(res)[2]))]),
-                     round(t(data.frame(res[seq(1, nrow(res), by = 2), eval(parse(text = "V1"))]))[, c(1,1:5, 5), drop = FALSE], precision))
+    dp <- data.table(cat1 = as.character(res[seq(1, nrow(res), by = 2), get(colnames(res)[1])]),
+                     cat2 = as.character(res[seq(1, nrow(res), by = 2), get(colnames(res)[2])]),
+                     round(t(data.frame(res[seq(1, nrow(res), by = 2), V1]))[, c(1,1:5, 5), drop = FALSE], precision))
     
     setnames(dp,  c("cat1", "cat2", "low_outlier", "low", "open", "median", "close", "high", "high_outlier"))
-    dp[, eval(parse(text = 'cat:= paste(cat1, cat2, sep = "-")'))]  
+    dp[, cat := paste(cat1, cat2, sep = "-")]  
   }
 
   if(is.null(col)){
     col <- "#1e90ff"
   }
-  dp$color <- rep(col, length.out=nrow(dp))  # recyle colors such as c("blue", "red") in test_amBoxplot.R
+  dp$color <- rep(col, length.out = nrow(dp))  # recyle colors such as c("blue", "red") in test_amBoxplot.R
 
   outliers <- as.list(res[seq(2, nrow(res), by = 2)])
   
@@ -454,7 +459,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   outliers <- do.call("rbind", outliers[[ncol(res)]])
   
   if(nrow(outliers) > 0){
-    outliers[, eval(parse(text = paste0("x := list(round(x, ", precision, "))")))]
+    outliers[, x := list(round(x, precision))]
     
     split.outliers <- split(outliers, outliers$cat)
     
@@ -478,11 +483,12 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
 
 .formatOutlier <- function(data)
 {
-  
-  if(is.list(data) & !"data.table"%in%class(data)){
+
+  if(is.list(data) & !"data.table" %in% class(data)){
     data <- data.frame(rev(data))
   }else{
-    data <- data.frame(t(c(data[, unique(cat)],data[, eval(parse(text = "x"))],data[, eval(parse(text = "id"))])))
+    data <- data.frame(t(c(data[, unique(cat)], data[, x], 
+                           data[, id])))
   }
   
   
