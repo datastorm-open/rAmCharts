@@ -4,12 +4,14 @@
 \name{data_wind}
 \alias{data_wind}
 \title{Random data for plotting wind chart examples}
-\format{Dataset of 3 columns and 8 rows
+\format{
+Dataset of 3 columns and 8 rows
 \describe{
   \item{weak}{\code{numeric}}
   \item{middle}{\code{numeric}}
   \item{strong}{\code{numeric}}
-}}
+}
+}
 \usage{
 data_wind
 }

@@ -4,14 +4,16 @@
 \name{data_candleStick1}
 \alias{data_candleStick1}
 \title{Random data for plotting candlestick chart examples}
-\format{Dataset of 5 columns and 12 rows
+\format{
+Dataset of 5 columns and 12 rows
 \describe{
   \item{category}{\code{character}, can be parsed as a date}
   \item{open}{\code{numeric}}
   \item{close}{\code{numeric}}
   \item{low}{\code{numeric}}
   \item{high}{\code{numeric}}
-}}
+}
+}
 \usage{
 data_candleStick1
 }

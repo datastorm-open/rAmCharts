@@ -41,8 +41,8 @@ amTimeSeries(
   is_ts_module = FALSE,
   dataDateFormat = "YYYY-MM-DD JJ:NN:SS",
   categoryBalloonDateFormats = list(list(period = "YYYY", format = "YYYY"), list(period
-    = "MM", format = "YYYY-MM"), list(period = "WW", format = "YYYY-MM-DD"), list(period =
-    "DD", format = "YYYY-MM-DD"), list(period = "hh", format = "YYYY-MM-DD JJ:NN"),
+    = "MM", format = "YYYY-MM"), list(period = "WW", format = "YYYY-MM-DD"), list(period
+    = "DD", format = "YYYY-MM-DD"), list(period = "hh", format = "YYYY-MM-DD JJ:NN"),
     list(period = "mm", format = "YYYY-MM-DD JJ:NN"), list(period = "ss", format =
     "YYYY-MM-DD JJ:NN:SS"), list(period = "fff", format = "YYYY-MM-DD JJ:NN:SS")),
   dateFormats = list(list(period = "YYYY", format = "YYYY"), list(period = "MM", format
@@ -50,6 +50,10 @@ amTimeSeries(
     "MMM DD"), list(period = "hh", format = "JJ:NN"), list(period = "mm", format =
     "JJ:NN"), list(period = "ss", format = "JJ:NN:SS"), list(period = "fff", format =
     "JJ:NN:SS")),
+  thousandsSeparator = " ",
+  decimalSeparator = ".",
+  balloonFontSize = 10,
+  balloonMaxWidth = 400,
   ...
 )
 }
@@ -148,6 +152,14 @@ between data and groupToPeriods, else use directly groupToPeriods}
 \item{categoryBalloonDateFormats}{\code{list} Date format objects for chart cursor. See details.}
 
 \item{dateFormats}{\code{list} Date format objects for x-axis. See details.}
+
+\item{thousandsSeparator}{\code{character}, default set to " "}
+
+\item{decimalSeparator}{\code{character}, default set to ".",}
+
+\item{balloonFontSize}{\code{numeric}, text font size on balloon. Default : 10.}
+
+\item{balloonMaxWidth}{\code{numeric}. Default : 400.}
 
 \item{...}{other first level attributes}
 }

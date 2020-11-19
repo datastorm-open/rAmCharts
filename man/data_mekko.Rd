@@ -4,11 +4,13 @@
 \name{data_mekko}
 \alias{data_mekko}
 \title{Random data for plotting mekko chart examples}
-\format{Dataset of 2 columns and 1000 rows
+\format{
+Dataset of 2 columns and 1000 rows
 \describe{
   \item{var1}{\code{character}}
   \item{var2}{\code{numeric}}
-}}
+}
+}
 \usage{
 data_mekko
 }

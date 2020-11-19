@@ -4,11 +4,13 @@
 \name{data_gdp}
 \alias{data_gdp}
 \title{10 Richest Countries in the World by 2015 GDP}
-\format{Dataset of 2 columns and 10 rows
+\format{
+Dataset of 2 columns and 10 rows
 \describe{
   \item{country}{\code{character}}
   \item{gdp}{\code{numeric}}
-}}
+}
+}
 \source{
 \url{http://www.insidermonkey.com/blog/10-richest-countries-in-the-world-by-2015-gdp-344692/}
 }

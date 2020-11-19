@@ -53,14 +53,18 @@ rAmChartsTimeSeriesServer(
   categoryBalloonDateFormats = shiny::reactive(list(list(period = "YYYY", format =
     "YYYY"), list(period = "MM", format = "YYYY-MM"), list(period = "WW", format =
     "YYYY-MM-DD"), list(period = "DD", format = "YYYY-MM-DD"), list(period = "hh", format
-    = "YYYY-MM-DD JJ:NN"), list(period = "mm", format = "YYYY-MM-DD JJ:NN"), list(period =
-    "ss", format = "YYYY-MM-DD JJ:NN:ss"), list(period = "fff", format =
+    = "YYYY-MM-DD JJ:NN"), list(period = "mm", format = "YYYY-MM-DD JJ:NN"), list(period
+    = "ss", format = "YYYY-MM-DD JJ:NN:ss"), list(period = "fff", format =
     "YYYY-MM-DD JJ:NN:ss"))),
-  dateFormats = shiny::reactive(list(list(period = "YYYY", format = "YYYY"), list(period
-    = "MM", format = "MMM"), list(period = "WW", format = "MMM DD"), list(period = "DD",
-    format = "MMM DD"), list(period = "hh", format = "JJ:NN"), list(period = "mm", format
-    = "JJ:NN"), list(period = "ss", format = "JJ:NN:ss"), list(period = "fff", format =
-    "JJ:NN:ss")))
+  dateFormats = shiny::reactive(list(list(period = "YYYY", format = "YYYY"),
+    list(period = "MM", format = "MMM"), list(period = "WW", format = "MMM DD"),
+    list(period = "DD", format = "MMM DD"), list(period = "hh", format = "JJ:NN"),
+    list(period = "mm", format = "JJ:NN"), list(period = "ss", format = "JJ:NN:ss"),
+    list(period = "fff", format = "JJ:NN:ss"))),
+  thousandsSeparator = shiny::reactive(" "),
+  decimalSeparator = shiny::reactive("."),
+  balloonFontSize = shiny::reactive(10),
+  balloonMaxWidth = shiny::reactive(400)
 )
 }
 \arguments{
@@ -179,6 +183,14 @@ Maximum number of consecutive NAs to fill. Defaut to Inf.}
 \item{categoryBalloonDateFormats}{\code{list} Date format objects for chart cursor. See \code{\link{amTimeSeries}}.}
 
 \item{dateFormats}{\code{list} Date format objects for x-axis. See \code{\link{amTimeSeries}}.}
+
+\item{thousandsSeparator}{\code{character}, default set to " "}
+
+\item{decimalSeparator}{\code{character}, default set to ".",}
+
+\item{balloonFontSize}{\code{numeric}, text font size on balloon. Default : 10.}
+
+\item{balloonMaxWidth}{\code{numeric}. Default : 400.}
 }
 \value{
 a reactive expression with aggregate data and ts
@@ -196,7 +208,7 @@ library(rAmCharts)
 # number of points
 n <- 1000000
 data <- data.frame(date = seq(c(ISOdate(1999,12,31)), by = "5 min", length.out = n),
-                          value = rnorm(n, 100, 50))
+                          value = rnorm(n, 100, 50), check.names = FALSE)
 
 # maximun of points in javascript
 max_points <- 1000

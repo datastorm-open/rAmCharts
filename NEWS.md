@@ -1,9 +1,14 @@
 ## LOG CHANGE
 
+### rAmCharts 2.1.14 (based on [amcharts][amcharts_url] version **3.21.13**)
+
+  * amTimesSeries : add thousandsSeparator & decimalSeparator + fix balloon in case of interval
+  
 ### rAmCharts 2.1.13 (based on [amcharts][amcharts_url] version **3.21.13**)
 
   * amTimesSeries : add connect options + date format
   * getTransformTS : add col_by possibility + optimize performance
+  * getTransformTS : fix data.table on iTime with some tz
   
 ### rAmCharts 2.1.12 (based on [amcharts][amcharts_url] version **3.21.13**)
 

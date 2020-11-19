@@ -4,14 +4,16 @@
 \name{data_stock_3}
 \alias{data_stock_3}
 \title{Random data for example}
-\format{List of 4 datasets, 4 variables in each
+\format{
+List of 4 datasets, 4 variables in each
 \describe{
   \item{date}{vector of datesTimes}
   \item{value}{random vector of data}
   \item{volume}{random vector of data}
   \item{value2}{random vector of data}
   \item{value3}{random vector of data}
-}}
+}
+}
 \usage{
 data_stock_3
 }

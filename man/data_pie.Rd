@@ -4,11 +4,13 @@
 \name{data_pie}
 \alias{data_pie}
 \title{Random data for plotting pie chart examples}
-\format{Dataset of 2 columns and 5 rows
+\format{
+Dataset of 2 columns and 5 rows
 \describe{
   \item{label}{\code{character}}
   \item{value}{\code{numeric}}
-}}
+}
+}
 \usage{
 data_pie
 }

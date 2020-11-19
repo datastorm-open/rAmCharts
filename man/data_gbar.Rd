@@ -4,14 +4,16 @@
 \name{data_gbar}
 \alias{data_gbar}
 \title{Random data for plotting bar chart examples}
-\format{Dataset of 5 columns and 12 rows
+\format{
+Dataset of 5 columns and 12 rows
 \describe{
   \item{year}{\code{character}}
   \item{day}{\code{character}}
   \item{month}{\code{character}}
   \item{income}{\code{numeric}}
   \item{expenses}{\code{numeric}}
-}}
+}
+}
 \usage{
 data_gbar
 }
