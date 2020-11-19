@@ -29,7 +29,7 @@
 #'  \item{"first"}{ : Date/Time result is equal to minimum of sequence, and this minimum is included in aggregation}
 #'  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
 #'}
-#' 
+#' @param na.rm	: aggregation only. a logical value indicating whether NA values should be stripped before the computation proceeds.
 #' @param width \code{character}, the width of the chart container. For \code{amChartsOutput}.
 #' @param height \code{character}, the height of the chart container. For \code{amChartsOutput}.
 #' 
@@ -139,8 +139,10 @@ rAmChartsTimeSeriesUI <- function(id, width = "100%", height = "400px") {
 rAmChartsTimeSeriesServer <- function(input, output, session, data, 
                                       col_date, col_series, maxPoints = shiny::reactive(600), tz  = shiny::reactive("UTC"),
                                       ts = shiny::reactive(c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year")),
-                                      fun_aggr = shiny::reactive("mean"), treat_missing = shiny::reactive(FALSE), maxgap = shiny::reactive(Inf), 
+                                      fun_aggr = shiny::reactive("mean"), treat_missing = shiny::reactive(FALSE), 
+                                      maxgap = shiny::reactive(Inf), 
                                       type_aggr = shiny::reactive("first"), 
+                                      na.rm = shiny::reactive(TRUE),
                                       main = shiny::reactive(""), 
                                       ylab = shiny::reactive(""),
                                       color = shiny::reactive(c("#2E2EFE", "#31B404", "#FF4000", "#AEB404")), 
@@ -201,7 +203,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
       init_data <- getCurrentStockData(data, col_date = col_date(), col_series = unlist(col_series()), 
                                        maxPoints = maxPoints(), tz = tz(), ts = ts(), 
                                        fun_aggr = fun_aggr(), treat_missing = treat_missing(), 
-                                       maxgap = maxgap(), type_aggr = type_aggr())
+                                       maxgap = maxgap(), type_aggr = type_aggr(), na.rm = na.rm())
       
       ctrl_data$zoom <- NULL
       ctrl_data$data <- init_data$data
@@ -264,7 +266,7 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
     if(!is.null(all_data) & !is.null(cur_zoom)){
       new_data <- getCurrentStockData(all_data, zoom = cur_zoom, col_date = col_date(), col_series = unlist(col_series()), 
                                       maxPoints = maxPoints(), tz = tz(), ts = ts(), fun_aggr = fun_aggr(), 
-                                      treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr())
+                                      treat_missing = treat_missing(), maxgap = maxgap(), type_aggr = type_aggr(), na.rm = na.rm())
       
       if(!is.null(new_data)){
         ctrl_data$data <- new_data$data
@@ -317,12 +319,14 @@ rAmChartsTimeSeriesServer <- function(input, output, session, data,
 #'  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
 #'}
 #' 
+#' @param na.rm	: aggregation only. a logical value indicating whether NA values should be stripped before the computation proceeds.
+#' 
 #' @export
 #' 
 getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoints = 1000, 
                                 tz  = "UTC",
                                 ts = c("5 min",  "10 min", "30 min", "hour", "3 hour", "12 hour", "day", "week", "month", "year"),
-                                fun_aggr = "mean", treat_missing = FALSE, maxgap = Inf, type_aggr = "first"){
+                                fun_aggr = "mean", treat_missing = FALSE, maxgap = Inf, type_aggr = "first", na.rm = TRUE){
   
   if(!isTRUE(all.equal("data.frame", class(data)))){
     data <- data.frame(data)
@@ -354,7 +358,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
     
     # nouvelle data amCharts
     am_data <- getTransformTS(tmp_data, col_date = col_date, col_series = col_series, tz = tz, treat_missing = treat_missing, 
-                              ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap)
+                              ts = target_ts, fun_aggr = fun_aggr, type_aggr = type_aggr, maxgap = maxgap, na.rm = na.rm)
     
     # first and last row in days to keep zoom possible
     first_row <- data[1, c(col_date, col_series)]
@@ -405,7 +409,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 #'             This can optionally be preceded by a positive integer
 #'             and a space
 #' @param tz : Timezone of result. Defaut to "UTC".
-#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean", "first", "last").
+#' @param fun_aggr : Aggregation function to use ("min", "max", "sum", "mean", "first", "last", "maxabs", "minabs").
 #'                   Default to "mean".
 #' @param treat_missing : Boolean. Default to FALSE
 #'                        Whether or not to interpolate missing values ?
@@ -421,6 +425,7 @@ getCurrentStockData <- function(data, col_date, col_series, zoom = NULL, maxPoin
 #'}
 #'
 #' @param showwarn : Boolean. Show warnings ?
+#' @param na.rm	: aggregation only. a logical value indicating whether NA values should be stripped before the computation proceeds.
 #' 
 #' @return a data.frame
 #' 
@@ -456,7 +461,8 @@ getTransformTS <- function(data,
                            maxgap = Inf, 
                            keep_last = TRUE, 
                            type_aggr = "first", 
-                           showwarn = FALSE){
+                           showwarn = FALSE, 
+                           na.rm = TRUE){
   
   
   if(!showwarn){
@@ -674,8 +680,8 @@ getTransformTS <- function(data,
     if(fun_aggr %in% c("mean", "max", "min", "sum")){
 
       expr_transformation <- parse(text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
-                                                 paste(paste0("'", col_series, "'=", fun_aggr, "(`", col_series,
-                                                              "`, na.rm = TRUE)"), collapse = ","), ",tmp_N = .N)"))
+                                                 paste(paste0("'", col_series, "'= my_", fun_aggr, "(`", col_series,
+                                                              "`, na.rm = ", na.rm, ")"), collapse = ","), ",tmp_N = .N)"))
     } else if(fun_aggr == "first"){
       expr_transformation <- parse(text = paste0("list(", col_date, "=", timefun, "(", col_date, "),",
                                                  paste(paste0("'",col_series, "'= head(`", col_series,
@@ -689,11 +695,8 @@ getTransformTS <- function(data,
       
       expr_transformation <- parse(text = paste0(
         "list(", col_date, "=", timefun, "(", col_date, "),",
-        paste(paste0(col_series, "=", "sign(", col_series, 
-                     "[which.", aggreg, "(", "abs", "(", col_series, ")", ")])*", 
-                     "",
-                     aggreg, "(", "abs", "(", col_series, ")",
-                     ", na.rm = TRUE)"), collapse = ","), ",tmp_N = .N)"))
+        paste(paste0("'", col_series, "'= `", col_series, 
+                     "`[which.", aggreg, "(", "abs", "(`", col_series, "`)", ")]"), collapse = ","), ",tmp_N = .N)"))
     }
     
     
@@ -945,4 +948,53 @@ hourChangeYear <- function (year) {
   ind_summer_time <- which(hours_diff == 2)
   summer_time <- dates[c(ind_summer_time + 1)]
   list(winter_time, summer_time)
+}
+
+
+my_sum <- function(x, na.rm = FALSE){
+  if(na.rm){
+    res <- sum(x, na.rm = na.rm)
+    if(res == 0 && anyNA(x) && all(is.na(x))){
+      res <- NA
+    } 
+  } else {
+    res <- sum(x, na.rm = na.rm)
+  }
+  res
+}
+
+my_min <- function(x, na.rm = FALSE){
+  if(na.rm){
+    res <- min(x, na.rm = na.rm)
+    if(is.infinite(res) && anyNA(x) && all(is.na(x))){
+      res <- NA
+    } 
+  } else {
+    res <- min(x, na.rm = na.rm)
+  }
+  res
+}
+
+my_max <- function(x, na.rm = FALSE){
+  if(na.rm){
+    res <- max(x, na.rm = na.rm)
+    if(is.infinite(res) && anyNA(x) && all(is.na(x))){
+      res <- NA
+    } 
+  } else {
+    res <- max(x, na.rm = na.rm)
+  }
+  res
+}
+
+my_mean <- function(x, na.rm = FALSE){
+  if(na.rm){
+    res <- mean(x, na.rm = na.rm)
+    if(is.nan(res) && anyNA(x) && all(is.na(x))){
+      res <- NA
+    } 
+  } else {
+    res <- mean(x, na.rm = na.rm)
+  }
+  res
 }

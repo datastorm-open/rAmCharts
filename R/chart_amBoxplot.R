@@ -236,6 +236,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   if (missing(formula) || (length(formula) != 3L))
     stop("'formula' missing or incorrect")
   
+
   data <- data.table(data)
   
   if (is.null(id)) {
@@ -254,6 +255,8 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
     stop("Invalid formula. Can only group per one or two variables, not more.")
   }
 
+  x <- gsub("^`|`$", "", x)
+  y <- gsub("^`|`$", "", y)
   res <- data[, list(.dtBoxplotStat(list(get(x), id))), keyby = y]
   # res <- res[order(res[, eval(parse(text = y))])]
   
@@ -280,6 +283,8 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
     return (NULL)
   } else {}
   
+  # data.table Note...
+  category <- toCategory <- cat1 <- NULL
   chart <- pipeR::pipeline(
     amSerialChart(categoryField = "cat", theme = "light", rotate = horiz),
     setDataProvider(dp, keepNA = FALSE),
@@ -355,8 +360,10 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   setProperties(.Object = chart, RType_ = "boxplot")
 }
 
-.dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE)
-{
+.dtBoxplotStat <- function (data, coef = 1.5, do.out = TRUE){
+  
+  # data.table note
+  x <- id <- N <- NULL
 
   xx <- data.table(x = data[[1]], id = data[[2]])[!is.na(x)]
   setkeyv(xx, "x")
@@ -410,6 +417,9 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
 .dtFivenum <- function (xx, na.rm = TRUE)
 {
 
+  # data.table note
+  x <- NULL
+  
   n <- nrow(xx)
   
   if (n == 0) {
@@ -421,8 +431,11 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
   }
 }
 
-.finalDataBoxplot <- function(res, col = NULL, precision = 2)
-{
+.finalDataBoxplot <- function(res, col = NULL, precision = 2){
+  
+  # data.table note
+  V1 <- cat1 <- cat2 <- x <- NULL
+  
   if(ncol(res) == 2){
 
     dp <- data.table(cat = as.character(res[seq(1, nrow(res), by = 2), get(colnames(res)[1])]), 
@@ -484,6 +497,9 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
 .formatOutlier <- function(data)
 {
 
+  # data.table note
+  x <- id <- NULL
+  
   if(is.list(data) & !"data.table" %in% class(data)){
     data <- data.frame(rev(data))
   }else{

@@ -17,7 +17,8 @@ getTransformTS(
   maxgap = Inf,
   keep_last = TRUE,
   type_aggr = "first",
-  showwarn = FALSE
+  showwarn = FALSE,
+  na.rm = TRUE
 )
 }
 \arguments{
@@ -39,7 +40,7 @@ and a space}
 
 \item{tz}{: Timezone of result. Defaut to "UTC".}
 
-\item{fun_aggr}{: Aggregation function to use ("min", "max", "sum", "mean", "first", "last").
+\item{fun_aggr}{: Aggregation function to use ("min", "max", "sum", "mean", "first", "last", "maxabs", "minabs").
 Default to "mean".}
 
 \item{treat_missing}{: Boolean. Default to FALSE
@@ -60,6 +61,8 @@ Maximum number of consecutive NAs to fill. Defaut to Inf.}
 }}
 
 \item{showwarn}{: Boolean. Show warnings ?}
+
+\item{na.rm}{: aggregation only. a logical value indicating whether NA values should be stripped before the computation proceeds.}
 }
 \value{
 a data.frame

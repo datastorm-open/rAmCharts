@@ -23,6 +23,7 @@ rAmChartsTimeSeriesServer(
   treat_missing = shiny::reactive(FALSE),
   maxgap = shiny::reactive(Inf),
   type_aggr = shiny::reactive("first"),
+  na.rm = shiny::reactive(TRUE),
   main = shiny::reactive(""),
   ylab = shiny::reactive(""),
   color = shiny::reactive(c("#2E2EFE", "#31B404", "#FF4000", "#AEB404")),
@@ -98,7 +99,7 @@ containing one of "min", "hour", "day"....
 This can optionally be preceded by a positive integer
 and a space}
 
-\item{fun_aggr}{: Aggregation function to use ("min", "max", "sum", "mean", "first", "last").
+\item{fun_aggr}{: Aggregation function to use ("min", "max", "sum", "mean", "first", "last", "minabs", "maxabs").
 Default to "mean".}
 
 \item{treat_missing}{: Boolean. Default to FALSE
@@ -113,6 +114,8 @@ Maximum number of consecutive NAs to fill. Defaut to Inf.}
  \item{"first"}{ : Date/Time result is equal to minimum of sequence, and this minimum is included in aggregation}
  \item{"last"}{ : Date/Time result is equal to maximum of sequence, and this maximum is included in aggregation}
 }}
+
+\item{na.rm}{: aggregation only. a logical value indicating whether NA values should be stripped before the computation proceeds.}
 
 \item{main}{\code{character}, title.}
 
@@ -204,6 +207,7 @@ Shiny module to render large time-series data with live server-client aggregatio
 
 library(shiny)
 library(rAmCharts)
+library(data.table)
 
 # number of points
 n <- 1000000

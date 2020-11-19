@@ -3,6 +3,8 @@
 ### rAmCharts 2.1.14 (based on [amcharts][amcharts_url] version **3.21.13**)
 
   * amTimesSeries : add thousandsSeparator & decimalSeparator + fix balloon in case of interval
+  * getTransformTS : add minabs & maxabs
+  
   
 ### rAmCharts 2.1.13 (based on [amcharts][amcharts_url] version **3.21.13**)
 
