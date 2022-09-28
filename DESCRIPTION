@@ -19,7 +19,7 @@ Authors@R: c(
     person(given = "Benoit", family = "Thieurmel", email = "bthieurmel@gmail.com", role = c("aut", "cre")),
     person(given = "Antanas", family = " Marcelionis", role = c("aut", "cph"),
            comment = "'AmCharts' library in th directory htmlwidgets/lib/amcharts, refer to https://www.amcharts.com/"))
-Maintainer: Benoit Thieurmel <benoit.thieurmel@datastorm.fr>
+Maintainer: Benoit Thieurmel <bthieurmel@gmail.com>
 License: GPL (>= 2)
 URL: https://datastorm-open.github.io/introduction_ramcharts/
 BugReports: https://github.com/datastorm-open/rAmCharts/issues/
