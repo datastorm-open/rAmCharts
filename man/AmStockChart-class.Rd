@@ -49,7 +49,7 @@ containing other avalaible properties not yet implemented in the package.}
 }}
 
 \seealso{
-\url{http://docs.amcharts.com/3/javascriptstockchart/AmStockChart}
+\url{https://docs.amcharts.com/3/javascriptstockchart/AmStockChart}
 }
 \author{
 datastorm-open

@@ -13,7 +13,7 @@ Please respect lower and upper case.}
 }
 \description{
 Open a window in your browser at the referenced documentation
-under \url{http://docs.amcharts.com/3/javascriptstockchart/}.
+under \url{https://docs.amcharts.com/3/javascriptstockchart/}.
 }
 \examples{
 api()

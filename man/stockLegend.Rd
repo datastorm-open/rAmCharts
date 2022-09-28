@@ -15,7 +15,7 @@ Set this property to TRUE if you want to enable this feature.}
 \item{valueTextComparing}{\code{character}}
 
 \item{...}{Properties of AmLegend.
-See \url{http://docs.amcharts.com/3/javascriptstockchart/StockLegend}}
+See \url{https://docs.amcharts.com/3/javascriptstockchart/StockLegend}}
 }
 \value{
 An \linkS4class{AmLegend} object

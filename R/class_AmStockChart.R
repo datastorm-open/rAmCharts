@@ -30,7 +30,7 @@ NULL
 #' containing other avalaible properties not yet implemented in the package.
 #' @slot value \code{numeric}.
 #' 
-#' @seealso \url{http://docs.amcharts.com/3/javascriptstockchart/AmStockChart}
+#' @seealso \url{https://docs.amcharts.com/3/javascriptstockchart/AmStockChart}
 #' 
 #' 
 setClass("AmStockChart", contains = "AmObject",

@@ -6,25 +6,22 @@ Description: Provides an R interface for using 'AmCharts' Library. Based on
     with S4 classes; for those classes, not all properties have been referenced but
     can easily be added in the constructors. Complex properties (e.g. 'JavaScript'
     object) can be passed as named list. See examples at 
-    <http://datastorm-open.github.io/introduction_ramcharts/> 
-    and <http://www.amcharts.com/> for
+    <https://datastorm-open.github.io/introduction_ramcharts/> 
+    and <https://www.amcharts.com/> for
     more information about the library. The package includes the free version
     of 'AmCharts' Library. Its only limitation is a small link to the web site
     displayed on your charts. If you enjoy this library, do not hesitate to refer
-    to this page <http://www.amcharts.com/online-store/> to purchase a licence,
+    to this page <https://www.amcharts.com/online-store/> to purchase a licence,
     and thus support its creators and get a period of Priority Support. See also
-    <http://www.amcharts.com/about/> for more information about 'AmCharts' company.
-Version: 2.1.14
+    <https://www.amcharts.com/about/> for more information about 'AmCharts' company.
+Version: 2.1.15
 Authors@R: c(
-    person(given = "Benoit", family = "Thieurmel", email = "benoit.thieurmel@datastorm.fr", role = c("aut", "cre")),
+    person(given = "Benoit", family = "Thieurmel", email = "bthieurmel@gmail.com", role = c("aut", "cre")),
     person(given = "Antanas", family = " Marcelionis", role = c("aut", "cph"),
-           comment = "'AmCharts' library in th directory htmlwidgets/lib/amcharts, refer to http://www.amcharts.com/"),
-    person(given = "Jeffery", family = "Petit", email = "jeffery.petit@datastorm.fr", role = c("aut", "ctb")),
-    person(given = "Elena", family = "Salette", email = "elena.salette@datastorm.fr", role = c("aut", "ctb")),
-    person(given = "Titouan", family = "Robert", email = "titouan.robert@datastorm.fr", role = c("aut", "ctb")))
+           comment = "'AmCharts' library in th directory htmlwidgets/lib/amcharts, refer to https://www.amcharts.com/"))
 Maintainer: Benoit Thieurmel <benoit.thieurmel@datastorm.fr>
 License: GPL (>= 2)
-URL: http://datastorm-open.github.io/introduction_ramcharts/
+URL: https://datastorm-open.github.io/introduction_ramcharts/
 BugReports: https://github.com/datastorm-open/rAmCharts/issues/
 Depends:
     R (>= 3.2.0)
@@ -116,5 +113,5 @@ Suggests:
     base64enc,
     lubridate,
     jsonlite
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 LazyData: true

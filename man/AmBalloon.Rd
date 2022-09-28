@@ -52,7 +52,7 @@ balloon background color. It is usually defined by the chart itself. If
 equal to "fillColor".}
 
 \item{...}{other properties of AmBalloon.
-See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.}
+See \url{https://docs.amcharts.com/3/javascriptcharts/AmBalloon}.}
 }
 \value{
 An object, possibly updated,  of class \linkS4class{AmBalloon}.

@@ -44,7 +44,7 @@
 #'   \item{country}{\code{character}}
 #'   \item{gdp}{\code{numeric}}
 #' }
-#' @source \url{http://www.insidermonkey.com/blog/10-richest-countries-in-the-world-by-2015-gdp-344692/}
+#' @source \url{https://www.insidermonkey.com/blog/10-richest-countries-in-the-world-by-2015-gdp-344692/}
 "data_gdp"
 
 

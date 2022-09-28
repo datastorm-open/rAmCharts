@@ -12,7 +12,7 @@ Dataset of 2 columns and 10 rows
 }
 }
 \source{
-\url{http://www.insidermonkey.com/blog/10-richest-countries-in-the-world-by-2015-gdp-344692/}
+\url{https://www.insidermonkey.com/blog/10-richest-countries-in-the-world-by-2015-gdp-344692/}
 }
 \usage{
 data_gdp

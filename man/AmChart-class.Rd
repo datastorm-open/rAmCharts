@@ -88,7 +88,7 @@ Only valid for Drilldown charts.}
 
 \item{\code{theme}}{\code{character}.
 Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
-See \url{http://www.amcharts.com/tutorials/working-with-themes/}.}
+See \url{https://www.amcharts.com/docs/v3/tutorials/working-with-themes/}.}
 
 \item{\code{titles}}{\code{list} of \linkS4class{Title}.
 Run \code{api("Title")} for more informations.}
@@ -134,5 +134,5 @@ showMethods(class="AmChart")
 
 }
 \seealso{
-\url{http://docs.amcharts.com/3/javascriptcharts/}
+\url{https://docs.amcharts.com/3/javascriptcharts/}
 }

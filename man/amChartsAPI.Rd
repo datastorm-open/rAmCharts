@@ -22,5 +22,5 @@ amChartsAPI(NULL)
 
 }
 \references{
-See online documentation \url{http://datastorm-open.github.io/introduction_ramcharts/}
+See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
 }

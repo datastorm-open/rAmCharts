@@ -76,7 +76,7 @@ NULL
 #' Only valid for Drilldown charts.
 #' @field theme \code{character}.
 #' Chart's theme. Config files of themes can be found in amcharts/themes/ folder.
-#' See \url{http://www.amcharts.com/tutorials/working-with-themes/}.
+#' See \url{https://www.amcharts.com/docs/v3/tutorials/working-with-themes/}.
 #' @field titles \code{list} of \linkS4class{Title}.
 #' Run \code{api("Title")} for more informations.
 #' @field trendLines \code{list} of \linkS4class{TrendLine} objects added to a chart.

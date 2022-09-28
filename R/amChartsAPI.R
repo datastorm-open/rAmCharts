@@ -14,7 +14,7 @@
 #'
 #' @export
 #' @importFrom  utils browseURL
-#' @references See online documentation \url{http://datastorm-open.github.io/introduction_ramcharts/}
+#' @references See online documentation \url{https://datastorm-open.github.io/introduction_ramcharts/}
 #'
 amChartsAPI <- function(viewer = getOption("viewer")){
   if (!is.null(viewer)){

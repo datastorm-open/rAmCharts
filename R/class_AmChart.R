@@ -82,7 +82,7 @@ NULL
 #' 
 #' @slot theme \code{character}.
 #' Theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
-#' See \url{http://www.amcharts.com/tutorials/working-with-themes/}.
+#' See \url{https://www.amcharts.com/docs/v3/tutorials/working-with-themes/}.
 #' 
 #' @slot titles \code{list} of \linkS4class{Title}.
 #' Run \code{api("Title")} for more informations.
@@ -127,7 +127,7 @@ NULL
 #' 
 #' @details API for plotting AmChart with R.
 #' 
-#' @seealso \url{http://docs.amcharts.com/3/javascriptcharts/}
+#' @seealso \url{https://docs.amcharts.com/3/javascriptcharts/}
 #' 
 setClass(Class = "AmChart", contains = "AmObject",
          representation = representation(
@@ -199,7 +199,7 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' 
 #' @param ... In case of constructor \code{new("AmChart")} or \code{amChart()}
 #' Dots represent other properties to set to the \linkS4class{AmChart} object.
-#' See \url{http://docs.amcharts.com/3/javascriptstockchart/AmChart}.
+#' See \url{https://docs.amcharts.com/3/javascriptstockchart/AmChart}.
 #' In case of setters, dots represent properties of the object to add.
 #' See examples.
 #' 
@@ -210,7 +210,7 @@ setClass(Class = "AmChart", contains = "AmObject",
 #' @examples
 #' new("AmChart", valueField = "value", theme = "patterns")
 #' 
-#' @seealso Refer to \url{http://docs.amcharts.com/3/javascriptcharts/}.
+#' @seealso Refer to \url{https://docs.amcharts.com/3/javascriptcharts/}.
 #' @rdname initialize-AmChart
 #' 
 setMethod(f = "initialize", signature = "AmChart",

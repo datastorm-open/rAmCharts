@@ -26,7 +26,7 @@ if TRUE, border color will be changed when user rolls-over the slice, graph,
 etc, instead of background color.}
 
 \item{...}{Other properties of \linkS4class{AmLegend}.
-See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}.}
+See \url{https://docs.amcharts.com/3/javascriptstockchart/AmLegend}.}
 }
 \description{
 Constructor for an AmLegend.

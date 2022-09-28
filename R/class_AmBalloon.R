@@ -54,7 +54,7 @@ setClass(Class = "AmBalloon", contains = "AmObject",
 #' "adjustBorderColor" is set to TRUE, the balloon background color will be
 #' equal to "fillColor".
 #' @param ... other properties of AmBalloon.
-#' See \url{http://docs.amcharts.com/3/javascriptcharts/AmBalloon}.
+#' See \url{https://docs.amcharts.com/3/javascriptcharts/AmBalloon}.
 #' 
 #' @return An object, possibly updated,  of class \linkS4class{AmBalloon}.
 #' 

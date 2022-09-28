@@ -52,7 +52,7 @@
 
 #' @title See AmCharts API
 #' @description Open a window in your browser at the referenced documentation
-#' under \url{http://docs.amcharts.com/3/javascriptstockchart/}.
+#' under \url{https://docs.amcharts.com/3/javascriptstockchart/}.
 #' 
 #' @param class
 #' Object of class \code{character}.
@@ -67,9 +67,9 @@
 #' 
 api <- function(class = NULL){
   if (is.null(class)) {
-    utils::browseURL("http://docs.amcharts.com/3/javascriptstockchart/")
+    utils::browseURL("https://docs.amcharts.com/3/javascriptstockchart/")
   } else {
     .testCharacterLength1(char = class)
-    utils::browseURL(paste0("http://docs.amcharts.com/3/javascriptstockchart/", class))
+    utils::browseURL(paste0("https://docs.amcharts.com/3/javascriptstockchart/", class))
   }
 }

@@ -411,7 +411,7 @@ Value scrollbar, enables scrolling value axes.}
 
 \item{...}{In case of constructor \code{new("AmChart")} or \code{amChart()}
 Dots represent other properties to set to the \linkS4class{AmChart} object.
-See \url{http://docs.amcharts.com/3/javascriptstockchart/AmChart}.
+See \url{https://docs.amcharts.com/3/javascriptstockchart/AmChart}.
 In case of setters, dots represent properties of the object to add.
 See examples.}
 
@@ -747,5 +747,5 @@ amSerialChart(updateOnReleaseOnly = FALSE)
 # ---
 }
 \seealso{
-Refer to \url{http://docs.amcharts.com/3/javascriptcharts/}.
+Refer to \url{https://docs.amcharts.com/3/javascriptcharts/}.
 }

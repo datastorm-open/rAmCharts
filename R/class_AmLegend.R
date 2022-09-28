@@ -25,7 +25,7 @@ setClass(Class = "AmLegend", contains = "AmObject",
 #' if TRUE, border color will be changed when user rolls-over the slice, graph, 
 #' etc, instead of background color.
 #' @param ... Other properties of \linkS4class{AmLegend}.
-#' See \url{http://docs.amcharts.com/3/javascriptstockchart/AmLegend}.
+#' See \url{https://docs.amcharts.com/3/javascriptstockchart/AmLegend}.
 #' 
 #' @examples
 #' new("AmLegend", useGraphSettings = TRUE)
@@ -83,7 +83,7 @@ legend <- function(useGraphSettings, ...) {
 #' @param valueTextComparing \code{character}
 #' @param ...
 #' Properties of AmLegend.
-#' See \url{http://docs.amcharts.com/3/javascriptstockchart/StockLegend}
+#' See \url{https://docs.amcharts.com/3/javascriptstockchart/StockLegend}
 #' 
 #' @return An \linkS4class{AmLegend} object
 #' 
