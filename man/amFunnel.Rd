@@ -47,7 +47,7 @@ amFunnel computes a funnel chart of the given value.
 data(data_funnel)
 amFunnel(data = data_funnel, inverse = TRUE)
 
-\donttest{
+\dontrun{
 # Other examples available which can be time consuming depending on your configuration.
 
 # Change the orientation and legend side              

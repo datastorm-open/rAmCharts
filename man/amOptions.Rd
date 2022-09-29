@@ -80,7 +80,7 @@ See details for exception.
  }
 }
 \examples{
-\donttest{
+\dontrun{
 library(pipeR)
 data(data_pie) 
 

@@ -29,7 +29,7 @@
 #' data("data_candleStick2")
 #' amOHLC(data = data_candleStick2)
 #' 
-#' \donttest{
+#' \dontrun{
 #' # Other examples available which can be time consuming depending on your configuration.
 #' if (requireNamespace("pipeR", quietly = TRUE)) {
 #' require(pipeR)

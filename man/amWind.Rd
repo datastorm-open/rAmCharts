@@ -20,10 +20,12 @@ from weakest wind (first column) to stronger wind (last column). See \link{data_
 amWind computes a windplot of the given data values.
 }
 \examples{
+
+\dontrun{
 data("data_wind")
 amWind(data_wind)
 
-\donttest{
+
 # Other examples available which can be time consuming depending on your configuration.
 
 # Change color

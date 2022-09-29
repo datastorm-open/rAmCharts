@@ -48,7 +48,7 @@ amPlot(x = rnorm(100), type = 'sl') \%>>\%
   amLines(x = rnorm(100), type = "p")
 }
 
-\donttest{
+\dontrun{
 amPlot(x = rnorm(100), type = 'sl') \%>>\%
   amLines(x = rnorm(100), col = "blue") \%>>\%
   amLines(x = rnorm(100), type = "sl") \%>>\%

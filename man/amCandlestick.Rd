@@ -56,7 +56,7 @@ amCandlestick computes a candlestick chart of the given value.
 data("data_candleStick2")
 amCandlestick(data = data_candleStick2)
 
-\donttest{
+\dontrun{
 # Change colors
 amCandlestick(data = data_candleStick2, positiveColor = "black", negativeColor = "green")
 

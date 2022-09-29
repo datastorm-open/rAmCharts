@@ -16,7 +16,7 @@
 #' data("data_waterfall")
 #' amWaterfall(data = data_waterfall, show_values = TRUE)
 #' 
-#' \donttest{
+#' \dontrun{
 #' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' # Change the orientation :

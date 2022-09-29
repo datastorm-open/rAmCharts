@@ -39,7 +39,7 @@ radar computes a radarplot of the given data values.
 data("data_radar")
 amRadar(data_radar)
 
-\donttest{
+\dontrun{
 
 # Other examples available which can be time consuming depending on your configuration.
 

@@ -1,5 +1,5 @@
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amChart(type = "pie")
 #' }
 #' @rdname initialize-AmChart
@@ -15,7 +15,7 @@ amChart <- function(...)
 
 #' @details amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amAngularGaugeChart()
 #' }
 #' @rdname initialize-AmChart

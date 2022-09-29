@@ -200,30 +200,30 @@ You can add it if you have more than one data set and want users
 to be able to select/compare them.
 }
 \examples{
-\donttest{
+\dontrun{
 # --- method 'initialize'
 new("AmStockChart", theme = "dark")
 }
 
-\donttest{
+\dontrun{
 # --- constructor
 amStockChart()
 }
 library(pipeR)
 
-\donttest{
+\dontrun{
 # Dummy example
 amStockChart() \%>>\% setBalloon(gridPosition = "start")
 }
-\donttest{
+\dontrun{
 # Dummy example
 setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")
 }
-\donttest{
+\dontrun{
 # Dummy example
 setChartCursorSettings(.Object = amStockChart(), oneBallOnly = TRUE)
 }
-\donttest{
+\dontrun{
 # Dummy example
 amchart <- setChartScrollbarSettings(.Object = amStockChart(), enabled = TRUE)
 print(amchart)
@@ -233,28 +233,28 @@ chartScrollbarSettings_obj <- chartScrollbarSettings()
 setChartScrollbarSettings(.Object = amStockChart(),
                           chartScrollbarSettings = chartScrollbarSettings_obj)
 }
-\donttest{
+\dontrun{
 # Dummy example
 comparedDataSets_ls <- list(dataSet(compared = TRUE), dataSet(compared = TRUE))
 setComparedDataSets(.Object = amStockChart(), comparedDataSets = comparedDataSets_ls)
 }
-\donttest{
+\dontrun{
 # Dummy example
 addComparedDataSet(.Object = amStockChart(), compared = TRUE)
 }
-\donttest{
+\dontrun{
 # Dummy example
 dataSets_ls <- list(dataSet(compared = FALSE), dataSet(compared = FALSE))
 setDataSets(.Object = amStockChart(), dataSets = dataSets_ls)
 }
-\donttest{
+\dontrun{
 # Dummy example
 addDataSet(.Object = amStockChart(), compared = FALSE)
 # equivalent to:
 dataSet_obj <- dataSet(compared = FALSE)
 addDataSet(.Object = amStockChart(), dataSet = dataSet_obj)
 }
-\donttest{
+\dontrun{
 # Dummy example
 print(setDataSetSelector(.Object = amStockChart(), width = 180))
 
@@ -263,39 +263,39 @@ dataSetSelector_obj <- dataSetSelector(width = 180)
 print(setDataSetSelector(.Object = amStockChart(),
                          dataSetSelector = dataSetSelector_obj))
 }
-\donttest{
+\dontrun{
 # Dummy example
 setLegendSettings(.Object = amStockChart(), equalWidths = TRUE)
 }
-\donttest{
+\dontrun{
 # Dummy example
 setMainDataSet(.Object = amStockChart(), showInCompare = TRUE)
 }
-\donttest{
+\dontrun{
 # Dummy example
 panels_ls <- list(stockPanel(compared = TRUE), stockPanel(compared = TRUE))
 setPanels(.Object = amStockChart(), panels = panels_ls)
 }
-\donttest{
+\dontrun{
 # Dummy example
 chart <- addPanel(.Object = amStockChart(), allowTurningOff = TRUE); print(chart)
 # equivalent to:
 panel_obj <- panel(allowTurningOff = TRUE)
 addPanel(.Object = amStockChart(), panel = panel_obj)
 }
-\donttest{
+\dontrun{
 # Dummy example
 setPanelsSettings(.Object = amStockChart(), backgroundAlpha = 0)
 }
-\donttest{
+\dontrun{
 # Dummy example
 setPeriodSelector(.Object = amStockChart(), dateFormat = "DD-MM-YYYY")
 }
-\donttest{
+\dontrun{
 # Dummy example
 setStockEventsSettings(.Object = amStockChart(), backgroundAlpha = 1)
 }
-\donttest{
+\dontrun{
 # Dummy example
 setValueAxesSettings(.Object = amStockChart(), autoGridCount = "TRUE")
 }

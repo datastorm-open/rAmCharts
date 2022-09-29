@@ -89,7 +89,7 @@ amFloatingBar(x = "country", y_inf = "visits_inf", y_sup = "visits_sup",
 amFloatingBar(x = "year", y_inf = "expenses", y_sup = "income", data = data_gbar,
               dataDateFormat = "YYYY", minPeriod = "YYYY", zoom = TRUE)
               
-\donttest{
+\dontrun{
 # Other examples available which can be time consuming depending on your configuration.
 library(pipeR)
 

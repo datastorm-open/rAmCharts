@@ -35,7 +35,7 @@ guides <- list(guide(fillAlpha = .4, adjustBorderColor = TRUE),
                guide(fillAlpha = .4, adjustBorderColor = TRUE))
 new("CategoryAxis", gridPosition = "start",  gridThickness = 1, guides = guides)
 
-\donttest{
+\dontrun{
 new("CategoryAxis")
 new("CategoryAxis", gridPosition = "start", 1) # 1 is not take into account
 }

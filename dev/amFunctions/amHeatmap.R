@@ -277,6 +277,7 @@ heatmap <- function(data, classes, labels = TRUE, cex=10, main="", xLabelsRotati
 #' 
 #' @examples
 #' 
+#' \dontrun{
 #' data(USArrests, "VADeaths")
 #' USArrests <- USArrests [1:10,]
 #' 
@@ -296,6 +297,8 @@ heatmap <- function(data, classes, labels = TRUE, cex=10, main="", xLabelsRotati
 #'     
 #' amHeatmap(USArrests, nclasses=10, col=c("#00FF00","#FF00FF","#0000FF"),labels = TRUE, cex=10,
 #'     main="My title", xLabelsRotation=45, colorby="all",legend = TRUE)
+#' 
+#' }
 #' 
 #' @return data.frame compound to original data.frame and associated constructor data.frame
 #' 

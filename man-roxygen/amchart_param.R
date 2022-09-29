@@ -63,7 +63,7 @@
 #' 
 #' @param theme \code{character}, 
 #' theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
-#' See \url{http://www.amcharts.com/tutorials/working-with-themes/}.
+#' See \url{https://www.amcharts.com/docs/v3/tutorials/working-with-themes/}.
 #' 
 #' @param titles \code{list} of \linkS4class{Title}.
 #' Run \code{api("Title")} for more informations.

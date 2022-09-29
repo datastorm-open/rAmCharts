@@ -93,7 +93,7 @@ data(data_gbar)
 
 amBarplot(x = "country", y = "visits", data = data_bar, main = "example")
 
-\donttest{
+\dontrun{
 
 # Other examples available which can be time consuming depending on your configuration.
 

@@ -38,7 +38,7 @@
 #' @import pipeR
 #' 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(pipeR)
 #' data(data_pie) 
 #' 

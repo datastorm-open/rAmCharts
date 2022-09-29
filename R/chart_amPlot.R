@@ -90,7 +90,7 @@ amPlot.default <- function(x, ...) "Wrong class"
 #' @rdname amPlot
 #' 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Other examples available which can be time consuming depending on your configuration.
 #' library(data.table)
 #' 
@@ -648,7 +648,7 @@ getGraphXY <- function (type, colorField, bullet, cex, lwd, lty, col,
 #'   amLines(x = rnorm(100), type = "p")
 #' }
 #' 
-#' \donttest{
+#' \dontrun{
 #' amPlot(x = rnorm(100), type = 'sl') %>>%
 #'   amLines(x = rnorm(100), col = "blue") %>>%
 #'   amLines(x = rnorm(100), type = "sl") %>>%

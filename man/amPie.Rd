@@ -27,7 +27,7 @@ amPie computes a pie chart of the given value.
 data("data_pie")
 amPie(data = data_pie)
 
-\donttest{
+\dontrun{
 # Other examples available which can be time consuming depending on your configuration.
 
 # Don't display values

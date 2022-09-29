@@ -183,7 +183,7 @@ amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), zoom = TRUE, legend
 amPlot(Petal.Length + Sepal.Length ~ Sepal.Width, data = iris, legend = TRUE, zoom = TRUE)
 }
 
-\donttest{
+\dontrun{
 # Other examples available which can be time consuming depending on your configuration.
 library(data.table)
 

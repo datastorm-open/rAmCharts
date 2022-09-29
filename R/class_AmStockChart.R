@@ -82,7 +82,7 @@ setClass("AmStockChart", contains = "AmObject",
 #' @return An object of class \linkS4class{AmStockChart}.
 #' 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # --- method 'initialize'
 #' new("AmStockChart", theme = "dark")
 #' }
@@ -124,7 +124,7 @@ setMethod(f = "initialize", signature = "AmStockChart",
 
 #' @rdname AmStockChart
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # --- constructor
 #' amStockChart()
 #' }

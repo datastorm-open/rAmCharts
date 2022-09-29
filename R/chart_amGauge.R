@@ -181,7 +181,7 @@ amAngularGauge <- function(x, start = 0, end = 100, step = 20,
 #' @examples
 #' amSolidGauge(x = 65)
 #' 
-#' \donttest{
+#' \dontrun{
 #' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' if (requireNamespace("pipeR", quietly = TRUE)) {

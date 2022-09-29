@@ -27,7 +27,7 @@
 #' @examples
 #' amHist(x = rnorm(100))
 #' 
-#' \donttest{
+#' \dontrun{
 #' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' x <- replicate(1000, {

@@ -205,10 +205,12 @@ Other characters 	Other characters will be displayed as they are without changin
 them. I.e.:YYYY-MM-DD = 2013-03-01
 }
 \examples{
+
+\dontrun{
+
 data("data_stock_2")
 amTimeSeries(data_stock_2, "date", c("ts1", "ts2"))
 
-\dontrun{
 # upper /lower
 data <- data_stock_2[1:50, ]
 data$ts1low <- data$ts1-100

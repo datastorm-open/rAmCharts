@@ -27,12 +27,12 @@ These methods can be used both for AmChart and AmStockChart.
 There are general for some first-level properties.
 }
 \examples{
-\donttest{
+\dontrun{
 # Dummy examples
 setExport(amPlot(1:10))
 setExport(amStockChart())
 }
-\donttest{
+\dontrun{
 # Dummy examples
 setResponsive(amSerialChart())
 setResponsive(amStockChart())

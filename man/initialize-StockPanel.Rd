@@ -131,7 +131,7 @@ Run \code{api("AmLegend")} for more informations.}
 
 \item{theme}{\code{character}, 
 theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
-See \url{http://www.amcharts.com/tutorials/working-with-themes/}.}
+See \url{https://www.amcharts.com/docs/v3/tutorials/working-with-themes/}.}
 
 \item{title}{A title of a panel. Note, StockLegend should be added in order title to be displayed.}
 

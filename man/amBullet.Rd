@@ -48,7 +48,7 @@ amBullet computes a bullet chart of the given value.
 \examples{
 amBullet(value = 65)
 
-\donttest{
+\dontrun{
 # Other examples available which can be time consuming depending on your configuration.
 
 # Remove steps for background

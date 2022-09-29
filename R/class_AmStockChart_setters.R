@@ -8,7 +8,7 @@ NULL
 #' @examples
 #' library(pipeR)
 #' 
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' amStockChart() %>>% setBalloon(gridPosition = "start")
 #' }
@@ -33,7 +33,7 @@ setMethod(f = "setBalloon", signature = c("AmStockChart", "AmBalloonOrMissing"),
 #' If there is no specified value, default value of CategoryAxis class will be used.
 #' you should get this axis from the chart and set properties to this object.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' setCategoryAxesSettings(.Object = amStockChart(), gridPosition = "start")
 #' }
@@ -54,7 +54,7 @@ setMethod(f = "setCategoryAxesSettings", signature = c("AmStockChart"),
 #' you should call stockChart.validateNow() method.
 #' If there is no specified value, default value of ChartCursor class will be used.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' setChartCursorSettings(.Object = amStockChart(), oneBallOnly = TRUE)
 #' }
@@ -75,7 +75,7 @@ setMethod(f = "setChartCursorSettings", signature = c("AmStockChart"),
 #' you should call stockChart.validateNow() method in order for it to work.
 #' If there is no default value specified, default value of ChartScrollbar class will be used.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' amchart <- setChartScrollbarSettings(.Object = amStockChart(), enabled = TRUE)
 #' print(amchart)
@@ -108,7 +108,7 @@ setMethod(f = "setChartScrollbarSettings", signature = c("AmStockChart", "ChartS
 # > @comparedDataSets : setters ####
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' comparedDataSets_ls <- list(dataSet(compared = TRUE), dataSet(compared = TRUE))
 #' setComparedDataSets(.Object = amStockChart(), comparedDataSets = comparedDataSets_ls)
@@ -132,7 +132,7 @@ setMethod(f = "setComparedDataSets", signature = c("AmStockChart"),
 
 #' @param dataSet \linkS4class{DataSet}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' addComparedDataSet(.Object = amStockChart(), compared = TRUE)
 #' }
@@ -155,7 +155,7 @@ setMethod(f = "addComparedDataSet", signature = c("AmStockChart", "DataSetOrMiss
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' dataSets_ls <- list(dataSet(compared = FALSE), dataSet(compared = FALSE))
 #' setDataSets(.Object = amStockChart(), dataSets = dataSets_ls)
@@ -178,7 +178,7 @@ setMethod(f = "setDataSets", signature = c("AmStockChart"),
 
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' addDataSet(.Object = amStockChart(), compared = FALSE)
 #' # equivalent to:
@@ -206,7 +206,7 @@ setMethod(f = "addDataSet", signature = c("AmStockChart", "DataSetOrMissing"),
 #' @details You can add it if you have more than one data set and want users
 #' to be able to select/compare them.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' print(setDataSetSelector(.Object = amStockChart(), width = 180))
 #' 
@@ -236,7 +236,7 @@ setMethod(f = "setDataSetSelector", signature = c("AmStockChart"),
 
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' setLegendSettings(.Object = amStockChart(), equalWidths = TRUE)
 #' }
@@ -253,7 +253,7 @@ setMethod(f = "setLegendSettings", signature = c("AmStockChart"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' setMainDataSet(.Object = amStockChart(), showInCompare = TRUE)
 #' }
@@ -276,7 +276,7 @@ setMethod(f = "setMainDataSet", signature = c("AmStockChart", "DataSetOrMissing"
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' panels_ls <- list(stockPanel(compared = TRUE), stockPanel(compared = TRUE))
 #' setPanels(.Object = amStockChart(), panels = panels_ls)
@@ -299,7 +299,7 @@ setMethod(f = "setPanels", signature = c("AmStockChart", "list"),
 
 #' @param panel \linkS4class{StockPanel}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' chart <- addPanel(.Object = amStockChart(), allowTurningOff = TRUE); print(chart)
 #' # equivalent to:
@@ -324,7 +324,7 @@ setMethod(f = "addPanel", signature = c("AmStockChart", "StockPanelOrMissing"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' setPanelsSettings(.Object = amStockChart(), backgroundAlpha = 0)
 #' }
@@ -341,7 +341,7 @@ setMethod(f = "setPanelsSettings", signature = c("AmStockChart"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' setPeriodSelector(.Object = amStockChart(), dateFormat = "DD-MM-YYYY")
 #' }
@@ -363,7 +363,7 @@ setMethod(f = "setPeriodSelector", signature = c("AmStockChart", "PeriodSelector
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' setStockEventsSettings(.Object = amStockChart(), backgroundAlpha = 1)
 #' }
@@ -380,7 +380,7 @@ setMethod(f = "setStockEventsSettings", signature = c("AmStockChart"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy example
 #' setValueAxesSettings(.Object = amStockChart(), autoGridCount = "TRUE")
 #' }

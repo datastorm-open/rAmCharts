@@ -14,7 +14,7 @@ setClassUnion(name = "AmCharts", members = c("AmChart", "AmStockChart"))
 #' 
 setGeneric(name = "setExport", def = function(.Object, enabled = TRUE, ...) {standardGeneric("setExport")})
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy examples
 #' setExport(amPlot(1:10))
 #' setExport(amStockChart())
@@ -34,7 +34,7 @@ setMethod(f = "setExport", signature = c("AmCharts", "logicalOrMissing"),
 #' 
 setGeneric(name = "setResponsive", def = function(.Object, enabled = TRUE, ...) {standardGeneric("setResponsive")})
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Dummy examples
 #' setResponsive(amSerialChart())
 #' setResponsive(amStockChart())
@@ -419,7 +419,7 @@ add_export_dependency <- function (widget)
 #' @return Return the updated htmlwidget.
 #' 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(pipeR)
 #' amPlot(1:10, theme = "dark") %>>% plot() %>>% add_theme_dependency("light.js")
 #' }

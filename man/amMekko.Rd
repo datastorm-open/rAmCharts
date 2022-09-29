@@ -44,7 +44,7 @@ amMekko computes a mekko chart of the given values.
 data(data_mekko)
 amMekko(x = "var1", y = "var2", data = data_mekko)
 
-\donttest{
+\dontrun{
 # Other examples available which can be time consuming depending on your configuration.
 library(pipeR)
  

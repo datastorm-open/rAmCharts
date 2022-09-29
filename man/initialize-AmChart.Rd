@@ -382,7 +382,7 @@ Only valid for Gantt Charts.}
 
 \item{theme}{\code{character}, 
 theme of a chart. Config files of themes can be found in amcharts/themes/ folder.
-See \url{http://www.amcharts.com/tutorials/working-with-themes/}.}
+See \url{https://www.amcharts.com/docs/v3/tutorials/working-with-themes/}.}
 
 \item{titles}{\code{list} of \linkS4class{Title}.
 Run \code{api("Title")} for more informations.}
@@ -504,69 +504,69 @@ Method \code{setValueAxis} is only valid for Gantt charts.
 \examples{
 new("AmChart", valueField = "value", theme = "patterns")
 
-\donttest{
+\dontrun{
 amChart(type = "pie")
 }
-\donttest{
+\dontrun{
 amAngularGaugeChart()
 }
-\donttest{
+\dontrun{
 amFunnelChart(marginLeft = 15)
 }
-\donttest{
+\dontrun{
 amRadarChart()
 }
-\donttest{
+\dontrun{
 amSerialChart(creditsPostion = "top-right")
 }
-\donttest{
+\dontrun{
 amPieChart()
 }
-\donttest{
+\dontrun{
 amGanttChart(segmentsField = "segments")
 }
-\donttest{
+\dontrun{
 amXYChart()
 }
-\donttest{
+\dontrun{
 allLabels <- list(label(text = "balloonText"), label(text = "column"))
 amSerialChart(allLabels = allLabels)
 }
 # ---
-\donttest{
+\dontrun{
 addLabel(.Object = amSerialChart(), text = "balloonText")
 # equivalent to:
 label_obj <- label(text = "balloonText")
 addLabel(.Object = amSerialChart(), label = label_obj)
 }
 # ---
-\donttest{
+\dontrun{
 arrows_ls <- list(gaugeArrow(value = 130), gaugeArrow(value = 150))
 amAngularGaugeChart(arrows = arrows_ls)
 }
 # ---
-\donttest{
+\dontrun{
 chart <- addArrow(.Object = amAngularGaugeChart(), value = 10); print(chart)
 # equivalent to:
 gaugeArrow_obj <- gaugeArrow(value = 10)
 addArrow(.Object = amAngularGaugeChart(), arrow = gaugeArrow_obj)
 }
 # ---
-\donttest{
+\dontrun{
 axes_ls <- list(gaugeAxis(value = 130), gaugeAxis(value = 150))
 setAxes(.Object = amAngularGaugeChart(), axes = axes_ls)
 # If possible, simplify your code by using the constructor:
 amAngularGaugeChart(axes = axes_ls)
 }
 # ---
-\donttest{
+\dontrun{
 addAxis(.Object = amAngularGaugeChart(), startValue = 0, endValue = 100, valueInterval = 10)
 # equivalent to:
 gaugeAxis_obj <- gaugeAxis(startValue = 0, enValue = 100, valueInterval = 10)
 addAxis(.Object = amAngularGaugeChart(), axis = gaugeAxis_obj)
 }
 # ---
-\donttest{
+\dontrun{
 setBalloon(.Object = amSerialChart(), adjustBorderColor = TRUE, fillColor = "#FFFFFF",
            color = "#000000", cornerRadius = 5)
 # equivalent to:
@@ -575,7 +575,7 @@ amBalloon_obj <- amBalloon(adjustBorderColor = TRUE, fillColor = "#FFFFFF",
 setBalloon(.Object = amSerialChart(), amBalloon = amBalloon_obj)
 }
 # ---
-\donttest{
+\dontrun{
 setCategoryAxis(.Object = amSerialChart(), gridPosition = "start")
 # equivalent to:
 categoryAxis_obj <- categoryAxis(gridPosition = "start")
@@ -584,7 +584,7 @@ setCategoryAxis(.Object = amSerialChart(), categoryAxis = categoryAxis_obj)
 # ---
 setCategoryField(.Object = amSerialChart(), categoryField = "country")
 # ---
-\donttest{
+\dontrun{
 # with default value, no argument needed
 setChartCursor(.Object = amSerialChart())
 # other example
@@ -594,7 +594,7 @@ chartCursor_obj <- chartCursor(oneBallOnly = TRUE)
 setChartCursor(.Object = amSerialChart(), chartCursor = chartCursor_obj)
 }
 # ---
-\donttest{
+\dontrun{
 # Add the default scrollbar
 setChartScrollbar(.Object = amSerialChart())
 # equivalent to:
@@ -602,58 +602,58 @@ chartScrollbar_obj <- chartScrollbar(updateOnReleaseOnly = FALSE)
 setChartScrollbar(.Object = amSerialChart(), chartScrollbar = chartScrollbar_obj)
 }
 # ---
-\donttest{
+\dontrun{
 setCreditsPosition(.Object = amPieChart(), creditsPosition = "top-right")
 }
 # ---
-\donttest{
+\dontrun{
 setDataLoader(.Object = amSerialChart(), url = "data.json", format = "json")
 }
 # ---
-\donttest{
+\dontrun{
 dataProvider_obj <- data.frame(key = c("FR", "US", "GER", "ENG", "IT" ),
                                value = round(runif(5, max = 100)))
 setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj)
 }
 # ---
-\donttest{
+\dontrun{
 graphs_ls <- list(graph(balloonText = "balloonText"), graph(type = "column"))
 setGraphs(.Object = amSerialChart(), graphs = graphs_ls)
 }
 # ---
-\donttest{
+\dontrun{
 addGraph(.Object = amSerialChart(), balloonText = "balloonText", "type" = "column")
 # equivalent to
 amGraph_obj <- amGraph(balloonText = "balloonText", "type" = "column")
 addGraph(.Object = amSerialChart(), amGraph = amGraph_obj)
 }
 # ---
-\donttest{
+\dontrun{
 print(setGraph(.Object = amGanttChart(), id = "amGraph-1"))
 # equivalent to:
 amGraph_obj <- amGraph(id = "amGraph-1")
 setGraph(.Object = amGanttChart(), amGraph = amGraph_obj)
 }
 # ---
-\donttest{
+\dontrun{
 guides_ls <- list(guide(fillAlpha = .1), guide(fillAlpha = .5))
 amSerialChart(guides = guides_ls)
 }
 # ---
-\donttest{
+\dontrun{
 chart <- addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10)
 print(chart)
 # equivalent to
 guide_obj <- guide(fillAlpha = .1, value = 0, toValue = 10, valueAxis = "1")
 addGuide(.Object = amSerialChart(), guide = guide_obj)
 }
-\donttest{
+\dontrun{
 setLegend(.Object = amChart(), amLegend = amLegend(useGraphSettings = TRUE))
 # equivalent to:
 setLegend(.Object = amChart(), useGraphSettings = TRUE)
 }
 # ---
-\donttest{
+\dontrun{
 pipeR::pipeline(
   amGanttChart(segmentsField = "segments"),
   setDataProvider(data.frame(category = c( "John", "Julia"))),
@@ -670,34 +670,34 @@ pipeR::pipeline(
 )
 }
 # ---
-\donttest{
+\dontrun{
 amChart_obj <- amChart(dataProvider = data.frame(a = 1:5, b = 6:10))
 addSubData(.Object = amChart_obj, categoryIDs = 3, data = data.frame(a = 1:10, b = 11:20))
 }
 # ---
-\donttest{
+\dontrun{
 setSubChartProperties(.Object = amSerialChart(), type = "serial")
 }
 # ---
-\donttest{
+\dontrun{
 setTheme(.Object = amPieChart(), theme = "dark")
 }
 # ---
-\donttest{
+\dontrun{
 titles_ls <- list(amTitle(text = "balloonText"), amTitle(text = "column"))
 setTitles(.Object = amXYChart(), titles = titles_ls)
 # or...
 amXYChart(titles = titles_ls)
 }
 # ---
-\donttest{
+\dontrun{
 addTitle(.Object = amPieChart(), text = "balloonText", size = 15)
 # equivalent to
 title_obj <- amTitle(text = "balloonText", size = 15)
 addTitle(.Object = amPieChart(), title = title_obj)
 }
 # ---
-\donttest{
+\dontrun{
 trendLines <- list(trendLine(initialValue = 1, finalValue = 5),
                    trendLine(initialValue = 7, finalValue = 19))
 setTrendLines(.Object = amSerialChart(), trendLines = trendLines)
@@ -705,7 +705,7 @@ setTrendLines(.Object = amSerialChart(), trendLines = trendLines)
 amSerialChart(trendLines = trendLines) # Equivalent
 }
 # ---
-\donttest{
+\dontrun{
 addTrendLine(.Object = amSerialChart(), initialValue = 1, initialXValue = 1,
              finalValue = 11, finalXValue = 12)
 # equivalent to:
@@ -713,12 +713,12 @@ trendLine_obj <- trendLine(initialValue = 1, initialXValue = 1, finalValue = 11,
 chart <- addTrendLine(.Object = amSerialChart(), trendLine = trendLine_obj); print(chart)
 }
 # ---
-\donttest{
+\dontrun{
 setType(.Object = amChart(), type = "pie")
 # equivalent to:
 amPieChart()
 }
-\donttest{
+\dontrun{
 valueAxes <- list(valueAxis(axisTitleOffset = 12, tickLength = 10),
                   valueAxis(axisTitleOffset = 10, tickLength = 10))
 setValueAxes(.Object = amSerialChart(), valueAxes = valueAxes)
@@ -726,18 +726,18 @@ setValueAxes(.Object = amSerialChart(), valueAxes = valueAxes)
 amSerialChart(valueAxes = valueAxes)
 }
 # ---
-\donttest{
+\dontrun{
 print(addValueAxis(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10, title = "foo"))
 # equivalent to:
 valueAxis_obj <- valueAxis(axisTitleOffset = 12, tickLength = 10, title = "foo")
 addValueAxis(.Object = amSerialChart(), valueAxis = valueAxis_obj)
 }
 # ---
-\donttest{
+\dontrun{
 setValueAxis(.Object = amGanttChart())
 setValueAxis(.Object = amGanttChart(), type = "date")
 }
-\donttest{
+\dontrun{
 valueScrollbar_obj <- chartScrollbar(updateOnReleaseOnly = FALSE)
 chart <- setValueScrollbar(.Object = amSerialChart(), valueScrollbar = valueScrollbar_obj)
 print(chart)

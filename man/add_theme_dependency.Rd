@@ -22,7 +22,7 @@ Add the 'theme' dependency to an htmlwidget.
 You can only manipulate the htmlwidget if you call the method 'plot' with an rAmChart.
 }
 \examples{
-\donttest{
+\dontrun{
 library(pipeR)
 amPlot(1:10, theme = "dark") \%>>\% plot() \%>>\% add_theme_dependency("light.js")
 }

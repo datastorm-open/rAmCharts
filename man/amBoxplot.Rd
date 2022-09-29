@@ -109,11 +109,11 @@ amBoxplot(iris[, 1:4])
 }
 # Other examples available which can be time consuming depending on your configuration.
 
-\donttest{
+\dontrun{
 don <- data.frame(a = 1:10, b = 1:5)
 amBoxplot(don, ylim = c(0,15))
 }
-\donttest{
+\dontrun{
 # --- matrix
 x <- matrix(nrow = 10, ncol = 5, rnorm(50))
 
@@ -125,7 +125,7 @@ amBoxplot(x, use.cols = FALSE, col = c("blue", "red"))
 # Parameter for amOptions
 amBoxplot(x, export = TRUE, exportFormat = "SVG")
 }
-\donttest{
+\dontrun{
 # --- Formula
 (obj <- amBoxplot(count ~ spray, data = InsectSprays))
 

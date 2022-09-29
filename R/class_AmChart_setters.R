@@ -5,7 +5,7 @@ NULL
 #' @export
 setGeneric(name = "setAllLabels", def = function(.Object, allLabels) {standardGeneric("setAllLabels")})
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' allLabels <- list(label(text = "balloonText"), label(text = "column"))
 #' amSerialChart(allLabels = allLabels)
 #' }
@@ -33,7 +33,7 @@ setMethod(f = "setAllLabels", signature = c("AmChart", "list"),
 #' @param label (optional) \linkS4class{Label}.
 #' Argument of method \code{addLabel}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' addLabel(.Object = amSerialChart(), text = "balloonText")
 #' # equivalent to:
 #' label_obj <- label(text = "balloonText")
@@ -63,7 +63,7 @@ setMethod(f = "addLabel", signature = c("AmChart", "LabelOrMissing"),
 
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' arrows_ls <- list(gaugeArrow(value = 130), gaugeArrow(value = 150))
 #' amAngularGaugeChart(arrows = arrows_ls)
 #' }
@@ -93,7 +93,7 @@ setMethod(f = "setArrows", signature = c("AmChart"),
 #' @param arrow (optional) \linkS4class{GaugeArrow}.
 #' Argument of method \code{addArrow}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' chart <- addArrow(.Object = amAngularGaugeChart(), value = 10); print(chart)
 #' # equivalent to:
 #' gaugeArrow_obj <- gaugeArrow(value = 10)
@@ -125,7 +125,7 @@ setMethod(f = "addArrow", signature = c("AmChart", "GaugeArrowOrMissing"),
 
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' axes_ls <- list(gaugeAxis(value = 130), gaugeAxis(value = 150))
 #' setAxes(.Object = amAngularGaugeChart(), axes = axes_ls)
 #' # If possible, simplify your code by using the constructor:
@@ -190,7 +190,7 @@ addAxis_def <- function(.Object, axis = NULL, ...)
 #' @details 
 #' Method 'addAxe' is deprecated, use 'addAxis'.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' addAxis(.Object = amAngularGaugeChart(), startValue = 0, endValue = 100, valueInterval = 10)
 #' # equivalent to:
 #' gaugeAxis_obj <- gaugeAxis(startValue = 0, enValue = 100, valueInterval = 10)
@@ -210,7 +210,7 @@ setMethod(f = "addAxis", signature = c("AmChart", "GaugeAxisOrMissing"),
 
 #' @param amBalloon \linkS4class{AmBalloon}, argument of method 'setBalloon'.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' setBalloon(.Object = amSerialChart(), adjustBorderColor = TRUE, fillColor = "#FFFFFF",
 #'            color = "#000000", cornerRadius = 5)
 #' # equivalent to:
@@ -239,7 +239,7 @@ setMethod(f = "setBalloon", signature = c("AmChart", "AmBalloonOrMissing"),
 
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' setCategoryAxis(.Object = amSerialChart(), gridPosition = "start")
 #' # equivalent to:
 #' categoryAxis_obj <- categoryAxis(gridPosition = "start")
@@ -288,7 +288,7 @@ setMethod(f = "setCategoryField", signature = c("AmChart", "character"),
 
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # with default value, no argument needed
 #' setChartCursor(.Object = amSerialChart())
 #' # other example
@@ -322,7 +322,7 @@ setMethod(f = "setChartCursor", signature = c("AmChart", "ChartCursorOrMissing")
 
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Add the default scrollbar
 #' setChartScrollbar(.Object = amSerialChart())
 #' # equivalent to:
@@ -353,7 +353,7 @@ setMethod(f = "setChartScrollbar", signature = c("AmChart", "ChartScrollbarOrMis
 
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' setCreditsPosition(.Object = amPieChart(), creditsPosition = "top-right")
 #' }
 #' # ---
@@ -372,7 +372,7 @@ setMethod(f = "setCreditsPosition", signature = c("AmChart", "character"),
 #' @param url \code{character}.
 #' @param format \code{character}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' setDataLoader(.Object = amSerialChart(), url = "data.json", format = "json")
 #' }
 #' # ---
@@ -393,7 +393,7 @@ setMethod(f = "setDataLoader", signature = c("AmChart", "character", "character"
 #' object of class \code{logical}, default \code{TRUE}.
 #' Indicates if \code{NULL} values have to be kept or ignored. 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' dataProvider_obj <- data.frame(key = c("FR", "US", "GER", "ENG", "IT" ),
 #'                                value = round(runif(5, max = 100)))
 #' setDataProvider(.Object = amPieChart(), dataProvider = dataProvider_obj)
@@ -412,7 +412,7 @@ setMethod(f = "setDataProvider", signature = c("AmChart", "ANY", "logicalOrMissi
 # > @graphs : setters ####
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' graphs_ls <- list(graph(balloonText = "balloonText"), graph(type = "column"))
 #' setGraphs(.Object = amSerialChart(), graphs = graphs_ls)
 #' }
@@ -433,7 +433,7 @@ setMethod(f = "setGraphs", signature = c("AmChart", "list"),
 
 #' @param amGraph (optional) \linkS4class{AmGraph}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' addGraph(.Object = amSerialChart(), balloonText = "balloonText", "type" = "column")
 #' # equivalent to
 #' amGraph_obj <- amGraph(balloonText = "balloonText", "type" = "column")
@@ -461,7 +461,7 @@ setMethod(f = "addGraph", signature = c("AmChart", "AmGraphOrMissing"),
 
 #' @details Method \code{setGraph} is only valid for Gantt Charts.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' print(setGraph(.Object = amGanttChart(), id = "amGraph-1"))
 #' # equivalent to:
 #' amGraph_obj <- amGraph(id = "amGraph-1")
@@ -485,7 +485,7 @@ setMethod(f = "setGraph", signature = c("AmChart", "AmGraphOrMissing"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' guides_ls <- list(guide(fillAlpha = .1), guide(fillAlpha = .5))
 #' amSerialChart(guides = guides_ls)
 #' }
@@ -509,7 +509,7 @@ setMethod(f = "setGuides", signature = c("AmChart", "list"),
 #' @param guide (optional) \linkS4class{Guide}.
 #' Argument of method \code{addGuide}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' chart <- addGuide(.Object = amSerialChart(), fillAlpha = .1, value = 0, toVAlue = 10)
 #' print(chart)
 #' # equivalent to
@@ -534,7 +534,7 @@ setMethod(f = "addGuide", signature = c("AmChart", "GuideOrMissing"),
 
 #' @param amLegend (optional) \linkS4class{AmLegend}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' setLegend(.Object = amChart(), amLegend = amLegend(useGraphSettings = TRUE))
 #' # equivalent to:
 #' setLegend(.Object = amChart(), useGraphSettings = TRUE)
@@ -563,7 +563,7 @@ setMethod(f = "setLegend", signature = c("AmChart", "AmLegendOrMissing"),
 #' @param sgts \code{data.frame}
 #' ( or \code{list} of \code{data.frame} for multiple add ).
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' pipeR::pipeline(
 #'   amGanttChart(segmentsField = "segments"),
 #'   setDataProvider(data.frame(category = c( "John", "Julia"))),
@@ -632,7 +632,7 @@ setMethod(f = "addSegment", signature = c( .Object = "AmChart", categoryIDs = "n
 #' @param data \code{data.frame}. Data to draw at the second level,
 #' after clicking on the column.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amChart_obj <- amChart(dataProvider = data.frame(a = 1:5, b = 6:10))
 #' addSubData(.Object = amChart_obj, categoryIDs = 3, data = data.frame(a = 1:10, b = 11:20))
 #' }
@@ -679,7 +679,7 @@ setMethod(f = "addSubData", signature = c("AmChart", "numeric", "ANY"),
 
 #' @param .subObject \linkS4class{AmChart}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' setSubChartProperties(.Object = amSerialChart(), type = "serial")
 #' }
 #' # ---
@@ -700,7 +700,7 @@ setMethod(f = "setSubChartProperties", signature = c("AmChart"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' setTheme(.Object = amPieChart(), theme = "dark")
 #' }
 #' # ---
@@ -717,7 +717,7 @@ setMethod(f = "setTheme", signature = c("AmChart", "character"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' titles_ls <- list(amTitle(text = "balloonText"), amTitle(text = "column"))
 #' setTitles(.Object = amXYChart(), titles = titles_ls)
 #' # or...
@@ -742,7 +742,7 @@ setMethod(f = "setTitles", signature = c("AmChart", "list"),
 
 #' @param title (optional) \linkS4class{Title}, argument of method \code{addTitle}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' addTitle(.Object = amPieChart(), text = "balloonText", size = 15)
 #' # equivalent to
 #' title_obj <- amTitle(text = "balloonText", size = 15)
@@ -769,7 +769,7 @@ setMethod(f = "addTitle", signature = c("AmChart", "TitleOrMissing"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' trendLines <- list(trendLine(initialValue = 1, finalValue = 5),
 #'                    trendLine(initialValue = 7, finalValue = 19))
 #' setTrendLines(.Object = amSerialChart(), trendLines = trendLines)
@@ -795,7 +795,7 @@ setMethod(f = "setTrendLines", signature = c("AmChart", "list"),
 #' @param trendLine (optional) \linkS4class{TrendLine}.
 #' Argument of method \code{addTrendLine}.
 #' @examples 
-#' \donttest{
+#' \dontrun{
 #' addTrendLine(.Object = amSerialChart(), initialValue = 1, initialXValue = 1,
 #'              finalValue = 11, finalXValue = 12)
 #' # equivalent to:
@@ -823,7 +823,7 @@ setMethod(f = "addTrendLine", signature = c("AmChart", "TrendLineOrMissing"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' setType(.Object = amChart(), type = "pie")
 #' # equivalent to:
 #' amPieChart()
@@ -839,7 +839,7 @@ setMethod(f = "setType", signature = c("AmChart", "character"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' valueAxes <- list(valueAxis(axisTitleOffset = 12, tickLength = 10),
 #'                   valueAxis(axisTitleOffset = 10, tickLength = 10))
 #' setValueAxes(.Object = amSerialChart(), valueAxes = valueAxes)
@@ -879,7 +879,7 @@ addValueAxis_def <- function(.Object, valueAxis = NULL, ...)
 
 #' @details For method \code{addValueAxis}: valueAxis is optional. Method \code{addValueAxes} is deprecated.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' print(addValueAxis(.Object = amSerialChart(), axisTitleOffset = 12, tickLength = 10, title = "foo"))
 #' # equivalent to:
 #' valueAxis_obj <- valueAxis(axisTitleOffset = 12, tickLength = 10, title = "foo")
@@ -902,7 +902,7 @@ setMethod(f = "addValueAxis", signature = c("AmChart", "ValueAxisOrMissing"),
 
 #' @details Method \code{setValueAxis} is only valid for Gantt charts.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' setValueAxis(.Object = amGanttChart())
 #' setValueAxis(.Object = amGanttChart(), type = "date")
 #' }
@@ -922,7 +922,7 @@ setMethod(f = "setValueAxis", signature = c("AmChart", "ValueAxisOrMissing"),
           })
 
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' valueScrollbar_obj <- chartScrollbar(updateOnReleaseOnly = FALSE)
 #' chart <- setValueScrollbar(.Object = amSerialChart(), valueScrollbar = valueScrollbar_obj)
 #' print(chart)

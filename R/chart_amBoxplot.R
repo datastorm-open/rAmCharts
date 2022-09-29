@@ -105,7 +105,7 @@ amBoxplot.default <- function(object, xlab = NULL, ylab = NULL, ylim = NULL,
 
 #' @rdname amBoxplot
 #' @examples 
-#' \donttest{
+#' \dontrun{
 #' don <- data.frame(a = 1:10, b = 1:5)
 #' amBoxplot(don, ylim = c(0,15))
 #' }
@@ -153,7 +153,7 @@ amBoxplot.data.frame <- function(object, id = NULL, xlab = NULL, ylab = NULL,
 
 #' @rdname amBoxplot
 #' @examples 
-#' \donttest{
+#' \dontrun{
 #' # --- matrix
 #' x <- matrix(nrow = 10, ncol = 5, rnorm(50))
 #' 
@@ -209,7 +209,7 @@ amBoxplot.matrix <- function(object, use.cols = TRUE, xlab = NULL, ylab = NULL,
 
 #' @rdname amBoxplot
 #' @examples 
-#' \donttest{
+#' \dontrun{
 #' # --- Formula
 #' (obj <- amBoxplot(count ~ spray, data = InsectSprays))
 #' 
@@ -388,7 +388,7 @@ amBoxplot.formula <-function(object, data = NULL, id = NULL, xlab = NULL, ylab =
       stats[5] <- xx[!id %in% out[, id]][, max(x)]
       
       # control des outliers
-      if(class(out$x) == "integer"){
+      if("integer" %in% class(out$x)){
         out[, x := as.numeric(x)]
       }
       out <- out[, list(N = .N, id), by = "x"]

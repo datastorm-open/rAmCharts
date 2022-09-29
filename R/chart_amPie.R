@@ -14,7 +14,7 @@
 #' data("data_pie")
 #' amPie(data = data_pie)
 #' 
-#' \donttest{
+#' \dontrun{
 #' # Other examples available which can be time consuming depending on your configuration.
 #' 
 #' # Don't display values

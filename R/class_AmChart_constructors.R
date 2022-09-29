@@ -1,5 +1,5 @@
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amChart(type = "pie")
 #' }
 #' @rdname initialize-AmChart
@@ -41,7 +41,7 @@ amChart <- function(allLabels, arrows, axes, balloon, categoryAxis, categoryFiel
 
 #' @details amAngularGaugeChart is a shortcut for instantiating AmChart of type \code{gauge}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amAngularGaugeChart()
 #' }
 #' @rdname initialize-AmChart
@@ -58,7 +58,7 @@ amAngularGaugeChart <- function(arrows, titles, axes, ...)
 #' @param marginLeft \code{character}, left margin of the chart.
 #' @param marginRight \code{character}, right margin of the chart.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amFunnelChart(marginLeft = 15)
 #' }
 #' @rdname initialize-AmChart
@@ -74,7 +74,7 @@ amFunnelChart <- function(dataProvider, marginLeft = 10, marginRight = 10,...)
 #' @details amRadarChart is a shortcut
 #' for instantiating AmChart of type \code{radar}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amRadarChart()
 #' }
 #' @rdname initialize-AmChart
@@ -101,7 +101,7 @@ amRadarChart <- function(allLabels,
 #' @details amSerialChart is a shortcut constructor 
 #' for instantiating AmChart of type \code{serial}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amSerialChart(creditsPostion = "top-right")
 #' }
 #' @rdname initialize-AmChart
@@ -123,7 +123,7 @@ amSerialChart <- function(allLabels, balloon, categoryAxis, categoryField, chart
 #' @details amPieChart is a shortcut constructor
 #' for instantiating AmChart of type \code{pie}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amPieChart()
 #' }
 #' @rdname initialize-AmChart
@@ -145,7 +145,7 @@ amPieChart <- function(allLabels,
 #' @details amGanttChart is a constructor
 #' for instantiating AmChart of type \code{gantt}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amGanttChart(segmentsField = "segments")
 #' }
 #' @rdname initialize-AmChart
@@ -166,7 +166,7 @@ amGanttChart <- function(categoryField,
 #' @details amXYChart is a shortcut constructor
 #' for instantiating AmChart of type \code{xy}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' amXYChart()
 #' }
 #' @rdname initialize-AmChart
